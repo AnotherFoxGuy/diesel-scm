@@ -1,8 +1,36 @@
-C initial\sempty\scheck-in
-D 2011-08-01T16:00:48.779
-P
-R d41d8cd98f00b204e9800998ecf8427e
-T *branch * trunk
-T *sym-trunk *
+C Initial\scommit
+D 2011-08-01T16:01:50.497
+F MainWindow.cpp c5fbd8ca52dc16d0f67e70e4ac45aafc22f4bd42
+F MainWindow.h cfcac26df614d2f3bdf001470b16374523ef0b37
+F MainWindow.ui f615eeae75553401f720d77507c1be2764d42784
+F icons/Button-Add-icon.png dadf3bf18c07c65d4a4655a4adaa45680c0abfde
+F icons/Button-Blank-Blue-icon.png 3cb7dc5cb20b56a3793a649e9b1ad6feb90bbaf0
+F icons/Button-Blank-Gray-icon.png d1a6873369614ce73c87045acb379d4f4bad12f8
+F icons/Button-Blank-Green-icon.png a62f00dfce56eeb0eb6a6b8503fc3b7575d16900
+F icons/Button-Blank-Red-icon.png 16b59b7307507c76bc733be78c0314e7c6368983
+F icons/Button-Blank-Yellow-icon.png a088169552b7745eb7976226d4915aad70397f48
+F icons/Button-Close-icon.png 9fe1296b4c4c98a9f01e5acd61f18a0fbf0bb220
+F icons/Button-Download-icon.png 17c93659be8967ba8ded57f709a67bbd80c1ec65
+F icons/Button-Refresh-icon.png ce8b163c2f49e53854fe4b88d22a1b5d81fe6bc2
+F icons/Button-Rewind-icon.png d6cb4e298ad2fc7b39cdcdedd235f2445555fc81
+F icons/Button-Upload-icon.png b2731cecf1f32d181fd584aab78747449674dcc3
+F icons/Button-Warning-icon.png f2b2e4d22744fc54f1bd998776970e5c80c2e756
+F icons/Clock-icon.png 91164eb2a1dce6693e6b968e9973b6a42286c94f
+F icons/Document-Copy-icon.png 0d9803252ecd372ea2910f594e829676fd499a83
+F icons/Document-Organization-Chart-icon.png 40198a69779894c74b4548dd4af6a8febab6c3fc
+F icons/Document-Revert-icon.png c696a41d43d08c99a726cb8af97601b825a9fb34
+F icons/Document-icon.png 38ac596e8781f790d3cd597267ed9a609d1dda5f
+F icons/File-Delete-icon.png 9bdb9ab015a688c82b14d8f0fd6dec06d8a7d5fd
+F icons/File-History-icon.png d9c61fef53a3e6cb92dad05d72aa6fcf8818ce16
+F icons/File-New-icon.png 7dc6354d5df96febfc410d83339a51585283457d
+F icons/File-Open-icon.png b756b910579f17a1721c280c328477af2107d73d
+F icons/IconCredits.txt cee343f48fa15458897693df78193c0f7c63a519
+F icons/Network-PC-icon.png 5a452cf64e495361bf569c007856a953de871082
+F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
+F qtfossil.pro 80268b3b1ec8f73cbc24896a0f2ae3fbcca286cb
+F qtfossil.pro.user 29e3db9439958ad5a7cf2e7ca667d4e79c94f449
+F resources.qrc e8da172649b8eb351ac12085a66bec1863e5aac9
+P 228a59141104e75511ee4232585543c5182c7e89
+R 89ef91ffc77f859f59780af3211b709b
 U kostas
-Z c1ebb12543578e73f2aeef1560b152d9
+Z c53b4596afb07569b4bad845dab76ffc

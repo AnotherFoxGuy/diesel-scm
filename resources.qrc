@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/Button-Add-icon.png</file>
+        <file>icons/Button-Download-icon.png</file>
+        <file>icons/Button-Refresh-icon.png</file>
+        <file>icons/Button-Upload-icon.png</file>
+        <file>icons/Clock-icon.png</file>
+        <file>icons/Document-Copy-icon.png</file>
+        <file>icons/File-Delete-icon.png</file>
+        <file>icons/File-New-icon.png</file>
+        <file>icons/File-Open-icon.png</file>
+        <file>icons/File-History-icon.png</file>
+        <file>icons/Network-PC-icon.png</file>
+        <file>icons/Button-Blank-Green-icon.png</file>
+        <file>icons/Button-Blank-Red-icon.png</file>
+        <file>icons/Button-Blank-Yellow-icon.png</file>
+        <file>icons/Button-Close-icon.png</file>
+        <file>icons/Button-Warning-icon.png</file>
+        <file>icons/Document-Organization-Chart-icon.png</file>
+        <file>icons/Button-Blank-Blue-icon.png</file>
+        <file>icons/Button-Blank-Gray-icon.png</file>
+        <file>icons/Button-Rewind-icon.png</file>
+        <file>icons/Document-icon.png</file>
+        <file>icons/Document-Revert-icon.png</file>
+    </qresource>
+</RCC>
