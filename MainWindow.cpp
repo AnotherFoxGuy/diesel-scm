@@ -4,7 +4,7 @@
 #include <QStandardItem>
 #include <QProcess>
 #include <QSettings>
-
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,21 +12,18 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 	ui->tableView->setModel(&itemModel);
+	ui->tableView->addAction(ui->actionDiff);
+	ui->tableView->addAction(ui->actionHistory);
 	ui->tableView->addAction(ui->actionAdd);
 	ui->tableView->addAction(ui->actionDelete);
 	ui->tableView->addAction(ui->actionRename);
-	ui->tableView->addAction(ui->actionHistory);
-	ui->tableView->addAction(ui->actionDiff);
 
-	settingsFile = QApplication::applicationDirPath().left(1) + ":/qfossil.ini";
+	settingsFile = QDir::homePath() + QDir::separator() + ".fuelrc";
 	currentWorkspace = 0;
 	loadSettings();
 
 	if(workspaces.empty())
 		workspaces.append("/home/kostas/tmp/cheesy-fos");
-
-	if(fossilPath.isEmpty())
-		fossilPath = "fossil";
 
 	refresh();
 }
@@ -34,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //------------------------------------------------------------------------------
 MainWindow::~MainWindow()
 {
+	stopUI();
 	saveSettings();
 	delete ui;
 }
@@ -54,7 +52,6 @@ void MainWindow::on_actionOpen_triggered()
 		currentWorkspace = workspaces.size()-1;
 		refresh();
 	}
-
 }
 
 //------------------------------------------------------------------------------
@@ -174,6 +171,11 @@ void MainWindow::Log(const QString &text)
 {
 	ui->textBrowser->append(text);
 }
+//------------------------------------------------------------------------------
+void MainWindow::on_actionClearLog_triggered()
+{
+	ui->textBrowser->clear();
+}
 
 //------------------------------------------------------------------------------
 bool MainWindow::runFossil(QStringList &result, const QStringList &args)
@@ -233,27 +235,44 @@ void MainWindow::loadSettings()
 {
 	QSettings settings(settingsFile, QSettings::NativeFormat);
 
-	bool ok=false;
-
-	fossilPath = settings.value("FossilPath").toString();
-	if(fossilPath.isEmpty())
+	if(settings.contains("FossilPath"))
+		fossilPath = settings.value("FossilPath").toString();
+	else
 		fossilPath = "fossil";
 
-	int num_repos =	settings.value("NumWorkspaces").toInt(&ok);
-	if(!ok)
-		num_repos=0;
+	int num_wks = 0;
 
-	for(int i=0; i<num_repos; ++i)
+	if(settings.contains("NumWorkspaces"))
+		num_wks = settings.value("NumWorkspaces").toInt();
+
+	for(int i=0; i<num_wks; ++i)
 	{
-	  QString wk = settings.value("Workspace_"+i).toString();
-	  if(!wk.isEmpty())
+		QString key = "Workspace_" + QString::number(i);
+		QString wk = settings.value(key).toString();
+		if(!wk.isEmpty())
 			workspaces.append(wk);
 	}
 
-	currentWorkspace = settings.value("LastWorkspace").toInt(&ok);
-	if(!ok)
-		num_repos=0;
+	if(settings.contains("LastWorkspace"))
+		currentWorkspace = settings.value("LastWorkspace").toInt();
+	else
+		currentWorkspace = 0;
 
+	if(settings.contains("WindowX") && settings.contains("WindowY"))
+	{
+		QPoint _pos;
+		_pos.setX(settings.value("WindowX").toInt());
+		_pos.setY(settings.value("WindowY").toInt());
+		move(_pos);
+	}
+
+	if(settings.contains("WindowWidth") && settings.contains("WindowHeight"))
+	{
+		QSize _size;
+		_size.setWidth(settings.value("WindowWidth").toInt());
+		_size.setHeight(settings.value("WindowHeight").toInt());
+		resize(_size);
+	}
 }
 
 //------------------------------------------------------------------------------
@@ -264,13 +283,21 @@ void MainWindow::saveSettings()
 	settings.setValue("NumWorkspaces", workspaces.size());
 
 	for(int i=0; i<workspaces.size(); ++i)
-		settings.setValue("Workspace_"+i, workspaces[i]);
+	{
+		QString key = "Workspace_" + QString::number(i);
+		settings.setValue(key, workspaces[i]);
+	}
 
 	settings.setValue("LastWorkspace", currentWorkspace);
+	settings.setValue("WindowX", x());
+	settings.setValue("WindowY", y());
+	settings.setValue("WindowWidth", width());
+	settings.setValue("WindowHeight", height());
+
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionDiff_triggered()
+void MainWindow::getSelectionFilenames(QStringList &filenames)
 {
 	QModelIndexList selection = ui->tableView->selectionModel()->selectedIndexes();
 	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
@@ -283,32 +310,92 @@ void MainWindow::on_actionDiff_triggered()
 			continue;
 
 		QVariant data = itemModel.data(mi);
-		QString fname = data.toString();
+		filenames.append(data.toString());
+	}
+}
+//------------------------------------------------------------------------------
+void MainWindow::on_actionDiff_triggered()
+{
+	QStringList selection;
+	getSelectionFilenames(selection);
+
+	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
+	{
 		QStringList res;
-		if(!runFossil(res, QStringList() << "gdiff" << fname))
+		if(!runFossil(res, QStringList() << "gdiff" << *it))
 			return;
 	}
 }
 
+//------------------------------------------------------------------------------
+bool MainWindow::startUI()
+{
+	if(uiRunning())
+		return true;
 
+	fossilUI.setProcessChannelMode(QProcess::MergedChannels);
+	fossilUI.setWorkingDirectory(getCurrentWorkspace());
+
+	Log("> fossil ui");
+
+	fossilUI.start(fossilPath, QStringList() << "ui");
+	if(!fossilUI.waitForStarted())
+	{
+		Log(fossilPath + " does not exist\n");
+		return false;
+	}
+
+	return true;
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::stopUI()
+{
+	if(uiRunning())
+		fossilUI.terminate();
+}
+
+
+//------------------------------------------------------------------------------
 void MainWindow::on_actionFossilUI_toggled(bool arg1)
 {
-	if(arg1 && fossilUI.state()==QProcess::NotRunning)
-	{
-		fossilUI.setProcessChannelMode(QProcess::MergedChannels);
-		fossilUI.setWorkingDirectory(getCurrentWorkspace());
+	if(arg1)
+		startUI();
+	else
+		stopUI();
+}
 
-		Log("> fossil ui");
+//------------------------------------------------------------------------------
+void MainWindow::on_actionQuit_triggered()
+{
+	close();
+}
 
-		fossilUI.start(fossilPath, QStringList() << "ui");
-		if(!fossilUI.waitForStarted())
-		{
-			Log(fossilPath + " does not exist\n");
-			return;
-		}
-	}
-	else if(!arg1 && fossilUI.state()==QProcess::Running)
+//------------------------------------------------------------------------------
+void MainWindow::on_actionTimeline_triggered()
+{
+	if(!uiRunning())
+		ui->actionFossilUI->activate(QAction::Trigger);
+
+	Q_ASSERT(uiRunning());
+
+	QDesktopServices::openUrl(QUrl("http://localhost:8080/timeline"));
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionHistory_triggered()
+{
+	if(!uiRunning())
+		ui->actionFossilUI->activate(QAction::Trigger);
+
+	Q_ASSERT(uiRunning());
+
+	QStringList selection;
+	getSelectionFilenames(selection);
+
+	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
 	{
-		fossilUI.terminate();
+		QDesktopServices::openUrl(QUrl("http://localhost:8080/finfo?name="+*it));
 	}
 }
+

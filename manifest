@@ -1,8 +1,8 @@
-C Implemented\sdiff\scommand\nImplemented\sui\scommand\nAdded\sfull\sset\sof\sicons
-D 2011-08-02T13:16:35.211
-F MainWindow.cpp e1ab75af0cac9bb128c2c113823dd2986ba04920
-F MainWindow.h 502a65528683310c9b8c3d661705faaed90a02a2
-F MainWindow.ui aeb073a5e930adcfd63bc83e3647644a12d9d4f9
+C Reorganized\scontext\smenu\nAdded\sClear\slog\saction\nImproved\ssettings\sserialization.\nAdded\sSaving\sand\sloading\sof\swindow\sposition\sand\ssize\nAdded\sQuit\saction\nAdded\sTimeline\saction\nAdded\sFile\shistory\saction
+D 2011-08-02T14:37:32.392
+F MainWindow.cpp 40b52cc20d0bdd312eda97dabfe061d0b811c4ca
+F MainWindow.h d9dd1137ff2af5a3a10d0f63f6bfe85d25b466c4
+F MainWindow.ui ecde2d039645f4ff31d56416985fa372b534dade
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
 F icons/Adobe\sPDF\sDocument-01.png 8a0bc3ba633d08debde748d64b5a9675e30447a3
@@ -157,9 +157,9 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
 F qtfossil.pro 80268b3b1ec8f73cbc24896a0f2ae3fbcca286cb
-F qtfossil.pro.user 0a24670f4ebfd9af897655ca0e5d4eafbb71df9e
+F qtfossil.pro.user 22fafa96fdc37a358378024e78fab11e7796b61d
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P ef1ad7e20ba3aa605446197cecbba38c8b0e60da
-R b848f9cf5a2c81fe399e52d22d9c4dc8
+P b900691237413a91803d830d1e9e6702ed76d749
+R 73ae2bf1796d58dab2d89012f1383da3
 U kostas
-Z 125f8c422d72643bb1465048f8f4c3de
+Z 7d44a0e71f9d084bae91ca71484d39c3

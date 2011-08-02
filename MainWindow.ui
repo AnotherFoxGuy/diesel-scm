@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>QFossil</string>
+   <string>Fuel</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -130,6 +130,10 @@
    <addaction name="actionDiff"/>
    <addaction name="actionHistory"/>
    <addaction name="separator"/>
+   <addaction name="actionClearLog"/>
+   <addaction name="separator"/>
+   <addaction name="actionTimeline"/>
+   <addaction name="separator"/>
    <addaction name="actionFossilUI"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -145,7 +149,7 @@
   <action name="actionCommit">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Save-01.png</normaloff>:/icons/icons/Save-01.png</iconset>
+     <normaloff>:/icons/icons/Button Add-01.png</normaloff>:/icons/icons/Button Add-01.png</iconset>
    </property>
    <property name="text">
     <string>Commit</string>
@@ -184,7 +188,13 @@
      <normaloff>:/icons/icons/My Documents-01.png</normaloff>:/icons/icons/My Documents-01.png</iconset>
    </property>
    <property name="text">
-    <string>Open workspace...</string>
+    <string>Open Workspace...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a fossil checkout folder</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionPush">
@@ -225,6 +235,9 @@
    <property name="text">
     <string>Quit</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionHistory">
    <property name="icon">
@@ -232,7 +245,10 @@
      <normaloff>:/icons/icons/File History-01.png</normaloff>:/icons/icons/File History-01.png</iconset>
    </property>
    <property name="text">
-    <string>history</string>
+    <string>History</string>
+   </property>
+   <property name="toolTip">
+    <string>History</string>
    </property>
   </action>
   <action name="actionFossilUI">
@@ -256,16 +272,31 @@
      <normaloff>:/icons/icons/Document-Revert-icon.png</normaloff>:/icons/icons/Document-Revert-icon.png</iconset>
    </property>
    <property name="text">
-    <string>revert</string>
+    <string>Revert</string>
+   </property>
+   <property name="toolTip">
+    <string>Revert</string>
    </property>
   </action>
   <action name="actionClearLog">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Book-01.png</normaloff>:/icons/icons/Book-01.png</iconset>
+     <normaloff>:/icons/icons/Text Edit.png</normaloff>:/icons/icons/Text Edit.png</iconset>
    </property>
    <property name="text">
-    <string>clearLog</string>
+    <string>Clear Log</string>
+   </property>
+   <property name="toolTip">
+    <string>Clear Log</string>
+   </property>
+  </action>
+  <action name="actionTimeline">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Clock-01.png</normaloff>:/icons/icons/Clock-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>Timeline</string>
    </property>
   </action>
  </widget>

@@ -57,14 +57,21 @@ private:
 	void saveSettings();
 	const QString &getCurrentWorkspace() { Q_ASSERT(currentWorkspace<workspaces.size()); return workspaces[currentWorkspace]; }
 	void Log(const QString &text);
+	bool uiRunning() const { return fossilUI.state() == QProcess::Running; }
+	void getSelectionFilenames(QStringList &filenames);
+	bool startUI();
+	void stopUI();
 
 private slots:
 	void on_actionRefresh_triggered();
 	void on_actionOpen_triggered();
-
 	void on_actionDiff_triggered();
-
 	void on_actionFossilUI_toggled(bool arg1);
+	void on_actionQuit_triggered();
+	void on_actionTimeline_triggered();
+	void on_actionHistory_triggered();
+
+	void on_actionClearLog_triggered();
 
 public slots:
 	void on_tableView_customContextMenuRequested(const QPoint &pos);
