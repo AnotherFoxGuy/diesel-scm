@@ -136,7 +136,7 @@
   <action name="actionRefresh">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Button-Refresh-icon.png</normaloff>:/icons/icons/Button-Refresh-icon.png</iconset>
+     <normaloff>:/icons/icons/Button Refresh-01.png</normaloff>:/icons/icons/Button Refresh-01.png</iconset>
    </property>
    <property name="text">
     <string>Refresh</string>
@@ -145,7 +145,7 @@
   <action name="actionCommit">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Button-Add-icon.png</normaloff>:/icons/icons/Button-Add-icon.png</iconset>
+     <normaloff>:/icons/icons/Save-01.png</normaloff>:/icons/icons/Save-01.png</iconset>
    </property>
    <property name="text">
     <string>Commit</string>
@@ -154,7 +154,7 @@
   <action name="actionDiff">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Document-Copy-icon.png</normaloff>:/icons/icons/Document-Copy-icon.png</iconset>
+     <normaloff>:/icons/icons/Document Copy-01.png</normaloff>:/icons/icons/Document Copy-01.png</iconset>
    </property>
    <property name="text">
     <string>Diff</string>
@@ -163,7 +163,7 @@
   <action name="actionAdd">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/File-New-icon.png</normaloff>:/icons/icons/File-New-icon.png</iconset>
+     <normaloff>:/icons/icons/File New-01.png</normaloff>:/icons/icons/File New-01.png</iconset>
    </property>
    <property name="text">
     <string>Add</string>
@@ -172,13 +172,17 @@
   <action name="actionDelete">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/File-Delete-icon.png</normaloff>:/icons/icons/File-Delete-icon.png</iconset>
+     <normaloff>:/icons/icons/File Delete-01.png</normaloff>:/icons/icons/File Delete-01.png</iconset>
    </property>
    <property name="text">
     <string>Delete</string>
    </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/My Documents-01.png</normaloff>:/icons/icons/My Documents-01.png</iconset>
+   </property>
    <property name="text">
     <string>Open workspace...</string>
    </property>
@@ -186,7 +190,7 @@
   <action name="actionPush">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Button-Upload-icon.png</normaloff>:/icons/icons/Button-Upload-icon.png</iconset>
+     <normaloff>:/icons/icons/Button Upload-01.png</normaloff>:/icons/icons/Button Upload-01.png</iconset>
    </property>
    <property name="text">
     <string>Push</string>
@@ -195,7 +199,7 @@
   <action name="actionPull">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Button-Download-icon.png</normaloff>:/icons/icons/Button-Download-icon.png</iconset>
+     <normaloff>:/icons/icons/Button Download-01.png</normaloff>:/icons/icons/Button Download-01.png</iconset>
    </property>
    <property name="text">
     <string>Pull</string>
@@ -204,7 +208,7 @@
   <action name="actionRename">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/File-Open-icon.png</normaloff>:/icons/icons/File-Open-icon.png</iconset>
+     <normaloff>:/icons/icons/File Open-01.png</normaloff>:/icons/icons/File Open-01.png</iconset>
    </property>
    <property name="text">
     <string>Rename</string>
@@ -214,6 +218,10 @@
    </property>
   </action>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Button Turn Off-01.png</normaloff>:/icons/icons/Button Turn Off-01.png</iconset>
+   </property>
    <property name="text">
     <string>Quit</string>
    </property>
@@ -221,19 +229,25 @@
   <action name="actionHistory">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/File-History-icon.png</normaloff>:/icons/icons/File-History-icon.png</iconset>
+     <normaloff>:/icons/icons/File History-01.png</normaloff>:/icons/icons/File History-01.png</iconset>
    </property>
    <property name="text">
     <string>history</string>
    </property>
   </action>
   <action name="actionFossilUI">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Network-PC-icon.png</normaloff>:/icons/icons/Network-PC-icon.png</iconset>
+     <normaloff>:/icons/icons/Network MAC-01.png</normaloff>:/icons/icons/Network MAC-01.png</iconset>
    </property>
    <property name="text">
-    <string>FossilUI</string>
+    <string>Fossil UI</string>
+   </property>
+   <property name="toolTip">
+    <string>Starts the Fosill UI</string>
    </property>
   </action>
   <action name="actionRevert">
@@ -243,6 +257,15 @@
    </property>
    <property name="text">
     <string>revert</string>
+   </property>
+  </action>
+  <action name="actionClearLog">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Book-01.png</normaloff>:/icons/icons/Book-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>clearLog</string>
    </property>
   </action>
  </widget>

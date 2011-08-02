@@ -7,6 +7,8 @@
 #include <QMap>
 #include <QFileInfo>
 #include <QDir>
+#include <QProcess>
+
 namespace Ui {
     class MainWindow;
 }
@@ -54,10 +56,15 @@ private:
 	void loadSettings();
 	void saveSettings();
 	const QString &getCurrentWorkspace() { Q_ASSERT(currentWorkspace<workspaces.size()); return workspaces[currentWorkspace]; }
+	void Log(const QString &text);
 
 private slots:
 	void on_actionRefresh_triggered();
 	void on_actionOpen_triggered();
+
+	void on_actionDiff_triggered();
+
+	void on_actionFossilUI_toggled(bool arg1);
 
 public slots:
 	void on_tableView_customContextMenuRequested(const QPoint &pos);
@@ -73,6 +80,8 @@ private:
 	typedef QMap<QString, FileEntry> filemap_t;
 	filemap_t workspaceFiles;
 	int currentWorkspace;
+
+	QProcess fossilUI;
 };
 
 #endif // MAINWINDOW_H

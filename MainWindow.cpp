@@ -28,22 +28,23 @@ MainWindow::MainWindow(QWidget *parent) :
 	if(fossilPath.isEmpty())
 		fossilPath = "fossil";
 
-//	fossilPath = "/home/kostas/local/bin/fossil";
-//	repoPath = ;
 	refresh();
 }
 
+//------------------------------------------------------------------------------
 MainWindow::~MainWindow()
 {
 	saveSettings();
 	delete ui;
 }
 
+//------------------------------------------------------------------------------
 void MainWindow::on_actionRefresh_triggered()
 {
 	refresh();
 }
 
+//------------------------------------------------------------------------------
 void MainWindow::on_actionOpen_triggered()
 {
 	QString path = QFileDialog::getExistingDirectory (this, tr("Fossil Checkout"));
@@ -56,11 +57,12 @@ void MainWindow::on_actionOpen_triggered()
 
 }
 
-void RecurseDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir)
+//------------------------------------------------------------------------------
+static void RecurseDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir)
 {
 	QDir dir(dirPath);
 
-	QFileInfoList list = dir.entryInfoList(QDir::AllEntries);
+	QFileInfoList list = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden);
 	for (int i=0; i<list.count(); ++i)
 	{
 		QFileInfo info = list[i];
@@ -81,13 +83,10 @@ void RecurseDirectory(QFileInfoList &entries, const QString& dirPath, const QStr
 	}
 }
 
+//------------------------------------------------------------------------------
 void MainWindow::refresh()
 {
-	QStringList res;
-	if(!runFossil(res, QStringList() << "ls" << "-l"))
-		return;
-
-	// Scan all files
+	// Scan all workspace files
 	QFileInfoList all_files;
 	QString wkdir = getCurrentWorkspace();
 
@@ -104,6 +103,11 @@ void MainWindow::refresh()
 		e.filename = e.getRelativeFilename(wkdir);
 		workspaceFiles.insert(e.filename, e);
 	}
+
+	// Retrieve the status of files tracked by fossil
+	QStringList res;
+	if(!runFossil(res, QStringList() << "ls" << "-l"))
+		return;
 
 	for(QStringList::iterator it=res.begin(); it!=res.end(); ++it)
 	{
@@ -127,6 +131,7 @@ void MainWindow::refresh()
 		it.value().status = status;
 	}
 
+	// Update the model
 	itemModel.clear();
 	itemModel.setHorizontalHeaderLabels(QStringList() << "Status" << "File" << "Ext" );
 
@@ -138,19 +143,19 @@ void MainWindow::refresh()
 		{
 			case FileEntry::STATUS_EDITTED:
 			{
-				QIcon modicon(":icons/icons/Button-Blank-Yellow-icon.png");
+				QIcon modicon(":icons/icons/Button Blank Yellow-01.png");
 				itemModel.setItem(i, 0, new QStandardItem(modicon, "Edited"));
 				break;
 			}
 			case FileEntry::STATUS_UNCHAGED:
 			{
-				QIcon modicon(":icons/icons/Button-Blank-Green-icon.png");
+				QIcon modicon(":icons/icons/Button Blank Green-01.png");
 				itemModel.setItem(i, 0, new QStandardItem(modicon, "Unchanged"));
 				break;
 			}
 			default:
 			{
-				QIcon modicon(":icons/icons/Button-Blank-Gray-icon.png");
+				QIcon modicon(":icons/icons/Button Blank Gray-01.png");
 				itemModel.setItem(i, 0, new QStandardItem(modicon, "Unknown"));
 			}
 
@@ -164,6 +169,13 @@ void MainWindow::refresh()
 	 ui->tableView->resizeRowsToContents();
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::Log(const QString &text)
+{
+	ui->textBrowser->append(text);
+}
+
+//------------------------------------------------------------------------------
 bool MainWindow::runFossil(QStringList &result, const QStringList &args)
 {
 	QProcess process;
@@ -174,12 +186,12 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args)
 	QStringList rargs;
 	rargs << args;
 
-	ui->textBrowser->append("fossil "+rargs.join(" "));
+	Log("> fossil "+rargs.join(" "));
 
 	process.start(fossilPath, rargs);
 	if(!process.waitForStarted())
 	{
-		ui->textBrowser->append(fossilPath + " does not exist\n");
+		Log(fossilPath + " does not exist\n");
 		return false;
 	}
 
@@ -191,14 +203,15 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args)
 
 	for(QStringList::iterator it=lines.begin(); it!=lines.end(); ++it)
 	{
-		QString &line = *it;
-		result.append(line.trimmed());
-		ui->textBrowser->append( line.trimmed());
+		QString line = it->trimmed();
+		result.append(line);
+		Log(line);
 	}
 
 	return true;
 }
 
+//------------------------------------------------------------------------------
 void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 {
 	QModelIndex idx = ui->tableView->indexAt(pos);
@@ -213,10 +226,9 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 	menu->addSeparator();
 	menu->addAction("Commit");
 	menu->exec(pos);
-
-	//	QMen
 }
 
+//------------------------------------------------------------------------------
 void MainWindow::loadSettings()
 {
 	QSettings settings(settingsFile, QSettings::NativeFormat);
@@ -244,14 +256,59 @@ void MainWindow::loadSettings()
 
 }
 
+//------------------------------------------------------------------------------
 void MainWindow::saveSettings()
 {
 	QSettings settings(settingsFile, QSettings::NativeFormat);
 	settings.setValue("FossilPath", fossilPath);
 	settings.setValue("NumWorkspaces", workspaces.size());
 
-	for(size_t i=0; i<workspaces.size(); ++i)
+	for(int i=0; i<workspaces.size(); ++i)
 		settings.setValue("Workspace_"+i, workspaces[i]);
 
 	settings.setValue("LastWorkspace", currentWorkspace);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionDiff_triggered()
+{
+	QModelIndexList selection = ui->tableView->selectionModel()->selectedIndexes();
+	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
+	{
+		const QModelIndex &mi = *mi_it;
+
+		// FIXME: we are being called once per cell of each row
+		// but we only need column 1. There must be a better way
+		if(mi.column()!=1)
+			continue;
+
+		QVariant data = itemModel.data(mi);
+		QString fname = data.toString();
+		QStringList res;
+		if(!runFossil(res, QStringList() << "gdiff" << fname))
+			return;
+	}
+}
+
+
+void MainWindow::on_actionFossilUI_toggled(bool arg1)
+{
+	if(arg1 && fossilUI.state()==QProcess::NotRunning)
+	{
+		fossilUI.setProcessChannelMode(QProcess::MergedChannels);
+		fossilUI.setWorkingDirectory(getCurrentWorkspace());
+
+		Log("> fossil ui");
+
+		fossilUI.start(fossilPath, QStringList() << "ui");
+		if(!fossilUI.waitForStarted())
+		{
+			Log(fossilPath + " does not exist\n");
+			return;
+		}
+	}
+	else if(!arg1 && fossilUI.state()==QProcess::Running)
+	{
+		fossilUI.terminate();
+	}
 }

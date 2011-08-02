@@ -1,26 +1,155 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>icons/Button-Add-icon.png</file>
-        <file>icons/Button-Download-icon.png</file>
-        <file>icons/Button-Refresh-icon.png</file>
-        <file>icons/Button-Upload-icon.png</file>
-        <file>icons/Clock-icon.png</file>
-        <file>icons/Document-Copy-icon.png</file>
-        <file>icons/File-Delete-icon.png</file>
-        <file>icons/File-New-icon.png</file>
-        <file>icons/File-Open-icon.png</file>
-        <file>icons/File-History-icon.png</file>
-        <file>icons/Network-PC-icon.png</file>
-        <file>icons/Button-Blank-Green-icon.png</file>
-        <file>icons/Button-Blank-Red-icon.png</file>
-        <file>icons/Button-Blank-Yellow-icon.png</file>
-        <file>icons/Button-Close-icon.png</file>
-        <file>icons/Button-Warning-icon.png</file>
-        <file>icons/Document-Organization-Chart-icon.png</file>
-        <file>icons/Button-Blank-Blue-icon.png</file>
-        <file>icons/Button-Blank-Gray-icon.png</file>
-        <file>icons/Button-Rewind-icon.png</file>
-        <file>icons/Document-icon.png</file>
+        <file>icons/Address Book-01.png</file>
+        <file>icons/Adobe Illustrator CS3 Document-01.png</file>
+        <file>icons/Adobe PDF Document-01.png</file>
+        <file>icons/Adobe Photoshop CS3 Document-01.png</file>
+        <file>icons/Battery-01.png</file>
+        <file>icons/Binoculars-01.png</file>
+        <file>icons/Book-01.png</file>
+        <file>icons/Briefcase-01.png</file>
+        <file>icons/Button Add-01.png</file>
+        <file>icons/Button Blank Blue-01.png</file>
+        <file>icons/Button Blank Gray-01.png</file>
+        <file>icons/Button Blank Green-01.png</file>
+        <file>icons/Button Blank Red-01.png</file>
+        <file>icons/Button Blank Yellow-01.png</file>
+        <file>icons/Button Cancel-01.png</file>
+        <file>icons/Button Close-01.png</file>
+        <file>icons/Button Delete-01.png</file>
+        <file>icons/Button Download-01.png</file>
+        <file>icons/Button Favorite-01.png</file>
+        <file>icons/Button Forward-01.png</file>
+        <file>icons/Button Help-01.png</file>
+        <file>icons/Button Info-01.png</file>
+        <file>icons/Button Log Off-01.png</file>
+        <file>icons/Button Next-01.png</file>
+        <file>icons/Button Pause-01.png</file>
+        <file>icons/Button Play-01.png</file>
+        <file>icons/Button Previous-01.png</file>
+        <file>icons/Button Refresh-01.png</file>
+        <file>icons/Button Reload-01.png</file>
+        <file>icons/Button Reminder-01.png</file>
+        <file>icons/Button Rewind-01.png</file>
+        <file>icons/Button Talk Balloon-01.png</file>
+        <file>icons/Button Turn Off-01.png</file>
+        <file>icons/Button Turn On-01.png</file>
+        <file>icons/Button Upload-01.png</file>
+        <file>icons/Button Warning-01.png</file>
+        <file>icons/Calculator-01.png</file>
+        <file>icons/Calendar Blue-01.png</file>
+        <file>icons/Calendar Green-01.png</file>
+        <file>icons/Calendar Red-01.png</file>
+        <file>icons/Clipboard-01.png</file>
+        <file>icons/Clipboard Paste-01.png</file>
+        <file>icons/Clock-01.png</file>
+        <file>icons/Coin-01.png</file>
+        <file>icons/Compressed File RAR-01.png</file>
+        <file>icons/Compressed File SIT-01.png</file>
+        <file>icons/Compressed File Zip-01.png</file>
+        <file>icons/Computer Monitor-01.png</file>
+        <file>icons/Computer Network-01.png</file>
+        <file>icons/Document-01.png</file>
+        <file>icons/Document Attach-01.png</file>
+        <file>icons/Document Blank-01.png</file>
+        <file>icons/Document Chart-01.png</file>
+        <file>icons/Document Copy-01.png</file>
+        <file>icons/Document Flow Chart-01.png</file>
+        <file>icons/Document Gant Chart-01.png</file>
+        <file>icons/Document Help-01.png</file>
+        <file>icons/Document Line Chart-01.png</file>
+        <file>icons/Document Microsoft Excel-01.png</file>
+        <file>icons/Document Microsoft PowerPoint-01.png</file>
+        <file>icons/Document Microsoft Word-01.png</file>
+        <file>icons/Document Organization Chart-01.png</file>
+        <file>icons/Document Preview-01.png</file>
         <file>icons/Document-Revert-icon.png</file>
+        <file>icons/Document Text-01.png</file>
+        <file>icons/Edit Document-01.png</file>
+        <file>icons/Email-01.png</file>
+        <file>icons/Email Attachment-01.png</file>
+        <file>icons/Email Delete-01.png</file>
+        <file>icons/Email Download-01.png</file>
+        <file>icons/Email Forward-01.png</file>
+        <file>icons/Email Inbox-01.png</file>
+        <file>icons/Email Reply-01.png</file>
+        <file>icons/File Audio-01.png</file>
+        <file>icons/File Audio AIFF-01.png</file>
+        <file>icons/File Audio MP3-01.png</file>
+        <file>icons/File Audio WAV-01.png</file>
+        <file>icons/File Audio WMA-01.png</file>
+        <file>icons/File Delete-01.png</file>
+        <file>icons/File History-01.png</file>
+        <file>icons/File New-01.png</file>
+        <file>icons/File Open-01.png</file>
+        <file>icons/File Video 3GP-01.png</file>
+        <file>icons/File Video-01.png</file>
+        <file>icons/File Video AVI-01.png</file>
+        <file>icons/File Video MOV-01.png</file>
+        <file>icons/File Video MPEG-01.png</file>
+        <file>icons/File Video WMV-01.png</file>
+        <file>icons/Folder-01.png</file>
+        <file>icons/Folder Add-01.png</file>
+        <file>icons/Folder Compressed-01.png</file>
+        <file>icons/Folder Delete-01.png</file>
+        <file>icons/Folder Explorer-01.png</file>
+        <file>icons/Folder Generic Blue-01.png</file>
+        <file>icons/Folder Generic Green-01.png</file>
+        <file>icons/Folder Generic Red-01.png</file>
+        <file>icons/Folder Generic Silver-01.png</file>
+        <file>icons/Folder Open-01.png</file>
+        <file>icons/Folder RAR-01.png</file>
+        <file>icons/Games-01.png</file>
+        <file>icons/Gear-01.png</file>
+        <file>icons/Highlighter Blue-01.png</file>
+        <file>icons/Highlighter Green-01.png</file>
+        <file>icons/Highlighter Yellow-01.png</file>
+        <file>icons/Image BMP-01.png</file>
+        <file>icons/Image GIF-01.png</file>
+        <file>icons/Image JPEG-01.png</file>
+        <file>icons/Image PNG-01.png</file>
+        <file>icons/Image TIFF-01.png</file>
+        <file>icons/Lock Lock-01.png</file>
+        <file>icons/Lock Unlock-01.png</file>
+        <file>icons/My Documents-01.png</file>
+        <file>icons/My Ebooks-01.png</file>
+        <file>icons/My Music-01.png</file>
+        <file>icons/My Pictures.png</file>
+        <file>icons/My Videos-01.png</file>
+        <file>icons/My Websites-01.png</file>
+        <file>icons/Network Firewall-01.png</file>
+        <file>icons/Network MAC-01.png</file>
+        <file>icons/Network PC-01.png</file>
+        <file>icons/Network Refresh-01.png</file>
+        <file>icons/Pen Blue-01.png</file>
+        <file>icons/Pen Green-01.png</file>
+        <file>icons/Pen Red-01.png</file>
+        <file>icons/Save-01.png</file>
+        <file>icons/Text Edit.png</file>
+        <file>icons/USB-01.png</file>
+        <file>icons/User Administrator Blue-01.png</file>
+        <file>icons/User Administrator Green-01.png</file>
+        <file>icons/User Administrator Red-01.png</file>
+        <file>icons/User Chat-01.png</file>
+        <file>icons/User Clients-01.png</file>
+        <file>icons/User Coat Blue-01.png</file>
+        <file>icons/User Coat Green-01.png</file>
+        <file>icons/User Coat Red-01.png</file>
+        <file>icons/User Executive Blue-01.png</file>
+        <file>icons/User Executive Green-01.png</file>
+        <file>icons/User Executive Red-01.png</file>
+        <file>icons/User Group-01.png</file>
+        <file>icons/User Preppy Blue-01.png</file>
+        <file>icons/User Preppy Green-01.png</file>
+        <file>icons/User Preppy Red-01.png</file>
+        <file>icons/Web HTML-01.png</file>
+        <file>icons/Web XML-01.png</file>
+        <file>icons/Window-01.png</file>
+        <file>icons/Window Refresh-01.png</file>
+        <file>icons/Windows-01.png</file>
+        <file>icons/Windows Cascade-01.png</file>
+        <file>icons/Zoom-01.png</file>
+        <file>icons/Zoom In-01.png</file>
+        <file>icons/Zoom Out-01.png</file>
     </qresource>
 </RCC>
