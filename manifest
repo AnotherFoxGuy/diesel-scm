@@ -1,7 +1,7 @@
-C Added\sPath\sand\sModified\scolumns\nDouble\sclicking\sa\sfile\sinvokes\sdiff\nAdded\sOpen\sfile\saction
-D 2011-08-02T15:37:39.139
-F MainWindow.cpp 4adeb7e76a91a587a6a57e76e8e3edba5093473e
-F MainWindow.h a3e385b65b14b25de39e683165104e15fc92ae68
+C Added\sPush/Pull\sactions
+D 2011-08-02T15:42:48.504
+F MainWindow.cpp 7eb2ce3b3bb54d824abd77d648f28816b804172d
+F MainWindow.h ea40c2f2cf6fe116bdb90f344bc3bade15b040b2
 F MainWindow.ui 71a58630d7a3b6af128d427a9390eadfc4fc83e3
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -157,9 +157,9 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
 F qtfossil.pro 80268b3b1ec8f73cbc24896a0f2ae3fbcca286cb
-F qtfossil.pro.user 1158668605888375173ffebe3cda61de6ebc4e72
+F qtfossil.pro.user ea741584bcfd60b32ce9033f85af877d353a7b53
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 836ed88f08a4d0133120fa5735627bbd24cd30a0
-R 58b9892426d610ee78533f5c84abd2c2
+P 22658a331a132d4adb2643d8d51f379e35b95f63
+R d999d8ba09737ca61b3d491cc01b1e51
 U kostas
-Z ddf19bd088c79dcb80cd114027ea16a1
+Z 00972b3f796d2e2d29df1e5b26d27b87

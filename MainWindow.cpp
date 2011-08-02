@@ -434,3 +434,17 @@ void MainWindow::on_actionOpenFile_triggered()
 		QDesktopServices::openUrl(QUrl::fromLocalFile(getCurrentWorkspace()+QDir::separator()+*it));
 	}
 }
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionPush_triggered()
+{
+	QStringList res;
+	runFossil(res, QStringList() << "push");
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionPull_triggered()
+{
+	QStringList res;
+	runFossil(res, QStringList() << "pull");
+}

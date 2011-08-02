@@ -77,6 +77,10 @@ private slots:
 
 	void on_actionOpenFile_triggered();
 
+	void on_actionPush_triggered();
+
+	void on_actionPull_triggered();
+
 public slots:
 	void on_tableView_customContextMenuRequested(const QPoint &pos);
 
