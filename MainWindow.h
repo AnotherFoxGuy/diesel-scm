@@ -20,7 +20,7 @@ struct FileEntry
 	enum Status
 	{
 		STATUS_UNKNOWN,
-		STATUS_UNCHAGED,
+		STATUS_UNCHANGED,
 		STATUS_EDITTED
 	};
 
@@ -72,6 +72,10 @@ private slots:
 	void on_actionHistory_triggered();
 
 	void on_actionClearLog_triggered();
+
+	void on_tableView_doubleClicked(const QModelIndex &index);
+
+	void on_actionOpenFile_triggered();
 
 public slots:
 	void on_tableView_customContextMenuRequested(const QPoint &pos);

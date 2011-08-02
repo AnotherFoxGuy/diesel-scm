@@ -5,6 +5,17 @@
 #include <QProcess>
 #include <QSettings>
 #include <QDesktopServices>
+#include <QDateTime>
+
+enum
+{
+	COLUMN_STATUS,
+	COLUMN_PATH,
+	COLUMN_FILENAME,
+	COLUMN_EXTENSION,
+	COLUMN_MODIFIED
+};
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->tableView->setModel(&itemModel);
 	ui->tableView->addAction(ui->actionDiff);
 	ui->tableView->addAction(ui->actionHistory);
+	ui->tableView->addAction(ui->actionOpenFile);
 	ui->tableView->addAction(ui->actionAdd);
 	ui->tableView->addAction(ui->actionDelete);
 	ui->tableView->addAction(ui->actionRename);
@@ -118,7 +130,7 @@ void MainWindow::refresh()
 		if(status_text=="EDITED")
 			status = FileEntry::STATUS_EDITTED;
 		else if(status_text=="UNCHANGED")
-			status = FileEntry::STATUS_UNCHAGED;
+			status = FileEntry::STATUS_UNCHANGED;
 
 		QString fname = line.right(line.length() - 10).trimmed();
 
@@ -130,7 +142,7 @@ void MainWindow::refresh()
 
 	// Update the model
 	itemModel.clear();
-	itemModel.setHorizontalHeaderLabels(QStringList() << "Status" << "File" << "Ext" );
+	itemModel.setHorizontalHeaderLabels(QStringList() << "S" << "Path" << "File" << "Ext" << "Modified" );
 
 	size_t i=0;
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it, ++i)
@@ -141,25 +153,30 @@ void MainWindow::refresh()
 			case FileEntry::STATUS_EDITTED:
 			{
 				QIcon modicon(":icons/icons/Button Blank Yellow-01.png");
-				itemModel.setItem(i, 0, new QStandardItem(modicon, "Edited"));
+				itemModel.setItem(i, COLUMN_STATUS, new QStandardItem(modicon, "E"));
 				break;
 			}
-			case FileEntry::STATUS_UNCHAGED:
+			case FileEntry::STATUS_UNCHANGED:
 			{
 				QIcon modicon(":icons/icons/Button Blank Green-01.png");
-				itemModel.setItem(i, 0, new QStandardItem(modicon, "Unchanged"));
+				itemModel.setItem(i, COLUMN_STATUS, new QStandardItem(modicon, "U"));
 				break;
 			}
 			default:
 			{
 				QIcon modicon(":icons/icons/Button Blank Gray-01.png");
-				itemModel.setItem(i, 0, new QStandardItem(modicon, "Unknown"));
+				itemModel.setItem(i, COLUMN_STATUS, new QStandardItem(modicon, "?"));
 			}
 
 		}
 
-		itemModel.setItem(i, 1, new QStandardItem(e.filename));
-		itemModel.setItem(i, 2, new QStandardItem( e.fileinfo.completeSuffix()));
+		QString path = e.filename;
+		path = path.left(path.indexOf(e.fileinfo.fileName()));
+
+		itemModel.setItem(i, COLUMN_PATH, new QStandardItem(path));
+		itemModel.setItem(i, COLUMN_FILENAME, new QStandardItem(e.filename));
+		itemModel.setItem(i, COLUMN_EXTENSION, new QStandardItem(e.fileinfo.completeSuffix()));
+		itemModel.setItem(i, COLUMN_MODIFIED, new QStandardItem(e.fileinfo.lastModified().toString(Qt::SystemLocaleShortDate)));
 
 	}
 	 ui->tableView->resizeColumnsToContents();
@@ -214,8 +231,9 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args)
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
+void MainWindow::on_tableView_customContextMenuRequested(const QPoint &/*pos*/)
 {
+/*
 	QModelIndex idx = ui->tableView->indexAt(pos);
 	if(!idx.isValid())
 		return;
@@ -227,7 +245,7 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 	menu->addAction("Delete");
 	menu->addSeparator();
 	menu->addAction("Commit");
-	menu->exec(pos);
+	menu->exec(pos);*/
 }
 
 //------------------------------------------------------------------------------
@@ -306,7 +324,7 @@ void MainWindow::getSelectionFilenames(QStringList &filenames)
 
 		// FIXME: we are being called once per cell of each row
 		// but we only need column 1. There must be a better way
-		if(mi.column()!=1)
+		if(mi.column()!=COLUMN_FILENAME)
 			continue;
 
 		QVariant data = itemModel.data(mi);
@@ -399,3 +417,20 @@ void MainWindow::on_actionHistory_triggered()
 	}
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::on_tableView_doubleClicked(const QModelIndex &/*index*/)
+{
+	on_actionDiff_triggered();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionOpenFile_triggered()
+{
+	QStringList selection;
+	getSelectionFilenames(selection);
+
+	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
+	{
+		QDesktopServices::openUrl(QUrl::fromLocalFile(getCurrentWorkspace()+QDir::separator()+*it));
+	}
+}
