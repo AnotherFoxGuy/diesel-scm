@@ -6,6 +6,8 @@
 #include <QSettings>
 #include <QDesktopServices>
 #include <QDateTime>
+#include "CommitDialog.h"
+#include "FileActionDialog.h"
 
 enum
 {
@@ -95,6 +97,9 @@ static void RecurseDirectory(QFileInfoList &entries, const QString& dirPath, con
 //------------------------------------------------------------------------------
 void MainWindow::refresh()
 {
+	// Load repository info
+	updateStatus();
+
 	// Scan all workspace files
 	QFileInfoList all_files;
 	QString wkdir = getCurrentWorkspace();
@@ -103,14 +108,16 @@ void MainWindow::refresh()
 	workspaceFiles.clear();
 	for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
 	{
-		if(it->fileName()== "_FOSSIL_")
+		QString filename = it->fileName();
+		QString qqq = it->absoluteFilePath();
+
+		// Skip fossil files
+		if(filename == "_FOSSIL_" || (!repositoryFile.isEmpty() && it->absoluteFilePath()==repositoryFile))
 			continue;
 
 		FileEntry e;
-		e.status = FileEntry::STATUS_UNKNOWN;
-		e.fileinfo = *it;
-		e.filename = e.getRelativeFilename(wkdir);
-		workspaceFiles.insert(e.filename, e);
+		e.set(*it, FileEntry::TYPE_UNKNOWN, wkdir);
+		workspaceFiles.insert(e.getFilename(), e);
 	}
 
 	// Retrieve the status of files tracked by fossil
@@ -125,19 +132,19 @@ void MainWindow::refresh()
 			continue;
 
 		QString status_text = line.left(10).trimmed();
-		FileEntry::Status status = FileEntry::STATUS_UNKNOWN;
+		FileEntry::EntryType type = FileEntry::TYPE_UNKNOWN;
 
 		if(status_text=="EDITED")
-			status = FileEntry::STATUS_EDITTED;
+			type = FileEntry::TYPE_EDITTED;
 		else if(status_text=="UNCHANGED")
-			status = FileEntry::STATUS_UNCHANGED;
+			type = FileEntry::TYPE_UNCHANGED;
 
 		QString fname = line.right(line.length() - 10).trimmed();
 
 		filemap_t::iterator it = workspaceFiles.find(fname);
 		Q_ASSERT(it!=workspaceFiles.end());
 
-		it.value().status = status;
+		it.value().setType(type);
 	}
 
 	// Update the model
@@ -148,15 +155,15 @@ void MainWindow::refresh()
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it, ++i)
 	{
 		const FileEntry &e = it.value();
-		switch(e.status)
+		switch(e.getType())
 		{
-			case FileEntry::STATUS_EDITTED:
+			case FileEntry::TYPE_EDITTED:
 			{
 				QIcon modicon(":icons/icons/Button Blank Yellow-01.png");
 				itemModel.setItem(i, COLUMN_STATUS, new QStandardItem(modicon, "E"));
 				break;
 			}
-			case FileEntry::STATUS_UNCHANGED:
+			case FileEntry::TYPE_UNCHANGED:
 			{
 				QIcon modicon(":icons/icons/Button Blank Green-01.png");
 				itemModel.setItem(i, COLUMN_STATUS, new QStandardItem(modicon, "U"));
@@ -170,17 +177,25 @@ void MainWindow::refresh()
 
 		}
 
-		QString path = e.filename;
-		path = path.left(path.indexOf(e.fileinfo.fileName()));
+		QString path = e.getFilename();
+		path = path.left(path.indexOf(e.getFileInfo().fileName()));
+		QFileInfo finfo = e.getFileInfo();
 
 		itemModel.setItem(i, COLUMN_PATH, new QStandardItem(path));
-		itemModel.setItem(i, COLUMN_FILENAME, new QStandardItem(e.filename));
-		itemModel.setItem(i, COLUMN_EXTENSION, new QStandardItem(e.fileinfo.completeSuffix()));
-		itemModel.setItem(i, COLUMN_MODIFIED, new QStandardItem(e.fileinfo.lastModified().toString(Qt::SystemLocaleShortDate)));
+		itemModel.setItem(i, COLUMN_FILENAME, new QStandardItem(e.getFilename()));
+		itemModel.setItem(i, COLUMN_EXTENSION, new QStandardItem(finfo .completeSuffix()));
+		itemModel.setItem(i, COLUMN_MODIFIED, new QStandardItem(finfo .lastModified().toString(Qt::SystemLocaleShortDate)));
 
 	}
-	 ui->tableView->resizeColumnsToContents();
-	 ui->tableView->resizeRowsToContents();
+
+	ui->tableView->resizeColumnsToContents();
+	ui->tableView->resizeRowsToContents();
+
+	QString title = "Fuel";
+	if(!projectName.isEmpty())
+		title += " - "+projectName;
+
+	setWindowTitle(title);
 }
 
 //------------------------------------------------------------------------------
@@ -215,7 +230,6 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args)
 	}
 
 	process.waitForFinished();
-
 	QString output = process.readAllStandardOutput();
 
 	QStringList lines = output.split('\n');
@@ -227,25 +241,10 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args)
 		Log(line);
 	}
 
-	return true;
-}
+	if(process.exitStatus()!=QProcess::NormalExit)
+		return false;
 
-//------------------------------------------------------------------------------
-void MainWindow::on_tableView_customContextMenuRequested(const QPoint &/*pos*/)
-{
-/*
-	QModelIndex idx = ui->tableView->indexAt(pos);
-	if(!idx.isValid())
-		return;
-
-	QMenu *menu = new QMenu;
-	menu->addAction("Diff");
-	menu->addSeparator();
-	menu->addAction("Add");
-	menu->addAction("Delete");
-	menu->addSeparator();
-	menu->addAction("Commit");
-	menu->exec(pos);*/
+	return process.exitCode() == EXIT_SUCCESS;
 }
 
 //------------------------------------------------------------------------------
@@ -315,7 +314,7 @@ void MainWindow::saveSettings()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::getSelectionFilenames(QStringList &filenames)
+void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask)
 {
 	QModelIndexList selection = ui->tableView->selectionModel()->selectedIndexes();
 	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
@@ -328,7 +327,16 @@ void MainWindow::getSelectionFilenames(QStringList &filenames)
 			continue;
 
 		QVariant data = itemModel.data(mi);
-		filenames.append(data.toString());
+		QString filename = data.toString();
+		filemap_t::iterator e_it = workspaceFiles.find(filename);
+		Q_ASSERT(e_it!=workspaceFiles.end());
+		const FileEntry &e = e_it.value();
+
+		// Skip unwanted files
+		if(!(includeMask & e.getType()))
+			continue;
+
+		filenames.append(filename);
 	}
 }
 //------------------------------------------------------------------------------
@@ -447,4 +455,92 @@ void MainWindow::on_actionPull_triggered()
 {
 	QStringList res;
 	runFossil(res, QStringList() << "pull");
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::updateStatus()
+{
+	QStringList res;
+	if(!runFossil(res, QStringList() << "info"))
+		return;
+
+	for(QStringList::iterator it=res.begin(); it!=res.end(); ++it)
+	{
+		QStringList tokens = it->split(":");
+		if(tokens.length()!=2)
+			continue;
+		QString key = tokens[0].trimmed();
+		QString value = tokens[1].trimmed();
+		if(key=="project-name")
+			projectName = value;
+		else if(key=="repository")
+			repositoryFile = value;
+	}
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionCommit_triggered()
+{
+	QStringList modified_files;
+	getSelectionFilenames(modified_files, FileEntry::TYPE_EDITTED);
+
+	if(modified_files.empty())
+		return;
+
+	QString msg;
+	if(!CommitDialog::run(msg, commitMessages, modified_files, this))
+		return;
+
+	// Do commit
+	commitMessages.push_front(msg);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionAdd_triggered()
+{
+	// Get unknown files only
+	QStringList selection;
+	getSelectionFilenames(selection, FileEntry::TYPE_UNKNOWN);
+
+	if(selection.empty())
+		return;
+
+	if(!FileActionDialog::run("Add files", "The following files will be added. Are you sure?", selection, this))
+		return;
+
+	// Do Add
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionDelete_triggered()
+{
+	QStringList repo_files;
+	getSelectionFilenames(repo_files, FileEntry::TYPE_EDITTED|FileEntry::TYPE_UNCHANGED);
+
+	QStringList unknown_files;
+	getSelectionFilenames(unknown_files, FileEntry::TYPE_UNKNOWN);
+
+	if(repo_files.empty() && unknown_files.empty())
+		return;
+
+	if(!FileActionDialog::run("Delete files", "The following files will be deleted. Are you sure?", repo_files+unknown_files, this))
+		return;
+
+	// Do Delete
+
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionRevert_triggered()
+{
+	QStringList modified_files;
+	getSelectionFilenames(modified_files, FileEntry::TYPE_EDITTED);
+
+	if(modified_files.empty())
+		return;
+
+	if(!FileActionDialog::run("Revert files", "The following files will be reverted. Are you sure?", modified_files, this))
+		return;
+
+	// Do Revert
 }

@@ -1,7 +1,13 @@
-C Added\sPush/Pull\sactions
-D 2011-08-02T15:42:48.504
-F MainWindow.cpp 7eb2ce3b3bb54d824abd77d648f28816b804172d
-F MainWindow.h ea40c2f2cf6fe116bdb90f344bc3bade15b040b2
+C Added\sCommit\sand\sFileAction\sdialogs\nSkeleton\scode\sfor\sCommit,\sAdd,\sDelete,\sRevert\sactions
+D 2011-08-03T15:30:09.277
+F CommitDialog.cpp f4065a49dfaa6904ffb1ad4ebe5efd01506cf550
+F CommitDialog.h c18c73998f8a925723ec1407ce75dc17a27a5ff7
+F CommitDialog.ui 482961858d1e7c31745966c347b21b6318e2e7b5
+F FileActionDialog.cpp 02dc244b0bcaad2021327186d5870bc408210a41
+F FileActionDialog.h 6082f84f6b5d48be6104034d6dc896a9d343b613
+F FileActionDialog.ui 2d7a0fa47f9555f4a4a7485feacd5bce504415a0
+F MainWindow.cpp b2fb908aefa74484a4b7f751f8ad9570b79454bb
+F MainWindow.h a3fda2c06f47a831e799a441f183810e6585b9bb
 F MainWindow.ui 71a58630d7a3b6af128d427a9390eadfc4fc83e3
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -156,10 +162,10 @@ F icons/Zoom\sIn-01.png bdd24558fd23a1003f1a569f092f22022736f236
 F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
-F qtfossil.pro 80268b3b1ec8f73cbc24896a0f2ae3fbcca286cb
-F qtfossil.pro.user ea741584bcfd60b32ce9033f85af877d353a7b53
+F qtfossil.pro 728f1eec3adbcfc0e030cad1ea0867f765d9f179
+F qtfossil.pro.user 3aa11e8cc637ac9de0e6396307370f20bee7f62f
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 22658a331a132d4adb2643d8d51f379e35b95f63
-R d999d8ba09737ca61b3d491cc01b1e51
+P aea0b01c82bcd9caa71a5049c60e07ad6b3aed41
+R c84ec25e7c6ecb8c98cb5544d5a2d147
 U kostas
-Z 00972b3f796d2e2d29df1e5b26d27b87
+Z c73d16be1ed5c7fe4f1970c96b7dab6a

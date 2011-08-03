@@ -11,12 +11,24 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        MainWindow.cpp
+        MainWindow.cpp \
+    CommitDialog.cpp \
+    FileActionDialog.cpp
 
-HEADERS  += MainWindow.h
+HEADERS  += MainWindow.h \
+    CommitDialog.h \
+    FileActionDialog.h
 
-FORMS    += MainWindow.ui
+FORMS    += MainWindow.ui \
+    CommitDialog.ui \
+    FileActionDialog.ui
 
 RESOURCES += \
     resources.qrc
+
+
+
+
+
+
 
