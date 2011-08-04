@@ -91,6 +91,9 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="separator"/>
+    <addaction name="actionNew"/>
+    <addaction name="actionClone"/>
+    <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -115,9 +118,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionRefresh"/>
-   <addaction name="separator"/>
    <addaction name="actionCommit"/>
+   <addaction name="separator"/>
+   <addaction name="actionRefresh"/>
    <addaction name="separator"/>
    <addaction name="actionPush"/>
    <addaction name="actionPull"/>
@@ -130,11 +133,11 @@
    <addaction name="actionDiff"/>
    <addaction name="actionHistory"/>
    <addaction name="separator"/>
-   <addaction name="actionClearLog"/>
-   <addaction name="separator"/>
    <addaction name="actionTimeline"/>
-   <addaction name="separator"/>
    <addaction name="actionFossilUI"/>
+   <addaction name="separator"/>
+   <addaction name="actionOpenContaining"/>
+   <addaction name="actionClearLog"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionRefresh">
@@ -149,7 +152,7 @@
   <action name="actionCommit">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Button Add-01.png</normaloff>:/icons/icons/Button Add-01.png</iconset>
+     <normaloff>:/icons/icons/Save-01.png</normaloff>:/icons/icons/Save-01.png</iconset>
    </property>
    <property name="text">
     <string>Commit</string>
@@ -302,6 +305,33 @@
   <action name="actionOpenFile">
    <property name="text">
     <string>Open file</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Book-01.png</normaloff>:/icons/icons/Book-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>New Repository...</string>
+   </property>
+  </action>
+  <action name="actionClone">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Address Book-01.png</normaloff>:/icons/icons/Address Book-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clone Repository...</string>
+   </property>
+  </action>
+  <action name="actionOpenContaining">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/My Documents-01.png</normaloff>:/icons/icons/My Documents-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open Containing Folder</string>
    </property>
   </action>
  </widget>

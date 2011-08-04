@@ -19,10 +19,14 @@ struct FileEntry
 {
 	enum EntryType
 	{
-		TYPE_UNKNOWN	= 1<<0,
-		TYPE_UNCHANGED	= 1<<1,
-		TYPE_EDITTED	= 1<<2,
-		TYPE_ALL		= TYPE_UNKNOWN|TYPE_UNCHANGED|TYPE_EDITTED
+		TYPE_UNKNOWN		= 1<<0,
+		TYPE_UNCHANGED		= 1<<1,
+		TYPE_EDITTED		= 1<<2,
+		TYPE_ADDED			= 1<<3,
+		TYPE_DELETED		= 1<<4,
+		TYPE_REPO_MODIFIED	= TYPE_EDITTED|TYPE_ADDED|TYPE_DELETED,
+		TYPE_REPO			= TYPE_UNCHANGED|TYPE_REPO_MODIFIED,
+		TYPE_ALL			= TYPE_UNKNOWN|TYPE_REPO
 	};
 
 	void set(QFileInfo &info, EntryType type, const QString &repoPath)
@@ -81,6 +85,7 @@ private:
 };
 
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -91,16 +96,29 @@ public:
 
 private:
 	void refresh();
-	bool runFossil(QStringList &result, const QStringList &args);
+	void scanWorkspace();
+	bool runFossil(QStringList &result, const QStringList &args, bool silent=false);
+	bool runFossil(QStringList &result, const QStringList &args, int &exitCode, bool silent=false);
 	void loadSettings();
 	void saveSettings();
 	const QString &getCurrentWorkspace() { Q_ASSERT(currentWorkspace<workspaces.size()); return workspaces[currentWorkspace]; }
-	void Log(const QString &text);
+	void log(const QString &text);
+	void setStatus(const QString &text);
 	bool uiRunning() const { return fossilUI.state() == QProcess::Running; }
-	void getSelectionFilenames(QStringList &filenames, int includeMask=FileEntry::TYPE_ALL);
+	void getSelectionFilenames(QStringList &filenames, int includeMask=FileEntry::TYPE_ALL, bool allIfEmpty=false);
 	bool startUI();
 	void stopUI();
-	void updateStatus();
+	void enableActions(bool on);
+	void addWorkspace(const QString &dir);
+
+	enum RepoStatus
+	{
+		REPO_OK,
+		REPO_NOT_FOUND,
+		REPO_OLD_SCHEMA
+	};
+
+	RepoStatus getRepoStatus();
 
 private slots:
 	void on_actionRefresh_triggered();
@@ -117,10 +135,12 @@ private slots:
 	void on_actionPull_triggered();
 	void on_actionCommit_triggered();
 	void on_actionAdd_triggered();
-
 	void on_actionDelete_triggered();
-
 	void on_actionRevert_triggered();
+	void on_actionNew_triggered();
+	void on_actionClone_triggered();
+
+	void on_actionOpenContaining_triggered();
 
 private:
 	Ui::MainWindow		*ui;
@@ -136,6 +156,7 @@ private:
 	filemap_t			workspaceFiles;
 	int					currentWorkspace;
 	QStringList			commitMessages;
+	class QLabel		*statusLabel;
 };
 
 #endif // MAINWINDOW_H
