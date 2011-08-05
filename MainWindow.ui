@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Fuel</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="margin">
@@ -97,7 +101,14 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="iconSize">
@@ -125,8 +136,9 @@
    <addaction name="actionPush"/>
    <addaction name="actionPull"/>
    <addaction name="separator"/>
+   <addaction name="actionUndo"/>
+   <addaction name="separator"/>
    <addaction name="actionAdd"/>
-   <addaction name="actionRename"/>
    <addaction name="actionRevert"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
@@ -138,6 +150,7 @@
    <addaction name="separator"/>
    <addaction name="actionOpenContaining"/>
    <addaction name="actionClearLog"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionRefresh">
@@ -303,6 +316,10 @@
    </property>
   </action>
   <action name="actionOpenFile">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Document-01.png</normaloff>:/icons/icons/Document-01.png</iconset>
+   </property>
    <property name="text">
     <string>Open file</string>
    </property>
@@ -332,6 +349,20 @@
    </property>
    <property name="text">
     <string>Open Containing Folder</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Button Reload-01.png</normaloff>:/icons/icons/Button Reload-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>undo</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About...</string>
    </property>
   </action>
  </widget>

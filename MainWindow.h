@@ -24,7 +24,9 @@ struct FileEntry
 		TYPE_EDITTED		= 1<<2,
 		TYPE_ADDED			= 1<<3,
 		TYPE_DELETED		= 1<<4,
-		TYPE_REPO_MODIFIED	= TYPE_EDITTED|TYPE_ADDED|TYPE_DELETED,
+		TYPE_MISSING		= 1<<5,
+		TYPE_RENAMED		= 1<<6,
+		TYPE_REPO_MODIFIED	= TYPE_EDITTED|TYPE_ADDED|TYPE_DELETED|TYPE_MISSING|TYPE_RENAMED,
 		TYPE_REPO			= TYPE_UNCHANGED|TYPE_REPO_MODIFIED,
 		TYPE_ALL			= TYPE_UNKNOWN|TYPE_REPO
 	};
@@ -93,15 +95,16 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+	bool diffFile(QString repoFile);
 
 private:
 	void refresh();
 	void scanWorkspace();
-	bool runFossil(QStringList &result, const QStringList &args, bool silent=false);
-	bool runFossil(QStringList &result, const QStringList &args, int &exitCode, bool silent=false);
+	bool runFossil(QStringList &result, const QStringList &args, bool silent=false, bool detached=false);
+	bool runFossil(QStringList &result, const QStringList &args, int &exitCode, bool silent=false, bool detached=false);
 	void loadSettings();
 	void saveSettings();
-	const QString &getCurrentWorkspace() { Q_ASSERT(currentWorkspace<workspaces.size()); return workspaces[currentWorkspace]; }
+	const QString &getCurrentWorkspace();
 	void log(const QString &text);
 	void setStatus(const QString &text);
 	bool uiRunning() const { return fossilUI.state() == QProcess::Running; }
@@ -139,9 +142,10 @@ private slots:
 	void on_actionRevert_triggered();
 	void on_actionNew_triggered();
 	void on_actionClone_triggered();
-
 	void on_actionOpenContaining_triggered();
-
+	void on_actionRename_triggered();
+	void on_actionUndo_triggered();
+	void on_actionAbout_triggered();
 private:
 	Ui::MainWindow		*ui;
 	QStandardItemModel	itemModel;

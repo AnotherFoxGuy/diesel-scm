@@ -1,14 +1,14 @@
-C Implemented\sCommitAction,\sDeleteAction,\sRevertAction,\sNewRepository,\sOpenRepository\nNew\sAction:\sOpen\scontaining\sfolder\nNew\sfiletypes\sADDED,\sDELETED\nWe\snow\sdetect\sinvalid\sor\soutdated\srepositories\n
-D 2011-08-04T15:52:07.126
-F CommitDialog.cpp f4065a49dfaa6904ffb1ad4ebe5efd01506cf550
-F CommitDialog.h c18c73998f8a925723ec1407ce75dc17a27a5ff7
-F CommitDialog.ui 482961858d1e7c31745966c347b21b6318e2e7b5
-F FileActionDialog.cpp 02dc244b0bcaad2021327186d5870bc408210a41
-F FileActionDialog.h 6082f84f6b5d48be6104034d6dc896a9d343b613
+C Commit\sDialog:\n-\sCommit\smessages\smust\snot\sbe\sempty\n-\sDouble-clicking\sa\sfile\sinvokes\sdiff\nFileAction\sDialog:\n-\sOptional\scheckbox\n\nMainWindow:\n-\sAdded\sRename/Undo/About\sActions\n-\sAdded\sRenamed/Missing\sfile\sstates\n-\sAdded\stooltips\sto\sstatus\scolumn\n-\sSupport\sfor\srunning\sfossil\sin\sdetached\smode\s(to\sprevent\skilling\sfossil\sdue\sto\stimeout\son\sdiff\ssessions)\n
+D 2011-08-05T15:25:38.965
+F CommitDialog.cpp c2a14598f42d252d847d05b3bb33ae040f1a31ae
+F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
+F CommitDialog.ui 4a641325b8645f07672ffb9f19e7134ab753e6bb
+F FileActionDialog.cpp 6410dc7a65209df1839f871b3b66c0a78a4fe733
+F FileActionDialog.h 873a9f720753a37d67071563ed7954f91b0d4699
 F FileActionDialog.ui 2d7a0fa47f9555f4a4a7485feacd5bce504415a0
-F MainWindow.cpp f8433657efea2e502d790b6d094891aaee1134c5
-F MainWindow.h f193166dbdafd922ba6513f16a6d12bda09a8ffc
-F MainWindow.ui 6f445eb6b5d58e54050d255420b6eac005a81eeb
+F MainWindow.cpp b0e2b8915337e3759229ead372097a5b26906dca
+F MainWindow.h 0d6d8fb35f3a8763f7d4b78f809a39ad47e80047
+F MainWindow.ui f986ff746d7a111ddf82b1dc537aad891c11e9cc
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
 F RepoDialog.ui 8fe9b7f7528332ca9a45e919cf116aaf144a3286
@@ -76,7 +76,7 @@ F icons/Document\sOrganization\sChart-01.png 08e2d90232609a6537ff27c2fcbaf8669d2
 F icons/Document\sPreview-01.png 6dad0c2b3796f79b9ca2afeda35a4a25b2bf1a93
 F icons/Document\sText-01.png d2032f213666611e1f2ac3c6d3bbd5ac3cb70c4e
 F icons/Document-01.png 5caa3fb0c2803a5824967b772e221b8a6bf81888
-F icons/Document-Revert-icon.png c696a41d43d08c99a726cb8af97601b825a9fb34
+F icons/Document-Revert-icon.png e0b9cdfe17a0f5f56fea52f129adb99e99d3013a
 F icons/Edit\sDocument-01.png f83318cc0406ec8404162c6fd90bdb87ffd953d2
 F icons/Email\sAttachment-01.png 9140f252ce29af0f3ca8f8b9438bc5fd73084627
 F icons/Email\sDelete-01.png 6f7f1f536dcedf8e560a688e10be05c8f292f481
@@ -116,7 +116,7 @@ F icons/Gear-01.png dd9d2f1b3eaefd2b376547e8d7dc0224b142fb79
 F icons/Highlighter\sBlue-01.png f13cd5ab2131e0405e6cca65c9bf859ddeac7dca
 F icons/Highlighter\sGreen-01.png c27855873f1603692ddec1fe5eb387d82dec4511
 F icons/Highlighter\sYellow-01.png 50c25fe8857e04ccbe7d518abc8e50cad64e82da
-F icons/IconCredits.txt cee343f48fa15458897693df78193c0f7c63a519
+F icons/IconCredits.txt e38bd317b7d007b1bffb910f543dbbd376b2b16a
 F icons/Image\sBMP-01.png 79a0ca5cd1a794b711c37a3ab9a9d45d458c6cd1
 F icons/Image\sGIF-01.png d409ac6dfeceac46d711cc7bef274d94bbd4e9b0
 F icons/Image\sJPEG-01.png 63bc765c3c2c389c580faa66c7802f8d18e2ddd7
@@ -166,9 +166,8 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
 F qtfossil.pro 047d5e691c772ef110e4eaef75ddba39a0142544
-F qtfossil.pro.user 46795d72c37bdb7016c9673180cecb5264713f50
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 9e35495cc3f4e18f458cf02f83d1d8075c0a85b9
-R 59296ed5593ab777a8dc300eeb4e43dc
+P 2ac3cf9717f3529f809ffde1e802295988dfda05
+R 3b0d0d13b7cf9d3ea4f672b4d52f7f24
 U kostas
-Z 301a78f530bab5b00a799f65640fa487
+Z 8f7e114d6064ed65232051b27d2d5af2

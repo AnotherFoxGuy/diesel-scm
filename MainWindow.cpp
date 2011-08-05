@@ -10,15 +10,14 @@
 #include <QTemporaryFile>
 #include <QMessageBox>
 #include <QUrl>
+#include <QInputDialog>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 
 #define SILENT_STATUS true
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
-#define DEV_SETTINGS
-
-
+//#define DEV_SETTINGS
 
 enum
 {
@@ -88,6 +87,12 @@ MainWindow::~MainWindow()
 #endif
 	delete ui;
 }
+const QString &MainWindow::getCurrentWorkspace()
+{
+	Q_ASSERT(currentWorkspace<workspaces.size());
+	Q_ASSERT(QDir(workspaces[currentWorkspace]).exists());
+	return workspaces[currentWorkspace];
+}
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionRefresh_triggered()
@@ -104,6 +109,7 @@ void MainWindow::on_actionOpen_triggered()
 		workspaces.append(path);
 		currentWorkspace = workspaces.size()-1;
 		on_actionClearLog_triggered();
+		stopUI();
 		refresh();
 	}
 }
@@ -217,20 +223,41 @@ void MainWindow::scanWorkspace()
 			continue;
 
 		QString status_text = line.left(10).trimmed();
+		QString fname = line.right(line.length() - 10).trimmed();
 		FileEntry::EntryType type = FileEntry::TYPE_UNKNOWN;
+
+		bool add_missing = false;
 
 		if(status_text=="EDITED")
 			type = FileEntry::TYPE_EDITTED;
-		if(status_text=="ADDED")
+		else if(status_text=="ADDED")
 			type = FileEntry::TYPE_ADDED;
-		if(status_text=="DELETED")
+		else if(status_text=="DELETED")
+		{
 			type = FileEntry::TYPE_DELETED;
+			add_missing = true;
+		}
+		else if(status_text=="MISSING")
+		{
+			type = FileEntry::TYPE_MISSING;
+			add_missing = true;
+		}
+		else if(status_text=="RENAMED")
+			type = FileEntry::TYPE_RENAMED;
 		else if(status_text=="UNCHANGED")
 			type = FileEntry::TYPE_UNCHANGED;
 
-		QString fname = line.right(line.length() - 10).trimmed();
-
 		filemap_t::iterator it = workspaceFiles.find(fname);
+
+		if(add_missing && it==workspaceFiles.end())
+		{
+			FileEntry e;
+			QFileInfo info(wkdir+QDir::separator()+fname);
+			e.set(info, type, wkdir);
+			workspaceFiles.insert(e.getFilename(), e);
+		}
+
+		it = workspaceFiles.find(fname);
 		Q_ASSERT(it!=workspaceFiles.end());
 
 		it.value().setType(type);
@@ -240,13 +267,14 @@ void MainWindow::scanWorkspace()
 	// Clear all rows (except header)
 	itemModel.removeRows(0, itemModel.rowCount());
 
-	struct { FileEntry::EntryType type; const char *tag; const char *icon; }
-	stats[]=
-	{
-		{	FileEntry::TYPE_EDITTED, "E", ":icons/icons/Button Blank Yellow-01.png" },
-		{	FileEntry::TYPE_UNCHANGED, "U", ":icons/icons/Button Blank Green-01.png" },
-		{	FileEntry::TYPE_ADDED, "A", ":icons/icons/Button Add-01.png" },
-		{	FileEntry::TYPE_DELETED, "D", ":icons/icons/Button Close-01.png" },
+	struct { FileEntry::EntryType type; const char *tag; const char *tooltip; const char *icon; }
+	stats[] = {
+		{	FileEntry::TYPE_EDITTED, "E", "Editted", ":icons/icons/Button Blank Yellow-01.png" },
+		{	FileEntry::TYPE_UNCHANGED, "U", "Unchanged", ":icons/icons/Button Blank Green-01.png" },
+		{	FileEntry::TYPE_ADDED, "A", "Added", ":icons/icons/Button Add-01.png" },
+		{	FileEntry::TYPE_DELETED, "D", "Deleted", ":icons/icons/Button Close-01.png" },
+		{	FileEntry::TYPE_RENAMED, "R", "Renamed", ":icons/icons/Button Reload-01.png" },
+		{	FileEntry::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
 	};
 
 	size_t i=0;
@@ -256,6 +284,7 @@ void MainWindow::scanWorkspace()
 
 		// Status Column
 		const char *tag = "?"; // Default Tag
+		const char *tooltip = "Unknown";
 		const char *icon = ":icons/icons/Button Blank Gray-01.png"; // Default icon
 
 		for(size_t t=0; t<COUNTOF(stats); ++t)
@@ -263,12 +292,15 @@ void MainWindow::scanWorkspace()
 			if(e.getType() == stats[t].type)
 			{
 				tag = stats[t].tag;
+				tooltip = stats[t].tooltip;
 				icon = stats[t].icon;
 				break;
 			}
 		}
 
-		itemModel.setItem(i, COLUMN_STATUS, new QStandardItem(QIcon(icon), tag));
+		QStandardItem *status = new QStandardItem(QIcon(icon), tag);
+		status->setToolTip(tooltip);
+		itemModel.setItem(i, COLUMN_STATUS, status);
 
 		QString path = e.getFilename();
 		path = path.left(path.indexOf(e.getFileInfo().fileName()));
@@ -347,10 +379,10 @@ void MainWindow::on_actionClearLog_triggered()
 }
 
 //------------------------------------------------------------------------------
-bool MainWindow::runFossil(QStringList &result, const QStringList &args, bool silent)
+bool MainWindow::runFossil(QStringList &result, const QStringList &args, bool silent, bool detached)
 {
 	int exit_code = EXIT_FAILURE;
-	if(!runFossil(result, args, exit_code, silent))
+	if(!runFossil(result, args, exit_code, silent, detached))
 		return false;
 
 	return exit_code == EXIT_SUCCESS;
@@ -358,16 +390,21 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args, bool si
 //------------------------------------------------------------------------------
 // Run fossil. Returns true if execution was succesfull regardless if fossil
 // issued an error
-bool MainWindow::runFossil(QStringList &result, const QStringList &args, int &exitCode, bool silent)
+bool MainWindow::runFossil(QStringList &result, const QStringList &args, int &exitCode, bool silent, bool detached)
 {
-	QProcess process(this);
-
-	process.setProcessChannelMode(QProcess::MergedChannels);
-	QString wkdir = getCurrentWorkspace();
-	process.setWorkingDirectory(wkdir);
-
 	if(!silent)
 		log("> fossil "+args.join(" ")+"\n");
+
+	QString wkdir = getCurrentWorkspace();
+
+	if(detached)
+	{
+		return QProcess::startDetached(fossilPath, args, wkdir);
+	}
+
+	QProcess process(this);
+	process.setProcessChannelMode(QProcess::MergedChannels);
+	process.setWorkingDirectory(wkdir);
 
 	process.start(fossilPath, args);
 	if(!process.waitForStarted())
@@ -401,7 +438,8 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args, int &ex
 //------------------------------------------------------------------------------
 void MainWindow::addWorkspace(const QString &dir)
 {
-	workspaces.append(dir);
+	QDir d(dir);
+	workspaces.append(d.absolutePath());
 	currentWorkspace = workspaces.size()-1;
 }
 //------------------------------------------------------------------------------
@@ -504,17 +542,23 @@ void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, 
 	}
 }
 //------------------------------------------------------------------------------
+bool MainWindow::diffFile(QString repoFile)
+{
+	QStringList res;
+	int exitcode;
+	// Run the diff detached
+	return runFossil(res, QStringList() << "gdiff" << QuotePath(repoFile), exitcode, false, true);
+}
+
+//------------------------------------------------------------------------------
 void MainWindow::on_actionDiff_triggered()
 {
 	QStringList selection;
-	getSelectionFilenames(selection);
+	getSelectionFilenames(selection, FileEntry::TYPE_REPO);
 
 	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
-	{
-		QStringList res;
-		if(!runFossil(res, QStringList() << "gdiff" << QuotePath(*it)))
+		if(!diffFile(*it))
 			return;
-	}
 }
 
 //------------------------------------------------------------------------------
@@ -632,7 +676,7 @@ void MainWindow::on_actionCommit_triggered()
 		return;
 
 	QString msg;
-	if(!CommitDialog::run(msg, commitMessages, modified_files, this))
+	if(!CommitDialog::run(this, msg, commitMessages, modified_files))
 		return;
 
 	// Do commit
@@ -661,7 +705,7 @@ void MainWindow::on_actionAdd_triggered()
 	if(selection.empty())
 		return;
 
-	if(!FileActionDialog::run(tr("Add files"), tr("The following files will be added. Are you sure?"), selection, this))
+	if(!FileActionDialog::run(this, tr("Add files"), tr("The following files will be added. Are you sure?"), selection))
 		return;
 
 	// Do Add
@@ -680,15 +724,33 @@ void MainWindow::on_actionDelete_triggered()
 	QStringList unknown_files;
 	getSelectionFilenames(unknown_files, FileEntry::TYPE_UNKNOWN);
 
-	if(repo_files.empty() && unknown_files.empty())
+	QStringList all_files = repo_files+unknown_files;
+
+	if(all_files.empty())
 		return;
 
-	if(!FileActionDialog::run(tr("Delete files"), tr("The following files will be deleted. Are you sure?"), repo_files+unknown_files, this))
+	bool remove_local = false;
+
+	if(!FileActionDialog::run(this, tr("Remove files"), tr("The following files will be removed from the repository.\nAre you sure?"), all_files, tr("Also delete the local files"), &remove_local ))
 		return;
 
-	// Do Delete
-	QStringList res;
-	runFossil(res, QStringList() << "delete" << QuotePaths(repo_files) );
+	if(!repo_files.empty())
+	{
+		// Do Delete
+		QStringList res;
+		if(!runFossil(res, QStringList() << "delete" << QuotePaths(repo_files)))
+			return;
+	}
+
+	if(remove_local)
+	{
+		for(int i=0; i<all_files.size(); ++i)
+		{
+			QFileInfo fi(getCurrentWorkspace() + QDir::separator() + all_files[i]);
+			Q_ASSERT(fi.exists());
+			QFile::remove(fi.filePath());
+		}
+	}
 
 	refresh();
 }
@@ -697,17 +759,53 @@ void MainWindow::on_actionDelete_triggered()
 void MainWindow::on_actionRevert_triggered()
 {
 	QStringList modified_files;
-	getSelectionFilenames(modified_files, FileEntry::TYPE_ADDED|FileEntry::TYPE_EDITTED);
+	getSelectionFilenames(modified_files, FileEntry::TYPE_EDITTED|FileEntry::TYPE_DELETED|FileEntry::TYPE_MISSING);
 
 	if(modified_files.empty())
 		return;
 
-	if(!FileActionDialog::run(tr("Revert files"), tr("The following files will be reverted. Are you sure?"), modified_files, this))
+	if(!FileActionDialog::run(this, tr("Revert files"), tr("The following files will be reverted. Are you sure?"), modified_files))
 		return;
 
 	// Do Revert
 	QStringList res;
 	runFossil(res, QStringList() << "revert" << QuotePaths(modified_files) );
+
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionRename_triggered()
+{
+	QStringList repo_files;
+	getSelectionFilenames(repo_files, FileEntry::TYPE_REPO);
+
+	if(repo_files.length()!=1)
+		return;
+
+	QFileInfo fi_before(repo_files[0]);
+
+	bool ok = false;
+	QString new_name = QInputDialog::getText(this, tr("Rename"), tr("Enter new name"), QLineEdit::Normal, fi_before.filePath(), &ok );
+	if(!ok)
+		return;
+
+	QFileInfo fi_after(new_name);
+
+	if(fi_after.exists())
+	{
+		QMessageBox::critical(this, tr("Error"), tr("File ")+new_name+tr(" already exists.\nRename aborted."), QMessageBox::Ok );
+		return;
+	}
+
+	// Do Rename
+	QStringList res;
+	runFossil(res, QStringList() << "mv" << QuotePath(fi_before.filePath()) << QuotePath(fi_after.filePath()) );
+
+	QString wkdir = getCurrentWorkspace() + QDir::separator();
+
+	// Also rename the file
+	QFile::rename( wkdir+fi_before.filePath(), wkdir+fi_after.filePath());
 
 	refresh();
 }
@@ -732,6 +830,7 @@ void MainWindow::on_actionNew_triggered()
 		QMessageBox::critical(this, tr("Error"), tr("A repository file already exists.\nRepository creation aborted."), QMessageBox::Ok );
 		return;
 	}
+	stopUI();
 
 	QFileInfo path_info(path);
 	Q_ASSERT(path_info.dir().exists());
@@ -753,16 +852,14 @@ void MainWindow::on_actionNew_triggered()
 		QMessageBox::critical(this, tr("Error"), tr("Repository checkout failed."), QMessageBox::Ok );
 		return;
 	}
-
 	refresh();
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionClone_triggered()
 {
-
+	stopUI();
 }
-
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionOpenContaining_triggered()
@@ -783,3 +880,36 @@ void MainWindow::on_actionOpenContaining_triggered()
 	QUrl url = QUrl::fromLocalFile(target);
 	QDesktopServices::openUrl(url);
 }
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionUndo_triggered()
+{
+	// Gather Undo actions
+	QStringList res;
+
+	if(!runFossil(res, QStringList() << "undo" << "--explain" ))
+		return;
+
+	if(res.length()>0 && res[0]=="No undo or redo is available")
+		return;
+
+	if(!FileActionDialog::run(this, tr("Undo"), tr("The following actions will be undone. Are you sure?"), res))
+		return;
+
+	// Do Undo
+	runFossil(res, QStringList() << "undo" );
+
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionAbout_triggered()
+{
+	QMessageBox::about(this, tr("About..."), tr(
+						   "Fuel, a GUI frontend to Fossil SCM\n"
+						   "by Kostas Karanikolas\n"
+						   "Released under the GNU GPL\n\n"
+						   "Icon-set by Deleket - Jojo Mendoza\n"
+						   "Available under the CC Attribution-Noncommercial-No Derivate 3.0 License"));
+}
+
