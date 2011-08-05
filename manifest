@@ -1,5 +1,5 @@
-C Minor\sui\sadjustments\sin\sthe\sfile\sview
-D 2011-08-05T15:35:10.857
+C Removed\sthe\sQtWeb\srequirement\n
+D 2011-08-05T15:36:59.505
 F CommitDialog.cpp c2a14598f42d252d847d05b3bb33ae040f1a31ae
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 4a641325b8645f07672ffb9f19e7134ab753e6bb
@@ -165,9 +165,9 @@ F icons/Zoom\sIn-01.png bdd24558fd23a1003f1a569f092f22022736f236
 F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
-F qtfossil.pro 047d5e691c772ef110e4eaef75ddba39a0142544
+F qtfossil.pro ab8c399de80717d4c55ba8866ae65ee754649fbb
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P ea42e7cd8b7041d82e35720b14e30437b6db6e0d
-R 034d667de03055242817cd127238f445
+P d5e3fbfcb451ed8515eb2f4394ec41207d40f407
+R 2efdbc355b74258273bdc02cd2ef2925
 U kostas
-Z 00dd70dac31b79d4fdc1b277ac72b96f
+Z 755ec0d9192ba84166208140e29096a9
