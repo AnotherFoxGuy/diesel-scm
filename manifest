@@ -1,14 +1,14 @@
-C Commit\sDialog:\n-\sCommit\smessages\smust\snot\sbe\sempty\n-\sDouble-clicking\sa\sfile\sinvokes\sdiff\nFileAction\sDialog:\n-\sOptional\scheckbox\n\nMainWindow:\n-\sAdded\sRename/Undo/About\sActions\n-\sAdded\sRenamed/Missing\sfile\sstates\n-\sAdded\stooltips\sto\sstatus\scolumn\n-\sSupport\sfor\srunning\sfossil\sin\sdetached\smode\s(to\sprevent\skilling\sfossil\sdue\sto\stimeout\son\sdiff\ssessions)\n
-D 2011-08-05T15:25:38.965
+C Minor\sui\sadjustments\sin\sthe\sfile\sview
+D 2011-08-05T15:35:10.857
 F CommitDialog.cpp c2a14598f42d252d847d05b3bb33ae040f1a31ae
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 4a641325b8645f07672ffb9f19e7134ab753e6bb
 F FileActionDialog.cpp 6410dc7a65209df1839f871b3b66c0a78a4fe733
 F FileActionDialog.h 873a9f720753a37d67071563ed7954f91b0d4699
 F FileActionDialog.ui 2d7a0fa47f9555f4a4a7485feacd5bce504415a0
-F MainWindow.cpp b0e2b8915337e3759229ead372097a5b26906dca
+F MainWindow.cpp 2f50d5da6f0d118271683bf61911ef11de3452d7
 F MainWindow.h 0d6d8fb35f3a8763f7d4b78f809a39ad47e80047
-F MainWindow.ui f986ff746d7a111ddf82b1dc537aad891c11e9cc
+F MainWindow.ui b67ecc597e26810ee56f7726707d82fad87ede23
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
 F RepoDialog.ui 8fe9b7f7528332ca9a45e919cf116aaf144a3286
@@ -167,7 +167,7 @@ F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
 F qtfossil.pro 047d5e691c772ef110e4eaef75ddba39a0142544
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 2ac3cf9717f3529f809ffde1e802295988dfda05
-R 3b0d0d13b7cf9d3ea4f672b4d52f7f24
+P ea42e7cd8b7041d82e35720b14e30437b6db6e0d
+R 034d667de03055242817cd127238f445
 U kostas
-Z 8f7e114d6064ed65232051b27d2d5af2
+Z 00dd70dac31b79d4fdc1b277ac72b96f

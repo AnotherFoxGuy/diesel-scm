@@ -298,7 +298,7 @@ void MainWindow::scanWorkspace()
 			}
 		}
 
-		QStandardItem *status = new QStandardItem(QIcon(icon), tag);
+		QStandardItem *status = new QStandardItem(QIcon(icon), "");
 		status->setToolTip(tooltip);
 		itemModel.setItem(i, COLUMN_STATUS, status);
 
