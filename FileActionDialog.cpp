@@ -1,9 +1,11 @@
+#include <QCheckBox>
 #include "FileActionDialog.h"
 #include "ui_FileActionDialog.h"
 
-FileActionDialog::FileActionDialog(QWidget *parent, const QString &title, const QString &message, const QStringList &files, const QString &checkBoxText, bool *checkBoxResult) :
+FileActionDialog::FileActionDialog(QWidget *parent, const QString &title, const QString &message, const QStringList &listData, const QString &checkBoxText, bool *checkBoxResult) :
 	QDialog(parent, Qt::Sheet),
-    ui(new Ui::FileActionDialog)
+	ui(new Ui::FileActionDialog),
+	clickedButton(QDialogButtonBox::NoButton)
 {
     ui->setupUi(this);
 	setWindowTitle(title);
@@ -20,9 +22,8 @@ FileActionDialog::FileActionDialog(QWidget *parent, const QString &title, const 
 		ui->verticalLayout->insertWidget(2, checkBox);
 	}
 
-
-	for(QStringList::const_iterator it=files.begin(); it!=files.end(); ++it)
-		itemModel.appendRow(new QStandardItem(*it));
+	foreach(const QString &s, listData)
+		itemModel.appendRow(new QStandardItem(s));
 }
 
 FileActionDialog::~FileActionDialog()
@@ -30,9 +31,9 @@ FileActionDialog::~FileActionDialog()
 	delete ui;
 }
 
-bool FileActionDialog::run(QWidget *parent, const QString &title, const QString &message, const QStringList &files, const QString &checkBoxText, bool *checkBoxResult)
+bool FileActionDialog::run(QWidget *parent, const QString &title, const QString &message, const QStringList &listData, const QString &checkBoxText, bool *checkBoxResult)
 {
-	FileActionDialog dlg(parent, title, message, files, checkBoxText, checkBoxResult);
+	FileActionDialog dlg(parent, title, message, listData, checkBoxText, checkBoxResult);
 	int res = dlg.exec();
 
 	if(!checkBoxText.isEmpty() && checkBoxResult && dlg.checkBox)
@@ -40,3 +41,19 @@ bool FileActionDialog::run(QWidget *parent, const QString &title, const QString 
 
 	return res == QDialog::Accepted;
 }
+
+QDialogButtonBox::StandardButton FileActionDialog::runStandardButtons(QWidget *parent, StandardButtons buttons, const QString &title, const QString &message, const QStringList &listData)
+{
+	FileActionDialog dlg(parent, title, message, listData);
+	dlg.ui->buttonBox->setStandardButtons(buttons);
+
+	dlg.exec();
+	return dlg.clickedButton;
+}
+
+void FileActionDialog::on_buttonBox_clicked(QAbstractButton *button)
+{
+	// Retrieve the flag corresponding to the standard clicked
+	clickedButton = ui->buttonBox->standardButton(button);
+}
+
