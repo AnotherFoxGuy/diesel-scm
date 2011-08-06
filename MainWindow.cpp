@@ -968,8 +968,9 @@ void MainWindow::on_actionUndo_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionAbout_triggered()
 {
-	QMessageBox::about(this, tr("About..."), tr(
-						   "Fuel, a GUI frontend to Fossil SCM\n"
+	QMessageBox::about(this, "About... Fuel ",
+					   QCoreApplication::applicationName() + " "+ QCoreApplication::applicationVersion() + " " +
+					   tr("a GUI frontend to Fossil SCM\n"
 						   "by Kostas Karanikolas\n"
 						   "Released under the GNU GPL\n\n"
 						   "Icon-set by Deleket - Jojo Mendoza\n"

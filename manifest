@@ -1,12 +1,12 @@
-C Added\ssettings\sdialog\nAdded\splatform\sspecific\ssettings\sstorage/retrieval
-D 2011-08-06T08:31:19.360
+C Added\sversion\sinfo\sto\sabout\sdialog
+D 2011-08-06T08:49:10.502
 F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp ed26a6f9dd1debd6926d4bbff7ba18acb63dacc0
 F FileActionDialog.h 873a9f720753a37d67071563ed7954f91b0d4699
 F FileActionDialog.ui 3d4f7ad0665d51dc3ba405edbc472dd317138c5f
-F MainWindow.cpp baa17293fc095dd2aa485dd830fb78ef0da683fb
+F MainWindow.cpp 96ce6b4bb5ee66f04a43e2171b20e8ee510a5ac7
 F MainWindow.h 8a23caf1a70d41fe60a25894649a88b1efb851ba
 F MainWindow.ui a68b2f41fc5edec06235504a88575463fa365590
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
@@ -171,9 +171,9 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
-F main.cpp 8e60cd775217ab3ab76d576b967186923e8cb9ab
+F main.cpp aed85ed9766ddb8685e300e8ca4a0dc193ae2586
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P dc4d1a0ea7eea22ee41170f366c08f09368735a7
-R c5696a2a2cc67a5876ce07be3131bc73
+P 66205d14199523228d7f6fa0241a7ef7162f6940
+R fc9a4bb65d16b8d89541f0f2ce0e471f
 U kostas
-Z e87aeac6860a9baf9498236b899d9a66
+Z 46e2ccd87c1ae81543be259b8424ddb2
