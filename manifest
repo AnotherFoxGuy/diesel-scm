@@ -1,5 +1,5 @@
-C Added\sversion\sinfo\sto\sabout\sdialog
-D 2011-08-06T08:49:10.502
+C Removed\sclone\srepository\scommand\s(for\snow)
+D 2011-08-06T08:52:52.947
 F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
@@ -8,7 +8,7 @@ F FileActionDialog.h 873a9f720753a37d67071563ed7954f91b0d4699
 F FileActionDialog.ui 3d4f7ad0665d51dc3ba405edbc472dd317138c5f
 F MainWindow.cpp 96ce6b4bb5ee66f04a43e2171b20e8ee510a5ac7
 F MainWindow.h 8a23caf1a70d41fe60a25894649a88b1efb851ba
-F MainWindow.ui a68b2f41fc5edec06235504a88575463fa365590
+F MainWindow.ui 9f901c1f06b24df3cbd36d5349ffe0d82896c05b
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
 F RepoDialog.ui 8fe9b7f7528332ca9a45e919cf116aaf144a3286
@@ -173,7 +173,7 @@ F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F main.cpp aed85ed9766ddb8685e300e8ca4a0dc193ae2586
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 66205d14199523228d7f6fa0241a7ef7162f6940
-R fc9a4bb65d16b8d89541f0f2ce0e471f
+P 797c2e6a66cb336351d569ab80737a7e491403f0
+R b71e721aa96a201b7c70272083f26743
 U kostas
-Z 46e2ccd87c1ae81543be259b8424ddb2
+Z 5723c9d6f3d128a270ccbc410612a6ae

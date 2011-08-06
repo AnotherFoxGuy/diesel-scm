@@ -96,7 +96,6 @@
     <addaction name="actionOpen"/>
     <addaction name="separator"/>
     <addaction name="actionNew"/>
-    <addaction name="actionClone"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
