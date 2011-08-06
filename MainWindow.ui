@@ -133,6 +133,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionCommit"/>
+   <addaction name="actionUpdate"/>
    <addaction name="separator"/>
    <addaction name="actionRefresh"/>
    <addaction name="separator"/>
@@ -164,6 +165,9 @@
    <property name="text">
     <string>Refresh</string>
    </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
   </action>
   <action name="actionCommit">
    <property name="icon">
@@ -172,6 +176,9 @@
    </property>
    <property name="text">
     <string>Commit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
    </property>
   </action>
   <action name="actionDiff">
@@ -182,6 +189,9 @@
    <property name="text">
     <string>Diff</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
   </action>
   <action name="actionAdd">
    <property name="icon">
@@ -191,6 +201,9 @@
    <property name="text">
     <string>Add</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
   </action>
   <action name="actionDelete">
    <property name="icon">
@@ -199,6 +212,9 @@
    </property>
    <property name="text">
     <string>Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
    </property>
   </action>
   <action name="actionOpen">
@@ -212,6 +228,9 @@
    <property name="toolTip">
     <string>Open a fossil checkout folder</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
    <property name="iconVisibleInMenu">
     <bool>true</bool>
    </property>
@@ -224,6 +243,9 @@
    <property name="text">
     <string>Push</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionPull">
    <property name="icon">
@@ -232,6 +254,9 @@
    </property>
    <property name="text">
     <string>Pull</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
   <action name="actionRename">
@@ -245,6 +270,9 @@
    <property name="toolTip">
     <string>Rename</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="actionQuit">
    <property name="icon">
@@ -253,6 +281,9 @@
    </property>
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
    <property name="iconVisibleInMenu">
     <bool>true</bool>
@@ -268,6 +299,9 @@
    </property>
    <property name="toolTip">
     <string>History</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
   <action name="actionFossilUI">
@@ -308,6 +342,9 @@
    <property name="toolTip">
     <string>Clear Log</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
+   </property>
   </action>
   <action name="actionTimeline">
    <property name="icon">
@@ -326,6 +363,9 @@
    <property name="text">
     <string>Open file</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Return</string>
+   </property>
   </action>
   <action name="actionNew">
    <property name="icon">
@@ -334,6 +374,9 @@
    </property>
    <property name="text">
     <string>New Repository...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionClone">
@@ -353,6 +396,9 @@
    <property name="text">
     <string>Open Containing Folder</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+Return</string>
+   </property>
   </action>
   <action name="actionUndo">
    <property name="icon">
@@ -362,10 +408,29 @@
    <property name="text">
     <string>undo</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
+   </property>
    <property name="text">
     <string>About...</string>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Button Play-01.png</normaloff>:/icons/icons/Button Play-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>update</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
  </widget>

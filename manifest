@@ -1,18 +1,18 @@
-C Renamed\sqmake\sproject
-D 2011-08-05T15:41:11.050
+C Added\sUpdate\sAction\nAdded\srecent\sfiles\smenu\sgeneration\nRenamed\sFileEntry\sto\sRepoFile\nSimplified\smost\scalls\sto\srunFossil\n
+D 2011-08-06T03:54:43.951
 F CommitDialog.cpp c2a14598f42d252d847d05b3bb33ae040f1a31ae
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 4a641325b8645f07672ffb9f19e7134ab753e6bb
 F FileActionDialog.cpp 6410dc7a65209df1839f871b3b66c0a78a4fe733
 F FileActionDialog.h 873a9f720753a37d67071563ed7954f91b0d4699
 F FileActionDialog.ui 2d7a0fa47f9555f4a4a7485feacd5bce504415a0
-F MainWindow.cpp 2f50d5da6f0d118271683bf61911ef11de3452d7
-F MainWindow.h 0d6d8fb35f3a8763f7d4b78f809a39ad47e80047
-F MainWindow.ui b67ecc597e26810ee56f7726707d82fad87ede23
+F MainWindow.cpp 20e81f039ca183879c26336ade940c050f6cd771
+F MainWindow.h d335311e596eab2b9cd7139e09dda7ca9e35de4c
+F MainWindow.ui 3e2be4d8eb2b89b3fdd63fc31355d98354e6ea9e
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
 F RepoDialog.ui 8fe9b7f7528332ca9a45e919cf116aaf144a3286
-F fuel.pro ab8c399de80717d4c55ba8866ae65ee754649fbb w qtfossil.pro
+F fuel.pro ab8c399de80717d4c55ba8866ae65ee754649fbb
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
 F icons/Adobe\sPDF\sDocument-01.png 8a0bc3ba633d08debde748d64b5a9675e30447a3
@@ -167,7 +167,7 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 3d20801ad81d4e3d797cb8b7f9088686ae41ee58
-R 788201ddd38de8b8ed8b97286b6ae015
+P ac732f689426b87eae201397cddfc91ea476efc1
+R 43f0366285b13dade5c4db496050c8ea
 U kostas
-Z e3c6373a1d7ef471cc073c29e0e244ef
+Z 4c47958735054e969645f9183040c7d5

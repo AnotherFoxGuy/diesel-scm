@@ -59,23 +59,42 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->tableView->addAction(ui->actionDelete);
 	ui->tableView->addAction(ui->actionRename);
 
+	// Locate a sequence of two separator actions in file menu
+	QList<QAction*> file_actions = ui->menuFile->actions();
+	QAction *recent_sep=0;
+	for(int i=0; i<file_actions.size(); ++i)
+	{
+		QAction *act = file_actions[i];
+		if(act->isSeparator() && i>0 && file_actions[i-1]->isSeparator())
+		{
+			recent_sep = act;
+			break;
+		}
+	}
+	Q_ASSERT(recent_sep);
+	for (int i = 0; i < MAX_RECENT; ++i)
+	{
+		recentWorkspaceActs[i] = new QAction(this);
+		recentWorkspaceActs[i]->setVisible(false);
+		connect(recentWorkspaceActs[i], SIGNAL(triggered()), this, SLOT(on_openRecent_triggered()));
+		ui->menuFile->insertAction(recent_sep, recentWorkspaceActs[i]);
+	}
+
 	statusLabel = new QLabel();
 	statusLabel->setMinimumSize( statusLabel->sizeHint() );
 	ui->statusBar->addWidget( statusLabel, 1 );
 
 	settingsFile = QDir::homePath() + QDir::separator() + ".fuelrc";
-	currentWorkspace = 0;
 
 #ifdef DEV_SETTINGS
-	if(workspaces.empty())
-		workspaces.append("/home/kostas/tmp/testfossil");
-
+	currentWorkspace = "/home/kostas/tmp/testfossil";
 	fossilPath = "fossil";
 #else
 	loadSettings();
 #endif
 
 	refresh();
+	rebuildRecent();
 }
 
 //------------------------------------------------------------------------------
@@ -89,9 +108,7 @@ MainWindow::~MainWindow()
 }
 const QString &MainWindow::getCurrentWorkspace()
 {
-	Q_ASSERT(currentWorkspace<workspaces.size());
-	Q_ASSERT(QDir(workspaces[currentWorkspace]).exists());
-	return workspaces[currentWorkspace];
+	return currentWorkspace;
 }
 
 //------------------------------------------------------------------------------
@@ -101,17 +118,54 @@ void MainWindow::on_actionRefresh_triggered()
 }
 
 //------------------------------------------------------------------------------
+bool MainWindow::openWorkspace(const QString &dir)
+{
+	addWorkspace(dir);
+	currentWorkspace = dir;
+
+	on_actionClearLog_triggered();
+	stopUI();
+
+	bool ok = refresh();
+	if(ok)
+		rebuildRecent();
+
+	return ok;
+}
+
+//------------------------------------------------------------------------------
 void MainWindow::on_actionOpen_triggered()
 {
 	QString path = QFileDialog::getExistingDirectory(this, tr("Fossil Checkout"));
 	if(!path.isNull())
+		openWorkspace(path);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::rebuildRecent()
+{
+	for(int i = 0; i < MAX_RECENT; ++i)
+		recentWorkspaceActs[i]->setVisible(false);
+
+	int enabled_acts = qMin<int>(MAX_RECENT, workspaceHistory.size());
+
+	for(int i = 0; i < enabled_acts; ++i)
 	{
-		workspaces.append(path);
-		currentWorkspace = workspaces.size()-1;
-		on_actionClearLog_triggered();
-		stopUI();
-		refresh();
+		QString text = tr("&%1 %2").arg(i + 1).arg(workspaceHistory[i]);
+
+		recentWorkspaceActs[i]->setText(text);
+		recentWorkspaceActs[i]->setData(workspaceHistory[i]);
+		recentWorkspaceActs[i]->setVisible(true);
 	}
+
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_openRecent_triggered()
+{
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (action)
+		openWorkspace(action->data().toString());
 }
 
 //------------------------------------------------------------------------------
@@ -156,9 +210,11 @@ void MainWindow::enableActions(bool on)
 	ui->actionTimeline->setEnabled(on);
 	ui->actionOpenFile->setEnabled(on);
 	ui->actionOpenContaining->setEnabled(on);
+	ui->actionUndo->setEnabled(on);
+	ui->actionUpdate->setEnabled(on);
 }
 //------------------------------------------------------------------------------
-void MainWindow::refresh()
+bool MainWindow::refresh()
 {
 	// Load repository info
 	RepoStatus st = getRepoStatus();
@@ -168,14 +224,14 @@ void MainWindow::refresh()
 		setStatus(tr("No checkout detected."));
 		enableActions(false);
 		itemModel.removeRows(0, itemModel.rowCount());
-		return;
+		return false;
 	}
 	else if(st==REPO_OLD_SCHEMA)
 	{
 		setStatus(tr("Old fossil schema detected. Consider running rebuild."));
 		enableActions(false);
 		itemModel.removeRows(0, itemModel.rowCount());
-		return;
+		return true;
 	}
 
 	scanWorkspace();
@@ -187,6 +243,7 @@ void MainWindow::refresh()
 		title += " - "+projectName;
 
 	setWindowTitle(title);
+	return true;
 }
 
 //------------------------------------------------------------------------------
@@ -206,14 +263,14 @@ void MainWindow::scanWorkspace()
 		if(filename == "_FOSSIL_" || (!repositoryFile.isEmpty() && it->absoluteFilePath()==repositoryFile))
 			continue;
 
-		FileEntry e;
-		e.set(*it, FileEntry::TYPE_UNKNOWN, wkdir);
+		RepoFile e;
+		e.set(*it, RepoFile::TYPE_UNKNOWN, wkdir);
 		workspaceFiles.insert(e.getFilename(), e);
 	}
 
 	// Retrieve the status of files tracked by fossil
 	QStringList res;
-	if(!runFossil(res, QStringList() << "ls" << "-l", SILENT_STATUS))
+	if(!runFossil(QStringList() << "ls" << "-l", &res, SILENT_STATUS))
 		return;
 
 	for(QStringList::iterator it=res.begin(); it!=res.end(); ++it)
@@ -224,34 +281,34 @@ void MainWindow::scanWorkspace()
 
 		QString status_text = line.left(10).trimmed();
 		QString fname = line.right(line.length() - 10).trimmed();
-		FileEntry::EntryType type = FileEntry::TYPE_UNKNOWN;
+		RepoFile::EntryType type = RepoFile::TYPE_UNKNOWN;
 
 		bool add_missing = false;
 
 		if(status_text=="EDITED")
-			type = FileEntry::TYPE_EDITTED;
+			type = RepoFile::TYPE_EDITTED;
 		else if(status_text=="ADDED")
-			type = FileEntry::TYPE_ADDED;
+			type = RepoFile::TYPE_ADDED;
 		else if(status_text=="DELETED")
 		{
-			type = FileEntry::TYPE_DELETED;
+			type = RepoFile::TYPE_DELETED;
 			add_missing = true;
 		}
 		else if(status_text=="MISSING")
 		{
-			type = FileEntry::TYPE_MISSING;
+			type = RepoFile::TYPE_MISSING;
 			add_missing = true;
 		}
 		else if(status_text=="RENAMED")
-			type = FileEntry::TYPE_RENAMED;
+			type = RepoFile::TYPE_RENAMED;
 		else if(status_text=="UNCHANGED")
-			type = FileEntry::TYPE_UNCHANGED;
+			type = RepoFile::TYPE_UNCHANGED;
 
 		filemap_t::iterator it = workspaceFiles.find(fname);
 
 		if(add_missing && it==workspaceFiles.end())
 		{
-			FileEntry e;
+			RepoFile e;
 			QFileInfo info(wkdir+QDir::separator()+fname);
 			e.set(info, type, wkdir);
 			workspaceFiles.insert(e.getFilename(), e);
@@ -267,20 +324,20 @@ void MainWindow::scanWorkspace()
 	// Clear all rows (except header)
 	itemModel.removeRows(0, itemModel.rowCount());
 
-	struct { FileEntry::EntryType type; const char *tag; const char *tooltip; const char *icon; }
+	struct { RepoFile::EntryType type; const char *tag; const char *tooltip; const char *icon; }
 	stats[] = {
-		{	FileEntry::TYPE_EDITTED, "E", "Editted", ":icons/icons/Button Blank Yellow-01.png" },
-		{	FileEntry::TYPE_UNCHANGED, "U", "Unchanged", ":icons/icons/Button Blank Green-01.png" },
-		{	FileEntry::TYPE_ADDED, "A", "Added", ":icons/icons/Button Add-01.png" },
-		{	FileEntry::TYPE_DELETED, "D", "Deleted", ":icons/icons/Button Close-01.png" },
-		{	FileEntry::TYPE_RENAMED, "R", "Renamed", ":icons/icons/Button Reload-01.png" },
-		{	FileEntry::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
+		{	RepoFile::TYPE_EDITTED, "E", "Editted", ":icons/icons/Button Blank Yellow-01.png" },
+		{	RepoFile::TYPE_UNCHANGED, "U", "Unchanged", ":icons/icons/Button Blank Green-01.png" },
+		{	RepoFile::TYPE_ADDED, "A", "Added", ":icons/icons/Button Add-01.png" },
+		{	RepoFile::TYPE_DELETED, "D", "Deleted", ":icons/icons/Button Close-01.png" },
+		{	RepoFile::TYPE_RENAMED, "R", "Renamed", ":icons/icons/Button Reload-01.png" },
+		{	RepoFile::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
 	};
 
 	size_t i=0;
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it, ++i)
 	{
-		const FileEntry &e = it.value();
+		const RepoFile &e = it.value();
 
 		// Status Column
 		const char *tag = "?"; // Default Tag
@@ -324,7 +381,7 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 
 	// We need to differentiate the reason why fossil has failed
 	// so we delay processing of the exit_code
-	if(!runFossil(res, QStringList() << "info", exit_code, SILENT_STATUS))
+	if(!runFossilRaw(QStringList() << "info", &res, &exit_code, SILENT_STATUS))
 		return REPO_NOT_FOUND;
 
 	bool run_ok = exit_code == EXIT_SUCCESS;
@@ -379,10 +436,10 @@ void MainWindow::on_actionClearLog_triggered()
 }
 
 //------------------------------------------------------------------------------
-bool MainWindow::runFossil(QStringList &result, const QStringList &args, bool silent, bool detached)
+bool MainWindow::runFossil(const QStringList &args, QStringList *output, bool silent, bool detached)
 {
 	int exit_code = EXIT_FAILURE;
-	if(!runFossil(result, args, exit_code, silent, detached))
+	if(!runFossilRaw(args, output, &exit_code, silent, detached))
 		return false;
 
 	return exit_code == EXIT_SUCCESS;
@@ -390,7 +447,7 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args, bool si
 //------------------------------------------------------------------------------
 // Run fossil. Returns true if execution was succesfull regardless if fossil
 // issued an error
-bool MainWindow::runFossil(QStringList &result, const QStringList &args, int &exitCode, bool silent, bool detached)
+bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, bool silent, bool detached)
 {
 	if(!silent)
 		log("> fossil "+args.join(" ")+"\n");
@@ -414,14 +471,17 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args, int &ex
 	}
 
 	process.waitForFinished();
-	QString output = process.readAllStandardOutput();
+	QString std_output = process.readAllStandardOutput();
 
-	QStringList lines = output.split('\n');
+	QStringList lines = std_output.split('\n');
 
 	for(QStringList::iterator it=lines.begin(); it!=lines.end(); ++it)
 	{
 		QString line = it->trimmed();
-		result.append(line);
+		if(line.isEmpty())
+			continue;
+		if(output)
+			output->append(line);
 		if(!silent)
 			log(line+"\n");
 	}
@@ -431,7 +491,9 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args, int &ex
 	if(es!=QProcess::NormalExit)
 		return false;
 
-	exitCode = process.exitCode();
+	if(exitCode)
+		*exitCode = process.exitCode();
+
 	return true;
 }
 
@@ -439,8 +501,13 @@ bool MainWindow::runFossil(QStringList &result, const QStringList &args, int &ex
 void MainWindow::addWorkspace(const QString &dir)
 {
 	QDir d(dir);
-	workspaces.append(d.absolutePath());
-	currentWorkspace = workspaces.size()-1;
+	QString new_workspace = QDir(dir).absolutePath();
+
+	// Do not add the workspace if it exists already
+	if(workspaceHistory.indexOf(new_workspace)!=-1)
+		return;
+
+	workspaceHistory.append(new_workspace);
 }
 //------------------------------------------------------------------------------
 void MainWindow::loadSettings()
@@ -462,13 +529,15 @@ void MainWindow::loadSettings()
 		QString key = "Workspace_" + QString::number(i);
 		QString wk = settings.value(key).toString();
 		if(!wk.isEmpty())
-			workspaces.append(wk);
+			addWorkspace(wk);
 	}
 
+	int curr_wkspace = -1;
 	if(settings.contains("LastWorkspace"))
-		currentWorkspace = settings.value("LastWorkspace").toInt();
-	else
-		currentWorkspace = 0;
+		curr_wkspace = settings.value("LastWorkspace").toInt();
+
+	if(curr_wkspace!=-1 && curr_wkspace< workspaceHistory.size())
+		currentWorkspace = workspaceHistory[curr_wkspace];
 
 	if(settings.contains("WindowX") && settings.contains("WindowY"))
 	{
@@ -492,15 +561,18 @@ void MainWindow::saveSettings()
 {
 	QSettings settings(settingsFile, QSettings::NativeFormat);
 	settings.setValue("FossilPath", fossilPath);
-	settings.setValue("NumWorkspaces", workspaces.size());
+	settings.setValue("NumWorkspaces", workspaceHistory.size());
 
-	for(int i=0; i<workspaces.size(); ++i)
+	for(int i=0; i<workspaceHistory.size(); ++i)
 	{
 		QString key = "Workspace_" + QString::number(i);
-		settings.setValue(key, workspaces[i]);
+		settings.setValue(key, workspaceHistory[i]);
 	}
 
-	settings.setValue("LastWorkspace", currentWorkspace);
+	int curr_wkspace = workspaceHistory.indexOf(currentWorkspace);
+	if(curr_wkspace>-1)
+		settings.setValue("LastWorkspace", curr_wkspace);
+
 	settings.setValue("WindowX", x());
 	settings.setValue("WindowY", y());
 	settings.setValue("WindowWidth", width());
@@ -532,7 +604,7 @@ void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, 
 		QString filename = data.toString();
 		filemap_t::iterator e_it = workspaceFiles.find(filename);
 		Q_ASSERT(e_it!=workspaceFiles.end());
-		const FileEntry &e = e_it.value();
+		const RepoFile &e = e_it.value();
 
 		// Skip unwanted files
 		if(!(includeMask & e.getType()))
@@ -544,17 +616,15 @@ void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, 
 //------------------------------------------------------------------------------
 bool MainWindow::diffFile(QString repoFile)
 {
-	QStringList res;
-	int exitcode;
 	// Run the diff detached
-	return runFossil(res, QStringList() << "gdiff" << QuotePath(repoFile), exitcode, false, true);
+	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, false, true);
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionDiff_triggered()
 {
 	QStringList selection;
-	getSelectionFilenames(selection, FileEntry::TYPE_REPO);
+	getSelectionFilenames(selection, RepoFile::TYPE_REPO);
 
 	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
 		if(!diffFile(*it))
@@ -654,15 +724,13 @@ void MainWindow::on_actionOpenFile_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionPush_triggered()
 {
-	QStringList res;
-	runFossil(res, QStringList() << "push");
+	runFossil(QStringList() << "push");
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionPull_triggered()
 {
-	QStringList res;
-	runFossil(res, QStringList() << "pull");
+	runFossil(QStringList() << "pull");
 }
 
 
@@ -670,7 +738,7 @@ void MainWindow::on_actionPull_triggered()
 void MainWindow::on_actionCommit_triggered()
 {
 	QStringList modified_files;
-	getSelectionFilenames(modified_files, FileEntry::TYPE_REPO_MODIFIED, true);
+	getSelectionFilenames(modified_files, RepoFile::TYPE_REPO_MODIFIED, true);
 
 	if(modified_files.empty())
 		return;
@@ -688,8 +756,7 @@ void MainWindow::on_actionCommit_triggered()
 		comment_file.write(msg.toUtf8());
 		comment_file.close();
 
-		QStringList res;
-		runFossil(res, QStringList() << "commit" << "--message-file" << QuotePath(comment_file.fileName()) << QuotePaths(modified_files) );
+		runFossil(QStringList() << "commit" << "--message-file" << QuotePath(comment_file.fileName()) << QuotePaths(modified_files) );
 	}
 
 	refresh();
@@ -700,7 +767,7 @@ void MainWindow::on_actionAdd_triggered()
 {
 	// Get unknown files only
 	QStringList selection;
-	getSelectionFilenames(selection, FileEntry::TYPE_UNKNOWN);
+	getSelectionFilenames(selection, RepoFile::TYPE_UNKNOWN);
 
 	if(selection.empty())
 		return;
@@ -709,8 +776,7 @@ void MainWindow::on_actionAdd_triggered()
 		return;
 
 	// Do Add
-	QStringList res;
-	runFossil(res, QStringList() << "add" << QuotePaths(selection) );
+	runFossil(QStringList() << "add" << QuotePaths(selection) );
 
 	refresh();
 }
@@ -719,10 +785,10 @@ void MainWindow::on_actionAdd_triggered()
 void MainWindow::on_actionDelete_triggered()
 {
 	QStringList repo_files;
-	getSelectionFilenames(repo_files, FileEntry::TYPE_REPO);
+	getSelectionFilenames(repo_files, RepoFile::TYPE_REPO);
 
 	QStringList unknown_files;
-	getSelectionFilenames(unknown_files, FileEntry::TYPE_UNKNOWN);
+	getSelectionFilenames(unknown_files, RepoFile::TYPE_UNKNOWN);
 
 	QStringList all_files = repo_files+unknown_files;
 
@@ -737,8 +803,7 @@ void MainWindow::on_actionDelete_triggered()
 	if(!repo_files.empty())
 	{
 		// Do Delete
-		QStringList res;
-		if(!runFossil(res, QStringList() << "delete" << QuotePaths(repo_files)))
+		if(!runFossil(QStringList() << "delete" << QuotePaths(repo_files)))
 			return;
 	}
 
@@ -759,7 +824,7 @@ void MainWindow::on_actionDelete_triggered()
 void MainWindow::on_actionRevert_triggered()
 {
 	QStringList modified_files;
-	getSelectionFilenames(modified_files, FileEntry::TYPE_EDITTED|FileEntry::TYPE_DELETED|FileEntry::TYPE_MISSING);
+	getSelectionFilenames(modified_files, RepoFile::TYPE_EDITTED|RepoFile::TYPE_DELETED|RepoFile::TYPE_MISSING);
 
 	if(modified_files.empty())
 		return;
@@ -768,8 +833,7 @@ void MainWindow::on_actionRevert_triggered()
 		return;
 
 	// Do Revert
-	QStringList res;
-	runFossil(res, QStringList() << "revert" << QuotePaths(modified_files) );
+	runFossil(QStringList() << "revert" << QuotePaths(modified_files) );
 
 	refresh();
 }
@@ -778,7 +842,7 @@ void MainWindow::on_actionRevert_triggered()
 void MainWindow::on_actionRename_triggered()
 {
 	QStringList repo_files;
-	getSelectionFilenames(repo_files, FileEntry::TYPE_REPO);
+	getSelectionFilenames(repo_files, RepoFile::TYPE_REPO);
 
 	if(repo_files.length()!=1)
 		return;
@@ -799,8 +863,7 @@ void MainWindow::on_actionRename_triggered()
 	}
 
 	// Do Rename
-	QStringList res;
-	runFossil(res, QStringList() << "mv" << QuotePath(fi_before.filePath()) << QuotePath(fi_after.filePath()) );
+	runFossil(QStringList() << "mv" << QuotePath(fi_before.filePath()) << QuotePath(fi_after.filePath()) );
 
 	QString wkdir = getCurrentWorkspace() + QDir::separator();
 
@@ -839,15 +902,14 @@ void MainWindow::on_actionNew_triggered()
 	repositoryFile = path_info.absoluteFilePath();
 
 	// Create repo
-	QStringList res;
-	if(!runFossil(res, QStringList() << "new" << QuotePath(repositoryFile), false))
+	if(!runFossil(QStringList() << "new" << QuotePath(repositoryFile), 0, false))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Repository creation failed."), QMessageBox::Ok );
 		return;
 	}
 
 	// Open repo
-	if(!runFossil(res, QStringList() << "open" << QuotePath(repositoryFile), false))
+	if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile), 0, false))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Repository checkout failed."), QMessageBox::Ok );
 		return;
@@ -887,7 +949,7 @@ void MainWindow::on_actionUndo_triggered()
 	// Gather Undo actions
 	QStringList res;
 
-	if(!runFossil(res, QStringList() << "undo" << "--explain" ))
+	if(!runFossil(QStringList() << "undo" << "--explain", &res ))
 		return;
 
 	if(res.length()>0 && res[0]=="No undo or redo is available")
@@ -897,7 +959,7 @@ void MainWindow::on_actionUndo_triggered()
 		return;
 
 	// Do Undo
-	runFossil(res, QStringList() << "undo" );
+	runFossil(QStringList() << "undo" );
 
 	refresh();
 }
@@ -913,3 +975,22 @@ void MainWindow::on_actionAbout_triggered()
 						   "Available under the CC Attribution-Noncommercial-No Derivate 3.0 License"));
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::on_actionUpdate_triggered()
+{
+	QStringList res;
+
+	if(!runFossil(QStringList() << "update" << "--nochange", &res ))
+		return;
+
+	if(res.length()==0)
+		return;
+
+	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be update. Are you sure?"), res))
+		return;
+
+	// Do Update
+	runFossil(QStringList() << "update" );
+
+	refresh();
+}

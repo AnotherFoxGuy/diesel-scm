@@ -15,7 +15,7 @@ namespace Ui {
 
 class QStringList;
 
-struct FileEntry
+struct RepoFile
 {
 	enum EntryType
 	{
@@ -98,21 +98,23 @@ public:
 	bool diffFile(QString repoFile);
 
 private:
-	void refresh();
+	bool refresh();
 	void scanWorkspace();
-	bool runFossil(QStringList &result, const QStringList &args, bool silent=false, bool detached=false);
-	bool runFossil(QStringList &result, const QStringList &args, int &exitCode, bool silent=false, bool detached=false);
+	bool runFossil(const QStringList &args, QStringList *output=0, bool silent=false, bool detached=false);
+	bool runFossilRaw(const QStringList &args, QStringList *output=0, int *exitCode=0, bool silent=false, bool detached=false);
 	void loadSettings();
 	void saveSettings();
 	const QString &getCurrentWorkspace();
 	void log(const QString &text);
 	void setStatus(const QString &text);
 	bool uiRunning() const { return fossilUI.state() == QProcess::Running; }
-	void getSelectionFilenames(QStringList &filenames, int includeMask=FileEntry::TYPE_ALL, bool allIfEmpty=false);
+	void getSelectionFilenames(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
 	bool startUI();
 	void stopUI();
 	void enableActions(bool on);
 	void addWorkspace(const QString &dir);
+	void rebuildRecent();
+	bool openWorkspace(const QString &dir);
 
 	enum RepoStatus
 	{
@@ -146,21 +148,35 @@ private slots:
 	void on_actionRename_triggered();
 	void on_actionUndo_triggered();
 	void on_actionAbout_triggered();
+	void on_actionUpdate_triggered();
+	void on_openRecent_triggered();
+
 private:
+	enum
+	{
+		MAX_RECENT=5
+	};
+
+
 	Ui::MainWindow		*ui;
 	QStandardItemModel	itemModel;
 	QProcess			fossilUI;
+	class QAction		*recentWorkspaceActs[MAX_RECENT];
+	class QLabel		*statusLabel;
+
 	QString				settingsFile;
 
+	// Settings
 	QString				projectName;
 	QString				repositoryFile;
 	QString				fossilPath;
-	QStringList			workspaces;
-	typedef QMap<QString, FileEntry> filemap_t;
-	filemap_t			workspaceFiles;
-	int					currentWorkspace;
+	QStringList			workspaceHistory;
+	QString				currentWorkspace;
 	QStringList			commitMessages;
-	class QLabel		*statusLabel;
+
+	// Repo State
+	typedef QMap<QString, RepoFile> filemap_t;
+	filemap_t			workspaceFiles;
 };
 
 #endif // MAINWINDOW_H
