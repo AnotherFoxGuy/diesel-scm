@@ -1,5 +1,5 @@
-C OSX\sFixes
-D 2011-08-06T04:48:04.701
+C Unified\stoolbar\son\sOSX\nAdded\sOSX\sIcon\n
+D 2011-08-06T05:06:57.111
 F CommitDialog.cpp c2a14598f42d252d847d05b3bb33ae040f1a31ae
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 4a641325b8645f07672ffb9f19e7134ab753e6bb
@@ -8,11 +8,11 @@ F FileActionDialog.h 873a9f720753a37d67071563ed7954f91b0d4699
 F FileActionDialog.ui 2d7a0fa47f9555f4a4a7485feacd5bce504415a0
 F MainWindow.cpp 20e81f039ca183879c26336ade940c050f6cd771
 F MainWindow.h d335311e596eab2b9cd7139e09dda7ca9e35de4c
-F MainWindow.ui 3e2be4d8eb2b89b3fdd63fc31355d98354e6ea9e
+F MainWindow.ui 7bfa7c890a9607752146bc3c25def596c4c1ec5f
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
 F RepoDialog.ui 8fe9b7f7528332ca9a45e919cf116aaf144a3286
-F fuel.pro 7b05a453cc0425663f6aaf12d4b16c9991064f77
+F fuel.pro 045a88dc0f3e8704bb33e44ba880537b44545709
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
 F icons/Adobe\sPDF\sDocument-01.png 8a0bc3ba633d08debde748d64b5a9675e30447a3
@@ -165,9 +165,10 @@ F icons/Windows-01.png c5da37a9fb6e9c777107668b39fec98169a1db77
 F icons/Zoom\sIn-01.png bdd24558fd23a1003f1a569f092f22022736f236
 F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
+F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P d8730cff0d314fdb3f23cbaf61cfeb9d35145872
-R 953c00142363c45999b4616f5b89f083
+P d3e052bf6f1531110003dbfcd4ec55d218983059
+R 6f074fd3495d369a6a494e77ff408a1e
 U kostas
-Z cf1eecf15b57dd8d98e527cc480d5471
+Z 42b0113fc18022dafdd503f3532f9b3e

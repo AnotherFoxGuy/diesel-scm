@@ -9,6 +9,7 @@ QT       += core gui
 TARGET = Fuel
 TEMPLATE = app
 
+ICON = icons/fuel.icns
 
 SOURCES += main.cpp\
         MainWindow.cpp \

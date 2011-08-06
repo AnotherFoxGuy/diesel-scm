@@ -17,6 +17,9 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
   </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>true</bool>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="margin">
@@ -36,12 +39,6 @@
        </property>
        <property name="contextMenuPolicy">
         <enum>Qt::ActionsContextMenu</enum>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Sunken</enum>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -89,7 +86,7 @@
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>27</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -114,6 +111,9 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="movable">
+    <bool>false</bool>
+   </property>
    <property name="iconSize">
     <size>
      <width>32</width>
@@ -121,7 +121,7 @@
     </size>
    </property>
    <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonFollowStyle</enum>
+    <enum>Qt::ToolButtonIconOnly</enum>
    </property>
    <property name="floatable">
     <bool>false</bool>
