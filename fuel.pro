@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-TARGET = qtfossil
+TARGET = Fuel
 TEMPLATE = app
 
 
