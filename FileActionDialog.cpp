@@ -22,8 +22,13 @@ FileActionDialog::FileActionDialog(QWidget *parent, const QString &title, const 
 		ui->verticalLayout->insertWidget(2, checkBox);
 	}
 
-	foreach(const QString &s, listData)
-		itemModel.appendRow(new QStandardItem(s));
+	if(listData.empty())
+		ui->listView->setVisible(false);
+	else
+	{
+		foreach(const QString &s, listData)
+			itemModel.appendRow(new QStandardItem(s));
+	}
 }
 
 FileActionDialog::~FileActionDialog()

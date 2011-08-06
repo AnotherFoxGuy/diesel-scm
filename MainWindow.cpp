@@ -445,6 +445,22 @@ bool MainWindow::runFossil(const QStringList &args, QStringList *output, bool si
 
 	return exit_code == EXIT_SUCCESS;
 }
+
+//------------------------------------------------------------------------------
+static QString ParseFossilQuery(QString query)
+{
+	// Extract question
+	int qend = query.indexOf('(');
+	if(qend == -1)
+		qend = query.indexOf('[');
+	Q_ASSERT(qend!=-1);
+	query = query.left(qend);
+	query = query.trimmed();
+	query += "?";
+	query[0]=QString(query[0]).toUpper()[0];
+	return query;
+}
+
 //------------------------------------------------------------------------------
 // Run fossil. Returns true if execution was succesfull regardless if fossil
 // issued an error
@@ -471,21 +487,99 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		return false;
 	}
 
-	process.waitForFinished();
-	QString std_output = process.readAllStandardOutput();
+#ifdef Q_WS_WIN
+	const char *ans_yes = "y\r\n";
+	const char *ans_no = "n\r\n";
+	const char *ans_always = "a\r\n";
+#else
+	const char *ans_yes = "y\n";
+	const char *ans_no = "n\n";
+	const char *ans_always = "a\n";
+#endif
 
-	QStringList lines = std_output.split('\n');
-
-	for(QStringList::iterator it=lines.begin(); it!=lines.end(); ++it)
+	QStringList local_output;
+	while(process.state()==QProcess::Running || !process.atEnd())
 	{
-		QString line = it->trimmed();
-		if(line.isEmpty())
-			continue;
-		if(output)
-			output->append(line);
-		if(!silent)
-			log(line+"\n");
+		bool has_line = process.canReadLine();
+		qint64 bytes_available=process.bytesAvailable();
+
+		if(!process.waitForReadyRead(1*1000) && !has_line && bytes_available==0)
+			break;
+
+		// If no line yet, but some bytes available, maybe fossil is waiting for
+		// user input
+		if(!has_line && bytes_available>0)
+		{
+			QString line = process.readAll();
+			line = line.trimmed();
+			QString query = line.toLower();
+
+			// Have we encountered a y/n query?
+			if(line[line.length()-1]=='?' && query.indexOf("y/n")!=-1)
+			{
+				log(line);
+				// Extract question
+				query = ParseFossilQuery(query);
+
+				int res =  QMessageBox::question(this, "Fossil", query, QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+				if(res==QMessageBox::Yes)
+				{
+					process.write(ans_yes, COUNTOF(ans_yes));
+					log("Y\n");
+				}
+				else
+				{
+					process.write(ans_no, COUNTOF(ans_no));
+					log("N\n");
+				}
+			}
+			// Have we encountered a y/n/always query?
+			else if(line[line.length()-1]=='?' && query.indexOf("a=always/y/n")!=-1)
+			{
+				log(line);
+				// Extract question
+				query = ParseFossilQuery(query);
+
+				int res =  QMessageBox::question(this, "Fossil", query, QMessageBox::Yes|QMessageBox::No|QMessageBox::YesToAll, QMessageBox::No);
+				if(res==QDialogButtonBox::Yes)
+				{
+					process.write(ans_yes, COUNTOF(ans_yes));
+					log("Y\n");
+				}
+				else if(res==QDialogButtonBox::YesToAll)
+				{
+					process.write(ans_always, COUNTOF(ans_always));
+					log("A\n");
+				}
+				else
+				{
+					process.write(ans_no, COUNTOF(ans_no));
+					log("N\n");
+				}
+			}
+		}
+
+		while(process.canReadLine())
+		{
+			QString line = process.readLine();
+			line = line.trimmed();
+			//QString line = it->trimmed();
+			if(line.isEmpty())
+				continue;
+
+			local_output.append(line);
+
+			if(output)
+				output->append(line);
+
+			if(!silent)
+				log(line+"\n");
+		}
+
 	}
+
+	// Must be finished by now
+	Q_ASSERT(process.state()==QProcess::NotRunning);
 
 	QProcess::ExitStatus es = process.exitStatus();
 
