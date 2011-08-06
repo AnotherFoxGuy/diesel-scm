@@ -2,9 +2,11 @@
 #include "ui_FileActionDialog.h"
 
 FileActionDialog::FileActionDialog(QWidget *parent, const QString &title, const QString &message, const QStringList &files, const QString &checkBoxText, bool *checkBoxResult) :
-    QDialog(parent),
+	QDialog(parent, Qt::Sheet),
     ui(new Ui::FileActionDialog)
 {
+	setModal(true);
+	setWindowModality(Qt::WindowModal);
     ui->setupUi(this);
 	setWindowTitle(title);
 	ui->label->setText(message);

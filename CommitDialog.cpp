@@ -4,10 +4,12 @@
 #include "MainWindow.h" // Ugly. I know.
 
 CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory, const QStringList &files) :
-    QDialog(parent),
+	QDialog(parent, Qt::Sheet),
     ui(new Ui::CommitDialog)
 {
-    ui->setupUi(this);
+	setModal(true);
+	setWindowModality(Qt::WindowModal);
+	ui->setupUi(this);
 	ui->comboBox->clear();
 	ui->comboBox->insertItems(0, commitMsgHistory);
 	ui->plainTextEdit->clear();
@@ -15,6 +17,7 @@ CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory,
 
 	for(QStringList::const_iterator it=files.begin(); it!=files.end(); ++it)
 		itemModel.appendRow(new QStandardItem(*it));
+
 
 }
 

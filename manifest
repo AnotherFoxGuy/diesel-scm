@@ -1,9 +1,9 @@
-C Unified\stoolbar\son\sOSX\nAdded\sOSX\sIcon\n
-D 2011-08-06T05:06:57.111
-F CommitDialog.cpp c2a14598f42d252d847d05b3bb33ae040f1a31ae
+C Dialogs\sare\snow\ssheets\sin\sOSX\n
+D 2011-08-06T05:40:57.962
+F CommitDialog.cpp e3d9da638dd3a1df1f7c6676f87602501299297e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
-F CommitDialog.ui 4a641325b8645f07672ffb9f19e7134ab753e6bb
-F FileActionDialog.cpp 6410dc7a65209df1839f871b3b66c0a78a4fe733
+F CommitDialog.ui 3589fe539108343ea90f269f74a6a9e7a00dd2a9
+F FileActionDialog.cpp 36a8ac047f45932aa5977dbbbf043911a0b00e05
 F FileActionDialog.h 873a9f720753a37d67071563ed7954f91b0d4699
 F FileActionDialog.ui 2d7a0fa47f9555f4a4a7485feacd5bce504415a0
 F MainWindow.cpp 20e81f039ca183879c26336ade940c050f6cd771
@@ -168,7 +168,7 @@ F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P d3e052bf6f1531110003dbfcd4ec55d218983059
-R 6f074fd3495d369a6a494e77ff408a1e
+P 7cdfaf2af1dda2779fc6a27f8bfc10c55827237c
+R 52ce0347415ac9ec90e768f0fead1ae9
 U kostas
-Z 42b0113fc18022dafdd503f3532f9b3e
+Z ad7c42b5f67211a77d50c91a4e71faed

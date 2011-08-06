@@ -64,6 +64,12 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>plainTextEdit</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>listView</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
