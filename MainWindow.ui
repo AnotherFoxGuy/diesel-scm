@@ -132,10 +132,10 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionRefresh"/>
+   <addaction name="separator"/>
    <addaction name="actionCommit"/>
    <addaction name="actionUpdate"/>
-   <addaction name="separator"/>
-   <addaction name="actionRefresh"/>
    <addaction name="separator"/>
    <addaction name="actionPush"/>
    <addaction name="actionPull"/>
@@ -153,6 +153,7 @@
    <addaction name="actionFossilUI"/>
    <addaction name="separator"/>
    <addaction name="actionOpenContaining"/>
+   <addaction name="actionSettings"/>
    <addaction name="actionClearLog"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -430,6 +431,18 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Gear-01.png</normaloff>:/icons/icons/Gear-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+   <property name="toolTip">
+    <string>Settings</string>
    </property>
   </action>
  </widget>

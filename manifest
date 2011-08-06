@@ -1,18 +1,21 @@
-C Fixed\sQt\swarning\son\smy\scustom\sworkspace\schange\sslot\nAdded\sWindows\sicon\n
-D 2011-08-06T06:03:06.064
-F CommitDialog.cpp e3d9da638dd3a1df1f7c6676f87602501299297e
+C Added\ssettings\sdialog\nAdded\splatform\sspecific\ssettings\sstorage/retrieval
+D 2011-08-06T08:31:19.360
+F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
-F CommitDialog.ui 3589fe539108343ea90f269f74a6a9e7a00dd2a9
-F FileActionDialog.cpp 36a8ac047f45932aa5977dbbbf043911a0b00e05
+F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
+F FileActionDialog.cpp ed26a6f9dd1debd6926d4bbff7ba18acb63dacc0
 F FileActionDialog.h 873a9f720753a37d67071563ed7954f91b0d4699
-F FileActionDialog.ui 2d7a0fa47f9555f4a4a7485feacd5bce504415a0
-F MainWindow.cpp 44982070dd96913a6d6177325c23d791c6fc628e
-F MainWindow.h b9c42e6c2eb01e6b04525ec9b346b1b00c00bb0e
-F MainWindow.ui 65536bfe40bc9ee69ac55b1669359878172e7cad
+F FileActionDialog.ui 3d4f7ad0665d51dc3ba405edbc472dd317138c5f
+F MainWindow.cpp baa17293fc095dd2aa485dd830fb78ef0da683fb
+F MainWindow.h 8a23caf1a70d41fe60a25894649a88b1efb851ba
+F MainWindow.ui a68b2f41fc5edec06235504a88575463fa365590
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
 F RepoDialog.ui 8fe9b7f7528332ca9a45e919cf116aaf144a3286
-F fuel.pro 920964ebcbc2aa8c035e4faa3d1e1bda59008b72
+F SettingsDialog.cpp 4e4cd109baed184bf0d1bb506e98aebf81ca43f0
+F SettingsDialog.h 0da162b0bf9656f5ca5e6977ef669c24a44659e5
+F SettingsDialog.ui 998b2bf7cf84df8247493c0f948b4193808494cd
+F fuel.pro 295944fd817518c7c2412c5e52ce5ecad11dd8f8
 F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -168,9 +171,9 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
-F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
+F main.cpp 8e60cd775217ab3ab76d576b967186923e8cb9ab
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 3b6f4f542c7c6daedf1eb7aff03ef988cbb5100f
-R f99b9b68fb5220c904ccfdfd2ac560ca
+P dc4d1a0ea7eea22ee41170f366c08f09368735a7
+R c5696a2a2cc67a5876ce07be3131bc73
 U kostas
-Z 42a29c0daccbc520d3edb5b0bd58af16
+Z e87aeac6860a9baf9498236b899d9a66

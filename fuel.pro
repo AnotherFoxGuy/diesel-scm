@@ -19,20 +19,30 @@ SOURCES += main.cpp\
         MainWindow.cpp \
     CommitDialog.cpp \
     FileActionDialog.cpp \
-    RepoDialog.cpp
+    RepoDialog.cpp \
+    SettingsDialog.cpp
 
 HEADERS  += MainWindow.h \
     CommitDialog.h \
     FileActionDialog.h \
-    RepoDialog.h
+    RepoDialog.h \
+    SettingsDialog.h
 
 FORMS    += MainWindow.ui \
     CommitDialog.ui \
     FileActionDialog.ui \
-    RepoDialog.ui
+    RepoDialog.ui \
+    SettingsDialog.ui
 
 RESOURCES += \
     resources.qrc
+
+
+
+
+
+
+
 
 
 

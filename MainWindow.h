@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QProcess>
+#include "SettingsDialog.h"
 
 namespace Ui {
     class MainWindow;
@@ -154,6 +155,8 @@ private slots:
 	void on_actionAbout_triggered();
 	void on_actionUpdate_triggered();
 
+	void on_actionSettings_triggered();
+
 private:
 	enum
 	{
@@ -167,12 +170,9 @@ private:
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QLabel		*statusLabel;
 
-	QString				settingsFile;
-
-	// Settings
+	Settings			settings;
 	QString				projectName;
 	QString				repositoryFile;
-	QString				fossilPath;
 	QStringList			workspaceHistory;
 	QString				currentWorkspace;
 	QStringList			commitMessages;

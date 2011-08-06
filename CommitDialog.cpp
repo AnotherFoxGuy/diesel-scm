@@ -7,8 +7,6 @@ CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory,
 	QDialog(parent, Qt::Sheet),
     ui(new Ui::CommitDialog)
 {
-	setModal(true);
-	setWindowModality(Qt::WindowModal);
 	ui->setupUi(this);
 	ui->comboBox->clear();
 	ui->comboBox->insertItems(0, commitMsgHistory);

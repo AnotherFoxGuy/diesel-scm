@@ -84,8 +84,6 @@ MainWindow::MainWindow(QWidget *parent) :
 	statusLabel->setMinimumSize( statusLabel->sizeHint() );
 	ui->statusBar->addWidget( statusLabel, 1 );
 
-	settingsFile = QDir::homePath() + QDir::separator() + ".fuelrc";
-
 #ifdef DEV_SETTINGS
 	currentWorkspace = "/home/kostas/tmp/testfossil";
 	fossilPath = "fossil";
@@ -128,7 +126,10 @@ bool MainWindow::openWorkspace(const QString &dir)
 
 	bool ok = refresh();
 	if(ok)
+	{
+		QDir::setCurrent(dir);
 		rebuildRecent();
+	}
 
 	return ok;
 }
@@ -456,17 +457,17 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 
 	if(detached)
 	{
-		return QProcess::startDetached(fossilPath, args, wkdir);
+		return QProcess::startDetached(settings.fossilPath, args, wkdir);
 	}
 
 	QProcess process(this);
 	process.setProcessChannelMode(QProcess::MergedChannels);
 	process.setWorkingDirectory(wkdir);
 
-	process.start(fossilPath, args);
+	process.start(settings.fossilPath, args);
 	if(!process.waitForStarted())
 	{
-		log("Could not start fossil executable '"+fossilPath + "''\n");
+		log("Could not start fossil executable '"+settings.fossilPath + "''\n");
 		return false;
 	}
 
@@ -512,46 +513,46 @@ void MainWindow::addWorkspace(const QString &dir)
 //------------------------------------------------------------------------------
 void MainWindow::loadSettings()
 {
-	QSettings settings(settingsFile, QSettings::NativeFormat);
+	QSettings qsettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
 
-	if(settings.contains("FossilPath"))
-		fossilPath = settings.value("FossilPath").toString();
+	if(qsettings.contains("FossilPath"))
+		settings.fossilPath = qsettings.value("FossilPath").toString();
 	else
-		fossilPath = "fossil";
+		settings.fossilPath = "fossil";
 
 	int num_wks = 0;
 
-	if(settings.contains("NumWorkspaces"))
-		num_wks = settings.value("NumWorkspaces").toInt();
+	if(qsettings.contains("NumWorkspaces"))
+		num_wks = qsettings.value("NumWorkspaces").toInt();
 
 	for(int i=0; i<num_wks; ++i)
 	{
 		QString key = "Workspace_" + QString::number(i);
-		QString wk = settings.value(key).toString();
+		QString wk = qsettings.value(key).toString();
 		if(!wk.isEmpty())
 			addWorkspace(wk);
 	}
 
 	int curr_wkspace = -1;
-	if(settings.contains("LastWorkspace"))
-		curr_wkspace = settings.value("LastWorkspace").toInt();
+	if(qsettings.contains("LastWorkspace"))
+		curr_wkspace = qsettings.value("LastWorkspace").toInt();
 
 	if(curr_wkspace!=-1 && curr_wkspace< workspaceHistory.size())
 		currentWorkspace = workspaceHistory[curr_wkspace];
 
-	if(settings.contains("WindowX") && settings.contains("WindowY"))
+	if(qsettings.contains("WindowX") && qsettings.contains("WindowY"))
 	{
 		QPoint _pos;
-		_pos.setX(settings.value("WindowX").toInt());
-		_pos.setY(settings.value("WindowY").toInt());
+		_pos.setX(qsettings.value("WindowX").toInt());
+		_pos.setY(qsettings.value("WindowY").toInt());
 		move(_pos);
 	}
 
-	if(settings.contains("WindowWidth") && settings.contains("WindowHeight"))
+	if(qsettings.contains("WindowWidth") && qsettings.contains("WindowHeight"))
 	{
 		QSize _size;
-		_size.setWidth(settings.value("WindowWidth").toInt());
-		_size.setHeight(settings.value("WindowHeight").toInt());
+		_size.setWidth(qsettings.value("WindowWidth").toInt());
+		_size.setHeight(qsettings.value("WindowHeight").toInt());
 		resize(_size);
 	}
 }
@@ -559,24 +560,24 @@ void MainWindow::loadSettings()
 //------------------------------------------------------------------------------
 void MainWindow::saveSettings()
 {
-	QSettings settings(settingsFile, QSettings::NativeFormat);
-	settings.setValue("FossilPath", fossilPath);
-	settings.setValue("NumWorkspaces", workspaceHistory.size());
+	QSettings qsettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
+	qsettings.setValue("FossilPath", settings.fossilPath);
+	qsettings.setValue("NumWorkspaces", workspaceHistory.size());
 
 	for(int i=0; i<workspaceHistory.size(); ++i)
 	{
 		QString key = "Workspace_" + QString::number(i);
-		settings.setValue(key, workspaceHistory[i]);
+		qsettings.setValue(key, workspaceHistory[i]);
 	}
 
 	int curr_wkspace = workspaceHistory.indexOf(currentWorkspace);
 	if(curr_wkspace>-1)
-		settings.setValue("LastWorkspace", curr_wkspace);
+		qsettings.setValue("LastWorkspace", curr_wkspace);
 
-	settings.setValue("WindowX", x());
-	settings.setValue("WindowY", y());
-	settings.setValue("WindowWidth", width());
-	settings.setValue("WindowHeight", height());
+	qsettings.setValue("WindowX", x());
+	qsettings.setValue("WindowY", y());
+	qsettings.setValue("WindowWidth", width());
+	qsettings.setValue("WindowHeight", height());
 
 }
 
@@ -642,10 +643,10 @@ bool MainWindow::startUI()
 
 	log("> fossil ui\n");
 
-	fossilUI.start(fossilPath, QStringList() << "ui");
+	fossilUI.start(settings.fossilPath, QStringList() << "ui");
 	if(!fossilUI.waitForStarted())
 	{
-		log(fossilPath + tr(" does not exist") +"\n");
+		log(settings.fossilPath + tr(" does not exist") +"\n");
 		return false;
 	}
 
@@ -993,4 +994,10 @@ void MainWindow::on_actionUpdate_triggered()
 	runFossil(QStringList() << "update" );
 
 	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionSettings_triggered()
+{
+	SettingsDialog::run(this, settings);
 }

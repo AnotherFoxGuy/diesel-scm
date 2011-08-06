@@ -5,8 +5,6 @@ FileActionDialog::FileActionDialog(QWidget *parent, const QString &title, const 
 	QDialog(parent, Qt::Sheet),
     ui(new Ui::FileActionDialog)
 {
-	setModal(true);
-	setWindowModality(Qt::WindowModal);
     ui->setupUi(this);
 	setWindowTitle(title);
 	ui->label->setText(message);
