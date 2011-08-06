@@ -1,18 +1,19 @@
-C Dialogs\sare\snow\ssheets\sin\sOSX\n
-D 2011-08-06T05:40:57.962
+C Fixed\sQt\swarning\son\smy\scustom\sworkspace\schange\sslot\nAdded\sWindows\sicon\n
+D 2011-08-06T06:03:06.064
 F CommitDialog.cpp e3d9da638dd3a1df1f7c6676f87602501299297e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 3589fe539108343ea90f269f74a6a9e7a00dd2a9
 F FileActionDialog.cpp 36a8ac047f45932aa5977dbbbf043911a0b00e05
 F FileActionDialog.h 873a9f720753a37d67071563ed7954f91b0d4699
 F FileActionDialog.ui 2d7a0fa47f9555f4a4a7485feacd5bce504415a0
-F MainWindow.cpp 20e81f039ca183879c26336ade940c050f6cd771
-F MainWindow.h d335311e596eab2b9cd7139e09dda7ca9e35de4c
-F MainWindow.ui 7bfa7c890a9607752146bc3c25def596c4c1ec5f
+F MainWindow.cpp 44982070dd96913a6d6177325c23d791c6fc628e
+F MainWindow.h b9c42e6c2eb01e6b04525ec9b346b1b00c00bb0e
+F MainWindow.ui 65536bfe40bc9ee69ac55b1669359878172e7cad
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
 F RepoDialog.ui 8fe9b7f7528332ca9a45e919cf116aaf144a3286
-F fuel.pro 045a88dc0f3e8704bb33e44ba880537b44545709
+F fuel.pro 920964ebcbc2aa8c035e4faa3d1e1bda59008b72
+F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
 F icons/Adobe\sPDF\sDocument-01.png 8a0bc3ba633d08debde748d64b5a9675e30447a3
@@ -166,9 +167,10 @@ F icons/Zoom\sIn-01.png bdd24558fd23a1003f1a569f092f22022736f236
 F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
+F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F main.cpp f53e9e1e34f65565f06b2d37d7be5c38e2113a03
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 7cdfaf2af1dda2779fc6a27f8bfc10c55827237c
-R 52ce0347415ac9ec90e768f0fead1ae9
+P 3b6f4f542c7c6daedf1eb7aff03ef988cbb5100f
+R f99b9b68fb5220c904ccfdfd2ac560ca
 U kostas
-Z ad7c42b5f67211a77d50c91a4e71faed
+Z 42a29c0daccbc520d3edb5b0bd58af16

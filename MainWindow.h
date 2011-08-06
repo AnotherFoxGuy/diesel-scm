@@ -126,6 +126,10 @@ private:
 	RepoStatus getRepoStatus();
 
 private slots:
+	// Manual slots
+	void onOpenRecent();
+
+	// Designer slots
 	void on_actionRefresh_triggered();
 	void on_actionOpen_triggered();
 	void on_actionDiff_triggered();
@@ -149,7 +153,6 @@ private slots:
 	void on_actionUndo_triggered();
 	void on_actionAbout_triggered();
 	void on_actionUpdate_triggered();
-	void on_openRecent_triggered();
 
 private:
 	enum

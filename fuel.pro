@@ -9,7 +9,11 @@ QT       += core gui
 TARGET = Fuel
 TEMPLATE = app
 
+# OSX Icon
 ICON = icons/fuel.icns
+
+# Win Icon
+RC_FILE = fuel.rc
 
 SOURCES += main.cpp\
         MainWindow.cpp \

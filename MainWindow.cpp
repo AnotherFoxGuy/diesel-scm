@@ -76,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	{
 		recentWorkspaceActs[i] = new QAction(this);
 		recentWorkspaceActs[i]->setVisible(false);
-		connect(recentWorkspaceActs[i], SIGNAL(triggered()), this, SLOT(on_openRecent_triggered()));
+		connect(recentWorkspaceActs[i], SIGNAL(triggered()), this, SLOT(onOpenRecent()));
 		ui->menuFile->insertAction(recent_sep, recentWorkspaceActs[i]);
 	}
 
@@ -161,7 +161,7 @@ void MainWindow::rebuildRecent()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_openRecent_triggered()
+void MainWindow::onOpenRecent()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action)
