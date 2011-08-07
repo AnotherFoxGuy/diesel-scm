@@ -169,6 +169,7 @@ private:
 	QProcess			fossilUI;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QLabel		*statusLabel;
+	bool				fossilAbort;
 
 	Settings			settings;
 	QString				projectName;

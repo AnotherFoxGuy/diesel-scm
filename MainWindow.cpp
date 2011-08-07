@@ -17,7 +17,11 @@
 #define SILENT_STATUS true
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
-//#define DEV_SETTINGS
+#ifdef QT_WS_WIN
+	#define EOL_MARK "\r\n"
+#else
+	#define EOL_MARK "\n"
+#endif
 
 enum
 {
@@ -84,24 +88,17 @@ MainWindow::MainWindow(QWidget *parent) :
 	statusLabel->setMinimumSize( statusLabel->sizeHint() );
 	ui->statusBar->addWidget( statusLabel, 1 );
 
-#ifdef DEV_SETTINGS
-	currentWorkspace = "/home/kostas/tmp/testfossil";
-	fossilPath = "fossil";
-#else
 	loadSettings();
-#endif
-
 	refresh();
 	rebuildRecent();
+	fossilAbort = false;
 }
 
 //------------------------------------------------------------------------------
 MainWindow::~MainWindow()
 {
 	stopUI();
-#ifndef DEV_SETTINGS
 	saveSettings();
-#endif
 	delete ui;
 }
 const QString &MainWindow::getCurrentWorkspace()
@@ -447,18 +444,18 @@ bool MainWindow::runFossil(const QStringList &args, QStringList *output, bool si
 }
 
 //------------------------------------------------------------------------------
-static QString ParseFossilQuery(QString query)
+static QString ParseFossilQuery(QString line)
 {
 	// Extract question
-	int qend = query.indexOf('(');
+	int qend = line.indexOf('(');
 	if(qend == -1)
-		qend = query.indexOf('[');
+		qend = line.indexOf('[');
 	Q_ASSERT(qend!=-1);
-	query = query.left(qend);
-	query = query.trimmed();
-	query += "?";
-	query[0]=QString(query[0]).toUpper()[0];
-	return query;
+	line = line.left(qend);
+	line = line.trimmed();
+	line += "?";
+	line[0]=QString(line[0]).toUpper()[0];
+	return line;
 }
 
 //------------------------------------------------------------------------------
@@ -487,87 +484,52 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		return false;
 	}
 
-#ifdef Q_WS_WIN
-	const char *ans_yes = "y\r\n";
-	const char *ans_no = "n\r\n";
-	const char *ans_always = "a\r\n";
-#else
-	const char *ans_yes = "y\n";
-	const char *ans_no = "n\n";
-	const char *ans_always = "a\n";
-#endif
+	const char *ans_yes = "y" EOL_MARK;
+	const char *ans_no = "n" EOL_MARK;
+	const char *ans_always = "a" EOL_MARK;
 
-	QStringList local_output;
-	while(process.state()==QProcess::Running || !process.atEnd())
+	fossilAbort = false;
+	QString buffer;
+
+	while(process.state()==QProcess::Running)
 	{
-		bool has_line = process.canReadLine();
-		qint64 bytes_available=process.bytesAvailable();
-
-		if(!process.waitForReadyRead(1*1000) && !has_line && bytes_available==0)
-			break;
-
-		// If no line yet, but some bytes available, maybe fossil is waiting for
-		// user input
-		if(!has_line && bytes_available>0)
+		if(fossilAbort)
 		{
-			QString line = process.readAll();
-			line = line.trimmed();
-			QString query = line.toLower();
-
-			// Have we encountered a y/n query?
-			if(line[line.length()-1]=='?' && query.indexOf("y/n")!=-1)
-			{
-				log(line);
-				// Extract question
-				query = ParseFossilQuery(query);
-
-				int res =  QMessageBox::question(this, "Fossil", query, QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
-				if(res==QMessageBox::Yes)
-				{
-					process.write(ans_yes, COUNTOF(ans_yes));
-					log("Y\n");
-				}
-				else
-				{
-					process.write(ans_no, COUNTOF(ans_no));
-					log("N\n");
-				}
-			}
-			// Have we encountered a y/n/always query?
-			else if(line[line.length()-1]=='?' && query.indexOf("a=always/y/n")!=-1)
-			{
-				log(line);
-				// Extract question
-				query = ParseFossilQuery(query);
-
-				int res =  QMessageBox::question(this, "Fossil", query, QMessageBox::Yes|QMessageBox::No|QMessageBox::YesToAll, QMessageBox::No);
-				if(res==QDialogButtonBox::Yes)
-				{
-					process.write(ans_yes, COUNTOF(ans_yes));
-					log("Y\n");
-				}
-				else if(res==QDialogButtonBox::YesToAll)
-				{
-					process.write(ans_always, COUNTOF(ans_always));
-					log("A\n");
-				}
-				else
-				{
-					process.write(ans_no, COUNTOF(ans_no));
-					log("N\n");
-				}
-			}
+			log("\n* Terminated *\n");
+			process.terminate();
+			break;
 		}
 
-		while(process.canReadLine())
+		process.waitForReadyRead(500);
+		buffer += process.readAll();
+
+		if(buffer.isEmpty())
+			continue;
+
+		// Extract the last line
+		int last_line_start = buffer.lastIndexOf(EOL_MARK);
+
+		QString last_line;
+		if(last_line_start != -1)
+			last_line = buffer.mid(last_line_start+COUNTOF(EOL_MARK));
+		else
+			last_line = buffer;
+
+		last_line = last_line.trimmed();
+
+		// Check if we have a query
+		bool ends_qmark = !last_line.isEmpty() && last_line[last_line.length()-1]=='?';
+		bool have_yn_query = last_line.toLower().indexOf("y/n")!=-1;
+		int have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1;
+		bool have_query = ends_qmark && (have_yn_query || have_yna_query);
+
+		// Flush only the unneccessary part of the buffer to the log
+		QStringList log_lines = buffer.left(last_line_start).split(EOL_MARK);
+		foreach(QString line, log_lines)
 		{
-			QString line = process.readLine();
 			line = line.trimmed();
-			//QString line = it->trimmed();
 			if(line.isEmpty())
 				continue;
-
-			local_output.append(line);
 
 			if(output)
 				output->append(line);
@@ -576,6 +538,50 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 				log(line+"\n");
 		}
 
+		// Remove everything we processed
+		buffer = buffer.mid(last_line_start);
+
+		// Now process any query
+		if(have_query && have_yn_query)
+		{
+			QString query = ParseFossilQuery(last_line);
+
+			int res =  QMessageBox::question(this, "Fossil", query, QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+			if(res==QMessageBox::Yes)
+			{
+				process.write(ans_yes, COUNTOF(ans_yes));
+				log("Y\n");
+			}
+			else
+			{
+				process.write(ans_no, COUNTOF(ans_no));
+				log("N\n");
+			}
+
+			buffer.clear();
+		}
+		else if(have_query && have_yna_query)
+		{
+			QString query = ParseFossilQuery(query);
+
+			int res =  QMessageBox::question(this, "Fossil", query, QMessageBox::Yes|QMessageBox::No|QMessageBox::YesToAll, QMessageBox::No);
+			if(res==QDialogButtonBox::Yes)
+			{
+				process.write(ans_yes, COUNTOF(ans_yes));
+				log("Y\n");
+			}
+			else if(res==QDialogButtonBox::YesToAll)
+			{
+				process.write(ans_always, COUNTOF(ans_always));
+				log("A\n");
+			}
+			else
+			{
+				process.write(ans_no, COUNTOF(ans_no));
+				log("N\n");
+			}
+			buffer.clear();
+		}
 	}
 
 	// Must be finished by now

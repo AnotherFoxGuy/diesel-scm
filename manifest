@@ -1,13 +1,13 @@
-C Support\sfor\sFossil\squeries\nFileActionDialog\snow\sbecomes\sa\s(lame)\squestion\sdialog\sbox\swhen\sno\sdata\sis\sprovided\n
-D 2011-08-06T16:15:50.633
+C Improved\ssupport\sfor\sfossil\sinteractive\squestions
+D 2011-08-07T03:14:37.316
 F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 10d04becd808da62ccf380d6c16f5bad8f3b06e9
-F MainWindow.h 8a23caf1a70d41fe60a25894649a88b1efb851ba
+F MainWindow.cpp 18c298a5cc9a8d27f59d377c4d363c7a9b7e1085
+F MainWindow.h 81a5061a551c9969a7acfcc49c84adc076e5eaf6
 F MainWindow.ui 9f901c1f06b24df3cbd36d5349ffe0d82896c05b
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
@@ -173,7 +173,7 @@ F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F main.cpp aed85ed9766ddb8685e300e8ca4a0dc193ae2586
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P d80b84c6b58b7daf71174d32a8c33cab0e2aabac
-R dc4d20cff6babdcbf4a5e0cb3bc252f9
+P 6a6a654b0db2537fc73774e7dc37d25cb2ae63d7
+R 40a5f682e0b0200d3bd354258d471c18
 U kostas
-Z ac4a65db19b5eab4386101e1f0358467
+Z 68777a7f034546864430c866d1616086
