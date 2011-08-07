@@ -116,6 +116,7 @@ private:
 	void addWorkspace(const QString &dir);
 	void rebuildRecent();
 	bool openWorkspace(const QString &dir);
+	QString getFossilPath();
 
 	enum RepoStatus
 	{
@@ -154,22 +155,19 @@ private slots:
 	void on_actionUndo_triggered();
 	void on_actionAbout_triggered();
 	void on_actionUpdate_triggered();
-
 	void on_actionSettings_triggered();
-
 private:
 	enum
 	{
 		MAX_RECENT=5
 	};
 
-
 	Ui::MainWindow		*ui;
 	QStandardItemModel	itemModel;
 	QProcess			fossilUI;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QLabel		*statusLabel;
-	bool				fossilAbort;
+	bool				fossilAbort;	// FIXME: No GUI for it yet
 
 	Settings			settings;
 	QString				projectName;

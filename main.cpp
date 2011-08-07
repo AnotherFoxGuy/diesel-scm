@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 	a.setApplicationName("Fuel");
 	a.setApplicationVersion("0.9.0");
 	a.setOrganizationDomain("karanik.com");
-	a.setOrganizationName("karanik");
+	a.setOrganizationName("Karanik");
 	MainWindow w;
     w.show();
 

@@ -353,7 +353,7 @@ void MainWindow::scanWorkspace()
 			}
 		}
 
-		QStandardItem *status = new QStandardItem(QIcon(icon), "");
+		QStandardItem *status = new QStandardItem(QIcon(icon), tag);
 		status->setToolTip(tooltip);
 		itemModel.setItem(i, COLUMN_STATUS, status);
 
@@ -468,19 +468,21 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 
 	QString wkdir = getCurrentWorkspace();
 
+	QString fossil = getFossilPath();
+
 	if(detached)
 	{
-		return QProcess::startDetached(settings.fossilPath, args, wkdir);
+		return QProcess::startDetached(fossil, args, wkdir);
 	}
 
 	QProcess process(this);
 	process.setProcessChannelMode(QProcess::MergedChannels);
 	process.setWorkingDirectory(wkdir);
 
-	process.start(settings.fossilPath, args);
+	process.start(fossil, args);
 	if(!process.waitForStarted())
 	{
-		log("Could not start fossil executable '"+settings.fossilPath + "''\n");
+		log("Could not start fossil executable '" + fossil + "''\n");
 		return false;
 	}
 
@@ -610,35 +612,46 @@ void MainWindow::addWorkspace(const QString &dir)
 
 	workspaceHistory.append(new_workspace);
 }
+
+//------------------------------------------------------------------------------
+QString MainWindow::getFossilPath()
+{
+	// Use the user-specified fossil if available
+	if(!settings.fossilPath.isEmpty())
+		return settings.fossilPath;
+
+	// Use our fossil if available
+	QString fuel_fossil = QCoreApplication::applicationDirPath() + QDir::separator() + "fossil";
+
+	if(QFile::exists(fuel_fossil))
+		return fuel_fossil;
+
+	// Otherwise assume there is a "fossil" executable in the path
+	return "fossil";
+}
 //------------------------------------------------------------------------------
 void MainWindow::loadSettings()
 {
+	// Linux: ~/.config/organizationName/applicationName.conf
+	// Windows: HKEY_CURRENT_USER\Software\organizationName\Fuel
 	QSettings qsettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
 
 	if(qsettings.contains("FossilPath"))
 		settings.fossilPath = qsettings.value("FossilPath").toString();
-	else
-		settings.fossilPath = "fossil";
 
-	int num_wks = 0;
-
-	if(qsettings.contains("NumWorkspaces"))
-		num_wks = qsettings.value("NumWorkspaces").toInt();
-
+	int num_wks = qsettings.beginReadArray("Workspaces");
 	for(int i=0; i<num_wks; ++i)
 	{
-		QString key = "Workspace_" + QString::number(i);
-		QString wk = qsettings.value(key).toString();
+		qsettings.setArrayIndex(i);
+		QString wk = qsettings.value("Path").toString();
 		if(!wk.isEmpty())
 			addWorkspace(wk);
+
+		if(qsettings.contains("Active") && qsettings.value("Active").toBool())
+			currentWorkspace = wk;
 	}
+	qsettings.endArray();
 
-	int curr_wkspace = -1;
-	if(qsettings.contains("LastWorkspace"))
-		curr_wkspace = qsettings.value("LastWorkspace").toInt();
-
-	if(curr_wkspace!=-1 && curr_wkspace< workspaceHistory.size())
-		currentWorkspace = workspaceHistory[curr_wkspace];
 
 	if(qsettings.contains("WindowX") && qsettings.contains("WindowY"))
 	{
@@ -661,18 +674,20 @@ void MainWindow::loadSettings()
 void MainWindow::saveSettings()
 {
 	QSettings qsettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
-	qsettings.setValue("FossilPath", settings.fossilPath);
-	qsettings.setValue("NumWorkspaces", workspaceHistory.size());
 
+	// If we have a customize fossil path, save it
+	if(!settings.fossilPath.isEmpty())
+		qsettings.setValue("FossilPath", settings.fossilPath);
+
+	qsettings.beginWriteArray("Workspaces", workspaceHistory.size());
 	for(int i=0; i<workspaceHistory.size(); ++i)
 	{
-		QString key = "Workspace_" + QString::number(i);
-		qsettings.setValue(key, workspaceHistory[i]);
+		qsettings.setArrayIndex(i);
+		qsettings.setValue("Path", workspaceHistory[i]);
+		if(currentWorkspace == workspaceHistory[i])
+			qsettings.setValue("Active", true);
 	}
-
-	int curr_wkspace = workspaceHistory.indexOf(currentWorkspace);
-	if(curr_wkspace>-1)
-		qsettings.setValue("LastWorkspace", curr_wkspace);
+	qsettings.endArray();
 
 	qsettings.setValue("WindowX", x());
 	qsettings.setValue("WindowY", y());
@@ -742,11 +757,12 @@ bool MainWindow::startUI()
 	fossilUI.setWorkingDirectory(getCurrentWorkspace());
 
 	log("> fossil ui\n");
+	QString fossil = getFossilPath();
 
-	fossilUI.start(settings.fossilPath, QStringList() << "ui");
+	fossilUI.start(fossil, QStringList() << "ui");
 	if(!fossilUI.waitForStarted())
 	{
-		log(settings.fossilPath + tr(" does not exist") +"\n");
+		log(fossil+ tr(" does not exist") +"\n");
 		return false;
 	}
 
@@ -1102,3 +1118,4 @@ void MainWindow::on_actionSettings_triggered()
 {
 	SettingsDialog::run(this, settings);
 }
+
