@@ -1,5 +1,5 @@
-C Reintroduced\sthe\sstatus\scharacter,\ssince\sit\sis\snecessary\sfor\sthe\sautomatic\ssorting\nStreamlined\sthe\ssettings\sstorage\nWe\snow\ssupport\san\simplicit\sfossil\sexecutable\sliving\sin\sQCoreApplication::applicationDirPath()\sor\sin\sthe\ssystem\spath,\sunless\sthe\suser\shas\sprovided\san\soverride
-D 2011-08-07T04:56:05.986
+C Upped\sversion\sto\s0.9.1
+D 2011-08-07T04:57:30.324
 F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
@@ -171,9 +171,9 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
-F main.cpp c27bddc9ee5efdee649c6bf96696197874560e22
+F main.cpp 261837e5ffc52bca29935907e62468018a3b6a38
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 2c36e183b8e8816ada688991ea6da7ad64caf2a8
-R 3b0c20ab4fb5da73c9585141277a12f4
+P 97aefbc7825732e8fc2e711187c32c49e1149c11
+R b146bf7a3540c990cbfbbd0f8c9783c5
 U kostas
-Z 306fe72a4f590e48c01e123486041f37
+Z bad442c90ba07d486fc509973999b417
