@@ -1,12 +1,12 @@
-C Added\sSync\sSettings\saction\n
-D 2011-08-07T05:46:53.925
+C Improved\sOSX\sGUI\n"About"\sdialog\snow\sdisplays\sthe\sfossil\sversion
+D 2011-08-07T08:15:07.685
 F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp c3c91806c454a15888a89b8a137b57e4b02a7de4
+F MainWindow.cpp 80d52a1f0b9b099dde95a5be7e89f8aff869c190
 F MainWindow.h f458f469ab1b680268000553ffb917374dd3e67b
 F MainWindow.ui 67ab0e7b52f0023c02406c851cdf4c267e12cedd
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
@@ -171,9 +171,9 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
-F main.cpp 261837e5ffc52bca29935907e62468018a3b6a38
+F main.cpp 360c3ec843cd72dcaf735b7fb6f51f5639830959
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P d0b361eba56da87b7a0345d3a47e14987fbe287c
-R 6330d9662105044dfc581509c4825727
+P dbb036dbd2c7e2a34fae27e2a39bddf2168ab83d
+R d953e0a12899c0c5f8173cdd242461fe
 U kostas
-Z f8e6616d287dfd95305111e8845337a0
+Z f2b518bc85eac6f6d5652326d3dcd962

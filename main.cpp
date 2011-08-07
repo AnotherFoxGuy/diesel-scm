@@ -8,8 +8,15 @@ int main(int argc, char *argv[])
 	a.setApplicationVersion("0.9.1");
 	a.setOrganizationDomain("karanik.com");
 	a.setOrganizationName("Karanik");
-	MainWindow w;
-    w.show();
 
-    return a.exec();
+	// Native applications on OSX don't use menu icons
+	#ifdef Q_WS_MACX
+		a.setAttribute(Qt::AA_DontShowIconsInMenus);
+	#endif
+
+	{
+		MainWindow w;
+		w.show();
+		return a.exec();
+	}
 }

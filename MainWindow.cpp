@@ -18,9 +18,9 @@
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
 #ifdef QT_WS_WIN
-	#define EOL_MARK "\r\n"
+	QString EOL_MARK("\r\n");
 #else
-	#define EOL_MARK "\n"
+	QString EOL_MARK("\n");
 #endif
 
 enum
@@ -87,6 +87,14 @@ MainWindow::MainWindow(QWidget *parent) :
 	statusLabel = new QLabel();
 	statusLabel->setMinimumSize( statusLabel->sizeHint() );
 	ui->statusBar->addWidget( statusLabel, 1 );
+
+// Native applications on OSX don't use menu icons
+#ifdef Q_WS_MACX
+	foreach(QAction *a, ui->menuBar->actions())
+		a->setIconVisibleInMenu(false);
+	foreach(QAction *a, ui->menuFile->actions())
+		a->setIconVisibleInMenu(false);
+#endif
 
 	loadSettings();
 	refresh();
@@ -486,9 +494,9 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		return false;
 	}
 
-	const char *ans_yes = "y" EOL_MARK;
-	const char *ans_no = "n" EOL_MARK;
-	const char *ans_always = "a" EOL_MARK;
+	QString ans_yes = 'y' + EOL_MARK;
+	QString ans_no = 'n' + EOL_MARK;
+	QString ans_always = 'a' + EOL_MARK;
 
 	fossilAbort = false;
 	QString buffer;
@@ -513,9 +521,11 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 
 		QString last_line;
 		if(last_line_start != -1)
-			last_line = buffer.mid(last_line_start+COUNTOF(EOL_MARK));
+			last_line = buffer.mid(last_line_start+EOL_MARK.length());
 		else
 			last_line = buffer;
+
+		QChar cc = buffer[last_line_start];
 
 		last_line = last_line.trimmed();
 
@@ -544,44 +554,56 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		buffer = buffer.mid(last_line_start);
 
 		// Now process any query
-		if(have_query && have_yn_query)
+		if(have_query && have_yna_query)
 		{
 			QString query = ParseFossilQuery(last_line);
 
-			int res =  QMessageBox::question(this, "Fossil", query, QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
-			if(res==QMessageBox::Yes)
-			{
-				process.write(ans_yes, COUNTOF(ans_yes));
-				log("Y\n");
-			}
-			else
-			{
-				process.write(ans_no, COUNTOF(ans_no));
-				log("N\n");
-			}
+			QMessageBox mb(QMessageBox::Question, "Fossil", query, QMessageBox::Yes|QMessageBox::No|QMessageBox::YesToAll, this, Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::Sheet );
+			mb.setDefaultButton(QMessageBox::No);
+			mb.setWindowModality(Qt::WindowModal);
+			mb.setModal(true);
+			mb.exec();
+			int res = mb.standardButton(mb.clickedButton());
 
-			buffer.clear();
-		}
-		else if(have_query && have_yna_query)
-		{
-			QString query = ParseFossilQuery(query);
-
-			int res =  QMessageBox::question(this, "Fossil", query, QMessageBox::Yes|QMessageBox::No|QMessageBox::YesToAll, QMessageBox::No);
 			if(res==QDialogButtonBox::Yes)
 			{
-				process.write(ans_yes, COUNTOF(ans_yes));
+				process.write(ans_yes.toAscii());
 				log("Y\n");
 			}
 			else if(res==QDialogButtonBox::YesToAll)
 			{
-				process.write(ans_always, COUNTOF(ans_always));
+				process.write(ans_always.toAscii());
 				log("A\n");
 			}
 			else
 			{
-				process.write(ans_no, COUNTOF(ans_no));
+				process.write(ans_no.toAscii());
 				log("N\n");
 			}
+			buffer.clear();
+		}
+		else if(have_query && have_yn_query)
+		{
+			QString query = ParseFossilQuery(last_line);
+
+			QMessageBox mb(QMessageBox::Question, "Fossil", query, QMessageBox::Yes|QMessageBox::No|QMessageBox::YesToAll, this, Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::Sheet );
+			mb.setDefaultButton(QMessageBox::No);
+			mb.setWindowModality(Qt::WindowModal);
+			mb.setModal(true);
+			mb.exec();
+			int res = mb.standardButton(mb.clickedButton());
+
+			if(res==QMessageBox::Yes)
+			{
+				process.write(ans_yes.toAscii());
+				log("Y\n");
+			}
+			else
+			{
+				process.write(ans_no.toAscii());
+				log("N\n");
+			}
+
 			buffer.clear();
 		}
 	}
@@ -967,7 +989,7 @@ void MainWindow::on_actionRename_triggered()
 	QFileInfo fi_before(repo_files[0]);
 
 	bool ok = false;
-	QString new_name = QInputDialog::getText(this, tr("Rename"), tr("Enter new name"), QLineEdit::Normal, fi_before.filePath(), &ok );
+	QString new_name = QInputDialog::getText(this, tr("Rename"), tr("Enter new name"), QLineEdit::Normal, fi_before.filePath(), &ok, Qt::Sheet );
 	if(!ok)
 		return;
 
@@ -1084,13 +1106,24 @@ void MainWindow::on_actionUndo_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionAbout_triggered()
 {
-	QMessageBox::about(this, "About... Fuel ",
+	QString fossil_ver;
+	QStringList res;
+
+	if(runFossil(QStringList() << "version", &res, true) && res.length()==1)
+	{
+		int off = res[0].indexOf("version ");
+		if(off!=-1)
+			fossil_ver = tr("Fossil version ")+res[0].mid(off) + "\n\n";
+	}
+
+	QMessageBox::about(this, "About Fuel...",
 					   QCoreApplication::applicationName() + " "+ QCoreApplication::applicationVersion() + " " +
-					   tr("a GUI frontend to Fossil SCM\n"
-						   "by Kostas Karanikolas\n"
-						   "Released under the GNU GPL\n\n"
-						   "Icon-set by Deleket - Jojo Mendoza\n"
-						   "Available under the CC Attribution-Noncommercial-No Derivate 3.0 License"));
+						tr("a GUI frontend to the Fossil SCM\n"
+							"by Kostas Karanikolas\n"
+							"Released under the GNU GPL\n\n")
+					   + fossil_ver +
+						tr("Icon-set by Deleket - Jojo Mendoza\n"
+							"Available under the CC Attribution-Noncommercial-No Derivate 3.0 License"));
 }
 
 //------------------------------------------------------------------------------
@@ -1128,11 +1161,18 @@ void MainWindow::on_actionSyncSettings_triggered()
 	if(runFossil(QStringList() << "remote-url", &out, true) && out.length()==1)
 		current = out[0].trimmed();
 
-	bool ok = false;
-	current = QInputDialog::getText(this, tr("Remote URL"), tr("Enter new remote url"), QLineEdit::Normal, current, &ok );
+	QInputDialog dlg(this, Qt::Sheet);
+	dlg.setWindowTitle(tr("Remote URL"));
+	dlg.setInputMode(QInputDialog::TextInput);
+	dlg.setWindowModality(Qt::WindowModal);
+	dlg.setModal(true);
+	dlg.setLabelText(tr("Enter new remote URL:"));
+	dlg.setTextValue(current);
 
-	if(!ok)
+	if(dlg.exec() == QDialog::Rejected)
 		return;
+
+	current = dlg.textValue();
 
 	QUrl url(current);
 	if(!url.isValid())
@@ -1141,5 +1181,6 @@ void MainWindow::on_actionSyncSettings_triggered()
 		return;
 	}
 
-	runFossil(QStringList() << "remote-url" << QuotePath(url.toString()));
+	// Run as silent to avoid displaying credentials in the log
+	runFossil(QStringList() << "remote-url" << QuotePath(url.toString()), 0, true);
 }
