@@ -156,6 +156,8 @@ private slots:
 	void on_actionAbout_triggered();
 	void on_actionUpdate_triggered();
 	void on_actionSettings_triggered();
+	void on_actionSyncSettings_triggered();
+
 private:
 	enum
 	{

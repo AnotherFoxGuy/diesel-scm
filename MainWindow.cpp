@@ -134,7 +134,7 @@ bool MainWindow::openWorkspace(const QString &dir)
 //------------------------------------------------------------------------------
 void MainWindow::on_actionOpen_triggered()
 {
-	QString path = QFileDialog::getExistingDirectory(this, tr("Fossil Checkout"));
+	QString path = QFileDialog::getExistingDirectory(this, tr("Fossil Checkout"), QDir::currentPath());
 	if(!path.isNull())
 		openWorkspace(path);
 }
@@ -998,7 +998,7 @@ void MainWindow::on_actionNew_triggered()
 	QString path = QFileDialog::getSaveFileName(
 				this,
 				tr("New Fossil Repository"),
-				QString(),
+				QDir::currentPath(),
 				filter,
 				&filter);
 
@@ -1119,3 +1119,27 @@ void MainWindow::on_actionSettings_triggered()
 	SettingsDialog::run(this, settings);
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::on_actionSyncSettings_triggered()
+{
+	QString current;
+	// Retrieve existing url
+	QStringList out;
+	if(runFossil(QStringList() << "remote-url", &out, true) && out.length()==1)
+		current = out[0].trimmed();
+
+	bool ok = false;
+	current = QInputDialog::getText(this, tr("Remote URL"), tr("Enter new remote url"), QLineEdit::Normal, current, &ok );
+
+	if(!ok)
+		return;
+
+	QUrl url(current);
+	if(!url.isValid())
+	{
+		QMessageBox::critical(this, tr("Remote URL"), tr("This URL is not valid"), QMessageBox::Ok );
+		return;
+	}
+
+	runFossil(QStringList() << "remote-url" << QuotePath(url.toString()));
+}
