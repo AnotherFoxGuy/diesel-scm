@@ -23,6 +23,7 @@
 	QString EOL_MARK("\n");
 #endif
 
+//-----------------------------------------------------------------------------
 enum
 {
 	COLUMN_STATUS,
@@ -32,11 +33,13 @@ enum
 	COLUMN_MODIFIED
 };
 
+//-----------------------------------------------------------------------------
 static QString QuotePath(const QString &path)
 {
 	return path;
 }
 
+//-----------------------------------------------------------------------------
 static QStringList QuotePaths(const QStringList &paths)
 {
 	QStringList res;
@@ -45,8 +48,80 @@ static QStringList QuotePaths(const QStringList &paths)
 	return res;
 }
 
+//-----------------------------------------------------------------------------
+typedef QMap<QString, QString> QStringMap;
+static QStringMap MakeKeyValue(QStringList lines)
+{
+	QStringMap res;
 
+	foreach(QString l, lines)
+	{
+		l = l.trimmed();
+		int index = l.indexOf(' ');
 
+		QString key;
+		QString value;
+		if(index!=-1)
+		{
+			key = l.left(index).trimmed();
+			value = l.mid(index).trimmed();
+		}
+		else
+			key = l;
+
+		res.insert(key, value);
+	}
+	return res;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+enum DialogAnswer
+{
+	ANSWER_YES,
+	ANSWER_NO,
+	ANSWER_YESALL
+};
+
+static DialogAnswer DialogQuery(QWidget *parent, const QString &title, const QString &query, bool yesToAllButton=false)
+{
+	QMessageBox::StandardButtons buttons =  QMessageBox::Yes|QMessageBox::No;
+	if(yesToAllButton)
+		buttons |= QMessageBox::YesToAll;
+
+	QMessageBox mb(QMessageBox::Question, title, query, buttons, parent, Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::Sheet );
+	mb.setDefaultButton(QMessageBox::No);
+	mb.setWindowModality(Qt::WindowModal);
+	mb.setModal(true);
+	mb.exec();
+	int res = mb.standardButton(mb.clickedButton());
+	if(res==QDialogButtonBox::Yes)
+		return ANSWER_YES;
+	else if(res==QDialogButtonBox::YesToAll)
+		return ANSWER_YESALL;
+	return ANSWER_NO;
+}
+
+//-----------------------------------------------------------------------------
+static bool DialogQueryText(QWidget *parent, const QString &title, const QString &query, QString &text, bool isPassword=false)
+{
+	QInputDialog dlg(parent, Qt::Sheet);
+	dlg.setWindowTitle(title);
+	dlg.setInputMode(QInputDialog::TextInput);
+	dlg.setWindowModality(Qt::WindowModal);
+	dlg.setModal(true);
+	dlg.setLabelText(query);
+	dlg.setTextValue(text);
+	if(isPassword)
+		dlg.setTextEchoMode(QLineEdit::Password);
+
+	if(dlg.exec() == QDialog::Rejected)
+		return false;
+
+	text = dlg.textValue();
+	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -109,9 +184,45 @@ MainWindow::~MainWindow()
 	saveSettings();
 	delete ui;
 }
+//-----------------------------------------------------------------------------
 const QString &MainWindow::getCurrentWorkspace()
 {
 	return currentWorkspace;
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::setCurrentWorkspace(const QString &workspace)
+{
+	if(workspace.isEmpty())
+	{
+		currentWorkspace.clear();
+		return;
+	}
+
+	QString new_workspace = QDir(workspace).absolutePath();
+
+	currentWorkspace = new_workspace;
+	addWorkspace(new_workspace);
+
+	if(!QDir::setCurrent(new_workspace))
+		QMessageBox::critical(this, tr("Error"), tr("Could not change current diectory"), QMessageBox::Ok );
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::addWorkspace(const QString &dir)
+{
+	if(dir.isEmpty())
+		return;
+
+	QDir d(dir);
+	QString new_workspace = d.absolutePath();
+
+	// Do not add the workspace if it exists already
+	if(workspaceHistory.indexOf(new_workspace)!=-1)
+		return;
+
+	workspaceHistory.append(new_workspace);
+	rebuildRecent();
 }
 
 //------------------------------------------------------------------------------
@@ -123,20 +234,20 @@ void MainWindow::on_actionRefresh_triggered()
 //------------------------------------------------------------------------------
 bool MainWindow::openWorkspace(const QString &dir)
 {
-	addWorkspace(dir);
-	currentWorkspace = dir;
+	setCurrentWorkspace(dir);
 
 	on_actionClearLog_triggered();
 	stopUI();
 
-	bool ok = refresh();
-	if(ok)
+	// If this repository is not valid, remove it from the history
+	if(!refresh())
 	{
-		QDir::setCurrent(dir);
+		setCurrentWorkspace("");
+		workspaceHistory.removeAll(dir);
 		rebuildRecent();
+		return false;
 	}
-
-	return ok;
+	return true;
 }
 
 //------------------------------------------------------------------------------
@@ -170,8 +281,12 @@ void MainWindow::rebuildRecent()
 void MainWindow::onOpenRecent()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
-	if (action)
-		openWorkspace(action->data().toString());
+	if(!action)
+		return;
+
+	QString workspace = action->data().toString();
+
+	openWorkspace(workspace);
 }
 
 //------------------------------------------------------------------------------
@@ -348,7 +463,7 @@ void MainWindow::scanWorkspace()
 		// Status Column
 		const char *tag = "?"; // Default Tag
 		const char *tooltip = "Unknown";
-		const char *icon = ":icons/icons/Button Blank Gray-01.png"; // Default icon
+		const char *status_icon= ":icons/icons/Button Blank Gray-01.png"; // Default icon
 
 		for(size_t t=0; t<COUNTOF(stats); ++t)
 		{
@@ -356,12 +471,12 @@ void MainWindow::scanWorkspace()
 			{
 				tag = stats[t].tag;
 				tooltip = stats[t].tooltip;
-				icon = stats[t].icon;
+				status_icon = stats[t].icon;
 				break;
 			}
 		}
 
-		QStandardItem *status = new QStandardItem(QIcon(icon), tag);
+		QStandardItem *status = new QStandardItem(QIcon(status_icon), tag);
 		status->setToolTip(tooltip);
 		itemModel.setItem(i, COLUMN_STATUS, status);
 
@@ -513,6 +628,8 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		process.waitForReadyRead(500);
 		buffer += process.readAll();
 
+		QCoreApplication::processEvents();
+
 		if(buffer.isEmpty())
 			continue;
 
@@ -557,20 +674,13 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		if(have_query && have_yna_query)
 		{
 			QString query = ParseFossilQuery(last_line);
-
-			QMessageBox mb(QMessageBox::Question, "Fossil", query, QMessageBox::Yes|QMessageBox::No|QMessageBox::YesToAll, this, Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::Sheet );
-			mb.setDefaultButton(QMessageBox::No);
-			mb.setWindowModality(Qt::WindowModal);
-			mb.setModal(true);
-			mb.exec();
-			int res = mb.standardButton(mb.clickedButton());
-
-			if(res==QDialogButtonBox::Yes)
+			DialogAnswer res = DialogQuery(this, "Fossil", query, true);
+			if(res==ANSWER_YES)
 			{
 				process.write(ans_yes.toAscii());
 				log("Y\n");
 			}
-			else if(res==QDialogButtonBox::YesToAll)
+			else if(res==ANSWER_YESALL)
 			{
 				process.write(ans_always.toAscii());
 				log("A\n");
@@ -585,15 +695,9 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		else if(have_query && have_yn_query)
 		{
 			QString query = ParseFossilQuery(last_line);
+			DialogAnswer res = DialogQuery(this, "Fossil", query, false);
 
-			QMessageBox mb(QMessageBox::Question, "Fossil", query, QMessageBox::Yes|QMessageBox::No|QMessageBox::YesToAll, this, Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::Sheet );
-			mb.setDefaultButton(QMessageBox::No);
-			mb.setWindowModality(Qt::WindowModal);
-			mb.setModal(true);
-			mb.exec();
-			int res = mb.standardButton(mb.clickedButton());
-
-			if(res==QMessageBox::Yes)
+			if(res==ANSWER_YES)
 			{
 				process.write(ans_yes.toAscii());
 				log("Y\n");
@@ -622,18 +726,6 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	return true;
 }
 
-//------------------------------------------------------------------------------
-void MainWindow::addWorkspace(const QString &dir)
-{
-	QDir d(dir);
-	QString new_workspace = QDir(dir).absolutePath();
-
-	// Do not add the workspace if it exists already
-	if(workspaceHistory.indexOf(new_workspace)!=-1)
-		return;
-
-	workspaceHistory.append(new_workspace);
-}
 
 //------------------------------------------------------------------------------
 QString MainWindow::getFossilPath()
@@ -670,7 +762,7 @@ void MainWindow::loadSettings()
 			addWorkspace(wk);
 
 		if(qsettings.contains("Active") && qsettings.value("Active").toBool())
-			currentWorkspace = wk;
+			setCurrentWorkspace(wk);
 	}
 	qsettings.endArray();
 
@@ -706,7 +798,7 @@ void MainWindow::saveSettings()
 	{
 		qsettings.setArrayIndex(i);
 		qsettings.setValue("Path", workspaceHistory[i]);
-		if(currentWorkspace == workspaceHistory[i])
+		if(getCurrentWorkspace() == workspaceHistory[i])
 			qsettings.setValue("Active", true);
 	}
 	qsettings.endArray();
@@ -1034,10 +1126,19 @@ void MainWindow::on_actionNew_triggered()
 	}
 	stopUI();
 
+	on_actionClearLog_triggered();
+
 	QFileInfo path_info(path);
 	Q_ASSERT(path_info.dir().exists());
 	QString wkdir = path_info.absoluteDir().absolutePath();
-	addWorkspace(wkdir);
+
+	setCurrentWorkspace(wkdir);
+	if(!QDir::setCurrent(wkdir))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not change current diectory"), QMessageBox::Ok );
+		return;
+	}
+
 	repositoryFile = path_info.absoluteFilePath();
 
 	// Create repo
@@ -1059,6 +1160,7 @@ void MainWindow::on_actionNew_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionClone_triggered()
 {
+	// FIXME: Implement this
 	stopUI();
 }
 
@@ -1149,7 +1251,45 @@ void MainWindow::on_actionUpdate_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionSettings_triggered()
 {
-	SettingsDialog::run(this, settings);
+	// Also retrieve the fossil global settings
+	QStringList out;
+	if(!runFossil(QStringList() << "settings", &out, true))
+		return;
+
+	QStringMap kv = MakeKeyValue(out);
+	struct { const char *command; QString *value; } maps[] =
+	{
+		{ "gdiff-command", &settings.gDiffCommand },
+		{ "gmerge-command", &settings.gMergeCommand }
+	};
+
+	for(size_t m=0; m<COUNTOF(maps); ++m)
+	{
+		if(!kv.contains(maps[m].command))
+			continue;
+
+		QString value = kv[maps[m].command];
+		if(value.indexOf("(global)") != -1)
+		{
+			int i = value.indexOf(" ");
+			Q_ASSERT(i!=-1);
+			*maps[m].value =  value.mid(i).trimmed();
+		}
+	}
+
+	// Run the dialog
+	if(SettingsDialog::run(this, settings))
+	{
+		// Apply settings
+		for(size_t m=0; m<COUNTOF(maps); ++m)
+		{
+			if(maps[m].value->isEmpty())
+				runFossil(QStringList() << "unset" << maps[m].command << "-global");
+			else
+				runFossil(QStringList() << "settings" << maps[m].command << *maps[m].value << "-global");
+		}
+	}
+
 }
 
 //------------------------------------------------------------------------------
@@ -1161,18 +1301,8 @@ void MainWindow::on_actionSyncSettings_triggered()
 	if(runFossil(QStringList() << "remote-url", &out, true) && out.length()==1)
 		current = out[0].trimmed();
 
-	QInputDialog dlg(this, Qt::Sheet);
-	dlg.setWindowTitle(tr("Remote URL"));
-	dlg.setInputMode(QInputDialog::TextInput);
-	dlg.setWindowModality(Qt::WindowModal);
-	dlg.setModal(true);
-	dlg.setLabelText(tr("Enter new remote URL:"));
-	dlg.setTextValue(current);
-
-	if(dlg.exec() == QDialog::Rejected)
+	if(!DialogQueryText(this, tr("Remote URL"), tr("Enter new remote URL:"), current))
 		return;
-
-	current = dlg.textValue();
 
 	QUrl url(current);
 	if(!url.isValid())
@@ -1184,3 +1314,4 @@ void MainWindow::on_actionSyncSettings_triggered()
 	// Run as silent to avoid displaying credentials in the log
 	runFossil(QStringList() << "remote-url" << QuotePath(url.toString()), 0, true);
 }
+

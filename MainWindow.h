@@ -106,6 +106,7 @@ private:
 	void loadSettings();
 	void saveSettings();
 	const QString &getCurrentWorkspace();
+	void setCurrentWorkspace(const QString &workspace);
 	void log(const QString &text);
 	void setStatus(const QString &text);
 	bool uiRunning() const { return fossilUI.state() == QProcess::Running; }

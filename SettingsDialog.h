@@ -10,7 +10,8 @@ namespace Ui {
 struct Settings
 {
 	QString				fossilPath;
-
+	QString				gDiffCommand;
+	QString				gMergeCommand;
 };
 
 
@@ -27,8 +28,9 @@ public:
 
 private slots:
 	void on_btnSelectFossil_clicked();
-
 	void on_buttonBox_accepted();
+	void on_btnSelectFossilGDiff_clicked();
+	void on_btnSelectGMerge_clicked();
 
 private:
     Ui::SettingsDialog *ui;

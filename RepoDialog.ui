@@ -6,35 +6,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>436</width>
+    <height>166</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>240</y>
-     <width>341</width>
-     <height>32</height>
+     <x>9</x>
+     <y>9</y>
+     <width>66</width>
+     <height>17</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   <property name="text">
+    <string>Push URL</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="linePushURL">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>60</y>
-     <width>241</width>
+     <x>129</x>
+     <y>9</y>
+     <width>144</width>
      <height>25</height>
     </rect>
    </property>
@@ -42,14 +39,76 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>70</y>
-     <width>181</width>
+     <x>9</x>
+     <y>40</y>
+     <width>99</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>Repository Name</string>
+    <string>Graphical Diff </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineGDiffCommand">
+   <property name="geometry">
+    <rect>
+     <x>129</x>
+     <y>40</y>
+     <width>144</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>71</y>
+     <width>114</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Graphical Merge</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineGMergeCommand">
+   <property name="geometry">
+    <rect>
+     <x>129</x>
+     <y>71</y>
+     <width>144</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>129</x>
+     <y>102</y>
+     <width>90</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Autosync</string>
+   </property>
+  </widget>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>130</y>
+     <width>176</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
  </widget>

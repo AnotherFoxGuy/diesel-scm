@@ -1,20 +1,20 @@
-C Improved\sOSX\sGUI\n"About"\sdialog\snow\sdisplays\sthe\sfossil\sversion
-D 2011-08-07T08:15:07.685
+C Dialog\srefactoring\nExtended\sthe\ssettings\sdialog\nReorganized\sthe\sworkspace\smanagement\scode\nFixed\sissue\swhere\sthe\sprevious\scurrent\sdirectory\swas\sin\seffect\seven\sin\snew\sworkspaces\nImproved\sthe\slog\sresponsiveness\son\slong\sfossil\soperations\n
+D 2011-08-08T14:44:31.214
 F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 80d52a1f0b9b099dde95a5be7e89f8aff869c190
-F MainWindow.h f458f469ab1b680268000553ffb917374dd3e67b
-F MainWindow.ui 67ab0e7b52f0023c02406c851cdf4c267e12cedd
+F MainWindow.cpp c6f682988e59727d5235fbb821e34746724b1220
+F MainWindow.h 104f575b6fffe43880849c9ce8c8b986292e4d6c
+F MainWindow.ui 2f08596fe34f5496af90f6d355d4de857e77ad8a
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
-F RepoDialog.ui 8fe9b7f7528332ca9a45e919cf116aaf144a3286
-F SettingsDialog.cpp 4e4cd109baed184bf0d1bb506e98aebf81ca43f0
-F SettingsDialog.h 0da162b0bf9656f5ca5e6977ef669c24a44659e5
-F SettingsDialog.ui 998b2bf7cf84df8247493c0f948b4193808494cd
+F RepoDialog.ui be7b18199c04a3003f3c7534a616cd7441b7bb0c
+F SettingsDialog.cpp 7fdf56e25e1b9ff12369a63f8a35ecb101d51d3c
+F SettingsDialog.h 9b02af204d7cf90c2fb92de50fb634fb36f179dc
+F SettingsDialog.ui 9114ca5b9d8644cd0e910954c04f0425f89a960d
 F fuel.pro 295944fd817518c7c2412c5e52ce5ecad11dd8f8
 F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
@@ -173,7 +173,7 @@ F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F main.cpp 360c3ec843cd72dcaf735b7fb6f51f5639830959
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P dbb036dbd2c7e2a34fae27e2a39bddf2168ab83d
-R d953e0a12899c0c5f8173cdd242461fe
+P 81e1f4c7ec00176abd9d467add266f84b0e63059
+R ea0388f9e4683051a59d562c7fbdaf7c
 U kostas
-Z f2b518bc85eac6f6d5652326d3dcd962
+Z 1ba1cb23226ee30525026ffe7669a4da

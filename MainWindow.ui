@@ -97,6 +97,7 @@
     <addaction name="actionOpen"/>
     <addaction name="separator"/>
     <addaction name="actionSyncSettings"/>
+    <addaction name="separator"/>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
@@ -448,7 +449,7 @@
   </action>
   <action name="actionSyncSettings">
    <property name="text">
-    <string>Synchronization Settings...</string>
+    <string>Workspace Settings...</string>
    </property>
    <property name="toolTip">
     <string>Set remote synchronization settings</string>
