@@ -1,12 +1,12 @@
-C Dialog\srefactoring\nExtended\sthe\ssettings\sdialog\nReorganized\sthe\sworkspace\smanagement\scode\nFixed\sissue\swhere\sthe\sprevious\scurrent\sdirectory\swas\sin\seffect\seven\sin\snew\sworkspaces\nImproved\sthe\slog\sresponsiveness\son\slong\sfossil\soperations\n
-D 2011-08-08T14:44:31.214
+C -\sCorrected\ssaving\sof\sactive\sworkspace\n-\sDouble-clicking\sa\sfile\snow\sopens\sthe\sfile\n-\sCorrected\sfossil\serror\sstatus\sparsing\son\swindows\n-\sAlternative\smethod\sfor\sstoring\sthe\scheckin\smessaage\stemporary\sfile,\ssince\son\swindows\sfossil\scannot\saccess\sit.\n
+D 2011-08-27T20:22:36.138
 F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp c6f682988e59727d5235fbb821e34746724b1220
+F MainWindow.cpp c94e1ca92238e61aa20d2bcaa3451aa68cdf85cb
 F MainWindow.h 104f575b6fffe43880849c9ce8c8b986292e4d6c
 F MainWindow.ui 2f08596fe34f5496af90f6d355d4de857e77ad8a
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
@@ -173,7 +173,7 @@ F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F main.cpp 360c3ec843cd72dcaf735b7fb6f51f5639830959
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 81e1f4c7ec00176abd9d467add266f84b0e63059
-R ea0388f9e4683051a59d562c7fbdaf7c
+P 945c841fba73be1355611554499e68a878b95359
+R 2034ab2c52807f06ab2b39767ab83cca
 U kostas
-Z 1ba1cb23226ee30525026ffe7669a4da
+Z e3cac8897a587ebf0fedbe6a8cd8165b

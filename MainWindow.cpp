@@ -500,7 +500,7 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 	QStringList res;
 	int exit_code = EXIT_FAILURE;
 
-	// We need to differentiate the reason why fossil has failed
+    // We need to determine the reason why fossil has failed
 	// so we delay processing of the exit_code
 	if(!runFossilRaw(QStringList() << "info", &res, &exit_code, SILENT_STATUS))
 		return REPO_NOT_FOUND;
@@ -509,11 +509,12 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 
 	for(QStringList::iterator it=res.begin(); it!=res.end(); ++it)
 	{
-		QStringList tokens = it->split(":");
-		if(tokens.length()!=2)
+		int col_index = it->indexOf(':');
+		if(col_index==-1)
 			continue;
-		QString key = tokens[0].trimmed();
-		QString value = tokens[1].trimmed();
+
+		QString key = it->left(col_index).trimmed();
+		QString value = it->mid(col_index+1).trimmed();
 
 		if(key=="fossil")
 		{
@@ -642,14 +643,12 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		else
 			last_line = buffer;
 
-		QChar cc = buffer[last_line_start];
-
 		last_line = last_line.trimmed();
 
 		// Check if we have a query
 		bool ends_qmark = !last_line.isEmpty() && last_line[last_line.length()-1]=='?';
 		bool have_yn_query = last_line.toLower().indexOf("y/n")!=-1;
-		int have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1;
+		int have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1 || last_line.toLower().indexOf("yes/no/all")!=-1;
 		bool have_query = ends_qmark && (have_yn_query || have_yna_query);
 
 		// Flush only the unneccessary part of the buffer to the log
@@ -800,6 +799,8 @@ void MainWindow::saveSettings()
 		qsettings.setValue("Path", workspaceHistory[i]);
 		if(getCurrentWorkspace() == workspaceHistory[i])
 			qsettings.setValue("Active", true);
+        else
+            qsettings.remove("Active");
 	}
 	qsettings.endArray();
 
@@ -937,7 +938,7 @@ void MainWindow::on_actionHistory_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &/*index*/)
 {
-	on_actionDiff_triggered();
+	on_actionOpenFile_triggered();
 }
 
 //------------------------------------------------------------------------------
@@ -980,15 +981,29 @@ void MainWindow::on_actionCommit_triggered()
 
 	// Do commit
 	commitMessages.push_front(msg);
-
+	QString comment_fname;
 	{
-		QTemporaryFile comment_file;
-		comment_file.open();
-		comment_file.write(msg.toUtf8());
-		comment_file.close();
-
-		runFossil(QStringList() << "commit" << "--message-file" << QuotePath(comment_file.fileName()) << QuotePaths(modified_files) );
+		QTemporaryFile temp_file;
+		if(!temp_file.open())
+		{
+			QMessageBox::critical(this, tr("Error"), tr("Could not generate comment file"), QMessageBox::Ok );
+			return;
+		}
+		comment_fname = temp_file.fileName();
 	}
+
+	QFile comment_file(comment_fname);
+	if(!comment_file.open(QIODevice::WriteOnly))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not generate comment file"), QMessageBox::Ok );
+		return;
+	}
+
+	comment_file.write(msg.toUtf8());
+	comment_file.close();
+
+	runFossil(QStringList() << "commit" << "--message-file" << QuotePath(comment_fname) << QuotePaths(modified_files) );
+	QFile::remove(comment_fname);
 
 	refresh();
 }
