@@ -1,5 +1,5 @@
-C -\sCorrected\ssaving\sof\sactive\sworkspace\n-\sDouble-clicking\sa\sfile\snow\sopens\sthe\sfile\n-\sCorrected\sfossil\serror\sstatus\sparsing\son\swindows\n-\sAlternative\smethod\sfor\sstoring\sthe\scheckin\smessaage\stemporary\sfile,\ssince\son\swindows\sfossil\scannot\saccess\sit.\n
-D 2011-08-27T20:22:36.138
+C Upped\sversion\sto\s0.9.3
+D 2011-08-27T20:25:51.099
 F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
@@ -171,9 +171,9 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
-F main.cpp 360c3ec843cd72dcaf735b7fb6f51f5639830959
+F main.cpp 083845039c167badd57a4abf482dd3d5e77aab35
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 945c841fba73be1355611554499e68a878b95359
-R 2034ab2c52807f06ab2b39767ab83cca
+P ebc405be8ad1ef5d86dff36a352528ccb363b3c9
+R 92692ee58642a7ffdb40fcdee94d2c5b
 U kostas
-Z e3cac8897a587ebf0fedbe6a8cd8165b
+Z 2fb38380d1398f0d62b438c7a69c9bea
