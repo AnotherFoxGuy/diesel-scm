@@ -27,8 +27,8 @@ struct RepoFile
 		TYPE_DELETED		= 1<<4,
 		TYPE_MISSING		= 1<<5,
 		TYPE_RENAMED		= 1<<6,
-		TYPE_REPO_MODIFIED	= TYPE_EDITTED|TYPE_ADDED|TYPE_DELETED|TYPE_MISSING|TYPE_RENAMED,
-		TYPE_REPO			= TYPE_UNCHANGED|TYPE_REPO_MODIFIED,
+		TYPE_MODIFIED		= TYPE_EDITTED|TYPE_ADDED|TYPE_DELETED|TYPE_MISSING|TYPE_RENAMED,
+		TYPE_REPO			= TYPE_UNCHANGED|TYPE_MODIFIED,
 		TYPE_ALL			= TYPE_UNKNOWN|TYPE_REPO
 	};
 
@@ -158,6 +158,9 @@ private slots:
 	void on_actionUpdate_triggered();
 	void on_actionSettings_triggered();
 	void on_actionSyncSettings_triggered();
+	void on_actionViewUnchanged_triggered();
+	void on_actionViewModified_triggered();
+	void on_actionViewUnknown_triggered();
 
 private:
 	enum

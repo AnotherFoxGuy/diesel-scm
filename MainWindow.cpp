@@ -374,25 +374,32 @@ void MainWindow::scanWorkspace()
 	QFileInfoList all_files;
 	QString wkdir = getCurrentWorkspace();
 
-	RecurseDirectory(all_files, wkdir, wkdir);
-	workspaceFiles.clear();
-	for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
-	{
-		QString filename = it->fileName();
-
-		// Skip fossil files
-		if(filename == "_FOSSIL_" || (!repositoryFile.isEmpty() && it->absoluteFilePath()==repositoryFile))
-			continue;
-
-		RepoFile e;
-		e.set(*it, RepoFile::TYPE_UNKNOWN, wkdir);
-		workspaceFiles.insert(e.getFilename(), e);
-	}
-
 	// Retrieve the status of files tracked by fossil
 	QStringList res;
 	if(!runFossil(QStringList() << "ls" << "-l", &res, SILENT_STATUS))
 		return;
+
+	bool scan_files = ui->actionViewUnknown->isChecked();
+
+	workspaceFiles.clear();
+	if(scan_files)
+	{
+		RecurseDirectory(all_files, wkdir, wkdir);
+
+		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
+		{
+			QString filename = it->fileName();
+
+			// Skip fossil files
+			if(filename == "_FOSSIL_" || (!repositoryFile.isEmpty() && it->absoluteFilePath()==repositoryFile))
+				continue;
+
+			RepoFile e;
+			e.set(*it, RepoFile::TYPE_UNKNOWN, wkdir);
+			workspaceFiles.insert(e.getFilename(), e);
+		}
+	}
+
 
 	for(QStringList::iterator it=res.begin(); it!=res.end(); ++it)
 	{
@@ -404,7 +411,9 @@ void MainWindow::scanWorkspace()
 		QString fname = line.right(line.length() - 10).trimmed();
 		RepoFile::EntryType type = RepoFile::TYPE_UNKNOWN;
 
-		bool add_missing = false;
+		// Generate a RepoFile for all non-existant fossil files
+		// or for all files if we skipped scanning the workspace
+		bool add_missing = !scan_files;
 
 		if(status_text=="EDITED")
 			type = RepoFile::TYPE_EDITTED;
@@ -424,6 +433,14 @@ void MainWindow::scanWorkspace()
 			type = RepoFile::TYPE_RENAMED;
 		else if(status_text=="UNCHANGED")
 			type = RepoFile::TYPE_UNCHANGED;
+
+		// Filter unwanted file types
+		if( ((type & RepoFile::TYPE_MODIFIED) && !ui->actionViewModified->isChecked()) ||
+			((type & RepoFile::TYPE_UNCHANGED) && !ui->actionViewUnchanged->isChecked() ))
+		{
+			workspaceFiles.remove(fname);
+			continue;
+		}
 
 		filemap_t::iterator it = workspaceFiles.find(fname);
 
@@ -785,6 +802,14 @@ void MainWindow::loadSettings()
 		_size.setHeight(qsettings.value("WindowHeight").toInt());
 		resize(_size);
 	}
+
+	if(qsettings.contains("ViewUnknown"))
+		ui->actionViewUnknown->setChecked(qsettings.value("ViewUnknown").toBool());
+	if(qsettings.contains("ViewModified"))
+		ui->actionViewModified->setChecked(qsettings.value("ViewModified").toBool());
+	if(qsettings.contains("ViewUnchanged"))
+		ui->actionViewUnchanged->setChecked(qsettings.value("ViewUnchanged").toBool());
+
 }
 
 //------------------------------------------------------------------------------
@@ -812,7 +837,9 @@ void MainWindow::saveSettings()
 	qsettings.setValue("WindowY", y());
 	qsettings.setValue("WindowWidth", width());
 	qsettings.setValue("WindowHeight", height());
-
+	qsettings.setValue("ViewUnknown", ui->actionViewUnknown->isChecked());
+	qsettings.setValue("ViewModified", ui->actionViewModified->isChecked());
+	qsettings.setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
 }
 
 //------------------------------------------------------------------------------
@@ -974,7 +1001,7 @@ void MainWindow::on_actionPull_triggered()
 void MainWindow::on_actionCommit_triggered()
 {
 	QStringList modified_files;
-	getSelectionFilenames(modified_files, RepoFile::TYPE_REPO_MODIFIED, true);
+	getSelectionFilenames(modified_files, RepoFile::TYPE_MODIFIED, true);
 
 	if(modified_files.empty())
 		return;
@@ -1334,3 +1361,21 @@ void MainWindow::on_actionSyncSettings_triggered()
 	runFossil(QStringList() << "remote-url" << QuotePath(url.toString()), 0, true);
 }
 
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionViewModified_triggered()
+{
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionViewUnchanged_triggered()
+{
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionViewUnknown_triggered()
+{
+	refresh();
+}
