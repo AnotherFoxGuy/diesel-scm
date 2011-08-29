@@ -946,7 +946,7 @@ void MainWindow::on_actionTimeline_triggered()
 
 	Q_ASSERT(uiRunning());
 
-	QDesktopServices::openUrl(QUrl("http://localhost:8080/timeline"));
+	QDesktopServices::openUrl(QUrl("http://127.0.0.1:8080/timeline"));
 }
 
 //------------------------------------------------------------------------------
