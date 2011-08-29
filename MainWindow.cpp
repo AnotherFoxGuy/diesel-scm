@@ -205,7 +205,7 @@ void MainWindow::setCurrentWorkspace(const QString &workspace)
 	addWorkspace(new_workspace);
 
 	if(!QDir::setCurrent(new_workspace))
-		QMessageBox::critical(this, tr("Error"), tr("Could not change current diectory"), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("Could not change current diectory to ")+new_workspace, QMessageBox::Ok );
 }
 
 //------------------------------------------------------------------------------
@@ -757,8 +757,12 @@ void MainWindow::loadSettings()
 	{
 		qsettings.setArrayIndex(i);
 		QString wk = qsettings.value("Path").toString();
-		if(!wk.isEmpty())
-			addWorkspace(wk);
+
+		// Skip invalid workspaces
+		if(wk.isEmpty() || !QDir(wk).exists())
+			continue;
+
+		addWorkspace(wk);
 
 		if(qsettings.contains("Active") && qsettings.value("Active").toBool())
 			setCurrentWorkspace(wk);
