@@ -748,16 +748,20 @@ QString MainWindow::getFossilPath()
 {
 	// Use the user-specified fossil if available
 	if(!settings.fossilPath.isEmpty())
-		return settings.fossilPath;
+        return QDir::toNativeSeparators(settings.fossilPath);
 
-	// Use our fossil if available
-	QString fuel_fossil = QCoreApplication::applicationDirPath() + QDir::separator() + "fossil";
+    QString fossil_exe = "fossil";
+#ifdef Q_WS_WIN32
+    fossil_exe += ".exe";
+#endif
+    // Use our fossil if available
+    QString fuel_fossil = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + fossil_exe);
 
 	if(QFile::exists(fuel_fossil))
 		return fuel_fossil;
 
 	// Otherwise assume there is a "fossil" executable in the path
-	return "fossil";
+    return fossil_exe;
 }
 //------------------------------------------------------------------------------
 void MainWindow::loadSettings()
@@ -962,7 +966,7 @@ void MainWindow::on_actionHistory_triggered()
 
 	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
 	{
-		QDesktopServices::openUrl(QUrl("http://localhost:8080/finfo?name="+*it));
+                QDesktopServices::openUrl(QUrl("http://127.0.0.1:8080/finfo?name="+*it));
 	}
 }
 
@@ -1332,7 +1336,7 @@ void MainWindow::on_actionSettings_triggered()
 			if(maps[m].value->isEmpty())
 				runFossil(QStringList() << "unset" << maps[m].command << "-global");
 			else
-				runFossil(QStringList() << "settings" << maps[m].command << *maps[m].value << "-global");
+                runFossil(QStringList() << "settings" << maps[m].command << *maps[m].value << "-global");
 		}
 	}
 

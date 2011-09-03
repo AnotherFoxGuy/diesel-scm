@@ -19,7 +19,10 @@ static QString SelectExe(QWidget *parent, const QString &description)
 	if(!QFile::exists(path))
 		return QString();
 
-return path;
+    // Quote path if it contains spaces
+    if(path.contains(' '))
+        path = '"'+path + '"';
+    return path;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
