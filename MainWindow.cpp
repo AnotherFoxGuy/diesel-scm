@@ -639,7 +639,11 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		if(fossilAbort)
 		{
 			log("\n* Terminated *\n");
-			process.terminate();
+			#ifdef Q_WS_WIN
+				fossilUI.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
+			#else
+				process.terminate();
+			#endif
 			break;
 		}
 
@@ -748,20 +752,20 @@ QString MainWindow::getFossilPath()
 {
 	// Use the user-specified fossil if available
 	if(!settings.fossilPath.isEmpty())
-        return QDir::toNativeSeparators(settings.fossilPath);
+		return QDir::toNativeSeparators(settings.fossilPath);
 
-    QString fossil_exe = "fossil";
+	QString fossil_exe = "fossil";
 #ifdef Q_WS_WIN32
-    fossil_exe += ".exe";
+	fossil_exe += ".exe";
 #endif
-    // Use our fossil if available
-    QString fuel_fossil = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + fossil_exe);
+	// Use our fossil if available
+	QString fuel_fossil = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + fossil_exe);
 
 	if(QFile::exists(fuel_fossil))
 		return fuel_fossil;
 
 	// Otherwise assume there is a "fossil" executable in the path
-    return fossil_exe;
+	return fossil_exe;
 }
 //------------------------------------------------------------------------------
 void MainWindow::loadSettings()
@@ -903,6 +907,7 @@ bool MainWindow::startUI()
 	if(uiRunning())
 		return true;
 
+	fossilUI.setParent(this);
 	fossilUI.setProcessChannelMode(QProcess::MergedChannels);
 	fossilUI.setWorkingDirectory(getCurrentWorkspace());
 
@@ -910,11 +915,37 @@ bool MainWindow::startUI()
 	QString fossil = getFossilPath();
 
 	fossilUI.start(fossil, QStringList() << "ui");
-	if(!fossilUI.waitForStarted())
+	if(!fossilUI.waitForStarted() || fossilUI.state()!=QProcess::Running)
 	{
 		log(fossil+ tr(" does not exist") +"\n");
+		ui->actionFossilUI->setChecked(false);
 		return false;
 	}
+
+#if 0
+	QString buffer;
+	while(buffer.indexOf(EOL_MARK)==-1)
+	{
+		fossilUI.waitForReadyRead(500);
+		buffer += fossilUI.readAll();
+		QCoreApplication::processEvents();
+	}
+
+	fossilUIPort.clear();
+
+	// Parse output to determine the running port
+	// "Listening for HTTP requests on TCP port 8080"
+	int idx = buffer.indexOf("TCP Port ");
+	if(idx!=-1)
+		fossilUIPort = buffer.mid(idx, 4);
+	else
+		fossilUIPort = "8080"; // Have a sensible default if we failed to parse the message
+#else
+	fossilUIPort = "8080";
+#endif
+
+
+	ui->actionFossilUI->setChecked(true);
 
 	return true;
 }
@@ -923,14 +954,20 @@ bool MainWindow::startUI()
 void MainWindow::stopUI()
 {
 	if(uiRunning())
+	{
+#ifdef Q_WS_WIN
+		fossilUI.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
+#else
 		fossilUI.terminate();
+#endif
+	}
+	ui->actionFossilUI->setChecked(false);
 }
 
-
 //------------------------------------------------------------------------------
-void MainWindow::on_actionFossilUI_toggled(bool arg1)
+void MainWindow::on_actionFossilUI_triggered()
 {
-	if(arg1)
+	if(!uiRunning())
 		startUI();
 	else
 		stopUI();
@@ -950,7 +987,7 @@ void MainWindow::on_actionTimeline_triggered()
 
 	Q_ASSERT(uiRunning());
 
-	QDesktopServices::openUrl(QUrl("http://127.0.0.1:8080/timeline"));
+	QDesktopServices::openUrl(QUrl(getFossilHttpAddress()+"/timeline"));
 }
 
 //------------------------------------------------------------------------------
@@ -966,14 +1003,14 @@ void MainWindow::on_actionHistory_triggered()
 
 	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
 	{
-                QDesktopServices::openUrl(QUrl("http://127.0.0.1:8080/finfo?name="+*it));
+				QDesktopServices::openUrl(QUrl(getFossilHttpAddress()+"/finfo?name="+*it));
 	}
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &/*index*/)
 {
-	on_actionOpenFile_triggered();
+	on_actionDiff_triggered();
 }
 
 //------------------------------------------------------------------------------
@@ -1336,7 +1373,7 @@ void MainWindow::on_actionSettings_triggered()
 			if(maps[m].value->isEmpty())
 				runFossil(QStringList() << "unset" << maps[m].command << "-global");
 			else
-                runFossil(QStringList() << "settings" << maps[m].command << *maps[m].value << "-global");
+				runFossil(QStringList() << "settings" << maps[m].command << *maps[m].value << "-global");
 		}
 	}
 
@@ -1383,3 +1420,10 @@ void MainWindow::on_actionViewUnknown_triggered()
 {
 	refresh();
 }
+
+//------------------------------------------------------------------------------
+QString MainWindow::getFossilHttpAddress()
+{
+	return "http://127.0.0.1:"+fossilUIPort;
+}
+

@@ -1,14 +1,14 @@
-C Fixed\sfossil\spath\sdetection\son\swindows\nThe\ssettings\sdialog\snow\squotes\spaths\sto\sexternal\stools\sif\sthey\scontain\sspaces\n
-D 2011-09-03T12:33:47.295
+C Fixed\sfossil\sprocess\stermination\son\sWindows\nAbstracted\sfossil\sui\surl\nAdded\s(disabled)\scode\sto\sdetect\sfossil\sui\slaunch\sport\n
+D 2011-09-03T15:03:01.556
 F CommitDialog.cpp a1fcdc94933f4e1a144224c7c70f1e067d3ee31e
 F CommitDialog.h 0550b1b652924ae54b6f6c9274cad2d4c491808a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 7d7371085c08bbacc347a1b656d0a352a234c3f9
-F MainWindow.h 21fbbabd8b827d0b49fe3d40763b71042205fc3d
-F MainWindow.ui 5d10c04ab0f19f9b38a4da0abb0b36a00ff12efc
+F MainWindow.cpp 741cb2db89baf6330d3bfe87c99fb5918b5b2516
+F MainWindow.h cb4d2ab3c3fb3ecc26c5d162358316516090a89e
+F MainWindow.ui fcce2709fd2dc332061ee72cbc5a5a17adfd0779
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
 F RepoDialog.ui be7b18199c04a3003f3c7534a616cd7441b7bb0c
@@ -173,7 +173,7 @@ F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F main.cpp 083845039c167badd57a4abf482dd3d5e77aab35
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P ee85c090a173816f1d8053a7c982ab7facfe5c8b
-R 3f3a7738535c921e5dd68fe8b5c4cc7b
+P 208e56425e61f15f00ee2bbe200de18fda7fbc07
+R b8326070b54d51ef8c16887c4286d870
 U kostas
-Z dad7dd77b03e67f817ef15852b8851a5
+Z ba35c3d1bb569a4e3dbcd9d6ff41a92f

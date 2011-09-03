@@ -118,6 +118,7 @@ private:
 	void rebuildRecent();
 	bool openWorkspace(const QString &dir);
 	QString getFossilPath();
+	QString getFossilHttpAddress();
 
 	enum RepoStatus
 	{
@@ -136,7 +137,7 @@ private slots:
 	void on_actionRefresh_triggered();
 	void on_actionOpen_triggered();
 	void on_actionDiff_triggered();
-	void on_actionFossilUI_toggled(bool arg1);
+	void on_actionFossilUI_triggered();
 	void on_actionQuit_triggered();
 	void on_actionTimeline_triggered();
 	void on_actionHistory_triggered();
@@ -171,6 +172,7 @@ private:
 	Ui::MainWindow		*ui;
 	QStandardItemModel	itemModel;
 	QProcess			fossilUI;
+	QString				fossilUIPort;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QLabel		*statusLabel;
 	bool				fossilAbort;	// FIXME: No GUI for it yet
