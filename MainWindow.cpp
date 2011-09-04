@@ -384,6 +384,9 @@ void MainWindow::scanWorkspace()
 	workspaceFiles.clear();
 	if(scan_files)
 	{
+		setStatus("Scanning Workspace...");
+		QCoreApplication::processEvents();
+
 		RecurseDirectory(all_files, wkdir, wkdir);
 
 		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
@@ -398,6 +401,7 @@ void MainWindow::scanWorkspace()
 			e.set(*it, RepoFile::TYPE_UNKNOWN, wkdir);
 			workspaceFiles.insert(e.getFilename(), e);
 		}
+		setStatus("");
 	}
 
 
