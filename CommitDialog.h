@@ -13,15 +13,16 @@ class CommitDialog : public QDialog
     Q_OBJECT
 
 public:
-	explicit CommitDialog(QWidget *parent, const QStringList &commitMsgHistory, const QStringList &files);
+	explicit CommitDialog(QWidget *parent, const QStringList &commitMsgHistory, QStringList &files);
     ~CommitDialog();
 
-	static bool run(QWidget *parent, QString &commitMsg, const QStringList &commitMsgHistory, const QStringList &files);
+	static bool run(QWidget *parent, QString &commitMsg, const QStringList &commitMsgHistory, QStringList &files);
 
 private slots:
 	void on_comboBox_activated(const QString &arg1);
-	void on_plainTextEdit_textChanged();
 	void on_listView_doubleClicked(const QModelIndex &index);
+
+	void on_listView_clicked(const QModelIndex &index);
 
 private:
     Ui::CommitDialog *ui;

@@ -3,7 +3,7 @@
 #include "ui_CommitDialog.h"
 #include "MainWindow.h" // Ugly. I know.
 
-CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory, const QStringList &files) :
+CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory, QStringList &files) :
 	QDialog(parent, Qt::Sheet),
     ui(new Ui::CommitDialog)
 {
@@ -14,8 +14,12 @@ CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory,
 	ui->listView->setModel(&itemModel);
 
 	for(QStringList::const_iterator it=files.begin(); it!=files.end(); ++it)
-		itemModel.appendRow(new QStandardItem(*it));
-
+	{
+		QStandardItem *si = new QStandardItem(*it);
+		si->setCheckable(true);
+		si->setCheckState(Qt::Checked);
+		itemModel.appendRow(si);
+	}
 
 }
 
@@ -26,17 +30,24 @@ CommitDialog::~CommitDialog()
 }
 
 //------------------------------------------------------------------------------
-bool CommitDialog::run(QWidget *parent, QString &commitMsg, const QStringList &commitMsgHistory, const QStringList &files)
+bool CommitDialog::run(QWidget *parent, QString &commitMsg, const QStringList &commitMsgHistory, QStringList &files)
 {
 	CommitDialog dlg(parent, commitMsgHistory, files);
 	int res = dlg.exec();
-	if(res==QDialog::Accepted)
+	if(res!=QDialog::Accepted)
+		return false;
+
+	files.clear();
+	for(int i=0; i<dlg.itemModel.rowCount(); ++i)
 	{
-		commitMsg = dlg.ui->plainTextEdit->toPlainText();
-		return true;
+		QStandardItem *si = dlg.itemModel.item(i);
+		if(si->checkState()!=Qt::Checked)
+			continue;
+		files.append(si->text());
 	}
 
-	return false;
+	commitMsg = dlg.ui->plainTextEdit->toPlainText();
+	return true;
 }
 
 //------------------------------------------------------------------------------
@@ -45,11 +56,6 @@ void CommitDialog::on_comboBox_activated(const QString &arg1)
 	ui->plainTextEdit->setPlainText(arg1);
 }
 
-//------------------------------------------------------------------------------
-void CommitDialog::on_plainTextEdit_textChanged()
-{
-	ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!ui->plainTextEdit->toPlainText().isEmpty());
-}
 
 //------------------------------------------------------------------------------
 void CommitDialog::on_listView_doubleClicked(const QModelIndex &index)
@@ -57,4 +63,18 @@ void CommitDialog::on_listView_doubleClicked(const QModelIndex &index)
 	QVariant data = itemModel.data(index);
 	QString filename = data.toString();
 	reinterpret_cast<MainWindow*>(parent())->diffFile(filename);
+}
+
+//------------------------------------------------------------------------------
+void CommitDialog::on_listView_clicked(const QModelIndex &)
+{
+	int num_selected = 0;
+	for(int i=0; i<itemModel.rowCount(); ++i)
+	{
+		QStandardItem *si = itemModel.item(i);
+		if(si->checkState()==Qt::Checked)
+			++num_selected;
+	}
+
+	ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(num_selected>0);
 }

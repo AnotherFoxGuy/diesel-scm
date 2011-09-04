@@ -1051,6 +1051,10 @@ void MainWindow::on_actionCommit_triggered()
 	if(!CommitDialog::run(this, msg, commitMessages, modified_files))
 		return;
 
+	// Since via the commit dialog the user can deselect all files
+	if(modified_files.empty())
+		return;
+
 	// Do commit
 	commitMessages.push_front(msg);
 	QString comment_fname;
