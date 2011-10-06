@@ -534,12 +534,9 @@ void MainWindow::scanWorkspace()
 
 	}
 
-	// Avoid expensive operations on really big datasets
-	if(num_files < 20000)
-	{
-		ui->tableView->resizeColumnsToContents();
-		ui->tableView->resizeRowsToContents();
-	}
+	ui->tableView->resizeColumnsToContents();
+	ui->tableView->resizeRowsToContents();
+
 	setEnabled(true);
 	setStatus("");
 	QApplication::restoreOverrideCursor();

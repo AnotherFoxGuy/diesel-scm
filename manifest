@@ -1,12 +1,12 @@
-C Added\sSupport\sfor\signored\sfiles\nBetter\shandling\swhen\srefreshing\sworkspaces\swith\slots\sof\sfiles\n\n
-D 2011-10-06T13:02:09.111
+C Re-Enabled\sthe\stableview\sautomatic\sresizing\seven\son\slarge\sfiles.
+D 2011-10-06T13:23:44.914
 F CommitDialog.cpp 8965e52d077c300cf1acb1b16fb2dcca5c7070f8
 F CommitDialog.h a9596d99865cf312b419d01d51334ffc916f5508
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp d4bc0072c249f758aa39e9096207f904ba8dd44c
+F MainWindow.cpp 25d3453d37711c8bb1b01d329892ef4d58d223d8
 F MainWindow.h 55f90fe948661a6b7382470f3cdc80dc592e76c4
 F MainWindow.ui d22becfdb32d4b31ed9a6e6d68dd144870d9a957
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
@@ -173,7 +173,7 @@ F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F main.cpp f67a9b5c9ca0b634b19ef08e7136032372d37f93
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 165842900a857fa07fa58f43f309b79065ecc42c
-R a1ade7274295322c9cef6524f98c75a7
+P f038928c484d177fbe86bee4cd689d8a7d1e3eeb
+R 87c1cb27999ecbec8f2fecff6de5a9b3
 U kostas
-Z 0c76a29513c846b1a1375a9cab3853ad
+Z 54962abc49bb7cb24098813749e2662b
