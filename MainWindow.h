@@ -117,8 +117,10 @@ private:
 	void addWorkspace(const QString &dir);
 	void rebuildRecent();
 	bool openWorkspace(const QString &dir);
+	void loadFossilSettings();
 	QString getFossilPath();
 	QString getFossilHttpAddress();
+	bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec);
 
 	enum RepoStatus
 	{
@@ -163,6 +165,8 @@ private slots:
 	void on_actionViewModified_triggered();
 	void on_actionViewUnknown_triggered();
 
+	void on_actionViewIgnored_triggered();
+
 private:
 	enum
 	{
@@ -187,6 +191,7 @@ private:
 	// Repo State
 	typedef QMap<QString, RepoFile> filemap_t;
 	filemap_t			workspaceFiles;
+
 };
 
 #endif // MAINWINDOW_H

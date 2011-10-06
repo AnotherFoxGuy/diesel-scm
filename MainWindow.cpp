@@ -13,6 +13,7 @@
 #include <QInputDialog>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
+#include <QDebug>
 
 #define SILENT_STATUS true
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
@@ -50,7 +51,7 @@ static QStringList QuotePaths(const QStringList &paths)
 
 //-----------------------------------------------------------------------------
 typedef QMap<QString, QString> QStringMap;
-static QStringMap MakeKeyValue(QStringList lines)
+static QStringMap MakeKeyValues(QStringList lines)
 {
 	QStringMap res;
 
@@ -290,29 +291,35 @@ void MainWindow::onOpenRecent()
 }
 
 //------------------------------------------------------------------------------
-static void RecurseDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir)
+bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec)
 {
 	QDir dir(dirPath);
 
-	QFileInfoList list = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden);
+	setStatus(dirPath);
+	QCoreApplication::processEvents();
+
+	QFileInfoList list = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
 	for (int i=0; i<list.count(); ++i)
 	{
 		QFileInfo info = list[i];
-
+		QString filename = info.fileName();
 		QString filepath = info.filePath();
+		QString rel_path = filepath;
+		rel_path.remove(baseDir+"/");
+
+		// Skip ignored files
+		if(!ignoreSpec.isEmpty() && QDir::match(ignoreSpec, rel_path))
+			continue;
+
 		if (info.isDir())
 		{
-			// recursive
-			if (info.fileName()!=".." && info.fileName()!=".")
-			{
-				RecurseDirectory(entries, filepath, baseDir);
-			}
+			if(!scanDirectory(entries, filepath, baseDir, ignoreSpec))
+				return false;
 		}
 		else
-		{
 			entries.push_back(info);
-		}
 	}
+	return true;
 }
 
 //------------------------------------------------------------------------------
@@ -355,6 +362,7 @@ bool MainWindow::refresh()
 		return true;
 	}
 
+	loadFossilSettings();
 	scanWorkspace();
 	setStatus("");
 	enableActions(true);
@@ -381,13 +389,24 @@ void MainWindow::scanWorkspace()
 
 	bool scan_files = ui->actionViewUnknown->isChecked();
 
+	setStatus(tr("Scanning Workspace..."));
+	setEnabled(false);
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
 	workspaceFiles.clear();
 	if(scan_files)
 	{
-		setStatus("Scanning Workspace...");
 		QCoreApplication::processEvents();
 
-		RecurseDirectory(all_files, wkdir, wkdir);
+		QString ignore;
+		// If we should not be showing ignored files, fill in the ignored spec
+		if(!ui->actionViewIgnored->isChecked())
+		{
+			// QDir expects multiple specs being separated by a semicolor
+			ignore = settings.ignoreGlob.replace(',',';');
+		}
+
+		scanDirectory(all_files, wkdir, wkdir, ignore);
 
 		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
 		{
@@ -401,9 +420,9 @@ void MainWindow::scanWorkspace()
 			e.set(*it, RepoFile::TYPE_UNKNOWN, wkdir);
 			workspaceFiles.insert(e.getFilename(), e);
 		}
-		setStatus("");
 	}
-
+	setStatus(tr("Updating..."));
+	QCoreApplication::processEvents();
 
 	for(QStringList::iterator it=res.begin(); it!=res.end(); ++it)
 	{
@@ -476,6 +495,9 @@ void MainWindow::scanWorkspace()
 		{	RepoFile::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
 	};
 
+	size_t num_files = workspaceFiles.size();
+	itemModel.insertRows(0, num_files);
+
 	size_t i=0;
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it, ++i)
 	{
@@ -512,8 +534,15 @@ void MainWindow::scanWorkspace()
 
 	}
 
-	ui->tableView->resizeColumnsToContents();
-	ui->tableView->resizeRowsToContents();
+	// Avoid expensive operations on really big datasets
+	if(num_files < 20000)
+	{
+		ui->tableView->resizeColumnsToContents();
+		ui->tableView->resizeRowsToContents();
+	}
+	setEnabled(true);
+	setStatus("");
+	QApplication::restoreOverrideCursor();
 }
 //------------------------------------------------------------------------------
 MainWindow::RepoStatus MainWindow::getRepoStatus()
@@ -821,6 +850,8 @@ void MainWindow::loadSettings()
 		ui->actionViewModified->setChecked(qsettings.value("ViewModified").toBool());
 	if(qsettings.contains("ViewUnchanged"))
 		ui->actionViewUnchanged->setChecked(qsettings.value("ViewUnchanged").toBool());
+	if(qsettings.contains("ViewIgnored"))
+		ui->actionViewUnchanged->setChecked(qsettings.value("ViewIgnored").toBool());
 
 }
 
@@ -852,6 +883,7 @@ void MainWindow::saveSettings()
 	qsettings.setValue("ViewUnknown", ui->actionViewUnknown->isChecked());
 	qsettings.setValue("ViewModified", ui->actionViewModified->isChecked());
 	qsettings.setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
+	qsettings.setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
 }
 
 //------------------------------------------------------------------------------
@@ -1344,47 +1376,61 @@ void MainWindow::on_actionUpdate_triggered()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionSettings_triggered()
+void MainWindow::loadFossilSettings()
 {
 	// Also retrieve the fossil global settings
 	QStringList out;
 	if(!runFossil(QStringList() << "settings", &out, true))
 		return;
 
-	QStringMap kv = MakeKeyValue(out);
-	struct { const char *command; QString *value; } maps[] =
-	{
-		{ "gdiff-command", &settings.gDiffCommand },
-		{ "gmerge-command", &settings.gMergeCommand }
-	};
+	QStringMap kv = MakeKeyValues(out);
 
-	for(size_t m=0; m<COUNTOF(maps); ++m)
+	for(Settings::mappings_t::iterator it=settings.Mappings.begin(); it!=settings.Mappings.end(); ++it)
 	{
-		if(!kv.contains(maps[m].command))
+		const QString &name = it.key();
+		if(!kv.contains(name))
 			continue;
 
-		QString value = kv[maps[m].command];
-		if(value.indexOf("(global)") != -1)
+		QString value = kv[name];
+		if(value.indexOf("(global)") != -1 || value.indexOf("(local)") != -1)
 		{
 			int i = value.indexOf(" ");
 			Q_ASSERT(i!=-1);
-			*maps[m].value =  value.mid(i).trimmed();
+			Q_ASSERT(it.value());
+			value = value.mid(i).trimmed();
+
+			// Remove quotes if any
+			if(value.length()>=2 && value.at(0)=='\"' && value.at(value.length()-1)=='\"')
+				value = value.mid(1, value.length()-2);
+
+			*it.value() = value;
 		}
 	}
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionSettings_triggered()
+{
+	loadFossilSettings();
 
 	// Run the dialog
-	if(SettingsDialog::run(this, settings))
+	if(!SettingsDialog::run(this, settings))
+		return;
+
+	// Apply settings
+	for(Settings::mappings_t::iterator it=settings.Mappings.begin(); it!=settings.Mappings.end(); ++it)
 	{
-		// Apply settings
-		for(size_t m=0; m<COUNTOF(maps); ++m)
+		const QString &name = it.key();
+		QString *value = it.value();
+		Q_ASSERT(value);
+
+		if(value->isEmpty())
+			runFossil(QStringList() << "unset" << name << "-global");
+		else
 		{
-			if(maps[m].value->isEmpty())
-				runFossil(QStringList() << "unset" << maps[m].command << "-global");
-			else
-				runFossil(QStringList() << "settings" << maps[m].command << *maps[m].value << "-global");
+			runFossil(QStringList() << "settings" << name << "\"" + *value + "\"" <<"-global");
 		}
 	}
-
 }
 
 //------------------------------------------------------------------------------
@@ -1430,8 +1476,15 @@ void MainWindow::on_actionViewUnknown_triggered()
 }
 
 //------------------------------------------------------------------------------
+void MainWindow::on_actionViewIgnored_triggered()
+{
+	refresh();
+}
+
+//------------------------------------------------------------------------------
 QString MainWindow::getFossilHttpAddress()
 {
 	return "http://127.0.0.1:"+fossilUIPort;
 }
+
 

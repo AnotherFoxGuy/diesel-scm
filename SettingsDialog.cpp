@@ -19,9 +19,6 @@ static QString SelectExe(QWidget *parent, const QString &description)
 	if(!QFile::exists(path))
 		return QString();
 
-    // Quote path if it contains spaces
-    if(path.contains(' '))
-        path = '"'+path + '"';
     return path;
 }
 
@@ -35,6 +32,7 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 	ui->lineFossilPath->setText(settings->fossilPath);
 	ui->lineGDiffCommand->setText(settings->gDiffCommand);
 	ui->lineGMergeCommand->setText(settings->gMergeCommand);
+	ui->lineIgnore->setText(settings->ignoreGlob);
 }
 
 //-----------------------------------------------------------------------------
@@ -56,6 +54,7 @@ void SettingsDialog::on_buttonBox_accepted()
 	settings->fossilPath = ui->lineFossilPath->text();
 	settings->gDiffCommand = ui->lineGDiffCommand->text();
 	settings->gMergeCommand = ui->lineGMergeCommand->text();
+	settings->ignoreGlob = ui->lineIgnore->text();
 }
 //-----------------------------------------------------------------------------
 void SettingsDialog::on_btnSelectFossil_clicked()

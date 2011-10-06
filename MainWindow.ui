@@ -116,6 +116,7 @@
     <addaction name="actionViewModified"/>
     <addaction name="actionViewUnchanged"/>
     <addaction name="actionViewUnknown"/>
+    <addaction name="actionViewIgnored"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -495,6 +496,14 @@
    </property>
    <property name="text">
     <string>Unknown</string>
+   </property>
+  </action>
+  <action name="actionViewIgnored">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Ignored</string>
    </property>
   </action>
  </widget>

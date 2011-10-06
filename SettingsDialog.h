@@ -2,6 +2,7 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
+#include <QMap>
 
 namespace Ui {
     class SettingsDialog;
@@ -12,6 +13,17 @@ struct Settings
 	QString				fossilPath;
 	QString				gDiffCommand;
 	QString				gMergeCommand;
+	QString				ignoreGlob;
+
+	typedef QMap<QString, QString *> mappings_t;
+	mappings_t	Mappings;
+
+	Settings()
+	{
+		Mappings.insert("gdiff-command", &gDiffCommand);
+		Mappings.insert("gmerge-command", &gMergeCommand);
+		Mappings.insert("ignore-glob", &ignoreGlob);
+	}
 };
 
 

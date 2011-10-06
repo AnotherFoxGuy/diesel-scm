@@ -5,11 +5,11 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 	a.setApplicationName("Fuel");
-	a.setApplicationVersion("0.9.2");
+	a.setApplicationVersion("0.9.4");
 	a.setOrganizationDomain("karanik.com");
 	a.setOrganizationName("Karanik");
 
-	// Native applications on OSX don't use menu icons
+	// Native OSX applications don't use menu icons
 	#ifdef Q_WS_MACX
 		a.setAttribute(Qt::AA_DontShowIconsInMenus);
 	#endif
