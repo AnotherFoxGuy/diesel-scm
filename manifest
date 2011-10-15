@@ -1,5 +1,5 @@
-C Re-Enabled\sthe\stableview\sautomatic\sresizing\seven\son\slarge\sfiles.
-D 2011-10-06T13:23:44.914
+C Added\sInstaller\sfor\sWin32
+D 2011-10-15T07:03:12.801
 F CommitDialog.cpp 8965e52d077c300cf1acb1b16fb2dcca5c7070f8
 F CommitDialog.h a9596d99865cf312b419d01d51334ffc916f5508
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
@@ -171,9 +171,11 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
+F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
+F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f67a9b5c9ca0b634b19ef08e7136032372d37f93
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P f038928c484d177fbe86bee4cd689d8a7d1e3eeb
-R 87c1cb27999ecbec8f2fecff6de5a9b3
+P 4e53a5ec6844f3a210ba2fbfc2185840d697b0bb
+R 62600d2edbddf7a761b84fb85d9cbf33
 U kostas
-Z 54962abc49bb7cb24098813749e2662b
+Z eb7bffb75807cc22987af216d0cd4213
