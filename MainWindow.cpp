@@ -24,14 +24,21 @@
 	QString EOL_MARK("\n");
 #endif
 
+#define PATH_SEP "/"
+
 //-----------------------------------------------------------------------------
 enum
 {
 	COLUMN_STATUS,
-	COLUMN_PATH,
 	COLUMN_FILENAME,
 	COLUMN_EXTENSION,
-	COLUMN_MODIFIED
+	COLUMN_MODIFIED,
+	COLUMN_PATH
+};
+
+enum
+{
+	REPODIRMODEL_ROLE_PATH = Qt::UserRole+1
 };
 
 //-----------------------------------------------------------------------------
@@ -128,17 +135,40 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-	ui->tableView->setModel(&itemModel);
-	itemModel.setHorizontalHeaderLabels(QStringList() << tr("S") << tr("Path") << tr("File") << tr("Ext") << tr("Modified") );
+
+	QAction *separator = new QAction(this);
+	separator->setSeparator(true);
+
+	// TableView
+	ui->tableView->setModel(&repoFileModel);
 
 	ui->tableView->addAction(ui->actionDiff);
 	ui->tableView->addAction(ui->actionHistory);
 	ui->tableView->addAction(ui->actionOpenFile);
 	ui->tableView->addAction(ui->actionOpenContaining);
+	ui->tableView->addAction(separator);
 	ui->tableView->addAction(ui->actionAdd);
-	ui->tableView->addAction(ui->actionDelete);
+	ui->tableView->addAction(ui->actionRevert);
 	ui->tableView->addAction(ui->actionRename);
+	ui->tableView->addAction(ui->actionDelete);
 
+	// TreeView
+	ui->treeView->setModel(&repoDirModel);
+	connect( ui->treeView->selectionModel(),
+		SIGNAL( selectionChanged(const QItemSelection &, const QItemSelection &) ),
+		SLOT( on_treeView_selectionChanged(const QItemSelection &, const QItemSelection &) ),
+		Qt::DirectConnection );
+
+	ui->treeView->addAction(ui->actionCommit);
+	ui->treeView->addAction(ui->actionOpenFolder);
+	ui->treeView->addAction(ui->actionAdd);
+	ui->treeView->addAction(ui->actionRevert);
+	ui->treeView->addAction(ui->actionDelete);
+	ui->treeView->addAction(separator);
+	ui->treeView->addAction(ui->actionRenameFolder);
+	ui->treeView->addAction(ui->actionOpenFolder);
+
+	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
 	QList<QAction*> file_actions = ui->menuFile->actions();
 	QAction *recent_sep=0;
@@ -156,7 +186,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	{
 		recentWorkspaceActs[i] = new QAction(this);
 		recentWorkspaceActs[i]->setVisible(false);
-		connect(recentWorkspaceActs[i], SIGNAL(triggered()), this, SLOT(onOpenRecent()));
+		connect(recentWorkspaceActs[i], SIGNAL(triggered()), this, SLOT(on_openRecent()));
 		ui->menuFile->insertAction(recent_sep, recentWorkspaceActs[i]);
 	}
 
@@ -172,6 +202,8 @@ MainWindow::MainWindow(QWidget *parent) :
 		a->setIconVisibleInMenu(false);
 #endif
 
+	viewMode = VIEWMODE_TREE;
+
 	loadSettings();
 	refresh();
 	rebuildRecent();
@@ -183,6 +215,11 @@ MainWindow::~MainWindow()
 {
 	stopUI();
 	saveSettings();
+
+	// Dispose RepoFiles
+	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
+		delete *it;
+
 	delete ui;
 }
 //-----------------------------------------------------------------------------
@@ -254,10 +291,11 @@ bool MainWindow::openWorkspace(const QString &dir)
 //------------------------------------------------------------------------------
 void MainWindow::on_actionOpen_triggered()
 {
-	QString path = QFileDialog::getExistingDirectory(this, tr("Fossil Checkout"), QDir::currentPath());
+	QString path = QFileDialog::getExistingDirectory(this, tr("Fossil Workspace"), QDir::currentPath());
 	if(!path.isNull())
 		openWorkspace(path);
 }
+
 
 //------------------------------------------------------------------------------
 void MainWindow::rebuildRecent()
@@ -279,7 +317,7 @@ void MainWindow::rebuildRecent()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::onOpenRecent()
+void MainWindow::on_openRecent()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if(!action)
@@ -305,7 +343,7 @@ bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, c
 		QString filename = info.fileName();
 		QString filepath = info.filePath();
 		QString rel_path = filepath;
-		rel_path.remove(baseDir+"/");
+		rel_path.remove(baseDir+PATH_SEP);
 
 		// Skip ignored files
 		if(!ignoreSpec.isEmpty() && QDir::match(ignoreSpec, rel_path))
@@ -351,14 +389,14 @@ bool MainWindow::refresh()
 	{
 		setStatus(tr("No checkout detected."));
 		enableActions(false);
-		itemModel.removeRows(0, itemModel.rowCount());
+		repoFileModel.removeRows(0, repoFileModel.rowCount());
 		return false;
 	}
 	else if(st==REPO_OLD_SCHEMA)
 	{
 		setStatus(tr("Old fossil schema detected. Consider running rebuild."));
 		enableActions(false);
-		itemModel.removeRows(0, itemModel.rowCount());
+		repoFileModel.removeRows(0, repoFileModel.rowCount());
 		return true;
 	}
 
@@ -393,7 +431,13 @@ void MainWindow::scanWorkspace()
 	setEnabled(false);
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
+	// Dispose RepoFiles
+	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
+		delete *it;
+
 	workspaceFiles.clear();
+	pathSet.clear();
+
 	if(scan_files)
 	{
 		QCoreApplication::processEvents();
@@ -416,17 +460,20 @@ void MainWindow::scanWorkspace()
 			if(filename == "_FOSSIL_" || (!repositoryFile.isEmpty() && it->absoluteFilePath()==repositoryFile))
 				continue;
 
-			RepoFile e;
-			e.set(*it, RepoFile::TYPE_UNKNOWN, wkdir);
-			workspaceFiles.insert(e.getFilename(), e);
+			RepoFile *rf = new RepoFile(*it, RepoFile::TYPE_UNKNOWN, wkdir);
+			workspaceFiles.insert(rf->getFilePath(), rf);
+			pathSet.insert(rf->getPath());
 		}
 	}
+
 	setStatus(tr("Updating..."));
 	QCoreApplication::processEvents();
 
-	for(QStringList::iterator it=res.begin(); it!=res.end(); ++it)
+	// Update Files and Directories
+
+	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); ++line_it)
 	{
-		QString line = (*it).trimmed();
+		QString line = (*line_it).trimmed();
 		if(line.length()==0)
 			continue;
 
@@ -467,26 +514,114 @@ void MainWindow::scanWorkspace()
 
 		filemap_t::iterator it = workspaceFiles.find(fname);
 
+		RepoFile *rf = 0;
 		if(add_missing && it==workspaceFiles.end())
 		{
-			RepoFile e;
 			QFileInfo info(wkdir+QDir::separator()+fname);
-			e.set(info, type, wkdir);
-			workspaceFiles.insert(e.getFilename(), e);
+			rf = new RepoFile(info, type, wkdir);
+			workspaceFiles.insert(rf->getFilePath(), rf);
 		}
 
-		it = workspaceFiles.find(fname);
-		Q_ASSERT(it!=workspaceFiles.end());
+		if(!rf)
+		{
+			it = workspaceFiles.find(fname);
+			Q_ASSERT(it!=workspaceFiles.end());
+			rf = *it;
+		}
 
-		it.value().setType(type);
+		rf->setType(type);
+
+		QString path = rf->getPath();
+		pathSet.insert(path);
 	}
 
-	// Update the model
+	// Update the file item model
+	updateDirView();
+	updateFileView();
+
+	setEnabled(true);
+	setStatus("");
+	QApplication::restoreOverrideCursor();
+}
+
+//------------------------------------------------------------------------------
+static void addPathToTree(QStandardItem &root, const QString &path)
+{
+	QStringList dirs = path.split('/');
+	QStandardItem *parent = &root;
+
+	QString fullpath;
+	for(QStringList::iterator it = dirs.begin(); it!=dirs.end(); ++it)
+	{
+		const QString &dir = *it;
+		fullpath += dir;
+
+		// Find the child that matches this subdir
+		bool found = false;
+		for(int r=0; r<parent->rowCount(); ++r)
+		{
+			QStandardItem *child = parent->child(r, 0);
+			Q_ASSERT(child);
+			if(child->text() == dir)
+			{
+				parent = child;
+				found = true;
+			}
+		}
+
+		if(!found) // Generate it
+		{
+			QStandardItem *child = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), dir);
+			child->setData(fullpath); // keep the full path to simplify selection
+			parent->appendRow(child);
+			parent = child;
+		}
+		fullpath += '/';
+	}
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::updateDirView()
+{
+	if(viewMode == VIEWMODE_TREE)
+	{
+		// Directory View
+		repoDirModel.clear();
+		QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), projectName);
+		root->setData(""); // Empty Path
+		root->setEditable(false);
+		QString aa = root->data().toString();
+		repoDirModel.appendRow(root);
+		for(pathset_t::iterator it = pathSet.begin(); it!=pathSet.end(); ++it)
+		{
+			const QString &dir = *it;
+			if(dir.isEmpty())
+				continue;
+
+			addPathToTree(*root, dir);
+		}
+		ui->treeView->expandToDepth(0);
+	}
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::updateFileView()
+{
+	// File View
 	// Clear all rows (except header)
-	itemModel.removeRows(0, itemModel.rowCount());
+	repoFileModel.clear();
+
+	QStringList header;
+	header << tr("S") << tr("File") << tr("Ext") << tr("Modified");
+
+	if(viewMode==VIEWMODE_LIST)
+		header << tr("Path");
+
+	repoFileModel.setHorizontalHeaderLabels(header);
 
 	struct { RepoFile::EntryType type; const char *tag; const char *tooltip; const char *icon; }
-	stats[] = {
+	stats[] =
+	{
 		{	RepoFile::TYPE_EDITTED, "E", "Editted", ":icons/icons/Button Blank Yellow-01.png" },
 		{	RepoFile::TYPE_UNCHANGED, "U", "Unchanged", ":icons/icons/Button Blank Green-01.png" },
 		{	RepoFile::TYPE_ADDED, "A", "Added", ":icons/icons/Button Add-01.png" },
@@ -495,13 +630,18 @@ void MainWindow::scanWorkspace()
 		{	RepoFile::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
 	};
 
-	size_t num_files = workspaceFiles.size();
-	itemModel.insertRows(0, num_files);
+	//size_t num_files = workspaceFiles.size();
+	//repoFileModel.insertRows(0, num_files);
 
-	size_t i=0;
-	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it, ++i)
+	size_t item_id=0;
+	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
 	{
-		const RepoFile &e = it.value();
+		const RepoFile &e = *it.value();
+		QString path = e.getPath();
+
+		// In Tree mode, filter all items not included in the current dir
+		if(viewMode==VIEWMODE_TREE && path != viewDir)
+			continue;
 
 		// Status Column
 		const char *tag = "?"; // Default Tag
@@ -521,26 +661,35 @@ void MainWindow::scanWorkspace()
 
 		QStandardItem *status = new QStandardItem(QIcon(status_icon), tag);
 		status->setToolTip(tooltip);
-		itemModel.setItem(i, COLUMN_STATUS, status);
+		repoFileModel.setItem(item_id, COLUMN_STATUS, status);
 
-		QString path = e.getFilename();
-		path = path.left(path.indexOf(e.getFileInfo().fileName()));
 		QFileInfo finfo = e.getFileInfo();
 
-		itemModel.setItem(i, COLUMN_PATH, new QStandardItem(path));
-		itemModel.setItem(i, COLUMN_FILENAME, new QStandardItem(e.getFilename()));
-		itemModel.setItem(i, COLUMN_EXTENSION, new QStandardItem(finfo .completeSuffix()));
-		itemModel.setItem(i, COLUMN_MODIFIED, new QStandardItem(finfo .lastModified().toString(Qt::SystemLocaleShortDate)));
+		QStandardItem *filename_item = 0;
+		if(viewMode==VIEWMODE_LIST)
+		{
+			repoFileModel.setItem(item_id, COLUMN_PATH, new QStandardItem(path));
 
+			filename_item = new QStandardItem(e.getFilePath());
+		}
+		else // In Tree mode the path is implicit so the file name is enough
+			filename_item = new QStandardItem(e.getFilename());
+
+		Q_ASSERT(filename_item);
+		// Keep the path in the user data
+		filename_item->setData(e.getFilePath());
+		repoFileModel.setItem(item_id, COLUMN_FILENAME, filename_item);
+
+		repoFileModel.setItem(item_id, COLUMN_EXTENSION, new QStandardItem(finfo .completeSuffix()));
+		repoFileModel.setItem(item_id, COLUMN_MODIFIED, new QStandardItem(finfo .lastModified().toString(Qt::SystemLocaleShortDate)));
+
+		++item_id;
 	}
 
 	ui->tableView->resizeColumnsToContents();
 	ui->tableView->resizeRowsToContents();
-
-	setEnabled(true);
-	setStatus("");
-	QApplication::restoreOverrideCursor();
 }
+
 //------------------------------------------------------------------------------
 MainWindow::RepoStatus MainWindow::getRepoStatus()
 {
@@ -653,7 +802,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	process.start(fossil, args);
 	if(!process.waitForStarted())
 	{
-		log("Could not start fossil executable '" + fossil + "''\n");
+		log(tr("Could not start fossil executable '") + fossil + "''\n");
 		return false;
 	}
 
@@ -668,7 +817,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	{
 		if(fossilAbort)
 		{
-			log("\n* Terminated *\n");
+			log("\n* "+tr("Terminated")+" *\n");
 			#ifdef Q_WS_WIN
 				fossilUI.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
 			#else
@@ -848,8 +997,9 @@ void MainWindow::loadSettings()
 	if(qsettings.contains("ViewUnchanged"))
 		ui->actionViewUnchanged->setChecked(qsettings.value("ViewUnchanged").toBool());
 	if(qsettings.contains("ViewIgnored"))
-		ui->actionViewUnchanged->setChecked(qsettings.value("ViewIgnored").toBool());
-
+		ui->actionViewIgnored->setChecked(qsettings.value("ViewIgnored").toBool());
+	if(qsettings.contains("ViewAsList"))
+		ui->actionViewAsList->setChecked(qsettings.value("ViewAsList").toBool());
 }
 
 //------------------------------------------------------------------------------
@@ -881,10 +1031,80 @@ void MainWindow::saveSettings()
 	qsettings.setValue("ViewModified", ui->actionViewModified->isChecked());
 	qsettings.setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
 	qsettings.setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
+	qsettings.setValue("ViewAsList", ui->actionViewAsList->isChecked());
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, bool allIfEmpty)
+{
+	if(QApplication::focusWidget() == ui->tableView)
+		getFileViewSelection(filenames, includeMask, allIfEmpty);
+	else if(QApplication::focusWidget() == ui->treeView)
+		getDirViewSelection(filenames, includeMask, allIfEmpty);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::getSelectionPaths(pathset_t &paths)
+{
+	// Determine the directories selected
+	QModelIndexList selection = ui->treeView->selectionModel()->selectedIndexes();
+	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
+	{
+		const QModelIndex &mi = *mi_it;
+		QVariant data = repoDirModel.data(mi, REPODIRMODEL_ROLE_PATH);
+		paths.insert(data.toString());
+	}
+}
+//------------------------------------------------------------------------------
+void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bool allIfEmpty)
+{
+	// Determine the directories selected
+	pathset_t paths;
+
+	QModelIndexList selection = ui->treeView->selectionModel()->selectedIndexes();
+	if(!(selection.empty() && allIfEmpty))
+	{
+		getSelectionPaths(paths);
+	}
+
+	// Select the actual files form the selected directories
+	for(filemap_t::iterator it=workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
+	{
+		const RepoFile &e = *(*it);
+
+		// Skip unwanted file types
+		if(!(includeMask & e.getType()))
+			continue;
+
+		bool include = true;
+
+		// If we have a limited set of paths to filter, check them
+		if(!paths.empty())
+			include = false;
+
+		for(pathset_t::iterator p_it=paths.begin(); p_it!=paths.end(); ++p_it)
+		{
+			const QString &path = *p_it;
+			// An empty path is the root folder, so it includes all files
+			// If the file's path starts with this, we include id
+			if(path.isEmpty() || e.getPath().indexOf(path)==0)
+			{
+				include = true;
+				break;
+			}
+		}
+
+		if(!include)
+			continue;
+
+		filenames.append(e.getFilePath());
+	}
+
+	qDebug() << filenames;
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, bool allIfEmpty)
 {
 	QModelIndexList selection = ui->tableView->selectionModel()->selectedIndexes();
 	if(selection.empty() && allIfEmpty)
@@ -903,11 +1123,11 @@ void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, 
 		if(mi.column()!=COLUMN_FILENAME)
 			continue;
 
-		QVariant data = itemModel.data(mi);
+		QVariant data = repoFileModel.data(mi, Qt::UserRole+1);
 		QString filename = data.toString();
 		filemap_t::iterator e_it = workspaceFiles.find(filename);
 		Q_ASSERT(e_it!=workspaceFiles.end());
-		const RepoFile &e = e_it.value();
+		const RepoFile &e = *e_it.value();
 
 		// Skip unwanted files
 		if(!(includeMask & e.getType()))
@@ -1036,7 +1256,7 @@ void MainWindow::on_actionHistory_triggered()
 
 	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
 	{
-				QDesktopServices::openUrl(QUrl(getFossilHttpAddress()+"/finfo?name="+*it));
+		QDesktopServices::openUrl(QUrl(getFossilHttpAddress()+"/finfo?name="+*it));
 	}
 }
 
@@ -1229,7 +1449,7 @@ void MainWindow::on_actionRename_triggered()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionNew_triggered()
+void MainWindow::on_actionNewRepository_triggered()
 {
 	QString filter(tr("Fossil Repositories (*.fossil)"));
 
@@ -1279,6 +1499,32 @@ void MainWindow::on_actionNew_triggered()
 		return;
 	}
 	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionOpenRepository_triggered()
+{
+#if 0
+	QString filter(tr("Fossil Repositories (*.fossil)"));
+
+	QString path = QFileDialog::getOpenFileName(
+				this,
+				tr("Fossil Repository"),
+				QDir::currentPath(),
+				filter,
+				&filter);
+
+	if(path.isEmpty())
+		return;
+
+	if(!QFile::exists(path))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Repository file does not exist."), QMessageBox::Ok );
+		return;
+	}
+
+#endif
+
 }
 
 //------------------------------------------------------------------------------
@@ -1479,9 +1725,209 @@ void MainWindow::on_actionViewIgnored_triggered()
 }
 
 //------------------------------------------------------------------------------
+void MainWindow::on_actionViewAsList_triggered()
+{
+	viewMode =  ui->actionViewAsList->isChecked() ? VIEWMODE_LIST : VIEWMODE_TREE;
+	ui->treeView->setVisible(viewMode == VIEWMODE_TREE);
+	updateFileView();
+}
+
+//------------------------------------------------------------------------------
 QString MainWindow::getFossilHttpAddress()
 {
 	return "http://127.0.0.1:"+fossilUIPort;
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_treeView_selectionChanged(const QItemSelection &selected, const QItemSelection &/*deselected*/)
+{
+	if(selected.indexes().count()!=1)
+		return;
+
+	QModelIndex index = selected.indexes().at(0);
+	viewDir = repoDirModel.data(index, REPODIRMODEL_ROLE_PATH).toString();
+	setStatus(viewDir);
+	updateFileView();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionOpenFolder_triggered()
+{
+	const QItemSelection &selection =  ui->treeView->selectionModel()->selection();
+
+	if(selection.indexes().count()!=1)
+		return;
+
+	QModelIndex index = selection.indexes().at(0);
+	QString target = repoDirModel.data(index, REPODIRMODEL_ROLE_PATH).toString();
+	target = getCurrentWorkspace() + PATH_SEP + target;
+
+	QUrl url = QUrl::fromLocalFile(target);
+	QDesktopServices::openUrl(url);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionRenameFolder_triggered()
+{
+	pathset_t paths;
+	getSelectionPaths(paths);
+
+	if(paths.size()!=1)
+		return;
+
+	QString old_path = *paths.begin();
+
+	// Root Node?
+	if(old_path.isEmpty())
+	{
+		// Cannot change the project name via command line
+		// so unsupported
+		return;
+	}
+
+	int dir_start = old_path.lastIndexOf(PATH_SEP);
+	if(dir_start==-1)
+		dir_start = 0;
+	else
+		++dir_start;
+
+	QString old_name = old_path.mid(dir_start);
+
+	bool ok = false;
+	QString new_name = QInputDialog::getText(this, tr("Rename Folder"), tr("Enter new name"), QLineEdit::Normal, old_name, &ok, Qt::Sheet);
+	if(!ok || old_name==new_name)
+		return;
+
+	const char* invalid_tokens[] = {
+		"/", "\\", "\\\\", ":", ">", "<", "*", "?", "|", "\"", ".."
+	};
+
+	for(size_t i=0; i<COUNTOF(invalid_tokens); ++i)
+	{
+		if(new_name.indexOf(invalid_tokens[i])!=-1)
+		{
+			QMessageBox::critical(this, tr("Error"), tr("Cannot rename folder.\nFolder name contains invalid characters."));
+			return;
+		}
+	}
+
+	QString new_path = old_path.left(dir_start) + new_name;
+
+	if(pathSet.contains(new_path))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Cannot rename folder.\nThis folder exists already."));
+		return;
+	}
+
+	// Collect the files to be moved
+	filelist_t files_to_move;
+	QStringList new_paths;
+	QStringList operations;
+	foreach(RepoFile *r, workspaceFiles)
+	{
+		if(r->getPath().indexOf(old_path)!=0)
+			continue;
+
+		files_to_move.append(r);
+		QString new_dir = new_path + r->getPath().mid(old_path.length());
+		new_paths.append(new_dir);
+		QString new_file_path =  new_dir + PATH_SEP + r->getFilename();
+		operations.append(r->getFilePath() + " -> " + new_file_path);
+	}
+
+	if(files_to_move.empty())
+		return;
+
+	bool move_local = false;
+	if(!FileActionDialog::run(this, tr("Rename Folder"), tr("Renaming folder '")+old_path+tr("' to '")+new_path
+							  +tr("'\nThe following files will be moved in the repository. Are you sure?"),
+							  operations,
+							  tr("Also move the workspace files"), &move_local)) {
+		return;
+	}
+
+	// Rename files in fossil
+	Q_ASSERT(files_to_move.length() == new_paths.length());
+	for(int i=0; i<files_to_move.length(); ++i)
+	{
+		RepoFile *r = files_to_move[i];
+		const QString &new_file_path = new_paths[i] + PATH_SEP + r->getFilename();
+
+		if(!runFossil(QStringList() << "mv" <<  QuotePath(r->getFilePath()) << QuotePath(new_file_path)))
+		{
+			log(tr("Move aborted due to errors\n"));
+			goto _exit;
+		}
+	}
+
+	if(!move_local)
+		goto _exit;
+
+	// First ensure that the target directories exist, and if not make them
+	for(int i=0; i<files_to_move.length(); ++i)
+	{
+		QString target_path = QDir::cleanPath(getCurrentWorkspace() + PATH_SEP + new_paths[i] + PATH_SEP);
+		QDir target(target_path);
+
+		if(target.exists())
+			continue;
+
+		QDir wkdir(getCurrentWorkspace());
+		Q_ASSERT(wkdir.exists());
+
+		log(tr("Creating folder '")+target_path+"'\n");
+		if(!wkdir.mkpath(new_paths[i] + PATH_SEP + "."))
+		{
+			QMessageBox::critical(this, tr("Error"), tr("Cannot make target folder '")+target_path+"'\n");
+			goto _exit;
+		}
+	}
+
+	// Now that target directories exist copy files
+	for(int i=0; i<files_to_move.length(); ++i)
+	{
+		RepoFile *r = files_to_move[i];
+		QString new_file_path = new_paths[i] + PATH_SEP + r->getFilename();
+
+		if(QFile::exists(new_file_path))
+		{
+			QMessageBox::critical(this, tr("Error"), tr("Target file '")+new_file_path+tr("' exists already"));
+			goto _exit;
+		}
+
+		log(tr("Copying file '")+r->getFilePath()+tr("' to '")+new_file_path+"'\n");
+
+		if(!QFile::copy(r->getFilePath(), new_file_path))
+		{
+			QMessageBox::critical(this, tr("Error"), tr("Cannot copy file '")+r->getFilePath()+tr("' to '")+new_file_path+"'");
+			goto _exit;
+		}
+	}
+
+	// Finally delete old files
+	for(int i=0; i<files_to_move.length(); ++i)
+	{
+		RepoFile *r = files_to_move[i];
+
+		log(tr("Removing old file '")+r->getFilePath()+"'\n");
+
+		if(!QFile::exists(r->getFilePath()))
+		{
+			QMessageBox::critical(this, tr("Error"), tr("Source file '")+r->getFilePath()+tr("' does not exist"));
+			goto _exit;
+		}
+
+		if(!QFile::remove(r->getFilePath()))
+		{
+			QMessageBox::critical(this, tr("Error"), tr("Cannot remove file '")+r->getFilePath()+"'");
+			goto _exit;
+		}
+	}
+
+	log(tr("Folder renamed completed. Don't forget to commit!\n"));
+
+_exit:
+	refresh();
 }
 
 

@@ -26,47 +26,84 @@
      <number>4</number>
     </property>
     <item>
-     <widget class="QSplitter" name="splitter">
+     <widget class="QSplitter" name="splitter_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QTableView" name="tableView">
+      <widget class="QSplitter" name="splitter">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>80</verstretch>
         </sizepolicy>
        </property>
-       <property name="contextMenuPolicy">
-        <enum>Qt::ActionsContextMenu</enum>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="editTriggers">
-        <set>QAbstractItemView::NoEditTriggers</set>
-       </property>
-       <property name="alternatingRowColors">
-        <bool>true</bool>
-       </property>
-       <property name="selectionBehavior">
-        <enum>QAbstractItemView::SelectRows</enum>
-       </property>
-       <property name="showGrid">
-        <bool>false</bool>
-       </property>
-       <property name="sortingEnabled">
-        <bool>true</bool>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <attribute name="horizontalHeaderMinimumSectionSize">
-        <number>20</number>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="verticalHeaderDefaultSectionSize">
-        <number>30</number>
-       </attribute>
+       <widget class="QTreeView" name="treeView">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>20</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::ActionsContextMenu</enum>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::ExtendedSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectItems</enum>
+        </property>
+        <property name="sortingEnabled">
+         <bool>true</bool>
+        </property>
+        <attribute name="headerVisible">
+         <bool>false</bool>
+        </attribute>
+       </widget>
+       <widget class="QTableView" name="tableView">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>80</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::ActionsContextMenu</enum>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="sortingEnabled">
+         <bool>true</bool>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>20</number>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderDefaultSectionSize">
+         <number>30</number>
+        </attribute>
+       </widget>
       </widget>
       <widget class="QTextBrowser" name="textBrowser">
        <property name="sizePolicy">
@@ -93,11 +130,12 @@
     <property name="title">
      <string>Workspace</string>
     </property>
-    <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="separator"/>
-    <addaction name="actionSyncSettings"/>
+    <addaction name="actionNewRepository"/>
+    <addaction name="actionOpenRepository"/>
     <addaction name="separator"/>
+    <addaction name="actionSyncSettings"/>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
@@ -117,6 +155,8 @@
     <addaction name="actionViewUnchanged"/>
     <addaction name="actionViewUnknown"/>
     <addaction name="actionViewIgnored"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewAsList"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -240,6 +280,9 @@
    <property name="toolTip">
     <string>Open a fossil checkout folder</string>
    </property>
+   <property name="statusTip">
+    <string>Open a fossil checkout folder</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
@@ -292,6 +335,9 @@
      <normaloff>:/icons/icons/Button Turn Off-01.png</normaloff>:/icons/icons/Button Turn Off-01.png</iconset>
    </property>
    <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="statusTip">
     <string>Quit</string>
    </property>
    <property name="shortcut">
@@ -379,7 +425,7 @@
     <string>Ctrl+Return</string>
    </property>
   </action>
-  <action name="actionNew">
+  <action name="actionNewRepository">
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/Book-01.png</normaloff>:/icons/icons/Book-01.png</iconset>
@@ -387,11 +433,25 @@
    <property name="text">
     <string>New Repository...</string>
    </property>
+   <property name="toolTip">
+    <string>Make a new Fossil repository</string>
+   </property>
+   <property name="statusTip">
+    <string>Make a new Fossil repository</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="actionClone">
+  <action name="actionOpenRepository">
+   <property name="text">
+    <string>Open Repository...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open Repository</string>
+   </property>
+  </action>
+  <action name="actionCloneRepository">
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/Address Book-01.png</normaloff>:/icons/icons/Address Book-01.png</iconset>
@@ -432,6 +492,9 @@
    <property name="text">
     <string>About...</string>
    </property>
+   <property name="statusTip">
+    <string>About Fuel</string>
+   </property>
   </action>
   <action name="actionUpdate">
    <property name="icon">
@@ -456,12 +519,18 @@
    <property name="toolTip">
     <string>Application Preferences</string>
    </property>
+   <property name="statusTip">
+    <string>Set application preferences</string>
+   </property>
   </action>
   <action name="actionSyncSettings">
    <property name="text">
     <string>Workspace Settings...</string>
    </property>
    <property name="toolTip">
+    <string>Set remote synchronization settings</string>
+   </property>
+   <property name="statusTip">
     <string>Set remote synchronization settings</string>
    </property>
   </action>
@@ -475,6 +544,9 @@
    <property name="text">
     <string>Modified</string>
    </property>
+   <property name="statusTip">
+    <string>Show modifed files</string>
+   </property>
   </action>
   <action name="actionViewUnchanged">
    <property name="checkable">
@@ -485,6 +557,9 @@
    </property>
    <property name="text">
     <string>Unchanged</string>
+   </property>
+   <property name="statusTip">
+    <string>Show unchanged files</string>
    </property>
   </action>
   <action name="actionViewUnknown">
@@ -497,6 +572,9 @@
    <property name="text">
     <string>Unknown</string>
    </property>
+   <property name="statusTip">
+    <string>Show unknown files</string>
+   </property>
   </action>
   <action name="actionViewIgnored">
    <property name="checkable">
@@ -505,28 +583,46 @@
    <property name="text">
     <string>Ignored</string>
    </property>
+   <property name="statusTip">
+    <string>Show ignored files</string>
+   </property>
+  </action>
+  <action name="actionViewAsList">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>View as List</string>
+   </property>
+   <property name="statusTip">
+    <string>View workspace as a list of files</string>
+   </property>
+  </action>
+  <action name="actionOpenFolder">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/My Documents-01.png</normaloff>:/icons/icons/My Documents-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open Folder</string>
+   </property>
+  </action>
+  <action name="actionRenameFolder">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Folder Open-01.png</normaloff>:/icons/icons/Folder Open-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rename Folder</string>
+   </property>
+   <property name="toolTip">
+    <string>Rename Folder</string>
+   </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
   <include location="resources.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>tableView</sender>
-   <signal>customContextMenuRequested(QPoint)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>deleteLater()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>432</x>
-     <y>278</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>432</x>
-     <y>319</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

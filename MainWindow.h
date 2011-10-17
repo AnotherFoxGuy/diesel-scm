@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QProcess>
+#include <QSet>
 #include "SettingsDialog.h"
 
 namespace Ui {
@@ -32,11 +33,17 @@ struct RepoFile
 		TYPE_ALL			= TYPE_UNKNOWN|TYPE_REPO
 	};
 
-	void set(QFileInfo &info, EntryType type, const QString &repoPath)
+	RepoFile(QFileInfo &info, EntryType type, const QString &repoPath)
 	{
 		FileInfo = info;
 		Type = type;
-		Filename = getRelativeFilename(repoPath);
+		FilePath = getRelativeFilename(repoPath);
+
+		if(FilePath.indexOf('/')!=-1)
+		{
+			Path = FilePath;
+			Path = Path.left(Path.indexOf(FileInfo.fileName())-1);
+		}
 	}
 
 	bool isType(EntryType t) const
@@ -64,9 +71,19 @@ struct RepoFile
 		return Type == TYPE_UNCHANGED || Type == TYPE_EDITTED;
 	}
 
-	const QString &getFilename() const
+	const QString &getFilePath() const
 	{
-		return Filename;
+		return FilePath;
+	}
+
+	QString getFilename() const
+	{
+		return FileInfo.fileName();
+	}
+
+	const QString &getPath() const
+	{
+		return Path;
 	}
 
 	QString getRelativeFilename(const QString &path)
@@ -84,7 +101,8 @@ struct RepoFile
 private:
 	QFileInfo	FileInfo;
 	EntryType	Type;
-	QString		Filename;
+	QString		FilePath;
+	QString		Path;
 };
 
 
@@ -99,6 +117,9 @@ public:
 	bool diffFile(QString repoFile);
 
 private:
+	typedef QSet<QString> pathset_t;
+
+private:
 	bool refresh();
 	void scanWorkspace();
 	bool runFossil(const QStringList &args, QStringList *output=0, bool silent=false, bool detached=false);
@@ -111,6 +132,9 @@ private:
 	void setStatus(const QString &text);
 	bool uiRunning() const { return fossilUI.state() == QProcess::Running; }
 	void getSelectionFilenames(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
+	void getFileViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
+	void getDirViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
+	void getSelectionPaths(pathset_t &paths);
 	bool startUI();
 	void stopUI();
 	void enableActions(bool on);
@@ -121,6 +145,8 @@ private:
 	QString getFossilPath();
 	QString getFossilHttpAddress();
 	bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec);
+	void updateDirView();
+	void updateFileView();
 
 	enum RepoStatus
 	{
@@ -131,9 +157,16 @@ private:
 
 	RepoStatus getRepoStatus();
 
+	enum ViewMode
+	{
+		VIEWMODE_LIST,
+		VIEWMODE_TREE
+	};
+
 private slots:
 	// Manual slots
-	void onOpenRecent();
+	void on_openRecent();
+	void on_treeView_selectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
 
 	// Designer slots
 	void on_actionRefresh_triggered();
@@ -152,7 +185,6 @@ private slots:
 	void on_actionAdd_triggered();
 	void on_actionDelete_triggered();
 	void on_actionRevert_triggered();
-	void on_actionNew_triggered();
 	void on_actionClone_triggered();
 	void on_actionOpenContaining_triggered();
 	void on_actionRename_triggered();
@@ -164,8 +196,12 @@ private slots:
 	void on_actionViewUnchanged_triggered();
 	void on_actionViewModified_triggered();
 	void on_actionViewUnknown_triggered();
-
 	void on_actionViewIgnored_triggered();
+	void on_actionViewAsList_triggered();
+	void on_actionOpenFolder_triggered();
+	void on_actionRenameFolder_triggered();
+	void on_actionOpenRepository_triggered();
+	void on_actionNewRepository_triggered();
 
 private:
 	enum
@@ -174,7 +210,8 @@ private:
 	};
 
 	Ui::MainWindow		*ui;
-	QStandardItemModel	itemModel;
+	QStandardItemModel	repoFileModel;
+	QStandardItemModel	repoDirModel;
 	QProcess			fossilUI;
 	QString				fossilUIPort;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
@@ -187,11 +224,14 @@ private:
 	QStringList			workspaceHistory;
 	QString				currentWorkspace;
 	QStringList			commitMessages;
+	ViewMode			viewMode;
+	QString				viewDir;	// The directory selected in the tree
 
 	// Repo State
-	typedef QMap<QString, RepoFile> filemap_t;
+	typedef QList<RepoFile*> filelist_t;
+	typedef QMap<QString, RepoFile*> filemap_t;
 	filemap_t			workspaceFiles;
-
+	pathset_t			pathSet;
 };
 
 #endif // MAINWINDOW_H
