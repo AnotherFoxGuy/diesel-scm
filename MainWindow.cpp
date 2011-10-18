@@ -270,9 +270,50 @@ void MainWindow::on_actionRefresh_triggered()
 }
 
 //------------------------------------------------------------------------------
-bool MainWindow::openWorkspace(const QString &dir)
+// Open a fossil file or workspace path. If no checkout is detected offer to
+// open the fossil file.
+bool MainWindow::openWorkspace(const QString &path)
 {
-	setCurrentWorkspace(dir);
+	QFileInfo fi(path);
+	QString wkspace = path;
+
+	if(fi.isFile())
+	{
+		wkspace = fi.absoluteDir().absolutePath();
+		QString metadata_file = wkspace + PATH_SEP + "_FOSSIL_";
+
+		if(!QFileInfo(metadata_file).exists())
+		{
+			if(ANSWER_YES !=DialogQuery(this, tr("Open Fossil"), "No workspace found.\nWould you like to make one here?"))
+				return false;
+			
+			// Ok open the fossil
+			setCurrentWorkspace(wkspace);
+			if(!QDir::setCurrent(wkspace))
+			{
+				QMessageBox::critical(this, tr("Error"), tr("Could not change current directory"), QMessageBox::Ok );
+				return false;
+			}
+
+			repositoryFile = fi.absoluteFilePath();
+			
+			if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile), 0, false))
+			{
+				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
+				return false;
+			}
+		}
+		else
+		{
+			Q_ASSERT(QDir(wkspace).exists());
+			setCurrentWorkspace(wkspace);
+		}
+	}
+	else
+	{
+		Q_ASSERT(QDir(wkspace).exists());
+		setCurrentWorkspace(wkspace);
+	}
 
 	on_actionClearLog_triggered();
 	stopUI();
@@ -281,7 +322,7 @@ bool MainWindow::openWorkspace(const QString &dir)
 	if(!refresh())
 	{
 		setCurrentWorkspace("");
-		workspaceHistory.removeAll(dir);
+		workspaceHistory.removeAll(path);
 		rebuildRecent();
 		return false;
 	}
@@ -289,13 +330,102 @@ bool MainWindow::openWorkspace(const QString &dir)
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionOpen_triggered()
+void MainWindow::on_actionOpenRepository_triggered()
 {
-	QString path = QFileDialog::getExistingDirectory(this, tr("Fossil Workspace"), QDir::currentPath());
-	if(!path.isNull())
-		openWorkspace(path);
+	QString filter(tr("Fossil Repositories (*.fossil)"));
+
+	QString path = QFileDialog::getOpenFileName(
+		this,
+		tr("Fossil Repository"),
+		QDir::currentPath(),
+		filter,
+		&filter);
+
+	if(path.isEmpty())
+		return;
+
+	openWorkspace(path);
+}
+//------------------------------------------------------------------------------
+void MainWindow::on_actionNewRepository_triggered()
+{
+	QString filter(tr("Fossil Repositories (*.fossil)"));
+
+	QString path = QFileDialog::getSaveFileName(
+		this,
+		tr("New Fossil Repository"),
+		QDir::currentPath(),
+		filter,
+		&filter);
+
+	if(path.isEmpty())
+		return;
+
+	if(QFile::exists(path))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("A repository file already exists.\nRepository creation aborted."), QMessageBox::Ok );
+		return;
+	}
+	stopUI();
+
+	on_actionClearLog_triggered();
+
+	QFileInfo path_info(path);
+	Q_ASSERT(path_info.dir().exists());
+	QString wkdir = path_info.absoluteDir().absolutePath();
+
+	setCurrentWorkspace(wkdir);
+	if(!QDir::setCurrent(wkdir))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not change current directory"), QMessageBox::Ok );
+		return;
+	}
+
+	repositoryFile = path_info.absoluteFilePath();
+
+	// Create repo
+	if(!runFossil(QStringList() << "new" << QuotePath(repositoryFile), 0, false))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
+		return;
+	}
+
+	// Open repo
+	if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile), 0, false))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
+		return;
+	}
+	refresh();
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::on_actionCloseRepository_triggered()
+{
+	if(getRepoStatus()!=REPO_OK)
+		return;
+
+	if(ANSWER_YES !=DialogQuery(this, tr("Close Workspace"), "Are you sure want to close this workspace?"))
+		return;
+	
+	// Close Repo
+	if(!runFossil(QStringList() << "close", 0, false))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes in available?"), QMessageBox::Ok );
+		return;
+	}
+
+	stopUI();
+	setCurrentWorkspace("");
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionClone_triggered()
+{
+	// FIXME: Implement this
+	stopUI();
+}
 
 //------------------------------------------------------------------------------
 void MainWindow::rebuildRecent()
@@ -307,7 +437,7 @@ void MainWindow::rebuildRecent()
 
 	for(int i = 0; i < enabled_acts; ++i)
 	{
-		QString text = tr("&%1 %2").arg(i + 1).arg(workspaceHistory[i]);
+		QString text = tr("&%1 %2").arg(i + 1).arg(QDir::toNativeSeparators(workspaceHistory[i]));
 
 		recentWorkspaceActs[i]->setText(text);
 		recentWorkspaceActs[i]->setData(workspaceHistory[i]);
@@ -378,6 +508,8 @@ void MainWindow::enableActions(bool on)
 	ui->actionOpenContaining->setEnabled(on);
 	ui->actionUndo->setEnabled(on);
 	ui->actionUpdate->setEnabled(on);
+	ui->actionOpenFolder->setEnabled(on);
+	ui->actionRenameFolder->setEnabled(on);
 }
 //------------------------------------------------------------------------------
 bool MainWindow::refresh()
@@ -387,9 +519,10 @@ bool MainWindow::refresh()
 
 	if(st==REPO_NOT_FOUND)
 	{
-		setStatus(tr("No checkout detected."));
+		setStatus(tr("No workspace detected."));
 		enableActions(false);
 		repoFileModel.removeRows(0, repoFileModel.rowCount());
+		repoDirModel.clear();
 		return false;
 	}
 	else if(st==REPO_OLD_SCHEMA)
@@ -397,6 +530,7 @@ bool MainWindow::refresh()
 		setStatus(tr("Old fossil schema detected. Consider running rebuild."));
 		enableActions(false);
 		repoFileModel.removeRows(0, repoFileModel.rowCount());
+		repoDirModel.clear();
 		return true;
 	}
 
@@ -629,9 +763,6 @@ void MainWindow::updateFileView()
 		{	RepoFile::TYPE_RENAMED, "R", "Renamed", ":icons/icons/Button Reload-01.png" },
 		{	RepoFile::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
 	};
-
-	//size_t num_files = workspaceFiles.size();
-	//repoFileModel.insertRows(0, num_files);
 
 	size_t item_id=0;
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
@@ -1448,91 +1579,7 @@ void MainWindow::on_actionRename_triggered()
 	refresh();
 }
 
-//------------------------------------------------------------------------------
-void MainWindow::on_actionNewRepository_triggered()
-{
-	QString filter(tr("Fossil Repositories (*.fossil)"));
 
-	QString path = QFileDialog::getSaveFileName(
-				this,
-				tr("New Fossil Repository"),
-				QDir::currentPath(),
-				filter,
-				&filter);
-
-	if(path.isEmpty())
-		return;
-
-	if(QFile::exists(path))
-	{
-		QMessageBox::critical(this, tr("Error"), tr("A repository file already exists.\nRepository creation aborted."), QMessageBox::Ok );
-		return;
-	}
-	stopUI();
-
-	on_actionClearLog_triggered();
-
-	QFileInfo path_info(path);
-	Q_ASSERT(path_info.dir().exists());
-	QString wkdir = path_info.absoluteDir().absolutePath();
-
-	setCurrentWorkspace(wkdir);
-	if(!QDir::setCurrent(wkdir))
-	{
-		QMessageBox::critical(this, tr("Error"), tr("Could not change current diectory"), QMessageBox::Ok );
-		return;
-	}
-
-	repositoryFile = path_info.absoluteFilePath();
-
-	// Create repo
-	if(!runFossil(QStringList() << "new" << QuotePath(repositoryFile), 0, false))
-	{
-		QMessageBox::critical(this, tr("Error"), tr("Repository creation failed."), QMessageBox::Ok );
-		return;
-	}
-
-	// Open repo
-	if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile), 0, false))
-	{
-		QMessageBox::critical(this, tr("Error"), tr("Repository checkout failed."), QMessageBox::Ok );
-		return;
-	}
-	refresh();
-}
-
-//------------------------------------------------------------------------------
-void MainWindow::on_actionOpenRepository_triggered()
-{
-#if 0
-	QString filter(tr("Fossil Repositories (*.fossil)"));
-
-	QString path = QFileDialog::getOpenFileName(
-				this,
-				tr("Fossil Repository"),
-				QDir::currentPath(),
-				filter,
-				&filter);
-
-	if(path.isEmpty())
-		return;
-
-	if(!QFile::exists(path))
-	{
-		QMessageBox::critical(this, tr("Error"), tr("Repository file does not exist."), QMessageBox::Ok );
-		return;
-	}
-
-#endif
-
-}
-
-//------------------------------------------------------------------------------
-void MainWindow::on_actionClone_triggered()
-{
-	// FIXME: Implement this
-	stopUI();
-}
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionOpenContaining_triggered()
@@ -1670,9 +1717,7 @@ void MainWindow::on_actionSettings_triggered()
 		if(value->isEmpty())
 			runFossil(QStringList() << "unset" << name << "-global");
 		else
-		{
 			runFossil(QStringList() << "settings" << name << "\"" + *value + "\"" <<"-global");
-		}
 	}
 }
 

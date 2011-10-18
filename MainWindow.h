@@ -140,7 +140,7 @@ private:
 	void enableActions(bool on);
 	void addWorkspace(const QString &dir);
 	void rebuildRecent();
-	bool openWorkspace(const QString &dir);
+	bool openWorkspace(const QString &path);
 	void loadFossilSettings();
 	QString getFossilPath();
 	QString getFossilHttpAddress();
@@ -170,7 +170,7 @@ private slots:
 
 	// Designer slots
 	void on_actionRefresh_triggered();
-	void on_actionOpen_triggered();
+
 	void on_actionDiff_triggered();
 	void on_actionFossilUI_triggered();
 	void on_actionQuit_triggered();
@@ -200,8 +200,9 @@ private slots:
 	void on_actionViewAsList_triggered();
 	void on_actionOpenFolder_triggered();
 	void on_actionRenameFolder_triggered();
-	void on_actionOpenRepository_triggered();
 	void on_actionNewRepository_triggered();
+	void on_actionOpenRepository_triggered();
+	void on_actionCloseRepository_triggered();
 
 private:
 	enum

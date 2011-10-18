@@ -1,14 +1,14 @@
-C Added\sWorkspace\sTree\sview\nAdded\sRename\sFolder\saction\nMinor\sGUI\scleanups\n
-D 2011-10-17T14:58:09.384
+C Reorganized\sthe\smenus.\nRemoved\sdistinction\sbetween\srepositories\sand\sworkspaces\nOpen\sWorkspace\saction\smaps\sto\sFile|Open\nOpen\sWorkspace\snow\salso\s"opens"\sthe\sfossil\srepo\sif\sno\sworkspace\sis\sdetected\nAdded\s"Close\sRepo"\saction\s(File|Close)
+D 2011-10-18T12:35:37.610
 F CommitDialog.cpp 8965e52d077c300cf1acb1b16fb2dcca5c7070f8
 F CommitDialog.h a9596d99865cf312b419d01d51334ffc916f5508
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 1ca79369fdb5cbe87dcc38d3f2aebd8a007d64f0
-F MainWindow.h 6fdcb10c8a6da760c83dd05f1d07b69132ba3d4c
-F MainWindow.ui 82a3d869e043314a0c9a4c0821de2469d565b782
+F MainWindow.cpp 1d32a9a2a76833f7d16a6507ca97b7169eb1dd09
+F MainWindow.h 43030bed3c400aea93e988ad437ca783db7e2aa2
+F MainWindow.ui 868c2ab8910467cfb410f3e140d997b57fc7d425
 F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
 F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
 F RepoDialog.ui be7b18199c04a3003f3c7534a616cd7441b7bb0c
@@ -175,7 +175,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f67a9b5c9ca0b634b19ef08e7136032372d37f93
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P a29a3fd0f7f4c26591e1ca168ad63f1f7530edbe
-R 4d693a61ebb632ca6600c2150bca11d5
+P 5fc925ac68148c69db66e88e23be196807ffec22
+R dd14deeace107d9d603384c1b8303b02
 U kostas
-Z a4c724920b064e72a32c87376626c0ab
+Z c13eaf4b3637295f43452645e51a80da

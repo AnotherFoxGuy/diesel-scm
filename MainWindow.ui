@@ -128,12 +128,11 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>Workspace</string>
+     <string>File</string>
     </property>
-    <addaction name="actionOpen"/>
-    <addaction name="separator"/>
     <addaction name="actionNewRepository"/>
     <addaction name="actionOpenRepository"/>
+    <addaction name="actionCloseRepository"/>
     <addaction name="separator"/>
     <addaction name="actionSyncSettings"/>
     <addaction name="actionSettings"/>
@@ -269,25 +268,57 @@
     <string>Ctrl+-</string>
    </property>
   </action>
-  <action name="actionOpen">
+  <action name="actionNewRepository">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Document Blank-01.png</normaloff>:/icons/icons/Document Blank-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>New...</string>
+   </property>
+   <property name="toolTip">
+    <string>Make a new Fossil repository</string>
+   </property>
+   <property name="statusTip">
+    <string>Make a new Fossil repository</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpenRepository">
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/My Documents-01.png</normaloff>:/icons/icons/My Documents-01.png</iconset>
    </property>
    <property name="text">
-    <string>Open Workspace...</string>
+    <string>Open...</string>
    </property>
    <property name="toolTip">
-    <string>Open a fossil checkout folder</string>
+    <string>Open a Fossil repository or workspace folder</string>
    </property>
    <property name="statusTip">
-    <string>Open a fossil checkout folder</string>
+    <string>Open a Fossil repository or workspace folder</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
    <property name="iconVisibleInMenu">
     <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionCloseRepository">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionCloneRepository">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/Address Book-01.png</normaloff>:/icons/icons/Address Book-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clone Repository...</string>
    </property>
   </action>
   <action name="actionPush">
@@ -425,41 +456,6 @@
     <string>Ctrl+Return</string>
    </property>
   </action>
-  <action name="actionNewRepository">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Book-01.png</normaloff>:/icons/icons/Book-01.png</iconset>
-   </property>
-   <property name="text">
-    <string>New Repository...</string>
-   </property>
-   <property name="toolTip">
-    <string>Make a new Fossil repository</string>
-   </property>
-   <property name="statusTip">
-    <string>Make a new Fossil repository</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
-   </property>
-  </action>
-  <action name="actionOpenRepository">
-   <property name="text">
-    <string>Open Repository...</string>
-   </property>
-   <property name="toolTip">
-    <string>Open Repository</string>
-   </property>
-  </action>
-  <action name="actionCloneRepository">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Address Book-01.png</normaloff>:/icons/icons/Address Book-01.png</iconset>
-   </property>
-   <property name="text">
-    <string>Clone Repository...</string>
-   </property>
-  </action>
   <action name="actionOpenContaining">
    <property name="icon">
     <iconset resource="resources.qrc">
@@ -525,7 +521,7 @@
   </action>
   <action name="actionSyncSettings">
    <property name="text">
-    <string>Workspace Settings...</string>
+    <string>Fossil Settings...</string>
    </property>
    <property name="toolTip">
     <string>Set remote synchronization settings</string>
