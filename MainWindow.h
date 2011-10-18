@@ -17,6 +17,9 @@ namespace Ui {
 
 class QStringList;
 
+//////////////////////////////////////////////////////////////////////////
+// RepoFile
+//////////////////////////////////////////////////////////////////////////
 struct RepoFile
 {
 	enum EntryType
@@ -107,6 +110,9 @@ private:
 
 
 
+//////////////////////////////////////////////////////////////////////////
+// MainWindow
+//////////////////////////////////////////////////////////////////////////
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -117,7 +123,7 @@ public:
 	bool diffFile(QString repoFile);
 
 private:
-	typedef QSet<QString> pathset_t;
+	typedef QSet<QString> stringset_t;
 
 private:
 	bool refresh();
@@ -134,7 +140,7 @@ private:
 	void getSelectionFilenames(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
 	void getFileViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
 	void getDirViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
-	void getSelectionPaths(pathset_t &paths);
+	void getSelectionPaths(stringset_t &paths);
 	bool startUI();
 	void stopUI();
 	void enableActions(bool on);
@@ -170,7 +176,6 @@ private slots:
 
 	// Designer slots
 	void on_actionRefresh_triggered();
-
 	void on_actionDiff_triggered();
 	void on_actionFossilUI_triggered();
 	void on_actionQuit_triggered();
@@ -226,13 +231,13 @@ private:
 	QString				currentWorkspace;
 	QStringList			commitMessages;
 	ViewMode			viewMode;
-	QString				viewDir;	// The directory selected in the tree
+	stringset_t			selectedDirs;	// The directory selected in the tree
 
 	// Repo State
 	typedef QList<RepoFile*> filelist_t;
 	typedef QMap<QString, RepoFile*> filemap_t;
 	filemap_t			workspaceFiles;
-	pathset_t			pathSet;
+	stringset_t			pathSet;
 };
 
 #endif // MAINWINDOW_H

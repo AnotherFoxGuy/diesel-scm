@@ -717,25 +717,26 @@ static void addPathToTree(QStandardItem &root, const QString &path)
 //------------------------------------------------------------------------------
 void MainWindow::updateDirView()
 {
-	if(viewMode == VIEWMODE_TREE)
-	{
-		// Directory View
-		repoDirModel.clear();
-		QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), projectName);
-		root->setData(""); // Empty Path
-		root->setEditable(false);
-		QString aa = root->data().toString();
-		repoDirModel.appendRow(root);
-		for(pathset_t::iterator it = pathSet.begin(); it!=pathSet.end(); ++it)
-		{
-			const QString &dir = *it;
-			if(dir.isEmpty())
-				continue;
+	if(viewMode != VIEWMODE_TREE)
+		return;
 
-			addPathToTree(*root, dir);
-		}
-		ui->treeView->expandToDepth(0);
+	// Directory View
+	repoDirModel.clear();
+	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), projectName);
+	root->setData(""); // Empty Path
+	root->setEditable(false);
+	QString aa = root->data().toString();
+	repoDirModel.appendRow(root);
+	for(stringset_t::iterator it = pathSet.begin(); it!=pathSet.end(); ++it)
+	{
+		const QString &dir = *it;
+		if(dir.isEmpty())
+			continue;
+
+		addPathToTree(*root, dir);
 	}
+	ui->treeView->expandToDepth(0);
+	ui->treeView->sortByColumn(0, Qt::AscendingOrder);
 }
 
 //------------------------------------------------------------------------------
@@ -748,7 +749,9 @@ void MainWindow::updateFileView()
 	QStringList header;
 	header << tr("S") << tr("File") << tr("Ext") << tr("Modified");
 
-	if(viewMode==VIEWMODE_LIST)
+	bool multiple_dirs = selectedDirs.count()>1;
+
+	if(viewMode==VIEWMODE_LIST || multiple_dirs)
 		header << tr("Path");
 
 	repoFileModel.setHorizontalHeaderLabels(header);
@@ -771,7 +774,7 @@ void MainWindow::updateFileView()
 		QString path = e.getPath();
 
 		// In Tree mode, filter all items not included in the current dir
-		if(viewMode==VIEWMODE_TREE && path != viewDir)
+		if(viewMode==VIEWMODE_TREE && !selectedDirs.contains(path))
 			continue;
 
 		// Status Column
@@ -797,7 +800,7 @@ void MainWindow::updateFileView()
 		QFileInfo finfo = e.getFileInfo();
 
 		QStandardItem *filename_item = 0;
-		if(viewMode==VIEWMODE_LIST)
+		if(viewMode==VIEWMODE_LIST || multiple_dirs)
 		{
 			repoFileModel.setItem(item_id, COLUMN_PATH, new QStandardItem(path));
 
@@ -1175,7 +1178,7 @@ void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, 
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::getSelectionPaths(pathset_t &paths)
+void MainWindow::getSelectionPaths(stringset_t &paths)
 {
 	// Determine the directories selected
 	QModelIndexList selection = ui->treeView->selectionModel()->selectedIndexes();
@@ -1190,7 +1193,7 @@ void MainWindow::getSelectionPaths(pathset_t &paths)
 void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bool allIfEmpty)
 {
 	// Determine the directories selected
-	pathset_t paths;
+	stringset_t paths;
 
 	QModelIndexList selection = ui->treeView->selectionModel()->selectedIndexes();
 	if(!(selection.empty() && allIfEmpty))
@@ -1213,7 +1216,7 @@ void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bo
 		if(!paths.empty())
 			include = false;
 
-		for(pathset_t::iterator p_it=paths.begin(); p_it!=paths.end(); ++p_it)
+		for(stringset_t::iterator p_it=paths.begin(); p_it!=paths.end(); ++p_it)
 		{
 			const QString &path = *p_it;
 			// An empty path is the root folder, so it includes all files
@@ -1231,7 +1234,6 @@ void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bo
 		filenames.append(e.getFilePath());
 	}
 
-	qDebug() << filenames;
 }
 
 //------------------------------------------------------------------------------
@@ -1784,14 +1786,20 @@ QString MainWindow::getFossilHttpAddress()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_treeView_selectionChanged(const QItemSelection &selected, const QItemSelection &/*deselected*/)
+void MainWindow::on_treeView_selectionChanged(const QItemSelection &/*selected*/, const QItemSelection &/*deselected*/)
 {
-	if(selected.indexes().count()!=1)
-		return;
+	selectedDirs.clear();
 
-	QModelIndex index = selected.indexes().at(0);
-	viewDir = repoDirModel.data(index, REPODIRMODEL_ROLE_PATH).toString();
-	setStatus(viewDir);
+	QModelIndexList selection = ui->treeView->selectionModel()->selectedIndexes();
+	int num_selected = selection.count();
+
+	for(int i=0; i<num_selected; ++i)
+	{
+		QModelIndex index = selection.at(i);
+		QString dir = repoDirModel.data(index, REPODIRMODEL_ROLE_PATH).toString();
+		selectedDirs.insert(dir);
+	}
+
 	updateFileView();
 }
 
@@ -1814,7 +1822,7 @@ void MainWindow::on_actionOpenFolder_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionRenameFolder_triggered()
 {
-	pathset_t paths;
+	stringset_t paths;
 	getSelectionPaths(paths);
 
 	if(paths.size()!=1)

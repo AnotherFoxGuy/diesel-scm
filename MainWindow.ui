@@ -200,8 +200,8 @@
    <addaction name="actionDiff"/>
    <addaction name="actionHistory"/>
    <addaction name="separator"/>
-   <addaction name="actionTimeline"/>
    <addaction name="actionFossilUI"/>
+   <addaction name="actionTimeline"/>
    <addaction name="separator"/>
    <addaction name="actionOpenContaining"/>
    <addaction name="actionSettings"/>
