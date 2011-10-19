@@ -1,5 +1,5 @@
-C The\sFolder\sView\snow\sproperly\ssorts\sfolder\sentries\nMultiple\sselection\ssupport\sin\sthe\sFolder\sView.\sWhen\smultiple\sfolders\sare\sselected,\sthe\sfile\sview\sswitches\sto\sList\smode\n
-D 2011-10-18T13:21:14.225
+C Removed\sunused\sRepoDialog
+D 2011-10-19T16:24:42.452
 F CommitDialog.cpp 8965e52d077c300cf1acb1b16fb2dcca5c7070f8
 F CommitDialog.h a9596d99865cf312b419d01d51334ffc916f5508
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
@@ -9,13 +9,10 @@ F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F MainWindow.cpp 7d9f8914b3a16e3ab72e255f40b4c13f4e32cca3
 F MainWindow.h 632c5ba933ed77bf9dbe144224e1e6c16fec83e2
 F MainWindow.ui c00f9d35aaf659fafee25a5504bd23b0b2ec4eb5
-F RepoDialog.cpp 8f20e1511526973555c774350ec413dcecf51c9e
-F RepoDialog.h a958c5f98f1e6882bf41dbdd2e4df3cb89700802
-F RepoDialog.ui be7b18199c04a3003f3c7534a616cd7441b7bb0c
 F SettingsDialog.cpp 4e8d12cd19c19590c68eaa3516441d21d08f0ee6
 F SettingsDialog.h c2a7828466a5459d8c08a759f0ddf3e368357e80
 F SettingsDialog.ui 292eea79612f0daa48b67436fcf812f48ff5af54
-F fuel.pro 295944fd817518c7c2412c5e52ce5ecad11dd8f8
+F fuel.pro b304761003917ba0790be1b62d537642a7e40adb
 F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -175,7 +172,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f67a9b5c9ca0b634b19ef08e7136032372d37f93
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 1fb5f07f1b18c3d7f9cf16f54cd790294001940f
-R 0460063d9dd585b587a4d174a7da0ca4
+P a2cba45b7a250bb1ad3ba4beb3a3a98dc7566ce0
+R faf331f106f12f44e5fa947482005b9e
 U kostas
-Z 0eee338bd957dfec8c6a14b15b9a11ba
+Z c4bc02d7e2163cc0f4371f837a7d7e0f
