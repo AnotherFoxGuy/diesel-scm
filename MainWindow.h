@@ -124,12 +124,20 @@ public:
 
 private:
 	typedef QSet<QString> stringset_t;
+	enum RunFlags
+	{
+		RUNFLAGS_NONE			= 0<<0,
+		RUNGLAGS_SILENT_INPUT	= 1<<0,
+		RUNGLAGS_SILENT_OUTPUT	= 1<<1,
+		RUNGLAGS_SILENT_ALL		= RUNGLAGS_SILENT_INPUT | RUNGLAGS_SILENT_OUTPUT,
+		RUNGLAGS_DETACHED		= 1<<2
+	};
 
 private:
 	bool refresh();
 	void scanWorkspace();
-	bool runFossil(const QStringList &args, QStringList *output=0, bool silent=false, bool detached=false);
-	bool runFossilRaw(const QStringList &args, QStringList *output=0, int *exitCode=0, bool silent=false, bool detached=false);
+	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
+	bool runFossilRaw(const QStringList &args, QStringList *output=0, int *exitCode=0, int runFlags=RUNFLAGS_NONE);
 	void loadSettings();
 	void saveSettings();
 	const QString &getCurrentWorkspace();
@@ -197,7 +205,6 @@ private slots:
 	void on_actionAbout_triggered();
 	void on_actionUpdate_triggered();
 	void on_actionSettings_triggered();
-	void on_actionSyncSettings_triggered();
 	void on_actionViewUnchanged_triggered();
 	void on_actionViewModified_triggered();
 	void on_actionViewUnknown_triggered();
@@ -214,6 +221,7 @@ private:
 	{
 		MAX_RECENT=5
 	};
+
 
 	Ui::MainWindow		*ui;
 	QStandardItemModel	repoFileModel;
@@ -241,3 +249,4 @@ private:
 };
 
 #endif // MAINWINDOW_H
+

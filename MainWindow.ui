@@ -134,7 +134,6 @@
     <addaction name="actionOpenRepository"/>
     <addaction name="actionCloseRepository"/>
     <addaction name="separator"/>
-    <addaction name="actionSyncSettings"/>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
@@ -517,17 +516,6 @@
    </property>
    <property name="statusTip">
     <string>Set application preferences</string>
-   </property>
-  </action>
-  <action name="actionSyncSettings">
-   <property name="text">
-    <string>Fossil Settings...</string>
-   </property>
-   <property name="toolTip">
-    <string>Set remote synchronization settings</string>
-   </property>
-   <property name="statusTip">
-    <string>Set remote synchronization settings</string>
    </property>
   </action>
   <action name="actionViewModified">

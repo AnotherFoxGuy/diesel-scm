@@ -15,7 +15,6 @@
 #include "FileActionDialog.h"
 #include <QDebug>
 
-#define SILENT_STATUS true
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
 #ifdef QT_WS_WIN
@@ -110,6 +109,7 @@ static DialogAnswer DialogQuery(QWidget *parent, const QString &title, const QSt
 }
 
 //-----------------------------------------------------------------------------
+#if 0 // Unused
 static bool DialogQueryText(QWidget *parent, const QString &title, const QString &query, QString &text, bool isPassword=false)
 {
 	QInputDialog dlg(parent, Qt::Sheet);
@@ -128,7 +128,7 @@ static bool DialogQueryText(QWidget *parent, const QString &title, const QString
 	text = dlg.textValue();
 	return true;
 }
-
+#endif
 ///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -297,7 +297,7 @@ bool MainWindow::openWorkspace(const QString &path)
 
 			repositoryFile = fi.absoluteFilePath();
 			
-			if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile), 0, false))
+			if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile)))
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 				return false;
@@ -384,14 +384,14 @@ void MainWindow::on_actionNewRepository_triggered()
 	repositoryFile = path_info.absoluteFilePath();
 
 	// Create repo
-	if(!runFossil(QStringList() << "new" << QuotePath(repositoryFile), 0, false))
+	if(!runFossil(QStringList() << "new" << QuotePath(repositoryFile)))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
 		return;
 	}
 
 	// Open repo
-	if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile), 0, false))
+	if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile)))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 		return;
@@ -409,7 +409,7 @@ void MainWindow::on_actionCloseRepository_triggered()
 		return;
 	
 	// Close Repo
-	if(!runFossil(QStringList() << "close", 0, false))
+	if(!runFossil(QStringList() << "close"))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes in available?"), QMessageBox::Ok );
 		return;
@@ -556,7 +556,7 @@ void MainWindow::scanWorkspace()
 
 	// Retrieve the status of files tracked by fossil
 	QStringList res;
-	if(!runFossil(QStringList() << "ls" << "-l", &res, SILENT_STATUS))
+	if(!runFossil(QStringList() << "ls" << "-l", &res, RUNGLAGS_SILENT_ALL))
 		return;
 
 	bool scan_files = ui->actionViewUnknown->isChecked();
@@ -580,8 +580,8 @@ void MainWindow::scanWorkspace()
 		// If we should not be showing ignored files, fill in the ignored spec
 		if(!ui->actionViewIgnored->isChecked())
 		{
-			// QDir expects multiple specs being separated by a semicolor
-			ignore = settings.ignoreGlob.replace(',',';');
+			// QDir expects multiple specs being separated by a semicolon
+			ignore = settings.Mappings[FUEL_SETTING_IGNORE_GLOB].Value.toString().replace(',',';');
 		}
 
 		scanDirectory(all_files, wkdir, wkdir, ignore);
@@ -832,7 +832,7 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 
     // We need to determine the reason why fossil has failed
 	// so we delay processing of the exit_code
-	if(!runFossilRaw(QStringList() << "info", &res, &exit_code, SILENT_STATUS))
+	if(!runFossilRaw(QStringList() << "info", &res, &exit_code, RUNGLAGS_SILENT_ALL))
 		return REPO_NOT_FOUND;
 
 	bool run_ok = exit_code == EXIT_SUCCESS;
@@ -888,10 +888,10 @@ void MainWindow::on_actionClearLog_triggered()
 }
 
 //------------------------------------------------------------------------------
-bool MainWindow::runFossil(const QStringList &args, QStringList *output, bool silent, bool detached)
+bool MainWindow::runFossil(const QStringList &args, QStringList *output, int runFlags)
 {
 	int exit_code = EXIT_FAILURE;
-	if(!runFossilRaw(args, output, &exit_code, silent, detached))
+	if(!runFossilRaw(args, output, &exit_code, runFlags))
 		return false;
 
 	return exit_code == EXIT_SUCCESS;
@@ -913,11 +913,15 @@ static QString ParseFossilQuery(QString line)
 }
 
 //------------------------------------------------------------------------------
-// Run fossil. Returns true if execution was succesfull regardless if fossil
+// Run fossil. Returns true if execution was successful regardless if fossil
 // issued an error
-bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, bool silent, bool detached)
+bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags)
 {
-	if(!silent)
+	bool silent_input = (runFlags & RUNGLAGS_SILENT_INPUT) != 0;
+	bool silent_output = (runFlags & RUNGLAGS_SILENT_OUTPUT) != 0;
+	bool detached = (runFlags & RUNGLAGS_DETACHED) != 0;
+
+	if(!silent_input)
 		log("> fossil "+args.join(" ")+"\n");
 
 	QString wkdir = getCurrentWorkspace();
@@ -985,7 +989,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		int have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1 || last_line.toLower().indexOf("yes/no/all")!=-1;
 		bool have_query = ends_qmark && (have_yn_query || have_yna_query);
 
-		// Flush only the unneccessary part of the buffer to the log
+		// Flush only the unnecessary part of the buffer to the log
 		QStringList log_lines = buffer.left(last_line_start).split(EOL_MARK);
 		foreach(QString line, log_lines)
 		{
@@ -996,7 +1000,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			if(output)
 				output->append(line);
 
-			if(!silent)
+			if(!silent_output)
 				log(line+"\n");
 		}
 
@@ -1064,8 +1068,9 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 QString MainWindow::getFossilPath()
 {
 	// Use the user-specified fossil if available
-	if(!settings.fossilPath.isEmpty())
-		return QDir::toNativeSeparators(settings.fossilPath);
+	QString fossil_path = settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value.toString();
+	if(!fossil_path.isEmpty())
+		return QDir::toNativeSeparators(fossil_path);
 
 	QString fossil_exe = "fossil";
 #ifdef Q_WS_WIN32
@@ -1088,7 +1093,7 @@ void MainWindow::loadSettings()
 	QSettings qsettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
 
 	if(qsettings.contains("FossilPath"))
-		settings.fossilPath = qsettings.value("FossilPath").toString();
+		settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value = qsettings.value("FossilPath").toString();
 
 	int num_wks = qsettings.beginReadArray("Workspaces");
 	for(int i=0; i<num_wks; ++i)
@@ -1142,8 +1147,9 @@ void MainWindow::saveSettings()
 	QSettings qsettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
 
 	// If we have a customize fossil path, save it
-	if(!settings.fossilPath.isEmpty())
-		qsettings.setValue("FossilPath", settings.fossilPath);
+	QString fossil_path = settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value.toString();
+	if(!fossil_path .isEmpty())
+		qsettings.setValue("FossilPath", fossil_path);
 
 	qsettings.beginWriteArray("Workspaces", workspaceHistory.size());
 	for(int i=0; i<workspaceHistory.size(); ++i)
@@ -1273,7 +1279,7 @@ void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, b
 bool MainWindow::diffFile(QString repoFile)
 {
 	// Run the diff detached
-	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, false, true);
+	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, RUNGLAGS_DETACHED);
 }
 
 //------------------------------------------------------------------------------
@@ -1520,8 +1526,8 @@ void MainWindow::on_actionDelete_triggered()
 		for(int i=0; i<all_files.size(); ++i)
 		{
 			QFileInfo fi(getCurrentWorkspace() + QDir::separator() + all_files[i]);
-			Q_ASSERT(fi.exists());
-			QFile::remove(fi.filePath());
+			if(fi.exists())
+				QFile::remove(fi.filePath());
 		}
 	}
 
@@ -1630,7 +1636,7 @@ void MainWindow::on_actionAbout_triggered()
 	QString fossil_ver;
 	QStringList res;
 
-	if(runFossil(QStringList() << "version", &res, true) && res.length()==1)
+	if(runFossil(QStringList() << "version", &res, RUNGLAGS_SILENT_ALL) && res.length()==1)
 	{
 		int off = res[0].indexOf("version ");
 		if(off!=-1)
@@ -1672,7 +1678,7 @@ void MainWindow::loadFossilSettings()
 {
 	// Also retrieve the fossil global settings
 	QStringList out;
-	if(!runFossil(QStringList() << "settings", &out, true))
+	if(!runFossil(QStringList() << "settings", &out, RUNGLAGS_SILENT_ALL))
 		return;
 
 	QStringMap kv = MakeKeyValues(out);
@@ -1680,6 +1686,24 @@ void MainWindow::loadFossilSettings()
 	for(Settings::mappings_t::iterator it=settings.Mappings.begin(); it!=settings.Mappings.end(); ++it)
 	{
 		const QString &name = it.key();
+		Settings::Setting::SettingType type = it->Type;
+
+		// Internal types are handled explicitly
+		if(type == Settings::Setting::TYPE_INTERNAL)
+			continue;
+
+		// Command types we issue directly on fossil
+		if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
+		{
+			// Retrieve existing url
+			QStringList out;
+			if(runFossil(QStringList() << name, &out, RUNGLAGS_SILENT_ALL) && out.length()==1)
+				it.value().Value = out[0].trimmed();
+
+			continue;
+		}
+
+		// Otherwise it must be a fossil setting
 		if(!kv.contains(name))
 			continue;
 
@@ -1688,14 +1712,13 @@ void MainWindow::loadFossilSettings()
 		{
 			int i = value.indexOf(" ");
 			Q_ASSERT(i!=-1);
-			Q_ASSERT(it.value());
 			value = value.mid(i).trimmed();
 
 			// Remove quotes if any
 			if(value.length()>=2 && value.at(0)=='\"' && value.at(value.length()-1)=='\"')
 				value = value.mid(1, value.length()-2);
 
-			*it.value() = value;
+			it.value().Value = value;
 		}
 	}
 }
@@ -1713,39 +1736,36 @@ void MainWindow::on_actionSettings_triggered()
 	for(Settings::mappings_t::iterator it=settings.Mappings.begin(); it!=settings.Mappings.end(); ++it)
 	{
 		const QString &name = it.key();
-		QString *value = it.value();
-		Q_ASSERT(value);
+		Settings::Setting::SettingType type = it.value().Type;
+		
+		// Internal types are handled explicitly
+		if(type == Settings::Setting::TYPE_INTERNAL)
+			continue;
 
-		if(value->isEmpty())
-			runFossil(QStringList() << "unset" << name << "-global");
+		// Command types we issue directly on fossil
+		if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
+		{
+			// Run as silent to avoid displaying credentials in the log
+			runFossil(QStringList() << "remote-url" << QuotePath(it.value().Value.toString()), 0, RUNGLAGS_SILENT_INPUT);
+			continue;
+		}
+		
+		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
+
+		QString value = it.value().Value.toString();
+		QStringList params;
+
+		if(value.isEmpty())
+			params << "unset" << name;
 		else
-			runFossil(QStringList() << "settings" << name << "\"" + *value + "\"" <<"-global");
+			params << "settings" << name << "\"" + value + "\"";
+
+		if(type == Settings::Setting::TYPE_FOSSIL_GLOBAL)
+			params << "-global";
+
+		runFossil(params);
 	}
 }
-
-//------------------------------------------------------------------------------
-void MainWindow::on_actionSyncSettings_triggered()
-{
-	QString current;
-	// Retrieve existing url
-	QStringList out;
-	if(runFossil(QStringList() << "remote-url", &out, true) && out.length()==1)
-		current = out[0].trimmed();
-
-	if(!DialogQueryText(this, tr("Remote URL"), tr("Enter new remote URL:"), current))
-		return;
-
-	QUrl url(current);
-	if(!url.isValid())
-	{
-		QMessageBox::critical(this, tr("Remote URL"), tr("This URL is not valid"), QMessageBox::Ok );
-		return;
-	}
-
-	// Run as silent to avoid displaying credentials in the log
-	runFossil(QStringList() << "remote-url" << QuotePath(url.toString()), 0, true);
-}
-
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionViewModified_triggered()

@@ -3,26 +3,46 @@
 
 #include <QDialog>
 #include <QMap>
+#include <QVariant>
 
 namespace Ui {
     class SettingsDialog;
 }
 
+#define FUEL_SETTING_FOSSIL_PATH "FossilPath"
+#define FUEL_SETTING_GDIFF_CMD "gdiff-command"
+#define FUEL_SETTING_GMERGE_CMD "gmerge-command"
+#define FUEL_SETTING_IGNORE_GLOB "ignore-glob"
+#define FUEL_SETTING_REMOTE_URL "remote-url"
+
 struct Settings
 {
-	QString				fossilPath;
-	QString				gDiffCommand;
-	QString				gMergeCommand;
-	QString				ignoreGlob;
+	struct Setting
+	{
+		enum SettingType
+		{
+			TYPE_INTERNAL,
+			TYPE_FOSSIL_GLOBAL,
+			TYPE_FOSSIL_LOCAL,
+			TYPE_FOSSIL_COMMAND,
+		};
 
-	typedef QMap<QString, QString *> mappings_t;
+		Setting(QVariant value=QVariant(), SettingType type=TYPE_INTERNAL) : Value(value), Type(type)
+		{}
+		QVariant Value;
+		SettingType Type;
+	};
+
+	typedef QMap<QString, Setting> mappings_t;
 	mappings_t	Mappings;
 
 	Settings()
 	{
-		Mappings.insert("gdiff-command", &gDiffCommand);
-		Mappings.insert("gmerge-command", &gMergeCommand);
-		Mappings.insert("ignore-glob", &ignoreGlob);
+		Mappings[FUEL_SETTING_FOSSIL_PATH] = Setting();
+		Mappings[FUEL_SETTING_GDIFF_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
+		Mappings[FUEL_SETTING_GMERGE_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
+		Mappings[FUEL_SETTING_IGNORE_GLOB] = Setting("", Setting::TYPE_FOSSIL_LOCAL);
+		Mappings[FUEL_SETTING_REMOTE_URL] = Setting("off", Setting::TYPE_FOSSIL_COMMAND);
 	}
 };
 

@@ -1,17 +1,17 @@
-C Removed\sunused\sRepoDialog
-D 2011-10-19T16:24:42.452
+C Integrated\sall\sfossil/fuel\soptions\sinto\sthe\sSettings\sdialog\nrunFossil\snow\suses\sa\sbitfield\sto\scontrol\sexecution\soptions\nSettings\smanagement\snow\ssucks\sless,\s(but\sstill\senough\ssuckage\sremains)\n\n
+D 2011-10-19T16:30:12.635
 F CommitDialog.cpp 8965e52d077c300cf1acb1b16fb2dcca5c7070f8
 F CommitDialog.h a9596d99865cf312b419d01d51334ffc916f5508
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 7d9f8914b3a16e3ab72e255f40b4c13f4e32cca3
-F MainWindow.h 632c5ba933ed77bf9dbe144224e1e6c16fec83e2
-F MainWindow.ui c00f9d35aaf659fafee25a5504bd23b0b2ec4eb5
-F SettingsDialog.cpp 4e8d12cd19c19590c68eaa3516441d21d08f0ee6
-F SettingsDialog.h c2a7828466a5459d8c08a759f0ddf3e368357e80
-F SettingsDialog.ui 292eea79612f0daa48b67436fcf812f48ff5af54
+F MainWindow.cpp 35de92266b4051a687cb0cd400dc668f1890a8ce
+F MainWindow.h 793882064fc9572744f2016ed559f7b9d26632ec
+F MainWindow.ui 7f9e5cda55cffd5da8c01de7729a1806126c0d6b
+F SettingsDialog.cpp a386f03a13115b8179361344c830bcdb2c319476
+F SettingsDialog.h 079e869f60b37feac78198afe0dfd5b75eee9add
+F SettingsDialog.ui 8e5b742e889665273d11980959f390ec98dacc06
 F fuel.pro b304761003917ba0790be1b62d537642a7e40adb
 F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
@@ -172,7 +172,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f67a9b5c9ca0b634b19ef08e7136032372d37f93
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P a2cba45b7a250bb1ad3ba4beb3a3a98dc7566ce0
-R faf331f106f12f44e5fa947482005b9e
+P fb85ae054f85e81e64e9d534fe502959f7f1fa2e
+R 5776c676c29c7c55718b710700e50136
 U kostas
-Z c4bc02d7e2163cc0f4371f837a7d7e0f
+Z 50978861702a0b2ec83192ce7566f1c8

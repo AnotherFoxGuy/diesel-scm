@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>544</width>
-    <height>160</height>
+    <height>186</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -111,7 +111,17 @@
    <item row="3" column="1">
     <widget class="QLineEdit" name="lineIgnore"/>
    </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Remote Url</string>
+     </property>
+    </widget>
+   </item>
    <item row="4" column="1">
+    <widget class="QLineEdit" name="lineRemoteURL"/>
+   </item>
+   <item row="5" column="1">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -122,12 +132,14 @@
     </widget>
    </item>
   </layout>
-  <zorder>buttonBox</zorder>
   <zorder>label_2</zorder>
   <zorder>label_3</zorder>
   <zorder>label</zorder>
   <zorder>label_4</zorder>
   <zorder>lineIgnore</zorder>
+  <zorder>buttonBox</zorder>
+  <zorder>lineRemoteURL</zorder>
+  <zorder>label_5</zorder>
  </widget>
  <resources/>
  <connections>
