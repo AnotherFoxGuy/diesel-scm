@@ -1,13 +1,13 @@
-C Beautified\sthe\ssettings\sdialog\nDouble-clicking\sa\sfolder\sin\sthe\sbehaves\slike\sopen\sfolder\n
-D 2011-10-20T15:36:18.415
+C Beautified\slog\soutput\n
+D 2011-10-20T16:31:08.243
 F CommitDialog.cpp 8965e52d077c300cf1acb1b16fb2dcca5c7070f8
 F CommitDialog.h a9596d99865cf312b419d01d51334ffc916f5508
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 149a4bdf9ae5f372f3026294c311b53470119a4e
-F MainWindow.h c16460dfb72df649e5c3bd6057c46d5ceb559106
+F MainWindow.cpp 5b4503c06d65c73b8f5cc5f018e348e08b185c45
+F MainWindow.h 7ad2f4090d58127cbb3f6801cd64fb932a8d4a14
 F MainWindow.ui 7f9e5cda55cffd5da8c01de7729a1806126c0d6b
 F SettingsDialog.cpp a386f03a13115b8179361344c830bcdb2c319476
 F SettingsDialog.h 079e869f60b37feac78198afe0dfd5b75eee9add
@@ -172,7 +172,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f67a9b5c9ca0b634b19ef08e7136032372d37f93
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 91c5a65b7e4ca4801a6d7632abd7982d2063a1f3
-R b1e75a926cff0a17e96ba42e01dc5da3
+P 8a4fbbb14628b2dc53b8d46a35a3b4f43182db9c
+R 5899c275d3ebca904b12f5fa2b05e637
 U kostas
-Z df7a5182fb8be64251d47442ec7c00a8
+Z 14cb25d35a9b96e0bb97a5497ed70fbe

@@ -142,7 +142,7 @@ private:
 	void saveSettings();
 	const QString &getCurrentWorkspace();
 	void setCurrentWorkspace(const QString &workspace);
-	void log(const QString &text);
+	void log(const QString &text, bool isHTML=false);
 	void setStatus(const QString &text);
 	bool uiRunning() const { return fossilUI.state() == QProcess::Running; }
 	void getSelectionFilenames(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);

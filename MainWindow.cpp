@@ -866,9 +866,12 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 	return run_ok ? REPO_OK : REPO_NOT_FOUND;
 }
 //------------------------------------------------------------------------------
-void MainWindow::log(const QString &text)
+void MainWindow::log(const QString &text, bool isHTML)
 {
-	ui->textBrowser->insertPlainText(text);
+	if(isHTML)
+		ui->textBrowser->insertHtml(text);
+	else
+		ui->textBrowser->insertPlainText(text);
 	QTextCursor c = ui->textBrowser->textCursor();
 	c.movePosition(QTextCursor::End);
 	ui->textBrowser->setTextCursor(c);
@@ -922,7 +925,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	bool detached = (runFlags & RUNGLAGS_DETACHED) != 0;
 
 	if(!silent_input)
-		log("> fossil "+args.join(" ")+"\n");
+		log("<b>&gt; fossil "+args.join(" ")+"</b><br>", true);
 
 	QString wkdir = getCurrentWorkspace();
 
@@ -1010,6 +1013,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		// Now process any query
 		if(have_query && have_yna_query)
 		{
+			log(last_line);
 			QString query = ParseFossilQuery(last_line);
 			DialogAnswer res = DialogQuery(this, "Fossil", query, true);
 			if(res==ANSWER_YES)
@@ -1031,6 +1035,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		}
 		else if(have_query && have_yn_query)
 		{
+			log(last_line);
 			QString query = ParseFossilQuery(last_line);
 			DialogAnswer res = DialogQuery(this, "Fossil", query, false);
 
