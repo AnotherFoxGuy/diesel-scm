@@ -1832,6 +1832,12 @@ void MainWindow::on_actionOpenFolder_triggered()
 		return;
 
 	QModelIndex index = selection.indexes().at(0);
+	on_treeView_doubleClicked(index);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_treeView_doubleClicked(const QModelIndex &index)
+{
 	QString target = repoDirModel.data(index, REPODIRMODEL_ROLE_PATH).toString();
 	target = getCurrentWorkspace() + PATH_SEP + target;
 
@@ -2002,5 +2008,4 @@ void MainWindow::on_actionRenameFolder_triggered()
 _exit:
 	refresh();
 }
-
 

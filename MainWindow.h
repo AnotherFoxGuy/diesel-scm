@@ -191,6 +191,7 @@ private slots:
 	void on_actionHistory_triggered();
 	void on_actionClearLog_triggered();
 	void on_tableView_doubleClicked(const QModelIndex &index);
+	void on_treeView_doubleClicked(const QModelIndex &index);
 	void on_actionOpenFile_triggered();
 	void on_actionPush_triggered();
 	void on_actionPull_triggered();
