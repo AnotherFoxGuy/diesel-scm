@@ -30,9 +30,18 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 	settings(&_settings)
 {
 	ui->setupUi(this);
+	
+	ui->cmbDoubleClickAction->addItem(tr("Diff File"));
+	ui->cmbDoubleClickAction->addItem(tr("Open File"));
+	ui->cmbDoubleClickAction->addItem(tr("Open Containing Folder"));
+
+	// App Settings
 	ui->lineFossilPath->setText(QDir::toNativeSeparators(settings->Mappings[FUEL_SETTING_FOSSIL_PATH].Value.toString()));
 	ui->lineGDiffCommand->setText(QDir::toNativeSeparators(settings->Mappings[FUEL_SETTING_GDIFF_CMD].Value.toString()));
 	ui->lineGMergeCommand->setText(QDir::toNativeSeparators(settings->Mappings[FUEL_SETTING_GMERGE_CMD].Value.toString()));
+	ui->cmbDoubleClickAction->setCurrentIndex(settings->Mappings[FUEL_SETTING_FILE_DBLCLICK].Value.toInt());
+
+	// Repo Settings
 	ui->lineRemoteURL->setText(settings->Mappings[FUEL_SETTING_REMOTE_URL].Value.toString());
 	ui->lineIgnore->setText(settings->Mappings[FUEL_SETTING_IGNORE_GLOB].Value.toString());
 	ui->lineIgnoreCRNL->setText(settings->Mappings[FUEL_SETTING_CRNL_GLOB].Value.toString());
@@ -57,6 +66,9 @@ void SettingsDialog::on_buttonBox_accepted()
 	settings->Mappings[FUEL_SETTING_FOSSIL_PATH].Value = QDir::fromNativeSeparators(ui->lineFossilPath->text());
 	settings->Mappings[FUEL_SETTING_GDIFF_CMD].Value = QDir::fromNativeSeparators(ui->lineGDiffCommand->text());
 	settings->Mappings[FUEL_SETTING_GMERGE_CMD].Value = QDir::fromNativeSeparators(ui->lineGMergeCommand->text());
+	Q_ASSERT(ui->cmbDoubleClickAction->currentIndex()>=FILE_DLBCLICK_ACTION_DIFF && ui->cmbDoubleClickAction->currentIndex()<FILE_DLBCLICK_ACTION_MAX);
+	settings->Mappings[FUEL_SETTING_FILE_DBLCLICK].Value = ui->cmbDoubleClickAction->currentIndex();
+
 	settings->Mappings[FUEL_SETTING_REMOTE_URL].Value = ui->lineRemoteURL->text();
 	settings->Mappings[FUEL_SETTING_IGNORE_GLOB].Value = ui->lineIgnore->text();
 	settings->Mappings[FUEL_SETTING_CRNL_GLOB].Value = ui->lineIgnoreCRNL->text();

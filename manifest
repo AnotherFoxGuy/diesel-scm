@@ -1,17 +1,17 @@
-C Added\scrnl-glob\sto\ssettings\n\n
-D 2011-10-21T15:55:36.627
-F CommitDialog.cpp 1b7eff42cbf75805df61c5b7d8edf6253aeaaf15
+C Added\ssetting\sto\scustomize\sthe\sdouble-click\saction\sin\sthe\sfile\sview\n
+D 2011-10-21T17:38:02.111
+F CommitDialog.cpp bc05504be08d9ffe2b24d341a18e37035e1941b7
 F CommitDialog.h 65a7238dcdd41b578536a0b0ac2a65f2e7f23c9a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 3ece15d6215da3f74172a55ea8b223d6980dd7a1
+F MainWindow.cpp 9554c5f08dbe7bfede32dfeb5a92ab81e7c4dcb7
 F MainWindow.h 6efb750454037a2a9f7984fce46b5138ff47eac5
 F MainWindow.ui 7f9e5cda55cffd5da8c01de7729a1806126c0d6b
-F SettingsDialog.cpp 8990d8e16a1300d184d88eee52f976fe872e8f49
-F SettingsDialog.h 9a711860c4f2b491d543c2a01a904c6fb225a8d9
-F SettingsDialog.ui fb24cd91621cdd3c9dcf7de285a3fa65ea6d50a9
+F SettingsDialog.cpp b9dc5eebf3a2404f4ea8a573fc46cce19ab3d639
+F SettingsDialog.h f5da6cab4ccc82e2eb78ec835fb849c4c104d6cc
+F SettingsDialog.ui f69c68cfa6c6d30a1e017fb77f853b492b162595
 F Utils.cpp 4bd6f104d7d666bdae2bbe54e392e8372f6ca186
 F Utils.h e5ebab82b3455f2ea06d92e6b9eb18355470076c
 F fuel.pro 3dc8e31fde8137143dea0ae44a81eb6733d86168
@@ -174,7 +174,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f67a9b5c9ca0b634b19ef08e7136032372d37f93
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 6f0dadf863a147669f09e5661541e2ae6043e2a5
-R 26afbf882288a832383c0e00c91b97f6
+P 457fb31debab309e4932ca3fb8e6fe6d3c111c6c
+R 1315a42142211c8b31593a76897f6c1b
 U kostas
-Z 3328aecb6f740da2db47c3b81fc47ab1
+Z 6cc01b07abe22caec55570f6fbb0b85e

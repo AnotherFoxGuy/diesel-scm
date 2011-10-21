@@ -1057,11 +1057,14 @@ void MainWindow::loadSettings()
 	// Windows: HKEY_CURRENT_USER\Software\organizationName\Fuel
 	QSettings qsettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
 
-	if(qsettings.contains("FossilPath"))
-		settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value = qsettings.value("FossilPath").toString();
+	if(qsettings.contains(FUEL_SETTING_FOSSIL_PATH))
+		settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value = qsettings.value(FUEL_SETTING_FOSSIL_PATH);
 
 	if(qsettings.contains(FUEL_SETTING_COMMIT_MSG))
 		settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value = qsettings.value(FUEL_SETTING_COMMIT_MSG);
+
+	if(qsettings.contains(FUEL_SETTING_FILE_DBLCLICK))
+		settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value = qsettings.value(FUEL_SETTING_FILE_DBLCLICK);
 
 	int num_wks = qsettings.beginReadArray("Workspaces");
 	for(int i=0; i<num_wks; ++i)
@@ -1116,10 +1119,9 @@ void MainWindow::saveSettings()
 
 	// If we have a customize fossil path, save it
 	QString fossil_path = settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value.toString();
-	qsettings.setValue("FossilPath", fossil_path);
-
-	if(!settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value.toStringList().empty() )
-		qsettings.setValue(FUEL_SETTING_COMMIT_MSG, settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value);
+	qsettings.setValue(FUEL_SETTING_FOSSIL_PATH, fossil_path);
+	qsettings.setValue(FUEL_SETTING_COMMIT_MSG, settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value);
+	qsettings.setValue(FUEL_SETTING_FILE_DBLCLICK, settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value);
 
 	qsettings.beginWriteArray("Workspaces", workspaceHistory.size());
 	for(int i=0; i<workspaceHistory.size(); ++i)
@@ -1381,7 +1383,13 @@ void MainWindow::on_actionHistory_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &/*index*/)
 {
-	on_actionDiff_triggered();
+	int action = settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value.toInt();
+	if(action==FILE_DLBCLICK_ACTION_DIFF)
+		on_actionDiff_triggered();
+	else if(action==FILE_DLBCLICK_ACTION_OPEN)
+		on_actionOpenFile_triggered();
+	else if(action==FILE_DLBCLICK_ACTION_OPENCONTAINING)
+		on_actionOpenContaining_triggered();
 }
 
 //------------------------------------------------------------------------------
