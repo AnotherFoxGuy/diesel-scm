@@ -65,6 +65,7 @@ private slots:
 	void on_buttonBox_accepted();
 	void on_btnSelectFossilGDiff_clicked();
 	void on_btnSelectGMerge_clicked();
+	void on_btnClearMessageHistory_clicked();
 
 private:
     Ui::SettingsDialog *ui;

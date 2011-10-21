@@ -14,6 +14,7 @@
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include <QDebug>
+#include "Utils.h"
 
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
@@ -81,54 +82,7 @@ static QStringMap MakeKeyValues(QStringList lines)
 	return res;
 }
 
-///////////////////////////////////////////////////////////////////////////////
-enum DialogAnswer
-{
-	ANSWER_YES,
-	ANSWER_NO,
-	ANSWER_YESALL
-};
 
-static DialogAnswer DialogQuery(QWidget *parent, const QString &title, const QString &query, bool yesToAllButton=false)
-{
-	QMessageBox::StandardButtons buttons =  QMessageBox::Yes|QMessageBox::No;
-	if(yesToAllButton)
-		buttons |= QMessageBox::YesToAll;
-
-	QMessageBox mb(QMessageBox::Question, title, query, buttons, parent, Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::Sheet );
-	mb.setDefaultButton(QMessageBox::No);
-	mb.setWindowModality(Qt::WindowModal);
-	mb.setModal(true);
-	mb.exec();
-	int res = mb.standardButton(mb.clickedButton());
-	if(res==QDialogButtonBox::Yes)
-		return ANSWER_YES;
-	else if(res==QDialogButtonBox::YesToAll)
-		return ANSWER_YESALL;
-	return ANSWER_NO;
-}
-
-//-----------------------------------------------------------------------------
-#if 0 // Unused
-static bool DialogQueryText(QWidget *parent, const QString &title, const QString &query, QString &text, bool isPassword=false)
-{
-	QInputDialog dlg(parent, Qt::Sheet);
-	dlg.setWindowTitle(title);
-	dlg.setInputMode(QInputDialog::TextInput);
-	dlg.setWindowModality(Qt::WindowModal);
-	dlg.setModal(true);
-	dlg.setLabelText(query);
-	dlg.setTextValue(text);
-	if(isPassword)
-		dlg.setTextEchoMode(QLineEdit::Password);
-
-	if(dlg.exec() == QDialog::Rejected)
-		return false;
-
-	text = dlg.textValue();
-	return true;
-}
-#endif
 ///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

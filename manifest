@@ -1,18 +1,20 @@
-C Commit\smessage\shistory\sis\snow\ssaved\nCommit\smessage\shistory\sis\snow\saccumulated\seven\swhen\sa\scommit\sis\scancelled\n
-D 2011-10-21T14:44:36.112
+C Moved\sDialogQuery\sto\sUtils.h/.cpp\nAdded\sclear\scommit\smessage\shistory\soption\sin\ssettings\n
+D 2011-10-21T15:01:22.076
 F CommitDialog.cpp cba14155a39845b057c197b1aa7f3c747ae0c337
 F CommitDialog.h a9596d99865cf312b419d01d51334ffc916f5508
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 8fe31e4970ce925ad290b7acfff9e43b3d46658e
+F MainWindow.cpp 389c32f8df9d9061d074b74ea78cdbe18806b791
 F MainWindow.h 124c49d5313934e63d4b5028b98573d6d630357c
 F MainWindow.ui 7f9e5cda55cffd5da8c01de7729a1806126c0d6b
-F SettingsDialog.cpp a386f03a13115b8179361344c830bcdb2c319476
-F SettingsDialog.h 7e7b33f50472bfc6cf0602d9f7049a4cc939c4d8
-F SettingsDialog.ui 05bc501e63fa74ce3d285ccfdd8c94382e558f32
-F fuel.pro b304761003917ba0790be1b62d537642a7e40adb
+F SettingsDialog.cpp de1d915826398e418a94370a2a8e22333f765d8c
+F SettingsDialog.h 8306f9db6b90f3aaf85b3d21a208ea42ac9fa4be
+F SettingsDialog.ui 2a7983cc7362da5c1f7075c35dd25947763ba9ee
+F Utils.cpp 4bd6f104d7d666bdae2bbe54e392e8372f6ca186
+F Utils.h e5ebab82b3455f2ea06d92e6b9eb18355470076c
+F fuel.pro 3dc8e31fde8137143dea0ae44a81eb6733d86168
 F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -172,7 +174,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f67a9b5c9ca0b634b19ef08e7136032372d37f93
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 36ef959eec3bb9c4f84b5e0acf9cc728c14633e1
-R 0d2da0cd27a7e112be69ced3349fd31b
+P 1ff7aa3b04cec66eb7c1420713f4ee691cc3e5d5
+R ad7cdb8ffe8bc066f20333fa88ed176c
 U kostas
-Z c9a201d7448ca82afff6a014fede4d82
+Z ca9ac35232056e43d809e9d82db9fdc2

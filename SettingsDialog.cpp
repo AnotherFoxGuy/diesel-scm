@@ -1,6 +1,7 @@
 #include "SettingsDialog.h"
 #include "ui_SettingsDialog.h"
 #include <QFileDialog>
+#include "Utils.h"
 
 static QString SelectExe(QWidget *parent, const QString &description)
 {
@@ -80,4 +81,11 @@ void SettingsDialog::on_btnSelectGMerge_clicked()
 	QString path = SelectExe(this, tr("Graphical Merge application"));
 	if(!path.isEmpty())
 		ui->lineGMergeCommand->setText(QDir::toNativeSeparators(path));
+}
+
+//-----------------------------------------------------------------------------
+void SettingsDialog::on_btnClearMessageHistory_clicked()
+{
+	if(DialogQuery(this, tr("Clear Commit Message History"), tr("Are you sure want to clear the commit message history?"))==ANSWER_YES)
+		settings->Mappings[FUEL_SETTING_COMMIT_MSG].Value = QStringList();
 }

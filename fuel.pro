@@ -19,12 +19,14 @@ SOURCES += main.cpp\
         MainWindow.cpp \
     CommitDialog.cpp \
     FileActionDialog.cpp \
-    SettingsDialog.cpp
+    SettingsDialog.cpp \
+    Utils.cpp
 
 HEADERS  += MainWindow.h \
     CommitDialog.h \
     FileActionDialog.h \
-    SettingsDialog.h
+    SettingsDialog.h \
+    Utils.h
 
 FORMS    += MainWindow.ui \
     CommitDialog.ui \
@@ -33,6 +35,8 @@ FORMS    += MainWindow.ui \
 
 RESOURCES += \
     resources.qrc
+
+
 
 
 
