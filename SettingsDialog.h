@@ -14,6 +14,7 @@ namespace Ui {
 #define FUEL_SETTING_GDIFF_CMD		"gdiff-command"
 #define FUEL_SETTING_GMERGE_CMD		"gmerge-command"
 #define FUEL_SETTING_IGNORE_GLOB	"ignore-glob"
+#define FUEL_SETTING_CRNL_GLOB		"crnl-glob"
 #define FUEL_SETTING_REMOTE_URL		"remote-url"
 
 struct Settings
@@ -44,6 +45,7 @@ struct Settings
 		Mappings[FUEL_SETTING_GDIFF_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
 		Mappings[FUEL_SETTING_GMERGE_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
 		Mappings[FUEL_SETTING_IGNORE_GLOB] = Setting("", Setting::TYPE_FOSSIL_LOCAL);
+		Mappings[FUEL_SETTING_CRNL_GLOB] = Setting("", Setting::TYPE_FOSSIL_LOCAL);
 		Mappings[FUEL_SETTING_REMOTE_URL] = Setting("off", Setting::TYPE_FOSSIL_COMMAND);
 	}
 };
