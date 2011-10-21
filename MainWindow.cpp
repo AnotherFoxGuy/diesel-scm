@@ -1100,6 +1100,9 @@ void MainWindow::loadSettings()
 	if(qsettings.contains("FossilPath"))
 		settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value = qsettings.value("FossilPath").toString();
 
+	if(qsettings.contains(FUEL_SETTING_COMMIT_MSG))
+		settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value = qsettings.value(FUEL_SETTING_COMMIT_MSG);
+
 	int num_wks = qsettings.beginReadArray("Workspaces");
 	for(int i=0; i<num_wks; ++i)
 	{
@@ -1153,8 +1156,10 @@ void MainWindow::saveSettings()
 
 	// If we have a customize fossil path, save it
 	QString fossil_path = settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value.toString();
-	if(!fossil_path .isEmpty())
-		qsettings.setValue("FossilPath", fossil_path);
+	qsettings.setValue("FossilPath", fossil_path);
+
+	if(!settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value.toStringList().empty() )
+		qsettings.setValue(FUEL_SETTING_COMMIT_MSG, settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value);
 
 	qsettings.beginWriteArray("Workspaces", workspaceHistory.size());
 	for(int i=0; i<workspaceHistory.size(); ++i)
@@ -1444,8 +1449,20 @@ void MainWindow::on_actionCommit_triggered()
 	if(modified_files.empty())
 		return;
 
+	QStringList commit_msgs = settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value.toStringList();
+
 	QString msg;
-	if(!CommitDialog::run(this, msg, commitMessages, modified_files))
+	bool aborted = !CommitDialog::run(this, msg, commit_msgs, modified_files);
+
+	// Aborted or not we always keep the commit messages.
+	// (This has saved me way too many times on TortoiseSVN)
+	if(commit_msgs.indexOf(msg)==-1)
+	{
+		commit_msgs.push_front(msg);
+		settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value = commit_msgs;
+	}
+
+	if(aborted)
 		return;
 
 	// Since via the commit dialog the user can deselect all files
@@ -1453,7 +1470,6 @@ void MainWindow::on_actionCommit_triggered()
 		return;
 
 	// Do commit
-	commitMessages.push_front(msg);
 	QString comment_fname;
 	{
 		QTemporaryFile temp_file;

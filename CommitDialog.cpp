@@ -34,6 +34,8 @@ bool CommitDialog::run(QWidget *parent, QString &commitMsg, const QStringList &c
 {
 	CommitDialog dlg(parent, commitMsgHistory, files);
 	int res = dlg.exec();
+	commitMsg = dlg.ui->plainTextEdit->toPlainText();
+
 	if(res!=QDialog::Accepted)
 		return false;
 
@@ -46,7 +48,6 @@ bool CommitDialog::run(QWidget *parent, QString &commitMsg, const QStringList &c
 		files.append(si->text());
 	}
 
-	commitMsg = dlg.ui->plainTextEdit->toPlainText();
 	return true;
 }
 

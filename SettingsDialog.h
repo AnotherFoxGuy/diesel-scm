@@ -9,11 +9,12 @@ namespace Ui {
     class SettingsDialog;
 }
 
-#define FUEL_SETTING_FOSSIL_PATH "FossilPath"
-#define FUEL_SETTING_GDIFF_CMD "gdiff-command"
-#define FUEL_SETTING_GMERGE_CMD "gmerge-command"
-#define FUEL_SETTING_IGNORE_GLOB "ignore-glob"
-#define FUEL_SETTING_REMOTE_URL "remote-url"
+#define FUEL_SETTING_FOSSIL_PATH	"FossilPath"
+#define FUEL_SETTING_COMMIT_MSG		"CommitMsgHistory"
+#define FUEL_SETTING_GDIFF_CMD		"gdiff-command"
+#define FUEL_SETTING_GMERGE_CMD		"gmerge-command"
+#define FUEL_SETTING_IGNORE_GLOB	"ignore-glob"
+#define FUEL_SETTING_REMOTE_URL		"remote-url"
 
 struct Settings
 {
@@ -24,7 +25,7 @@ struct Settings
 			TYPE_INTERNAL,
 			TYPE_FOSSIL_GLOBAL,
 			TYPE_FOSSIL_LOCAL,
-			TYPE_FOSSIL_COMMAND,
+			TYPE_FOSSIL_COMMAND
 		};
 
 		Setting(QVariant value=QVariant(), SettingType type=TYPE_INTERNAL) : Value(value), Type(type)
@@ -39,6 +40,7 @@ struct Settings
 	Settings()
 	{
 		Mappings[FUEL_SETTING_FOSSIL_PATH] = Setting();
+		Mappings[FUEL_SETTING_COMMIT_MSG] = Setting();
 		Mappings[FUEL_SETTING_GDIFF_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
 		Mappings[FUEL_SETTING_GMERGE_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
 		Mappings[FUEL_SETTING_IGNORE_GLOB] = Setting("", Setting::TYPE_FOSSIL_LOCAL);

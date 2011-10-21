@@ -238,7 +238,6 @@ private:
 	QString				repositoryFile;
 	QStringList			workspaceHistory;
 	QString				currentWorkspace;
-	QStringList			commitMessages;
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
 
