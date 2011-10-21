@@ -1,13 +1,13 @@
-C Moved\sDialogQuery\sto\sUtils.h/.cpp\nAdded\sclear\scommit\smessage\shistory\soption\sin\ssettings\n
-D 2011-10-21T15:01:22.076
-F CommitDialog.cpp cba14155a39845b057c197b1aa7f3c747ae0c337
-F CommitDialog.h a9596d99865cf312b419d01d51334ffc916f5508
+C Select\sthe\sroot\snode\sin\sthe\sTree\sview\swhen\sopening\sa\sproject\nCommit\sDialog\snow\sdisplays\sthe\sfirst\sline\sprevious\scommit\smessages\sonly\n
+D 2011-10-21T15:46:38.225
+F CommitDialog.cpp 1b7eff42cbf75805df61c5b7d8edf6253aeaaf15
+F CommitDialog.h 65a7238dcdd41b578536a0b0ac2a65f2e7f23c9a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 389c32f8df9d9061d074b74ea78cdbe18806b791
-F MainWindow.h 124c49d5313934e63d4b5028b98573d6d630357c
+F MainWindow.cpp 3ece15d6215da3f74172a55ea8b223d6980dd7a1
+F MainWindow.h 6efb750454037a2a9f7984fce46b5138ff47eac5
 F MainWindow.ui 7f9e5cda55cffd5da8c01de7729a1806126c0d6b
 F SettingsDialog.cpp de1d915826398e418a94370a2a8e22333f765d8c
 F SettingsDialog.h 8306f9db6b90f3aaf85b3d21a208ea42ac9fa4be
@@ -174,7 +174,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f67a9b5c9ca0b634b19ef08e7136032372d37f93
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 1ff7aa3b04cec66eb7c1420713f4ee691cc3e5d5
-R ad7cdb8ffe8bc066f20333fa88ed176c
+P 3ce654a76b15af0c4b7a113cb04314d2906ab1e3
+R 2b709879e85b51559292f98aac79786d
 U kostas
-Z ca9ac35232056e43d809e9d82db9fdc2
+Z e2c7ddbf16615f5508923a2eebc28a25

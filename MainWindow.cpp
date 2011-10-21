@@ -157,10 +157,13 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
 	viewMode = VIEWMODE_TREE;
-
 	loadSettings();
 	refresh();
 	rebuildRecent();
+
+	// Select the Root of the tree to update the file view
+	selectRootDir();
+
 	fossilAbort = false;
 }
 
@@ -280,6 +283,9 @@ bool MainWindow::openWorkspace(const QString &path)
 		rebuildRecent();
 		return false;
 	}
+
+	// Select the Root of the tree to update the file view
+	selectRootDir();
 	return true;
 }
 
@@ -1138,6 +1144,15 @@ void MainWindow::saveSettings()
 	qsettings.setValue("ViewAsList", ui->actionViewAsList->isChecked());
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::selectRootDir()
+{
+	if(viewMode==VIEWMODE_TREE)
+	{
+		QModelIndex root_index = ui->treeView->model()->index(0, 0);
+		ui->treeView->selectionModel()->select(root_index, QItemSelectionModel::Select);
+	}
+}
 //------------------------------------------------------------------------------
 void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, bool allIfEmpty)
 {

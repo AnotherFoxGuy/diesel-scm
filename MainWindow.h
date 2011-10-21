@@ -161,6 +161,7 @@ private:
 	bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec);
 	void updateDirView();
 	void updateFileView();
+	void selectRootDir();
 
 	enum RepoStatus
 	{

@@ -19,14 +19,14 @@ public:
 	static bool run(QWidget *parent, QString &commitMsg, const QStringList &commitMsgHistory, QStringList &files);
 
 private slots:
-	void on_comboBox_activated(const QString &arg1);
+	void on_comboBox_activated(int index);
 	void on_listView_doubleClicked(const QModelIndex &index);
-
 	void on_listView_clicked(const QModelIndex &index);
 
 private:
     Ui::CommitDialog *ui;
 	QStandardItemModel	itemModel;
+	QStringList commitMessages;
 };
 
 #endif // COMMITDIALOG_H

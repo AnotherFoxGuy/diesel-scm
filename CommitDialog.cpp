@@ -8,11 +8,26 @@ CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory,
     ui(new Ui::CommitDialog)
 {
 	ui->setupUi(this);
-	ui->comboBox->clear();
-	ui->comboBox->insertItems(0, commitMsgHistory);
 	ui->plainTextEdit->clear();
 	ui->listView->setModel(&itemModel);
 
+	// Generate the history combo
+	foreach(const QString msg, commitMsgHistory)
+	{
+		QString trimmed = msg.trimmed();
+		if(trimmed.isEmpty())
+			continue;
+
+		commitMessages.append(trimmed);
+		QStringList lines = trimmed.split('\n');
+		QString first_line;
+		if(!lines.empty())
+			first_line = lines[0] + "...";
+
+		ui->comboBox->addItem(first_line);
+	}
+
+	// Populate file list
 	for(QStringList::const_iterator it=files.begin(); it!=files.end(); ++it)
 	{
 		QStandardItem *si = new QStandardItem(*it);
@@ -20,7 +35,6 @@ CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory,
 		si->setCheckState(Qt::Checked);
 		itemModel.appendRow(si);
 	}
-
 }
 
 //------------------------------------------------------------------------------
@@ -52,11 +66,11 @@ bool CommitDialog::run(QWidget *parent, QString &commitMsg, const QStringList &c
 }
 
 //------------------------------------------------------------------------------
-void CommitDialog::on_comboBox_activated(const QString &arg1)
+void CommitDialog::on_comboBox_activated(int index)
 {
-	ui->plainTextEdit->setPlainText(arg1);
+	Q_ASSERT(index < commitMessages.length());
+	ui->plainTextEdit->setPlainText(commitMessages[index]);
 }
-
 
 //------------------------------------------------------------------------------
 void CommitDialog::on_listView_doubleClicked(const QModelIndex &index)
