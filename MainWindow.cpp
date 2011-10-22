@@ -241,7 +241,7 @@ bool MainWindow::openWorkspace(const QString &path)
 
 		if(!QFileInfo(metadata_file).exists())
 		{
-			if(ANSWER_YES !=DialogQuery(this, tr("Open Fossil"), "No workspace found.\nWould you like to make one here?"))
+			if(QMessageBox::Yes !=DialogQuery(this, tr("Open Fossil"), "No workspace found.\nWould you like to make one here?"))
 				return false;
 			
 			// Ok open the fossil
@@ -365,7 +365,7 @@ void MainWindow::on_actionCloseRepository_triggered()
 	if(getRepoStatus()!=REPO_OK)
 		return;
 
-	if(ANSWER_YES !=DialogQuery(this, tr("Close Workspace"), "Are you sure want to close this workspace?"))
+	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), "Are you sure want to close this workspace?"))
 		return;
 	
 	// Close Repo
@@ -950,7 +950,9 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		bool ends_qmark = !last_line.isEmpty() && last_line[last_line.length()-1]=='?';
 		bool have_yn_query = last_line.toLower().indexOf("y/n")!=-1;
 		int have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1 || last_line.toLower().indexOf("yes/no/all")!=-1;
-		bool have_query = ends_qmark && (have_yn_query || have_yna_query);
+		int have_an_query = last_line.toLower().indexOf("a=always/n")!=-1;
+
+		bool have_query = ends_qmark && (have_yn_query || have_yna_query || have_an_query);
 
 		// Flush only the unnecessary part of the buffer to the log
 		QStringList log_lines = buffer.left(last_line_start).split(EOL_MARK);
@@ -975,13 +977,13 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		{
 			log(last_line);
 			QString query = ParseFossilQuery(last_line);
-			DialogAnswer res = DialogQuery(this, "Fossil", query, true);
-			if(res==ANSWER_YES)
+			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query, QMessageBox::YesToAll|QMessageBox::Yes|QMessageBox::No);
+			if(res==QMessageBox::Yes)
 			{
 				process.write(ans_yes.toAscii());
 				log("Y\n");
 			}
-			else if(res==ANSWER_YESALL)
+			else if(res==QMessageBox::YesAll)
 			{
 				process.write(ans_always.toAscii());
 				log("A\n");
@@ -997,9 +999,9 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		{
 			log(last_line);
 			QString query = ParseFossilQuery(last_line);
-			DialogAnswer res = DialogQuery(this, "Fossil", query, false);
+			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query);
 
-			if(res==ANSWER_YES)
+			if(res==QMessageBox::Yes)
 			{
 				process.write(ans_yes.toAscii());
 				log("Y\n");
@@ -1010,6 +1012,23 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 				log("N\n");
 			}
 
+			buffer.clear();
+		}
+		else if(have_query && have_an_query)
+		{
+			log(last_line);
+			QString query = ParseFossilQuery(last_line);
+			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query, QMessageBox::YesToAll|QMessageBox::No);
+			if(res==QMessageBox::YesAll)
+			{
+				process.write(ans_always.toAscii());
+				log("A\n");
+			}
+			else
+			{
+				process.write(ans_no.toAscii());
+				log("N\n");
+			}
 			buffer.clear();
 		}
 	}
@@ -1278,13 +1297,17 @@ void MainWindow::on_actionDiff_triggered()
 bool MainWindow::startUI()
 {
 	if(uiRunning())
+	{
+		log("Fossil UI is already running\n");
 		return true;
+	}
 
 	fossilUI.setParent(this);
 	fossilUI.setProcessChannelMode(QProcess::MergedChannels);
 	fossilUI.setWorkingDirectory(getCurrentWorkspace());
 
-	log("> fossil ui\n");
+	log("<b>&gt; fossil ui</b><br>", true);
+	log("Starting Fossil UI. Please wait.\n");
 	QString fossil = getFossilPath();
 
 	fossilUI.start(fossil, QStringList() << "ui");

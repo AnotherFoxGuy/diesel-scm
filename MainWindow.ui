@@ -205,9 +205,8 @@
    <addaction name="actionFossilUI"/>
    <addaction name="actionTimeline"/>
    <addaction name="separator"/>
-   <addaction name="actionOpenContaining"/>
-   <addaction name="actionSettings"/>
    <addaction name="actionClearLog"/>
+   <addaction name="actionOpenContaining"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionRefresh">

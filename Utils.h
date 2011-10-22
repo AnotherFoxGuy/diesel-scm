@@ -2,16 +2,9 @@
 #define UTILS_H
 
 #include <QString>
-#include <QWidget>
+#include <QMessageBox>
 
-enum DialogAnswer
-{
-	ANSWER_YES,
-	ANSWER_NO,
-	ANSWER_YESALL
-};
-
-DialogAnswer DialogQuery(QWidget *parent, const QString &title, const QString &query, bool yesToAllButton=false);
+QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons = QMessageBox::Yes|QMessageBox::No);
 
 
 #endif // UTILS_H

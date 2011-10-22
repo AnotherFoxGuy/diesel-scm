@@ -100,6 +100,6 @@ void SettingsDialog::on_btnSelectGMerge_clicked()
 //-----------------------------------------------------------------------------
 void SettingsDialog::on_btnClearMessageHistory_clicked()
 {
-	if(DialogQuery(this, tr("Clear Commit Message History"), tr("Are you sure want to clear the commit message history?"))==ANSWER_YES)
+	if(DialogQuery(this, tr("Clear Commit Message History"), tr("Are you sure want to clear the commit message history?"))==QMessageBox::Yes)
 		settings->Mappings[FUEL_SETTING_COMMIT_MSG].Value = QStringList();
 }
