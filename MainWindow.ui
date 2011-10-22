@@ -161,6 +161,9 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="windowTitle">
+    <string>Main Toolbar</string>
+   </property>
    <property name="movable">
     <bool>false</bool>
    </property>
@@ -215,6 +218,12 @@
    <property name="text">
     <string>Refresh</string>
    </property>
+   <property name="toolTip">
+    <string>Refresh the views</string>
+   </property>
+   <property name="statusTip">
+    <string>Refresh the views</string>
+   </property>
    <property name="shortcut">
     <string>F5</string>
    </property>
@@ -226,6 +235,12 @@
    </property>
    <property name="text">
     <string>Commit</string>
+   </property>
+   <property name="toolTip">
+    <string>Commit modifications</string>
+   </property>
+   <property name="statusTip">
+    <string>Commit modifications</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
@@ -239,6 +254,12 @@
    <property name="text">
     <string>Diff</string>
    </property>
+   <property name="toolTip">
+    <string>Display the differences between the current and last committed version</string>
+   </property>
+   <property name="statusTip">
+    <string>Display the differences between the current and last committed version</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
    </property>
@@ -251,6 +272,12 @@
    <property name="text">
     <string>Add</string>
    </property>
+   <property name="toolTip">
+    <string>Add files to the repository</string>
+   </property>
+   <property name="statusTip">
+    <string>Add files to the repository</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl++</string>
    </property>
@@ -262,6 +289,12 @@
    </property>
    <property name="text">
     <string>Delete</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete files from the repository</string>
+   </property>
+   <property name="statusTip">
+    <string>Delete files from the repository</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>
@@ -310,6 +343,12 @@
    <property name="text">
     <string>Close</string>
    </property>
+   <property name="toolTip">
+    <string>Close the current workspace</string>
+   </property>
+   <property name="statusTip">
+    <string>Close the current workspace</string>
+   </property>
   </action>
   <action name="actionCloneRepository">
    <property name="icon">
@@ -328,6 +367,12 @@
    <property name="text">
     <string>Push</string>
    </property>
+   <property name="toolTip">
+    <string>Push changes to the remote repository</string>
+   </property>
+   <property name="statusTip">
+    <string>Push changes to the remote repository</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
    </property>
@@ -339,6 +384,12 @@
    </property>
    <property name="text">
     <string>Pull</string>
+   </property>
+   <property name="toolTip">
+    <string>Pull changes from the remote repository</string>
+   </property>
+   <property name="statusTip">
+    <string>Pull changes from the remote repository</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
@@ -353,7 +404,10 @@
     <string>Rename</string>
    </property>
    <property name="toolTip">
-    <string>Rename</string>
+    <string>Rename the selected file</string>
+   </property>
+   <property name="statusTip">
+    <string>Rename the selected file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -386,7 +440,10 @@
     <string>History</string>
    </property>
    <property name="toolTip">
-    <string>History</string>
+    <string>Display the version history of a file via the fossil UI</string>
+   </property>
+   <property name="statusTip">
+    <string>Display the version history of a file via the fossil UI</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+H</string>
@@ -404,7 +461,10 @@
     <string>Fossil UI</string>
    </property>
    <property name="toolTip">
-    <string>Starts the Fosill UI</string>
+    <string>Starts the Fosill UI in the Web Browser</string>
+   </property>
+   <property name="statusTip">
+    <string>Starts the Fosill UI in the Web Browser</string>
    </property>
   </action>
   <action name="actionRevert">
@@ -416,7 +476,10 @@
     <string>Revert</string>
    </property>
    <property name="toolTip">
-    <string>Revert</string>
+    <string>Revert files to the last commited version</string>
+   </property>
+   <property name="statusTip">
+    <string>Revert files to the last commited version</string>
    </property>
   </action>
   <action name="actionClearLog">
@@ -428,7 +491,7 @@
     <string>Clear Log</string>
    </property>
    <property name="toolTip">
-    <string>Clear Log</string>
+    <string>Clears the log</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+K</string>
@@ -442,6 +505,12 @@
    <property name="text">
     <string>Timeline</string>
    </property>
+   <property name="toolTip">
+    <string>Display the change history of the fossil repository</string>
+   </property>
+   <property name="statusTip">
+    <string>Display the change history of the fossil repository</string>
+   </property>
   </action>
   <action name="actionOpenFile">
    <property name="icon">
@@ -450,6 +519,12 @@
    </property>
    <property name="text">
     <string>Open file</string>
+   </property>
+   <property name="toolTip">
+    <string>Open the selected file</string>
+   </property>
+   <property name="statusTip">
+    <string>Open the selected file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Return</string>
@@ -461,7 +536,13 @@
      <normaloff>:/icons/icons/My Documents-01.png</normaloff>:/icons/icons/My Documents-01.png</iconset>
    </property>
    <property name="text">
-    <string>Open Containing Folder</string>
+    <string>Open Containing</string>
+   </property>
+   <property name="toolTip">
+    <string>Open the folder containing the selected file</string>
+   </property>
+   <property name="statusTip">
+    <string>Open the folder containing the selected file</string>
    </property>
    <property name="shortcut">
     <string>Alt+Return</string>
@@ -474,6 +555,12 @@
    </property>
    <property name="text">
     <string>Undo</string>
+   </property>
+   <property name="toolTip">
+    <string>Undo the last fossil action</string>
+   </property>
+   <property name="statusTip">
+    <string>Undo the last fossil action</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Z</string>
@@ -499,6 +586,12 @@
    <property name="text">
     <string>Update</string>
    </property>
+   <property name="toolTip">
+    <string>Update the workspace to the latest version</string>
+   </property>
+   <property name="statusTip">
+    <string>Update the workspace to the latest version</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
    </property>
@@ -512,10 +605,10 @@
     <string>Preferences...</string>
    </property>
    <property name="toolTip">
-    <string>Application Preferences</string>
+    <string>Fuel Preferences</string>
    </property>
    <property name="statusTip">
-    <string>Set application preferences</string>
+    <string>Fuel Preferences</string>
    </property>
   </action>
   <action name="actionViewModified">
@@ -579,7 +672,7 @@
     <string>View as List</string>
    </property>
    <property name="statusTip">
-    <string>View workspace as a list of files</string>
+    <string>View the workspace as a list of files</string>
    </property>
   </action>
   <action name="actionOpenFolder">
@@ -589,6 +682,12 @@
    </property>
    <property name="text">
     <string>Open Folder</string>
+   </property>
+   <property name="toolTip">
+    <string>Open the selected folder</string>
+   </property>
+   <property name="statusTip">
+    <string>Open the selected folder</string>
    </property>
   </action>
   <action name="actionRenameFolder">
@@ -600,7 +699,10 @@
     <string>Rename Folder</string>
    </property>
    <property name="toolTip">
-    <string>Rename Folder</string>
+    <string>Rename the selected folder</string>
+   </property>
+   <property name="statusTip">
+    <string>Rename the selected folder</string>
    </property>
   </action>
  </widget>

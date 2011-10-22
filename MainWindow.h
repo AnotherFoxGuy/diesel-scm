@@ -162,6 +162,7 @@ private:
 	void updateDirView();
 	void updateFileView();
 	void selectRootDir();
+	virtual QMenu *createPopupMenu();
 
 	enum RepoStatus
 	{

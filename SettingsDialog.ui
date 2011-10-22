@@ -178,6 +178,9 @@
        </item>
        <item row="3" column="1">
         <widget class="QPushButton" name="btnClearMessageHistory">
+         <property name="toolTip">
+          <string>Clear the commit message history</string>
+         </property>
          <property name="text">
           <string>Clear</string>
          </property>
@@ -192,12 +195,15 @@
           </size>
          </property>
          <property name="text">
-          <string>File double click</string>
+          <string>Double-click Action</string>
          </property>
         </widget>
        </item>
        <item row="4" column="1">
         <widget class="QComboBox" name="cmbDoubleClickAction">
+         <property name="toolTip">
+          <string>Action to perfom when double-clicking a file</string>
+         </property>
          <property name="currentIndex">
           <number>-1</number>
          </property>
@@ -236,7 +242,9 @@
           </size>
          </property>
          <property name="toolTip">
-          <string>The repote url use push changes</string>
+          <string>The remote url used to push/pull changes.
+URL style user names and passwords are also supported. 
+For example http://username:password@server.com/fossil</string>
          </property>
         </widget>
        </item>
@@ -262,7 +270,7 @@
           </size>
          </property>
          <property name="toolTip">
-          <string>A comma separated list of paths to ignore in fossil operations</string>
+          <string>A comma separated list of glob-style file/path patterns ignored in fossil file operations</string>
          </property>
         </widget>
        </item>
@@ -288,7 +296,7 @@
           </size>
          </property>
          <property name="toolTip">
-          <string>A comma separated list of paths to ignore in fossil operations</string>
+          <string>A comma separated list of glob-style file patterns to exclude from fossil's CR/NL consistency checking</string>
          </property>
         </widget>
        </item>
