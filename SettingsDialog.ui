@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>528</width>
-    <height>239</height>
+    <width>560</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,6 +34,12 @@
        <string>Application</string>
       </attribute>
       <layout class="QFormLayout" name="formLayout">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::ExpandingFieldsGrow</enum>
+       </property>
+       <property name="labelAlignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="minimumSize">
@@ -66,8 +72,8 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
-             <height>16777215</height>
+             <width>24</width>
+             <height>24</height>
             </size>
            </property>
            <property name="text">
@@ -109,8 +115,8 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
-             <height>16777215</height>
+             <width>24</width>
+             <height>24</height>
             </size>
            </property>
            <property name="text">
@@ -152,8 +158,8 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
-             <height>16777215</height>
+             <width>24</width>
+             <height>24</height>
             </size>
            </property>
            <property name="text">
@@ -178,6 +184,12 @@
        </item>
        <item row="3" column="1">
         <widget class="QPushButton" name="btnClearMessageHistory">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Clear the commit message history</string>
          </property>
@@ -201,6 +213,12 @@
        </item>
        <item row="4" column="1">
         <widget class="QComboBox" name="cmbDoubleClickAction">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Action to perfom when double-clicking a file</string>
          </property>
@@ -220,6 +238,12 @@
        <string>Repository</string>
       </attribute>
       <layout class="QFormLayout" name="formLayout_2">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::ExpandingFieldsGrow</enum>
+       </property>
+       <property name="labelAlignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
        <item row="0" column="0">
         <widget class="QLabel" name="label_5">
          <property name="minimumSize">

@@ -1,5 +1,5 @@
-C Fixed\sissue\swith\sfossil\s1.2.0\swhere\sa\snew\stype\sof\suser\squery\s(yes\sto\sall/no)\scaused\sFuel\sto\shang\nUpped\sversion\sto\s0.9.5\nMinor\sGUI\sTweaks
-D 2011-10-22T15:03:48.488
+C OSX\sUI\sconsistency\sfixes
+D 2011-10-23T06:11:27.653
 F CommitDialog.cpp bc05504be08d9ffe2b24d341a18e37035e1941b7
 F CommitDialog.h 65a7238dcdd41b578536a0b0ac2a65f2e7f23c9a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
@@ -11,7 +11,7 @@ F MainWindow.h 643f13d4b5615c51c38b164768bf62258ccb94b1
 F MainWindow.ui 0afb7d2a8e9ce2cff2966295f9eefaed01f1ed51
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
 F SettingsDialog.h f5da6cab4ccc82e2eb78ec835fb849c4c104d6cc
-F SettingsDialog.ui 778aaf233b8ac3ddac7dcfecc2fca7bd8ca5be1a
+F SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
 F Utils.cpp 2587d8073d6c2c1da49622c387cc457a0081f7b5
 F Utils.h a71d82474747466f4c225128d26a703b510230d4
 F fuel.pro 3dc8e31fde8137143dea0ae44a81eb6733d86168
@@ -174,7 +174,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp 46bf5ddc90fca01c9ef2e8e3d14b4d32217945dd
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P af6bd9ca628ed1fe33819ac18706ed2bcabc79d2
-R 9f76f7cb520c390eaafad0ef9a9d36d5
+P d7d817fe47606c591cc03e8d71e744d187bca5d7
+R 543606082cda2c82860978b7faa03dd3
 U kostas
-Z bf67ad5420324215cd78ba9fd7ee459a
+Z 27b4fa1c78748861491b64c86e84922e
