@@ -1,12 +1,12 @@
-C OSX\sUI\sconsistency\sfixes
-D 2011-10-23T06:11:27.653
+C Added\sdebug\stracing\sof\sfossil\soutput
+D 2011-12-14T13:25:09.217
 F CommitDialog.cpp bc05504be08d9ffe2b24d341a18e37035e1941b7
 F CommitDialog.h 65a7238dcdd41b578536a0b0ac2a65f2e7f23c9a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 8c0864e0923d0dbdb59a6adbea4aa2236d2daca3
+F MainWindow.cpp 9943eb0e156d311f02fa73a623026b4d71881b1d
 F MainWindow.h 643f13d4b5615c51c38b164768bf62258ccb94b1
 F MainWindow.ui 0afb7d2a8e9ce2cff2966295f9eefaed01f1ed51
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
@@ -174,7 +174,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp 46bf5ddc90fca01c9ef2e8e3d14b4d32217945dd
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P d7d817fe47606c591cc03e8d71e744d187bca5d7
-R 543606082cda2c82860978b7faa03dd3
+P c5f9a9d87d22a61c1ffaa5c0fb893cf5dad3a08d
+R 7112d16eb1a9c98ac2f668e445318338
 U kostas
-Z 27b4fa1c78748861491b64c86e84922e
+Z b5d5e66b662f8506f804050bc056aeac

@@ -914,7 +914,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	fossilAbort = false;
 	QString buffer;
 
-	while(process.state()==QProcess::Running)
+	while(process.state()==QProcess::Running || process.bytesAvailable()>0)
 	{
 		if(fossilAbort)
 		{
@@ -928,7 +928,14 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		}
 
 		process.waitForReadyRead(500);
-		buffer += process.readAll();
+		QByteArray input = process.readAll();
+
+		#ifdef QT_DEBUG // Log fossil output in debug builds
+		if(!input.isEmpty())
+			qDebug() << input;
+		#endif
+
+		buffer += input;
 
 		QCoreApplication::processEvents();
 
