@@ -19,12 +19,14 @@
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
 #ifdef QT_WS_WIN
-	QString EOL_MARK("\r\n");
+	const QString EOL_MARK("\r\n");
 #else
-	QString EOL_MARK("\n");
+	const QString EOL_MARK("\n");
 #endif
 
-#define PATH_SEP "/"
+#define PATH_SEP			"/"
+#define FOSSIL_CHECKOUT1	"_FOSSIL_"
+#define FOSSIL_CHECKOUT2	".fslckout"
 
 //-----------------------------------------------------------------------------
 enum
@@ -237,11 +239,12 @@ bool MainWindow::openWorkspace(const QString &path)
 	if(fi.isFile())
 	{
 		wkspace = fi.absoluteDir().absolutePath();
-		QString metadata_file = wkspace + PATH_SEP + "_FOSSIL_";
+		QString checkout_file1 = wkspace + PATH_SEP + FOSSIL_CHECKOUT1;
+		QString checkout_file2 = wkspace + PATH_SEP + FOSSIL_CHECKOUT2;
 
-		if(!QFileInfo(metadata_file).exists())
+		if(!(QFileInfo(checkout_file1).exists() || QFileInfo(checkout_file2).exists()) )
 		{
-			if(QMessageBox::Yes !=DialogQuery(this, tr("Open Fossil"), "No workspace found.\nWould you like to make one here?"))
+			if(QMessageBox::Yes !=DialogQuery(this, tr("Open Fossil"), "A workspace does not exist in this folder.\nWould you like to create one here?"))
 				return false;
 			
 			// Ok open the fossil
@@ -292,11 +295,11 @@ bool MainWindow::openWorkspace(const QString &path)
 //------------------------------------------------------------------------------
 void MainWindow::on_actionOpenRepository_triggered()
 {
-	QString filter(tr("Fossil Repositories (*.fossil)"));
+	QString filter(tr("Fossil Files (*.fossil _FOSSIL_ .fslckout)"));
 
 	QString path = QFileDialog::getOpenFileName(
 		this,
-		tr("Fossil Repository"),
+		tr("Open Fossil Repository"),
 		QDir::currentPath(),
 		filter,
 		&filter);
@@ -309,7 +312,7 @@ void MainWindow::on_actionOpenRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionNewRepository_triggered()
 {
-	QString filter(tr("Fossil Repositories (*.fossil)"));
+	QString filter(tr("Repositories (*.fossil)"));
 
 	QString path = QFileDialog::getSaveFileName(
 		this,
@@ -551,7 +554,7 @@ void MainWindow::scanWorkspace()
 			QString filename = it->fileName();
 
 			// Skip fossil files
-			if(filename == "_FOSSIL_" || (!repositoryFile.isEmpty() && it->absoluteFilePath()==repositoryFile))
+			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!repositoryFile.isEmpty() && it->absoluteFilePath()==repositoryFile))
 				continue;
 
 			RepoFile *rf = new RepoFile(*it, RepoFile::TYPE_UNKNOWN, wkdir);
@@ -677,15 +680,12 @@ static void addPathToTree(QStandardItem &root, const QString &path)
 //------------------------------------------------------------------------------
 void MainWindow::updateDirView()
 {
-	if(viewMode != VIEWMODE_TREE)
-		return;
-
 	// Directory View
 	repoDirModel.clear();
 	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), projectName);
 	root->setData(""); // Empty Path
 	root->setEditable(false);
-	QString aa = root->data().toString();
+
 	repoDirModel.appendRow(root);
 	for(stringset_t::iterator it = pathSet.begin(); it!=pathSet.end(); ++it)
 	{

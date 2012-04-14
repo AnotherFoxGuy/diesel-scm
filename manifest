@@ -1,12 +1,12 @@
-C Fixed\sissue\swhere\sthe\sview\smode\sfrom\sthe\sstored\ssettings\swas\snot\sreflected\son\sstartup\n
-D 2012-04-14T06:43:14.060
+C Allow\sfor\sopening\sworkspaces\svia\sthe\scheckout\sfile.\s[Thanks\sChris]\nAdded\ssupport\sfor\sthe\snew\s".fslckout"\sfile\nFixed\san\sissue\swhere\sthe\s\stree\sview\swas\snot\sbeing\supdated\swhen\shidden\sand\sa\sdifferent\sworkspace\swas\sopened\nMinor\sdialog\stext\simprovements\n
+D 2012-04-14T09:16:30.450
 F CommitDialog.cpp bc05504be08d9ffe2b24d341a18e37035e1941b7
 F CommitDialog.h 65a7238dcdd41b578536a0b0ac2a65f2e7f23c9a
 F CommitDialog.ui 5067623f6af6f5a42c87df903278e383e945e154
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F MainWindow.cpp 73128657d821f9f0e574f6df56cad414829d8555
+F MainWindow.cpp f6ee64df8e4d275e3ed60462904566154758e9e1
 F MainWindow.h 643f13d4b5615c51c38b164768bf62258ccb94b1
 F MainWindow.ui 0afb7d2a8e9ce2cff2966295f9eefaed01f1ed51
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
@@ -174,7 +174,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp 46bf5ddc90fca01c9ef2e8e3d14b4d32217945dd
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 72c6ea7423b016df5150610f59fa8835b614701b
-R d9d54efe141f1b67bfc1bcf2605c87a6
+P b04aa4a2a385325b9b50e4ce700a364b05c7b70b
+R ba6b4795a2456f34d550ae60fa343370
 U kostas
-Z 5ff02e5fbeb527cf2633fffeb79226ba
+Z 6b958dff62628f63360ab69f37796e8d
