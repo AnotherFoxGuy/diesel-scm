@@ -1135,7 +1135,10 @@ void MainWindow::loadSettings()
 	if(qsettings.contains("ViewIgnored"))
 		ui->actionViewIgnored->setChecked(qsettings.value("ViewIgnored").toBool());
 	if(qsettings.contains("ViewAsList"))
+	{
 		ui->actionViewAsList->setChecked(qsettings.value("ViewAsList").toBool());
+		ui->treeView->setVisible(qsettings.value("ViewAsList").toBool() == VIEWMODE_LIST);
+	}
 }
 
 //------------------------------------------------------------------------------
