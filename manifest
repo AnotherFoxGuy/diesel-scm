@@ -1,5 +1,5 @@
-C Changed\sorg\sname\sto\suppercase\n
-D 2012-04-15T09:31:22.578
+C Disable\sStash\sactions\swhen\snecessary\n
+D 2012-04-15T12:31:29.475
 F CommitDialog.cpp a46020a9361151d8d286a2670257d01d8967bf69
 F CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
@@ -8,7 +8,7 @@ F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F MainWindow.cpp 6b8caf49d9c0f4e9768fd5c860a92cae638bb353
+F MainWindow.cpp e6a73e167787a2effee2c437541f1f9f744667cc
 F MainWindow.h 987fa4ae0604373778184501f4f71f07ac614a16
 F MainWindow.ui 726175dba24957cdf9884326c3948dffe01a4a3d
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
@@ -176,7 +176,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp 708e816c839ff4d9af9b769ac917a3fffe2c87c3
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P dd20fc5ce6386b8bfe7009f6b00a6be3aae1e660
-R e3bbc8234bd97c378521e31e30c07cb5
+P f0c54b554cfa5aa03f249abb6cf96b06569bbd1e
+R 8fe84fb264e37e551ccd98e2de8ed5e3
 U kostas
-Z 7a2e9a86bf8925098069e4c8d665d873
+Z 0f99d061c2569c2107a510a77e92ca5a

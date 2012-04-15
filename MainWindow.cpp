@@ -486,6 +486,10 @@ void MainWindow::enableActions(bool on)
 	ui->actionUpdate->setEnabled(on);
 	ui->actionOpenFolder->setEnabled(on);
 	ui->actionRenameFolder->setEnabled(on);
+	ui->actionNewStash->setEnabled(on);
+	ui->actionDeleteStash->setEnabled(on);
+	ui->actionDiffStash->setEnabled(on);
+	ui->actionApplyStash->setEnabled(on);
 }
 //------------------------------------------------------------------------------
 bool MainWindow::refresh()
