@@ -88,7 +88,7 @@ static QStringMap MakeKeyValues(QStringList lines)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -172,6 +172,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	viewMode = VIEWMODE_TREE;
 	loadSettings();
+
+	// Apply any explict workspace path if available
+	if(workspacePath)
+		openWorkspace(*workspacePath);
+
 	refresh();
 	rebuildRecent();
 
@@ -208,7 +213,7 @@ void MainWindow::setCurrentWorkspace(const QString &workspace)
 		return;
 	}
 
-	QString new_workspace = QDir(workspace).absolutePath();
+	QString new_workspace = QFileInfo(workspace).absoluteFilePath();
 
 	currentWorkspace = new_workspace;
 	addWorkspace(new_workspace);
@@ -277,13 +282,15 @@ bool MainWindow::openWorkspace(const QString &path)
 		}
 		else
 		{
-			Q_ASSERT(QDir(wkspace).exists());
+			if(!QDir(wkspace).exists())
+				return false;
 			setCurrentWorkspace(wkspace);
 		}
 	}
 	else
 	{
-		Q_ASSERT(QDir(wkspace).exists());
+		if(!QDir(wkspace).exists())
+			return false;
 		setCurrentWorkspace(wkspace);
 	}
 
@@ -568,9 +575,10 @@ void MainWindow::scanWorkspace()
 		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
 		{
 			QString filename = it->fileName();
+			QString fullpath = it->absoluteFilePath();
 
 			// Skip fossil files
-			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!repositoryFile.isEmpty() && it->absoluteFilePath()==repositoryFile))
+			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!repositoryFile.isEmpty() && QFileInfo(fullpath) == QFileInfo(repositoryFile)))
 				continue;
 
 			RepoFile *rf = new RepoFile(*it, RepoFile::TYPE_UNKNOWN, wkdir);
@@ -624,6 +632,8 @@ void MainWindow::scanWorkspace()
 			workspaceFiles.remove(fname);
 			continue;
 		}
+		else
+			add_missing = true;
 
 		filemap_t::iterator it = workspaceFiles.find(fname);
 

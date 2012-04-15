@@ -15,7 +15,11 @@ int main(int argc, char *argv[])
 	#endif
 
 	{
-		MainWindow w;
+		QString workspace;
+		if(a.arguments().length()>1)
+			workspace = a.arguments()[1];
+
+		MainWindow w(0, &workspace);
 		w.show();
 		return a.exec();
 	}
