@@ -108,8 +108,6 @@ private:
 	QString		Path;
 };
 
-
-
 //////////////////////////////////////////////////////////////////////////
 // MainWindow
 //////////////////////////////////////////////////////////////////////////
@@ -148,6 +146,7 @@ private:
 	void getSelectionFilenames(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
 	void getFileViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
 	void getDirViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
+	void getStashViewSelection(QStringList &stashNames, bool allIfEmpty=false);
 	void getSelectionPaths(stringset_t &paths);
 	bool startUI();
 	void stopUI();
@@ -161,7 +160,9 @@ private:
 	bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec);
 	void updateDirView();
 	void updateFileView();
+	void updateStashView();
 	void selectRootDir();
+
 	virtual QMenu *createPopupMenu();
 
 	enum RepoStatus
@@ -218,6 +219,11 @@ private slots:
 	void on_actionNewRepository_triggered();
 	void on_actionOpenRepository_triggered();
 	void on_actionCloseRepository_triggered();
+	void on_actionViewStash_triggered();
+	void on_actionNewStash_triggered();
+	void on_actionApplyStash_triggered();
+	void on_actionDeleteStash_triggered();
+	void on_actionDiffStash_triggered();
 
 private:
 	enum
@@ -229,6 +235,7 @@ private:
 	Ui::MainWindow		*ui;
 	QStandardItemModel	repoFileModel;
 	QStandardItemModel	repoDirModel;
+	QStandardItemModel	repoStashModel;
 	QProcess			fossilUI;
 	QString				fossilUIPort;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
@@ -246,8 +253,10 @@ private:
 	// Repo State
 	typedef QList<RepoFile*> filelist_t;
 	typedef QMap<QString, RepoFile*> filemap_t;
+	typedef QMap<QString, QString> stashmap_t;
 	filemap_t			workspaceFiles;
 	stringset_t			pathSet;
+	stashmap_t			stashMap;
 };
 
 #endif // MAINWINDOW_H

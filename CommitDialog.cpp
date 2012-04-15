@@ -3,7 +3,7 @@
 #include "ui_CommitDialog.h"
 #include "MainWindow.h" // Ugly. I know.
 
-CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory, QStringList &files) :
+CommitDialog::CommitDialog(QWidget *parent, QString title, QStringList &files, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue) :
 	QDialog(parent, Qt::Sheet),
     ui(new Ui::CommitDialog)
 {
@@ -11,20 +11,40 @@ CommitDialog::CommitDialog(QWidget *parent, const QStringList &commitMsgHistory,
 	ui->plainTextEdit->clear();
 	ui->listView->setModel(&itemModel);
 
-	// Generate the history combo
-	foreach(const QString msg, commitMsgHistory)
+	setWindowTitle(title);
+
+	// Activate the appropriate control based on mode
+	ui->plainTextEdit->setVisible(!singleLineEntry);
+	ui->lineEdit->setVisible(singleLineEntry);
+
+	// Activate the checkbox if we have some text
+	ui->checkBox->setVisible(checkBoxText!=0);
+	if(checkBoxText)
 	{
-		QString trimmed = msg.trimmed();
-		if(trimmed.isEmpty())
-			continue;
+		Q_ASSERT(checkBoxValue);
+		ui->checkBox->setText(*checkBoxText);
+		ui->checkBox->setCheckState(*checkBoxValue ? Qt::Checked : Qt::Unchecked);
+	}
 
-		commitMessages.append(trimmed);
-		QStringList lines = trimmed.split('\n');
-		QString first_line;
-		if(!lines.empty())
-			first_line = lines[0] + "...";
+	// Activate the combo if we have history
+	ui->comboBox->setVisible(history!=0);
+	if(history)
+	{
+		// Generate the history combo
+		foreach(const QString msg, *history)
+		{
+			QString trimmed = msg.trimmed();
+			if(trimmed.isEmpty())
+				continue;
 
-		ui->comboBox->addItem(first_line);
+			commitMessages.append(trimmed);
+			QStringList lines = trimmed.split('\n');
+			QString first_line;
+			if(!lines.empty())
+				first_line = lines[0] + "...";
+
+			ui->comboBox->addItem(first_line);
+		}
 	}
 
 	// Populate file list
@@ -44,11 +64,16 @@ CommitDialog::~CommitDialog()
 }
 
 //------------------------------------------------------------------------------
-bool CommitDialog::run(QWidget *parent, QString &commitMsg, const QStringList &commitMsgHistory, QStringList &files)
+bool CommitDialog::run(QWidget *parent, QString title, QStringList &files, QString &commitMsg, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue)
 {
-	CommitDialog dlg(parent, commitMsgHistory, files);
+	CommitDialog dlg(parent, title, files, history, singleLineEntry, checkBoxText, checkBoxValue);
 	int res = dlg.exec();
-	commitMsg = dlg.ui->plainTextEdit->toPlainText();
+
+	if(singleLineEntry)
+		commitMsg = dlg.ui->lineEdit->text();
+	else
+		commitMsg = dlg.ui->plainTextEdit->toPlainText();
+
 
 	if(res!=QDialog::Accepted)
 		return false;
@@ -62,6 +87,12 @@ bool CommitDialog::run(QWidget *parent, QString &commitMsg, const QStringList &c
 		files.append(si->text());
 	}
 
+	if(checkBoxText)
+	{
+		Q_ASSERT(checkBoxValue);
+		*checkBoxValue = dlg.ui->checkBox->checkState() == Qt::Checked;
+	}
+
 	return true;
 }
 
@@ -69,7 +100,12 @@ bool CommitDialog::run(QWidget *parent, QString &commitMsg, const QStringList &c
 void CommitDialog::on_comboBox_activated(int index)
 {
 	Q_ASSERT(index < commitMessages.length());
-	ui->plainTextEdit->setPlainText(commitMessages[index]);
+
+	if(ui->plainTextEdit->isVisible())
+		ui->plainTextEdit->setPlainText(commitMessages[index]);
+
+	if(ui->lineEdit->isVisible())
+		ui->lineEdit->setText(commitMessages[index]);
 }
 
 //------------------------------------------------------------------------------

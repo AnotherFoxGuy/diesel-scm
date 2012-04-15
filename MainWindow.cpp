@@ -124,6 +124,12 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->treeView->addAction(ui->actionRenameFolder);
 	ui->treeView->addAction(ui->actionOpenFolder);
 
+	// StashView
+	ui->tableViewStash->setModel(&repoStashModel);
+	ui->tableViewStash->addAction(ui->actionApplyStash);
+	ui->tableViewStash->addAction(ui->actionDiffStash);
+	ui->tableViewStash->addAction(ui->actionDeleteStash);
+
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
 	QList<QAction*> file_actions = ui->menuFile->actions();
@@ -632,9 +638,40 @@ void MainWindow::scanWorkspace()
 		pathSet.insert(path);
 	}
 
+	// Load the stash
+	stashMap.clear();
+	res.clear();
+	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNGLAGS_SILENT_ALL))
+		return;
+
+	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); ++line_it)
+	{
+		QString l = (*line_it).trimmed();
+		int colon = l.indexOf(':');
+
+		// When no colon we have no stash to process
+		if(colon==-1)
+			break;
+
+		QString id = l.left(colon);
+
+		// Parse stash name
+		++line_it;
+
+		// Invalid stash, exit
+		if(line_it==res.end())
+			break;
+
+		QString name = (*line_it);
+		name = name.trimmed();
+		stashMap.insert(name, id);
+	}
+
+
 	// Update the file item model
 	updateDirView();
 	updateFileView();
+	updateStashView();
 
 	setEnabled(true);
 	setStatus("");
@@ -682,6 +719,11 @@ void MainWindow::updateDirView()
 {
 	// Directory View
 	repoDirModel.clear();
+
+	QStringList header;
+	header << tr("Folders");
+	repoDirModel.setHorizontalHeaderLabels(header);
+
 	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), projectName);
 	root->setData(""); // Empty Path
 	root->setEditable(false);
@@ -826,6 +868,24 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 	return run_ok ? REPO_OK : REPO_NOT_FOUND;
 }
 //------------------------------------------------------------------------------
+void MainWindow::updateStashView()
+{
+	repoStashModel.clear();
+
+	QStringList header;
+	header << tr("Stashes");
+	repoStashModel.setHorizontalHeaderLabels(header);
+
+	for(stashmap_t::iterator it=stashMap.begin(); it!=stashMap.end(); ++it)
+	{
+		QStandardItem *item = new QStandardItem(it.key());
+		repoStashModel.appendRow(item);
+	}
+	ui->tableViewStash->resizeColumnsToContents();
+	ui->tableViewStash->resizeRowsToContents();
+}
+
+//------------------------------------------------------------------------------
 void MainWindow::log(const QString &text, bool isHTML)
 {
 	if(isHTML)
@@ -885,7 +945,17 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	bool detached = (runFlags & RUNGLAGS_DETACHED) != 0;
 
 	if(!silent_input)
-		log("<b>&gt; fossil "+args.join(" ")+"</b><br>", true);
+	{
+		QString params;
+		foreach(QString p, args)
+		{
+			if(p.indexOf(' ')!=-1)
+				params += '"' + p + "\" ";
+			else
+				params += p + ' ';
+		}
+		log("<b>&gt; fossil "+params+"</b><br>", true);
+	}
 
 	QString wkdir = getCurrentWorkspace();
 
@@ -914,13 +984,19 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	fossilAbort = false;
 	QString buffer;
 
-	while(process.state()==QProcess::Running || process.bytesAvailable()>0)
+	while(true)
 	{
+		QProcess::ProcessState state = process.state();
+		qint64 bytes_avail = process.bytesAvailable();
+
+		if(state!=QProcess::Running && bytes_avail<1)
+			break;
+
 		if(fossilAbort)
 		{
 			log("\n* "+tr("Terminated")+" *\n");
 			#ifdef Q_WS_WIN
-				fossilUI.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
+				process.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
 			#else
 				process.terminate();
 			#endif
@@ -1137,8 +1213,13 @@ void MainWindow::loadSettings()
 	if(qsettings.contains("ViewAsList"))
 	{
 		ui->actionViewAsList->setChecked(qsettings.value("ViewAsList").toBool());
-		ui->treeView->setVisible(qsettings.value("ViewAsList").toBool() == VIEWMODE_LIST);
+		viewMode = qsettings.value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
+	ui->treeView->setVisible(viewMode == VIEWMODE_TREE);
+
+	if(qsettings.contains("ViewStash"))
+		ui->actionViewStash->setChecked(qsettings.value("ViewStash").toBool());
+	ui->tableViewStash->setVisible(ui->actionViewStash->isChecked());
 }
 
 //------------------------------------------------------------------------------
@@ -1173,6 +1254,7 @@ void MainWindow::saveSettings()
 	qsettings.setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
 	qsettings.setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
 	qsettings.setValue("ViewAsList", ui->actionViewAsList->isChecked());
+	qsettings.setValue("ViewStash", ui->actionViewStash->isChecked());
 }
 
 //------------------------------------------------------------------------------
@@ -1285,6 +1367,28 @@ void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, b
 		filenames.append(filename);
 	}
 }
+//------------------------------------------------------------------------------
+void MainWindow::getStashViewSelection(QStringList &stashNames, bool allIfEmpty)
+{
+	QModelIndexList selection = ui->tableViewStash->selectionModel()->selectedIndexes();
+	if(selection.empty() && allIfEmpty)
+	{
+		ui->tableViewStash->selectAll();
+		selection = ui->tableViewStash->selectionModel()->selectedIndexes();
+		ui->tableViewStash->clearSelection();
+	}
+
+	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
+	{
+		const QModelIndex &mi = *mi_it;
+
+		if(mi.column()!=0)
+			continue;
+		QString name = repoStashModel.data(mi).toString();
+		stashNames.append(name);
+	}
+}
+
 //------------------------------------------------------------------------------
 bool MainWindow::diffFile(QString repoFile)
 {
@@ -1462,7 +1566,7 @@ void MainWindow::on_actionCommit_triggered()
 	QStringList commit_msgs = settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value.toStringList();
 
 	QString msg;
-	bool aborted = !CommitDialog::run(this, msg, commit_msgs, modified_files);
+	bool aborted = !CommitDialog::run(this, tr("Commit Changes"), modified_files, msg, &commit_msgs);
 
 	// Aborted or not we always keep the commit messages.
 	// (This has saved me way too many times on TortoiseSVN)
@@ -2046,3 +2150,133 @@ QMenu * MainWindow::createPopupMenu()
 	return NULL;
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::on_actionViewStash_triggered()
+{
+	ui->tableViewStash->setVisible(ui->actionViewStash->isChecked());
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionNewStash_triggered()
+{
+	QStringList stashed_files;
+	getSelectionFilenames(stashed_files, RepoFile::TYPE_MODIFIED, true);
+
+	if(stashed_files.empty())
+		return;
+	
+	QString stash_name;
+	bool revert = false;
+	QString checkbox_text = tr("Revert stashed files");
+	if(!CommitDialog::run(this, tr("Stash Changes"), stashed_files, stash_name, 0, true, &checkbox_text, &revert) || stashed_files.empty())
+		return;
+
+	stash_name = stash_name.trimmed();
+
+	if(stash_name.indexOf("\"")!=-1 || stash_name.isEmpty())
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Invalid stash name"));
+		return;
+	}
+
+	// Check that this stash does not exist
+	for(stashmap_t::iterator it=stashMap.begin(); it!=stashMap.end(); ++it)
+	{
+		if(stash_name == it.key())
+		{
+			QMessageBox::critical(this, tr("Error"), tr("This stash already exists"));			
+			return;
+		}
+	}
+
+	// Do Stash
+	QString command = "snapshot";
+	if(revert)
+		command = "save";
+
+	runFossil(QStringList() << "stash" << command << "-m" << stash_name << QuotePaths(stashed_files) );
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionApplyStash_triggered()
+{
+	QStringList stashes;
+	getStashViewSelection(stashes);
+
+	bool delete_stashes = false;
+	if(!FileActionDialog::run(this, tr("Apply Stash"), tr("The following stashes will be applied. Are you sure?"), stashes, tr("Delete after applying"), &delete_stashes))
+		return;
+
+	// Apply stashes
+	for(QStringList::iterator it=stashes.begin(); it!=stashes.end(); ++it)
+	{
+		stashmap_t::iterator id_it = stashMap.find(*it);
+		Q_ASSERT(id_it!=stashMap.end());
+
+		if(!runFossil(QStringList() << "stash" << "apply" << *id_it))
+		{
+			log(tr("Stash application aborted due to errors\n"));
+			return;
+		}
+	}
+	
+	// Delete stashes
+	for(QStringList::iterator it=stashes.begin(); delete_stashes && it!=stashes.end(); ++it)
+	{
+		stashmap_t::iterator id_it = stashMap.find(*it);
+		Q_ASSERT(id_it!=stashMap.end());
+
+		if(!runFossil(QStringList() << "stash" << "drop" << *id_it))
+		{
+			log(tr("Stash deletion aborted due to errors\n"));
+			return;
+		}
+	}
+
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionDeleteStash_triggered()
+{
+	QStringList stashes;
+	getStashViewSelection(stashes);
+
+	if(stashes.empty())
+		return;
+
+	if(!FileActionDialog::run(this, tr("Delete Stashes"), tr("The following stashes will be deleted. Are you sure?"), stashes))
+		return;
+
+	// Delete stashes
+	for(QStringList::iterator it=stashes.begin(); it!=stashes.end(); ++it)
+	{
+		stashmap_t::iterator id_it = stashMap.find(*it);
+		Q_ASSERT(id_it!=stashMap.end());
+
+		if(!runFossil(QStringList() << "stash" << "drop" << *id_it))
+		{
+			log(tr("Stash deletion aborted due to errors\n"));
+			return;
+		}
+	}
+
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionDiffStash_triggered()
+{
+	QStringList stashes;
+	getStashViewSelection(stashes);
+
+	if(stashes.length() != 1)
+		return;
+	
+	stashmap_t::iterator id_it = stashMap.find(*stashes.begin());
+	Q_ASSERT(id_it!=stashMap.end());
+	
+	// Run diff
+	runFossil(QStringList() << "stash" << "diff" << *id_it, 0);
+}

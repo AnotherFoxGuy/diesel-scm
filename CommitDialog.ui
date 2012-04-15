@@ -24,6 +24,9 @@
     <widget class="QComboBox" name="comboBox"/>
    </item>
    <item>
+    <widget class="QLineEdit" name="lineEdit"/>
+   </item>
+   <item>
     <widget class="QSplitter" name="splitter">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -56,6 +59,13 @@
        <enum>QAbstractItemView::SelectRows</enum>
       </property>
      </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>CheckBox</string>
+     </property>
     </widget>
    </item>
    <item>
