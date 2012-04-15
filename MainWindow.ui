@@ -69,7 +69,7 @@
          <bool>false</bool>
         </attribute>
        </widget>
-       <widget class="QTableView" name="tableView">
+       <widget class="FileTableView" name="tableView">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>80</horstretch>
@@ -822,6 +822,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>FileTableView</class>
+   <extends>QTableView</extends>
+   <header>FileTableView.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>

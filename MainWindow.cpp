@@ -11,6 +11,8 @@
 #include <QMessageBox>
 #include <QUrl>
 #include <QInputDialog>
+#include <QDrag>
+#include <QMimeData>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include <QDebug>
@@ -107,6 +109,11 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->tableView->addAction(ui->actionRevert);
 	ui->tableView->addAction(ui->actionRename);
 	ui->tableView->addAction(ui->actionDelete);
+	connect( ui->tableView,
+		SIGNAL( dragOutEvent() ),
+		SLOT( on_fileView_dragOut() ),
+		Qt::DirectConnection );
+
 
 	// TreeView
 	ui->treeView->setModel(&repoDirModel);
@@ -2280,3 +2287,25 @@ void MainWindow::on_actionDiffStash_triggered()
 	// Run diff
 	runFossil(QStringList() << "stash" << "diff" << *id_it, 0);
 }
+
+//------------------------------------------------------------------------------
+void MainWindow::on_fileView_dragOut()
+{
+	QStringList filenames;
+	getFileViewSelection(filenames);
+	QString uris;
+
+	// text/uri-list is a new-line separate list of uris
+	foreach(QString f, filenames)
+	{
+		uris += QUrl::fromLocalFile(getCurrentWorkspace()+QDir::separator()+f).toString() + '\n';
+	}
+
+	QMimeData *mime_data = new QMimeData;
+	mime_data->setData("text/uri-list", uris.toUtf8());
+
+	QDrag drag(this);
+	drag.setMimeData(mime_data);
+	drag.exec(Qt::CopyAction);
+}
+

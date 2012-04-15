@@ -20,13 +20,15 @@ SOURCES += main.cpp\
     CommitDialog.cpp \
     FileActionDialog.cpp \
     SettingsDialog.cpp \
-    Utils.cpp
+    Utils.cpp \
+    FileTableView.cpp
 
 HEADERS  += MainWindow.h \
     CommitDialog.h \
     FileActionDialog.h \
     SettingsDialog.h \
-    Utils.h
+    Utils.h \
+    FileTableView.h
 
 FORMS    += MainWindow.ui \
     CommitDialog.ui \

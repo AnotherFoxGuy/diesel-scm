@@ -184,6 +184,7 @@ private slots:
 	// Manual slots
 	void on_openRecent();
 	void on_treeView_selectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
+	void on_fileView_dragOut();
 
 	// Designer slots
 	void on_actionRefresh_triggered();

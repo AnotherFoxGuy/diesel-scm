@@ -5,9 +5,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 	a.setApplicationName("Fuel");
-	a.setApplicationVersion("0.9.5");
-	a.setOrganizationDomain("karanik.com");
-	a.setOrganizationName("Karanik");
+	a.setApplicationVersion("0.9.6");
+	a.setOrganizationDomain("fuel-scm.org");
+	a.setOrganizationName("fuel-scm");
 
 	// Native OSX applications don't use menu icons
 	#ifdef Q_WS_MACX
