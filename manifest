@@ -1,5 +1,5 @@
-C Disable\sStash\sactions\swhen\snecessary\n
-D 2012-04-15T12:31:29.475
+C Enabled\sthe\sheader\sin\sthe\streeview
+D 2012-04-15T12:38:54.955
 F CommitDialog.cpp a46020a9361151d8d286a2670257d01d8967bf69
 F CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
@@ -10,7 +10,7 @@ F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F MainWindow.cpp e6a73e167787a2effee2c437541f1f9f744667cc
 F MainWindow.h 987fa4ae0604373778184501f4f71f07ac614a16
-F MainWindow.ui 726175dba24957cdf9884326c3948dffe01a4a3d
+F MainWindow.ui d569997fecf4a22d61a016a4a23eea04eaad6dee
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
 F SettingsDialog.h f5da6cab4ccc82e2eb78ec835fb849c4c104d6cc
 F SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
@@ -176,7 +176,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp 708e816c839ff4d9af9b769ac917a3fffe2c87c3
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P f0c54b554cfa5aa03f249abb6cf96b06569bbd1e
-R 8fe84fb264e37e551ccd98e2de8ed5e3
+P 8814626a6033ff2729ea9643bb969ad4f3baa88c
+R 8c89c93ae408915f3c188da9f6bd3bde
 U kostas
-Z 0f99d061c2569c2107a510a77e92ca5a
+Z f2c5008db068453855c823727dcf2740
