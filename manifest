@@ -1,5 +1,5 @@
-C Minor\scleanup\n
-D 2012-04-15T09:12:27.020
+C Changed\sorg\sname\sto\suppercase\n
+D 2012-04-15T09:31:22.578
 F CommitDialog.cpp a46020a9361151d8d286a2670257d01d8967bf69
 F CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
@@ -174,9 +174,9 @@ F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F main.cpp 581c2b64cb8ed88aabcdd6b6482d28f3f3935232
+F main.cpp 708e816c839ff4d9af9b769ac917a3fffe2c87c3
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P a5a77363fdcadd2bea991228289a87fa73a98fb9
-R ce596f31cc600caff16c78844ec2979f
+P dd20fc5ce6386b8bfe7009f6b00a6be3aae1e660
+R e3bbc8234bd97c378521e31e30c07cb5
 U kostas
-Z d859465360b942f1290831a8bbcc434e
+Z 7a2e9a86bf8925098069e4c8d665d873

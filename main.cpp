@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 	a.setApplicationName("Fuel");
 	a.setApplicationVersion("0.9.6");
 	a.setOrganizationDomain("fuel-scm.org");
-	a.setOrganizationName("fuel-scm");
+	a.setOrganizationName("Fuel-SCM");
 
 	// Native OSX applications don't use menu icons
 	#ifdef Q_WS_MACX
