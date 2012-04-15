@@ -181,10 +181,11 @@ private:
 	};
 
 private slots:
-	// Manual slots
-	void on_openRecent();
-	void on_treeView_selectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
-	void on_fileView_dragOut();
+	// Manual slots.
+	// Use a different naming scheme to prevent warnings from Qt's automatic signaling
+	void onOpenRecent();
+	void onTreeViewSelectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
+	void onFileViewDragOut();
 
 	// Designer slots
 	void on_actionRefresh_triggered();
@@ -203,7 +204,6 @@ private slots:
 	void on_actionAdd_triggered();
 	void on_actionDelete_triggered();
 	void on_actionRevert_triggered();
-	void on_actionClone_triggered();
 	void on_actionOpenContaining_triggered();
 	void on_actionRename_triggered();
 	void on_actionUndo_triggered();
@@ -220,6 +220,7 @@ private slots:
 	void on_actionNewRepository_triggered();
 	void on_actionOpenRepository_triggered();
 	void on_actionCloseRepository_triggered();
+	void on_actionCloneRepository_triggered();
 	void on_actionViewStash_triggered();
 	void on_actionNewStash_triggered();
 	void on_actionApplyStash_triggered();

@@ -111,15 +111,14 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->tableView->addAction(ui->actionDelete);
 	connect( ui->tableView,
 		SIGNAL( dragOutEvent() ),
-		SLOT( on_fileView_dragOut() ),
+		SLOT( onFileViewDragOut() ),
 		Qt::DirectConnection );
-
 
 	// TreeView
 	ui->treeView->setModel(&repoDirModel);
 	connect( ui->treeView->selectionModel(),
 		SIGNAL( selectionChanged(const QItemSelection &, const QItemSelection &) ),
-		SLOT( on_treeView_selectionChanged(const QItemSelection &, const QItemSelection &) ),
+		SLOT( onTreeViewSelectionChanged(const QItemSelection &, const QItemSelection &) ),
 		Qt::DirectConnection );
 
 	ui->treeView->addAction(ui->actionCommit);
@@ -155,7 +154,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	{
 		recentWorkspaceActs[i] = new QAction(this);
 		recentWorkspaceActs[i]->setVisible(false);
-		connect(recentWorkspaceActs[i], SIGNAL(triggered()), this, SLOT(on_openRecent()));
+		connect(recentWorkspaceActs[i], SIGNAL(triggered()), this, SLOT(onOpenRecent()));
 		ui->menuFile->insertAction(recent_sep, recentWorkspaceActs[i]);
 	}
 
@@ -397,7 +396,7 @@ void MainWindow::on_actionCloseRepository_triggered()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionClone_triggered()
+void MainWindow::on_actionCloneRepository_triggered()
 {
 	// FIXME: Implement this
 	stopUI();
@@ -423,7 +422,7 @@ void MainWindow::rebuildRecent()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_openRecent()
+void MainWindow::onOpenRecent()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if(!action)
@@ -1952,7 +1951,7 @@ QString MainWindow::getFossilHttpAddress()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_treeView_selectionChanged(const QItemSelection &/*selected*/, const QItemSelection &/*deselected*/)
+void MainWindow::onTreeViewSelectionChanged(const QItemSelection &/*selected*/, const QItemSelection &/*deselected*/)
 {
 	selectedDirs.clear();
 
@@ -2293,7 +2292,7 @@ void MainWindow::on_actionDiffStash_triggered()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_fileView_dragOut()
+void MainWindow::onFileViewDragOut()
 {
 	QStringList filenames;
 	getFileViewSelection(filenames);
