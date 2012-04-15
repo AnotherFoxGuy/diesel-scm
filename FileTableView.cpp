@@ -1,8 +1,6 @@
 #include "FileTableView.h"
 #include <QMouseEvent>
-//#include <QMimeData>
 #include <QApplication>
-//#include <QUrl>
 
 FileTableView::FileTableView(QWidget *parent) :
 	QTableView(parent)

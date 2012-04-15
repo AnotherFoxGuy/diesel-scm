@@ -1,12 +1,12 @@
-C Added\ssupport\sfor\sdragging\sfiles\sfrom\sthe\sfile\slist\nUpped\sversion\sto\s0.9.6\n
-D 2012-04-15T09:08:58.949
+C Minor\scleanup\n
+D 2012-04-15T09:12:27.020
 F CommitDialog.cpp a46020a9361151d8d286a2670257d01d8967bf69
 F CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
 F FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F FileTableView.cpp 04b793f93b47717cc482dd684ee2b4976e1340fc
+F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F MainWindow.cpp 6b8caf49d9c0f4e9768fd5c860a92cae638bb353
 F MainWindow.h 987fa4ae0604373778184501f4f71f07ac614a16
@@ -176,7 +176,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp 581c2b64cb8ed88aabcdd6b6482d28f3f3935232
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P ce70efe67a1fe0087cc6d3aa79757a5011c57db2
-R 3ef0842f9e81c70e0425f1d683d72d06
+P a5a77363fdcadd2bea991228289a87fa73a98fb9
+R ce596f31cc600caff16c78844ec2979f
 U kostas
-Z 843fc316a0eadf4fed3bcf121554dcb2
+Z d859465360b942f1290831a8bbcc434e
