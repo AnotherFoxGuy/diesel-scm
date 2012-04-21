@@ -13,6 +13,7 @@
 #include <QInputDialog>
 #include <QDrag>
 #include <QMimeData>
+#include <QFileIconProvider>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include <QDebug>
@@ -135,6 +136,7 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
 	ui->tableViewStash->addAction(ui->actionApplyStash);
 	ui->tableViewStash->addAction(ui->actionDiffStash);
 	ui->tableViewStash->addAction(ui->actionDeleteStash);
+    ui->tableViewStash->horizontalHeader()->setSortIndicatorShown(false);
 
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
@@ -174,7 +176,7 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
 	loadSettings();
 
 	// Apply any explict workspace path if available
-	if(workspacePath)
+    if(workspacePath && !workspacePath->isEmpty())
 		openWorkspace(*workspacePath);
 
 	refresh();
@@ -371,6 +373,10 @@ void MainWindow::on_actionNewRepository_triggered()
 		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
 		return;
 	}
+
+    // Disable unknown file filter
+    if(!ui->actionViewUnknown->isChecked())
+        ui->actionViewUnknown->setChecked(true);
 
 	// Open repo
 	if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile)))
@@ -789,6 +795,8 @@ void MainWindow::updateFileView()
 		{	RepoFile::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
 	};
 
+	QFileIconProvider icon_provider;
+
 	size_t item_id=0;
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
 	{
@@ -820,16 +828,16 @@ void MainWindow::updateFileView()
 		repoFileModel.setItem(item_id, COLUMN_STATUS, status);
 
 		QFileInfo finfo = e.getFileInfo();
+		QIcon icon = icon_provider.icon(finfo);
 
 		QStandardItem *filename_item = 0;
 		if(viewMode==VIEWMODE_LIST || multiple_dirs)
 		{
 			repoFileModel.setItem(item_id, COLUMN_PATH, new QStandardItem(path));
-
-			filename_item = new QStandardItem(e.getFilePath());
+			filename_item = new QStandardItem(icon, QDir::toNativeSeparators(e.getFilePath()));
 		}
 		else // In Tree mode the path is implicit so the file name is enough
-			filename_item = new QStandardItem(e.getFilename());
+		filename_item = new QStandardItem(icon, e.getFilename());
 
 		Q_ASSERT(filename_item);
 		// Keep the path in the user data
@@ -842,8 +850,13 @@ void MainWindow::updateFileView()
 		++item_id;
 	}
 
-	ui->tableView->resizeColumnsToContents();
-	ui->tableView->resizeRowsToContents();
+    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_STATUS, QHeaderView::ResizeToContents);
+    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_FILENAME, QHeaderView::Stretch);
+    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_EXTENSION, QHeaderView::ResizeToContents);
+    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_MODIFIED, QHeaderView::ResizeToContents);
+    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_PATH, QHeaderView::ResizeToContents);
+    ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
+    ui->tableView->resizeRowsToContents();
 }
 
 //------------------------------------------------------------------------------
@@ -2317,8 +2330,16 @@ void MainWindow::onFileViewDragOut()
 	QMimeData *mime_data = new QMimeData;
 	mime_data->setData("text/uri-list", uris.toUtf8());
 
-	QDrag drag(this);
-	drag.setMimeData(mime_data);
-	drag.exec(Qt::CopyAction);
+    QDrag *drag = new QDrag(this);
+    drag->setMimeData(mime_data);
+    drag->exec(Qt::CopyAction);
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::on_textBrowser_customContextMenuRequested(const QPoint &pos)
+{
+    QMenu *menu = ui->textBrowser->createStandardContextMenu();
+    menu->addSeparator();
+    menu->addAction(ui->actionClearLog);
+    menu->popup(ui->textBrowser->mapToGlobal(pos));
+}

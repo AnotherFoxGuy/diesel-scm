@@ -1,5 +1,5 @@
-C Allow\sopening\sa\sspecific\sworkspace\spath\sfrom\sthe\scommandline\n\n
-D 2012-04-15T14:42:09.758
+C When\screating\sa\snew\srepository\salways\sshow\sunknown\sfiles\nMoved\sthe\sclear\slog\saction\sto\sthe\slog\scontext\smenu\nThe\sfile\sview\snow\sdisplays\sthe\sactual\sfiletype\sicons\nBetter\sresizing\sfor\scolumns\sin\sthe\sfileview\nFixed\scrash\sin\sdrag\sand\sdrop\sin\sLinux\n
+D 2012-04-21T08:36:13.808
 F CommitDialog.cpp a46020a9361151d8d286a2670257d01d8967bf69
 F CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
@@ -8,9 +8,9 @@ F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F MainWindow.cpp 8d0d6d8e78210670a8fe533b1413bcbe77196ce1
-F MainWindow.h 78dc49fe4500a6113ed8bbff597d5305d203a80c
-F MainWindow.ui d569997fecf4a22d61a016a4a23eea04eaad6dee
+F MainWindow.cpp e81955c1902fb6a7ac33c830a425dd1baad5ccc1
+F MainWindow.h 1f6d8db9cf25a89fbbb1e0b33cc63a0e43cfe7ff
+F MainWindow.ui 6c12a0b141b86c6994d5835618acba19a9ff1976
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
 F SettingsDialog.h f5da6cab4ccc82e2eb78ec835fb849c4c104d6cc
 F SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
@@ -176,7 +176,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp 69c1f9e873c016ef466d20298a67c3bc4c2b2f3a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 8e08f86043f0c2159037824f125e6acf2c2be007
-R 2e9aacb62b629a4e755adad517f7f50b
+P e42f476b1c07959ee224b1abbd60f811893d0717
+R d8b3609a9646f748b8ef5737cc97987c
 U kostas
-Z 528eba2e411becfe13a36cbfcfcf8dde
+Z 8c32e736b7ba845d81c6fe59d1e8d0a9

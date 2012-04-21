@@ -226,7 +226,7 @@ private slots:
 	void on_actionApplyStash_triggered();
 	void on_actionDeleteStash_triggered();
 	void on_actionDiffStash_triggered();
-
+    void on_textBrowser_customContextMenuRequested(const QPoint &pos);
 private:
 	enum
 	{
