@@ -568,6 +568,9 @@ void MainWindow::scanWorkspace()
 	QFileInfoList all_files;
 	QString wkdir = getCurrentWorkspace();
 
+	if(wkdir.isEmpty())
+		return;
+
 	// Retrieve the status of files tracked by fossil
 	QStringList res;
 	if(!runFossil(QStringList() << "ls" << "-l", &res, RUNGLAGS_SILENT_ALL))
@@ -692,26 +695,32 @@ void MainWindow::scanWorkspace()
 	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNGLAGS_SILENT_ALL))
 		return;
 
-	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); ++line_it)
-	{
-		QString l = (*line_it).trimmed();
-		int colon = l.indexOf(':');
+	// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
+	QRegExp stash_rx("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
 
-		// When no colon we have no stash to process
-		if(colon==-1)
+	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); )
+	{
+		QString line = *line_it;
+
+		int index = stash_rx.indexIn(line);
+		if(index==-1)
 			break;
 
-		QString id = l.left(colon);
-
-		// Parse stash name
+		QString id = stash_rx.cap(1);
 		++line_it;
 
-		// Invalid stash, exit
-		if(line_it==res.end())
-			break;
+		QString name;
+		// Finish at an anonymous stash or start of a new stash ?
+		if(line_it==res.end() || stash_rx.indexIn(*line_it)!=-1)
+			name = line.trimmed();		
+		else // Named stash
+		{
+			// Parse stash name
+			name = (*line_it);
+			name = name.trimmed();
+			++line_it;
+		}
 
-		QString name = (*line_it);
-		name = name.trimmed();
 		stashMap.insert(name, id);
 	}
 
