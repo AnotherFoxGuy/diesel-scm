@@ -116,7 +116,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget *parent = 0, QString *workspacePath = 0);
+	explicit MainWindow(QWidget *parent = 0, QString *workspacePath = 0, bool portableMode = false);
     ~MainWindow();
 	bool diffFile(QString repoFile);
 
@@ -251,6 +251,8 @@ private:
 	QString				currentWorkspace;
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
+
+	class QSettings		*qsettings;
 
 	// Repo State
 	typedef QList<RepoFile*> filelist_t;

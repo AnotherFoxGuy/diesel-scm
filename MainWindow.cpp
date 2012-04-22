@@ -89,7 +89,7 @@ static QStringMap MakeKeyValues(QStringList lines)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
+MainWindow::MainWindow(QWidget *parent, QString *workspacePath, bool portableMode) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
 {
@@ -173,6 +173,18 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
 #endif
 
 	viewMode = VIEWMODE_TREE;
+
+	// Go into portable mode when explicitly requested or if a config file exists next to the executable
+	QString ini_path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + QCoreApplication::applicationName() + ".ini");
+	if(portableMode || QFile::exists(ini_path))
+		qsettings = new QSettings(ini_path, QSettings::IniFormat);
+	else
+	{
+		// Linux: ~/.config/organizationName/applicationName.conf
+		// Windows: HKEY_CURRENT_USER\Software\organizationName\Fuel
+		qsettings = new QSettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
+	}
+	
 	loadSettings();
 
 	// Apply any explicit workspace path if available
@@ -193,6 +205,7 @@ MainWindow::~MainWindow()
 {
 	stopUI();
 	saveSettings();
+	delete qsettings;
 
 	// Dispose RepoFiles
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
@@ -1222,24 +1235,20 @@ QString MainWindow::getFossilPath()
 //------------------------------------------------------------------------------
 void MainWindow::loadSettings()
 {
-	// Linux: ~/.config/organizationName/applicationName.conf
-	// Windows: HKEY_CURRENT_USER\Software\organizationName\Fuel
-	QSettings qsettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
+	if(qsettings->contains(FUEL_SETTING_FOSSIL_PATH))
+		settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value = qsettings->value(FUEL_SETTING_FOSSIL_PATH);
 
-	if(qsettings.contains(FUEL_SETTING_FOSSIL_PATH))
-		settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value = qsettings.value(FUEL_SETTING_FOSSIL_PATH);
+	if(qsettings->contains(FUEL_SETTING_COMMIT_MSG))
+		settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value = qsettings->value(FUEL_SETTING_COMMIT_MSG);
 
-	if(qsettings.contains(FUEL_SETTING_COMMIT_MSG))
-		settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value = qsettings.value(FUEL_SETTING_COMMIT_MSG);
+	if(qsettings->contains(FUEL_SETTING_FILE_DBLCLICK))
+		settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value = qsettings->value(FUEL_SETTING_FILE_DBLCLICK);
 
-	if(qsettings.contains(FUEL_SETTING_FILE_DBLCLICK))
-		settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value = qsettings.value(FUEL_SETTING_FILE_DBLCLICK);
-
-	int num_wks = qsettings.beginReadArray("Workspaces");
+	int num_wks = qsettings->beginReadArray("Workspaces");
 	for(int i=0; i<num_wks; ++i)
 	{
-		qsettings.setArrayIndex(i);
-		QString wk = qsettings.value("Path").toString();
+		qsettings->setArrayIndex(i);
+		QString wk = qsettings->value("Path").toString();
 
 		// Skip invalid workspaces
 		if(wk.isEmpty() || !QDir(wk).exists())
@@ -1247,81 +1256,79 @@ void MainWindow::loadSettings()
 
 		addWorkspace(wk);
 
-		if(qsettings.contains("Active") && qsettings.value("Active").toBool())
+		if(qsettings->contains("Active") && qsettings->value("Active").toBool())
 			setCurrentWorkspace(wk);
 	}
-	qsettings.endArray();
+	qsettings->endArray();
 
 
-	if(qsettings.contains("WindowX") && qsettings.contains("WindowY"))
+	if(qsettings->contains("WindowX") && qsettings->contains("WindowY"))
 	{
 		QPoint _pos;
-		_pos.setX(qsettings.value("WindowX").toInt());
-		_pos.setY(qsettings.value("WindowY").toInt());
+		_pos.setX(qsettings->value("WindowX").toInt());
+		_pos.setY(qsettings->value("WindowY").toInt());
 		move(_pos);
 	}
 
-	if(qsettings.contains("WindowWidth") && qsettings.contains("WindowHeight"))
+	if(qsettings->contains("WindowWidth") && qsettings->contains("WindowHeight"))
 	{
 		QSize _size;
-		_size.setWidth(qsettings.value("WindowWidth").toInt());
-		_size.setHeight(qsettings.value("WindowHeight").toInt());
+		_size.setWidth(qsettings->value("WindowWidth").toInt());
+		_size.setHeight(qsettings->value("WindowHeight").toInt());
 		resize(_size);
 	}
 
-	if(qsettings.contains("ViewUnknown"))
-		ui->actionViewUnknown->setChecked(qsettings.value("ViewUnknown").toBool());
-	if(qsettings.contains("ViewModified"))
-		ui->actionViewModified->setChecked(qsettings.value("ViewModified").toBool());
-	if(qsettings.contains("ViewUnchanged"))
-		ui->actionViewUnchanged->setChecked(qsettings.value("ViewUnchanged").toBool());
-	if(qsettings.contains("ViewIgnored"))
-		ui->actionViewIgnored->setChecked(qsettings.value("ViewIgnored").toBool());
-	if(qsettings.contains("ViewAsList"))
+	if(qsettings->contains("ViewUnknown"))
+		ui->actionViewUnknown->setChecked(qsettings->value("ViewUnknown").toBool());
+	if(qsettings->contains("ViewModified"))
+		ui->actionViewModified->setChecked(qsettings->value("ViewModified").toBool());
+	if(qsettings->contains("ViewUnchanged"))
+		ui->actionViewUnchanged->setChecked(qsettings->value("ViewUnchanged").toBool());
+	if(qsettings->contains("ViewIgnored"))
+		ui->actionViewIgnored->setChecked(qsettings->value("ViewIgnored").toBool());
+	if(qsettings->contains("ViewAsList"))
 	{
-		ui->actionViewAsList->setChecked(qsettings.value("ViewAsList").toBool());
-		viewMode = qsettings.value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
+		ui->actionViewAsList->setChecked(qsettings->value("ViewAsList").toBool());
+		viewMode = qsettings->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
 	ui->treeView->setVisible(viewMode == VIEWMODE_TREE);
 
-	if(qsettings.contains("ViewStash"))
-		ui->actionViewStash->setChecked(qsettings.value("ViewStash").toBool());
+	if(qsettings->contains("ViewStash"))
+		ui->actionViewStash->setChecked(qsettings->value("ViewStash").toBool());
 	ui->tableViewStash->setVisible(ui->actionViewStash->isChecked());
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::saveSettings()
 {
-	QSettings qsettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
-
 	// If we have a customize fossil path, save it
 	QString fossil_path = settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value.toString();
-	qsettings.setValue(FUEL_SETTING_FOSSIL_PATH, fossil_path);
-	qsettings.setValue(FUEL_SETTING_COMMIT_MSG, settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value);
-	qsettings.setValue(FUEL_SETTING_FILE_DBLCLICK, settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value);
+	qsettings->setValue(FUEL_SETTING_FOSSIL_PATH, fossil_path);
+	qsettings->setValue(FUEL_SETTING_COMMIT_MSG, settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value);
+	qsettings->setValue(FUEL_SETTING_FILE_DBLCLICK, settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value);
 
-	qsettings.beginWriteArray("Workspaces", workspaceHistory.size());
+	qsettings->beginWriteArray("Workspaces", workspaceHistory.size());
 	for(int i=0; i<workspaceHistory.size(); ++i)
 	{
-		qsettings.setArrayIndex(i);
-		qsettings.setValue("Path", workspaceHistory[i]);
+		qsettings->setArrayIndex(i);
+		qsettings->setValue("Path", workspaceHistory[i]);
 		if(getCurrentWorkspace() == workspaceHistory[i])
-			qsettings.setValue("Active", true);
+			qsettings->setValue("Active", true);
 		else
-			qsettings.remove("Active");
+			qsettings->remove("Active");
 	}
-	qsettings.endArray();
+	qsettings->endArray();
 
-	qsettings.setValue("WindowX", x());
-	qsettings.setValue("WindowY", y());
-	qsettings.setValue("WindowWidth", width());
-	qsettings.setValue("WindowHeight", height());
-	qsettings.setValue("ViewUnknown", ui->actionViewUnknown->isChecked());
-	qsettings.setValue("ViewModified", ui->actionViewModified->isChecked());
-	qsettings.setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
-	qsettings.setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
-	qsettings.setValue("ViewAsList", ui->actionViewAsList->isChecked());
-	qsettings.setValue("ViewStash", ui->actionViewStash->isChecked());
+	qsettings->setValue("WindowX", x());
+	qsettings->setValue("WindowY", y());
+	qsettings->setValue("WindowWidth", width());
+	qsettings->setValue("WindowHeight", height());
+	qsettings->setValue("ViewUnknown", ui->actionViewUnknown->isChecked());
+	qsettings->setValue("ViewModified", ui->actionViewModified->isChecked());
+	qsettings->setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
+	qsettings->setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
+	qsettings->setValue("ViewAsList", ui->actionViewAsList->isChecked());
+	qsettings->setValue("ViewStash", ui->actionViewStash->isChecked());
 }
 
 //------------------------------------------------------------------------------
@@ -1479,7 +1486,7 @@ bool MainWindow::startUI()
 {
 	if(uiRunning())
 	{
-		log("Fossil UI is already running\n");
+		log(tr("Fossil UI is already running\n"));
 		return true;
 	}
 
@@ -1488,13 +1495,13 @@ bool MainWindow::startUI()
 	fossilUI.setWorkingDirectory(getCurrentWorkspace());
 
 	log("<b>&gt; fossil ui</b><br>", true);
-	log("Starting Fossil UI. Please wait.\n");
+	log(tr("Starting Fossil UI. Please wait.\n"));
 	QString fossil = getFossilPath();
 
 	fossilUI.start(fossil, QStringList() << "ui");
 	if(!fossilUI.waitForStarted() || fossilUI.state()!=QProcess::Running)
 	{
-		log(fossil+ tr(" does not exist") +"\n");
+		log(tr("%0 does not exist\n").arg(fossil));
 		ui->actionFossilUI->setChecked(false);
 		return false;
 	}
@@ -1619,7 +1626,6 @@ void MainWindow::on_actionPull_triggered()
 {
 	runFossil(QStringList() << "pull");
 }
-
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCommit_triggered()
@@ -1800,8 +1806,6 @@ void MainWindow::on_actionRename_triggered()
 	refresh();
 }
 
-
-
 //------------------------------------------------------------------------------
 void MainWindow::on_actionOpenContaining_triggered()
 {
@@ -1856,7 +1860,7 @@ void MainWindow::on_actionAbout_triggered()
 			fossil_ver = tr("Fossil version ")+res[0].mid(off) + "\n\n";
 	}
 
-	QMessageBox::about(this, "About Fuel...",
+	QMessageBox::about(this, tr("About Fuel..."),
 					   QCoreApplication::applicationName() + " "+ QCoreApplication::applicationVersion() + " " +
 						tr("a GUI frontend to the Fossil SCM\n"
 							"by Kostas Karanikolas\n"
