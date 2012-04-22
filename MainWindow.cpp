@@ -90,10 +90,10 @@ static QStringMap MakeKeyValues(QStringList lines)
 
 ///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+	QMainWindow(parent),
+	ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 
 	QAction *separator = new QAction(this);
 	separator->setSeparator(true);
@@ -136,7 +136,7 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
 	ui->tableViewStash->addAction(ui->actionApplyStash);
 	ui->tableViewStash->addAction(ui->actionDiffStash);
 	ui->tableViewStash->addAction(ui->actionDeleteStash);
-    ui->tableViewStash->horizontalHeader()->setSortIndicatorShown(false);
+	ui->tableViewStash->horizontalHeader()->setSortIndicatorShown(false);
 
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
@@ -176,7 +176,7 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
 	loadSettings();
 
 	// Apply any explict workspace path if available
-    if(workspacePath && !workspacePath->isEmpty())
+	if(workspacePath && !workspacePath->isEmpty())
 		openWorkspace(*workspacePath);
 
 	refresh();
@@ -264,8 +264,16 @@ bool MainWindow::openWorkspace(const QString &path)
 		if(!(QFileInfo(checkout_file1).exists() || QFileInfo(checkout_file2).exists()) )
 		{
 			if(QMessageBox::Yes !=DialogQuery(this, tr("Open Fossil"), "A workspace does not exist in this folder.\nWould you like to create one here?"))
-				return false;
-			
+			{
+				wkspace = QFileDialog::getExistingDirectory(
+							this,
+							tr("Select Workspace Folder"),
+							wkspace);
+
+				if(wkspace.isEmpty() || !QDir(wkspace).exists())
+					return false;
+			}
+
 			// Ok open the fossil
 			setCurrentWorkspace(wkspace);
 			if(!QDir::setCurrent(wkspace))
@@ -335,29 +343,52 @@ void MainWindow::on_actionNewRepository_triggered()
 {
 	QString filter(tr("Repositories (*.fossil)"));
 
-	QString path = QFileDialog::getSaveFileName(
+	// Get Repository file
+	QString repo_path = QFileDialog::getSaveFileName(
 		this,
 		tr("New Fossil Repository"),
 		QDir::currentPath(),
 		filter,
 		&filter);
 
-	if(path.isEmpty())
+	if(repo_path.isEmpty())
 		return;
 
-	if(QFile::exists(path))
+	if(QFile::exists(repo_path))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("A repository file already exists.\nRepository creation aborted."), QMessageBox::Ok );
 		return;
 	}
-	stopUI();
 
+	QFileInfo repo_path_info(repo_path);
+	Q_ASSERT(repo_path_info.dir().exists());
+
+	// Get Workspace path
+	QString wkdir = repo_path_info.absoluteDir().absolutePath();
+	if(QMessageBox::Yes != DialogQuery(this, tr("Create Workspace"), "Would you like to create a workspace in the same folder?"))
+	{
+		wkdir = QFileDialog::getExistingDirectory(
+			this,
+			tr("Select Workspace Folder"),
+			wkdir);
+
+		if(wkdir.isEmpty() || !QDir(wkdir).exists())
+			return;
+	}
+
+	stopUI();
 	on_actionClearLog_triggered();
 
-	QFileInfo path_info(path);
-	Q_ASSERT(path_info.dir().exists());
-	QString wkdir = path_info.absoluteDir().absolutePath();
+	repositoryFile = repo_path_info.absoluteFilePath();
 
+	// Create repository
+	if(!runFossil(QStringList() << "new" << QuotePath(repositoryFile)))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
+		return;
+	}
+
+	// Create workspace
 	setCurrentWorkspace(wkdir);
 	if(!QDir::setCurrent(wkdir))
 	{
@@ -365,18 +396,9 @@ void MainWindow::on_actionNewRepository_triggered()
 		return;
 	}
 
-	repositoryFile = path_info.absoluteFilePath();
-
-	// Create repo
-	if(!runFossil(QStringList() << "new" << QuotePath(repositoryFile)))
-	{
-		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
-		return;
-	}
-
-    // Disable unknown file filter
-    if(!ui->actionViewUnknown->isChecked())
-        ui->actionViewUnknown->setChecked(true);
+	// Disable unknown file filter
+	if(!ui->actionViewUnknown->isChecked())
+		ui->actionViewUnknown->setChecked(true);
 
 	// Open repo
 	if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile)))
@@ -395,7 +417,7 @@ void MainWindow::on_actionCloseRepository_triggered()
 
 	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), "Are you sure want to close this workspace?"))
 		return;
-	
+
 	// Close Repo
 	if(!runFossil(QStringList() << "close"))
 	{
@@ -787,12 +809,12 @@ void MainWindow::updateFileView()
 	struct { RepoFile::EntryType type; const char *tag; const char *tooltip; const char *icon; }
 	stats[] =
 	{
-		{	RepoFile::TYPE_EDITTED, "E", "Editted", ":icons/icons/Button Blank Yellow-01.png" },
-		{	RepoFile::TYPE_UNCHANGED, "U", "Unchanged", ":icons/icons/Button Blank Green-01.png" },
-		{	RepoFile::TYPE_ADDED, "A", "Added", ":icons/icons/Button Add-01.png" },
-		{	RepoFile::TYPE_DELETED, "D", "Deleted", ":icons/icons/Button Close-01.png" },
-		{	RepoFile::TYPE_RENAMED, "R", "Renamed", ":icons/icons/Button Reload-01.png" },
-		{	RepoFile::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
+		{   RepoFile::TYPE_EDITTED, "E", "Editted", ":icons/icons/Button Blank Yellow-01.png" },
+		{   RepoFile::TYPE_UNCHANGED, "U", "Unchanged", ":icons/icons/Button Blank Green-01.png" },
+		{   RepoFile::TYPE_ADDED, "A", "Added", ":icons/icons/Button Add-01.png" },
+		{   RepoFile::TYPE_DELETED, "D", "Deleted", ":icons/icons/Button Close-01.png" },
+		{   RepoFile::TYPE_RENAMED, "R", "Renamed", ":icons/icons/Button Reload-01.png" },
+		{   RepoFile::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
 	};
 
 	QFileIconProvider icon_provider;
@@ -850,13 +872,13 @@ void MainWindow::updateFileView()
 		++item_id;
 	}
 
-    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_STATUS, QHeaderView::ResizeToContents);
-    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_FILENAME, QHeaderView::Stretch);
-    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_EXTENSION, QHeaderView::ResizeToContents);
-    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_MODIFIED, QHeaderView::ResizeToContents);
-    ui->tableView->horizontalHeader()->setResizeMode(COLUMN_PATH, QHeaderView::ResizeToContents);
-    ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
-    ui->tableView->resizeRowsToContents();
+	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_STATUS, QHeaderView::ResizeToContents);
+	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_FILENAME, QHeaderView::Stretch);
+	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_EXTENSION, QHeaderView::ResizeToContents);
+	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_MODIFIED, QHeaderView::ResizeToContents);
+	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_PATH, QHeaderView::ResizeToContents);
+	ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
+	ui->tableView->resizeRowsToContents();
 }
 
 //------------------------------------------------------------------------------
@@ -865,7 +887,7 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 	QStringList res;
 	int exit_code = EXIT_FAILURE;
 
-    // We need to determine the reason why fossil has failed
+	// We need to determine the reason why fossil has failed
 	// so we delay processing of the exit_code
 	if(!runFossilRaw(QStringList() << "info", &res, &exit_code, RUNGLAGS_SILENT_ALL))
 		return REPO_NOT_FOUND;
@@ -1273,8 +1295,8 @@ void MainWindow::saveSettings()
 		qsettings.setValue("Path", workspaceHistory[i]);
 		if(getCurrentWorkspace() == workspaceHistory[i])
 			qsettings.setValue("Active", true);
-        else
-            qsettings.remove("Active");
+		else
+			qsettings.remove("Active");
 	}
 	qsettings.endArray();
 
@@ -1905,7 +1927,7 @@ void MainWindow::on_actionSettings_triggered()
 	{
 		const QString &name = it.key();
 		Settings::Setting::SettingType type = it.value().Type;
-		
+
 		// Internal types are handled explicitly
 		if(type == Settings::Setting::TYPE_INTERNAL)
 			continue;
@@ -1917,7 +1939,7 @@ void MainWindow::on_actionSettings_triggered()
 			runFossil(QStringList() << "remote-url" << QuotePath(it.value().Value.toString()), 0, RUNGLAGS_SILENT_INPUT);
 			continue;
 		}
-		
+
 		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
 
 		QString value = it.value().Value.toString();
@@ -2197,7 +2219,7 @@ void MainWindow::on_actionNewStash_triggered()
 
 	if(stashed_files.empty())
 		return;
-	
+
 	QString stash_name;
 	bool revert = false;
 	QString checkbox_text = tr("Revert stashed files");
@@ -2217,7 +2239,7 @@ void MainWindow::on_actionNewStash_triggered()
 	{
 		if(stash_name == it.key())
 		{
-			QMessageBox::critical(this, tr("Error"), tr("This stash already exists"));			
+			QMessageBox::critical(this, tr("Error"), tr("This stash already exists"));
 			return;
 		}
 	}
@@ -2253,7 +2275,7 @@ void MainWindow::on_actionApplyStash_triggered()
 			return;
 		}
 	}
-	
+
 	// Delete stashes
 	for(QStringList::iterator it=stashes.begin(); delete_stashes && it!=stashes.end(); ++it)
 	{
@@ -2306,10 +2328,10 @@ void MainWindow::on_actionDiffStash_triggered()
 
 	if(stashes.length() != 1)
 		return;
-	
+
 	stashmap_t::iterator id_it = stashMap.find(*stashes.begin());
 	Q_ASSERT(id_it!=stashMap.end());
-	
+
 	// Run diff
 	runFossil(QStringList() << "stash" << "diff" << *id_it, 0);
 }
@@ -2330,16 +2352,16 @@ void MainWindow::onFileViewDragOut()
 	QMimeData *mime_data = new QMimeData;
 	mime_data->setData("text/uri-list", uris.toUtf8());
 
-    QDrag *drag = new QDrag(this);
-    drag->setMimeData(mime_data);
-    drag->exec(Qt::CopyAction);
+	QDrag *drag = new QDrag(this);
+	drag->setMimeData(mime_data);
+	drag->exec(Qt::CopyAction);
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_textBrowser_customContextMenuRequested(const QPoint &pos)
 {
-    QMenu *menu = ui->textBrowser->createStandardContextMenu();
-    menu->addSeparator();
-    menu->addAction(ui->actionClearLog);
-    menu->popup(ui->textBrowser->mapToGlobal(pos));
+	QMenu *menu = ui->textBrowser->createStandardContextMenu();
+	menu->addSeparator();
+	menu->addAction(ui->actionClearLog);
+	menu->popup(ui->textBrowser->mapToGlobal(pos));
 }
