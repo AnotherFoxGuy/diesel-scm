@@ -14,9 +14,9 @@
 #include <QDrag>
 #include <QMimeData>
 #include <QFileIconProvider>
+#include <QDebug>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
-#include <QDebug>
 #include "Utils.h"
 
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
@@ -164,8 +164,8 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
 	statusLabel->setMinimumSize( statusLabel->sizeHint() );
 	ui->statusBar->addWidget( statusLabel, 1 );
 
-// Native applications on OSX don't use menu icons
 #ifdef Q_WS_MACX
+	// Native applications on OSX don't use menu icons
 	foreach(QAction *a, ui->menuBar->actions())
 		a->setIconVisibleInMenu(false);
 	foreach(QAction *a, ui->menuFile->actions())
@@ -175,7 +175,7 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
 	viewMode = VIEWMODE_TREE;
 	loadSettings();
 
-	// Apply any explict workspace path if available
+	// Apply any explicit workspace path if available
 	if(workspacePath && !workspacePath->isEmpty())
 		openWorkspace(*workspacePath);
 
@@ -263,7 +263,7 @@ bool MainWindow::openWorkspace(const QString &path)
 
 		if(!(QFileInfo(checkout_file1).exists() || QFileInfo(checkout_file2).exists()) )
 		{
-			if(QMessageBox::Yes !=DialogQuery(this, tr("Open Fossil"), "A workspace does not exist in this folder.\nWould you like to create one here?"))
+			if(QMessageBox::Yes !=DialogQuery(this, tr("Open Fossil"), tr("A workspace does not exist in this folder.\nWould you like to create one here?")))
 			{
 				wkspace = QFileDialog::getExistingDirectory(
 							this,
@@ -365,7 +365,7 @@ void MainWindow::on_actionNewRepository_triggered()
 
 	// Get Workspace path
 	QString wkdir = repo_path_info.absoluteDir().absolutePath();
-	if(QMessageBox::Yes != DialogQuery(this, tr("Create Workspace"), "Would you like to create a workspace in the same folder?"))
+	if(QMessageBox::Yes != DialogQuery(this, tr("Create Workspace"), tr("Would you like to create a workspace in the same folder?")))
 	{
 		wkdir = QFileDialog::getExistingDirectory(
 			this,
@@ -415,7 +415,7 @@ void MainWindow::on_actionCloseRepository_triggered()
 	if(getRepoStatus()!=REPO_OK)
 		return;
 
-	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), "Are you sure want to close this workspace?"))
+	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), tr("Are you sure want to close this workspace?")))
 		return;
 
 	// Close Repo
@@ -747,7 +747,7 @@ static void addPathToTree(QStandardItem &root, const QString &path)
 		const QString &dir = *it;
 		fullpath += dir;
 
-		// Find the child that matches this subdir
+		// Find the child that matches this subdirectory
 		bool found = false;
 		for(int r=0; r<parent->rowCount(); ++r)
 		{
@@ -810,7 +810,9 @@ void MainWindow::updateFileView()
 
 	bool multiple_dirs = selectedDirs.count()>1;
 
-	if(viewMode==VIEWMODE_LIST || multiple_dirs)
+	bool show_path = viewMode==VIEWMODE_LIST || multiple_dirs;
+
+	if(show_path)
 		header << tr("Path");
 
 	repoFileModel.setHorizontalHeaderLabels(header);
@@ -818,7 +820,7 @@ void MainWindow::updateFileView()
 	struct { RepoFile::EntryType type; const char *tag; const char *tooltip; const char *icon; }
 	stats[] =
 	{
-		{   RepoFile::TYPE_EDITTED, "E", "Editted", ":icons/icons/Button Blank Yellow-01.png" },
+		{   RepoFile::TYPE_EDITTED, "E", "Edited", ":icons/icons/Button Blank Yellow-01.png" },
 		{   RepoFile::TYPE_UNCHANGED, "U", "Unchanged", ":icons/icons/Button Blank Green-01.png" },
 		{   RepoFile::TYPE_ADDED, "A", "Added", ":icons/icons/Button Add-01.png" },
 		{   RepoFile::TYPE_DELETED, "D", "Deleted", ":icons/icons/Button Close-01.png" },
@@ -862,7 +864,7 @@ void MainWindow::updateFileView()
 		QIcon icon = icon_provider.icon(finfo);
 
 		QStandardItem *filename_item = 0;
-		if(viewMode==VIEWMODE_LIST || multiple_dirs)
+		if(show_path)
 		{
 			repoFileModel.setItem(item_id, COLUMN_PATH, new QStandardItem(path));
 			filename_item = new QStandardItem(icon, QDir::toNativeSeparators(e.getFilePath()));
@@ -885,7 +887,8 @@ void MainWindow::updateFileView()
 	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_FILENAME, QHeaderView::Stretch);
 	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_EXTENSION, QHeaderView::ResizeToContents);
 	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_MODIFIED, QHeaderView::ResizeToContents);
-	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_PATH, QHeaderView::ResizeToContents);
+	if(show_path)
+		ui->tableView->horizontalHeader()->setResizeMode(COLUMN_PATH, QHeaderView::ResizeToContents);
 	ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
 	ui->tableView->resizeRowsToContents();
 }
@@ -1672,7 +1675,7 @@ void MainWindow::on_actionCommit_triggered()
 
     // Generate fossil parameters.
     // When all files are selected avoid explicitly specifying filenames.
-    // This is necessary when commiting after a merge where fossil thinks that
+    // This is necessary when committing after a merge where fossil thinks that
     // we a doing a partial commit, which is not allowed in this case.
     QStringList params;
     params << "commit" << "--message-file" << QuotePath(comment_fname);
@@ -1782,7 +1785,7 @@ void MainWindow::on_actionRename_triggered()
 
 	if(fi_after.exists())
 	{
-		QMessageBox::critical(this, tr("Error"), tr("File ")+new_name+tr(" already exists.\nRename aborted."), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("File %0 already exists.\nRename aborted.").arg(new_name), QMessageBox::Ok );
 		return;
 	}
 
@@ -1860,7 +1863,7 @@ void MainWindow::on_actionAbout_triggered()
 							"Released under the GNU GPL\n\n")
 					   + fossil_ver +
 						tr("Icon-set by Deleket - Jojo Mendoza\n"
-							"Available under the CC Attribution-Noncommercial-No Derivate 3.0 License"));
+							"Available under the CC Attribution Noncommercial No Derivate 3.0 License"));
 }
 
 //------------------------------------------------------------------------------
@@ -2128,8 +2131,8 @@ void MainWindow::on_actionRenameFolder_triggered()
 		return;
 
 	bool move_local = false;
-	if(!FileActionDialog::run(this, tr("Rename Folder"), tr("Renaming folder '")+old_path+tr("' to '")+new_path
-							  +tr("'\nThe following files will be moved in the repository. Are you sure?"),
+	if(!FileActionDialog::run(this, tr("Rename Folder"), tr("Renaming folder '%0' to '%1'\n"
+							  "The following files will be moved in the repository. Are you sure?").arg(old_path, new_path),
 							  operations,
 							  tr("Also move the workspace files"), &move_local)) {
 		return;
@@ -2180,7 +2183,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 
 		if(QFile::exists(new_file_path))
 		{
-			QMessageBox::critical(this, tr("Error"), tr("Target file '")+new_file_path+tr("' exists already"));
+			QMessageBox::critical(this, tr("Error"), tr("Target file '%0' exists already").arg(new_file_path));
 			goto _exit;
 		}
 
@@ -2188,7 +2191,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 
 		if(!QFile::copy(r->getFilePath(), new_file_path))
 		{
-			QMessageBox::critical(this, tr("Error"), tr("Cannot copy file '")+r->getFilePath()+tr("' to '")+new_file_path+"'");
+			QMessageBox::critical(this, tr("Error"), tr("Cannot copy file '%0' to '%1'").arg(r->getFilePath(), new_file_path));
 			goto _exit;
 		}
 	}
@@ -2202,13 +2205,13 @@ void MainWindow::on_actionRenameFolder_triggered()
 
 		if(!QFile::exists(r->getFilePath()))
 		{
-			QMessageBox::critical(this, tr("Error"), tr("Source file '")+r->getFilePath()+tr("' does not exist"));
+			QMessageBox::critical(this, tr("Error"), tr("Source file '%0' does not exist").arg(r->getFilePath()));
 			goto _exit;
 		}
 
 		if(!QFile::remove(r->getFilePath()))
 		{
-			QMessageBox::critical(this, tr("Error"), tr("Cannot remove file '")+r->getFilePath()+"'");
+			QMessageBox::critical(this, tr("Error"), tr("Cannot remove file '%0'").arg(r->getFilePath()));
 			goto _exit;
 		}
 	}
