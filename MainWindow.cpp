@@ -174,7 +174,7 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath) :
 	loadSettings();
 
 	// Apply any explict workspace path if available
-	if(workspacePath)
+	if(workspacePath && !workspacePath->isEmpty())
 		openWorkspace(*workspacePath);
 
 	refresh();
@@ -540,6 +540,9 @@ void MainWindow::scanWorkspace()
 	QFileInfoList all_files;
 	QString wkdir = getCurrentWorkspace();
 
+	if(wkdir.isEmpty())
+		return;
+
 	// Retrieve the status of files tracked by fossil
 	QStringList res;
 	if(!runFossil(QStringList() << "ls" << "-l", &res, RUNGLAGS_SILENT_ALL))
@@ -667,7 +670,7 @@ void MainWindow::scanWorkspace()
 	// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
 	QRegExp stash_rx("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
 
-	for(QStringList::iterator line_it=res.begin(); line_it!=res.end();)
+	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); )
 	{
 		QString line = *line_it;
 
@@ -676,20 +679,15 @@ void MainWindow::scanWorkspace()
 			break;
 
 		QString id = stash_rx.cap(1);
-
-		// Parse stash name
 		++line_it;
-		line = *line_it;
 
-		// Named stash
 		QString name;
-		// Finish at an anonymous stash or start of a new stash
-		if(line_it==res.end() || stash_rx.indexIn(line)!=-1)
+		// Finish at an anonymous stash or start of a new stash ?
+		if(line_it==res.end() || stash_rx.indexIn(*line_it)!=-1)
+			name = line.trimmed();		
+		else // Named stash
 		{
-			name = tr("Stash %1").arg(id);
-		}
-		else
-		{
+			// Parse stash name
 			name = (*line_it);
 			name = name.trimmed();
 			++line_it;
