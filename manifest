@@ -1,5 +1,5 @@
-C Merged\swith\sHead
-D 2012-04-22T09:16:18.102
+C Avoid\sspecifying\sfilenames\sexplicitly\swhen\sall\smodified\sfiles\sare\sselected.\sFixes\sissue\swhen\scommitting\safter\sa\smerge.\nCommit\sselection\snow\sdefaults\sto\sthe\sfileview\sexcept\swhen\sthe\streeview\sis\sin\sfocus\n
+D 2012-04-22T09:34:09.752
 F CommitDialog.cpp a46020a9361151d8d286a2670257d01d8967bf69
 F CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
@@ -8,7 +8,7 @@ F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F MainWindow.cpp 4d34103a080446b2cae976cff458fbefc0f35db1
+F MainWindow.cpp 27e87d3306429326091a7b11983a73c649d08487
 F MainWindow.h 1f6d8db9cf25a89fbbb1e0b33cc63a0e43cfe7ff
 F MainWindow.ui 6c12a0b141b86c6994d5835618acba19a9ff1976
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
@@ -176,7 +176,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp 69c1f9e873c016ef466d20298a67c3bc4c2b2f3a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 5cd50b0577298e1b73d16c1f74a086911f870839 c346118e744ae9d9c397194a7aa29f42256d76db
-R 8d0020cd16d9c6db1969571811de5b0d
+P 5c0c785ed246b1bed2acd0a6b6f31e7d35c7d5b1
+R de3ef902561393afc4b11e55d2580988
 U kostas
-Z 72c3cf43944122c9e74c60b95d0f848d
+Z e11cae0825c4c73aa632c1a0271bc734

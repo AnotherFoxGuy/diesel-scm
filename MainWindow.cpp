@@ -1333,10 +1333,10 @@ void MainWindow::selectRootDir()
 //------------------------------------------------------------------------------
 void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, bool allIfEmpty)
 {
-	if(QApplication::focusWidget() == ui->tableView)
-		getFileViewSelection(filenames, includeMask, allIfEmpty);
-	else if(QApplication::focusWidget() == ui->treeView)
+	if(QApplication::focusWidget() == ui->treeView)
 		getDirViewSelection(filenames, includeMask, allIfEmpty);
+    else
+        getFileViewSelection(filenames, includeMask, allIfEmpty);
 }
 
 //------------------------------------------------------------------------------
@@ -1627,10 +1627,11 @@ void MainWindow::on_actionCommit_triggered()
 	if(modified_files.empty())
 		return;
 
+    QStringList commit_files = modified_files;
 	QStringList commit_msgs = settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value.toStringList();
 
 	QString msg;
-	bool aborted = !CommitDialog::run(this, tr("Commit Changes"), modified_files, msg, &commit_msgs);
+	bool aborted = !CommitDialog::run(this, tr("Commit Changes"), commit_files, msg, &commit_msgs);
 
 	// Aborted or not we always keep the commit messages.
 	// (This has saved me way too many times on TortoiseSVN)
@@ -1644,7 +1645,7 @@ void MainWindow::on_actionCommit_triggered()
 		return;
 
 	// Since via the commit dialog the user can deselect all files
-	if(modified_files.empty())
+	if(commit_files.empty())
 		return;
 
 	// Do commit
@@ -1669,7 +1670,17 @@ void MainWindow::on_actionCommit_triggered()
 	comment_file.write(msg.toUtf8());
 	comment_file.close();
 
-	runFossil(QStringList() << "commit" << "--message-file" << QuotePath(comment_fname) << QuotePaths(modified_files) );
+    // Generate fossil parameters.
+    // When all files are selected avoid explicitly specifying filenames.
+    // This is necessary when commiting after a merge where fossil thinks that
+    // we a doing a partial commit, which is not allowed in this case.
+    QStringList params;
+    params << "commit" << "--message-file" << QuotePath(comment_fname);
+
+    if(modified_files != commit_files)
+        params  << QuotePaths(commit_files);
+
+	runFossil(params);
 	QFile::remove(comment_fname);
 
 	refresh();
