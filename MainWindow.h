@@ -15,6 +15,7 @@ namespace Ui {
     class MainWindow;
 }
 
+
 class QStringList;
 
 //////////////////////////////////////////////////////////////////////////
@@ -148,6 +149,7 @@ private:
 	void getDirViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
 	void getStashViewSelection(QStringList &stashNames, bool allIfEmpty=false);
 	void getSelectionPaths(stringset_t &paths);
+	void getAllFilenames(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL);
 	bool startUI();
 	void stopUI();
 	void enableActions(bool on);

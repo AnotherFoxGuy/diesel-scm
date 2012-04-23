@@ -1362,6 +1362,21 @@ void MainWindow::getSelectionPaths(stringset_t &paths)
 	}
 }
 //------------------------------------------------------------------------------
+// Select all workspace files that match the includeMask
+void MainWindow::getAllFilenames(QStringList &filenames, int includeMask)
+{
+	for(filemap_t::iterator it=workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
+	{
+		const RepoFile &e = *(*it);
+
+		// Skip unwanted file types
+		if(!(includeMask & e.getType()))
+			continue;
+
+		filenames.append(e.getFilePath());
+	}
+}
+//------------------------------------------------------------------------------
 void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bool allIfEmpty)
 {
 	// Determine the directories selected
@@ -1630,13 +1645,12 @@ void MainWindow::on_actionPull_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCommit_triggered()
 {
-	QStringList modified_files;
-	getSelectionFilenames(modified_files, RepoFile::TYPE_MODIFIED, true);
+	QStringList commit_files;
+	getSelectionFilenames(commit_files, RepoFile::TYPE_MODIFIED, true);
 
-	if(modified_files.empty())
+	if(commit_files.empty())
 		return;
 
-    QStringList commit_files = modified_files;
 	QStringList commit_msgs = settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value.toStringList();
 
 	QString msg;
@@ -1679,14 +1693,18 @@ void MainWindow::on_actionCommit_triggered()
 	comment_file.write(msg.toUtf8());
 	comment_file.close();
 
-    // Generate fossil parameters.
-    // When all files are selected avoid explicitly specifying filenames.
-    // This is necessary when committing after a merge where fossil thinks that
-    // we a doing a partial commit, which is not allowed in this case.
+	// Generate fossil parameters.
     QStringList params;
     params << "commit" << "--message-file" << QuotePath(comment_fname);
 
-    if(modified_files != commit_files)
+	// When a subset of files has been selected, explicitely specify each file.
+	// Otherwise all files will be implicitly committed by fossil. This is necessary
+	// when committing after a merge where fossil thinks that we are trying to do
+	// a partial commit which is not permitted.
+	QStringList all_modified_files;
+	getAllFilenames(all_modified_files, RepoFile::TYPE_MODIFIED);
+
+	if(commit_files.size() != all_modified_files.size())
         params  << QuotePaths(commit_files);
 
 	runFossil(params);

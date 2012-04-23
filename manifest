@@ -1,5 +1,5 @@
-C Added\ssupport\sfor\sportable\smode\s[Thanks\sChris]\nPortable\smode\sis\senabled\sby\spassing\sthe\s"--portable"\scommand\sline\soption\nMore\si8n\scleanups\n\n
-D 2012-04-22T13:48:41.757
+C Fixed\sissue\swhere\sa\scomplete\srepository\swould\sbe\scommitted\seven\swhen\sthe\suser\shas\sselection\sset\n
+D 2012-04-23T13:23:18.700
 F CommitDialog.cpp a46020a9361151d8d286a2670257d01d8967bf69
 F CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
@@ -8,8 +8,8 @@ F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F MainWindow.cpp 1ae55ca0a760c44ee33a73f35cb10e95a5c92172
-F MainWindow.h 3360113c938bee4b181f1bdc4953a09e60a0e1ed
+F MainWindow.cpp 08529dd9bd1f191b092ef8122139828426fd4eda
+F MainWindow.h 77b97c636283edf1f8b7630477fc458660ac2cf0
 F MainWindow.ui 6c12a0b141b86c6994d5835618acba19a9ff1976
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
 F SettingsDialog.h f5da6cab4ccc82e2eb78ec835fb849c4c104d6cc
@@ -176,7 +176,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp 3741082d40973584d7c9ecddb58721000d6a7f8e
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 2efeff4cc821f149dbfb010c2de6d2e36945efa4
-R 587b49ca5c6114db2276f46c88d8e4a5
+P 9cb380713c661f2ac8250800ef8e8b01fa9dafdc
+R 889b3b7ddaf31528e06d8c528c76b52a
 U kostas
-Z 807e808714a0c7db7d78ffaf0e1621b4
+Z 44f0f981f3b8c9cbc270c7a09ffa5431
