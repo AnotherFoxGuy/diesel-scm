@@ -42,12 +42,11 @@ struct RepoFile
 		FileInfo = info;
 		Type = type;
 		FilePath = getRelativeFilename(repoPath);
+		Path = FileInfo.absolutePath();
 
-		if(FilePath.indexOf('/')!=-1)
-		{
-			Path = FilePath;
-			Path = Path.left(Path.indexOf(FileInfo.fileName())-1);
-		}
+		// Strip the workspace path from the path
+		Q_ASSERT(Path.indexOf(repoPath)==0);
+		Path = Path.mid(repoPath.length()+1);
 	}
 
 	bool isType(EntryType t) const
