@@ -959,6 +959,7 @@ void MainWindow::updateStashView()
 	for(stashmap_t::iterator it=stashMap.begin(); it!=stashMap.end(); ++it)
 	{
 		QStandardItem *item = new QStandardItem(it.key());
+		item->setToolTip(it.key());
 		repoStashModel.appendRow(item);
 	}
 	ui->tableViewStash->resizeColumnsToContents();
