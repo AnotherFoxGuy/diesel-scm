@@ -2424,7 +2424,8 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 		{
 			QString fname = getCurrentWorkspace() + PATH_SEP + fnames[0];
 			fname = QDir::toNativeSeparators(fname);
-			ShowExplorerMenu(winId(), fname, gpos);
+			if(ShowExplorerMenu(winId(), fname, gpos))
+				refresh();
 		}
 	}
 	else

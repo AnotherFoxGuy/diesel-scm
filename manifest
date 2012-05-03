@@ -1,5 +1,5 @@
-C Made\sFileView\scolumns\sresizable\sand\smovable\nShift-Right\sClicking\sin\sWindows\sinvokes\sthe\sexplorer\scontext\smenu\n
-D 2012-05-03T08:23:02.735
+C Refresh\sViews\safter\ssuccessful\sexplorer\scontext\smenu\saction\n\s
+D 2012-05-03T08:29:50.961
 F CommitDialog.cpp a46020a9361151d8d286a2670257d01d8967bf69
 F CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
@@ -8,7 +8,7 @@ F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F MainWindow.cpp a98e79e382b67036c2c7012ce082fee179802ccf
+F MainWindow.cpp ee20db95fb61105dc674331da4c31564a931a646
 F MainWindow.h 90de1726e0961f73f637c4071d1cb0fe1049007f
 F MainWindow.ui 8c8182e68aa1955a666997ad83ca692f3cb866d9
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
@@ -176,7 +176,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 2508cffe4829804b696668e1159332793cf0d8e7
-R 1478f3cff3105545eca56c9fd32f6137
+P 837bdcc1c791b82712aaed52311e783a8fe1a135
+R 37f3bec861dcb6975fa7c1f5f171f318
 U kostas
-Z 340233022700622fcb0724ddcd416ccc
+Z 665a29bf1776ad5a62fe281a014095dc
