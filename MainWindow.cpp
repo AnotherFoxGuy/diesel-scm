@@ -883,7 +883,7 @@ void MainWindow::updateFileView()
 			filename_item = new QStandardItem(icon, QDir::toNativeSeparators(e.getFilePath()));
 		}
 		else // In Tree mode the path is implicit so the file name is enough
-		filename_item = new QStandardItem(icon, e.getFilename());
+			filename_item = new QStandardItem(icon, e.getFilename());
 
 		Q_ASSERT(filename_item);
 		// Keep the path in the user data

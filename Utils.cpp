@@ -41,99 +41,8 @@ static bool DialogQueryText(QWidget *parent, const QString &title, const QString
 
 #ifdef Q_WS_WIN
 // Explorer File Context Menu support. Based on http://www.microsoft.com/msj/0497/wicked/wicked0497.aspx
-
 #include <shlobj.h>
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//  FUNCTION:       GetNextItem
-//
-//  DESCRIPTION:    Finds the next item in an item ID list.
-//
-//  INPUT:          pidl = Pointer to an item ID list.
-//
-//  RETURNS:        Pointer to the next item.
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-LPITEMIDLIST GetNextItem (LPITEMIDLIST pidl)
-{
-	USHORT nLen;
-
-	if ((nLen = pidl->mkid.cb) == 0)
-		return NULL;
-
-	return (LPITEMIDLIST) (((LPBYTE) pidl) + nLen);
-}
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//  FUNCTION:       GetItemCount
-//
-//  DESCRIPTION:    Computes the number of item IDs in an item ID list.
-//
-//  INPUT:          pidl = Pointer to an item ID list.
-//
-//  RETURNS:        Number of item IDs in the list.
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-UINT GetItemCount (LPITEMIDLIST pidl)
-{
-	USHORT nLen;
-	UINT nCount;
-
-	nCount = 0;
-	while ((nLen = pidl->mkid.cb) != 0) {
-		pidl = GetNextItem (pidl);
-		nCount++;
-	}
-	return nCount;
-}
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//  FUNCTION:       DuplicateItem
-//
-//  DESCRIPTION:    Makes a copy of the next item in an item ID list.
-//
-//  INPUT:          pMalloc = Pointer to an IMalloc interface.
-//                  pidl    = Pointer to an item ID list.
-//
-//  RETURNS:        Pointer to an ITEMIDLIST containing the copied item ID.
-//
-//  NOTES:          It is the caller's responsibility to free the memory
-//                  allocated by this function when the item ID is no longer
-//                  needed. Example:
-//
-//                    pidlItem = DuplicateItem (pMalloc, pidl);
-//                      .
-//                      .
-//                      .
-//                    pMalloc->lpVtbl->Free (pMalloc, pidlItem);
-//
-//                  Failure to free the ITEMIDLIST will result in memory
-//                  leaks.
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-LPITEMIDLIST DuplicateItem (LPMALLOC pMalloc, LPITEMIDLIST pidl)
-{
-	USHORT nLen;
-	LPITEMIDLIST pidlNew;
-
-	nLen = pidl->mkid.cb;
-	if (nLen == 0)
-		return NULL;
-
-	pidlNew = (LPITEMIDLIST) pMalloc->Alloc (
-		nLen + sizeof (USHORT));
-	if (pidlNew == NULL)
-		return NULL;
-
-	CopyMemory (pidlNew, pidl, nLen);
-	*((USHORT*) (((LPBYTE) pidlNew) + nLen)) = 0;
-
-	return pidlNew;
-}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //  FUNCTION:       DoExplorerMenu
@@ -155,9 +64,84 @@ LPITEMIDLIST DuplicateItem (LPMALLOC pMalloc, LPITEMIDLIST pidl)
 //  RETURNS:        TRUE if successful, FALSE if not.
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint)
 {
+	struct Util
+	{
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		//  FUNCTION:       GetNextItem
+		//  DESCRIPTION:    Finds the next item in an item ID list.
+		//  INPUT:          pidl = Pointer to an item ID list.
+		//  RETURNS:        Pointer to the next item.
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		static LPITEMIDLIST GetNextItem (LPITEMIDLIST pidl)
+		{
+			USHORT nLen;
+
+			if ((nLen = pidl->mkid.cb) == 0)
+				return NULL;
+
+			return (LPITEMIDLIST) (((LPBYTE) pidl) + nLen);
+		}
+
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		//  FUNCTION:       GetItemCount
+		//  DESCRIPTION:    Computes the number of item IDs in an item ID list.
+		//  INPUT:          pidl = Pointer to an item ID list.
+		//  RETURNS:        Number of item IDs in the list.
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		static UINT GetItemCount (LPITEMIDLIST pidl)
+		{
+			USHORT nLen;
+			UINT nCount;
+
+			nCount = 0;
+			while ((nLen = pidl->mkid.cb) != 0) {
+				pidl = GetNextItem (pidl);
+				nCount++;
+			}
+			return nCount;
+		}
+
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		//  FUNCTION:       DuplicateItem
+		//  DESCRIPTION:    Makes a copy of the next item in an item ID list.
+		//  INPUT:          pMalloc = Pointer to an IMalloc interface.
+		//                  pidl    = Pointer to an item ID list.
+		//  RETURNS:        Pointer to an ITEMIDLIST containing the copied item ID.
+		//  NOTES:          It is the caller's responsibility to free the memory
+		//                  allocated by this function when the item ID is no longer
+		//                  needed. Example:
+		//                    pidlItem = DuplicateItem (pMalloc, pidl);
+		//                      .
+		//                      .
+		//                      .
+		//                    pMalloc->lpVtbl->Free (pMalloc, pidlItem);
+		//                  Failure to free the ITEMIDLIST will result in memory
+		//                  leaks.
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		static LPITEMIDLIST DuplicateItem (LPMALLOC pMalloc, LPITEMIDLIST pidl)
+		{
+			USHORT nLen;
+			LPITEMIDLIST pidlNew;
+
+			nLen = pidl->mkid.cb;
+			if (nLen == 0)
+				return NULL;
+
+			pidlNew = (LPITEMIDLIST) pMalloc->Alloc (
+				nLen + sizeof (USHORT));
+			if (pidlNew == NULL)
+				return NULL;
+
+			CopyMemory (pidlNew, pidl, nLen);
+			*((USHORT*) (((LPBYTE) pidlNew) + nLen)) = 0;
+
+			return pidlNew;
+		}
+	};
+
+
 	LPITEMIDLIST pidlMain, pidlItem, pidlNextItem, *ppidl;
 	UINT nCount;
 	POINT point;
@@ -192,7 +176,7 @@ bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint)
 	if (SUCCEEDED (psfFolder->ParseDisplayName (hwnd,
 		NULL, wchPath, &ulCount, &pidlMain, &ulAttr)) && (pidlMain != NULL)) {
 
-		if ( (nCount = GetItemCount (pidlMain))>0) { // nCount must be > 0
+		if ( (nCount = Util::GetItemCount (pidlMain))>0) { // nCount must be > 0
 			//
 			// Initialize psfFolder with a pointer to the IShellFolder
 			// interface of the folder that contains the item whose context
@@ -207,7 +191,7 @@ bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint)
 				//
 				// Create a 1-item item ID list for the next item in pidlMain.
 				//
-				pidlNextItem = DuplicateItem (pMalloc, pidlItem);
+				pidlNextItem = Util::DuplicateItem (pMalloc, pidlItem);
 				if (pidlNextItem == NULL) {
 					pMalloc->Free(pidlMain);
 					psfFolder->Release ();
@@ -242,7 +226,7 @@ bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint)
 				// to the next item in pidlMain.
 				//
 				pMalloc->Free(pidlNextItem);
-				pidlItem = GetNextItem (pidlItem);
+				pidlItem = Util::GetNextItem (pidlItem);
 			}
 
 			//
