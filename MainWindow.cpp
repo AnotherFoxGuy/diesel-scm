@@ -896,13 +896,9 @@ void MainWindow::updateFileView()
 		++item_id;
 	}
 
-	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_STATUS, QHeaderView::ResizeToContents);
-	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_FILENAME, QHeaderView::Stretch);
-	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_EXTENSION, QHeaderView::ResizeToContents);
-	ui->tableView->horizontalHeader()->setResizeMode(COLUMN_MODIFIED, QHeaderView::ResizeToContents);
-	if(show_path)
-		ui->tableView->horizontalHeader()->setResizeMode(COLUMN_PATH, QHeaderView::ResizeToContents);
-	ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
+	ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+	ui->tableView->resizeColumnsToContents();
+	ui->tableView->horizontalHeader()->setMovable(true);
 	ui->tableView->resizeRowsToContents();
 }
 
@@ -2410,4 +2406,33 @@ void MainWindow::on_textBrowser_customContextMenuRequested(const QPoint &pos)
 	menu->addSeparator();
 	menu->addAction(ui->actionClearLog);
 	menu->popup(ui->textBrowser->mapToGlobal(pos));
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
+{
+	QPoint gpos = QCursor::pos();
+
+#ifdef Q_WS_WIN
+	if(qApp->keyboardModifiers() & Qt::SHIFT)
+	{
+		ui->tableView->selectionModel()->select(ui->tableView->indexAt(pos), QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
+		QStringList fnames;
+		getSelectionFilenames(fnames);
+
+		if(fnames.size()==1)
+		{
+			QString fname = getCurrentWorkspace() + PATH_SEP + fnames[0];
+			fname = QDir::toNativeSeparators(fname);
+			ShowExplorerMenu(winId(), fname, gpos);
+		}
+	}
+	else
+#endif
+	{
+		QMenu *menu = new QMenu(this);
+		menu->addActions(ui->tableView->actions());
+		menu->popup(gpos);
+	}
+
 }

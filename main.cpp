@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
 	#ifdef Q_WS_MACX
 		// Native OSX applications don't use menu icons
-		a.setAttribute(Qt::AA_DontShowIconsInMenus);
+		app.setAttribute(Qt::AA_DontShowIconsInMenus);
 	#endif
 	{
 		bool portable = false;
