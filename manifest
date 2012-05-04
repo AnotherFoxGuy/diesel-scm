@@ -1,5 +1,5 @@
-C Cleanups
-D 2012-05-03T09:03:18.911
+C Improved\sparsing\sof\sfossil\squeries\swhen\sfilenames\scontain\squery-like\scharacters
+D 2012-05-04T08:29:09.608
 F CommitDialog.cpp a46020a9361151d8d286a2670257d01d8967bf69
 F CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
@@ -8,7 +8,7 @@ F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F MainWindow.cpp ba773798bc07438863ffc3c247809df6d96f1250
+F MainWindow.cpp d7f63ea0989ea07533016e7d2008978d82f4d0f6
 F MainWindow.h 90de1726e0961f73f637c4071d1cb0fe1049007f
 F MainWindow.ui 8c8182e68aa1955a666997ad83ca692f3cb866d9
 F SettingsDialog.cpp e1fad18cc020d08b82c6d35dc94f6624deec9a3b
@@ -176,7 +176,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 2af31cfaa9ea47140558c96deca7a15bc5e8819c
-R a7c9891e6a09cf17fc144bb7abb26026
+P 18f5bc27008df76f43baf527a81920ba2464ba97
+R a7943177ef045ed5206d283398a8d07b
 U kostas
-Z fc2b219a395eea982ae66d2c82a2eee0
+Z 1db36dbc689005bcd439ea0bfbe4f93e

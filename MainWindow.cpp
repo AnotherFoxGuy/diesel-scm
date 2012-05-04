@@ -1001,9 +1001,9 @@ bool MainWindow::runFossil(const QStringList &args, QStringList *output, int run
 static QString ParseFossilQuery(QString line)
 {
 	// Extract question
-	int qend = line.indexOf('(');
+	int qend = line.lastIndexOf('(');
 	if(qend == -1)
-		qend = line.indexOf('[');
+		qend = line.lastIndexOf('[');
 	Q_ASSERT(qend!=-1);
 	line = line.left(qend);
 	line = line.trimmed();
@@ -1109,8 +1109,8 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		// Check if we have a query
 		bool ends_qmark = !last_line.isEmpty() && last_line[last_line.length()-1]=='?';
 		bool have_yn_query = last_line.toLower().indexOf("y/n")!=-1;
-		int have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1 || last_line.toLower().indexOf("yes/no/all")!=-1;
-		int have_an_query = last_line.toLower().indexOf("a=always/n")!=-1;
+		bool have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1 || last_line.toLower().indexOf("yes/no/all")!=-1;
+		bool have_an_query = last_line.toLower().indexOf("a=always/n")!=-1;
 
 		bool have_query = ends_qmark && (have_yn_query || have_yna_query || have_an_query);
 
