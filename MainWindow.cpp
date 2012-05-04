@@ -815,7 +815,6 @@ void MainWindow::updateDirView()
 void MainWindow::updateFileView()
 {
 	// File View
-	// Clear all rows (except header)
 	repoFileModel.clear();
 
 	QStringList header;
@@ -829,6 +828,7 @@ void MainWindow::updateFileView()
 		header << tr("Path");
 
 	repoFileModel.setHorizontalHeaderLabels(header);
+	repoFileModel.horizontalHeaderItem(COLUMN_STATUS)->setTextAlignment(Qt::AlignCenter);
 
 	struct { RepoFile::EntryType type; const char *tag; const char *tooltip; const char *icon; }
 	stats[] =
@@ -890,8 +890,8 @@ void MainWindow::updateFileView()
 		filename_item->setData(e.getFilePath());
 		repoFileModel.setItem(item_id, COLUMN_FILENAME, filename_item);
 
-		repoFileModel.setItem(item_id, COLUMN_EXTENSION, new QStandardItem(finfo .completeSuffix()));
-		repoFileModel.setItem(item_id, COLUMN_MODIFIED, new QStandardItem(finfo .lastModified().toString(Qt::SystemLocaleShortDate)));
+		repoFileModel.setItem(item_id, COLUMN_EXTENSION, new QStandardItem(finfo.completeSuffix()));
+		repoFileModel.setItem(item_id, COLUMN_MODIFIED, new QStandardItem(finfo.lastModified().toString(Qt::SystemLocaleShortDate)));
 
 		++item_id;
 	}
