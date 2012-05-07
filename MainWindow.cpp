@@ -2412,7 +2412,6 @@ void MainWindow::on_textBrowser_customContextMenuRequested(const QPoint &pos)
 void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 {
 	QPoint gpos = QCursor::pos();
-
 #ifdef Q_WS_WIN
 	if(qApp->keyboardModifiers() & Qt::SHIFT)
 	{
@@ -2429,6 +2428,8 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 		}
 	}
 	else
+#else
+    Q_UNUSED(pos);
 #endif
 	{
 		QMenu *menu = new QMenu(this);
