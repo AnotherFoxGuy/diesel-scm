@@ -890,7 +890,7 @@ void MainWindow::updateFileView()
 		filename_item->setData(e.getFilePath());
 		repoFileModel.setItem(item_id, COLUMN_FILENAME, filename_item);
 
-		repoFileModel.setItem(item_id, COLUMN_EXTENSION, new QStandardItem(finfo.completeSuffix()));
+		repoFileModel.setItem(item_id, COLUMN_EXTENSION, new QStandardItem(finfo.suffix()));
 		repoFileModel.setItem(item_id, COLUMN_MODIFIED, new QStandardItem(finfo.lastModified().toString(Qt::SystemLocaleShortDate)));
 
 		++item_id;
