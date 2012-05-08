@@ -16,49 +16,31 @@ ICON = icons/fuel.icns
 RC_FILE = fuel.rc
 
 SOURCES += main.cpp\
-        MainWindow.cpp \
-    CommitDialog.cpp \
-    FileActionDialog.cpp \
-    SettingsDialog.cpp \
-    Utils.cpp \
-    FileTableView.cpp \
-    CloneDialog.cpp
+		MainWindow.cpp \
+	CommitDialog.cpp \
+	FileActionDialog.cpp \
+	SettingsDialog.cpp \
+	Utils.cpp \
+	FileTableView.cpp \
+	CloneDialog.cpp
 
 HEADERS  += MainWindow.h \
-    CommitDialog.h \
-    FileActionDialog.h \
-    SettingsDialog.h \
-    Utils.h \
-    FileTableView.h \
-    CloneDialog.h
+	CommitDialog.h \
+	FileActionDialog.h \
+	SettingsDialog.h \
+	Utils.h \
+	FileTableView.h \
+	CloneDialog.h
 
 FORMS    += MainWindow.ui \
-    CommitDialog.ui \
-    FileActionDialog.ui \
-    SettingsDialog.ui \
-    CloneDialog.ui
+	CommitDialog.ui \
+	FileActionDialog.ui \
+	SettingsDialog.ui \
+	CloneDialog.ui
 
 RESOURCES += \
-    resources.qrc
+	resources.qrc
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+win32 {
+ LIBS += -lUSER32 -lSHELL32
+}

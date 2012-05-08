@@ -1,5 +1,5 @@
-C Added\srepository\scloning\nMinor\sinternationalization\sfixes\sin\sthe\ssettings\sdialog
-D 2012-05-08T15:04:25.589
+C Added\smissing\slibrary\sdepenencies\son\sWindows
+D 2012-05-08T15:13:31.188
 F CloneDialog.cpp 85bc6473d1e3a47d0f981e96357a376be63ab0bc
 F CloneDialog.h 1c63da4346ca20b67d52016b7b64875b9c5b477f
 F CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
@@ -19,7 +19,7 @@ F SettingsDialog.h 9592ec491cd44a5bff70ea42853d7e1f053f4040
 F SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
 F Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F Utils.h 32e5d344a7f4d27e3ee83006022df007c90470ef
-F fuel.pro a3b9066870a01d96822d5545613f25786c219117
+F fuel.pro 55a809289f187e87922eb779dea138a9d60a7eb0
 F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -179,7 +179,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 666ca0231b74b904b0ffb1f360010d70b980d2fc
-R 2fc26416d72d51a7827db8c9568311d9
+P cdd05759abc8ab5d29e102ceb059338b4347fe12
+R 442aadd789d54fb3781348302959b06f
 U kostas
-Z 1322ab7d9129ebfd87be87a6edea5bba
+Z 88ec7c4582a8406564c497c699ebedd1
