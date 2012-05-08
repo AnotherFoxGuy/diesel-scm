@@ -176,7 +176,7 @@
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>24</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -184,6 +184,8 @@
      <string>&amp;File</string>
     </property>
     <addaction name="actionNewRepository"/>
+    <addaction name="actionCloneRepository"/>
+    <addaction name="separator"/>
     <addaction name="actionOpenRepository"/>
     <addaction name="actionCloseRepository"/>
     <addaction name="separator"/>
@@ -408,10 +410,10 @@
   <action name="actionCloneRepository">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/Address Book-01.png</normaloff>:/icons/icons/Address Book-01.png</iconset>
+     <normaloff>:/icons/icons/My Websites-01.png</normaloff>:/icons/icons/My Websites-01.png</iconset>
    </property>
    <property name="text">
-    <string>Clone Repository...</string>
+    <string>Clone...</string>
    </property>
   </action>
   <action name="actionPush">

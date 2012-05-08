@@ -6,7 +6,7 @@
 #include <QVariant>
 
 namespace Ui {
-    class SettingsDialog;
+	class SettingsDialog;
 }
 
 #define FUEL_SETTING_FOSSIL_PATH			"FossilPath"
@@ -63,11 +63,11 @@ struct Settings
 
 class SettingsDialog : public QDialog
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
 	explicit SettingsDialog(QWidget *parent, Settings &_settings);
-    ~SettingsDialog();
+	~SettingsDialog();
 
 	static bool run(QWidget *parent, Settings &_settings);
 
@@ -80,7 +80,9 @@ private slots:
 	void on_btnClearMessageHistory_clicked();
 
 private:
-    Ui::SettingsDialog *ui;
+	static QString SelectExe(QWidget *parent, const QString &description);
+
+	Ui::SettingsDialog *ui;
 	Settings *settings;
 };
 

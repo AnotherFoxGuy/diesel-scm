@@ -3,16 +3,17 @@
 #include <QFileDialog>
 #include "Utils.h"
 
-static QString SelectExe(QWidget *parent, const QString &description)
+QString SettingsDialog::SelectExe(QWidget *parent, const QString &description)
 {
+	QString filter(tr("Applications"));
 #ifdef Q_WS_WIN
-	QString filter("Applications (*.exe)");
+	filter += " (*.exe)");
 #else
-	QString filter("Applications (*)");
+	filter += " (*)";
 #endif
 	QString path = QFileDialog::getOpenFileName(
 				parent,
-				"Select "+description,
+				tr("Select %1").arg(description),
 				QString(),
 				filter,
 				&filter);
@@ -20,7 +21,7 @@ static QString SelectExe(QWidget *parent, const QString &description)
 	if(!QFile::exists(path))
 		return QString();
 
-    return path;
+	return path;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -30,7 +31,7 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 	settings(&_settings)
 {
 	ui->setupUi(this);
-	
+
 	ui->cmbDoubleClickAction->addItem(tr("Diff File"));
 	ui->cmbDoubleClickAction->addItem(tr("Open File"));
 	ui->cmbDoubleClickAction->addItem(tr("Open Containing Folder"));
@@ -50,7 +51,7 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 //-----------------------------------------------------------------------------
 SettingsDialog::~SettingsDialog()
 {
-    delete ui;
+	delete ui;
 }
 
 //-----------------------------------------------------------------------------

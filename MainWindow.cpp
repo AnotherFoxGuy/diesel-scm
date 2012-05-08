@@ -17,6 +17,7 @@
 #include <QDebug>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
+#include "CloneDialog.h"
 #include "Utils.h"
 
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
@@ -184,7 +185,7 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath, bool portableMod
 		// Windows: HKEY_CURRENT_USER\Software\organizationName\Fuel
 		qsettings = new QSettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
 	}
-	
+
 	loadSettings();
 
 	// Apply any explicit workspace path if available
@@ -296,7 +297,7 @@ bool MainWindow::openWorkspace(const QString &path)
 			}
 
 			repositoryFile = fi.absoluteFilePath();
-			
+
 			if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile)))
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
@@ -434,7 +435,7 @@ void MainWindow::on_actionCloseRepository_triggered()
 	// Close Repo
 	if(!runFossil(QStringList() << "close"))
 	{
-		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes in available?"), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes available?"), QMessageBox::Ok );
 		return;
 	}
 
@@ -446,8 +447,33 @@ void MainWindow::on_actionCloseRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCloneRepository_triggered()
 {
-	// FIXME: Implement this
+	QUrl url;
+	QString repository;
+
+	if(!CloneDialog::run(this, url, repository))
+		return;
+
 	stopUI();
+
+	// Actual command
+	QStringList cmd = QStringList() << "clone" << url.toString() << repository;
+
+	// Log Command
+	if(!url.password().isEmpty())
+		url.setPassword("*****");
+	QStringList logcmd = QStringList() << "fossil" << "clone" << url.toString() << repository;
+
+	log("<b>&gt;"+logcmd.join(" ")+"</b><br>", true);
+
+	// Clone Repo
+	if(!runFossil(cmd, 0, RUNGLAGS_SILENT_INPUT))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not clone the repository"), QMessageBox::Ok);
+		return;
+	}
+
+	openWorkspace(repository);
+
 }
 
 //------------------------------------------------------------------------------
@@ -725,7 +751,7 @@ void MainWindow::scanWorkspace()
 		QString name;
 		// Finish at an anonymous stash or start of a new stash ?
 		if(line_it==res.end() || stash_rx.indexIn(*line_it)!=-1)
-			name = line.trimmed();		
+			name = line.trimmed();
 		else // Named stash
 		{
 			// Parse stash name
@@ -1342,8 +1368,8 @@ void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, 
 {
 	if(QApplication::focusWidget() == ui->treeView)
 		getDirViewSelection(filenames, includeMask, allIfEmpty);
-    else
-        getFileViewSelection(filenames, includeMask, allIfEmpty);
+	else
+		getFileViewSelection(filenames, includeMask, allIfEmpty);
 }
 
 //------------------------------------------------------------------------------
@@ -1691,8 +1717,8 @@ void MainWindow::on_actionCommit_triggered()
 	comment_file.close();
 
 	// Generate fossil parameters.
-    QStringList params;
-    params << "commit" << "--message-file" << QuotePath(comment_fname);
+	QStringList params;
+	params << "commit" << "--message-file" << QuotePath(comment_fname);
 
 	// When a subset of files has been selected, explicitely specify each file.
 	// Otherwise all files will be implicitly committed by fossil. This is necessary
@@ -1702,7 +1728,7 @@ void MainWindow::on_actionCommit_triggered()
 	getAllFilenames(all_modified_files, RepoFile::TYPE_MODIFIED);
 
 	if(commit_files.size() != all_modified_files.size())
-        params  << QuotePaths(commit_files);
+		params  << QuotePaths(commit_files);
 
 	runFossil(params);
 	QFile::remove(comment_fname);
@@ -2429,7 +2455,7 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 	}
 	else
 #else
-    Q_UNUSED(pos);
+	Q_UNUSED(pos);
 #endif
 	{
 		QMenu *menu = new QMenu(this);

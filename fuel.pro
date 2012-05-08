@@ -21,19 +21,22 @@ SOURCES += main.cpp\
     FileActionDialog.cpp \
     SettingsDialog.cpp \
     Utils.cpp \
-    FileTableView.cpp
+    FileTableView.cpp \
+    CloneDialog.cpp
 
 HEADERS  += MainWindow.h \
     CommitDialog.h \
     FileActionDialog.h \
     SettingsDialog.h \
     Utils.h \
-    FileTableView.h
+    FileTableView.h \
+    CloneDialog.h
 
 FORMS    += MainWindow.ui \
     CommitDialog.ui \
     FileActionDialog.ui \
-    SettingsDialog.ui
+    SettingsDialog.ui \
+    CloneDialog.ui
 
 RESOURCES += \
     resources.qrc
