@@ -1,5 +1,5 @@
-C Added\smissing\slibrary\sdepenencies\son\sWindows
-D 2012-05-08T15:13:31.188
+C Fixed\sWindows\sBuild\nRemoved\sexplicit\sWindows\sllibraries\sfrom\sproject.\sFuel\sbuilds\sfine\swithout\sthem\n\s
+D 2012-05-08T15:51:12.176
 F CloneDialog.cpp 85bc6473d1e3a47d0f981e96357a376be63ab0bc
 F CloneDialog.h 1c63da4346ca20b67d52016b7b64875b9c5b477f
 F CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
@@ -14,12 +14,12 @@ F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F MainWindow.cpp 9202bea6f5017adc6f5e26b0e122695641658810
 F MainWindow.h 90de1726e0961f73f637c4071d1cb0fe1049007f
 F MainWindow.ui 5f4e40bfb3e93b00f2e06a6071187998eb617224
-F SettingsDialog.cpp 0abd25f1c25ff8c044ac8be3f07b24cd2c238e5a
+F SettingsDialog.cpp 296c77c5704bd8cb77a00d561db072aaaf60c1d6
 F SettingsDialog.h 9592ec491cd44a5bff70ea42853d7e1f053f4040
 F SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
 F Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F Utils.h 32e5d344a7f4d27e3ee83006022df007c90470ef
-F fuel.pro 55a809289f187e87922eb779dea138a9d60a7eb0
+F fuel.pro 1079dc63d0ce776e9282730c881a577df4806c54
 F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -179,7 +179,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P cdd05759abc8ab5d29e102ceb059338b4347fe12
-R 442aadd789d54fb3781348302959b06f
+P c6c155b7673560a6e25fdf5ec5465ab1c5aaec1b
+R 0a3310e9f7630c7d2ea1bb860dce956a
 U kostas
-Z 88ec7c4582a8406564c497c699ebedd1
+Z 248259ecc8acd8b16ab86e076ec22337

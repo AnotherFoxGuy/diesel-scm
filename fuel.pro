@@ -41,6 +41,3 @@ FORMS    += MainWindow.ui \
 RESOURCES += \
 	resources.qrc
 
-win32 {
- LIBS += -lUSER32 -lSHELL32
-}
