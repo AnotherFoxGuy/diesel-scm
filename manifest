@@ -1,5 +1,5 @@
-C Fixed\sWindows\sBuild\nRemoved\sexplicit\sWindows\sllibraries\sfrom\sproject.\sFuel\sbuilds\sfine\swithout\sthem\n\s
-D 2012-05-08T15:51:12.176
+C Added\sback\suser32\sand\sshell32\slibs\son\swindows,\sas\sthey\sare\sneeded\sexplicitely\sfor\svc/nmake\sbuilds.\n\n
+D 2012-05-09T12:13:12.012
 F CloneDialog.cpp 85bc6473d1e3a47d0f981e96357a376be63ab0bc
 F CloneDialog.h 1c63da4346ca20b67d52016b7b64875b9c5b477f
 F CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
@@ -19,7 +19,7 @@ F SettingsDialog.h 9592ec491cd44a5bff70ea42853d7e1f053f4040
 F SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
 F Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F Utils.h 32e5d344a7f4d27e3ee83006022df007c90470ef
-F fuel.pro 1079dc63d0ce776e9282730c881a577df4806c54
+F fuel.pro 41db75043b6959e870e6e87544bbbd4afe654d7d
 F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -179,7 +179,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P c6c155b7673560a6e25fdf5ec5465ab1c5aaec1b
-R 0a3310e9f7630c7d2ea1bb860dce956a
+P 62c1fa8d4fe11e8584af13b70bea5084ad2bd0fb
+R c317f4827f98ea41ec812089faead3a8
 U kostas
-Z 248259ecc8acd8b16ab86e076ec22337
+Z f7c32317fe2396dc773b386afbf923f3

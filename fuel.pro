@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT    += core gui
 
 TARGET = Fuel
 TEMPLATE = app
@@ -41,3 +41,6 @@ FORMS    += MainWindow.ui \
 RESOURCES += \
 	resources.qrc
 
+win32 {
+	LIBS += -luser32 -lshell32
+}
