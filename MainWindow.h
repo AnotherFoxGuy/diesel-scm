@@ -244,7 +244,7 @@ private:
 	QProcess			fossilUI;
 	QString				fossilUIPort;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
-	class QLabel		*statusLabel;
+	class QProgressBar	*progressBar;
 	bool				fossilAbort;	// FIXME: No GUI for it yet
 
 	Settings			settings;
@@ -257,7 +257,7 @@ private:
 
 	class QSettings		*qsettings;
 
-	// Repo State
+	// Repository State
 	typedef QList<RepoFile*> filelist_t;
 	typedef QMap<QString, RepoFile*> filemap_t;
 	typedef QMap<QString, QString> stashmap_t;

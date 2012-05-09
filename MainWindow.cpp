@@ -15,6 +15,7 @@
 #include <QMimeData>
 #include <QFileIconProvider>
 #include <QDebug>
+#include <QProgressBar>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
@@ -90,6 +91,26 @@ static QStringMap MakeKeyValues(QStringList lines)
 
 
 ///////////////////////////////////////////////////////////////////////////////
+class ScopedStatus
+{
+public:
+	ScopedStatus(const QString &text, Ui::MainWindow *mw, QProgressBar *bar) : ui(mw), progressBar(bar)
+	{
+		ui->statusBar->showMessage(text);
+		progressBar->setHidden(false);
+	}
+
+	~ScopedStatus()
+	{
+		ui->statusBar->clearMessage();
+		progressBar->setHidden(true);
+	}
+private:
+	Ui::MainWindow *ui;
+	QProgressBar *progressBar;
+};
+
+///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(QWidget *parent, QString *workspacePath, bool portableMode) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
@@ -161,9 +182,15 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath, bool portableMod
 		ui->menuFile->insertAction(recent_sep, recentWorkspaceActs[i]);
 	}
 
-	statusLabel = new QLabel();
-	statusLabel->setMinimumSize( statusLabel->sizeHint() );
-	ui->statusBar->addWidget( statusLabel, 1 );
+	// Construct ProgressBar
+	progressBar = new QProgressBar();
+	progressBar->setMinimum(0);
+	progressBar->setMaximum(0);
+	progressBar->setMaximumSize(170, 16);
+	progressBar->setAlignment(Qt::AlignCenter);
+	progressBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+	ui->statusBar->insertPermanentWidget(0, progressBar);
+	progressBar->setVisible(false);
 
 #ifdef Q_WS_MACX
 	// Native applications on OSX don't use menu icons
@@ -1003,8 +1030,7 @@ void MainWindow::log(const QString &text, bool isHTML)
 //------------------------------------------------------------------------------
 void MainWindow::setStatus(const QString &text)
 {
-	Q_ASSERT(statusLabel);
-	statusLabel->setText(text);
+	ui->statusBar->showMessage(text);
 }
 
 //------------------------------------------------------------------------------
@@ -1068,7 +1094,14 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	{
 		return QProcess::startDetached(fossil, args, wkdir);
 	}
+	
+	// Make StatusBar message
+	QString status_msg = tr("Running Fossil");
+	if(args.length() > 0)
+		status_msg = QString("Fossil %0").arg(args[0].toCaseFolded());
+	ScopedStatus status(status_msg, ui, progressBar);
 
+	// Create fossil process
 	QProcess process(this);
 	process.setProcessChannelMode(QProcess::MergedChannels);
 	process.setWorkingDirectory(wkdir);
@@ -1116,7 +1149,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 
 		buffer += input;
 
-		QCoreApplication::processEvents();
+		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
 		if(buffer.isEmpty())
 			continue;
