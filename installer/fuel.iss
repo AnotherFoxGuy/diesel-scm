@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Fuel"
-#define MyAppVersion "0.9.5"
+#define MyAppVersion "0.9.6"
 #define MyAppPublisher "Kostas Karanikolas"
 #define MyAppURL "http://fuel-scm.org/"
 #define MyAppExeName "Fuel.exe"
@@ -36,11 +36,11 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "..\..\fuel-build-desktop\release\Fuel.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "redist\fossil.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "redist\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "redist\mingwm10.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "redist\QtCore4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "redist\QtGui4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\fuel-build-desktop\release\fossil.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\fuel-build-desktop\release\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\fuel-build-desktop\release\mingwm10.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\fuel-build-desktop\release\QtCore4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\fuel-build-desktop\release\QtGui4.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

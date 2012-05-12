@@ -1,5 +1,5 @@
-C Moved\sLoggedProcess\sto\sseparate\sfiles\nAdded\smessage\sbox\swhen\sattempting\sto\spush\sor\spull\swhen\sno\sremote\surl\shas\sbeen\sset\n
-D 2012-05-12T10:43:40.977
+C Updated\sthe\sinstaller\sfor\swindows\n
+D 2012-05-12T11:20:41.607
 F CloneDialog.cpp 85bc6473d1e3a47d0f981e96357a376be63ab0bc
 F CloneDialog.h 1c63da4346ca20b67d52016b7b64875b9c5b477f
 F CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
@@ -177,11 +177,11 @@ F icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
-F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
+F installer/fuel.iss 2fcd6108587b35fd4fabeaf6083758be7fcd5857
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 165f5a8e367ecb525d3886e6c16d8fd09e458d27
-R 4cc0b716f3c75b895d2ce897a8032b0e
+P 3adc2a837ceb5080094dede9f0f3bdeb0e0429f0
+R 127de94ab876901499e415f852e9b0f1
 U kostas
-Z 3c77e03e066957463301fd34db4620d2
+Z 59a44d318644d735dabfa8456dfb95fb
