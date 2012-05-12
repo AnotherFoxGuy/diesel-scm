@@ -23,12 +23,6 @@
 
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
-#ifdef QT_WS_WIN
-	const QString EOL_MARK("\r\n");
-#else
-	const QString EOL_MARK("\n");
-#endif
-
 #define PATH_SEP			"/"
 #define FOSSIL_CHECKOUT1	"_FOSSIL_"
 #define FOSSIL_CHECKOUT2	".fslckout"
@@ -1018,13 +1012,14 @@ void MainWindow::updateStashView()
 //------------------------------------------------------------------------------
 void MainWindow::log(const QString &text, bool isHTML)
 {
+	QTextCursor c = ui->textBrowser->textCursor();
+	c.movePosition(QTextCursor::End);
+	ui->textBrowser->setTextCursor(c);
+
 	if(isHTML)
 		ui->textBrowser->insertHtml(text);
 	else
 		ui->textBrowser->insertPlainText(text);
-	QTextCursor c = ui->textBrowser->textCursor();
-	c.movePosition(QTextCursor::End);
-	ui->textBrowser->setTextCursor(c);
 }
 
 //------------------------------------------------------------------------------
@@ -1091,10 +1086,8 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	QString fossil = getFossilPath();
 
 	if(detached)
-	{
 		return QProcess::startDetached(fossil, args, wkdir);
-	}
-	
+
 	// Make StatusBar message
 	QString status_msg = tr("Running Fossil");
 	if(args.length() > 0)
@@ -1102,8 +1095,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	ScopedStatus status(status_msg, ui, progressBar);
 
 	// Create fossil process
-	QProcess process(this);
-	process.setProcessChannelMode(QProcess::MergedChannels);
+	QLoggedProcess process(this);
 	process.setWorkingDirectory(wkdir);
 
 	process.start(fossil, args);
@@ -1112,7 +1104,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		log(tr("Could not start fossil executable '") + fossil + "''\n");
 		return false;
 	}
-
+	const QChar EOL_MARK('\n');
 	QString ans_yes = 'y' + EOL_MARK;
 	QString ans_no = 'n' + EOL_MARK;
 	QString ans_always = 'a' + EOL_MARK;
@@ -1123,7 +1115,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	while(true)
 	{
 		QProcess::ProcessState state = process.state();
-		qint64 bytes_avail = process.bytesAvailable();
+		qint64 bytes_avail = process.logBytesAvailable();
 
 		if(state!=QProcess::Running && bytes_avail<1)
 			break;
@@ -1139,8 +1131,8 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			break;
 		}
 
-		process.waitForReadyRead(500);
-		QByteArray input = process.readAll();
+		QByteArray input;
+		process.getLogAndClear(input);
 
 		#ifdef QT_DEBUG // Log fossil output in debug builds
 		if(!input.isEmpty())
@@ -1154,12 +1146,16 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		if(buffer.isEmpty())
 			continue;
 
+		// Normalize line endings
+		buffer = buffer.replace("\r\n", "\n");
+		buffer = buffer.replace("\r", "\n");
+
 		// Extract the last line
 		int last_line_start = buffer.lastIndexOf(EOL_MARK);
 
 		QString last_line;
 		if(last_line_start != -1)
-			last_line = buffer.mid(last_line_start+EOL_MARK.length());
+			last_line = buffer.mid(last_line_start+1); // Including the EOL
 		else
 			last_line = buffer;
 
@@ -1173,11 +1169,16 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 
 		bool have_query = ends_qmark && (have_yn_query || have_yna_query || have_an_query);
 
-		// Flush only the unnecessary part of the buffer to the log
+		// Flush all complete lines to the log and output
 		QStringList log_lines = buffer.left(last_line_start).split(EOL_MARK);
-		foreach(QString line, log_lines)
+		for(int l=0; l<log_lines.length(); ++l)
 		{
-			line = line.trimmed();
+			// Do not output the last line if it not complete
+			if(l==log_lines.length()-1 && buffer[buffer.length()-1] != EOL_MARK )
+				continue;
+
+			QString line = log_lines[l].trimmed();
+
 			if(line.isEmpty())
 				continue;
 
@@ -1188,8 +1189,8 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 				log(line+"\n");
 		}
 
-		// Remove everything we processed
-		buffer = buffer.mid(last_line_start);
+		// Remove everything we processed (including the EOL)
+		buffer = buffer.mid(last_line_start+1) ;
 
 		// Now process any query
 		if(have_query && have_yna_query)
@@ -1949,13 +1950,13 @@ void MainWindow::on_actionUpdate_triggered()
 {
 	QStringList res;
 
-	if(!runFossil(QStringList() << "update" << "--nochange", &res ))
+	if(!runFossil(QStringList() << "update" << "--nochange", &res, RUNGLAGS_SILENT_ALL))
 		return;
 
 	if(res.length()==0)
 		return;
 
-	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be update. Are you sure?"), res))
+	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated. Are you sure?"), res))
 		return;
 
 	// Do Update
@@ -2443,6 +2444,9 @@ void MainWindow::onFileViewDragOut()
 	QStringList filenames;
 	getFileViewSelection(filenames);
 	QString uris;
+
+	if(filenames.isEmpty())
+		return;
 
 	// text/uri-list is a new-line separate list of uris
 	foreach(QString f, filenames)

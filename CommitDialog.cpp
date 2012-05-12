@@ -19,9 +19,8 @@ CommitDialog::CommitDialog(QWidget *parent, QString title, QStringList &files, c
 
 	// Activate the checkbox if we have some text
 	ui->checkBox->setVisible(checkBoxText!=0);
-	if(checkBoxText)
+	if(checkBoxText && checkBoxValue)
 	{
-		Q_ASSERT(checkBoxValue);
 		ui->checkBox->setText(*checkBoxText);
 		ui->checkBox->setCheckState(*checkBoxValue ? Qt::Checked : Qt::Unchecked);
 	}
