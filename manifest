@@ -1,5 +1,5 @@
-C Fixed\sDnD\son\sOSX
-D 2012-05-12T08:45:31.929
+C Moved\sLoggedProcess\sto\sseparate\sfiles\nAdded\smessage\sbox\swhen\sattempting\sto\spush\sor\spull\swhen\sno\sremote\surl\shas\sbeen\sset\n
+D 2012-05-12T10:43:40.977
 F CloneDialog.cpp 85bc6473d1e3a47d0f981e96357a376be63ab0bc
 F CloneDialog.h 1c63da4346ca20b67d52016b7b64875b9c5b477f
 F CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
@@ -11,15 +11,17 @@ F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F MainWindow.cpp 3e51da42bb24ae5b7b9c772c6b346464b69c7d76
+F LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
+F LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
+F MainWindow.cpp 4041709d8fa2d9485fd64b8838ddfed5eccb277d
 F MainWindow.h f97ef3776d10211f42651cd2b7c7291d90bac3c1
 F MainWindow.ui 5f4e40bfb3e93b00f2e06a6071187998eb617224
 F SettingsDialog.cpp 296c77c5704bd8cb77a00d561db072aaaf60c1d6
 F SettingsDialog.h 9592ec491cd44a5bff70ea42853d7e1f053f4040
 F SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
-F Utils.cpp 15c371dd26b9c565f098ae33a4f3e7ae7b21a7d6
-F Utils.h ea3b8a9e82bf9579949ac7e15bce2c9bb3ed8320
-F fuel.pro 41db75043b6959e870e6e87544bbbd4afe654d7d
+F Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
+F Utils.h 5af911147390879176e587fc60fb662490bb9e97
+F fuel.pro 33e9396591735485668ae1b950b88da7f4c19649
 F fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -179,7 +181,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 2bf7d04d9971660eacc30c6e05bfa82c595bbf6c
-R d34566b9ebfcbb183db6d996f16341ba
+P 165f5a8e367ecb525d3886e6c16d8fd09e458d27
+R 4cc0b716f3c75b895d2ce897a8032b0e
 U kostas
-Z f5cbd5690840eda22ecacfb73012b989
+Z 3c77e03e066957463301fd34db4620d2

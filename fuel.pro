@@ -22,7 +22,8 @@ SOURCES += main.cpp\
 	SettingsDialog.cpp \
 	Utils.cpp \
 	FileTableView.cpp \
-	CloneDialog.cpp
+	CloneDialog.cpp \
+    LoggedProcess.cpp
 
 HEADERS  += MainWindow.h \
 	CommitDialog.h \
@@ -30,7 +31,8 @@ HEADERS  += MainWindow.h \
 	SettingsDialog.h \
 	Utils.h \
 	FileTableView.h \
-	CloneDialog.h
+	CloneDialog.h \
+    LoggedProcess.h
 
 FORMS    += MainWindow.ui \
 	CommitDialog.ui \

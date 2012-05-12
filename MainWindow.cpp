@@ -20,6 +20,7 @@
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
 #include "Utils.h"
+#include "LoggedProcess.h"
 
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
@@ -1097,7 +1098,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	ScopedStatus status(status_msg, ui, progressBar);
 
 	// Create fossil process
-	QLoggedProcess process(this);
+	LoggedProcess process(this);
 	process.setWorkingDirectory(wkdir);
 
 	process.start(fossil, args);
@@ -1692,12 +1693,28 @@ void MainWindow::on_actionOpenFile_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionPush_triggered()
 {
+	QString remote_url = settings.Mappings[FUEL_SETTING_REMOTE_URL].Value.toString();
+
+	if(remote_url.isEmpty() || remote_url == "off")
+	{
+		QMessageBox::critical(this, tr("Error"), tr("A remote repository has not been specified.\nUse the preferences window to set the remote repostory location"), QMessageBox::Ok );
+		return;
+	}
+
 	runFossil(QStringList() << "push");
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionPull_triggered()
 {
+	QString remote_url = settings.Mappings[FUEL_SETTING_REMOTE_URL].Value.toString();
+
+	if(remote_url.isEmpty() || remote_url == "off")
+	{
+		QMessageBox::critical(this, tr("Error"), tr("A remote repository has not been specified.\nUse the preferences window to set the remote repostory location"), QMessageBox::Ok );
+		return;
+	}
+
 	runFossil(QStringList() << "pull");
 }
 

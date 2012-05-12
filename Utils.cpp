@@ -291,23 +291,3 @@ bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint)
 
 #endif
 
-///////////////////////////////////////////////////////////////////////////////
-QLoggedProcess::QLoggedProcess(QObject *parent) : QProcess(parent)
-{
-	setProcessChannelMode(QProcess::MergedChannels);
-	connect(this, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyReadStandardOutput()));
-}
-
-void QLoggedProcess::getLogAndClear(QByteArray &buffer)
-{
-	QMutexLocker lck(&mutex);
-	buffer = log;
-	log.clear();
-}
-
-void QLoggedProcess::onReadyReadStandardOutput()
-{
-	QMutexLocker lck(&mutex);
-	log.append(readAllStandardOutput());
-}
-
