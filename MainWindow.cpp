@@ -2449,19 +2449,16 @@ void MainWindow::onFileViewDragOut()
 {
 	QStringList filenames;
 	getFileViewSelection(filenames);
-	QString uris;
 
 	if(filenames.isEmpty())
 		return;
 
-	// text/uri-list is a new-line separate list of uris
+	QList<QUrl> urls;
 	foreach(QString f, filenames)
-	{
-		uris += QUrl::fromLocalFile(getCurrentWorkspace()+QDir::separator()+f).toString() + '\n';
-	}
+		urls.append(QUrl::fromLocalFile(getCurrentWorkspace()+QDir::separator()+f));
 
 	QMimeData *mime_data = new QMimeData;
-	mime_data->setData("text/uri-list", uris.toUtf8());
+	mime_data->setUrls(urls);
 
 	QDrag *drag = new QDrag(this);
 	drag->setMimeData(mime_data);
