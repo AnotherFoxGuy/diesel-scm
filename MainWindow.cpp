@@ -947,6 +947,8 @@ void MainWindow::updateFileView()
 	ui->tableView->resizeColumnsToContents();
 	ui->tableView->horizontalHeader()->setMovable(true);
 	ui->tableView->resizeRowsToContents();
+	// Needed on OSX as the preset value from the GUI editor is not always reflected
+	ui->tableView->horizontalHeader()->setStretchLastSection(true);
 }
 
 //------------------------------------------------------------------------------
@@ -2100,10 +2102,14 @@ QString MainWindow::getFossilHttpAddress()
 //------------------------------------------------------------------------------
 void MainWindow::onTreeViewSelectionChanged(const QItemSelection &/*selected*/, const QItemSelection &/*deselected*/)
 {
-	selectedDirs.clear();
-
 	QModelIndexList selection = ui->treeView->selectionModel()->selectedIndexes();
 	int num_selected = selection.count();
+
+	// Do not modify the selection if nothing is selected
+	if(num_selected==0)
+		return;
+
+	selectedDirs.clear();
 
 	for(int i=0; i<num_selected; ++i)
 	{

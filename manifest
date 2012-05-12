@@ -1,5 +1,5 @@
-C Fixed\sissue\son\sOSX\swhere\sthe\sQProcess\swas\sterminating\swithout\sproviding\sall\sthe\sfossil\soutput.\nCorrected\shandling\sof\snew-lines\sin\sfossil\soutput\son\sOSX.\nThe\supdate\scommand\snow\slogs\sonly\sthe\sactual\supdate\soutput\sfrom\sfossil.\nThe\slog\scursor\sis\snow\srepositioned\sto\sthe\send\sbefore\sany\stext\sis\sappended.\nFixed\sminor\sstatic\sanalysis\swarnings.\n
-D 2012-05-12T07:56:42.282
+C Minor\sGUI\sfixes\n
+D 2012-05-12T08:29:59.590
 F CloneDialog.cpp 85bc6473d1e3a47d0f981e96357a376be63ab0bc
 F CloneDialog.h 1c63da4346ca20b67d52016b7b64875b9c5b477f
 F CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
@@ -11,7 +11,7 @@ F FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F MainWindow.cpp 28297ee15b894776278e83442c9eaa6a768873e9
+F MainWindow.cpp e1e547b11d4cf41062c832d9d4a71ef1544b3e37
 F MainWindow.h f97ef3776d10211f42651cd2b7c7291d90bac3c1
 F MainWindow.ui 5f4e40bfb3e93b00f2e06a6071187998eb617224
 F SettingsDialog.cpp 296c77c5704bd8cb77a00d561db072aaaf60c1d6
@@ -179,7 +179,7 @@ F installer/fuel.iss 13b6a938bcdf273cbd3649d2549887baa1577214
 F installer/license.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
 F resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
-P 6dc326684138f1e61b1ea95ef96c6f421bf3a09d
-R 729ba5d54817d2542ae05776fa368ce7
+P 4db466899df13050ac14c60097286f1df3adc46f
+R bdc86da69acabe1561fb34eb2f70bb57
 U kostas
-Z f928875a10ac6a9b74c3c0986350f742
+Z 784ab37b21c2d131d1e7b56fcb7f97a9
