@@ -1,33 +1,70 @@
 Building from Source
-====================
-Building Fuel from source requires Qt version 4. 
-Qt is available at http://qt.nokia.com/downloads
+===============================================================================
+
+Prerequisites
+-------------------------------------------------------------------------------
+Building Fuel from source requires Qt version 4. Qt is available at:
+	http://qt.nokia.com/downloads
+
+To run Fuel a compiled binary of Fossil must be available either in the system 
+path or in the same folder as the Fuel executable. You can find the latest
+Fossil binaries from the Fossil homepage at:
+	http://www.fossil-scm.org/download.html
+
+
+Retrieving the source
+-------------------------------------------------------------------------------
+The source is available as a tar.gz archive at the following location
+	https://fuel-scm.googlecode.com/files/fuel-{VERSION}.tar.gz
+So for version 0.9.6 the package name would be fuel-0.9.6.tar.gz
+
+Additionally you can clone the source code directly from Chisel using fossil
+	mkdir fuel
+	cd fuel
+	fossil clone https://chiselapp.com/user/karanik/repository/fuel fuel.fossil
+	fossil open fuel.fossil
+
 
 Windows
----------------------
-
-
-Unix-based OS
----------------------
+-------------------------------------------------------------------------------
 
 
 Mac OS X
----------------------
-
+------------------------------------------------------------------------------
 Build Steps:
 
-1. Generate Makefiles
-	/path/to/qt/bin/qmake -spec macx-g++ CONFIG+=release
+1. Open a Terminal and cd into the folder containing the Fuel source code
+	cd fuel
 
-2. Compile
+2. Generate the makefile with qmake
+	/path/to/qt/bin/qmake fuel.pro -spec macx-g++ CONFIG+=release
+
+3. Compile
 	make
 
-3. (Optional) Include the Fossil executable within the Fuel application bundle
+4. (Optional) Include the Fossil executable within the Fuel application bundle
 	cp /location/to/fossil Fuel.app/Contents/MacOS
 
-4. Package Qt dependencies into Fuel to make a standalone application bundle
+5. Package Qt dependencies into Fuel to make a standalone application bundle
 	/path/to/qt/bin/macdeployqt Fuel.app
 
-5. Enjoy
+6. Enjoy
+	open Fuel.app
 
+
+Unix-based OSs
+-------------------------------------------------------------------------------
+Build Steps:
+
+1. cd into the folder containing the Fuel source code
+	cd fuel
+
+2. Generate the makefile with qmake
+	qmake fuel.pro
+
+3. Compile
+	make
+
+4. Enjoy
+	./Fuel
 
