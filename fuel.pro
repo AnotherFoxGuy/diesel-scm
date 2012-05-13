@@ -1,7 +1,5 @@
 #-------------------------------------------------
-#
-# Project created by QtCreator 2011-08-01T00:17:18
-#
+# Fuel
 #-------------------------------------------------
 
 QT    += core gui
@@ -10,38 +8,40 @@ TARGET = Fuel
 TEMPLATE = app
 
 # OSX Icon
-ICON = icons/fuel.icns
+ICON = rsrc/icons/fuel.icns
 
 # Win Icon
-RC_FILE = fuel.rc
+RC_FILE = rsrc/fuel.rc
 
-SOURCES += main.cpp\
-		MainWindow.cpp \
-	CommitDialog.cpp \
-	FileActionDialog.cpp \
-	SettingsDialog.cpp \
-	Utils.cpp \
-	FileTableView.cpp \
-	CloneDialog.cpp \
-    LoggedProcess.cpp
+INCLUDEPATH += src
 
-HEADERS  += MainWindow.h \
-	CommitDialog.h \
-	FileActionDialog.h \
-	SettingsDialog.h \
-	Utils.h \
-	FileTableView.h \
-	CloneDialog.h \
-    LoggedProcess.h
+SOURCES += src/main.cpp\
+		src/MainWindow.cpp \
+	src/CommitDialog.cpp \
+	src/FileActionDialog.cpp \
+	src/SettingsDialog.cpp \
+	src/Utils.cpp \
+	src/FileTableView.cpp \
+	src/CloneDialog.cpp \
+	src/LoggedProcess.cpp
 
-FORMS    += MainWindow.ui \
-	CommitDialog.ui \
-	FileActionDialog.ui \
-	SettingsDialog.ui \
-	CloneDialog.ui
+HEADERS  += src/MainWindow.h \
+	src/CommitDialog.h \
+	src/FileActionDialog.h \
+	src/SettingsDialog.h \
+	src/Utils.h \
+	src/FileTableView.h \
+	src/CloneDialog.h \
+	src/LoggedProcess.h
+
+FORMS    += ui/MainWindow.ui \
+	ui/CommitDialog.ui \
+	ui/FileActionDialog.ui \
+	ui/SettingsDialog.ui \
+	ui/CloneDialog.ui
 
 RESOURCES += \
-	resources.qrc
+	rsrc/resources.qrc
 
 win32 {
 	LIBS += -luser32 -lshell32
