@@ -1,0 +1,33 @@
+Building from Source
+====================
+Building Fuel from source requires Qt version 4. 
+Qt is available at http://qt.nokia.com/downloads
+
+Windows
+---------------------
+
+
+Unix-based OS
+---------------------
+
+
+Mac OS X
+---------------------
+
+Build Steps:
+
+1. Generate Makefiles
+	/path/to/qt/bin/qmake -spec macx-g++ CONFIG+=release
+
+2. Compile
+	make
+
+3. (Optional) Include the Fossil executable within the Fuel application bundle
+	cp /location/to/fossil Fuel.app/Contents/MacOS
+
+4. Package Qt dependencies into Fuel to make a standalone application bundle
+	/path/to/qt/bin/macdeployqt Fuel.app
+
+5. Enjoy
+
+

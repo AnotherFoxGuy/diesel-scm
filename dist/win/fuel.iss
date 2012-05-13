@@ -22,7 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=license.txt
+LicenseFile=..\..\doc\License.txt
 OutputDir=build
 OutputBaseFilename={#MyAppName}-{#MyAppVersion}
 Compression=lzma
@@ -35,12 +35,12 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\..\fuel-build-desktop\release\Fuel.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\fuel-build-desktop\release\fossil.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\fuel-build-desktop\release\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\fuel-build-desktop\release\mingwm10.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\fuel-build-desktop\release\QtCore4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\fuel-build-desktop\release\QtGui4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\..\fuel-build-desktop\release\Fuel.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\..\fuel-build-desktop\release\fossil.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\..\fuel-build-desktop\release\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\..\fuel-build-desktop\release\mingwm10.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\..\fuel-build-desktop\release\QtCore4.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\..\fuel-build-desktop\release\QtGui4.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
