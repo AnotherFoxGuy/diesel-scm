@@ -30,7 +30,7 @@ Windows
 
 
 Mac OS X
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Build Steps:
 
 1. Open a Terminal and cd into the folder containing the Fuel source code
