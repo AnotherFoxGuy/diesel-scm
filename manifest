@@ -1,5 +1,5 @@
-C Added\spack.sh
-D 2012-05-13T04:25:12.879
+C Fixed\spack\sscript\n
+D 2012-05-13T04:39:15.386
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 1c921a22b40d94053af1b086f0aef3900ac1eaa6
 F doc/Changes.txt e21c9355aaeb7643c8d6784effd2f9ebadf3a8e0
@@ -178,13 +178,13 @@ F src/SettingsDialog.h 9592ec491cd44a5bff70ea42853d7e1f053f4040
 F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
 F src/main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
-F tools/pack.sh d429f2013915109ceb7e3909012acecd28e89087 x
+F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
 F ui/CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
 F ui/FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F ui/MainWindow.ui 5f4e40bfb3e93b00f2e06a6071187998eb617224
 F ui/SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
-P c372194c77626ff8d62673ea9ebeefb35a1546b9
-R e8d06dda38edfc1594f68f703720c736
+P 9b1332f816db49d45eb5e02f2b58795ded225a09
+R dad41e447a9b917820b06b0ccb837a1a
 U kostas
-Z b75118aad21f09130eacf90202f96bec
+Z fe15b79464ffe9538f80045cab94c87b
