@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=/usr/bin/fuel
+Icon=/usr/share/icons/hicolor/256x256/apps/fuel.png
+Terminal=false
+Name=Fuel
+GenericName=Software Configuration Management tool
+Comment=GUI Front-End to the Fossil SCM tool
+Categories=Qt;Development;RevisionControl

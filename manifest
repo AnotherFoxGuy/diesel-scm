@@ -1,10 +1,12 @@
-C Updated\sbuild\sinstructions
-D 2012-05-13T05:42:39.461
+C "make\sinstall"\sworks\sin\sunix\n"make\sinstall"\snow\sinstalls\sicon\sand\s".desktop"\sfile\nInitial\sArch-Linux\spkgbuild\ssupport\n
+D 2012-05-14T23:05:45.682
+F dist/arch/PKGBUILD aa60632b98b7f2c32432d350f8c6a911f1e86b62
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt cc8113d8e77f1f87809d5222fcfe8b505eb890b8
 F doc/Changes.txt e21c9355aaeb7643c8d6784effd2f9ebadf3a8e0
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro fb579b5fbb9e80c8b47d40bb9c1f888fc4fa85ad
+F fuel.pro 2f1650c8b3e4b09eeb5b6283655d2142fe67cb00
+F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
 F rsrc/fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F rsrc/icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
 F rsrc/icons/Adobe\sIllustrator\sCS3\sDocument-01.png 2e44e933d58eefee7ccfa1650fed4ceadcf3c2be
@@ -160,6 +162,7 @@ F rsrc/icons/Zoom\sOut-01.png 8eda092100d9e00c9097f43a80d1e26695947448
 F rsrc/icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
+F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc e98383ed205f4e37100c60057e0129c3b86dea53
 F src/CloneDialog.cpp 85bc6473d1e3a47d0f981e96357a376be63ab0bc
 F src/CloneDialog.h 1c63da4346ca20b67d52016b7b64875b9c5b477f
@@ -184,7 +187,7 @@ F ui/CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
 F ui/FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
 F ui/MainWindow.ui 5f4e40bfb3e93b00f2e06a6071187998eb617224
 F ui/SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
-P 235ee0f6e817a0b7f6ff335cfd10c0db0ad83585
-R 3bfce3beaad26fb315dd61015edb9c99
+P af3cadec91e2bab6ba54202d3d82e077fcca8e83
+R 631fd2b96b9460c3ce2c3f7634b8818c
 U kostas
-Z fb35d9f186746b5be2bf8c0ff59628ad
+Z c35e58e71af4d6829abb46ea20f9b3b3
