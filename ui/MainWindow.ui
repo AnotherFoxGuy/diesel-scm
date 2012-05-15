@@ -14,7 +14,7 @@
    <string>Fuel</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="../rsrc/resources.qrc">
     <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
@@ -269,7 +269,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionRefresh">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Button Refresh-01.png</normaloff>:/icons/icons/Button Refresh-01.png</iconset>
    </property>
    <property name="text">
@@ -287,7 +287,7 @@
   </action>
   <action name="actionCommit">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Save-01.png</normaloff>:/icons/icons/Save-01.png</iconset>
    </property>
    <property name="text">
@@ -305,7 +305,7 @@
   </action>
   <action name="actionDiff">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Document Copy-01.png</normaloff>:/icons/icons/Document Copy-01.png</iconset>
    </property>
    <property name="text">
@@ -323,7 +323,7 @@
   </action>
   <action name="actionAdd">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/File New-01.png</normaloff>:/icons/icons/File New-01.png</iconset>
    </property>
    <property name="text">
@@ -341,7 +341,7 @@
   </action>
   <action name="actionDelete">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/File Delete-01.png</normaloff>:/icons/icons/File Delete-01.png</iconset>
    </property>
    <property name="text">
@@ -359,7 +359,7 @@
   </action>
   <action name="actionNewRepository">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Document Blank-01.png</normaloff>:/icons/icons/Document Blank-01.png</iconset>
    </property>
    <property name="text">
@@ -377,7 +377,7 @@
   </action>
   <action name="actionOpenRepository">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/My Documents-01.png</normaloff>:/icons/icons/My Documents-01.png</iconset>
    </property>
    <property name="text">
@@ -409,7 +409,7 @@
   </action>
   <action name="actionCloneRepository">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/My Websites-01.png</normaloff>:/icons/icons/My Websites-01.png</iconset>
    </property>
    <property name="text">
@@ -418,7 +418,7 @@
   </action>
   <action name="actionPush">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Button Upload-01.png</normaloff>:/icons/icons/Button Upload-01.png</iconset>
    </property>
    <property name="text">
@@ -436,7 +436,7 @@
   </action>
   <action name="actionPull">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Button Download-01.png</normaloff>:/icons/icons/Button Download-01.png</iconset>
    </property>
    <property name="text">
@@ -454,7 +454,7 @@
   </action>
   <action name="actionRename">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/File Open-01.png</normaloff>:/icons/icons/File Open-01.png</iconset>
    </property>
    <property name="text">
@@ -472,7 +472,7 @@
   </action>
   <action name="actionQuit">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Button Turn Off-01.png</normaloff>:/icons/icons/Button Turn Off-01.png</iconset>
    </property>
    <property name="text">
@@ -490,7 +490,7 @@
   </action>
   <action name="actionHistory">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/File History-01.png</normaloff>:/icons/icons/File History-01.png</iconset>
    </property>
    <property name="text">
@@ -511,7 +511,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Network MAC-01.png</normaloff>:/icons/icons/Network MAC-01.png</iconset>
    </property>
    <property name="text">
@@ -526,7 +526,7 @@
   </action>
   <action name="actionRevert">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Document-Revert-icon.png</normaloff>:/icons/icons/Document-Revert-icon.png</iconset>
    </property>
    <property name="text">
@@ -541,7 +541,7 @@
   </action>
   <action name="actionClearLog">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Text Edit.png</normaloff>:/icons/icons/Text Edit.png</iconset>
    </property>
    <property name="text">
@@ -556,7 +556,7 @@
   </action>
   <action name="actionTimeline">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Clock-01.png</normaloff>:/icons/icons/Clock-01.png</iconset>
    </property>
    <property name="text">
@@ -571,7 +571,7 @@
   </action>
   <action name="actionOpenFile">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Document-01.png</normaloff>:/icons/icons/Document-01.png</iconset>
    </property>
    <property name="text">
@@ -589,7 +589,7 @@
   </action>
   <action name="actionOpenContaining">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Folder-01.png</normaloff>:/icons/icons/Folder-01.png</iconset>
    </property>
    <property name="text">
@@ -607,7 +607,7 @@
   </action>
   <action name="actionUndo">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Button Reload-01.png</normaloff>:/icons/icons/Button Reload-01.png</iconset>
    </property>
    <property name="text">
@@ -625,7 +625,7 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
    </property>
    <property name="text">
@@ -637,7 +637,7 @@
   </action>
   <action name="actionUpdate">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Button Play-01.png</normaloff>:/icons/icons/Button Play-01.png</iconset>
    </property>
    <property name="text">
@@ -655,7 +655,7 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Gear-01.png</normaloff>:/icons/icons/Gear-01.png</iconset>
    </property>
    <property name="text">
@@ -740,7 +740,7 @@
   </action>
   <action name="actionOpenFolder">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Folder-01.png</normaloff>:/icons/icons/Folder-01.png</iconset>
    </property>
    <property name="text">
@@ -755,7 +755,7 @@
   </action>
   <action name="actionRenameFolder">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Folder Open-01.png</normaloff>:/icons/icons/Folder Open-01.png</iconset>
    </property>
    <property name="text">
@@ -770,7 +770,7 @@
   </action>
   <action name="actionNewStash">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Folder Add-01.png</normaloff>:/icons/icons/Folder Add-01.png</iconset>
    </property>
    <property name="text">
@@ -782,7 +782,7 @@
   </action>
   <action name="actionApplyStash">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Folder Open-01.png</normaloff>:/icons/icons/Folder Open-01.png</iconset>
    </property>
    <property name="text">
@@ -811,7 +811,7 @@
   </action>
   <action name="actionDeleteStash">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Folder Delete-01.png</normaloff>:/icons/icons/Folder Delete-01.png</iconset>
    </property>
    <property name="text">
@@ -820,7 +820,7 @@
   </action>
   <action name="actionDiffStash">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icons/Folder Explorer-01.png</normaloff>:/icons/icons/Folder Explorer-01.png</iconset>
    </property>
    <property name="text">
@@ -837,7 +837,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../rsrc/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

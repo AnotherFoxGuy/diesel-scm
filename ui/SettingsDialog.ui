@@ -27,7 +27,7 @@
      </property>
      <widget class="QWidget" name="tabApp">
       <attribute name="icon">
-       <iconset resource="resources.qrc">
+       <iconset resource="../rsrc/resources.qrc">
         <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
       </attribute>
       <attribute name="title">
@@ -231,7 +231,7 @@
      </widget>
      <widget class="QWidget" name="tabRepo">
       <attribute name="icon">
-       <iconset resource="resources.qrc">
+       <iconset resource="../rsrc/resources.qrc">
         <normaloff>:/icons/icons/Book-01.png</normaloff>:/icons/icons/Book-01.png</iconset>
       </attribute>
       <attribute name="title">
@@ -267,7 +267,7 @@
          </property>
          <property name="toolTip">
           <string>The remote url used to push/pull changes.
-URL style user names and passwords are also supported. 
+URL style user names and passwords are also supported.
 For example http://username:password@server.com/fossil</string>
          </property>
         </widget>
@@ -341,7 +341,7 @@ For example http://username:password@server.com/fossil</string>
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../rsrc/resources.qrc"/>
  </resources>
  <connections>
   <connection>

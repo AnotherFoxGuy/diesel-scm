@@ -1,5 +1,5 @@
-C Updated\sArch\sPKGBUILD\n
-D 2012-05-15T14:22:30.060
+C Fixed\sui\sdesigner\serror\smessages\n
+D 2012-05-15T15:28:52.949
 F dist/arch/PKGBUILD dd21073c035af4e6a4ecb3842c1fd7ae45c5e93d
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt cc8113d8e77f1f87809d5222fcfe8b505eb890b8
@@ -185,9 +185,9 @@ F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
 F ui/CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
 F ui/FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
-F ui/MainWindow.ui 5f4e40bfb3e93b00f2e06a6071187998eb617224
-F ui/SettingsDialog.ui 8964629ea80c61971c0601624c84d1927902b1fd
-P 1b4bb884b1f1c64c3ab7b415fdface636434b6ac
-R 9a24c1a7a053a441492c8687343bd0bb
+F ui/MainWindow.ui 6ad583b6d864ccbeac8e3fd1d05cd964bc17c5f9
+F ui/SettingsDialog.ui cd6faff19c1a6c2640193eb5a258f0daa926a2cf
+P 8d0387b98dd1711a49800f1ec26ebf3d714aed21
+R af8b75739afa5abe06fd6501157bdfac
 U kostas
-Z 91011b6809530472caee36da09d7f854
+Z b11536d058a2238da932b8709574f937
