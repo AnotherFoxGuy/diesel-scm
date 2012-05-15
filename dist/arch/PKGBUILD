@@ -2,16 +2,14 @@
 pkgname=fuel
 pkgver=0.9.6
 pkgrel=1
-#epoch=
 pkgdesc="A GUI front-end to Fossil SCM"
 arch=(i686 x86_64)
-url="fuel-scm.org"
+url="http://code.google.com/p/fuel-scm/"
 license=('GPL2')
-#groups=()
 depends=('qt>=4.7.0', 'fossil')
 source=("http://fuel-scm.googlecode.com/files/${pkgname}-${pkgver}.tar.gz")
 
-md5sums=() #generate with 'makepkg -g'
+md5sums=(b2be3c55b376304acbd943fe4a16d456) #generate with 'makepkg -g'
 
 build() {
   cd "${srcdir}"
@@ -24,8 +22,6 @@ build() {
 
 package() {
   cd "${srcdir}/build"
-  make INSTALL_ROOT="${pkgdir}/usr" install
-  cd "$srcdir/$pkgname-$pkgver"
-  make DESTDIR="$pkgdir/" install
+  make INSTALL_ROOT="${pkgdir}" install
 }
 
