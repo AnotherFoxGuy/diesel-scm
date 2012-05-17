@@ -27,6 +27,46 @@ Additionally you can clone the source code directly from Chisel using fossil
 
 Windows
 -------------------------------------------------------------------------------
+1. Open a Command Prompt and cd into the folder containing the Fuel source code
+	cd fuel
+
+2. Make a build folder and cd into it
+	md build
+	cd build
+
+3.1 Build with MinGW
+	3.1.1 Generate the makefile with qmake
+		C:\QtSDK\Desktop\Qt\4.8.1\mingw\bin\qmake ..\fuel.pro -r -spec win32-g++ CONFIG+=release
+
+	3.1.2 Build the project
+		c:\QtSDK\mingw\bin\mingw32-make
+
+	3.1.3 Copy the Qt DLLs
+		copy C:\QtSDK\Desktop\Qt\4.8.1\mingw\bin\QtCore4.dll release
+		copy C:\QtSDK\Desktop\Qt\4.8.1\mingw\bin\QtGui4.dll release
+
+	3.1.4 Copy the MinGW DLLs
+		copy C:\QtSDK\mingw\bin\libgcc_s_dw2-1.dll release
+		copy C:\QtSDK\mingw\bin\mingwm10.dll release
+	
+3.2 Build with Visual Studio 2010
+	3.2.1 Generate the Visual Studio project makefile with qmake
+		C:\QtSDK\Desktop\Qt\4.8.1\msvc2010\bin\qmake ..\fuel.pro -tp vc -spec win32-msvc2010
+
+	3.2.2 Open the generated project
+		start fuel.vcxproj
+		
+	3.2.3 Build the project
+		
+	Alternatively you can build via MSBuild
+		c:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild Fuel.vcxproj /t:build /p:Configuration=Release
+		
+	3.2.4 Copy the Qt DLLs
+		copy C:\QtSDK\Desktop\Qt\4.8.1\msvc2010\bin\QtCore4.dll release
+		copy C:\QtSDK\Desktop\Qt\4.8.1\msvc2010\bin\QtGui4.dll release
+		
+4. Enjoy
+	release\Fuel.exe
 
 
 Mac OS X
@@ -39,7 +79,7 @@ Build Steps:
 2. Generate the makefile with qmake
 	/path/to/qt/bin/qmake fuel.pro -spec macx-g++ CONFIG+=release
 
-3. Compile
+3. Build the project
 	make
 
 4. (Optional) Include the Fossil executable within the Fuel application bundle
@@ -62,7 +102,7 @@ Build Steps:
 2. Generate the makefile with qmake
 	qmake fuel.pro
 
-3. Compile
+3. Build the project
 	make
 
 4. Enjoy
