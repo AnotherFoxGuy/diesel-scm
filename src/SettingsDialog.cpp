@@ -3,6 +3,13 @@
 #include <QFileDialog>
 #include "Utils.h"
 
+#include <QSettings>
+#include <QCoreApplication>
+#include <QDir>
+#include <QTranslator>
+#include <QResource>
+
+
 QString SettingsDialog::SelectExe(QWidget *parent, const QString &description)
 {
 	QString filter(tr("Applications"));
@@ -103,4 +110,49 @@ void SettingsDialog::on_btnClearMessageHistory_clicked()
 {
 	if(DialogQuery(this, tr("Clear Commit Message History"), tr("Are you sure want to clear the commit message history?"))==QMessageBox::Yes)
 		settings->Mappings[FUEL_SETTING_COMMIT_MSG].Value = QStringList();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+Settings::Settings(bool portableMode) : store(0)
+{
+	Mappings[FUEL_SETTING_FOSSIL_PATH] = Setting();
+	Mappings[FUEL_SETTING_COMMIT_MSG] = Setting();
+	Mappings[FUEL_SETTING_FILE_DBLCLICK] = Setting(0); // Maps to FileDblClickAction
+	Mappings[FUEL_SETTING_GDIFF_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
+	Mappings[FUEL_SETTING_GMERGE_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
+	Mappings[FUEL_SETTING_IGNORE_GLOB] = Setting("", Setting::TYPE_FOSSIL_LOCAL);
+	Mappings[FUEL_SETTING_CRNL_GLOB] = Setting("", Setting::TYPE_FOSSIL_LOCAL);
+	Mappings[FUEL_SETTING_REMOTE_URL] = Setting("off", Setting::TYPE_FOSSIL_COMMAND);
+
+
+	// Go into portable mode when explicitly requested or if a config file exists next to the executable
+	QString ini_path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + QCoreApplication::applicationName() + ".ini");
+	if(portableMode || QFile::exists(ini_path))
+		store = new QSettings(ini_path, QSettings::IniFormat);
+	else
+	{
+		// Linux: ~/.config/organizationName/applicationName.conf
+		// Windows: HKEY_CURRENT_USER\Software\organizationName\Fuel
+		store = new QSettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
+	}
+
+	ApplyEnvironment();
+}
+
+//-----------------------------------------------------------------------------
+Settings::~Settings()
+{
+	delete store;
+}
+
+//-----------------------------------------------------------------------------
+void Settings::ApplyEnvironment()
+{
+	QString locale_name = QLocale::system().name();
+	//locale_name = "el_GR";
+
+	QString locale_path = QString(":intl/intl/%0.qm").arg(locale_name);
+	QResource res(locale_path);
+	if(res.isValid() && translator.load(res.data(), res.size()))
+		QCoreApplication::instance()->installTranslator(&translator);
 }

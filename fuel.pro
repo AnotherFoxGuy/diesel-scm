@@ -64,3 +64,7 @@ FORMS    += ui/MainWindow.ui \
 RESOURCES += \
 	rsrc/resources.qrc
 
+unix {
+	system(intl/convert.sh)
+}
+

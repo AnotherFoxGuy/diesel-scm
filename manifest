@@ -1,11 +1,12 @@
-C Added\sbuild\sinstructions\sfor\swindows
-D 2012-05-17T14:41:29.847
+C Initial\ssupport\sfor\slocalization
+D 2012-09-23T10:20:57.755
 F dist/arch/PKGBUILD dd21073c035af4e6a4ecb3842c1fd7ae45c5e93d
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt e21c9355aaeb7643c8d6784effd2f9ebadf3a8e0
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro 2f1650c8b3e4b09eeb5b6283655d2142fe67cb00
+F fuel.pro f9053752c0ea40a7f9c90ac738a6c1689b92dfe5
+F intl/convert.sh 6dfabd9c78df20b2c5c767b301cc4cd8813f442d x
 F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
 F rsrc/fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F rsrc/icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
@@ -174,20 +175,20 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 4041709d8fa2d9485fd64b8838ddfed5eccb277d
-F src/MainWindow.h f97ef3776d10211f42651cd2b7c7291d90bac3c1
-F src/SettingsDialog.cpp 296c77c5704bd8cb77a00d561db072aaaf60c1d6
-F src/SettingsDialog.h 9592ec491cd44a5bff70ea42853d7e1f053f4040
+F src/MainWindow.cpp 026cb929ead96dd5885be7ff14190c7ff8d033d5
+F src/MainWindow.h 7839457d09848b40beb03e36ddc4f755d8631881
+F src/SettingsDialog.cpp 824ab2445df35aec131e0c1d891c96f660c1bb28
+F src/SettingsDialog.h 09d3f375b2fab59248fae9bd12419f2985720d28
 F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
-F src/main.cpp f2913af0af1a5fcbebe93fb53b8a9cf6e7bbf65a
+F src/main.cpp fcd78f44b893fb9c93bbb71a2e861bd36af95f88
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
-F ui/CommitDialog.ui 813d7cba316e226de1a22b7e480bb969fbe9b0c4
-F ui/FileActionDialog.ui c63644428579741aeb5fa052e237ba799ced9ad7
+F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
+F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 6ad583b6d864ccbeac8e3fd1d05cd964bc17c5f9
 F ui/SettingsDialog.ui cd6faff19c1a6c2640193eb5a258f0daa926a2cf
-P 623d92282857d1eef5ba9314b02ee9482ad7e7ea
-R 994818d5dcdeeac6bdf896aa00d04986
+P 1760813f6ce3ed23ab45bee2fbde8cbf487d2481
+R 12e9a8ebc31d18b45a1d208db05caf62
 U kostas
-Z fa78223180c8f2827d94a33c07e67bbb
+Z 63bee23b106d51238aa4d200b0a7da88

@@ -26,7 +26,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string/>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

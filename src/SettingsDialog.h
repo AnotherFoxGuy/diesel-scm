@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QMap>
 #include <QVariant>
+#include <QTranslator>
+
 
 namespace Ui {
 	class SettingsDialog;
@@ -44,20 +46,15 @@ struct Settings
 		SettingType Type;
 	};
 
-	typedef QMap<QString, Setting> mappings_t;
-	mappings_t	Mappings;
+	Settings(bool portableMode = false);
+	~Settings();
+	void ApplyEnvironment();
 
-	Settings()
-	{
-		Mappings[FUEL_SETTING_FOSSIL_PATH] = Setting();
-		Mappings[FUEL_SETTING_COMMIT_MSG] = Setting();
-		Mappings[FUEL_SETTING_FILE_DBLCLICK] = Setting(0); // Maps to FileDblClickAction
-		Mappings[FUEL_SETTING_GDIFF_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
-		Mappings[FUEL_SETTING_GMERGE_CMD] = Setting("", Setting::TYPE_FOSSIL_GLOBAL);
-		Mappings[FUEL_SETTING_IGNORE_GLOB] = Setting("", Setting::TYPE_FOSSIL_LOCAL);
-		Mappings[FUEL_SETTING_CRNL_GLOB] = Setting("", Setting::TYPE_FOSSIL_LOCAL);
-		Mappings[FUEL_SETTING_REMOTE_URL] = Setting("off", Setting::TYPE_FOSSIL_COMMAND);
-	}
+	typedef QMap<QString, Setting> mappings_t;
+	mappings_t		Mappings;
+	class QSettings	*store;
+	QTranslator		translator;
+
 };
 
 

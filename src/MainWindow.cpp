@@ -106,9 +106,10 @@ private:
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-MainWindow::MainWindow(QWidget *parent, QString *workspacePath, bool portableMode) :
+MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspacePath) :
 	QMainWindow(parent),
-	ui(new Ui::MainWindow)
+	ui(new Ui::MainWindow),
+	settings(_settings)
 {
 	ui->setupUi(this);
 
@@ -197,17 +198,6 @@ MainWindow::MainWindow(QWidget *parent, QString *workspacePath, bool portableMod
 
 	viewMode = VIEWMODE_TREE;
 
-	// Go into portable mode when explicitly requested or if a config file exists next to the executable
-	QString ini_path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + QCoreApplication::applicationName() + ".ini");
-	if(portableMode || QFile::exists(ini_path))
-		qsettings = new QSettings(ini_path, QSettings::IniFormat);
-	else
-	{
-		// Linux: ~/.config/organizationName/applicationName.conf
-		// Windows: HKEY_CURRENT_USER\Software\organizationName\Fuel
-		qsettings = new QSettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
-	}
-
 	loadSettings();
 
 	// Apply any explicit workspace path if available
@@ -228,7 +218,6 @@ MainWindow::~MainWindow()
 {
 	stopUI();
 	saveSettings();
-	delete qsettings;
 
 	// Dispose RepoFiles
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
@@ -257,7 +246,7 @@ void MainWindow::setCurrentWorkspace(const QString &workspace)
 	addWorkspace(new_workspace);
 
 	if(!QDir::setCurrent(new_workspace))
-		QMessageBox::critical(this, tr("Error"), tr("Could not change current diectory to ")+new_workspace, QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("Could not change current diectory to '%0'").arg(new_workspace), QMessageBox::Ok );
 }
 
 //------------------------------------------------------------------------------
@@ -508,7 +497,7 @@ void MainWindow::rebuildRecent()
 
 	for(int i = 0; i < enabled_acts; ++i)
 	{
-		QString text = tr("&%1 %2").arg(i + 1).arg(QDir::toNativeSeparators(workspaceHistory[i]));
+		QString text = QString("&%1 %2").arg(i + 1).arg(QDir::toNativeSeparators(workspaceHistory[i]));
 
 		recentWorkspaceActs[i]->setText(text);
 		recentWorkspaceActs[i]->setData(workspaceHistory[i]);
@@ -602,7 +591,7 @@ bool MainWindow::refresh()
 	}
 	else if(st==REPO_OLD_SCHEMA)
 	{
-		setStatus(tr("Old fossil schema detected. Consider running rebuild."));
+		setStatus(tr("Old fossil schema detected. Consider running 'fossil rebuild'"));
 		enableActions(false);
 		repoFileModel.removeRows(0, repoFileModel.rowCount());
 		repoDirModel.clear();
@@ -1104,7 +1093,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	process.start(fossil, args);
 	if(!process.waitForStarted())
 	{
-		log(tr("Could not start fossil executable '") + fossil + "''\n");
+		log(tr("Could not start Fossil executable '%s'\n").arg(fossil));
 		return false;
 	}
 	const QChar EOL_MARK('\n');
@@ -1295,20 +1284,20 @@ QString MainWindow::getFossilPath()
 //------------------------------------------------------------------------------
 void MainWindow::loadSettings()
 {
-	if(qsettings->contains(FUEL_SETTING_FOSSIL_PATH))
-		settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value = qsettings->value(FUEL_SETTING_FOSSIL_PATH);
+	if(settings.store->contains(FUEL_SETTING_FOSSIL_PATH))
+		settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value = settings.store->value(FUEL_SETTING_FOSSIL_PATH);
 
-	if(qsettings->contains(FUEL_SETTING_COMMIT_MSG))
-		settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value = qsettings->value(FUEL_SETTING_COMMIT_MSG);
+	if(settings.store->contains(FUEL_SETTING_COMMIT_MSG))
+		settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value = settings.store->value(FUEL_SETTING_COMMIT_MSG);
 
-	if(qsettings->contains(FUEL_SETTING_FILE_DBLCLICK))
-		settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value = qsettings->value(FUEL_SETTING_FILE_DBLCLICK);
+	if(settings.store->contains(FUEL_SETTING_FILE_DBLCLICK))
+		settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value = settings.store->value(FUEL_SETTING_FILE_DBLCLICK);
 
-	int num_wks = qsettings->beginReadArray("Workspaces");
+	int num_wks = settings.store->beginReadArray("Workspaces");
 	for(int i=0; i<num_wks; ++i)
 	{
-		qsettings->setArrayIndex(i);
-		QString wk = qsettings->value("Path").toString();
+		settings.store->setArrayIndex(i);
+		QString wk = settings.store->value("Path").toString();
 
 		// Skip invalid workspaces
 		if(wk.isEmpty() || !QDir(wk).exists())
@@ -1316,46 +1305,47 @@ void MainWindow::loadSettings()
 
 		addWorkspace(wk);
 
-		if(qsettings->contains("Active") && qsettings->value("Active").toBool())
+		if(settings.store->contains("Active") && settings.store->value("Active").toBool())
 			setCurrentWorkspace(wk);
 	}
-	qsettings->endArray();
+	settings.store->endArray();
 
 
-	if(qsettings->contains("WindowX") && qsettings->contains("WindowY"))
+	if(settings.store->contains("WindowX") && settings.store->contains("WindowY"))
 	{
 		QPoint _pos;
-		_pos.setX(qsettings->value("WindowX").toInt());
-		_pos.setY(qsettings->value("WindowY").toInt());
+		_pos.setX(settings.store->value("WindowX").toInt());
+		_pos.setY(settings.store->value("WindowY").toInt());
 		move(_pos);
 	}
 
-	if(qsettings->contains("WindowWidth") && qsettings->contains("WindowHeight"))
+	if(settings.store->contains("WindowWidth") && settings.store->contains("WindowHeight"))
 	{
 		QSize _size;
-		_size.setWidth(qsettings->value("WindowWidth").toInt());
-		_size.setHeight(qsettings->value("WindowHeight").toInt());
+		_size.setWidth(settings.store->value("WindowWidth").toInt());
+		_size.setHeight(settings.store->value("WindowHeight").toInt());
 		resize(_size);
 	}
 
-	if(qsettings->contains("ViewUnknown"))
-		ui->actionViewUnknown->setChecked(qsettings->value("ViewUnknown").toBool());
-	if(qsettings->contains("ViewModified"))
-		ui->actionViewModified->setChecked(qsettings->value("ViewModified").toBool());
-	if(qsettings->contains("ViewUnchanged"))
-		ui->actionViewUnchanged->setChecked(qsettings->value("ViewUnchanged").toBool());
-	if(qsettings->contains("ViewIgnored"))
-		ui->actionViewIgnored->setChecked(qsettings->value("ViewIgnored").toBool());
-	if(qsettings->contains("ViewAsList"))
+	if(settings.store->contains("ViewUnknown"))
+		ui->actionViewUnknown->setChecked(settings.store->value("ViewUnknown").toBool());
+	if(settings.store->contains("ViewModified"))
+		ui->actionViewModified->setChecked(settings.store->value("ViewModified").toBool());
+	if(settings.store->contains("ViewUnchanged"))
+		ui->actionViewUnchanged->setChecked(settings.store->value("ViewUnchanged").toBool());
+	if(settings.store->contains("ViewIgnored"))
+		ui->actionViewIgnored->setChecked(settings.store->value("ViewIgnored").toBool());
+	if(settings.store->contains("ViewAsList"))
 	{
-		ui->actionViewAsList->setChecked(qsettings->value("ViewAsList").toBool());
-		viewMode = qsettings->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
+		ui->actionViewAsList->setChecked(settings.store->value("ViewAsList").toBool());
+		viewMode = settings.store->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
 	ui->treeView->setVisible(viewMode == VIEWMODE_TREE);
 
-	if(qsettings->contains("ViewStash"))
-		ui->actionViewStash->setChecked(qsettings->value("ViewStash").toBool());
+	if(settings.store->contains("ViewStash"))
+		ui->actionViewStash->setChecked(settings.store->value("ViewStash").toBool());
 	ui->tableViewStash->setVisible(ui->actionViewStash->isChecked());
+
 }
 
 //------------------------------------------------------------------------------
@@ -1363,32 +1353,32 @@ void MainWindow::saveSettings()
 {
 	// If we have a customize fossil path, save it
 	QString fossil_path = settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value.toString();
-	qsettings->setValue(FUEL_SETTING_FOSSIL_PATH, fossil_path);
-	qsettings->setValue(FUEL_SETTING_COMMIT_MSG, settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value);
-	qsettings->setValue(FUEL_SETTING_FILE_DBLCLICK, settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value);
+	settings.store->setValue(FUEL_SETTING_FOSSIL_PATH, fossil_path);
+	settings.store->setValue(FUEL_SETTING_COMMIT_MSG, settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value);
+	settings.store->setValue(FUEL_SETTING_FILE_DBLCLICK, settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value);
 
-	qsettings->beginWriteArray("Workspaces", workspaceHistory.size());
+	settings.store->beginWriteArray("Workspaces", workspaceHistory.size());
 	for(int i=0; i<workspaceHistory.size(); ++i)
 	{
-		qsettings->setArrayIndex(i);
-		qsettings->setValue("Path", workspaceHistory[i]);
+		settings.store->setArrayIndex(i);
+		settings.store->setValue("Path", workspaceHistory[i]);
 		if(getCurrentWorkspace() == workspaceHistory[i])
-			qsettings->setValue("Active", true);
+			settings.store->setValue("Active", true);
 		else
-			qsettings->remove("Active");
+			settings.store->remove("Active");
 	}
-	qsettings->endArray();
+	settings.store->endArray();
 
-	qsettings->setValue("WindowX", x());
-	qsettings->setValue("WindowY", y());
-	qsettings->setValue("WindowWidth", width());
-	qsettings->setValue("WindowHeight", height());
-	qsettings->setValue("ViewUnknown", ui->actionViewUnknown->isChecked());
-	qsettings->setValue("ViewModified", ui->actionViewModified->isChecked());
-	qsettings->setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
-	qsettings->setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
-	qsettings->setValue("ViewAsList", ui->actionViewAsList->isChecked());
-	qsettings->setValue("ViewStash", ui->actionViewStash->isChecked());
+	settings.store->setValue("WindowX", x());
+	settings.store->setValue("WindowY", y());
+	settings.store->setValue("WindowWidth", width());
+	settings.store->setValue("WindowHeight", height());
+	settings.store->setValue("ViewUnknown", ui->actionViewUnknown->isChecked());
+	settings.store->setValue("ViewModified", ui->actionViewModified->isChecked());
+	settings.store->setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
+	settings.store->setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
+	settings.store->setValue("ViewAsList", ui->actionViewAsList->isChecked());
+	settings.store->setValue("ViewStash", ui->actionViewStash->isChecked());
 }
 
 //------------------------------------------------------------------------------
@@ -1570,13 +1560,13 @@ bool MainWindow::startUI()
 	fossilUI.setWorkingDirectory(getCurrentWorkspace());
 
 	log("<b>&gt; fossil ui</b><br>", true);
-	log(tr("Starting Fossil UI. Please wait.\n"));
+	log(tr("Starting Fossil browser UI. Please wait.\n"));
 	QString fossil = getFossilPath();
 
 	fossilUI.start(fossil, QStringList() << "ui");
 	if(!fossilUI.waitForStarted() || fossilUI.state()!=QProcess::Running)
 	{
-		log(tr("%0 does not exist\n").arg(fossil));
+		log(tr("Could not start Fossil executable '%s'\n").arg(fossil));
 		ui->actionFossilUI->setChecked(false);
 		return false;
 	}
@@ -1885,7 +1875,7 @@ void MainWindow::on_actionRename_triggered()
 
 	if(fi_after.exists())
 	{
-		QMessageBox::critical(this, tr("Error"), tr("File %0 already exists.\nRename aborted.").arg(new_name), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("File '%0' already exists.\nRename aborted.").arg(new_name), QMessageBox::Ok );
 		return;
 	}
 
@@ -1951,7 +1941,7 @@ void MainWindow::on_actionAbout_triggered()
 	{
 		int off = res[0].indexOf("version ");
 		if(off!=-1)
-			fossil_ver = tr("Fossil version ")+res[0].mid(off) + "\n\n";
+			fossil_ver = tr("Fossil version %0").arg(res[0].mid(off)) + "\n\n";
 	}
 
 	QMessageBox::about(this, tr("About Fuel..."),
@@ -2269,10 +2259,10 @@ void MainWindow::on_actionRenameFolder_triggered()
 		QDir wkdir(getCurrentWorkspace());
 		Q_ASSERT(wkdir.exists());
 
-		log(tr("Creating folder '")+target_path+"'\n");
+		log(tr("Creating folder '%0'\n").arg(target_path));
 		if(!wkdir.mkpath(new_paths[i] + PATH_SEP + "."))
 		{
-			QMessageBox::critical(this, tr("Error"), tr("Cannot make target folder '")+target_path+"'\n");
+			QMessageBox::critical(this, tr("Error"), tr("Cannot make target folder '%0'\n").arg(target_path));
 			goto _exit;
 		}
 	}
@@ -2289,7 +2279,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 			goto _exit;
 		}
 
-		log(tr("Copying file '")+r->getFilePath()+tr("' to '")+new_file_path+"'\n");
+		log(tr("Copying file '%0' to '%1'\n").arg(r->getFilePath(), new_file_path));
 
 		if(!QFile::copy(r->getFilePath(), new_file_path))
 		{
@@ -2303,7 +2293,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	{
 		RepoFile *r = files_to_move[i];
 
-		log(tr("Removing old file '")+r->getFilePath()+"'\n");
+		log(tr("Removing old file '%0'\n").arg(r->getFilePath()));
 
 		if(!QFile::exists(r->getFilePath()))
 		{

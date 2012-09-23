@@ -12,7 +12,7 @@
 #include "SettingsDialog.h"
 
 namespace Ui {
-    class MainWindow;
+	class MainWindow;
 }
 
 
@@ -113,11 +113,11 @@ private:
 //////////////////////////////////////////////////////////////////////////
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget *parent = 0, QString *workspacePath = 0, bool portableMode = false);
-    ~MainWindow();
+	explicit MainWindow(Settings &_settings, QWidget *parent = 0, QString *workspacePath = 0);
+	~MainWindow();
 	bool diffFile(QString repoFile);
 
 private:
@@ -227,7 +227,7 @@ private slots:
 	void on_actionApplyStash_triggered();
 	void on_actionDeleteStash_triggered();
 	void on_actionDiffStash_triggered();
-    void on_textBrowser_customContextMenuRequested(const QPoint &pos);
+	void on_textBrowser_customContextMenuRequested(const QPoint &pos);
 	void on_tableView_customContextMenuRequested(const QPoint &pos);
 
 private:
@@ -247,15 +247,13 @@ private:
 	class QProgressBar	*progressBar;
 	bool				fossilAbort;	// FIXME: No GUI for it yet
 
-	Settings			settings;
+	Settings			&settings;
 	QString				projectName;
 	QString				repositoryFile;
 	QStringList			workspaceHistory;
 	QString				currentWorkspace;
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
-
-	class QSettings		*qsettings;
 
 	// Repository State
 	typedef QList<RepoFile*> filelist_t;
