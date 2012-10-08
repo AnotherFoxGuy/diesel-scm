@@ -198,7 +198,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	viewMode = VIEWMODE_TREE;
 
-	loadSettings();
+	applySettings();
 
 	// Apply any explicit workspace path if available
 	if(workspacePath && !workspacePath->isEmpty())
@@ -217,7 +217,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 MainWindow::~MainWindow()
 {
 	stopUI();
-	saveSettings();
+	updateSettings();
 
 	// Dispose RepoFiles
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
@@ -246,7 +246,7 @@ void MainWindow::setCurrentWorkspace(const QString &workspace)
 	addWorkspace(new_workspace);
 
 	if(!QDir::setCurrent(new_workspace))
-		QMessageBox::critical(this, tr("Error"), tr("Could not change current diectory to '%0'").arg(new_workspace), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("Could not change current directory to '%0'").arg(new_workspace), QMessageBox::Ok );
 }
 
 //------------------------------------------------------------------------------
@@ -288,7 +288,7 @@ bool MainWindow::openWorkspace(const QString &path)
 
 		if(!(QFileInfo(checkout_file1).exists() || QFileInfo(checkout_file2).exists()) )
 		{
-			if(QMessageBox::Yes !=DialogQuery(this, tr("Open Fossil"), tr("A workspace does not exist in this folder.\nWould you like to create one here?")))
+			if(QMessageBox::Yes !=DialogQuery(this, tr("Open Workspace"), tr("A workspace does not exist in this folder.\nWould you like to create one here?")))
 			{
 				wkspace = QFileDialog::getExistingDirectory(
 							this,
@@ -366,7 +366,7 @@ void MainWindow::on_actionOpenRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionNewRepository_triggered()
 {
-	QString filter(tr("Repositories (*.fossil)"));
+	QString filter(tr("Fossil Repositories (*.fossil)"));
 
 	// Get Repository file
 	QString repo_path = QFileDialog::getSaveFileName(
@@ -591,7 +591,7 @@ bool MainWindow::refresh()
 	}
 	else if(st==REPO_OLD_SCHEMA)
 	{
-		setStatus(tr("Old fossil schema detected. Consider running 'fossil rebuild'"));
+		setStatus(tr("Old repository schema detected. Consider running 'fossil rebuild'"));
 		enableActions(false);
 		repoFileModel.removeRows(0, repoFileModel.rowCount());
 		repoDirModel.clear();
@@ -648,7 +648,7 @@ void MainWindow::scanWorkspace()
 		if(!ui->actionViewIgnored->isChecked())
 		{
 			// QDir expects multiple specs being separated by a semicolon
-			ignore = settings.Mappings[FUEL_SETTING_IGNORE_GLOB].Value.toString().replace(',',';');
+			ignore = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().replace(',',';');
 		}
 
 		scanDirectory(all_files, wkdir, wkdir, ignore);
@@ -1093,7 +1093,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	process.start(fossil, args);
 	if(!process.waitForStarted())
 	{
-		log(tr("Could not start Fossil executable '%s'\n").arg(fossil));
+		log(tr("Could not start Fossil executable '%s'").arg(fossil)+"\n");
 		return false;
 	}
 	const QChar EOL_MARK('\n');
@@ -1264,7 +1264,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 QString MainWindow::getFossilPath()
 {
 	// Use the user-specified fossil if available
-	QString fossil_path = settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value.toString();
+	QString fossil_path = settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString();
 	if(!fossil_path.isEmpty())
 		return QDir::toNativeSeparators(fossil_path);
 
@@ -1282,22 +1282,15 @@ QString MainWindow::getFossilPath()
 	return fossil_exe;
 }
 //------------------------------------------------------------------------------
-void MainWindow::loadSettings()
+void MainWindow::applySettings()
 {
-	if(settings.store->contains(FUEL_SETTING_FOSSIL_PATH))
-		settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value = settings.store->value(FUEL_SETTING_FOSSIL_PATH);
+	QSettings *store = settings.GetStore();
 
-	if(settings.store->contains(FUEL_SETTING_COMMIT_MSG))
-		settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value = settings.store->value(FUEL_SETTING_COMMIT_MSG);
-
-	if(settings.store->contains(FUEL_SETTING_FILE_DBLCLICK))
-		settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value = settings.store->value(FUEL_SETTING_FILE_DBLCLICK);
-
-	int num_wks = settings.store->beginReadArray("Workspaces");
+	int num_wks = store->beginReadArray("Workspaces");
 	for(int i=0; i<num_wks; ++i)
 	{
-		settings.store->setArrayIndex(i);
-		QString wk = settings.store->value("Path").toString();
+		store->setArrayIndex(i);
+		QString wk = store->value("Path").toString();
 
 		// Skip invalid workspaces
 		if(wk.isEmpty() || !QDir(wk).exists())
@@ -1305,80 +1298,75 @@ void MainWindow::loadSettings()
 
 		addWorkspace(wk);
 
-		if(settings.store->contains("Active") && settings.store->value("Active").toBool())
+		if(store->contains("Active") && store->value("Active").toBool())
 			setCurrentWorkspace(wk);
 	}
-	settings.store->endArray();
+	store->endArray();
 
-
-	if(settings.store->contains("WindowX") && settings.store->contains("WindowY"))
+	if(store->contains("WindowX") && store->contains("WindowY"))
 	{
 		QPoint _pos;
-		_pos.setX(settings.store->value("WindowX").toInt());
-		_pos.setY(settings.store->value("WindowY").toInt());
+		_pos.setX(store->value("WindowX").toInt());
+		_pos.setY(store->value("WindowY").toInt());
 		move(_pos);
 	}
 
-	if(settings.store->contains("WindowWidth") && settings.store->contains("WindowHeight"))
+	if(store->contains("WindowWidth") && store->contains("WindowHeight"))
 	{
 		QSize _size;
-		_size.setWidth(settings.store->value("WindowWidth").toInt());
-		_size.setHeight(settings.store->value("WindowHeight").toInt());
+		_size.setWidth(store->value("WindowWidth").toInt());
+		_size.setHeight(store->value("WindowHeight").toInt());
 		resize(_size);
 	}
 
-	if(settings.store->contains("ViewUnknown"))
-		ui->actionViewUnknown->setChecked(settings.store->value("ViewUnknown").toBool());
-	if(settings.store->contains("ViewModified"))
-		ui->actionViewModified->setChecked(settings.store->value("ViewModified").toBool());
-	if(settings.store->contains("ViewUnchanged"))
-		ui->actionViewUnchanged->setChecked(settings.store->value("ViewUnchanged").toBool());
-	if(settings.store->contains("ViewIgnored"))
-		ui->actionViewIgnored->setChecked(settings.store->value("ViewIgnored").toBool());
-	if(settings.store->contains("ViewAsList"))
+	if(store->contains("ViewUnknown"))
+		ui->actionViewUnknown->setChecked(store->value("ViewUnknown").toBool());
+	if(store->contains("ViewModified"))
+		ui->actionViewModified->setChecked(store->value("ViewModified").toBool());
+	if(store->contains("ViewUnchanged"))
+		ui->actionViewUnchanged->setChecked(store->value("ViewUnchanged").toBool());
+	if(store->contains("ViewIgnored"))
+		ui->actionViewIgnored->setChecked(store->value("ViewIgnored").toBool());
+	if(store->contains("ViewAsList"))
 	{
-		ui->actionViewAsList->setChecked(settings.store->value("ViewAsList").toBool());
-		viewMode = settings.store->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
+		ui->actionViewAsList->setChecked(store->value("ViewAsList").toBool());
+		viewMode = store->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
 	ui->treeView->setVisible(viewMode == VIEWMODE_TREE);
 
-	if(settings.store->contains("ViewStash"))
-		ui->actionViewStash->setChecked(settings.store->value("ViewStash").toBool());
+	if(store->contains("ViewStash"))
+		ui->actionViewStash->setChecked(store->value("ViewStash").toBool());
 	ui->tableViewStash->setVisible(ui->actionViewStash->isChecked());
 
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::saveSettings()
+void MainWindow::updateSettings()
 {
-	// If we have a customize fossil path, save it
-	QString fossil_path = settings.Mappings[FUEL_SETTING_FOSSIL_PATH].Value.toString();
-	settings.store->setValue(FUEL_SETTING_FOSSIL_PATH, fossil_path);
-	settings.store->setValue(FUEL_SETTING_COMMIT_MSG, settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value);
-	settings.store->setValue(FUEL_SETTING_FILE_DBLCLICK, settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value);
+	QSettings *store = settings.GetStore();
 
-	settings.store->beginWriteArray("Workspaces", workspaceHistory.size());
+	store->beginWriteArray("Workspaces", workspaceHistory.size());
 	for(int i=0; i<workspaceHistory.size(); ++i)
 	{
-		settings.store->setArrayIndex(i);
-		settings.store->setValue("Path", workspaceHistory[i]);
+		store->setArrayIndex(i);
+		store->setValue("Path", workspaceHistory[i]);
 		if(getCurrentWorkspace() == workspaceHistory[i])
-			settings.store->setValue("Active", true);
+			store->setValue("Active", true);
 		else
-			settings.store->remove("Active");
+			store->remove("Active");
 	}
-	settings.store->endArray();
+	store->endArray();
 
-	settings.store->setValue("WindowX", x());
-	settings.store->setValue("WindowY", y());
-	settings.store->setValue("WindowWidth", width());
-	settings.store->setValue("WindowHeight", height());
-	settings.store->setValue("ViewUnknown", ui->actionViewUnknown->isChecked());
-	settings.store->setValue("ViewModified", ui->actionViewModified->isChecked());
-	settings.store->setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
-	settings.store->setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
-	settings.store->setValue("ViewAsList", ui->actionViewAsList->isChecked());
-	settings.store->setValue("ViewStash", ui->actionViewStash->isChecked());
+	store->setValue("WindowX", x());
+	store->setValue("WindowY", y());
+	store->setValue("WindowWidth", width());
+	store->setValue("WindowHeight", height());
+	store->setValue("ViewUnknown", ui->actionViewUnknown->isChecked());
+	store->setValue("ViewModified", ui->actionViewModified->isChecked());
+	store->setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
+	store->setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
+	store->setValue("ViewAsList", ui->actionViewAsList->isChecked());
+	store->setValue("ViewStash", ui->actionViewStash->isChecked());
 }
 
 //------------------------------------------------------------------------------
@@ -1551,7 +1539,7 @@ bool MainWindow::startUI()
 {
 	if(uiRunning())
 	{
-		log(tr("Fossil UI is already running\n"));
+		log(tr("Fossil UI is already running")+"\n");
 		return true;
 	}
 
@@ -1560,13 +1548,13 @@ bool MainWindow::startUI()
 	fossilUI.setWorkingDirectory(getCurrentWorkspace());
 
 	log("<b>&gt; fossil ui</b><br>", true);
-	log(tr("Starting Fossil browser UI. Please wait.\n"));
+	log(tr("Starting Fossil browser UI. Please wait.")+"\n");
 	QString fossil = getFossilPath();
 
 	fossilUI.start(fossil, QStringList() << "ui");
 	if(!fossilUI.waitForStarted() || fossilUI.state()!=QProcess::Running)
 	{
-		log(tr("Could not start Fossil executable '%s'\n").arg(fossil));
+		log(tr("Could not start Fossil executable '%s'").arg(fossil)+"\n");
 		ui->actionFossilUI->setChecked(false);
 		return false;
 	}
@@ -1659,7 +1647,7 @@ void MainWindow::on_actionHistory_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &/*index*/)
 {
-	int action = settings.Mappings[FUEL_SETTING_FILE_DBLCLICK].Value.toInt();
+	int action = settings.GetValue(FUEL_SETTING_FILE_DBLCLICK).toInt();
 	if(action==FILE_DLBCLICK_ACTION_DIFF)
 		on_actionDiff_triggered();
 	else if(action==FILE_DLBCLICK_ACTION_OPEN)
@@ -1683,7 +1671,7 @@ void MainWindow::on_actionOpenFile_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionPush_triggered()
 {
-	QString remote_url = settings.Mappings[FUEL_SETTING_REMOTE_URL].Value.toString();
+	QString remote_url = settings.GetFossilValue(FOSSIL_SETTING_REMOTE_URL).toString();
 
 	if(remote_url.isEmpty() || remote_url == "off")
 	{
@@ -1697,7 +1685,7 @@ void MainWindow::on_actionPush_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionPull_triggered()
 {
-	QString remote_url = settings.Mappings[FUEL_SETTING_REMOTE_URL].Value.toString();
+	QString remote_url = settings.GetFossilValue(FOSSIL_SETTING_REMOTE_URL).toString();
 
 	if(remote_url.isEmpty() || remote_url == "off")
 	{
@@ -1717,7 +1705,7 @@ void MainWindow::on_actionCommit_triggered()
 	if(commit_files.empty())
 		return;
 
-	QStringList commit_msgs = settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value.toStringList();
+	QStringList commit_msgs = settings.GetValue(FUEL_SETTING_COMMIT_MSG).toStringList();
 
 	QString msg;
 	bool aborted = !CommitDialog::run(this, tr("Commit Changes"), commit_files, msg, &commit_msgs);
@@ -1727,7 +1715,7 @@ void MainWindow::on_actionCommit_triggered()
 	if(commit_msgs.indexOf(msg)==-1)
 	{
 		commit_msgs.push_front(msg);
-		settings.Mappings[FUEL_SETTING_COMMIT_MSG].Value = commit_msgs;
+		settings.SetValue(FUEL_SETTING_COMMIT_MSG, commit_msgs);
 	}
 
 	if(aborted)
@@ -1867,7 +1855,7 @@ void MainWindow::on_actionRename_triggered()
 	QFileInfo fi_before(repo_files[0]);
 
 	bool ok = false;
-	QString new_name = QInputDialog::getText(this, tr("Rename"), tr("Enter new name"), QLineEdit::Normal, fi_before.filePath(), &ok, Qt::Sheet );
+	QString new_name = QInputDialog::getText(this, tr("Rename"), tr("New name"), QLineEdit::Normal, fi_before.filePath(), &ok, Qt::Sheet );
 	if(!ok)
 		return;
 
@@ -1948,7 +1936,7 @@ void MainWindow::on_actionAbout_triggered()
 					   QCoreApplication::applicationName() + " "+ QCoreApplication::applicationVersion() + " " +
 						tr("a GUI frontend to the Fossil SCM\n"
 							"by Kostas Karanikolas\n"
-							"Released under the GNU GPL\n\n")
+							"Released under the GNU GPL")+"\n\n"
 					   + fossil_ver +
 						tr("Icon-set by Deleket - Jojo Mendoza\n"
 							"Available under the CC Attribution Noncommercial No Derivate 3.0 License"));
@@ -1984,14 +1972,10 @@ void MainWindow::loadFossilSettings()
 
 	QStringMap kv = MakeKeyValues(out);
 
-	for(Settings::mappings_t::iterator it=settings.Mappings.begin(); it!=settings.Mappings.end(); ++it)
+	for(Settings::mappings_t::iterator it=settings.GetMappings().begin(); it!=settings.GetMappings().end(); ++it)
 	{
 		const QString &name = it.key();
 		Settings::Setting::SettingType type = it->Type;
-
-		// Internal types are handled explicitly
-		if(type == Settings::Setting::TYPE_INTERNAL)
-			continue;
 
 		// Command types we issue directly on fossil
 		if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
@@ -2034,14 +2018,10 @@ void MainWindow::on_actionSettings_triggered()
 		return;
 
 	// Apply settings
-	for(Settings::mappings_t::iterator it=settings.Mappings.begin(); it!=settings.Mappings.end(); ++it)
+	for(Settings::mappings_t::iterator it=settings.GetMappings().begin(); it!=settings.GetMappings().end(); ++it)
 	{
 		const QString &name = it.key();
 		Settings::Setting::SettingType type = it.value().Type;
-
-		// Internal types are handled explicitly
-		if(type == Settings::Setting::TYPE_INTERNAL)
-			continue;
 
 		// Command types we issue directly on fossil
 		if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
@@ -2178,7 +2158,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	QString old_name = old_path.mid(dir_start);
 
 	bool ok = false;
-	QString new_name = QInputDialog::getText(this, tr("Rename Folder"), tr("Enter new name"), QLineEdit::Normal, old_name, &ok, Qt::Sheet);
+	QString new_name = QInputDialog::getText(this, tr("Rename Folder"), tr("New name"), QLineEdit::Normal, old_name, &ok, Qt::Sheet);
 	if(!ok || old_name==new_name)
 		return;
 
@@ -2190,7 +2170,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	{
 		if(new_name.indexOf(invalid_tokens[i])!=-1)
 		{
-			QMessageBox::critical(this, tr("Error"), tr("Cannot rename folder.\nFolder name contains invalid characters."));
+			QMessageBox::critical(this, tr("Error"), tr("Cannot rename folder.")+"\n" +tr("Folder name contains invalid characters."));
 			return;
 		}
 	}
@@ -2199,7 +2179,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 
 	if(pathSet.contains(new_path))
 	{
-		QMessageBox::critical(this, tr("Error"), tr("Cannot rename folder.\nThis folder exists already."));
+		QMessageBox::critical(this, tr("Error"), tr("Cannot rename folder.")+"\n" +tr("This folder exists already."));
 		return;
 	}
 
@@ -2239,7 +2219,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 
 		if(!runFossil(QStringList() << "mv" <<  QuotePath(r->getFilePath()) << QuotePath(new_file_path)))
 		{
-			log(tr("Move aborted due to errors\n"));
+			log(tr("Move aborted due to errors")+"\n");
 			goto _exit;
 		}
 	}
@@ -2259,10 +2239,10 @@ void MainWindow::on_actionRenameFolder_triggered()
 		QDir wkdir(getCurrentWorkspace());
 		Q_ASSERT(wkdir.exists());
 
-		log(tr("Creating folder '%0'\n").arg(target_path));
+		log(tr("Creating folder '%0'").arg(target_path)+"\n");
 		if(!wkdir.mkpath(new_paths[i] + PATH_SEP + "."))
 		{
-			QMessageBox::critical(this, tr("Error"), tr("Cannot make target folder '%0'\n").arg(target_path));
+			QMessageBox::critical(this, tr("Error"), tr("Cannot make target folder '%0'").arg(target_path));
 			goto _exit;
 		}
 	}
@@ -2279,7 +2259,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 			goto _exit;
 		}
 
-		log(tr("Copying file '%0' to '%1'\n").arg(r->getFilePath(), new_file_path));
+		log(tr("Copying file '%0' to '%1'").arg(r->getFilePath(), new_file_path)+"\n");
 
 		if(!QFile::copy(r->getFilePath(), new_file_path))
 		{
@@ -2293,7 +2273,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	{
 		RepoFile *r = files_to_move[i];
 
-		log(tr("Removing old file '%0'\n").arg(r->getFilePath()));
+		log(tr("Removing old file '%0'").arg(r->getFilePath())+"\n");
 
 		if(!QFile::exists(r->getFilePath()))
 		{
@@ -2308,7 +2288,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 		}
 	}
 
-	log(tr("Folder renamed completed. Don't forget to commit!\n"));
+	log(tr("Folder renamed completed. Don't forget to commit!")+"\n");
 
 _exit:
 	refresh();
@@ -2386,7 +2366,7 @@ void MainWindow::on_actionApplyStash_triggered()
 
 		if(!runFossil(QStringList() << "stash" << "apply" << *id_it))
 		{
-			log(tr("Stash application aborted due to errors\n"));
+			log(tr("Stash application aborted due to errors")+"\n");
 			return;
 		}
 	}
@@ -2399,7 +2379,7 @@ void MainWindow::on_actionApplyStash_triggered()
 
 		if(!runFossil(QStringList() << "stash" << "drop" << *id_it))
 		{
-			log(tr("Stash deletion aborted due to errors\n"));
+			log(tr("Stash deletion aborted due to errors")+"\n");
 			return;
 		}
 	}
@@ -2427,7 +2407,7 @@ void MainWindow::on_actionDeleteStash_triggered()
 
 		if(!runFossil(QStringList() << "stash" << "drop" << *id_it))
 		{
-			log(tr("Stash deletion aborted due to errors\n"));
+			log(tr("Stash deletion aborted due to errors")+"\n");
 			return;
 		}
 	}

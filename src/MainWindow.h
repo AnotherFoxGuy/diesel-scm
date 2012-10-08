@@ -136,8 +136,8 @@ private:
 	void scanWorkspace();
 	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
 	bool runFossilRaw(const QStringList &args, QStringList *output=0, int *exitCode=0, int runFlags=RUNFLAGS_NONE);
-	void loadSettings();
-	void saveSettings();
+	void applySettings();
+	void updateSettings();
 	const QString &getCurrentWorkspace();
 	void setCurrentWorkspace(const QString &workspace);
 	void log(const QString &text, bool isHTML=false);

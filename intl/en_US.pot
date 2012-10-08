@@ -1,0 +1,1199 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en.US\n"
+"X-Source-Language: en.US\n"
+"X-Qt-Contexts: true\n"
+
+#: ../ui/CloneDialog.ui:17
+msgctxt "CloneDialog|"
+msgid "Clone Repository"
+msgstr ""
+
+#: ../ui/CloneDialog.ui:28
+msgctxt "CloneDialog|"
+msgid "URL"
+msgstr ""
+
+#: ../ui/CloneDialog.ui:35
+msgctxt "CloneDialog|"
+msgid "The URL of the source repository"
+msgstr ""
+
+#: ../ui/CloneDialog.ui:42
+msgctxt "CloneDialog|"
+msgid "User Name"
+msgstr ""
+
+#: ../ui/CloneDialog.ui:49
+msgctxt "CloneDialog|"
+msgid ""
+"The user name used to access the remote repository. Leave blank if not "
+"required"
+msgstr ""
+
+#: ../ui/CloneDialog.ui:56
+msgctxt "CloneDialog|"
+msgid "Password"
+msgstr ""
+
+#: ../ui/CloneDialog.ui:63
+msgctxt "CloneDialog|"
+msgid ""
+"The password used to access the remote repository. Leave blank if not "
+"required"
+msgstr ""
+
+#: ../ui/CloneDialog.ui:73
+msgctxt "CloneDialog|"
+msgid "Repository"
+msgstr ""
+
+#: ../ui/CloneDialog.ui:82
+msgctxt "CloneDialog|"
+msgid "Path to the local repository file"
+msgstr ""
+
+#: ../ui/CloneDialog.ui:101
+msgctxt "CloneDialog|"
+msgid "..."
+msgstr ""
+
+#: ../src/CloneDialog.cpp:52 ../src/CloneDialog.cpp:61 ../src/CloneDialog.cpp:87
+msgctxt "CloneDialog|"
+msgid "Error"
+msgstr ""
+
+#: ../src/CloneDialog.cpp:52
+msgctxt "CloneDialog|"
+msgid "Invalid URL."
+msgstr ""
+
+#: ../src/CloneDialog.cpp:61
+msgctxt "CloneDialog|"
+msgid "Invalid Repository File."
+msgstr ""
+
+#: ../src/CloneDialog.cpp:72
+msgctxt "CloneDialog|"
+msgid "Fossil Repository (*.fossil)"
+msgstr ""
+
+#: ../src/CloneDialog.cpp:76
+msgctxt "CloneDialog|"
+msgid "Select Fossil Repository"
+msgstr ""
+
+#: ../src/CloneDialog.cpp:87
+msgctxt "CloneDialog|"
+msgid "This repository file already exists."
+msgstr ""
+
+#: ../ui/CommitDialog.ui:17
+msgctxt "CommitDialog|"
+msgid "Commit"
+msgstr ""
+
+#: ../ui/FileActionDialog.ui:17
+msgctxt "FileActionDialog|"
+msgid "File Action"
+msgstr ""
+
+#: ../ui/MainWindow.ui:14
+msgctxt "MainWindow|"
+msgid "Fuel"
+msgstr ""
+
+#: ../ui/MainWindow.ui:184
+msgctxt "MainWindow|"
+msgid "&File"
+msgstr ""
+
+#: ../ui/MainWindow.ui:199
+msgctxt "MainWindow|"
+msgid "&Help"
+msgstr ""
+
+#: ../ui/MainWindow.ui:205
+msgctxt "MainWindow|"
+msgid "&View"
+msgstr ""
+
+#: ../ui/MainWindow.ui:222
+msgctxt "MainWindow|"
+msgid "Main Toolbar"
+msgstr ""
+
+#: ../ui/MainWindow.ui:276
+msgctxt "MainWindow|"
+msgid "Refresh"
+msgstr ""
+
+#: ../ui/MainWindow.ui:279 ../ui/MainWindow.ui:282
+msgctxt "MainWindow|"
+msgid "Refresh the views"
+msgstr ""
+
+#: ../ui/MainWindow.ui:285
+msgctxt "MainWindow|"
+msgid "F5"
+msgstr ""
+
+#: ../ui/MainWindow.ui:294
+msgctxt "MainWindow|"
+msgid "Commit"
+msgstr ""
+
+#: ../ui/MainWindow.ui:297 ../ui/MainWindow.ui:300
+msgctxt "MainWindow|"
+msgid "Commit modifications"
+msgstr ""
+
+#: ../ui/MainWindow.ui:303
+msgctxt "MainWindow|"
+msgid "Ctrl+M"
+msgstr ""
+
+#: ../ui/MainWindow.ui:312
+msgctxt "MainWindow|"
+msgid "Diff"
+msgstr ""
+
+#: ../ui/MainWindow.ui:315 ../ui/MainWindow.ui:318
+msgctxt "MainWindow|"
+msgid "Display the differences between the current and last committed version"
+msgstr ""
+
+#: ../ui/MainWindow.ui:321
+msgctxt "MainWindow|"
+msgid "Ctrl+D"
+msgstr ""
+
+#: ../ui/MainWindow.ui:330
+msgctxt "MainWindow|"
+msgid "Add"
+msgstr ""
+
+#: ../ui/MainWindow.ui:333 ../ui/MainWindow.ui:336
+msgctxt "MainWindow|"
+msgid "Add files to the repository"
+msgstr ""
+
+#: ../ui/MainWindow.ui:339
+msgctxt "MainWindow|"
+msgid "Ctrl++"
+msgstr ""
+
+#: ../ui/MainWindow.ui:348
+msgctxt "MainWindow|"
+msgid "Delete"
+msgstr ""
+
+#: ../ui/MainWindow.ui:351 ../ui/MainWindow.ui:354
+msgctxt "MainWindow|"
+msgid "Delete files from the repository"
+msgstr ""
+
+#: ../ui/MainWindow.ui:357
+msgctxt "MainWindow|"
+msgid "Ctrl+-"
+msgstr ""
+
+#: ../ui/MainWindow.ui:366
+msgctxt "MainWindow|"
+msgid "&New..."
+msgstr ""
+
+#: ../ui/MainWindow.ui:369 ../ui/MainWindow.ui:372
+msgctxt "MainWindow|"
+msgid "Make a new Fossil repository"
+msgstr ""
+
+#: ../ui/MainWindow.ui:375
+msgctxt "MainWindow|"
+msgid "Ctrl+N"
+msgstr ""
+
+#: ../ui/MainWindow.ui:384
+msgctxt "MainWindow|"
+msgid "&Open..."
+msgstr ""
+
+#: ../ui/MainWindow.ui:387 ../ui/MainWindow.ui:390
+msgctxt "MainWindow|"
+msgid "Open a Fossil repository or workspace folder"
+msgstr ""
+
+#: ../ui/MainWindow.ui:393
+msgctxt "MainWindow|"
+msgid "Ctrl+O"
+msgstr ""
+
+#: ../ui/MainWindow.ui:401
+msgctxt "MainWindow|"
+msgid "&Close"
+msgstr ""
+
+#: ../ui/MainWindow.ui:404 ../ui/MainWindow.ui:407
+msgctxt "MainWindow|"
+msgid "Close the current workspace"
+msgstr ""
+
+#: ../ui/MainWindow.ui:416
+msgctxt "MainWindow|"
+msgid "Clone..."
+msgstr ""
+
+#: ../ui/MainWindow.ui:425
+msgctxt "MainWindow|"
+msgid "Push"
+msgstr ""
+
+#: ../ui/MainWindow.ui:428 ../ui/MainWindow.ui:431
+msgctxt "MainWindow|"
+msgid "Push changes to the remote repository"
+msgstr ""
+
+#: ../ui/MainWindow.ui:434
+msgctxt "MainWindow|"
+msgid "Ctrl+P"
+msgstr ""
+
+#: ../ui/MainWindow.ui:443
+msgctxt "MainWindow|"
+msgid "Pull"
+msgstr ""
+
+#: ../ui/MainWindow.ui:446 ../ui/MainWindow.ui:449
+msgctxt "MainWindow|"
+msgid "Pull changes from the remote repository"
+msgstr ""
+
+#: ../ui/MainWindow.ui:452
+msgctxt "MainWindow|"
+msgid "Ctrl+L"
+msgstr ""
+
+#: ../ui/MainWindow.ui:461 ../src/MainWindow.cpp:1858
+msgctxt "MainWindow|"
+msgid "Rename"
+msgstr ""
+
+#: ../ui/MainWindow.ui:464 ../ui/MainWindow.ui:467
+msgctxt "MainWindow|"
+msgid "Rename the selected file"
+msgstr ""
+
+#: ../ui/MainWindow.ui:470
+msgctxt "MainWindow|"
+msgid "Ctrl+R"
+msgstr ""
+
+#: ../ui/MainWindow.ui:479
+msgctxt "MainWindow|"
+msgid "&Quit"
+msgstr ""
+
+#: ../ui/MainWindow.ui:482
+msgctxt "MainWindow|"
+msgid "Quit"
+msgstr ""
+
+#: ../ui/MainWindow.ui:485
+msgctxt "MainWindow|"
+msgid "Ctrl+Q"
+msgstr ""
+
+#: ../ui/MainWindow.ui:497
+msgctxt "MainWindow|"
+msgid "History"
+msgstr ""
+
+#: ../ui/MainWindow.ui:500 ../ui/MainWindow.ui:503
+msgctxt "MainWindow|"
+msgid "Display the version history of a file via the fossil UI"
+msgstr ""
+
+#: ../ui/MainWindow.ui:506
+msgctxt "MainWindow|"
+msgid "Ctrl+H"
+msgstr ""
+
+#: ../ui/MainWindow.ui:518
+msgctxt "MainWindow|"
+msgid "Fossil UI"
+msgstr ""
+
+#: ../ui/MainWindow.ui:521 ../ui/MainWindow.ui:524
+msgctxt "MainWindow|"
+msgid "Starts the Fosill UI in the Web Browser"
+msgstr ""
+
+#: ../ui/MainWindow.ui:533
+msgctxt "MainWindow|"
+msgid "Revert"
+msgstr ""
+
+#: ../ui/MainWindow.ui:536 ../ui/MainWindow.ui:539
+msgctxt "MainWindow|"
+msgid "Revert files to the last commited version"
+msgstr ""
+
+#: ../ui/MainWindow.ui:548
+msgctxt "MainWindow|"
+msgid "Clear Log"
+msgstr ""
+
+#: ../ui/MainWindow.ui:551
+msgctxt "MainWindow|"
+msgid "Clears the log"
+msgstr ""
+
+#: ../ui/MainWindow.ui:554
+msgctxt "MainWindow|"
+msgid "Ctrl+K"
+msgstr ""
+
+#: ../ui/MainWindow.ui:563
+msgctxt "MainWindow|"
+msgid "Timeline"
+msgstr ""
+
+#: ../ui/MainWindow.ui:566 ../ui/MainWindow.ui:569
+msgctxt "MainWindow|"
+msgid "Display the change history of the fossil repository"
+msgstr ""
+
+#: ../ui/MainWindow.ui:578
+msgctxt "MainWindow|"
+msgid "Open file"
+msgstr ""
+
+#: ../ui/MainWindow.ui:581 ../ui/MainWindow.ui:584
+msgctxt "MainWindow|"
+msgid "Open the selected file"
+msgstr ""
+
+#: ../ui/MainWindow.ui:587
+msgctxt "MainWindow|"
+msgid "Ctrl+Return"
+msgstr ""
+
+#: ../ui/MainWindow.ui:596
+msgctxt "MainWindow|"
+msgid "Open Containing"
+msgstr ""
+
+#: ../ui/MainWindow.ui:599 ../ui/MainWindow.ui:602
+msgctxt "MainWindow|"
+msgid "Open the folder containing the selected file"
+msgstr ""
+
+#: ../ui/MainWindow.ui:605
+msgctxt "MainWindow|"
+msgid "Alt+Return"
+msgstr ""
+
+#: ../ui/MainWindow.ui:614 ../src/MainWindow.cpp:1913
+msgctxt "MainWindow|"
+msgid "Undo"
+msgstr ""
+
+#: ../ui/MainWindow.ui:617 ../ui/MainWindow.ui:620
+msgctxt "MainWindow|"
+msgid "Undo the last fossil action"
+msgstr ""
+
+#: ../ui/MainWindow.ui:623
+msgctxt "MainWindow|"
+msgid "Ctrl+Z"
+msgstr ""
+
+#: ../ui/MainWindow.ui:632
+msgctxt "MainWindow|"
+msgid "&About..."
+msgstr ""
+
+#: ../ui/MainWindow.ui:635
+msgctxt "MainWindow|"
+msgid "About Fuel"
+msgstr ""
+
+#: ../ui/MainWindow.ui:644 ../src/MainWindow.cpp:1956
+msgctxt "MainWindow|"
+msgid "Update"
+msgstr ""
+
+#: ../ui/MainWindow.ui:647 ../ui/MainWindow.ui:650
+msgctxt "MainWindow|"
+msgid "Update the workspace to the latest version"
+msgstr ""
+
+#: ../ui/MainWindow.ui:653
+msgctxt "MainWindow|"
+msgid "Ctrl+U"
+msgstr ""
+
+#: ../ui/MainWindow.ui:662
+msgctxt "MainWindow|"
+msgid "&Preferences..."
+msgstr ""
+
+#: ../ui/MainWindow.ui:665 ../ui/MainWindow.ui:668
+msgctxt "MainWindow|"
+msgid "Fuel Preferences"
+msgstr ""
+
+#: ../ui/MainWindow.ui:679
+msgctxt "MainWindow|"
+msgid "&Modified"
+msgstr ""
+
+#: ../ui/MainWindow.ui:682
+msgctxt "MainWindow|"
+msgid "Show modifed files"
+msgstr ""
+
+#: ../ui/MainWindow.ui:693
+msgctxt "MainWindow|"
+msgid "&Unchanged"
+msgstr ""
+
+#: ../ui/MainWindow.ui:696
+msgctxt "MainWindow|"
+msgid "Show unchanged files"
+msgstr ""
+
+#: ../ui/MainWindow.ui:707
+msgctxt "MainWindow|"
+msgid "Un&known"
+msgstr ""
+
+#: ../ui/MainWindow.ui:710
+msgctxt "MainWindow|"
+msgid "Show unknown files"
+msgstr ""
+
+#: ../ui/MainWindow.ui:718
+msgctxt "MainWindow|"
+msgid "&Ignored"
+msgstr ""
+
+#: ../ui/MainWindow.ui:721
+msgctxt "MainWindow|"
+msgid "Show ignored files"
+msgstr ""
+
+#: ../ui/MainWindow.ui:729
+msgctxt "MainWindow|"
+msgid "File &List"
+msgstr ""
+
+#: ../ui/MainWindow.ui:732 ../ui/MainWindow.ui:735
+msgctxt "MainWindow|"
+msgid "View as files as a list"
+msgstr ""
+
+#: ../ui/MainWindow.ui:738
+msgctxt "MainWindow|"
+msgid "View the workspace as a list of files"
+msgstr ""
+
+#: ../ui/MainWindow.ui:747
+msgctxt "MainWindow|"
+msgid "Open Folder"
+msgstr ""
+
+#: ../ui/MainWindow.ui:750 ../ui/MainWindow.ui:753
+msgctxt "MainWindow|"
+msgid "Open the selected folder"
+msgstr ""
+
+#: ../ui/MainWindow.ui:762 ../src/MainWindow.cpp:2161 ../src/MainWindow.cpp:2206
+msgctxt "MainWindow|"
+msgid "Rename Folder"
+msgstr ""
+
+#: ../ui/MainWindow.ui:765 ../ui/MainWindow.ui:768
+msgctxt "MainWindow|"
+msgid "Rename the selected folder"
+msgstr ""
+
+#: ../ui/MainWindow.ui:777
+msgctxt "MainWindow|"
+msgid "Stash changes"
+msgstr ""
+
+#: ../ui/MainWindow.ui:780
+msgctxt "MainWindow|"
+msgid "Show the stash"
+msgstr ""
+
+#: ../ui/MainWindow.ui:789 ../src/MainWindow.cpp:2358
+msgctxt "MainWindow|"
+msgid "Apply Stash"
+msgstr ""
+
+#: ../ui/MainWindow.ui:792 ../ui/MainWindow.ui:795
+msgctxt "MainWindow|"
+msgid "Apply stashed changes"
+msgstr ""
+
+#: ../ui/MainWindow.ui:803
+msgctxt "MainWindow|"
+msgid "&Stashed Changes"
+msgstr ""
+
+#: ../ui/MainWindow.ui:806
+msgctxt "MainWindow|"
+msgid "View the Stash"
+msgstr ""
+
+#: ../ui/MainWindow.ui:809
+msgctxt "MainWindow|"
+msgid "Show the list of stashed changes"
+msgstr ""
+
+#: ../ui/MainWindow.ui:818
+msgctxt "MainWindow|"
+msgid "Delete Stash"
+msgstr ""
+
+#: ../ui/MainWindow.ui:827
+msgctxt "MainWindow|"
+msgid "Diff Stash"
+msgstr ""
+
+#: ../src/MainWindow.cpp:249 ../src/MainWindow.cpp:306
+#: ../src/MainWindow.cpp:314 ../src/MainWindow.cpp:384
+#: ../src/MainWindow.cpp:412 ../src/MainWindow.cpp:420
+#: ../src/MainWindow.cpp:431 ../src/MainWindow.cpp:449
+#: ../src/MainWindow.cpp:482 ../src/MainWindow.cpp:1678
+#: ../src/MainWindow.cpp:1692 ../src/MainWindow.cpp:1734
+#: ../src/MainWindow.cpp:1743 ../src/MainWindow.cpp:1866
+#: ../src/MainWindow.cpp:2173 ../src/MainWindow.cpp:2182
+#: ../src/MainWindow.cpp:2245 ../src/MainWindow.cpp:2258
+#: ../src/MainWindow.cpp:2266 ../src/MainWindow.cpp:2280
+#: ../src/MainWindow.cpp:2286 ../src/MainWindow.cpp:2328
+#: ../src/MainWindow.cpp:2337
+msgctxt "MainWindow|"
+msgid "Error"
+msgstr ""
+
+#: ../src/MainWindow.cpp:249
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Could not change current directory to '%0'"
+msgstr ""
+
+#: ../src/MainWindow.cpp:291
+msgctxt "MainWindow|"
+msgid ""
+"A workspace does not exist in this folder.\n"
+"Would you like to create one here?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:291
+msgctxt "MainWindow|"
+msgid "Open Workspace"
+msgstr ""
+
+#: ../src/MainWindow.cpp:295 ../src/MainWindow.cpp:397
+msgctxt "MainWindow|"
+msgid "Select Workspace Folder"
+msgstr ""
+
+#: ../src/MainWindow.cpp:306 ../src/MainWindow.cpp:420
+msgctxt "MainWindow|"
+msgid "Could not change current directory"
+msgstr ""
+
+#: ../src/MainWindow.cpp:314 ../src/MainWindow.cpp:431
+msgctxt "MainWindow|"
+msgid "Could not open repository."
+msgstr ""
+
+#: ../src/MainWindow.cpp:352
+msgctxt "MainWindow|"
+msgid "Fossil Files (*.fossil _FOSSIL_ .fslckout)"
+msgstr ""
+
+#: ../src/MainWindow.cpp:356
+msgctxt "MainWindow|"
+msgid "Open Fossil Repository"
+msgstr ""
+
+#: ../src/MainWindow.cpp:369
+msgctxt "MainWindow|"
+msgid "Fossil Repositories (*.fossil)"
+msgstr ""
+
+#: ../src/MainWindow.cpp:374
+msgctxt "MainWindow|"
+msgid "New Fossil Repository"
+msgstr ""
+
+#: ../src/MainWindow.cpp:384
+msgctxt "MainWindow|"
+msgid ""
+"A repository file already exists.\n"
+"Repository creation aborted."
+msgstr ""
+
+#: ../src/MainWindow.cpp:393
+msgctxt "MainWindow|"
+msgid "Create Workspace"
+msgstr ""
+
+#: ../src/MainWindow.cpp:393
+msgctxt "MainWindow|"
+msgid "Would you like to create a workspace in the same folder?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:412
+msgctxt "MainWindow|"
+msgid "Could not create repository."
+msgstr ""
+
+#: ../src/MainWindow.cpp:443
+msgctxt "MainWindow|"
+msgid "Close Workspace"
+msgstr ""
+
+#: ../src/MainWindow.cpp:443
+msgctxt "MainWindow|"
+msgid "Are you sure want to close this workspace?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:449
+msgctxt "MainWindow|"
+msgid ""
+"Cannot close the workspace.\n"
+"Are there still uncommitted changes available?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:482
+msgctxt "MainWindow|"
+msgid "Could not clone the repository"
+msgstr ""
+
+#: ../src/MainWindow.cpp:586
+msgctxt "MainWindow|"
+msgid "No workspace detected."
+msgstr ""
+
+#: ../src/MainWindow.cpp:594
+msgctxt "MainWindow|"
+msgid "Old repository schema detected. Consider running 'fossil rebuild'"
+msgstr ""
+
+#: ../src/MainWindow.cpp:631
+msgctxt "MainWindow|"
+msgid "Scanning Workspace..."
+msgstr ""
+
+#: ../src/MainWindow.cpp:671
+msgctxt "MainWindow|"
+msgid "Updating..."
+msgstr ""
+
+#: ../src/MainWindow.cpp:831
+msgctxt "MainWindow|"
+msgid "Folders"
+msgstr ""
+
+#: ../src/MainWindow.cpp:858
+msgctxt "MainWindow|"
+msgid "S"
+msgstr ""
+
+#: ../src/MainWindow.cpp:858
+msgctxt "MainWindow|"
+msgid "File"
+msgstr ""
+
+#: ../src/MainWindow.cpp:858
+msgctxt "MainWindow|"
+msgid "Ext"
+msgstr ""
+
+#: ../src/MainWindow.cpp:858
+msgctxt "MainWindow|"
+msgid "Modified"
+msgstr ""
+
+#: ../src/MainWindow.cpp:865
+msgctxt "MainWindow|"
+msgid "Path"
+msgstr ""
+
+#: ../src/MainWindow.cpp:991
+msgctxt "MainWindow|"
+msgid "Stashes"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1084
+msgctxt "MainWindow|"
+msgid "Running Fossil"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1117
+msgctxt "MainWindow|"
+msgid "Terminated"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1542
+msgctxt "MainWindow|"
+msgid "Fossil UI is already running"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1551
+msgctxt "MainWindow|"
+msgid "Starting Fossil browser UI. Please wait."
+msgstr ""
+
+#: ../src/MainWindow.cpp:1858 ../src/MainWindow.cpp:2161
+msgctxt "MainWindow|"
+msgid "New name"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1937
+msgctxt "MainWindow|"
+msgid ""
+"a GUI frontend to the Fossil SCM\n"
+"by Kostas Karanikolas\n"
+"Released under the GNU GPL"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2173 ../src/MainWindow.cpp:2182
+msgctxt "MainWindow|"
+msgid "Cannot rename folder."
+msgstr ""
+
+#: ../src/MainWindow.cpp:2173
+msgctxt "MainWindow|"
+msgid "Folder name contains invalid characters."
+msgstr ""
+
+#: ../src/MainWindow.cpp:2182
+msgctxt "MainWindow|"
+msgid "This folder exists already."
+msgstr ""
+
+#: ../src/MainWindow.cpp:2222
+msgctxt "MainWindow|"
+msgid "Move aborted due to errors"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2242
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Creating folder '%0'"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2245
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Cannot make target folder '%0'"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2262
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Copying file '%0' to '%1'"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2276
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Removing old file '%0'"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2291
+msgctxt "MainWindow|"
+msgid "Folder renamed completed. Don't forget to commit!"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2369
+msgctxt "MainWindow|"
+msgid "Stash application aborted due to errors"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2382 ../src/MainWindow.cpp:2410
+msgctxt "MainWindow|"
+msgid "Stash deletion aborted due to errors"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1096 ../src/MainWindow.cpp:1557
+msgctxt "MainWindow|"
+msgid "Could not start Fossil executable '%s'"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1678 ../src/MainWindow.cpp:1692
+msgctxt "MainWindow|"
+msgid ""
+"A remote repository has not been specified.\n"
+"Use the preferences window to set the remote repostory location"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1711
+msgctxt "MainWindow|"
+msgid "Commit Changes"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1734 ../src/MainWindow.cpp:1743
+msgctxt "MainWindow|"
+msgid "Could not generate comment file"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1780
+msgctxt "MainWindow|"
+msgid "Add files"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1780
+msgctxt "MainWindow|"
+msgid "The following files will be added. Are you sure?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1805
+msgctxt "MainWindow|"
+msgid "Remove files"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1805
+msgctxt "MainWindow|"
+msgid ""
+"The following files will be removed from the repository.\n"
+"Are you sure?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1805
+msgctxt "MainWindow|"
+msgid "Also delete the local files"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1837
+msgctxt "MainWindow|"
+msgid "Revert files"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1837
+msgctxt "MainWindow|"
+msgid "The following files will be reverted. Are you sure?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1866
+#, qt-format
+msgctxt "MainWindow|"
+msgid ""
+"File '%0' already exists.\n"
+"Rename aborted."
+msgstr ""
+
+#: ../src/MainWindow.cpp:1913
+msgctxt "MainWindow|"
+msgid "The following actions will be undone. Are you sure?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1932
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Fossil version %0"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1935
+msgctxt "MainWindow|"
+msgid "About Fuel..."
+msgstr ""
+
+#: ../src/MainWindow.cpp:1941
+msgctxt "MainWindow|"
+msgid ""
+"Icon-set by Deleket - Jojo Mendoza\n"
+"Available under the CC Attribution Noncommercial No Derivate 3.0 License"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1956
+msgctxt "MainWindow|"
+msgid "The following files will be updated. Are you sure?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2206
+#, qt-format
+msgctxt "MainWindow|"
+msgid ""
+"Renaming folder '%0' to '%1'\n"
+"The following files will be moved in the repository. Are you sure?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2209
+msgctxt "MainWindow|"
+msgid "Also move the workspace files"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2258
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Target file '%0' exists already"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2266
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Cannot copy file '%0' to '%1'"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2280
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Source file '%0' does not exist"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2286
+#, qt-format
+msgctxt "MainWindow|"
+msgid "Cannot remove file '%0'"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2320
+msgctxt "MainWindow|"
+msgid "Revert stashed files"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2321
+msgctxt "MainWindow|"
+msgid "Stash Changes"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2328
+msgctxt "MainWindow|"
+msgid "Invalid stash name"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2337
+msgctxt "MainWindow|"
+msgid "This stash already exists"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2358
+msgctxt "MainWindow|"
+msgid "The following stashes will be applied. Are you sure?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2358
+msgctxt "MainWindow|"
+msgid "Delete after applying"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2399
+msgctxt "MainWindow|"
+msgid "Delete Stashes"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2399
+msgctxt "MainWindow|"
+msgid "The following stashes will be deleted. Are you sure?"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:17
+msgctxt "SettingsDialog|"
+msgid "Settings"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:34
+msgctxt "SettingsDialog|"
+msgid "Application"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:52
+msgctxt "SettingsDialog|"
+msgid "Fossil Path"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:61
+msgctxt "SettingsDialog|"
+msgid "Path to the fossil executable. Leave blank to use the default fossil"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:80 ../ui/SettingsDialog.ui:123
+#: ../ui/SettingsDialog.ui:166
+msgctxt "SettingsDialog|"
+msgid "..."
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:95
+msgctxt "SettingsDialog|"
+msgid "Graphical Diff "
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:104
+msgctxt "SettingsDialog|"
+msgid "Path to graphical diff tool"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:138
+msgctxt "SettingsDialog|"
+msgid "Graphical Merge"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:147
+msgctxt "SettingsDialog|"
+msgid "Path to the graphical merge tool"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:181
+msgctxt "SettingsDialog|"
+msgid "Commit Messages"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:194
+msgctxt "SettingsDialog|"
+msgid "Clear the commit message history"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:197
+msgctxt "SettingsDialog|"
+msgid "Clear"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:210
+msgctxt "SettingsDialog|"
+msgid "Double-click Action"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:223
+msgctxt "SettingsDialog|"
+msgid "Action to perfom when double-clicking a file"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:233
+msgctxt "SettingsDialog|"
+msgid "Language"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:246
+msgctxt "SettingsDialog|"
+msgid "Language to use for the user interface"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:258
+msgctxt "SettingsDialog|"
+msgid "Repository"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:276
+msgctxt "SettingsDialog|"
+msgid "Remote Url"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:289
+msgctxt "SettingsDialog|"
+msgid ""
+"The remote url used to push/pull changes.\n"
+"URL style user names and passwords are also supported.\n"
+"For example http://username:password@server.com/fossil"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:304
+msgctxt "SettingsDialog|"
+msgid "Ignore List"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:317
+msgctxt "SettingsDialog|"
+msgid ""
+"A comma separated list of glob-style file/path patterns ignored in fossil "
+"file operations"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:330
+msgctxt "SettingsDialog|"
+msgid "Ignore CR/NL"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:343
+msgctxt "SettingsDialog|"
+msgid ""
+"A comma separated list of glob-style file patterns to exclude from fossil's "
+"CR/NL consistency checking"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:16
+msgctxt "SettingsDialog|"
+msgid "Applications"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:24
+#, qt-format
+msgctxt "SettingsDialog|"
+msgid "Select %1"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:45
+msgctxt "SettingsDialog|"
+msgid "Diff File"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:46
+msgctxt "SettingsDialog|"
+msgid "Open File"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:47
+msgctxt "SettingsDialog|"
+msgid "Open Containing Folder"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:97
+msgctxt "SettingsDialog|"
+msgid "Restart required"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:97
+msgctxt "SettingsDialog|"
+msgid "The language change will take effect after restarting the application"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:111
+msgctxt "SettingsDialog|"
+msgid "Fossil executable"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:119
+msgctxt "SettingsDialog|"
+msgid "Graphical Diff application"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:127
+msgctxt "SettingsDialog|"
+msgid "Graphical Merge application"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:135
+msgctxt "SettingsDialog|"
+msgid "Clear Commit Message History"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:135
+msgctxt "SettingsDialog|"
+msgid "Are you sure want to clear the commit message history?"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:142
+msgctxt "SettingsDialog|"
+msgid "English (US)"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:143
+msgctxt "SettingsDialog|"
+msgid "Japanese"
+msgstr ""
+
+#: ../src/SettingsDialog.cpp:144
+msgctxt "SettingsDialog|"
+msgid "Greek"
+msgstr ""

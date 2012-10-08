@@ -152,4 +152,7 @@
         <file>icons/Zoom In-01.png</file>
         <file>icons/Zoom Out-01.png</file>
     </qresource>
+    <qresource prefix="/intl">
+        <file>intl/el_GR.qm</file>
+    </qresource>
 </RCC>
