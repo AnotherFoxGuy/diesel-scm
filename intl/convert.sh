@@ -8,10 +8,10 @@ echo "Converting localizations"
 rm -rf $PRJDIR/rsrc/intl
 mkdir $PRJDIR/rsrc/intl
 
-for i in $INTLDIR/*.po
+for i in $INTLDIR/*.ts
 do
-	TARGET=`basename $i .po`.qm
+	TARGET=`basename $i .ts`.qm
 	echo "$TARGET"
-	lconvert $i -o $PRJDIR/rsrc/intl/$TARGET
+	lrelease $i -qm $PRJDIR/rsrc/intl/$TARGET
 done
 

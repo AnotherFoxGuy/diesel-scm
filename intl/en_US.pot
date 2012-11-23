@@ -1128,72 +1128,57 @@ msgctxt "SettingsDialog|"
 msgid "Ignore CR/NL"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:16
+#: ../src/SettingsDialog.cpp:17
 msgctxt "SettingsDialog|"
 msgid "Applications"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:45
+#: ../src/SettingsDialog.cpp:46
 msgctxt "SettingsDialog|"
 msgid "Diff File"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:46
+#: ../src/SettingsDialog.cpp:47
 msgctxt "SettingsDialog|"
 msgid "Open File"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:47
+#: ../src/SettingsDialog.cpp:48
 msgctxt "SettingsDialog|"
 msgid "Open Containing Folder"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:98
+#: ../src/SettingsDialog.cpp:99
 msgctxt "SettingsDialog|"
 msgid "Restart required"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:98
+#: ../src/SettingsDialog.cpp:99
 msgctxt "SettingsDialog|"
 msgid "The language change will take effect after restarting the application"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:112
+#: ../src/SettingsDialog.cpp:113
 msgctxt "SettingsDialog|"
 msgid "Select Fossil executable"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:120
+#: ../src/SettingsDialog.cpp:121
 msgctxt "SettingsDialog|"
 msgid "Select Graphical Diff application"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:128
+#: ../src/SettingsDialog.cpp:129
 msgctxt "SettingsDialog|"
 msgid "Select Graphical Merge application"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:136
+#: ../src/SettingsDialog.cpp:137
 msgctxt "SettingsDialog|"
 msgid "Clear Commit Message History"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:136
+#: ../src/SettingsDialog.cpp:137
 msgctxt "SettingsDialog|"
 msgid "Are you sure want to clear the commit message history?"
-msgstr ""
-
-#: ../src/SettingsDialog.cpp:143
-msgctxt "SettingsDialog|"
-msgid "English (US)"
-msgstr ""
-
-#: ../src/SettingsDialog.cpp:144
-msgctxt "SettingsDialog|"
-msgid "Japanese"
-msgstr ""
-
-#: ../src/SettingsDialog.cpp:145
-msgctxt "SettingsDialog|"
-msgid "Greek"
 msgstr ""

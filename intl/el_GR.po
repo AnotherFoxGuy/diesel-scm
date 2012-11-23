@@ -518,7 +518,8 @@ msgctxt "MainWindow|"
 msgid "Open the selected folder"
 msgstr "Άνοιγμα του επιλεγμένου φακέλου"
 
-#: ../ui/MainWindow.ui:762 ../src/MainWindow.cpp:2161 ../src/MainWindow.cpp:2206
+#: ../ui/MainWindow.ui:762 ../src/MainWindow.cpp:2161
+#: ../src/MainWindow.cpp:2206
 msgctxt "MainWindow|"
 msgid "Rename Folder"
 msgstr "Μετονομασία Φακέλου"
@@ -809,7 +810,7 @@ msgid ""
 msgstr ""
 "ένα γραφικό περιβάλλον για το FOSSIL\n"
 "από τον Κώστα Καρανικόλα\n"
-"Διάθεση σύμφωνα με τους όρους του GPL"
+"Διατίθεται σύμφωνα με τους όρους του GPL"
 
 #: ../src/MainWindow.cpp:1956
 msgctxt "MainWindow|"
@@ -968,8 +969,8 @@ msgid ""
 "Available under the CC Attribution Noncommercial No Derivative 3.0 License"
 msgstr ""
 "Εικονίδια από τον Deleket - Jojo Mendoza\n"
-"Διάθεση σύμφωνα με τους όρους του CC Attribution Noncommercial No Derivative "
-"3.0 License"
+"Διατίθεται σύμφωνα με τους όρους CC Attribution Noncommercial No Derivative "
+"3.0"
 
 #: ../src/MainWindow.cpp:2209
 msgctxt "MainWindow|"
@@ -1162,73 +1163,59 @@ msgctxt "SettingsDialog|"
 msgid "Ignore CR/NL"
 msgstr "Παράβλεψη CR/NL"
 
-#: ../src/SettingsDialog.cpp:16
+#: ../src/SettingsDialog.cpp:17
 msgctxt "SettingsDialog|"
 msgid "Applications"
 msgstr "Εφαρμογές"
 
-#: ../src/SettingsDialog.cpp:45
+#: ../src/SettingsDialog.cpp:46
 msgctxt "SettingsDialog|"
 msgid "Diff File"
 msgstr "Συγκριση Αρχείου"
 
-#: ../src/SettingsDialog.cpp:46
+#: ../src/SettingsDialog.cpp:47
 msgctxt "SettingsDialog|"
 msgid "Open File"
 msgstr "Άνοιγμα Αρχείου"
 
-#: ../src/SettingsDialog.cpp:47
+#: ../src/SettingsDialog.cpp:48
 msgctxt "SettingsDialog|"
 msgid "Open Containing Folder"
 msgstr "Άνοιγμα Φακέλου"
 
-#: ../src/SettingsDialog.cpp:98
+#: ../src/SettingsDialog.cpp:99
 msgctxt "SettingsDialog|"
 msgid "Restart required"
 msgstr "Ανάγκη Επανεκκίνησης"
 
-#: ../src/SettingsDialog.cpp:98
+#: ../src/SettingsDialog.cpp:99
 msgctxt "SettingsDialog|"
 msgid "The language change will take effect after restarting the application"
 msgstr "Η αλλαγή γλώσσας θα εφαρμοστεί μετά την επανεκκίνηση της εφαρμογής"
 
-#: ../src/SettingsDialog.cpp:112
+#: ../src/SettingsDialog.cpp:113
 msgctxt "SettingsDialog|"
 msgid "Select Fossil executable"
 msgstr "Επιλέξετε την εφαρμογή Fossil"
 
-#: ../src/SettingsDialog.cpp:120
+#: ../src/SettingsDialog.cpp:121
 msgctxt "SettingsDialog|"
 msgid "Select Graphical Diff application"
 msgstr "Επιλέξετε εφαρμογή γραφικής σύγκρισης"
 
-#: ../src/SettingsDialog.cpp:128
+#: ../src/SettingsDialog.cpp:129
 msgctxt "SettingsDialog|"
 msgid "Select Graphical Merge application"
 msgstr "Επιλέξετε εφαρμογή γραφικής σύνθεσης"
 
-#: ../src/SettingsDialog.cpp:136
+#: ../src/SettingsDialog.cpp:137
 msgctxt "SettingsDialog|"
 msgid "Clear Commit Message History"
 msgstr "Διαγραφή ιστορικού σχολίων καταχώρησης"
 
-#: ../src/SettingsDialog.cpp:136
+#: ../src/SettingsDialog.cpp:137
 msgctxt "SettingsDialog|"
 msgid "Are you sure want to clear the commit message history?"
 msgstr ""
 "Είσαστε σίγουροι ότι θέλετε να διαγράψετε το ιστορικό σχολίων καταχώρησης;"
 
-#: ../src/SettingsDialog.cpp:143
-msgctxt "SettingsDialog|"
-msgid "English (US)"
-msgstr "Αγγλικά (Ηνωμένων Πολιτειών)"
-
-#: ../src/SettingsDialog.cpp:144
-msgctxt "SettingsDialog|"
-msgid "Japanese"
-msgstr "Ιαπωνικά"
-
-#: ../src/SettingsDialog.cpp:145
-msgctxt "SettingsDialog|"
-msgid "Greek"
-msgstr "Ελληνικά"
