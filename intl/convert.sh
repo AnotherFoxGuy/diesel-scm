@@ -10,8 +10,13 @@ mkdir $PRJDIR/rsrc/intl
 
 for i in $INTLDIR/*.ts
 do
-	TARGET=`basename $i .ts`.qm
-	echo "$TARGET"
-	lrelease $i -qm $PRJDIR/rsrc/intl/$TARGET
+	BASE=`basename $i .ts`
+
+	# Convert all except the en_US which is 
+	# the original text in the code
+	if [ "$BASE" != "en_US" ]; then
+		echo "$TARGET"
+		lrelease $i -qm $PRJDIR/rsrc/intl/$BASE.qm
+	fi
 done
 

@@ -1,17 +1,14 @@
-C Updated\stranslations
-D 2012-11-23T07:15:04.544
+C Moved\sover\sto\sQt's\snative\stranslation\sfile\sformat
+D 2012-11-23T07:28:15.322
 F dist/arch/PKGBUILD dd21073c035af4e6a4ecb3842c1fd7ae45c5e93d
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt e21c9355aaeb7643c8d6784effd2f9ebadf3a8e0
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro f9053752c0ea40a7f9c90ac738a6c1689b92dfe5
-F intl/convert.sh bec60f3a3023c71cbed4004dbedb2cf4b38cc9a4 x
-F intl/el_GR.po 2845b683aeba15499d2e44ce9364b7ab58b0af2f
+F fuel.pro e90e7f9bfba35668673bc45bd226f39225170282
+F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
 F intl/el_GR.ts fd53670ac8e2473069b58785170b0a01465474ad
-F intl/en_US.pot b5a0efc51a0dd23ef8e2fd77f8631eae914eecef
-F intl/en_US.ts 353405c330103dc63addc4c9cebb69c9751f5e9f
-F intl/mkbase.sh f87e0ccb0a47c380df5bb989050e7d385ec26cbe x
+F intl/en_US.ts 8bb5ef8f4affd27c8364ea6e40b4d4954cea5cc2
 F intl/update.sh b5312e108eec47f9c8cb7d6790c57335e6b52829 x
 F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
 F rsrc/fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
@@ -183,18 +180,18 @@ F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
 F src/MainWindow.cpp bcbfc3f7d789c5d535f6d6ab13f7ad537d6e7450
 F src/MainWindow.h 3f3825cab25058666b6706b36f51269ad5f65f3e
-F src/SettingsDialog.cpp d11f9b2fecee3fdea737763f5e20d529e0514106
-F src/SettingsDialog.h 25ec5bc9f4fa2ce8fe7d798c382eb3a9b1fc9745
+F src/SettingsDialog.cpp 44e6e2d1d7f4d3e40caa10ac71ad5cc16c440f11
+F src/SettingsDialog.h d37dde23f698fbe6182b2e14234104a15468be3d
 F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
-F src/main.cpp fcd78f44b893fb9c93bbb71a2e861bd36af95f88
+F src/main.cpp 8f8790822f82870a12169bcf204e571138adb065
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 998f26c6fe75bd655cf3d4f0073e67dc0bf3b3d7
 F ui/SettingsDialog.ui 7f578450cf01d6786ff2d91a2142505192446e3f
-P 5c32ff2efe372a028076540d398b5256c6577658
-R 8bc9452780812342b38a564854e3bece
+P 24074dfcc2b754993aa5531725a53e6aea8ddc55
+R 618682a39636667973a57336292e627a
 U kostas
-Z ac1c9eb4bf9f11b9a6a6394828d99b51
+Z 633e15875ca5add781610513a647a4fd

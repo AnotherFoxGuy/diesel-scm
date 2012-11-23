@@ -50,8 +50,9 @@ struct Settings
 	typedef QMap<QString, Setting> mappings_t;
 
 
-						Settings(bool portableMode = false);
-						~Settings();
+	Settings(bool portableMode = false);
+	~Settings();
+
 	void				ApplyEnvironment();
 
 	// App configuration access
@@ -66,7 +67,7 @@ struct Settings
 	mappings_t &	GetMappings() { return Mappings; }
 
 	bool			SupportsLang(const QString &langId) const;
-
+	bool			InstallLang(const QString &langId);
 private:
 	mappings_t		Mappings;
 	class QSettings	*store;

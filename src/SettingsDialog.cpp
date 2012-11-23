@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QTranslator>
 #include <QResource>
+#include <QTextCodec>
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -140,9 +141,8 @@ void SettingsDialog::on_btnClearMessageHistory_clicked()
 //-----------------------------------------------------------------------------
 void SettingsDialog::CreateLangMap()
 {
-	langMap.append(LangMap("en_US", tr("English (US)")));
-	langMap.append(LangMap("ja_JP", tr("Japanese")));
-	langMap.append(LangMap("el_GR", tr("Greek")));
+	langMap.append(LangMap("en_US", "English (US)"));
+	langMap.append(LangMap("el_GR", "Greek"));
 }
 
 //-----------------------------------------------------------------------------
@@ -180,7 +180,7 @@ Settings::Settings(bool portableMode) : store(0)
 
 	// Go into portable mode when explicitly requested or if a config file exists next to the executable
 	QString ini_path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + QCoreApplication::applicationName() + ".ini");
-	if(portableMode || QFile::exists(ini_path))
+	if( portableMode || QFile::exists(ini_path))
 		store = new QSettings(ini_path, QSettings::IniFormat);
 	else
 	{
@@ -209,13 +209,29 @@ Settings::~Settings()
 void Settings::ApplyEnvironment()
 {
 	QString lang_id = GetValue(FUEL_SETTING_LANGUAGE).toString();
-
-	QString locale_path = QString(":intl/intl/%0.qm").arg(lang_id);
-	QResource res(locale_path);
-	if(res.isValid() && translator.load(res.data(), res.size()))
-		QCoreApplication::instance()->installTranslator(&translator);
-	else
+	QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+	if(!InstallLang(lang_id))
 		SetValue(FUEL_SETTING_LANGUAGE, "en_US");
+}
+
+//-----------------------------------------------------------------------------
+bool Settings::InstallLang(const QString &langId)
+{
+	if(langId == "en_US")
+	{
+		QCoreApplication::instance()->removeTranslator(&translator);
+		return true;
+	}
+
+	QString locale_path = QString(":intl/intl/%0.qm").arg(langId);
+	if(!translator.load(locale_path))
+		return false;
+
+	Q_ASSERT(!translator.isEmpty());
+	QCoreApplication::instance()->installTranslator(&translator);
+
+
+	return true;
 }
 
 //-----------------------------------------------------------------------------
