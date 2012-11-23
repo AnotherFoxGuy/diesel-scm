@@ -314,7 +314,7 @@ msgstr ""
 
 #: ../ui/MainWindow.ui:500 ../ui/MainWindow.ui:503
 msgctxt "MainWindow|"
-msgid "Display the version history of a file via the fossil UI"
+msgid "Display the version history of a file via the Fossil UI"
 msgstr ""
 
 #: ../ui/MainWindow.ui:506
@@ -364,7 +364,7 @@ msgstr ""
 
 #: ../ui/MainWindow.ui:566 ../ui/MainWindow.ui:569
 msgctxt "MainWindow|"
-msgid "Display the change history of the fossil repository"
+msgid "Display the change history of the Fossil repository"
 msgstr ""
 
 #: ../ui/MainWindow.ui:578
@@ -404,7 +404,7 @@ msgstr ""
 
 #: ../ui/MainWindow.ui:617 ../ui/MainWindow.ui:620
 msgctxt "MainWindow|"
-msgid "Undo the last fossil action"
+msgid "Undo the last Fossil action"
 msgstr ""
 
 #: ../ui/MainWindow.ui:623
@@ -755,9 +755,37 @@ msgctxt "MainWindow|"
 msgid "Starting Fossil browser UI. Please wait."
 msgstr ""
 
+#: ../src/MainWindow.cpp:1780
+msgctxt "MainWindow|"
+msgid "The following files will be added."
+msgstr ""
+
+#: ../src/MainWindow.cpp:1780 ../src/MainWindow.cpp:1805
+#: ../src/MainWindow.cpp:1837 ../src/MainWindow.cpp:1913
+#: ../src/MainWindow.cpp:1956 ../src/MainWindow.cpp:2207
+#: ../src/MainWindow.cpp:2358 ../src/MainWindow.cpp:2399
+msgctxt "MainWindow|"
+msgid "Are you sure?"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1805
+msgctxt "MainWindow|"
+msgid "The following files will be removed from the repository."
+msgstr ""
+
+#: ../src/MainWindow.cpp:1837
+msgctxt "MainWindow|"
+msgid "The following files will be reverted."
+msgstr ""
+
 #: ../src/MainWindow.cpp:1858 ../src/MainWindow.cpp:2161
 msgctxt "MainWindow|"
 msgid "New name"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1913
+msgctxt "MainWindow|"
+msgid "The following actions will be undone."
 msgstr ""
 
 #: ../src/MainWindow.cpp:1937
@@ -766,6 +794,11 @@ msgid ""
 "a GUI frontend to the Fossil SCM\n"
 "by Kostas Karanikolas\n"
 "Released under the GNU GPL"
+msgstr ""
+
+#: ../src/MainWindow.cpp:1956
+msgctxt "MainWindow|"
+msgid "The following files will be updated."
 msgstr ""
 
 #: ../src/MainWindow.cpp:2173 ../src/MainWindow.cpp:2182
@@ -781,6 +814,14 @@ msgstr ""
 #: ../src/MainWindow.cpp:2182
 msgctxt "MainWindow|"
 msgid "This folder exists already."
+msgstr ""
+
+#: ../src/MainWindow.cpp:2206
+#, qt-format
+msgctxt "MainWindow|"
+msgid ""
+"Renaming folder '%0' to '%1'\n"
+"The following files will be moved in the repository."
 msgstr ""
 
 #: ../src/MainWindow.cpp:2222
@@ -817,6 +858,11 @@ msgctxt "MainWindow|"
 msgid "Folder renamed completed. Don't forget to commit!"
 msgstr ""
 
+#: ../src/MainWindow.cpp:2358
+msgctxt "MainWindow|"
+msgid "The following stashes will be applied."
+msgstr ""
+
 #: ../src/MainWindow.cpp:2369
 msgctxt "MainWindow|"
 msgid "Stash application aborted due to errors"
@@ -825,6 +871,11 @@ msgstr ""
 #: ../src/MainWindow.cpp:2382 ../src/MainWindow.cpp:2410
 msgctxt "MainWindow|"
 msgid "Stash deletion aborted due to errors"
+msgstr ""
+
+#: ../src/MainWindow.cpp:2399
+msgctxt "MainWindow|"
+msgid "The following stashes will be deleted."
 msgstr ""
 
 #: ../src/MainWindow.cpp:1096 ../src/MainWindow.cpp:1557
@@ -854,21 +905,9 @@ msgctxt "MainWindow|"
 msgid "Add files"
 msgstr ""
 
-#: ../src/MainWindow.cpp:1780
-msgctxt "MainWindow|"
-msgid "The following files will be added. Are you sure?"
-msgstr ""
-
 #: ../src/MainWindow.cpp:1805
 msgctxt "MainWindow|"
 msgid "Remove files"
-msgstr ""
-
-#: ../src/MainWindow.cpp:1805
-msgctxt "MainWindow|"
-msgid ""
-"The following files will be removed from the repository.\n"
-"Are you sure?"
 msgstr ""
 
 #: ../src/MainWindow.cpp:1805
@@ -881,22 +920,12 @@ msgctxt "MainWindow|"
 msgid "Revert files"
 msgstr ""
 
-#: ../src/MainWindow.cpp:1837
-msgctxt "MainWindow|"
-msgid "The following files will be reverted. Are you sure?"
-msgstr ""
-
 #: ../src/MainWindow.cpp:1866
 #, qt-format
 msgctxt "MainWindow|"
 msgid ""
 "File '%0' already exists.\n"
 "Rename aborted."
-msgstr ""
-
-#: ../src/MainWindow.cpp:1913
-msgctxt "MainWindow|"
-msgid "The following actions will be undone. Are you sure?"
 msgstr ""
 
 #: ../src/MainWindow.cpp:1932
@@ -913,21 +942,8 @@ msgstr ""
 #: ../src/MainWindow.cpp:1941
 msgctxt "MainWindow|"
 msgid ""
-"Icon-set by Deleket - Jojo Mendoza\n"
-"Available under the CC Attribution Noncommercial No Derivate 3.0 License"
-msgstr ""
-
-#: ../src/MainWindow.cpp:1956
-msgctxt "MainWindow|"
-msgid "The following files will be updated. Are you sure?"
-msgstr ""
-
-#: ../src/MainWindow.cpp:2206
-#, qt-format
-msgctxt "MainWindow|"
-msgid ""
-"Renaming folder '%0' to '%1'\n"
-"The following files will be moved in the repository. Are you sure?"
+"Icons by Deleket - Jojo Mendoza\n"
+"Available under the CC Attribution Noncommercial No Derivative 3.0 License"
 msgstr ""
 
 #: ../src/MainWindow.cpp:2209
@@ -981,22 +997,12 @@ msgstr ""
 
 #: ../src/MainWindow.cpp:2358
 msgctxt "MainWindow|"
-msgid "The following stashes will be applied. Are you sure?"
-msgstr ""
-
-#: ../src/MainWindow.cpp:2358
-msgctxt "MainWindow|"
 msgid "Delete after applying"
 msgstr ""
 
 #: ../src/MainWindow.cpp:2399
 msgctxt "MainWindow|"
 msgid "Delete Stashes"
-msgstr ""
-
-#: ../src/MainWindow.cpp:2399
-msgctxt "MainWindow|"
-msgid "The following stashes will be deleted. Are you sure?"
 msgstr ""
 
 #: ../ui/SettingsDialog.ui:17
@@ -1016,7 +1022,7 @@ msgstr ""
 
 #: ../ui/SettingsDialog.ui:61
 msgctxt "SettingsDialog|"
-msgid "Path to the fossil executable. Leave blank to use the default fossil"
+msgid "Path to the Fossil executable. Leave blank to use the default Fossil"
 msgstr ""
 
 #: ../ui/SettingsDialog.ui:80 ../ui/SettingsDialog.ui:123
@@ -1077,7 +1083,7 @@ msgstr ""
 
 #: ../ui/SettingsDialog.ui:246
 msgctxt "SettingsDialog|"
-msgid "Language to use for the user interface"
+msgid "Language for the user interface"
 msgstr ""
 
 #: ../ui/SettingsDialog.ui:258
@@ -1106,7 +1112,7 @@ msgstr ""
 #: ../ui/SettingsDialog.ui:317
 msgctxt "SettingsDialog|"
 msgid ""
-"A comma separated list of glob-style file/path patterns ignored in fossil "
+"A comma separated list of glob-style file/path patterns ignored in Fossil "
 "file operations"
 msgstr ""
 
@@ -1118,19 +1124,13 @@ msgstr ""
 #: ../ui/SettingsDialog.ui:343
 msgctxt "SettingsDialog|"
 msgid ""
-"A comma separated list of glob-style file patterns to exclude from fossil's "
+"A comma separated list of glob-style file patterns to exclude from Fossil's "
 "CR/NL consistency checking"
 msgstr ""
 
 #: ../src/SettingsDialog.cpp:16
 msgctxt "SettingsDialog|"
 msgid "Applications"
-msgstr ""
-
-#: ../src/SettingsDialog.cpp:24
-#, qt-format
-msgctxt "SettingsDialog|"
-msgid "Select %1"
 msgstr ""
 
 #: ../src/SettingsDialog.cpp:45
@@ -1160,17 +1160,17 @@ msgstr ""
 
 #: ../src/SettingsDialog.cpp:111
 msgctxt "SettingsDialog|"
-msgid "Fossil executable"
+msgid "Select Fossil executable"
 msgstr ""
 
 #: ../src/SettingsDialog.cpp:119
 msgctxt "SettingsDialog|"
-msgid "Graphical Diff application"
+msgid "Select Graphical Diff application"
 msgstr ""
 
 #: ../src/SettingsDialog.cpp:127
 msgctxt "SettingsDialog|"
-msgid "Graphical Merge application"
+msgid "Select Graphical Merge application"
 msgstr ""
 
 #: ../src/SettingsDialog.cpp:135

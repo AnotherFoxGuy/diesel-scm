@@ -21,7 +21,7 @@ QString SettingsDialog::SelectExe(QWidget *parent, const QString &description)
 #endif
 	QString path = QFileDialog::getOpenFileName(
 				parent,
-				tr("Select %1").arg(description),
+				description,
 				QString(),
 				filter,
 				&filter);
@@ -54,10 +54,11 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 	foreach(const LangMap &m, langMap)
 		ui->cmbActiveLanguage->addItem(m.name);
 
+	QString lang = settings->GetValue(FUEL_SETTING_LANGUAGE).toString();
 	// Select current language
 	ui->cmbActiveLanguage->setCurrentIndex(
 				ui->cmbActiveLanguage->findText(
-					LangIdToName(settings->GetValue(FUEL_SETTING_LANGUAGE).toString())));
+					LangIdToName(lang)));
 
 	// Repo Settings
 	ui->lineGDiffCommand->setText(QDir::toNativeSeparators(settings->GetFossilValue(FOSSIL_SETTING_GDIFF_CMD).toString()));
@@ -108,7 +109,7 @@ void SettingsDialog::on_buttonBox_accepted()
 //-----------------------------------------------------------------------------
 void SettingsDialog::on_btnSelectFossil_clicked()
 {
-	QString path = SelectExe(this, tr("Fossil executable"));
+	QString path = SelectExe(this, tr("Select Fossil executable"));
 	if(!path.isEmpty())
 		ui->lineFossilPath->setText(QDir::toNativeSeparators(path));
 }
@@ -116,7 +117,7 @@ void SettingsDialog::on_btnSelectFossil_clicked()
 //-----------------------------------------------------------------------------
 void SettingsDialog::on_btnSelectFossilGDiff_clicked()
 {
-	QString path = SelectExe(this, tr("Graphical Diff application"));
+	QString path = SelectExe(this, tr("Select Graphical Diff application"));
 	if(!path.isEmpty())
 		ui->lineGDiffCommand->setText(QDir::toNativeSeparators(path));
 }
@@ -124,7 +125,7 @@ void SettingsDialog::on_btnSelectFossilGDiff_clicked()
 //-----------------------------------------------------------------------------
 void SettingsDialog::on_btnSelectGMerge_clicked()
 {
-	QString path = SelectExe(this, tr("Graphical Merge application"));
+	QString path = SelectExe(this, tr("Select Graphical Merge application"));
 	if(!path.isEmpty())
 		ui->lineGMergeCommand->setText(QDir::toNativeSeparators(path));
 }
@@ -191,7 +192,7 @@ Settings::Settings(bool portableMode) : store(0)
 
 	if(!HasValue(FUEL_SETTING_FILE_DBLCLICK))
 		SetValue(FUEL_SETTING_FILE_DBLCLICK, 0);
-	if(!HasValue(FUEL_SETTING_LANGUAGE))
+	if(!HasValue(FUEL_SETTING_LANGUAGE) && SupportsLang(QLocale::system().name()))
 		SetValue(FUEL_SETTING_LANGUAGE, QLocale::system().name());
 
 	ApplyEnvironment();
@@ -250,4 +251,12 @@ void Settings::SetFossilValue(const QString &name, const QVariant &value)
 	mappings_t::iterator it=Mappings.find(name);
 	Q_ASSERT(it!=Mappings.end());
 	it->Value = value;
+}
+
+//-----------------------------------------------------------------------------
+bool Settings::SupportsLang(const QString &langId) const
+{
+	QString locale_path = QString(":intl/intl/%0.qm").arg(langId);
+	QResource res(locale_path);
+	return res.isValid();
 }

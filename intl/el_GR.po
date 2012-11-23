@@ -48,7 +48,7 @@ msgid ""
 "The password used to access the remote repository. Leave blank if not "
 "required"
 msgstr ""
-"Το συνθυματικό για την πρόσβαση του απομακρυσμένου αποθετηρίου. Αφήστε το "
+"Το συνθηματικό για την πρόσβαση του απομακρυσμένου αποθετηρίου. Αφήστε το "
 "κενό αν δεν χρειάζεται"
 
 #: ../ui/CloneDialog.ui:73
@@ -95,7 +95,7 @@ msgstr "Επιλέξετε Αποθετήριο Fossil"
 #: ../src/CloneDialog.cpp:87
 msgctxt "CloneDialog|"
 msgid "This repository file already exists."
-msgstr "Αυτό τό αρχείο αποθετηρίου υπάρχει ήδη."
+msgstr "Αυτό το αρχείο αποθετηρίου υπάρχει ήδη."
 
 #: ../ui/CommitDialog.ui:17
 msgctxt "CommitDialog|"
@@ -316,12 +316,12 @@ msgstr "Ctrl+Q"
 #: ../ui/MainWindow.ui:497
 msgctxt "MainWindow|"
 msgid "History"
-msgstr "Ίστορικό"
+msgstr "Ιστορικό"
 
 #: ../ui/MainWindow.ui:500 ../ui/MainWindow.ui:503
 msgctxt "MainWindow|"
-msgid "Display the version history of a file via the fossil UI"
-msgstr "Έμφάνιση του ιστόρικου ενός αρχείο μέσω του fossil"
+msgid "Display the version history of a file via the Fossil UI"
+msgstr "Εμφάνιση του ιστορικού ενός αρχείο μέσω του Fossil"
 
 #: ../ui/MainWindow.ui:506
 msgctxt "MainWindow|"
@@ -370,8 +370,8 @@ msgstr "Χρονικό"
 
 #: ../ui/MainWindow.ui:566 ../ui/MainWindow.ui:569
 msgctxt "MainWindow|"
-msgid "Display the change history of the fossil repository"
-msgstr "Εμφάνιση του χρονικού του αποθετηρίου fossil"
+msgid "Display the change history of the Fossil repository"
+msgstr "Εμφάνιση του χρονικού του αποθετηρίου Fossil"
 
 #: ../ui/MainWindow.ui:578
 msgctxt "MainWindow|"
@@ -410,8 +410,8 @@ msgstr "Αναίρεση"
 
 #: ../ui/MainWindow.ui:617 ../ui/MainWindow.ui:620
 msgctxt "MainWindow|"
-msgid "Undo the last fossil action"
-msgstr "Αναίρεση της τελευταίας ενέργειας του fossil"
+msgid "Undo the last Fossil action"
+msgstr "Αναίρεση της τελευταίας ενέργειας του Fossil"
 
 #: ../ui/MainWindow.ui:623
 msgctxt "MainWindow|"
@@ -481,17 +481,17 @@ msgstr "Ά&γνωστα"
 #: ../ui/MainWindow.ui:710
 msgctxt "MainWindow|"
 msgid "Show unknown files"
-msgstr "Έμφάνιση άγνωστων αρχείων"
+msgstr "Εμφάνιση άγνωστων αρχείων"
 
 #: ../ui/MainWindow.ui:718
 msgctxt "MainWindow|"
 msgid "&Ignored"
-msgstr "Αγνοημένα"
+msgstr "Παραβλεπόμενα"
 
 #: ../ui/MainWindow.ui:721
 msgctxt "MainWindow|"
 msgid "Show ignored files"
-msgstr "Έμφάνιση αγνοημένων αρχείων"
+msgstr "Εμφάνιση παραβλεπόμενων αρχείων"
 
 #: ../ui/MainWindow.ui:729
 msgctxt "MainWindow|"
@@ -602,7 +602,7 @@ msgid ""
 "A workspace does not exist in this folder.\n"
 "Would you like to create one here?"
 msgstr ""
-"Δεν υπαρχεί χώρος εργασίας σε αυτό το φάκελο.\n"
+"Δεν υπάρχει χώρος εργασίας σε αυτό το φάκελο.\n"
 "Θα θέλατε να δημιουργήσετε έναν εδώ;"
 
 #: ../src/MainWindow.cpp:291
@@ -677,7 +677,7 @@ msgstr "Κλείσιμο Χώρου Εργασίας"
 #: ../src/MainWindow.cpp:443
 msgctxt "MainWindow|"
 msgid "Are you sure want to close this workspace?"
-msgstr "Είσατε σίγουροι ότι θέλετε να κλέισετε αυτό τον χώρο εργασίας;"
+msgstr "Είστε σίγουροι ότι θέλετε να κλείσετε αυτό τον χώρο εργασίας;"
 
 #: ../src/MainWindow.cpp:449
 msgctxt "MainWindow|"
@@ -768,10 +768,38 @@ msgctxt "MainWindow|"
 msgid "Starting Fossil browser UI. Please wait."
 msgstr "Εκκίνηση του Fossil UI. Παρακαλώ περιμένετε."
 
+#: ../src/MainWindow.cpp:1780
+msgctxt "MainWindow|"
+msgid "The following files will be added."
+msgstr "Τα παρακάτω αρχεία θα προστεθούν."
+
+#: ../src/MainWindow.cpp:1780 ../src/MainWindow.cpp:1805
+#: ../src/MainWindow.cpp:1837 ../src/MainWindow.cpp:1913
+#: ../src/MainWindow.cpp:1956 ../src/MainWindow.cpp:2207
+#: ../src/MainWindow.cpp:2358 ../src/MainWindow.cpp:2399
+msgctxt "MainWindow|"
+msgid "Are you sure?"
+msgstr "Είσαστε σίγουροι;"
+
+#: ../src/MainWindow.cpp:1805
+msgctxt "MainWindow|"
+msgid "The following files will be removed from the repository."
+msgstr "Τα παρακάτω αρχεία θα αφαιρεθούν από το αποθετήριο."
+
+#: ../src/MainWindow.cpp:1837
+msgctxt "MainWindow|"
+msgid "The following files will be reverted."
+msgstr "Τα παρακάτω αρχεία θα επαναφερθούν."
+
 #: ../src/MainWindow.cpp:1858 ../src/MainWindow.cpp:2161
 msgctxt "MainWindow|"
 msgid "New name"
 msgstr "Νέο όνομα"
+
+#: ../src/MainWindow.cpp:1913
+msgctxt "MainWindow|"
+msgid "The following actions will be undone."
+msgstr "Οι παρακάτω ενέργειες θα αναιρεθούν."
 
 #: ../src/MainWindow.cpp:1937
 msgctxt "MainWindow|"
@@ -779,7 +807,14 @@ msgid ""
 "a GUI frontend to the Fossil SCM\n"
 "by Kostas Karanikolas\n"
 "Released under the GNU GPL"
-msgstr ""
+msgstr "ένα γραφικό περιβάλλον για το FOSSIL\n"
+"από τον Κώστα Καρανικόλα\n"
+"Διάθεση σύμφωνα με τους όρους του GPL"
+
+#: ../src/MainWindow.cpp:1956
+msgctxt "MainWindow|"
+msgid "The following files will be updated."
+msgstr "Τα παρακάτω αρχεία θα ενημερωθούν."
 
 #: ../src/MainWindow.cpp:2173 ../src/MainWindow.cpp:2182
 msgctxt "MainWindow|"
@@ -789,13 +824,22 @@ msgstr "Η μετονομασία του φακέλου δεν ήταν δυνα
 #: ../src/MainWindow.cpp:2173
 msgctxt "MainWindow|"
 msgid "Folder name contains invalid characters."
-msgstr ""
-"Το όνομα του φακέλου περιέχει μη αποδεκτούς χαρακτήρες."
+msgstr "Το όνομα του φακέλου περιέχει μη αποδεκτούς χαρακτήρες."
 
 #: ../src/MainWindow.cpp:2182
 msgctxt "MainWindow|"
 msgid "This folder exists already."
+msgstr "Αυτός ο φάκελος υπάρχει ήδη."
+
+#: ../src/MainWindow.cpp:2206
+#, qt-format
+msgctxt "MainWindow|"
+msgid ""
+"Renaming folder '%0' to '%1'\n"
+"The following files will be moved in the repository."
 msgstr ""
+"Μετονομασία του φακέλου '%0' σε '%1'\n"
+"Τα παρακάτω αρχεία θα μετακινηθούν στο αποθετήριο."
 
 #: ../src/MainWindow.cpp:2222
 msgctxt "MainWindow|"
@@ -832,6 +876,11 @@ msgid "Folder renamed completed. Don't forget to commit!"
 msgstr ""
 "Η μετονομασία του φακέλου ολοκληρώθηκε. Μην ξεχάσετε να κάνετε καταχώρηση!"
 
+#: ../src/MainWindow.cpp:2358
+msgctxt "MainWindow|"
+msgid "The following stashes will be applied."
+msgstr "Οι παρακάτω στοίβες θα εφαρμοστούν."
+
 #: ../src/MainWindow.cpp:2369
 msgctxt "MainWindow|"
 msgid "Stash application aborted due to errors"
@@ -841,6 +890,11 @@ msgstr "Η εφαρμογή της στοίβας ακυρώθηκε λόγω σ
 msgctxt "MainWindow|"
 msgid "Stash deletion aborted due to errors"
 msgstr "Η διαγραφή της στοίβας ακυρώθηκε λόγω σφαλμάτων"
+
+#: ../src/MainWindow.cpp:2399
+msgctxt "MainWindow|"
+msgid "The following stashes will be deleted."
+msgstr "Οι παρακάτω στοίβες θα διαγραφούν"
 
 #: ../src/MainWindow.cpp:1096 ../src/MainWindow.cpp:1557
 msgctxt "MainWindow|"
@@ -854,7 +908,7 @@ msgid ""
 "Use the preferences window to set the remote repostory location"
 msgstr ""
 "Το απομακρυσμένο αποθετήριο δεν έχει οριστεί.\n"
-"Χρησημοποιήστε το παράθυρο ρυθμίσεων για να ορίσετε την τοποθεσία του"
+"Χρησιμοποιήστε το παράθυρο ρυθμίσεων για να ορίσετε την τοποθεσία του"
 
 #: ../src/MainWindow.cpp:1711
 msgctxt "MainWindow|"
@@ -871,24 +925,10 @@ msgctxt "MainWindow|"
 msgid "Add files"
 msgstr "Προσθήκη αρχείων"
 
-#: ../src/MainWindow.cpp:1780
-msgctxt "MainWindow|"
-msgid "The following files will be added. Are you sure?"
-msgstr "Τα παρακάτω αρχεία θα προστεθούν. Είσαστε σίγουροι;"
-
 #: ../src/MainWindow.cpp:1805
 msgctxt "MainWindow|"
 msgid "Remove files"
 msgstr "Αφαίρεση αρχείων"
-
-#: ../src/MainWindow.cpp:1805
-msgctxt "MainWindow|"
-msgid ""
-"The following files will be removed from the repository.\n"
-"Are you sure?"
-msgstr ""
-"Τα παρακάτω αρχεία θα αφαιρεθούν από το αποθετήριο.\n"
-"Είσαστε σίγουροι;"
 
 #: ../src/MainWindow.cpp:1805
 msgctxt "MainWindow|"
@@ -898,14 +938,7 @@ msgstr "Διαγραφή των τοπικών αρχείων επίσης"
 #: ../src/MainWindow.cpp:1837
 msgctxt "MainWindow|"
 msgid "Revert files"
-msgstr "Επαναφορά αρχέιων"
-
-#: ../src/MainWindow.cpp:1837
-msgctxt "MainWindow|"
-msgid "The following files will be reverted. Are you sure?"
-msgstr ""
-"Τα παρακάτω αρχεία θα επαναφερθούν.\n"
-"Είσαστε σίγουροι;"
+msgstr "Επαναφορά αρχείων"
 
 #: ../src/MainWindow.cpp:1866
 #, qt-format
@@ -916,11 +949,6 @@ msgid ""
 msgstr ""
 "Το αρχείο '%0' υπάρχει ήδη.\n"
 "Η μετονομασία ακυρώθηκε."
-
-#: ../src/MainWindow.cpp:1913
-msgctxt "MainWindow|"
-msgid "The following actions will be undone. Are you sure?"
-msgstr "Οι παρακάτω ενέργειες θα αναιρεθούν. Είσαστε σίγουροι;"
 
 #: ../src/MainWindow.cpp:1932
 #, qt-format
@@ -936,183 +964,162 @@ msgstr "Σχετικά με το Fuel..."
 #: ../src/MainWindow.cpp:1941
 msgctxt "MainWindow|"
 msgid ""
-"Icon-set by Deleket - Jojo Mendoza\n"
-"Available under the CC Attribution Noncommercial No Derivate 3.0 License"
-msgstr ""
-
-#: ../src/MainWindow.cpp:1956
-msgctxt "MainWindow|"
-msgid "The following files will be updated. Are you sure?"
-msgstr "Τα παρακάτω αρχεία θα ενημερωθούν. Είσατε σίγουροι;"
-
-#: ../src/MainWindow.cpp:2206
-#, qt-format
-msgctxt "MainWindow|"
-msgid ""
-"Renaming folder '%0' to '%1'\n"
-"The following files will be moved in the repository. Are you sure?"
-msgstr "Μετονομασία τοθ φακέλου '%0' σε '%1'\n"
-"Τα παρακάτω αρχεία θα μετακινηθούν στο αποθετήριο. Είσαστε σίγουροι;"
+"Icons by Deleket - Jojo Mendoza\n"
+"Available under the CC Attribution Noncommercial No Derivative 3.0 License"
+msgstr "Εικονίδια από τον Deleket - Jojo Mendoza\n"
+"Διάθεση σύμφωνα με τους όρους του CC Attribution Noncommercial No Derivative 3.0 License"
 
 #: ../src/MainWindow.cpp:2209
 msgctxt "MainWindow|"
 msgid "Also move the workspace files"
-msgstr ""
+msgstr "Μετακίνηση των αρχείων του χώρου εργασίας επίσης"
 
 #: ../src/MainWindow.cpp:2258
 #, qt-format
 msgctxt "MainWindow|"
 msgid "Target file '%0' exists already"
-msgstr ""
+msgstr "Το αρχείο '%0' υπάρχει ήδη"
 
 #: ../src/MainWindow.cpp:2266
 #, qt-format
 msgctxt "MainWindow|"
 msgid "Cannot copy file '%0' to '%1'"
-msgstr ""
+msgstr "Η αντιγραφή του αρχείου από '%0' στο '%1' δεν ήταν δυνατή"
 
 #: ../src/MainWindow.cpp:2280
 #, qt-format
 msgctxt "MainWindow|"
 msgid "Source file '%0' does not exist"
-msgstr ""
+msgstr "Το αρχείο πηγής '%0' δεν υπάρχει"
 
 #: ../src/MainWindow.cpp:2286
 #, qt-format
 msgctxt "MainWindow|"
 msgid "Cannot remove file '%0'"
-msgstr ""
+msgstr "Η διαγραφή του αρχείου '%0' δεν ήταν δυνατή"
 
 #: ../src/MainWindow.cpp:2320
 msgctxt "MainWindow|"
 msgid "Revert stashed files"
-msgstr ""
+msgstr "Επαναφορά αρχείων στοίβας"
 
 #: ../src/MainWindow.cpp:2321
 msgctxt "MainWindow|"
 msgid "Stash Changes"
-msgstr ""
+msgstr "Στοίβαξη Αλλαγών"
 
 #: ../src/MainWindow.cpp:2328
 msgctxt "MainWindow|"
 msgid "Invalid stash name"
-msgstr ""
+msgstr "Μη επιτρεπτό όνομα στοίβας"
 
 #: ../src/MainWindow.cpp:2337
 msgctxt "MainWindow|"
 msgid "This stash already exists"
-msgstr ""
-
-#: ../src/MainWindow.cpp:2358
-msgctxt "MainWindow|"
-msgid "The following stashes will be applied. Are you sure?"
-msgstr ""
+msgstr "Αυτή η στοίβα υπάρχει ήδη"
 
 #: ../src/MainWindow.cpp:2358
 msgctxt "MainWindow|"
 msgid "Delete after applying"
-msgstr ""
+msgstr "Διαγραφή μετά από την εφαρμογή"
 
 #: ../src/MainWindow.cpp:2399
 msgctxt "MainWindow|"
 msgid "Delete Stashes"
-msgstr ""
-
-#: ../src/MainWindow.cpp:2399
-msgctxt "MainWindow|"
-msgid "The following stashes will be deleted. Are you sure?"
-msgstr ""
+msgstr "Διαγραφή Στοίβων"
 
 #: ../ui/SettingsDialog.ui:17
 msgctxt "SettingsDialog|"
 msgid "Settings"
-msgstr ""
+msgstr "Ρυθμίσεις"
 
 #: ../ui/SettingsDialog.ui:34
 msgctxt "SettingsDialog|"
 msgid "Application"
-msgstr ""
+msgstr "Εφαρμογή"
 
 #: ../ui/SettingsDialog.ui:52
 msgctxt "SettingsDialog|"
 msgid "Fossil Path"
-msgstr ""
+msgstr "Διαδρομή Fossil"
 
 #: ../ui/SettingsDialog.ui:61
 msgctxt "SettingsDialog|"
-msgid "Path to the fossil executable. Leave blank to use the default fossil"
+msgid "Path to the Fossil executable. Leave blank to use the default Fossil"
 msgstr ""
+"Διαδρομή στο εκτελέσιμο αρχείο του Fossil. Αφήστε το κενό για το "
+"προκαθορισμένο Fossil"
 
 #: ../ui/SettingsDialog.ui:80 ../ui/SettingsDialog.ui:123
 #: ../ui/SettingsDialog.ui:166
 msgctxt "SettingsDialog|"
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: ../ui/SettingsDialog.ui:95
 msgctxt "SettingsDialog|"
 msgid "Graphical Diff "
-msgstr ""
+msgstr "Γραφική Σύγκριση"
 
 #: ../ui/SettingsDialog.ui:104
 msgctxt "SettingsDialog|"
 msgid "Path to graphical diff tool"
-msgstr ""
+msgstr "Διαδρομή στο εργαλείο γραφικής σύγκρισης"
 
 #: ../ui/SettingsDialog.ui:138
 msgctxt "SettingsDialog|"
 msgid "Graphical Merge"
-msgstr ""
+msgstr "Γραφική Ένωση"
 
 #: ../ui/SettingsDialog.ui:147
 msgctxt "SettingsDialog|"
 msgid "Path to the graphical merge tool"
-msgstr ""
+msgstr "Διαδρομή στο εργαλείο γραφικής ένωσης"
 
 #: ../ui/SettingsDialog.ui:181
 msgctxt "SettingsDialog|"
 msgid "Commit Messages"
-msgstr ""
+msgstr "Σχόλια Καταχώρησης"
 
 #: ../ui/SettingsDialog.ui:194
 msgctxt "SettingsDialog|"
 msgid "Clear the commit message history"
-msgstr ""
+msgstr "Διαγραφή ιστορικού σχολίων καταχώρησης"
 
 #: ../ui/SettingsDialog.ui:197
 msgctxt "SettingsDialog|"
 msgid "Clear"
-msgstr ""
+msgstr "Καθαρισμός"
 
 #: ../ui/SettingsDialog.ui:210
 msgctxt "SettingsDialog|"
 msgid "Double-click Action"
-msgstr ""
+msgstr "Ενέργεια Διπλού-κλικ"
 
 #: ../ui/SettingsDialog.ui:223
 msgctxt "SettingsDialog|"
 msgid "Action to perfom when double-clicking a file"
-msgstr ""
+msgstr "Ενέργεια που θα εκτελεστεί όταν γίνεται διπλό κλικ σε ένα αρχείο"
 
 #: ../ui/SettingsDialog.ui:233
 msgctxt "SettingsDialog|"
 msgid "Language"
-msgstr ""
+msgstr "Γλώσσα"
 
 #: ../ui/SettingsDialog.ui:246
 msgctxt "SettingsDialog|"
-msgid "Language to use for the user interface"
-msgstr ""
+msgid "Language for the user interface"
+msgstr "Η γλώσσα του περιβάλλοντος"
 
 #: ../ui/SettingsDialog.ui:258
 msgctxt "SettingsDialog|"
 msgid "Repository"
-msgstr ""
+msgstr "Αποθετήριο"
 
 #: ../ui/SettingsDialog.ui:276
 msgctxt "SettingsDialog|"
 msgid "Remote Url"
-msgstr ""
+msgstr "Απομακρυσμένη Διεύθυνση"
 
 #: ../ui/SettingsDialog.ui:289
 msgctxt "SettingsDialog|"
@@ -1121,91 +1128,92 @@ msgid ""
 "URL style user names and passwords are also supported.\n"
 "For example http://username:password@server.com/fossil"
 msgstr ""
+"Η απομακρυσμένη διεύθυνση που για προώθηση/λήψη αλλαγών.\n"
+"Η διέυθυνση μπορεί να περιλαμβάνει όνομα χρήστη και συνθηματικό.\n"
+"π.χ. http://username:password@server.com/fossil"
+
 
 #: ../ui/SettingsDialog.ui:304
 msgctxt "SettingsDialog|"
 msgid "Ignore List"
-msgstr ""
+msgstr "Λίστα Παράβλεψης"
 
 #: ../ui/SettingsDialog.ui:317
 msgctxt "SettingsDialog|"
 msgid ""
-"A comma separated list of glob-style file/path patterns ignored in fossil "
+"A comma separated list of glob-style file/path patterns ignored in Fossil "
 "file operations"
-msgstr ""
+msgstr "Μία λίστα με μοτίβα τύπου glob, διαχωρισμένη με κόμματα, από αρχεία "
+"ή διαδρομές που θα παραβλέπονται από το Fossil"
 
 #: ../ui/SettingsDialog.ui:330
 msgctxt "SettingsDialog|"
 msgid "Ignore CR/NL"
-msgstr ""
+msgstr "Παράβλεψη CR/NL"
 
 #: ../ui/SettingsDialog.ui:343
 msgctxt "SettingsDialog|"
 msgid ""
-"A comma separated list of glob-style file patterns to exclude from fossil's "
+"A comma separated list of glob-style file patterns to exclude from Fossil's "
 "CR/NL consistency checking"
-msgstr ""
+msgstr "Μία λίστα με μοτίβα τύπου glob, διαχωρισμένη με κόμματα, από αρχεία "
+"ή διαδρομές που θα παραβλέπονται από τον έλεγχο τέλους γραμμών Fossil"
 
 #: ../src/SettingsDialog.cpp:16
 msgctxt "SettingsDialog|"
 msgid "Applications"
-msgstr ""
-
-#: ../src/SettingsDialog.cpp:24
-#, qt-format
-msgctxt "SettingsDialog|"
-msgid "Select %1"
-msgstr ""
+msgstr "Εφαρμογές"
 
 #: ../src/SettingsDialog.cpp:45
 msgctxt "SettingsDialog|"
 msgid "Diff File"
-msgstr ""
+msgstr "Συγκριση Αρχείου"
 
 #: ../src/SettingsDialog.cpp:46
 msgctxt "SettingsDialog|"
 msgid "Open File"
-msgstr ""
+msgstr "Άνοιγμα Αρχείου"
 
 #: ../src/SettingsDialog.cpp:47
 msgctxt "SettingsDialog|"
 msgid "Open Containing Folder"
-msgstr ""
+msgstr "Άνοιγμα Φακέλου"
 
 #: ../src/SettingsDialog.cpp:97
 msgctxt "SettingsDialog|"
 msgid "Restart required"
-msgstr ""
+msgstr "Ανάγκη Επανεκκίνησης"
 
 #: ../src/SettingsDialog.cpp:97
 msgctxt "SettingsDialog|"
 msgid "The language change will take effect after restarting the application"
-msgstr ""
+msgstr "Η αλλαγή γλώσσας θα εφαρμοστεί μετά την επανεκκίνηση της εφαρμογής"
 
 #: ../src/SettingsDialog.cpp:111
 msgctxt "SettingsDialog|"
-msgid "Fossil executable"
-msgstr ""
+msgid "Select Fossil executable"
+msgstr "Επιλέξετε την εφαρμογή Fossil"
 
 #: ../src/SettingsDialog.cpp:119
 msgctxt "SettingsDialog|"
-msgid "Graphical Diff application"
-msgstr ""
+msgid "Select Graphical Diff application"
+msgstr "Επιλέξετε εφαρμογή γραφικής σύγκρισης"
 
 #: ../src/SettingsDialog.cpp:127
 msgctxt "SettingsDialog|"
-msgid "Graphical Merge application"
-msgstr ""
+msgid "Select Graphical Merge application"
+msgstr "Επιλέξετε εφαρμογή γραφικής σύνθεσης"
 
 #: ../src/SettingsDialog.cpp:135
 msgctxt "SettingsDialog|"
 msgid "Clear Commit Message History"
-msgstr ""
+msgstr "Διαγραφή ιστορικού σχολίων καταχώρησης"
 
 #: ../src/SettingsDialog.cpp:135
 msgctxt "SettingsDialog|"
 msgid "Are you sure want to clear the commit message history?"
 msgstr ""
+"Είσαστε σίγουροι ότι θέλετε να διαγράψετε το ιστορικό σχολίων καταχώρησης;"
 
 #: ../src/SettingsDialog.cpp:142
 msgctxt "SettingsDialog|"

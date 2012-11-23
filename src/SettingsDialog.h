@@ -50,20 +50,22 @@ struct Settings
 	typedef QMap<QString, Setting> mappings_t;
 
 
-	Settings(bool portableMode = false);
-	~Settings();
-	void ApplyEnvironment();
+						Settings(bool portableMode = false);
+						~Settings();
+	void				ApplyEnvironment();
 
 	// App configuration access
-	class QSettings * GetStore() { return store; }
-	bool HasValue(const QString &name) const; // store->contains(FUEL_SETTING_FOSSIL_PATH)
-	const QVariant GetValue(const QString &name); // settings.store->value
-	void SetValue(const QString &name, const QVariant &value); // settings.store->value
+	class QSettings *	GetStore() { return store; }
+	bool				HasValue(const QString &name) const; // store->contains(FUEL_SETTING_FOSSIL_PATH)
+	const QVariant		GetValue(const QString &name); // settings.store->value
+	void				SetValue(const QString &name, const QVariant &value); // settings.store->value
 
 	// Fossil configuration access
-	QVariant & GetFossilValue(const QString &name);
-	void SetFossilValue(const QString &name, const QVariant &value);
-	mappings_t & GetMappings() { return Mappings; }
+	QVariant &		GetFossilValue(const QString &name);
+	void			SetFossilValue(const QString &name, const QVariant &value);
+	mappings_t &	GetMappings() { return Mappings; }
+
+	bool			SupportsLang(const QString &langId) const;
 
 private:
 	mappings_t		Mappings;

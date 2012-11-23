@@ -1777,7 +1777,7 @@ void MainWindow::on_actionAdd_triggered()
 	if(selection.empty())
 		return;
 
-	if(!FileActionDialog::run(this, tr("Add files"), tr("The following files will be added. Are you sure?"), selection))
+	if(!FileActionDialog::run(this, tr("Add files"), tr("The following files will be added.")+"\n"+tr("Are you sure?"), selection))
 		return;
 
 	// Do Add
@@ -1802,7 +1802,7 @@ void MainWindow::on_actionDelete_triggered()
 
 	bool remove_local = false;
 
-	if(!FileActionDialog::run(this, tr("Remove files"), tr("The following files will be removed from the repository.\nAre you sure?"), all_files, tr("Also delete the local files"), &remove_local ))
+	if(!FileActionDialog::run(this, tr("Remove files"), tr("The following files will be removed from the repository.")+"\n"+tr("Are you sure?"), all_files, tr("Also delete the local files"), &remove_local ))
 		return;
 
 	if(!repo_files.empty())
@@ -1834,7 +1834,7 @@ void MainWindow::on_actionRevert_triggered()
 	if(modified_files.empty())
 		return;
 
-	if(!FileActionDialog::run(this, tr("Revert files"), tr("The following files will be reverted. Are you sure?"), modified_files))
+	if(!FileActionDialog::run(this, tr("Revert files"), tr("The following files will be reverted.")+"\n"+tr("Are you sure?"), modified_files))
 		return;
 
 	// Do Revert
@@ -1910,7 +1910,7 @@ void MainWindow::on_actionUndo_triggered()
 	if(res.length()>0 && res[0]=="No undo or redo is available")
 		return;
 
-	if(!FileActionDialog::run(this, tr("Undo"), tr("The following actions will be undone. Are you sure?"), res))
+	if(!FileActionDialog::run(this, tr("Undo"), tr("The following actions will be undone.")+"\n"+tr("Are you sure?"), res))
 		return;
 
 	// Do Undo
@@ -1938,8 +1938,8 @@ void MainWindow::on_actionAbout_triggered()
 							"by Kostas Karanikolas\n"
 							"Released under the GNU GPL")+"\n\n"
 					   + fossil_ver +
-						tr("Icon-set by Deleket - Jojo Mendoza\n"
-							"Available under the CC Attribution Noncommercial No Derivate 3.0 License"));
+						tr("Icons by Deleket - Jojo Mendoza\n"
+							"Available under the CC Attribution Noncommercial No Derivative 3.0 License"));
 }
 
 //------------------------------------------------------------------------------
@@ -1953,7 +1953,7 @@ void MainWindow::on_actionUpdate_triggered()
 	if(res.length()==0)
 		return;
 
-	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated. Are you sure?"), res))
+	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
 		return;
 
 	// Do Update
@@ -2204,7 +2204,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 
 	bool move_local = false;
 	if(!FileActionDialog::run(this, tr("Rename Folder"), tr("Renaming folder '%0' to '%1'\n"
-							  "The following files will be moved in the repository. Are you sure?").arg(old_path, new_path),
+							  "The following files will be moved in the repository.").arg(old_path, new_path)+"\n"+tr("Are you sure?"),
 							  operations,
 							  tr("Also move the workspace files"), &move_local)) {
 		return;
@@ -2355,7 +2355,7 @@ void MainWindow::on_actionApplyStash_triggered()
 	getStashViewSelection(stashes);
 
 	bool delete_stashes = false;
-	if(!FileActionDialog::run(this, tr("Apply Stash"), tr("The following stashes will be applied. Are you sure?"), stashes, tr("Delete after applying"), &delete_stashes))
+	if(!FileActionDialog::run(this, tr("Apply Stash"), tr("The following stashes will be applied.")+"\n"+tr("Are you sure?"), stashes, tr("Delete after applying"), &delete_stashes))
 		return;
 
 	// Apply stashes
@@ -2396,7 +2396,7 @@ void MainWindow::on_actionDeleteStash_triggered()
 	if(stashes.empty())
 		return;
 
-	if(!FileActionDialog::run(this, tr("Delete Stashes"), tr("The following stashes will be deleted. Are you sure?"), stashes))
+	if(!FileActionDialog::run(this, tr("Delete Stashes"), tr("The following stashes will be deleted.")+"\n"+tr("Are you sure?"), stashes))
 		return;
 
 	// Delete stashes
