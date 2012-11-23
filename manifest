@@ -1,5 +1,5 @@
-C Improved\slocalization\n
-D 2012-11-23T02:57:25.535
+C Greek\slocalization\simprovements\n
+D 2012-11-23T05:05:17.568
 F dist/arch/PKGBUILD dd21073c035af4e6a4ecb3842c1fd7ae45c5e93d
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -7,7 +7,7 @@ F doc/Changes.txt e21c9355aaeb7643c8d6784effd2f9ebadf3a8e0
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro f9053752c0ea40a7f9c90ac738a6c1689b92dfe5
 F intl/convert.sh 6dfabd9c78df20b2c5c767b301cc4cd8813f442d x
-F intl/el_GR.po 3bde7f1e9517853c725920636f0ddc16a6a38ef5
+F intl/el_GR.po 78bde70ddc69e3edd4155a69a7403479a5e888d0
 F intl/en_US.pot c9c6830fecdf0f285121b19c47d5b98d30c8b8b7
 F intl/update.sh 321b3012ea5129e9ea32e52df4f1de509e974882 x
 F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
@@ -191,7 +191,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 998f26c6fe75bd655cf3d4f0073e67dc0bf3b3d7
 F ui/SettingsDialog.ui 7f578450cf01d6786ff2d91a2142505192446e3f
-P 05f2cac387c4a3863197f794c68421f7e04fb28e
-R 36900e81ce7c07bb76cbb8b3550a53a3
+P ecfc352947256f0264047517f06a7e0e85b9acbd
+R 5b71bad856fd2939debddb0edc701580
 U kostas
-Z 375c8b8c0086772973bd2bb98abadbc4
+Z 66a264681784cfe76d911e924464925c

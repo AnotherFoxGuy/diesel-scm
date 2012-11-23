@@ -80,7 +80,7 @@ msgstr "Μη αποδεκτή διεύθυνση."
 #: ../src/CloneDialog.cpp:61
 msgctxt "CloneDialog|"
 msgid "Invalid Repository File."
-msgstr "Μη αποδεκτό αρχείο αποθετηρίου"
+msgstr "Μη αποδεκτό αρχείο αποθετηρίου."
 
 #: ../src/CloneDialog.cpp:72
 msgctxt "CloneDialog|"
@@ -125,7 +125,7 @@ msgstr "&Βοήθεια"
 #: ../ui/MainWindow.ui:205
 msgctxt "MainWindow|"
 msgid "&View"
-msgstr "Εμφάνιση"
+msgstr "&Εμφάνιση"
 
 #: ../ui/MainWindow.ui:222
 msgctxt "MainWindow|"
@@ -323,6 +323,16 @@ msgctxt "MainWindow|"
 msgid "Display the version history of a file via the Fossil UI"
 msgstr "Εμφάνιση του ιστορικού ενός αρχείο μέσω του Fossil"
 
+#: ../ui/MainWindow.ui:566 ../ui/MainWindow.ui:569
+msgctxt "MainWindow|"
+msgid "Display the change history of the Fossil repository"
+msgstr "Εμφάνιση του χρονικού του αποθετηρίου Fossil"
+
+#: ../ui/MainWindow.ui:617 ../ui/MainWindow.ui:620
+msgctxt "MainWindow|"
+msgid "Undo the last Fossil action"
+msgstr "Αναίρεση της τελευταίας ενέργειας του Fossil"
+
 #: ../ui/MainWindow.ui:506
 msgctxt "MainWindow|"
 msgid "Ctrl+H"
@@ -368,11 +378,6 @@ msgctxt "MainWindow|"
 msgid "Timeline"
 msgstr "Χρονικό"
 
-#: ../ui/MainWindow.ui:566 ../ui/MainWindow.ui:569
-msgctxt "MainWindow|"
-msgid "Display the change history of the Fossil repository"
-msgstr "Εμφάνιση του χρονικού του αποθετηρίου Fossil"
-
 #: ../ui/MainWindow.ui:578
 msgctxt "MainWindow|"
 msgid "Open file"
@@ -408,11 +413,6 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Αναίρεση"
 
-#: ../ui/MainWindow.ui:617 ../ui/MainWindow.ui:620
-msgctxt "MainWindow|"
-msgid "Undo the last Fossil action"
-msgstr "Αναίρεση της τελευταίας ενέργειας του Fossil"
-
 #: ../ui/MainWindow.ui:623
 msgctxt "MainWindow|"
 msgid "Ctrl+Z"
@@ -421,7 +421,7 @@ msgstr "Ctrl+Z"
 #: ../ui/MainWindow.ui:632
 msgctxt "MainWindow|"
 msgid "&About..."
-msgstr "Σχετικά..."
+msgstr "&Σχετικά..."
 
 #: ../ui/MainWindow.ui:635
 msgctxt "MainWindow|"
@@ -446,7 +446,7 @@ msgstr "Ctrl+U"
 #: ../ui/MainWindow.ui:662
 msgctxt "MainWindow|"
 msgid "&Preferences..."
-msgstr "&Ρυθμίσεις"
+msgstr "&Ρυθμίσεις..."
 
 #: ../ui/MainWindow.ui:665 ../ui/MainWindow.ui:668
 msgctxt "MainWindow|"
@@ -486,7 +486,7 @@ msgstr "Εμφάνιση άγνωστων αρχείων"
 #: ../ui/MainWindow.ui:718
 msgctxt "MainWindow|"
 msgid "&Ignored"
-msgstr "Παραβλεπόμενα"
+msgstr "&Παραβλεπόμενα"
 
 #: ../ui/MainWindow.ui:721
 msgctxt "MainWindow|"
@@ -496,7 +496,7 @@ msgstr "Εμφάνιση παραβλεπόμενων αρχείων"
 #: ../ui/MainWindow.ui:729
 msgctxt "MainWindow|"
 msgid "File &List"
-msgstr "Λίστα Αρχείων"
+msgstr "&Λίστα Αρχείων"
 
 #: ../ui/MainWindow.ui:732 ../ui/MainWindow.ui:735
 msgctxt "MainWindow|"
@@ -518,8 +518,7 @@ msgctxt "MainWindow|"
 msgid "Open the selected folder"
 msgstr "Άνοιγμα του επιλεγμένου φακέλου"
 
-#: ../ui/MainWindow.ui:762 ../src/MainWindow.cpp:2161
-#: ../src/MainWindow.cpp:2206
+#: ../ui/MainWindow.ui:762 ../src/MainWindow.cpp:2161 ../src/MainWindow.cpp:2206
 msgctxt "MainWindow|"
 msgid "Rename Folder"
 msgstr "Μετονομασία Φακέλου"
@@ -552,7 +551,7 @@ msgstr "Εφαρμογή των αλλαγών στοίβας"
 #: ../ui/MainWindow.ui:803
 msgctxt "MainWindow|"
 msgid "&Stashed Changes"
-msgstr "Στοίβες Αλλαγών"
+msgstr "&Στοίβες Αλλαγών"
 
 #: ../ui/MainWindow.ui:806
 msgctxt "MainWindow|"
@@ -667,7 +666,7 @@ msgstr "Θα θέλατε να δημιουργήσετε ένα χώρο εργ
 #: ../src/MainWindow.cpp:412
 msgctxt "MainWindow|"
 msgid "Could not create repository."
-msgstr "Η δημιουργία αποθετηρίου δεν ήταν δυνατή"
+msgstr "Η δημιουργία αποθετηρίου δεν ήταν δυνατή."
 
 #: ../src/MainWindow.cpp:443
 msgctxt "MainWindow|"
@@ -696,7 +695,7 @@ msgstr "Η αντιγραφή του αποθετηρίου δεν ήταν δυ
 #: ../src/MainWindow.cpp:586
 msgctxt "MainWindow|"
 msgid "No workspace detected."
-msgstr "Δεν επιλέχτηκε χώρος εργασίας"
+msgstr "Δεν βρέθηκε χώρος εργασίας."
 
 #: ../src/MainWindow.cpp:594
 msgctxt "MainWindow|"
@@ -807,7 +806,8 @@ msgid ""
 "a GUI frontend to the Fossil SCM\n"
 "by Kostas Karanikolas\n"
 "Released under the GNU GPL"
-msgstr "ένα γραφικό περιβάλλον για το FOSSIL\n"
+msgstr ""
+"ένα γραφικό περιβάλλον για το FOSSIL\n"
 "από τον Κώστα Καρανικόλα\n"
 "Διάθεση σύμφωνα με τους όρους του GPL"
 
@@ -894,7 +894,7 @@ msgstr "Η διαγραφή της στοίβας ακυρώθηκε λόγω σ
 #: ../src/MainWindow.cpp:2399
 msgctxt "MainWindow|"
 msgid "The following stashes will be deleted."
-msgstr "Οι παρακάτω στοίβες θα διαγραφούν"
+msgstr "Οι παρακάτω στοίβες θα διαγραφούν."
 
 #: ../src/MainWindow.cpp:1096 ../src/MainWindow.cpp:1557
 msgctxt "MainWindow|"
@@ -966,8 +966,10 @@ msgctxt "MainWindow|"
 msgid ""
 "Icons by Deleket - Jojo Mendoza\n"
 "Available under the CC Attribution Noncommercial No Derivative 3.0 License"
-msgstr "Εικονίδια από τον Deleket - Jojo Mendoza\n"
-"Διάθεση σύμφωνα με τους όρους του CC Attribution Noncommercial No Derivative 3.0 License"
+msgstr ""
+"Εικονίδια από τον Deleket - Jojo Mendoza\n"
+"Διάθεση σύμφωνα με τους όρους του CC Attribution Noncommercial No Derivative "
+"3.0 License"
 
 #: ../src/MainWindow.cpp:2209
 msgctxt "MainWindow|"
@@ -1132,7 +1134,6 @@ msgstr ""
 "Η διέυθυνση μπορεί να περιλαμβάνει όνομα χρήστη και συνθηματικό.\n"
 "π.χ. http://username:password@server.com/fossil"
 
-
 #: ../ui/SettingsDialog.ui:304
 msgctxt "SettingsDialog|"
 msgid "Ignore List"
@@ -1143,21 +1144,23 @@ msgctxt "SettingsDialog|"
 msgid ""
 "A comma separated list of glob-style file/path patterns ignored in Fossil "
 "file operations"
-msgstr "Μία λίστα με μοτίβα τύπου glob, διαχωρισμένη με κόμματα, από αρχεία "
-"ή διαδρομές που θα παραβλέπονται από το Fossil"
-
-#: ../ui/SettingsDialog.ui:330
-msgctxt "SettingsDialog|"
-msgid "Ignore CR/NL"
-msgstr "Παράβλεψη CR/NL"
+msgstr ""
+"Μία λίστα με μοτίβα τύπου glob, διαχωρισμένη με κόμματα, από αρχεία ή "
+"διαδρομές που θα παραβλέπονται από το Fossil"
 
 #: ../ui/SettingsDialog.ui:343
 msgctxt "SettingsDialog|"
 msgid ""
 "A comma separated list of glob-style file patterns to exclude from Fossil's "
 "CR/NL consistency checking"
-msgstr "Μία λίστα με μοτίβα τύπου glob, διαχωρισμένη με κόμματα, από αρχεία "
-"ή διαδρομές που θα παραβλέπονται από τον έλεγχο τέλους γραμμών Fossil"
+msgstr ""
+"Μία λίστα με μοτίβα τύπου glob, διαχωρισμένη με κόμματα, από αρχεία ή "
+"διαδρομές που θα παραβλέπονται από τον έλεγχο τέλους γραμμών Fossil"
+
+#: ../ui/SettingsDialog.ui:330
+msgctxt "SettingsDialog|"
+msgid "Ignore CR/NL"
+msgstr "Παράβλεψη CR/NL"
 
 #: ../src/SettingsDialog.cpp:16
 msgctxt "SettingsDialog|"
@@ -1179,53 +1182,53 @@ msgctxt "SettingsDialog|"
 msgid "Open Containing Folder"
 msgstr "Άνοιγμα Φακέλου"
 
-#: ../src/SettingsDialog.cpp:97
+#: ../src/SettingsDialog.cpp:98
 msgctxt "SettingsDialog|"
 msgid "Restart required"
 msgstr "Ανάγκη Επανεκκίνησης"
 
-#: ../src/SettingsDialog.cpp:97
+#: ../src/SettingsDialog.cpp:98
 msgctxt "SettingsDialog|"
 msgid "The language change will take effect after restarting the application"
 msgstr "Η αλλαγή γλώσσας θα εφαρμοστεί μετά την επανεκκίνηση της εφαρμογής"
 
-#: ../src/SettingsDialog.cpp:111
+#: ../src/SettingsDialog.cpp:112
 msgctxt "SettingsDialog|"
 msgid "Select Fossil executable"
 msgstr "Επιλέξετε την εφαρμογή Fossil"
 
-#: ../src/SettingsDialog.cpp:119
+#: ../src/SettingsDialog.cpp:120
 msgctxt "SettingsDialog|"
 msgid "Select Graphical Diff application"
 msgstr "Επιλέξετε εφαρμογή γραφικής σύγκρισης"
 
-#: ../src/SettingsDialog.cpp:127
+#: ../src/SettingsDialog.cpp:128
 msgctxt "SettingsDialog|"
 msgid "Select Graphical Merge application"
 msgstr "Επιλέξετε εφαρμογή γραφικής σύνθεσης"
 
-#: ../src/SettingsDialog.cpp:135
+#: ../src/SettingsDialog.cpp:136
 msgctxt "SettingsDialog|"
 msgid "Clear Commit Message History"
 msgstr "Διαγραφή ιστορικού σχολίων καταχώρησης"
 
-#: ../src/SettingsDialog.cpp:135
+#: ../src/SettingsDialog.cpp:136
 msgctxt "SettingsDialog|"
 msgid "Are you sure want to clear the commit message history?"
 msgstr ""
 "Είσαστε σίγουροι ότι θέλετε να διαγράψετε το ιστορικό σχολίων καταχώρησης;"
 
-#: ../src/SettingsDialog.cpp:142
+#: ../src/SettingsDialog.cpp:143
 msgctxt "SettingsDialog|"
 msgid "English (US)"
 msgstr "Αγγλικά (Ηνωμένων Πολιτειών)"
 
-#: ../src/SettingsDialog.cpp:143
+#: ../src/SettingsDialog.cpp:144
 msgctxt "SettingsDialog|"
 msgid "Japanese"
 msgstr "Ιαπωνικά"
 
-#: ../src/SettingsDialog.cpp:144
+#: ../src/SettingsDialog.cpp:145
 msgctxt "SettingsDialog|"
 msgid "Greek"
 msgstr "Ελληνικά"
