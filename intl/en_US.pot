@@ -317,6 +317,16 @@ msgctxt "MainWindow|"
 msgid "Display the version history of a file via the Fossil UI"
 msgstr ""
 
+#: ../ui/MainWindow.ui:566 ../ui/MainWindow.ui:569
+msgctxt "MainWindow|"
+msgid "Display the change history of the Fossil repository"
+msgstr ""
+
+#: ../ui/MainWindow.ui:617 ../ui/MainWindow.ui:620
+msgctxt "MainWindow|"
+msgid "Undo the last Fossil action"
+msgstr ""
+
 #: ../ui/MainWindow.ui:506
 msgctxt "MainWindow|"
 msgid "Ctrl+H"
@@ -362,11 +372,6 @@ msgctxt "MainWindow|"
 msgid "Timeline"
 msgstr ""
 
-#: ../ui/MainWindow.ui:566 ../ui/MainWindow.ui:569
-msgctxt "MainWindow|"
-msgid "Display the change history of the Fossil repository"
-msgstr ""
-
 #: ../ui/MainWindow.ui:578
 msgctxt "MainWindow|"
 msgid "Open file"
@@ -400,11 +405,6 @@ msgstr ""
 #: ../ui/MainWindow.ui:614 ../src/MainWindow.cpp:1913
 msgctxt "MainWindow|"
 msgid "Undo"
-msgstr ""
-
-#: ../ui/MainWindow.ui:617 ../ui/MainWindow.ui:620
-msgctxt "MainWindow|"
-msgid "Undo the last Fossil action"
 msgstr ""
 
 #: ../ui/MainWindow.ui:623
@@ -1116,16 +1116,16 @@ msgid ""
 "file operations"
 msgstr ""
 
-#: ../ui/SettingsDialog.ui:330
-msgctxt "SettingsDialog|"
-msgid "Ignore CR/NL"
-msgstr ""
-
 #: ../ui/SettingsDialog.ui:343
 msgctxt "SettingsDialog|"
 msgid ""
 "A comma separated list of glob-style file patterns to exclude from Fossil's "
 "CR/NL consistency checking"
+msgstr ""
+
+#: ../ui/SettingsDialog.ui:330
+msgctxt "SettingsDialog|"
+msgid "Ignore CR/NL"
 msgstr ""
 
 #: ../src/SettingsDialog.cpp:16
@@ -1148,52 +1148,52 @@ msgctxt "SettingsDialog|"
 msgid "Open Containing Folder"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:97
+#: ../src/SettingsDialog.cpp:98
 msgctxt "SettingsDialog|"
 msgid "Restart required"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:97
+#: ../src/SettingsDialog.cpp:98
 msgctxt "SettingsDialog|"
 msgid "The language change will take effect after restarting the application"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:111
+#: ../src/SettingsDialog.cpp:112
 msgctxt "SettingsDialog|"
 msgid "Select Fossil executable"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:119
+#: ../src/SettingsDialog.cpp:120
 msgctxt "SettingsDialog|"
 msgid "Select Graphical Diff application"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:127
+#: ../src/SettingsDialog.cpp:128
 msgctxt "SettingsDialog|"
 msgid "Select Graphical Merge application"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:135
+#: ../src/SettingsDialog.cpp:136
 msgctxt "SettingsDialog|"
 msgid "Clear Commit Message History"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:135
+#: ../src/SettingsDialog.cpp:136
 msgctxt "SettingsDialog|"
 msgid "Are you sure want to clear the commit message history?"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:142
+#: ../src/SettingsDialog.cpp:143
 msgctxt "SettingsDialog|"
 msgid "English (US)"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:143
+#: ../src/SettingsDialog.cpp:144
 msgctxt "SettingsDialog|"
 msgid "Japanese"
 msgstr ""
 
-#: ../src/SettingsDialog.cpp:144
+#: ../src/SettingsDialog.cpp:145
 msgctxt "SettingsDialog|"
 msgid "Greek"
 msgstr ""
