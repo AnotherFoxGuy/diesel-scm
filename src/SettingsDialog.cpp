@@ -142,6 +142,7 @@ void SettingsDialog::on_btnClearMessageHistory_clicked()
 void SettingsDialog::CreateLangMap()
 {
 	langMap.append(LangMap("en_US", "English (US)"));
+	langMap.append(LangMap("de_DE", "German (DE)"));
 	langMap.append(LangMap("el_GR", "Greek"));
 }
 

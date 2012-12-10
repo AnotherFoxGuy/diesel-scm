@@ -1939,7 +1939,9 @@ void MainWindow::on_actionAbout_triggered()
 							"Released under the GNU GPL")+"\n\n"
 					   + fossil_ver +
 						tr("Icons by Deleket - Jojo Mendoza\n"
-							"Available under the CC Attribution Noncommercial No Derivative 3.0 License"));
+							"Available under the CC Attribution Noncommercial No Derivative 3.0 License") + "\n\n" +
+						tr("Translations with the help of:") + "\n"
+							"stayawake (German de_DE)\n" );
 }
 
 //------------------------------------------------------------------------------

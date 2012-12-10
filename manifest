@@ -1,14 +1,15 @@
-C Moved\sover\sto\sQt's\snative\stranslation\sfile\sformat
-D 2012-11-23T07:28:15.322
+C Added\sGerman\stranslation\n
+D 2012-12-10T12:05:23.342
 F dist/arch/PKGBUILD dd21073c035af4e6a4ecb3842c1fd7ae45c5e93d
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
-F doc/Changes.txt e21c9355aaeb7643c8d6784effd2f9ebadf3a8e0
+F doc/Changes.txt f2999c99053d2bf2aeaaba5504eb96e228dbac58
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro e90e7f9bfba35668673bc45bd226f39225170282
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
-F intl/el_GR.ts fd53670ac8e2473069b58785170b0a01465474ad
-F intl/en_US.ts 8bb5ef8f4affd27c8364ea6e40b4d4954cea5cc2
+F intl/de_DE.ts 82873d85b3df5b204d6c41aa666ef88dd60583aa
+F intl/el_GR.ts e7ba75d373804b715d23b86d289fb7b556079889
+F intl/en_US.ts f403c29d85d104a3c64f8194bed4d995fcb458f2
 F intl/update.sh b5312e108eec47f9c8cb7d6790c57335e6b52829 x
 F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
 F rsrc/fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
@@ -167,7 +168,7 @@ F rsrc/icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
-F rsrc/resources.qrc 02f23809e7e24747d391f97de3a92518c3393410
+F rsrc/resources.qrc 8fd65286d8d50bcaf392c92badc9faadb474ee86
 F src/CloneDialog.cpp 85bc6473d1e3a47d0f981e96357a376be63ab0bc
 F src/CloneDialog.h 1c63da4346ca20b67d52016b7b64875b9c5b477f
 F src/CommitDialog.cpp c62ce7fb234e43ca8641c16522c750e6419bf947
@@ -178,9 +179,9 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp bcbfc3f7d789c5d535f6d6ab13f7ad537d6e7450
+F src/MainWindow.cpp 1bf137068f79d3a1845c2911d4b6fab83dc8fb9c
 F src/MainWindow.h 3f3825cab25058666b6706b36f51269ad5f65f3e
-F src/SettingsDialog.cpp 44e6e2d1d7f4d3e40caa10ac71ad5cc16c440f11
+F src/SettingsDialog.cpp 77f658e84f078a0155f33c260d0d0b15ed7360cb
 F src/SettingsDialog.h d37dde23f698fbe6182b2e14234104a15468be3d
 F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
@@ -191,7 +192,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 998f26c6fe75bd655cf3d4f0073e67dc0bf3b3d7
 F ui/SettingsDialog.ui 7f578450cf01d6786ff2d91a2142505192446e3f
-P 24074dfcc2b754993aa5531725a53e6aea8ddc55
-R 618682a39636667973a57336292e627a
+P f12aab3a403d0a1cab42eec7ddb476dd47cb5da3
+R 7bd397fc75c54f40319d22d40f72d194
 U kostas
-Z 633e15875ca5add781610513a647a4fd
+Z b56973c86d77fcf3f468ad1873c85149

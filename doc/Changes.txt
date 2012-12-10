@@ -1,3 +1,11 @@
+Fuel V0.9.7 (2012-XX-XX)
+============
+- Distribution: Fuel is now available in the Arch User Repository
+- Feature: Support for localization
+- Localisations:
+	Greek
+	German (thanks stayawake)
+
 Fuel V0.9.6 (2012-05-13)
 ============
 - Feature: Support for fossil stashes

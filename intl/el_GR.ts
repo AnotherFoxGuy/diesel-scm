@@ -447,7 +447,7 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="644"/>
-        <location filename="../src/MainWindow.cpp" line="1956"/>
+        <location filename="../src/MainWindow.cpp" line="1958"/>
         <source>Update</source>
         <translation>Ενημέρωση</translation>
     </message>
@@ -542,8 +542,8 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="762"/>
-        <location filename="../src/MainWindow.cpp" line="2161"/>
-        <location filename="../src/MainWindow.cpp" line="2206"/>
+        <location filename="../src/MainWindow.cpp" line="2163"/>
+        <location filename="../src/MainWindow.cpp" line="2208"/>
         <source>Rename Folder</source>
         <translation>Μετονομασία Φακέλου</translation>
     </message>
@@ -565,7 +565,7 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="789"/>
-        <location filename="../src/MainWindow.cpp" line="2358"/>
+        <location filename="../src/MainWindow.cpp" line="2360"/>
         <source>Apply Stash</source>
         <translation>Εφαρμογή Στοίβας</translation>
     </message>
@@ -615,15 +615,15 @@
         <location filename="../src/MainWindow.cpp" line="1734"/>
         <location filename="../src/MainWindow.cpp" line="1743"/>
         <location filename="../src/MainWindow.cpp" line="1866"/>
-        <location filename="../src/MainWindow.cpp" line="2173"/>
-        <location filename="../src/MainWindow.cpp" line="2182"/>
-        <location filename="../src/MainWindow.cpp" line="2245"/>
-        <location filename="../src/MainWindow.cpp" line="2258"/>
-        <location filename="../src/MainWindow.cpp" line="2266"/>
-        <location filename="../src/MainWindow.cpp" line="2280"/>
-        <location filename="../src/MainWindow.cpp" line="2286"/>
-        <location filename="../src/MainWindow.cpp" line="2328"/>
-        <location filename="../src/MainWindow.cpp" line="2337"/>
+        <location filename="../src/MainWindow.cpp" line="2175"/>
+        <location filename="../src/MainWindow.cpp" line="2184"/>
+        <location filename="../src/MainWindow.cpp" line="2247"/>
+        <location filename="../src/MainWindow.cpp" line="2260"/>
+        <location filename="../src/MainWindow.cpp" line="2268"/>
+        <location filename="../src/MainWindow.cpp" line="2282"/>
+        <location filename="../src/MainWindow.cpp" line="2288"/>
+        <location filename="../src/MainWindow.cpp" line="2330"/>
+        <location filename="../src/MainWindow.cpp" line="2339"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
@@ -811,10 +811,10 @@ Are there still uncommitted changes available?</source>
         <location filename="../src/MainWindow.cpp" line="1805"/>
         <location filename="../src/MainWindow.cpp" line="1837"/>
         <location filename="../src/MainWindow.cpp" line="1913"/>
-        <location filename="../src/MainWindow.cpp" line="1956"/>
-        <location filename="../src/MainWindow.cpp" line="2207"/>
-        <location filename="../src/MainWindow.cpp" line="2358"/>
-        <location filename="../src/MainWindow.cpp" line="2399"/>
+        <location filename="../src/MainWindow.cpp" line="1958"/>
+        <location filename="../src/MainWindow.cpp" line="2209"/>
+        <location filename="../src/MainWindow.cpp" line="2360"/>
+        <location filename="../src/MainWindow.cpp" line="2401"/>
         <source>Are you sure?</source>
         <translation>Είσαστε σίγουροι;</translation>
     </message>
@@ -830,7 +830,7 @@ Are there still uncommitted changes available?</source>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1858"/>
-        <location filename="../src/MainWindow.cpp" line="2161"/>
+        <location filename="../src/MainWindow.cpp" line="2163"/>
         <source>New name</source>
         <translation>Νέο όνομα</translation>
     </message>
@@ -849,81 +849,86 @@ Released under the GNU GPL</source>
 Διατίθεται σύμφωνα με τους όρους του GPL</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1956"/>
+        <location filename="../src/MainWindow.cpp" line="1943"/>
+        <source>Translations with the help of:</source>
+        <translation>Μεταφράσεις με την βοήθεια των:</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="1958"/>
         <source>The following files will be updated.</source>
         <translation>Τα παρακάτω αρχεία θα ενημερωθούν.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2173"/>
-        <location filename="../src/MainWindow.cpp" line="2182"/>
+        <location filename="../src/MainWindow.cpp" line="2175"/>
+        <location filename="../src/MainWindow.cpp" line="2184"/>
         <source>Cannot rename folder.</source>
         <translation>Η μετονομασία του φακέλου δεν ήταν δυνατή.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2173"/>
+        <location filename="../src/MainWindow.cpp" line="2175"/>
         <source>Folder name contains invalid characters.</source>
         <translation>Το όνομα του φακέλου περιέχει μη αποδεκτούς χαρακτήρες.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2182"/>
+        <location filename="../src/MainWindow.cpp" line="2184"/>
         <source>This folder exists already.</source>
         <translation>Αυτός ο φάκελος υπάρχει ήδη.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2206"/>
+        <location filename="../src/MainWindow.cpp" line="2208"/>
         <source>Renaming folder &apos;%0&apos; to &apos;%1&apos;
 The following files will be moved in the repository.</source>
         <translation>Μετονομασία του φακέλου &apos;%0&apos; σε &apos;%1&apos;
 Τα παρακάτω αρχεία θα μετακινηθούν στο αποθετήριο.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2222"/>
+        <location filename="../src/MainWindow.cpp" line="2224"/>
         <source>Move aborted due to errors</source>
         <translation>Η μετακίνηση ακυρώθηκε λόγω σφαλμάτων</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2242"/>
+        <location filename="../src/MainWindow.cpp" line="2244"/>
         <source>Creating folder &apos;%0&apos;</source>
         <translation>Δημιουργία φακέλου &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2245"/>
+        <location filename="../src/MainWindow.cpp" line="2247"/>
         <source>Cannot make target folder &apos;%0&apos;</source>
         <translation>Η δημιουργία του φακέλου &apos;%0&apos; δεν ήταν δυνατή</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2262"/>
+        <location filename="../src/MainWindow.cpp" line="2264"/>
         <source>Copying file &apos;%0&apos; to &apos;%1&apos;</source>
         <translation>Αντιγραφή του αρχείου &apos;%0&apos; στο &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2276"/>
+        <location filename="../src/MainWindow.cpp" line="2278"/>
         <source>Removing old file &apos;%0&apos;</source>
         <translation>Διαγραφή παλαιού αρχείου &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2291"/>
+        <location filename="../src/MainWindow.cpp" line="2293"/>
         <source>Folder renamed completed. Don&apos;t forget to commit!</source>
         <translation>Η μετονομασία του φακέλου ολοκληρώθηκε. Μην ξεχάσετε να κάνετε καταχώρηση!</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2358"/>
+        <location filename="../src/MainWindow.cpp" line="2360"/>
         <source>The following stashes will be applied.</source>
         <translation>Οι παρακάτω στοίβες θα εφαρμοστούν.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2369"/>
+        <location filename="../src/MainWindow.cpp" line="2371"/>
         <source>Stash application aborted due to errors</source>
         <translation>Η εφαρμογή της στοίβας ακυρώθηκε λόγω σφαλμάτων</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2382"/>
-        <location filename="../src/MainWindow.cpp" line="2410"/>
+        <location filename="../src/MainWindow.cpp" line="2384"/>
+        <location filename="../src/MainWindow.cpp" line="2412"/>
         <source>Stash deletion aborted due to errors</source>
         <translation>Η διαγραφή της στοίβας ακυρώθηκε λόγω σφαλμάτων</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2399"/>
+        <location filename="../src/MainWindow.cpp" line="2401"/>
         <source>The following stashes will be deleted.</source>
         <translation>Οι παρακάτω στοίβες θα διαγραφούν.</translation>
     </message>
@@ -997,57 +1002,57 @@ Available under the CC Attribution Noncommercial No Derivative 3.0 License</sour
 Διατίθεται σύμφωνα με τους όρους CC Attribution Noncommercial No Derivative 3.0</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2209"/>
+        <location filename="../src/MainWindow.cpp" line="2211"/>
         <source>Also move the workspace files</source>
         <translation>Μετακίνηση των αρχείων του χώρου εργασίας επίσης</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2258"/>
+        <location filename="../src/MainWindow.cpp" line="2260"/>
         <source>Target file &apos;%0&apos; exists already</source>
         <translation>Το αρχείο &apos;%0&apos; υπάρχει ήδη</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2266"/>
+        <location filename="../src/MainWindow.cpp" line="2268"/>
         <source>Cannot copy file &apos;%0&apos; to &apos;%1&apos;</source>
         <translation>Η αντιγραφή του αρχείου από &apos;%0&apos; στο &apos;%1&apos; δεν ήταν δυνατή</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2280"/>
+        <location filename="../src/MainWindow.cpp" line="2282"/>
         <source>Source file &apos;%0&apos; does not exist</source>
         <translation>Το αρχείο πηγής &apos;%0&apos; δεν υπάρχει</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2286"/>
+        <location filename="../src/MainWindow.cpp" line="2288"/>
         <source>Cannot remove file &apos;%0&apos;</source>
         <translation>Η διαγραφή του αρχείου &apos;%0&apos; δεν ήταν δυνατή</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2320"/>
+        <location filename="../src/MainWindow.cpp" line="2322"/>
         <source>Revert stashed files</source>
         <translation>Επαναφορά αρχείων στοίβας</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2321"/>
+        <location filename="../src/MainWindow.cpp" line="2323"/>
         <source>Stash Changes</source>
         <translation>Στοίβαξη Αλλαγών</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2328"/>
+        <location filename="../src/MainWindow.cpp" line="2330"/>
         <source>Invalid stash name</source>
         <translation>Μη επιτρεπτό όνομα στοίβας</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2337"/>
+        <location filename="../src/MainWindow.cpp" line="2339"/>
         <source>This stash already exists</source>
         <translation>Αυτή η στοίβα υπάρχει ήδη</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2358"/>
+        <location filename="../src/MainWindow.cpp" line="2360"/>
         <source>Delete after applying</source>
         <translation>Διαγραφή μετά από την εφαρμογή</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2399"/>
+        <location filename="../src/MainWindow.cpp" line="2401"/>
         <source>Delete Stashes</source>
         <translation>Διαγραφή Στοίβων</translation>
     </message>
