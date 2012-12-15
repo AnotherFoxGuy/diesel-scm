@@ -1,11 +1,11 @@
-C Commit\sDialog:\sPressing\sCtrl-Enter\swithin\sthe\scomment\sbox\sstarts\sthe\scommit\swhereas\spressing\sEscape\saborts\sit
-D 2012-12-15T16:13:02.050
+C Added\sback\sqmake\srule\sto\sgenerate\slocalizations\n
+D 2012-12-15T16:30:15.944
 F dist/arch/PKGBUILD dd21073c035af4e6a4ecb3842c1fd7ae45c5e93d
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt b4494e409960f22705c8624eaa935e3f195df10b
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro f2bda42ff7c3258dce38e679107687b16007f5a0
+F fuel.pro 453992931471eef0838175e017531e88dc6b9b4f
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
 F intl/de_DE.ts 6230de8f647218960853b339909cf8c3d09f45ed
 F intl/el_GR.ts fb2cb5834e3425fde1e142bab37a07967591670e
@@ -193,7 +193,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 23e4827461cf91218c22c65e44d8aa32d04313f7
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 0d190dea85179af6c22225f5d443fd363d4d8842
-R fd82f4f216d2b75f27c3718e2e80f568
+P 6e3077fa1905ed6a669038d3336ae4f98fd483ee
+R 83ee2ff402bbfbf1f093bdbb9b6f595b
 U kostas
-Z 7422a8dc912ecd62dea48b68e5b12f36
+Z 2e649ce387dc18f800f4ed7fc1fed000

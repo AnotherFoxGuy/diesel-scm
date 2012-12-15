@@ -31,6 +31,7 @@ unix:!macx {
 	icon.files += rsrc/icons/fuel.png
 
 	INSTALLS += target desktop icon
+	system(intl/convert.sh)
 }
 
 
@@ -71,6 +72,5 @@ TRANSLATIONS += \
 	intl/el_GR.ts \
 	intl/de_DE.ts \
 	intl/es_ES.ts
-
 
 
