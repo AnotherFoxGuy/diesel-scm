@@ -68,6 +68,9 @@ CODECFORTR = UTF-8
 
 TRANSLATIONS += \
 	intl/en_US.ts \
-	intl/el_GR.ts
+	intl/el_GR.ts \
+	intl/de_DE.ts \
+	intl/es_ES.ts
+
 
 

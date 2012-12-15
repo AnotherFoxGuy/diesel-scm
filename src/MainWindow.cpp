@@ -133,6 +133,16 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 		SLOT( onFileViewDragOut() ),
 		Qt::DirectConnection );
 
+	QStringList header;
+	header << tr("Status") << tr("File") << tr("Ext") << tr("Modified") << tr("Path");
+	repoFileModel.setHorizontalHeaderLabels(header);
+	repoFileModel.horizontalHeaderItem(COLUMN_STATUS)->setTextAlignment(Qt::AlignCenter);
+
+	// Needed on OSX as the preset value from the GUI editor is not always reflected
+	ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+	ui->tableView->horizontalHeader()->setMovable(true);
+	ui->tableView->horizontalHeader()->setStretchLastSection(true);
+
 	// TreeView
 	ui->treeView->setModel(&repoDirModel);
 	connect( ui->treeView->selectionModel(),
@@ -851,31 +861,18 @@ void MainWindow::updateDirView()
 //------------------------------------------------------------------------------
 void MainWindow::updateFileView()
 {
-	// File View
-	repoFileModel.clear();
+	// Clear content except headers
+	repoFileModel.removeRows(1, repoFileModel.rowCount()-1);
 
-	QStringList header;
-	header << tr("S") << tr("File") << tr("Ext") << tr("Modified");
-
-	bool multiple_dirs = selectedDirs.count()>1;
-
-	bool show_path = viewMode==VIEWMODE_LIST || multiple_dirs;
-
-	if(show_path)
-		header << tr("Path");
-
-	repoFileModel.setHorizontalHeaderLabels(header);
-	repoFileModel.horizontalHeaderItem(COLUMN_STATUS)->setTextAlignment(Qt::AlignCenter);
-
-	struct { RepoFile::EntryType type; const char *tag; const char *tooltip; const char *icon; }
+	struct { RepoFile::EntryType type; QString text; const char *icon; }
 	stats[] =
 	{
-		{   RepoFile::TYPE_EDITTED, "E", "Edited", ":icons/icons/Button Blank Yellow-01.png" },
-		{   RepoFile::TYPE_UNCHANGED, "U", "Unchanged", ":icons/icons/Button Blank Green-01.png" },
-		{   RepoFile::TYPE_ADDED, "A", "Added", ":icons/icons/Button Add-01.png" },
-		{   RepoFile::TYPE_DELETED, "D", "Deleted", ":icons/icons/Button Close-01.png" },
-		{   RepoFile::TYPE_RENAMED, "R", "Renamed", ":icons/icons/Button Reload-01.png" },
-		{   RepoFile::TYPE_MISSING, "M", "Missing", ":icons/icons/Button Help-01.png" },
+		{   RepoFile::TYPE_EDITTED, tr("Edited"), ":icons/icons/Button Blank Yellow-01.png" },
+		{   RepoFile::TYPE_UNCHANGED, tr("Unchanged"), ":icons/icons/Button Blank Green-01.png" },
+		{   RepoFile::TYPE_ADDED, tr("Added"), ":icons/icons/Button Add-01.png" },
+		{   RepoFile::TYPE_DELETED, tr("Deleted"), ":icons/icons/Button Close-01.png" },
+		{   RepoFile::TYPE_RENAMED, tr("Renamed"), ":icons/icons/Button Reload-01.png" },
+		{   RepoFile::TYPE_MISSING, tr("Missing"), ":icons/icons/Button Help-01.png" },
 	};
 
 	QFileIconProvider icon_provider;
@@ -891,36 +888,29 @@ void MainWindow::updateFileView()
 			continue;
 
 		// Status Column
-		const char *tag = "?"; // Default Tag
-		const char *tooltip = "Unknown";
-		const char *status_icon= ":icons/icons/Button Blank Gray-01.png"; // Default icon
+		QString status_text = QString(tr("Unknown"));
+		const char *status_icon_path= ":icons/icons/Button Blank Gray-01.png"; // Default icon
 
 		for(size_t t=0; t<COUNTOF(stats); ++t)
 		{
 			if(e.getType() == stats[t].type)
 			{
-				tag = stats[t].tag;
-				tooltip = stats[t].tooltip;
-				status_icon = stats[t].icon;
+				status_text = stats[t].text;
+				status_icon_path = stats[t].icon;
 				break;
 			}
 		}
 
-		QStandardItem *status = new QStandardItem(QIcon(status_icon), tag);
-		status->setToolTip(tooltip);
+		QStandardItem *status = new QStandardItem(QIcon(status_icon_path), status_text);
+		status->setToolTip(status_text);
 		repoFileModel.setItem(item_id, COLUMN_STATUS, status);
 
 		QFileInfo finfo = e.getFileInfo();
 		QIcon icon = icon_provider.icon(finfo);
 
 		QStandardItem *filename_item = 0;
-		if(show_path)
-		{
-			repoFileModel.setItem(item_id, COLUMN_PATH, new QStandardItem(path));
-			filename_item = new QStandardItem(icon, QDir::toNativeSeparators(e.getFilePath()));
-		}
-		else // In Tree mode the path is implicit so the file name is enough
-			filename_item = new QStandardItem(icon, e.getFilename());
+		repoFileModel.setItem(item_id, COLUMN_PATH, new QStandardItem(path));
+		filename_item = new QStandardItem(icon, QDir::toNativeSeparators(e.getFilePath()));
 
 		Q_ASSERT(filename_item);
 		// Keep the path in the user data
@@ -933,12 +923,7 @@ void MainWindow::updateFileView()
 		++item_id;
 	}
 
-	ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
-	ui->tableView->resizeColumnsToContents();
-	ui->tableView->horizontalHeader()->setMovable(true);
 	ui->tableView->resizeRowsToContents();
-	// Needed on OSX as the preset value from the GUI editor is not always reflected
-	ui->tableView->horizontalHeader()->setStretchLastSection(true);
 }
 
 //------------------------------------------------------------------------------
@@ -1303,6 +1288,27 @@ void MainWindow::applySettings()
 	}
 	store->endArray();
 
+	store->beginReadArray("FileColumns");
+	for(int i=0; i<repoFileModel.columnCount(); ++i)
+	{
+		store->setArrayIndex(i);
+		if(store->contains("Width"))
+		{
+			int width = store->value("Width").toInt();
+			ui->tableView->setColumnWidth(i, width);
+		}
+
+		if(store->contains("Index"))
+		{
+			int index = store->value("Index").toInt();
+			int cur_index = ui->tableView->horizontalHeader()->visualIndex(i);
+			ui->tableView->horizontalHeader()->moveSection(cur_index, index);
+		}
+
+	}
+	store->endArray();
+
+
 	if(store->contains("WindowX") && store->contains("WindowY"))
 	{
 		QPoint _pos;
@@ -1354,6 +1360,16 @@ void MainWindow::updateSettings()
 			store->setValue("Active", true);
 		else
 			store->remove("Active");
+	}
+	store->endArray();
+
+	store->beginWriteArray("FileColumns", repoFileModel.columnCount());
+	for(int i=0; i<repoFileModel.columnCount(); ++i)
+	{
+		store->setArrayIndex(i);
+		store->setValue("Width", ui->tableView->columnWidth(i));
+		int index = ui->tableView->horizontalHeader()->visualIndex(i);
+		store->setValue("Index", index);
 	}
 	store->endArray();
 
@@ -1941,7 +1957,9 @@ void MainWindow::on_actionAbout_triggered()
 						tr("Icons by Deleket - Jojo Mendoza\n"
 							"Available under the CC Attribution Noncommercial No Derivative 3.0 License") + "\n\n" +
 						tr("Translations with the help of:") + "\n"
-							"stayawake (German de_DE)\n" );
+							"stayawake (German de_DE)\n"
+							"djnavas (Spanish es_ES)\n"
+					   );
 }
 
 //------------------------------------------------------------------------------
