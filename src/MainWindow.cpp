@@ -871,7 +871,7 @@ void MainWindow::updateDirView()
 void MainWindow::updateFileView()
 {
 	// Clear content except headers
-	repoFileModel.removeRows(1, repoFileModel.rowCount()-1);
+	repoFileModel.removeRows(0, repoFileModel.rowCount());
 
 	struct { RepoFile::EntryType type; QString text; const char *icon; }
 	stats[] =
@@ -1409,8 +1409,6 @@ void MainWindow::fossilBrowse(const QString &fossilUrl)
 {
 	if(!uiRunning())
 		ui->actionFossilUI->activate(QAction::Trigger);
-
-	Q_ASSERT(uiRunning());
 
 	bool use_internal = settings.GetValue(FUEL_SETTING_WEB_BROWSER).toInt() == 1;
 
