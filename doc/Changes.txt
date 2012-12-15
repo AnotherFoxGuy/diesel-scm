@@ -1,14 +1,16 @@
 Fuel V0.9.7 (2012-XX-XX)
 ============
-- Distribution: Fuel is now available in the Arch User Repository
 - Feature: Optionally use the internal browser for the Fossil UI
-- UI: Support for persisting the state (Column order and sizes) of the File View 
-- UI: Dropping a fossil workspace file or folder on Fuel now opens that workspace
+- Feature: Support for persisting the state (Column order and sizes) of the File View
+- Feature: Dropping a fossil checkout file or workspace folder on Fuel now opens that workspace
+- Feature: Commit Dialog: Pressing Ctrl-Enter within the comment box starts the commit
+  whereas pressing Escape aborts it
 - Feature: Support for localization
 - Localisations:
 	Greek
-	German (thanks stayawake)
-	Spanish (thanks djnavas)
+	German (Thanks stayawake)
+	Spanish (Thanks djnavas)
+- Distribution: Fuel is now available in the Arch User Repository
 
 Fuel V0.9.6 (2012-05-13)
 ============
@@ -27,4 +29,3 @@ Fuel V0.9.6 (2012-05-13)
 - Bug Fix: Fixed issue where a complete repository would be committed even when
   the user has a specific set of files marked for commit
 - Misc: Minor GUI bug fixes and usability enhancements
-

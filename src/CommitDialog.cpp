@@ -1,11 +1,12 @@
 #include "CommitDialog.h"
 #include <QPushButton>
+#include <QShortcut>
 #include "ui_CommitDialog.h"
 #include "MainWindow.h" // Ugly. I know.
 
 CommitDialog::CommitDialog(QWidget *parent, QString title, QStringList &files, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue) :
 	QDialog(parent, Qt::Sheet),
-    ui(new Ui::CommitDialog)
+	ui(new Ui::CommitDialog)
 {
 	ui->setupUi(this);
 	ui->plainTextEdit->clear();
@@ -54,6 +55,19 @@ CommitDialog::CommitDialog(QWidget *parent, QString title, QStringList &files, c
 		si->setCheckState(Qt::Checked);
 		itemModel.appendRow(si);
 	}
+
+
+	// Trigger commit with a Ctrl-Return from the comment box
+	QAction* action = new QAction(ui->plainTextEdit);
+	QShortcut* shortcut = new QShortcut(QKeySequence("Ctrl+Return"), ui->plainTextEdit);
+	action->setAutoRepeat(false);
+	connect(shortcut, SIGNAL(activated()), ui->buttonBox->button(QDialogButtonBox::Ok), SLOT(click()));
+
+	// Abort commit with an Escape key from the comment box
+	action = new QAction(ui->plainTextEdit);
+	shortcut = new QShortcut(QKeySequence("Escape"), ui->plainTextEdit);
+	action->setAutoRepeat(false);
+	connect(shortcut, SIGNAL(activated()), ui->buttonBox->button(QDialogButtonBox::Cancel), SLOT(click()));
 }
 
 //------------------------------------------------------------------------------

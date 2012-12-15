@@ -1,9 +1,9 @@
-C Dropping\sa\sfossil\sworkspace\sfile\sor\sfolder\son\sFuel\snow\sopens\sthat\sworkspace\nRefactored\ssome\slocalizations
-D 2012-12-15T15:37:11.939
+C Commit\sDialog:\sPressing\sCtrl-Enter\swithin\sthe\scomment\sbox\sstarts\sthe\scommit\swhereas\spressing\sEscape\saborts\sit
+D 2012-12-15T16:13:02.050
 F dist/arch/PKGBUILD dd21073c035af4e6a4ecb3842c1fd7ae45c5e93d
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
-F doc/Changes.txt a77f20af09130f7e7da9fdeb3ee5fc0252d6005e
+F doc/Changes.txt b4494e409960f22705c8624eaa935e3f195df10b
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro f2bda42ff7c3258dce38e679107687b16007f5a0
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
@@ -172,7 +172,7 @@ F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc 64f1e9ab75d3631ad65fac5c0653839e0cdda979
 F src/CloneDialog.cpp 8652480baa3f13f0f0e7df019751338c7cbeb1b5
 F src/CloneDialog.h c97e8c266819292622ca3e84b68e04e81ec05ba3
-F src/CommitDialog.cpp c62ce7fb234e43ca8641c16522c750e6419bf947
+F src/CommitDialog.cpp 5300522ac11bc1096a11a6ce22f8c1665d4afc05
 F src/CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
@@ -193,7 +193,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 23e4827461cf91218c22c65e44d8aa32d04313f7
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 007750beaa643fdb136db346a647f43c0d14a30e
-R 4912490d8f6d2fe0469bcbef6ae2df32
+P 0d190dea85179af6c22225f5d443fd363d4d8842
+R fd82f4f216d2b75f27c3718e2e80f568
 U kostas
-Z 724b932c55f6478883d57feb84372293
+Z 7422a8dc912ecd62dea48b68e5b12f36
