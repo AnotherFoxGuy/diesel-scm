@@ -194,6 +194,9 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 		ui->menuFile->insertAction(recent_sep, recentWorkspaceActs[i]);
 	}
 
+	// TabWidget
+	ui->tabWidget->setCurrentIndex(TAB_LOG);
+
 	// Construct ProgressBar
 	progressBar = new QProgressBar();
 	progressBar->setMinimum(0);

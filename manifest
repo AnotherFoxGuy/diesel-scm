@@ -1,5 +1,5 @@
-C Optionally\suse\sthe\sinternal\sbrowser\sfor\sthe\sFossil\sUI\nSupport\sfor\spersisting\sthe\sstate\s(Column\sorder\sand\ssizes)\sof\sthe\sFile\sView\n\n
-D 2012-12-15T14:12:28.439
+C Make\sthe\sLog\stab\sactive\sby\sdefault\n
+D 2012-12-15T14:21:26.263
 F dist/arch/PKGBUILD dd21073c035af4e6a4ecb3842c1fd7ae45c5e93d
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -180,7 +180,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp bb82954d26ba915a4632e83af1d45d2498a1aac9
+F src/MainWindow.cpp 9f171fbf69dfe7c8a8250d8fb8a1130abcc5b707
 F src/MainWindow.h c7c72113541604b1c605345da5e680ed3865f39b
 F src/SettingsDialog.cpp 2031ed9d431bce2c8a967030bc4043570134b22e
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
@@ -193,7 +193,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 26585cc74af41321337e239e2cb283f25cddac5c
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 87b7bd70eec27bd136f17432d98dd313282fc3d1
-R 2fcea15e839ecc5fd6f667fce4bef347
+P 7439077817df40f70c96d6f5f3e6f47314ba1b59
+R 198d76718c08e03f5d9b7b4226db875f
 U kostas
-Z d8452a239012f381e4acfb4d4b9022db
+Z 52835ec416f4688754bede30e9c174ab
