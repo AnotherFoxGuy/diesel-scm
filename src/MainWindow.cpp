@@ -16,6 +16,7 @@
 #include <QFileIconProvider>
 #include <QDebug>
 #include <QProgressBar>
+#include <QDragEnterEvent>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
@@ -25,8 +26,6 @@
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
 #define PATH_SEP			"/"
-#define FOSSIL_CHECKOUT1	"_FOSSIL_"
-#define FOSSIL_CHECKOUT2	".fslckout"
 
 //-----------------------------------------------------------------------------
 enum
@@ -368,7 +367,7 @@ bool MainWindow::openWorkspace(const QString &path)
 //------------------------------------------------------------------------------
 void MainWindow::on_actionOpenRepository_triggered()
 {
-	QString filter(tr("Fossil Files (*.fossil _FOSSIL_ .fslckout)"));
+	QString filter(tr("Fossil Files") + QString(" (*." FOSSIL_EXT  " " FOSSIL_CHECKOUT1 " " FOSSIL_CHECKOUT2 ")" ));
 
 	QString path = QFileDialog::getOpenFileName(
 		this,
@@ -385,7 +384,7 @@ void MainWindow::on_actionOpenRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionNewRepository_triggered()
 {
-	QString filter(tr("Fossil Repositories (*.fossil)"));
+	QString filter(tr("Fossil Repositories") + QString(" (*." FOSSIL_EXT ")"));
 
 	// Get Repository file
 	QString repo_path = QFileDialog::getSaveFileName(
@@ -2511,4 +2510,34 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 		menu->popup(gpos);
 	}
 
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+	QList<QUrl> urls = event->mimeData()->urls();
+	if(urls.length()!=1)
+		return;
+
+	QFileInfo finfo(urls.first().toLocalFile());
+	if(finfo.isDir() || finfo.suffix() == FOSSIL_EXT || finfo.fileName() == FOSSIL_CHECKOUT1 || finfo.fileName() == FOSSIL_CHECKOUT2 )
+	{
+		event->acceptProposedAction();
+		return;
+	}
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::dropEvent(QDropEvent *event)
+{
+	QList<QUrl> urls = event->mimeData()->urls();
+	if(urls.length()!=1)
+		return;
+
+	QFileInfo finfo(urls.first().toLocalFile());
+	if(finfo.isDir() || finfo.suffix() == FOSSIL_EXT || finfo.fileName() == FOSSIL_CHECKOUT1 || finfo.fileName() == FOSSIL_CHECKOUT2 )
+	{
+		event->acceptProposedAction();
+		openWorkspace(finfo.absoluteFilePath());
+	}
 }

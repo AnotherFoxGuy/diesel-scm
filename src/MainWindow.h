@@ -164,6 +164,9 @@ private:
 	void updateStashView();
 	void selectRootDir();
 	void fossilBrowse(const QString &fossilUrl);
+	void dragEnterEvent(class QDragEnterEvent *event);
+	void dropEvent(class QDropEvent *event);
+
 
 	virtual QMenu *createPopupMenu();
 

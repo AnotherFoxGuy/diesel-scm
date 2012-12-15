@@ -3,6 +3,10 @@
 
 #include <QDialog>
 
+#define FOSSIL_CHECKOUT1	"_FOSSIL_"
+#define FOSSIL_CHECKOUT2	".fslckout"
+#define FOSSIL_EXT			"fossil"
+
 namespace Ui {
 class CloneDialog;
 }

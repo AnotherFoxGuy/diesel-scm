@@ -69,7 +69,7 @@ bool CloneDialog::run(QWidget *parent, QUrl &url, QString &repository)
 //-----------------------------------------------------------------------------
 void CloneDialog::on_btnSelectRepository_clicked()
 {
-	QString filter(tr("Fossil Repository (*.fossil)"));
+	QString filter(tr("Fossil Repository") + QString(" (*." FOSSIL_EXT ")"));
 
 	QString path = QFileDialog::getSaveFileName(
 				this,
