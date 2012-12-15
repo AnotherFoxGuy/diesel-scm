@@ -1,11 +1,11 @@
-C Added\sSpanish\stranslation\nChanged\sthe\shandling\sof\sFileView\scolumns\nFileView\scolumn\sorder\sand\ssizes\sis\snow\spersisted\sin\sthe\ssettings\n\n\n\n\n
-D 2012-12-15T10:50:34.083
+C Optionally\suse\sthe\sinternal\sbrowser\sfor\sthe\sFossil\sUI\nSupport\sfor\spersisting\sthe\sstate\s(Column\sorder\sand\ssizes)\sof\sthe\sFile\sView\n\n
+D 2012-12-15T14:12:28.439
 F dist/arch/PKGBUILD dd21073c035af4e6a4ecb3842c1fd7ae45c5e93d
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
-F doc/Changes.txt f2999c99053d2bf2aeaaba5504eb96e228dbac58
+F doc/Changes.txt 50bdd6db6883452cfc7fe5b35512bf0e840772b9
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro 3374e40d77a366de63f35f0c3bf48eb61ecbc979
+F fuel.pro f2bda42ff7c3258dce38e679107687b16007f5a0
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
 F intl/de_DE.ts 82873d85b3df5b204d6c41aa666ef88dd60583aa
 F intl/el_GR.ts e7ba75d373804b715d23b86d289fb7b556079889
@@ -180,10 +180,10 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp e46c31b692b3d072a5f80aab9b910ab4524257f8
-F src/MainWindow.h 3f3825cab25058666b6706b36f51269ad5f65f3e
-F src/SettingsDialog.cpp 66e8ad0a01c58cd29f397d74f46274021abe34b8
-F src/SettingsDialog.h d37dde23f698fbe6182b2e14234104a15468be3d
+F src/MainWindow.cpp bb82954d26ba915a4632e83af1d45d2498a1aac9
+F src/MainWindow.h c7c72113541604b1c605345da5e680ed3865f39b
+F src/SettingsDialog.cpp 2031ed9d431bce2c8a967030bc4043570134b22e
+F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
 F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
 F src/main.cpp 8f8790822f82870a12169bcf204e571138adb065
@@ -191,9 +191,9 @@ F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/MainWindow.ui 998f26c6fe75bd655cf3d4f0073e67dc0bf3b3d7
-F ui/SettingsDialog.ui 7f578450cf01d6786ff2d91a2142505192446e3f
-P 33305fed1383ad01dd5d66ef4cf379956508b0c8
-R a1ac056afe9f31b4aa8bb64f43ff42ac
+F ui/MainWindow.ui 26585cc74af41321337e239e2cb283f25cddac5c
+F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
+P 87b7bd70eec27bd136f17432d98dd313282fc3d1
+R 2fcea15e839ecc5fd6f667fce4bef347
 U kostas
-Z 520d9618aa62a70c2f7ef5b438253c9f
+Z d8452a239012f381e4acfb4d4b9022db

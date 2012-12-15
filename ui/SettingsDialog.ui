@@ -7,10 +7,10 @@
   </property>
   <property name="geometry">
    <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>560</width>
-	<height>300</height>
+    <x>0</x>
+    <y>0</y>
+    <width>457</width>
+    <height>352</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,342 +21,370 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-	<widget class="QTabWidget" name="tabWidget">
-	 <property name="currentIndex">
-	  <number>0</number>
-	 </property>
-	 <widget class="QWidget" name="tabApp">
-	  <attribute name="icon">
-	   <iconset resource="../rsrc/resources.qrc">
-		<normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
-	  </attribute>
-	  <attribute name="title">
-	   <string>Application</string>
-	  </attribute>
-	  <layout class="QFormLayout" name="formLayout">
-	   <property name="fieldGrowthPolicy">
-		<enum>QFormLayout::ExpandingFieldsGrow</enum>
-	   </property>
-	   <property name="labelAlignment">
-		<set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-	   </property>
-	   <item row="0" column="0">
-		<widget class="QLabel" name="label">
-		 <property name="minimumSize">
-		  <size>
-		   <width>100</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="text">
-		  <string>Fossil Path</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="0" column="1">
-		<layout class="QHBoxLayout" name="horizontalLayout_8">
-		 <item>
-		  <widget class="QLineEdit" name="lineFossilPath">
-		   <property name="toolTip">
-			<string>Path to the Fossil executable. Leave blank to use the default Fossil</string>
-		   </property>
-		  </widget>
-		 </item>
-		 <item>
-		  <widget class="QPushButton" name="btnSelectFossil">
-		   <property name="sizePolicy">
-			<sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-			 <horstretch>0</horstretch>
-			 <verstretch>0</verstretch>
-			</sizepolicy>
-		   </property>
-		   <property name="maximumSize">
-			<size>
-			 <width>24</width>
-			 <height>24</height>
-			</size>
-		   </property>
-		   <property name="text">
-			<string>...</string>
-		   </property>
-		  </widget>
-		 </item>
-		</layout>
-	   </item>
-	   <item row="1" column="0">
-		<widget class="QLabel" name="label_2">
-		 <property name="minimumSize">
-		  <size>
-		   <width>100</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="text">
-		  <string>Graphical Diff </string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="1" column="1">
-		<layout class="QHBoxLayout" name="horizontalLayout_9">
-		 <item>
-		  <widget class="QLineEdit" name="lineGDiffCommand">
-		   <property name="toolTip">
-			<string>Path to graphical diff tool</string>
-		   </property>
-		  </widget>
-		 </item>
-		 <item>
-		  <widget class="QPushButton" name="btnSelectFossilGDiff">
-		   <property name="sizePolicy">
-			<sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-			 <horstretch>0</horstretch>
-			 <verstretch>0</verstretch>
-			</sizepolicy>
-		   </property>
-		   <property name="maximumSize">
-			<size>
-			 <width>24</width>
-			 <height>24</height>
-			</size>
-		   </property>
-		   <property name="text">
-			<string>...</string>
-		   </property>
-		  </widget>
-		 </item>
-		</layout>
-	   </item>
-	   <item row="2" column="0">
-		<widget class="QLabel" name="label_3">
-		 <property name="minimumSize">
-		  <size>
-		   <width>100</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="text">
-		  <string>Graphical Merge</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="2" column="1">
-		<layout class="QHBoxLayout" name="horizontalLayout_10">
-		 <item>
-		  <widget class="QLineEdit" name="lineGMergeCommand">
-		   <property name="toolTip">
-			<string>Path to the graphical merge tool</string>
-		   </property>
-		  </widget>
-		 </item>
-		 <item>
-		  <widget class="QPushButton" name="btnSelectGMerge">
-		   <property name="sizePolicy">
-			<sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-			 <horstretch>0</horstretch>
-			 <verstretch>0</verstretch>
-			</sizepolicy>
-		   </property>
-		   <property name="maximumSize">
-			<size>
-			 <width>24</width>
-			 <height>24</height>
-			</size>
-		   </property>
-		   <property name="text">
-			<string>...</string>
-		   </property>
-		  </widget>
-		 </item>
-		</layout>
-	   </item>
-	   <item row="3" column="0">
-		<widget class="QLabel" name="label_6">
-		 <property name="minimumSize">
-		  <size>
-		   <width>100</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="text">
-		  <string>Commit Messages</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="3" column="1">
-		<widget class="QPushButton" name="btnClearMessageHistory">
-		 <property name="sizePolicy">
-		  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-		   <horstretch>0</horstretch>
-		   <verstretch>0</verstretch>
-		  </sizepolicy>
-		 </property>
-		 <property name="toolTip">
-		  <string>Clear the commit message history</string>
-		 </property>
-		 <property name="text">
-		  <string>Clear</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="4" column="0">
-		<widget class="QLabel" name="label_8">
-		 <property name="minimumSize">
-		  <size>
-		   <width>100</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="text">
-		  <string>Double-click Action</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="4" column="1">
-		<widget class="QComboBox" name="cmbDoubleClickAction">
-		 <property name="sizePolicy">
-		  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-		   <horstretch>0</horstretch>
-		   <verstretch>0</verstretch>
-		  </sizepolicy>
-		 </property>
-		 <property name="toolTip">
-		  <string>Action to perfom when double-clicking a file</string>
-		 </property>
-		 <property name="currentIndex">
-		  <number>-1</number>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="5" column="0">
-		<widget class="QLabel" name="uILanguageLabel">
-		 <property name="text">
-		  <string>Language</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="5" column="1">
-		<widget class="QComboBox" name="cmbActiveLanguage">
-		 <property name="sizePolicy">
-		  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-		   <horstretch>0</horstretch>
-		   <verstretch>0</verstretch>
-		  </sizepolicy>
-		 </property>
-		 <property name="toolTip">
-		  <string>Language for the user interface</string>
-		 </property>
-		</widget>
-	   </item>
-	  </layout>
-	 </widget>
-	 <widget class="QWidget" name="tabRepo">
-	  <attribute name="icon">
-	   <iconset resource="../rsrc/resources.qrc">
-		<normaloff>:/icons/icons/Book-01.png</normaloff>:/icons/icons/Book-01.png</iconset>
-	  </attribute>
-	  <attribute name="title">
-	   <string>Repository</string>
-	  </attribute>
-	  <layout class="QFormLayout" name="formLayout_2">
-	   <property name="fieldGrowthPolicy">
-		<enum>QFormLayout::ExpandingFieldsGrow</enum>
-	   </property>
-	   <property name="labelAlignment">
-		<set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-	   </property>
-	   <item row="0" column="0">
-		<widget class="QLabel" name="label_5">
-		 <property name="minimumSize">
-		  <size>
-		   <width>100</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="text">
-		  <string>Remote Url</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="0" column="1">
-		<widget class="QLineEdit" name="lineRemoteURL">
-		 <property name="minimumSize">
-		  <size>
-		   <width>0</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="toolTip">
-		  <string>The remote url used to push/pull changes.
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabApp">
+      <attribute name="icon">
+       <iconset resource="../rsrc/resources.qrc">
+        <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
+      </attribute>
+      <attribute name="title">
+       <string>Application</string>
+      </attribute>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Fossil Path</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLineEdit" name="lineFossilPath">
+           <property name="toolTip">
+            <string>Path to the Fossil executable. Leave blank to use the default Fossil</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSelectFossil">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Graphical Diff </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <item>
+          <widget class="QLineEdit" name="lineGDiffCommand">
+           <property name="toolTip">
+            <string>Path to graphical diff tool</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSelectFossilGDiff">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Graphical Merge</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <item>
+          <widget class="QLineEdit" name="lineGMergeCommand">
+           <property name="toolTip">
+            <string>Path to the graphical merge tool</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSelectGMerge">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="uILanguageLabel_3">
+         <property name="text">
+          <string>HTTP Port</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineUIPort">
+         <property name="toolTip">
+          <string>HTTP port to use for the Fossil web interface</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Commit Messages</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="btnClearMessageHistory">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Clear the commit message history</string>
+         </property>
+         <property name="text">
+          <string>Clear</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="uILanguageLabel_2">
+         <property name="text">
+          <string>Web Browser</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QComboBox" name="cmbFossilBrowser">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Web browser to use for the Fossil web interface</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Double-click Action</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QComboBox" name="cmbDoubleClickAction">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Action to perfom when double-clicking a file</string>
+         </property>
+         <property name="currentIndex">
+          <number>-1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="uILanguageLabel">
+         <property name="text">
+          <string>Language</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QComboBox" name="cmbActiveLanguage">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Language for the user interface</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabRepo">
+      <attribute name="icon">
+       <iconset resource="../rsrc/resources.qrc">
+        <normaloff>:/icons/icons/Book-01.png</normaloff>:/icons/icons/Book-01.png</iconset>
+      </attribute>
+      <attribute name="title">
+       <string>Repository</string>
+      </attribute>
+      <layout class="QFormLayout" name="formLayout_2">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::ExpandingFieldsGrow</enum>
+       </property>
+       <property name="labelAlignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Remote Url</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineRemoteURL">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>The remote url used to push/pull changes.
 URL style user names and passwords are also supported.
 For example http://username:password@server.com/fossil</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="1" column="0">
-		<widget class="QLabel" name="label_4">
-		 <property name="minimumSize">
-		  <size>
-		   <width>100</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="text">
-		  <string>Ignore List</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="1" column="1">
-		<widget class="QLineEdit" name="lineIgnore">
-		 <property name="minimumSize">
-		  <size>
-		   <width>0</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="toolTip">
-		  <string>A comma separated list of glob-style file/path patterns ignored in Fossil file operations</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="2" column="0">
-		<widget class="QLabel" name="label_7">
-		 <property name="minimumSize">
-		  <size>
-		   <width>100</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="text">
-		  <string>Ignore CR/NL</string>
-		 </property>
-		</widget>
-	   </item>
-	   <item row="2" column="1">
-		<widget class="QLineEdit" name="lineIgnoreCRNL">
-		 <property name="minimumSize">
-		  <size>
-		   <width>0</width>
-		   <height>0</height>
-		  </size>
-		 </property>
-		 <property name="toolTip">
-		  <string>A comma separated list of glob-style file patterns to exclude from Fossil's CR/NL consistency checking</string>
-		 </property>
-		</widget>
-	   </item>
-	  </layout>
-	 </widget>
-	</widget>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Ignore List</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineIgnore">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>A comma separated list of glob-style file/path patterns ignored in Fossil file operations</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Ignore CR/NL</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineIgnoreCRNL">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>A comma separated list of glob-style file patterns to exclude from Fossil's CR/NL consistency checking</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </item>
    <item>
-	<widget class="QDialogButtonBox" name="buttonBox">
-	 <property name="orientation">
-	  <enum>Qt::Horizontal</enum>
-	 </property>
-	 <property name="standardButtons">
-	  <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-	 </property>
-	</widget>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -370,14 +398,14 @@ For example http://username:password@server.com/fossil</string>
    <receiver>SettingsDialog</receiver>
    <slot>accept()</slot>
    <hints>
-	<hint type="sourcelabel">
-	 <x>248</x>
-	 <y>254</y>
-	</hint>
-	<hint type="destinationlabel">
-	 <x>157</x>
-	 <y>274</y>
-	</hint>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
    </hints>
   </connection>
   <connection>
@@ -386,14 +414,14 @@ For example http://username:password@server.com/fossil</string>
    <receiver>SettingsDialog</receiver>
    <slot>reject()</slot>
    <hints>
-	<hint type="sourcelabel">
-	 <x>316</x>
-	 <y>260</y>
-	</hint>
-	<hint type="destinationlabel">
-	 <x>286</x>
-	 <y>274</y>
-	</hint>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
    </hints>
   </connection>
  </connections>

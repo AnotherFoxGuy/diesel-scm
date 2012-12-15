@@ -2,7 +2,7 @@
 # Fuel
 #-------------------------------------------------
 
-QT    += core gui
+QT    += core gui webkit
 
 TARGET = Fuel
 TEMPLATE = app

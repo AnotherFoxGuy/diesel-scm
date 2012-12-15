@@ -1,10 +1,13 @@
 Fuel V0.9.7 (2012-XX-XX)
 ============
 - Distribution: Fuel is now available in the Arch User Repository
+- Feature: Optionally use the internal browser for the Fossil UI
+- UI: Support for persisting the state (Column order and sizes) of the File View 
 - Feature: Support for localization
 - Localisations:
 	Greek
 	German (thanks stayawake)
+	Spanish (thanks djnavas)
 
 Fuel V0.9.6 (2012-05-13)
 ============

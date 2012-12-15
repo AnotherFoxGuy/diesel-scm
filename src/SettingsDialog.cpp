@@ -47,9 +47,14 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 	ui->cmbDoubleClickAction->addItem(tr("Open File"));
 	ui->cmbDoubleClickAction->addItem(tr("Open Containing Folder"));
 
+	ui->cmbFossilBrowser->addItem(tr("System"));
+	ui->cmbFossilBrowser->addItem(tr("Internal"));
+
 	// App Settings
 	ui->lineFossilPath->setText(QDir::toNativeSeparators(settings->GetValue(FUEL_SETTING_FOSSIL_PATH).toString()));
 	ui->cmbDoubleClickAction->setCurrentIndex(settings->GetValue(FUEL_SETTING_FILE_DBLCLICK).toInt());
+	ui->cmbFossilBrowser->setCurrentIndex(settings->GetValue(FUEL_SETTING_WEB_BROWSER).toInt());
+	ui->lineUIPort->setText(settings->GetValue(FUEL_SETTING_HTTP_PORT).toString());
 
 	// Initialize language combo
 	foreach(const LangMap &m, langMap)
@@ -88,6 +93,8 @@ void SettingsDialog::on_buttonBox_accepted()
 	settings->SetValue(FUEL_SETTING_FOSSIL_PATH, QDir::fromNativeSeparators(ui->lineFossilPath->text()));
 	Q_ASSERT(ui->cmbDoubleClickAction->currentIndex()>=FILE_DLBCLICK_ACTION_DIFF && ui->cmbDoubleClickAction->currentIndex()<FILE_DLBCLICK_ACTION_MAX);
 	settings->SetValue(FUEL_SETTING_FILE_DBLCLICK, ui->cmbDoubleClickAction->currentIndex());
+	settings->SetValue(FUEL_SETTING_WEB_BROWSER, ui->cmbFossilBrowser->currentIndex());
+	settings->SetValue(FUEL_SETTING_HTTP_PORT, ui->lineUIPort->text());
 
 	Q_ASSERT(settings->HasValue(FUEL_SETTING_LANGUAGE));
 	QString curr_langid = settings->GetValue(FUEL_SETTING_LANGUAGE).toString();
@@ -196,6 +203,10 @@ Settings::Settings(bool portableMode) : store(0)
 		SetValue(FUEL_SETTING_FILE_DBLCLICK, 0);
 	if(!HasValue(FUEL_SETTING_LANGUAGE) && SupportsLang(QLocale::system().name()))
 		SetValue(FUEL_SETTING_LANGUAGE, QLocale::system().name());
+	if(!HasValue(FUEL_SETTING_WEB_BROWSER))
+		SetValue(FUEL_SETTING_WEB_BROWSER, 0);
+	if(!HasValue(FUEL_SETTING_HTTP_PORT))
+		SetValue(FUEL_SETTING_HTTP_PORT, "8090");
 
 	ApplyEnvironment();
 }

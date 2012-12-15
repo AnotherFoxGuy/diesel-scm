@@ -163,6 +163,7 @@ private:
 	void updateFileView();
 	void updateStashView();
 	void selectRootDir();
+	void fossilBrowse(const QString &fossilUrl);
 
 	virtual QMenu *createPopupMenu();
 
@@ -242,7 +243,6 @@ private:
 	QStandardItemModel	repoDirModel;
 	QStandardItemModel	repoStashModel;
 	QProcess			fossilUI;
-	QString				fossilUIPort;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QProgressBar	*progressBar;
 	bool				fossilAbort;	// FIXME: No GUI for it yet

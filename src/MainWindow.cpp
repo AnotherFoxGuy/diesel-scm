@@ -40,6 +40,12 @@ enum
 
 enum
 {
+	TAB_LOG,
+	TAB_BROWSER
+};
+
+enum
+{
 	REPODIRMODEL_ROLE_PATH = Qt::UserRole+1
 };
 
@@ -134,7 +140,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 		Qt::DirectConnection );
 
 	QStringList header;
-	header << tr("Status") << tr("File") << tr("Ext") << tr("Modified") << tr("Path");
+	header << tr("Status") << tr("File") << tr("Extension") << tr("Modified") << tr("Path");
 	repoFileModel.setHorizontalHeaderLabels(header);
 	repoFileModel.horizontalHeaderItem(COLUMN_STATUS)->setTextAlignment(Qt::AlignCenter);
 
@@ -1394,6 +1400,27 @@ void MainWindow::selectRootDir()
 		ui->treeView->selectionModel()->select(root_index, QItemSelectionModel::Select);
 	}
 }
+
+//------------------------------------------------------------------------------
+void MainWindow::fossilBrowse(const QString &fossilUrl)
+{
+	if(!uiRunning())
+		ui->actionFossilUI->activate(QAction::Trigger);
+
+	Q_ASSERT(uiRunning());
+
+	bool use_internal = settings.GetValue(FUEL_SETTING_WEB_BROWSER).toInt() == 1;
+
+	QUrl url = QUrl(getFossilHttpAddress()+fossilUrl);
+
+	if(use_internal)
+	{
+		ui->webView->load(url);
+		ui->tabWidget->setCurrentIndex(TAB_BROWSER);
+	}
+	else
+		QDesktopServices::openUrl(url);
+}
 //------------------------------------------------------------------------------
 void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, bool allIfEmpty)
 {
@@ -1567,7 +1594,10 @@ bool MainWindow::startUI()
 	log(tr("Starting Fossil browser UI. Please wait.")+"\n");
 	QString fossil = getFossilPath();
 
-	fossilUI.start(fossil, QStringList() << "ui");
+	QString port = settings.GetValue(FUEL_SETTING_HTTP_PORT).toString();
+
+	fossilUI.start(fossil, QStringList() << "server" << "--localauth" << "-P" << port );
+
 	if(!fossilUI.waitForStarted() || fossilUI.state()!=QProcess::Running)
 	{
 		log(tr("Could not start Fossil executable '%s'").arg(fossil)+"\n");
@@ -1575,31 +1605,7 @@ bool MainWindow::startUI()
 		return false;
 	}
 
-#if 0
-	QString buffer;
-	while(buffer.indexOf(EOL_MARK)==-1)
-	{
-		fossilUI.waitForReadyRead(500);
-		buffer += fossilUI.readAll();
-		QCoreApplication::processEvents();
-	}
-
-	fossilUIPort.clear();
-
-	// Parse output to determine the running port
-	// "Listening for HTTP requests on TCP port 8080"
-	int idx = buffer.indexOf("TCP Port ");
-	if(idx!=-1)
-		fossilUIPort = buffer.mid(idx, 4);
-	else
-		fossilUIPort = "8080"; // Have a sensible default if we failed to parse the message
-#else
-	fossilUIPort = "8080";
-#endif
-
-
 	ui->actionFossilUI->setChecked(true);
-
 	return true;
 }
 
@@ -1614,14 +1620,19 @@ void MainWindow::stopUI()
 		fossilUI.terminate();
 #endif
 	}
+	fossilUI.close();
+
 	ui->actionFossilUI->setChecked(false);
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionFossilUI_triggered()
 {
-	if(!uiRunning())
+	if(!uiRunning() && ui->actionFossilUI->isChecked())
+	{
 		startUI();
+		fossilBrowse("");
+	}
 	else
 		stopUI();
 }
@@ -1635,29 +1646,17 @@ void MainWindow::on_actionQuit_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionTimeline_triggered()
 {
-	if(!uiRunning())
-		ui->actionFossilUI->activate(QAction::Trigger);
-
-	Q_ASSERT(uiRunning());
-
-	QDesktopServices::openUrl(QUrl(getFossilHttpAddress()+"/timeline"));
+	fossilBrowse("/timeline");
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionHistory_triggered()
 {
-	if(!uiRunning())
-		ui->actionFossilUI->activate(QAction::Trigger);
-
-	Q_ASSERT(uiRunning());
-
 	QStringList selection;
 	getSelectionFilenames(selection);
 
 	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
-	{
-		QDesktopServices::openUrl(QUrl(getFossilHttpAddress()+"/finfo?name="+*it));
-	}
+		fossilBrowse("/finfo?name="+*it);
 }
 
 //------------------------------------------------------------------------------
@@ -2103,7 +2102,8 @@ void MainWindow::on_actionViewAsList_triggered()
 //------------------------------------------------------------------------------
 QString MainWindow::getFossilHttpAddress()
 {
-	return "http://127.0.0.1:"+fossilUIPort;
+	QString port = settings.GetValue(FUEL_SETTING_HTTP_PORT).toString();
+	return "http://127.0.0.1:"+port;
 }
 
 //------------------------------------------------------------------------------

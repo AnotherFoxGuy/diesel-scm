@@ -15,6 +15,8 @@ namespace Ui {
 #define FUEL_SETTING_COMMIT_MSG				"CommitMsgHistory"
 #define FUEL_SETTING_FILE_DBLCLICK			"FileDblClickAction"
 #define FUEL_SETTING_LANGUAGE				"Language"
+#define FUEL_SETTING_WEB_BROWSER			"WebBrowser"
+#define FUEL_SETTING_HTTP_PORT				"HTTPPort"
 
 #define FOSSIL_SETTING_GDIFF_CMD			"gdiff-command"
 #define FOSSIL_SETTING_GMERGE_CMD			"gmerge-command"
