@@ -1,11 +1,12 @@
-C Updated\sArch\sPKGBUILD
-D 2012-12-15T16:46:28.096
+C Added\slocalization\sconversion\sscript\sfor\swindows\sbuild
+D 2012-12-20T14:04:22.534
 F dist/arch/PKGBUILD bf020b73b610f4c14e38feba027fe8f45b4fbc5c
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt b4494e409960f22705c8624eaa935e3f195df10b
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro 453992931471eef0838175e017531e88dc6b9b4f
+F intl/convert.bat 7e878e302a8be2324fd51b9eed1aab272dbd8bbd x
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
 F intl/de_DE.ts 6230de8f647218960853b339909cf8c3d09f45ed
 F intl/el_GR.ts fb2cb5834e3425fde1e142bab37a07967591670e
@@ -193,7 +194,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 23e4827461cf91218c22c65e44d8aa32d04313f7
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 53529a28ef8b199177c1b9fde9a4d34c5ac9115c
-R 2ac4f0402ff6f1b119b6abf64e019cbd
+P ab6d3fbadba0d0efb4d8d8e068e0307e496a28bf
+R 64caeb6fa0ca6f0abca83607769c1bfe
 U kostas
-Z 66cec389be173211737cc92568dc1b52
+Z 3fa79f62d4dbc5393dab2f18ceca6475
