@@ -45,7 +45,8 @@ SOURCES += src/main.cpp\
 	src/Utils.cpp \
 	src/FileTableView.cpp \
 	src/CloneDialog.cpp \
-	src/LoggedProcess.cpp
+	src/LoggedProcess.cpp \
+    src/BrowserWidget.cpp
 
 HEADERS  += src/MainWindow.h \
 	src/CommitDialog.h \
@@ -54,13 +55,15 @@ HEADERS  += src/MainWindow.h \
 	src/Utils.h \
 	src/FileTableView.h \
 	src/CloneDialog.h \
-	src/LoggedProcess.h
+	src/LoggedProcess.h \
+    src/BrowserWidget.h
 
 FORMS    += ui/MainWindow.ui \
 	ui/CommitDialog.ui \
 	ui/FileActionDialog.ui \
 	ui/SettingsDialog.ui \
-	ui/CloneDialog.ui
+	ui/CloneDialog.ui \
+    ui/BrowserWidget.ui
 
 RESOURCES += \
 	rsrc/resources.qrc

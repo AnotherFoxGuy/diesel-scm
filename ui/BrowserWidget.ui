@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BrowserWidget</class>
+ <widget class="QWidget" name="BrowserWidget">
+  <property name="geometry">
+   <rect>
+	<x>0</x>
+	<y>0</y>
+	<width>400</width>
+	<height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+	<number>0</number>
+   </property>
+   <property name="margin">
+	<number>0</number>
+   </property>
+   <item>
+	<widget class="QToolBar" name="toolBar">
+	 <property name="windowTitle">
+	  <string/>
+	 </property>
+	 <property name="iconSize">
+	  <size>
+	   <width>24</width>
+	   <height>24</height>
+	  </size>
+	 </property>
+	 <addaction name="actionBrowserBack"/>
+	 <addaction name="actionBrowserForward"/>
+	 <addaction name="actionBrowserRefresh"/>
+	 <addaction name="actionBrowserStop"/>
+	</widget>
+   </item>
+   <item>
+	<widget class="QLineEdit" name="txtUrl"/>
+   </item>
+   <item>
+	<widget class="QWebView" name="webView">
+	 <property name="url">
+	  <url>
+	   <string>about:blank</string>
+	  </url>
+	 </property>
+	</widget>
+   </item>
+  </layout>
+  <action name="actionBrowserBack">
+   <property name="icon">
+	<iconset resource="../rsrc/resources.qrc">
+	 <normaloff>:/icons/icons/Button Previous-01.png</normaloff>:/icons/icons/Button Previous-01.png</iconset>
+   </property>
+   <property name="text">
+	<string>Back</string>
+   </property>
+   <property name="toolTip">
+	<string>Back</string>
+   </property>
+  </action>
+  <action name="actionBrowserForward">
+   <property name="icon">
+	<iconset resource="../rsrc/resources.qrc">
+	 <normaloff>:/icons/icons/Button Next-01.png</normaloff>:/icons/icons/Button Next-01.png</iconset>
+   </property>
+   <property name="text">
+	<string>Forward</string>
+   </property>
+   <property name="toolTip">
+	<string>Forward</string>
+   </property>
+  </action>
+  <action name="actionBrowserRefresh">
+   <property name="icon">
+	<iconset resource="../rsrc/resources.qrc">
+	 <normaloff>:/icons/icons/Button Refresh-01.png</normaloff>:/icons/icons/Button Refresh-01.png</iconset>
+   </property>
+   <property name="text">
+	<string>Refresh</string>
+   </property>
+   <property name="toolTip">
+	<string>Refresh</string>
+   </property>
+  </action>
+  <action name="actionBrowserStop">
+   <property name="icon">
+	<iconset resource="../rsrc/resources.qrc">
+	 <normaloff>:/icons/icons/Button Close-01.png</normaloff>:/icons/icons/Button Close-01.png</iconset>
+   </property>
+   <property name="text">
+	<string>browserStop</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../rsrc/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
