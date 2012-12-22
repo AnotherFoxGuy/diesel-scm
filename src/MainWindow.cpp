@@ -458,7 +458,7 @@ void MainWindow::on_actionCloseRepository_triggered()
 	if(getRepoStatus()!=REPO_OK)
 		return;
 
-	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), tr("Are you sure want to close this workspace?")))
+	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), tr("Are you sure you want to close this workspace?")))
 		return;
 
 	// Close Repo
@@ -1958,6 +1958,7 @@ void MainWindow::on_actionAbout_triggered()
 						tr("Translations with the help of:") + "\n"
 							"stayawake (German de_DE)\n"
 							"djnavas (Spanish es_ES)\n"
+							"Fringale (French fr_FR)\n"
 					   );
 }
 

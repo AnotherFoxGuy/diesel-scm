@@ -472,6 +472,9 @@
    <property name="text">
     <string>Clone...</string>
    </property>
+   <property name="statusTip">
+    <string>Clone a remote repository</string>
+   </property>
   </action>
   <action name="actionPush">
    <property name="icon">
@@ -575,10 +578,10 @@
     <string>Fossil UI</string>
    </property>
    <property name="toolTip">
-    <string>Starts the Fosill UI in the Web Browser</string>
+    <string>Starts the Fosil UI in the Web Browser</string>
    </property>
    <property name="statusTip">
-    <string>Starts the Fosill UI in the Web Browser</string>
+    <string>Starts the Fosil UI in the Web Browser</string>
    </property>
   </action>
   <action name="actionRevert">
@@ -632,7 +635,7 @@
      <normaloff>:/icons/icons/Document-01.png</normaloff>:/icons/icons/Document-01.png</iconset>
    </property>
    <property name="text">
-    <string>Open file</string>
+    <string>Open File</string>
    </property>
    <property name="toolTip">
     <string>Open the selected file</string>
@@ -786,10 +789,10 @@
     <string>File &amp;List</string>
    </property>
    <property name="iconText">
-    <string>View as files as a list</string>
+    <string>View files as a list</string>
    </property>
    <property name="toolTip">
-    <string>View as files as a list</string>
+    <string>View files as a list</string>
    </property>
    <property name="statusTip">
     <string>View the workspace as a list of files</string>
@@ -834,7 +837,7 @@
     <string>Stash changes</string>
    </property>
    <property name="statusTip">
-    <string>Show the stash</string>
+    <string>Stash changes</string>
    </property>
   </action>
   <action name="actionApplyStash">
@@ -860,9 +863,12 @@
     <string>&amp;Stashed Changes</string>
    </property>
    <property name="iconText">
-    <string>View the Stash</string>
+    <string>View Stashed Changes</string>
    </property>
    <property name="toolTip">
+    <string>View Stashed Changes</string>
+   </property>
+   <property name="statusTip">
     <string>Show the list of stashed changes</string>
    </property>
   </action>

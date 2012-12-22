@@ -141,17 +141,18 @@ void SettingsDialog::on_btnSelectGMerge_clicked()
 //-----------------------------------------------------------------------------
 void SettingsDialog::on_btnClearMessageHistory_clicked()
 {
-	if(DialogQuery(this, tr("Clear Commit Message History"), tr("Are you sure want to clear the commit message history?"))==QMessageBox::Yes)
+	if(DialogQuery(this, tr("Clear Commit Message History"), tr("Are you sure you want to clear the commit message history?"))==QMessageBox::Yes)
 		settings->SetValue(FUEL_SETTING_COMMIT_MSG, QStringList());
 }
 
 //-----------------------------------------------------------------------------
 void SettingsDialog::CreateLangMap()
 {
-	langMap.append(LangMap("en_US", "English (US)"));
-	langMap.append(LangMap("es_ES", "Spanish (ES)"));
 	langMap.append(LangMap("de_DE", "German (DE)"));
 	langMap.append(LangMap("el_GR", "Greek"));
+	langMap.append(LangMap("en_US", "English (US)"));
+	langMap.append(LangMap("es_ES", "Spanish (ES)"));
+	langMap.append(LangMap("fr_FR", "French (FR)"));
 }
 
 //-----------------------------------------------------------------------------
