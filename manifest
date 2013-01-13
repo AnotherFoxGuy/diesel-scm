@@ -1,11 +1,11 @@
-C Replaced\sWebView\swith\sa\scustom\sBrowserWidget\nAdded\sbrowser\snavigation\sbuttons\sand\surl\stextbox\n\n\n
-D 2012-12-22T16:29:06.140
+C -\sReplaced\sthe\sQWebView\swith\sa\scustom\swidget\n-\sAdded\ssupport\sform\sBack\sand\sForward\smouse\sbuttons\sto\swebview\n
+D 2013-01-13T10:36:07.204
 F dist/arch/PKGBUILD bf020b73b610f4c14e38feba027fe8f45b4fbc5c
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt b4494e409960f22705c8624eaa935e3f195df10b
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro 5ca9e8f6817cda42dbdd4f02079bb33e9044db5e
+F fuel.pro 9924b8c961a342363503827b42404d3e87e24a1a
 F intl/convert.bat 7e878e302a8be2324fd51b9eed1aab272dbd8bbd x
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
 F intl/de_DE.ts 6230de8f647218960853b339909cf8c3d09f45ed
@@ -178,6 +178,8 @@ F src/CloneDialog.cpp 8652480baa3f13f0f0e7df019751338c7cbeb1b5
 F src/CloneDialog.h c97e8c266819292622ca3e84b68e04e81ec05ba3
 F src/CommitDialog.cpp 5300522ac11bc1096a11a6ce22f8c1665d4afc05
 F src/CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
+F src/CustomWebView.cpp b7dd0c41977c2cba005df07ed8967ba6f58d07d9
+F src/CustomWebView.h fbc8ee55812d1acb3c3b2bc31be7533e8a112822
 F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
@@ -192,13 +194,13 @@ F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
 F src/main.cpp 8f8790822f82870a12169bcf204e571138adb065
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
-F ui/BrowserWidget.ui e0f4fa810d1989b77e503d37ccb6b01e1c9b4129
+F ui/BrowserWidget.ui 76d1d497c842f4b8d83149df9c144cde2f7ae3aa
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 624844304042b74c462df27793a433183049f43f
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 8bcd65e5fa2194a7edb5ddf56e5c9caddd7316cf
-R 9ab6b655f11070587a547e7ffdee40a0
+P 4914092dd81da4678e5aa76e8c8a15bc7cb1e146
+R 6e79369ab4ba4e452578109856e7a09e
 U kostas
-Z 9493aba2c684dca13ce6b9bb52bb4ebd
+Z 6275ed8dd52eed9456fd7db503e12414
