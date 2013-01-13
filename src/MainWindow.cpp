@@ -17,6 +17,7 @@
 #include <QDebug>
 #include <QProgressBar>
 #include <QDragEnterEvent>
+#include <QTextCodec>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
@@ -1097,6 +1098,16 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	fossilAbort = false;
 	QString buffer;
 
+#ifdef Q_WS_WIN32
+	QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+#else
+	QTextCodec *codec = QTextCodec::codecForLocale();
+#endif
+
+	Q_ASSERT(codec);
+	QTextDecoder *decoder = codec->makeDecoder();
+	Q_ASSERT(decoder);
+
 	while(true)
 	{
 		QProcess::ProcessState state = process.state();
@@ -1124,7 +1135,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			qDebug() << input;
 		#endif
 
-		buffer += input;
+		buffer += decoder->toUnicode(input);
 
 		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
@@ -1237,6 +1248,8 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			buffer.clear();
 		}
 	}
+
+	delete decoder;
 
 	// Must be finished by now
 	Q_ASSERT(process.state()==QProcess::NotRunning);
