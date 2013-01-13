@@ -1,5 +1,8 @@
-C Display\sonly\sthe\sfilename\swhen\sthe\sTreeView\sis\sactivated\n
-D 2013-01-13T12:04:15.406
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+C Create\snew\sbranch\snamed\s"history-dialog"
+D 2013-01-13T13:57:42.790
 F dist/arch/PKGBUILD bf020b73b610f4c14e38feba027fe8f45b4fbc5c
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -200,7 +203,21 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 624844304042b74c462df27793a433183049f43f
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 9c28f79677e9fcd17ba7927b07bdf1403d1d5715
+P b0ae319a2a85eb7373c7b66ba761205977e16b51
 R a7efa803e9394872c1191a04b1ffe2e8
+T *branch * history-dialog
+T *sym-history-dialog *
+T -sym-trunk *
 U kostas
-Z 24b315dbf87feaf49a30d731b056eae9
+Z c94c529628bf3865f7a2ee8df77d2da4
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
+
+iQEcBAEBAgAGBQJQ8r1WAAoJELYfGoZb/ckA/fMIANZNcJ9b5TO0AgOWKK/Iut8Y
+lx5eImXTDsa43MooPqVUM6CA3S2cePsoLiX8In49rUFjcQfbDC9AVcGMB1IUDx+p
+AhrFYn58rCdYsU7VDVu5Lq26hjBvRk7HpWVVCh2vzAod//ui4WOzJyZGjNKLK+WC
+eXBYKSGLK1/GcyWNvjVNPkynOVkO7xUAi7P6dO324BdnuhtYNGEmTVYfc0ly3N+G
+oB2nQVszkjaotFK9LypzmJCFifcaFWutql7DxNWP3UCobi0jt8gvAKoz8tiMXiM/
+eI8wabcUdI9zOjkmLseO3hTsKDEr7hczMPqBR7jZ5GmYSwv5VCU5gEW/7JxD/mA=
+=Bej0
+-----END PGP SIGNATURE-----
