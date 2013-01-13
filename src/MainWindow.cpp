@@ -886,6 +886,8 @@ void MainWindow::updateFileView()
 
 	QFileIconProvider icon_provider;
 
+	bool display_path = viewMode==VIEWMODE_LIST || selectedDirs.count() > 1;
+
 	size_t item_id=0;
 	for(filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
 	{
@@ -919,7 +921,11 @@ void MainWindow::updateFileView()
 
 		QStandardItem *filename_item = 0;
 		repoFileModel.setItem(item_id, COLUMN_PATH, new QStandardItem(path));
-		filename_item = new QStandardItem(icon, QDir::toNativeSeparators(e.getFilePath()));
+
+		if(display_path)
+			filename_item = new QStandardItem(icon, QDir::toNativeSeparators(e.getFilePath()));
+		else
+			filename_item = new QStandardItem(icon, e.getFilename());
 
 		Q_ASSERT(filename_item);
 		// Keep the path in the user data

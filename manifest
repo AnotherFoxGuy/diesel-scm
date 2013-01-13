@@ -1,5 +1,5 @@
-C Fossil\soutput\sis\snow\streated\sas\sutf-8\son\sWindows\n
-D 2013-01-13T11:46:47.297
+C Display\sonly\sthe\sfilename\swhen\sthe\sTreeView\sis\sactivated\n
+D 2013-01-13T12:04:15.406
 F dist/arch/PKGBUILD bf020b73b610f4c14e38feba027fe8f45b4fbc5c
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -186,7 +186,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp f00d55c004f91ae1f514b6e4213ae43649553aa2
+F src/MainWindow.cpp e53a9785fe4541c23638126c3d2a69ad52e37b0a
 F src/MainWindow.h 9c70fd9db3bbd5f96132563819b50d21517aa740
 F src/SettingsDialog.cpp 96650f3b7c24cb18bcf18def9860642bc58b9251
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
@@ -200,7 +200,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 624844304042b74c462df27793a433183049f43f
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P c2c1b42f9604c19f48e4811c4eaf44d63aee60fe
-R 4afe2419b7a5acf8ce65f69c04d56780
+P 9c28f79677e9fcd17ba7927b07bdf1403d1d5715
+R a7efa803e9394872c1191a04b1ffe2e8
 U kostas
-Z 8ae95f27e0d9cc7f19df4e88cf8777ad
+Z 24b315dbf87feaf49a30d731b056eae9
