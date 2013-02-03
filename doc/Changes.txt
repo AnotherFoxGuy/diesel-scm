@@ -1,10 +1,11 @@
-Fuel V0.9.7 (2012-XX-XX)
+Fuel V0.9.7 (2013-XX-XX)
 ============
 - Feature: Optionally use the internal browser for the Fossil UI
 - Feature: Support for persisting the state (Column order and sizes) of the File View
 - Feature: Dropping a fossil checkout file or workspace folder on Fuel now opens that workspace
-- Feature: Commit Dialog: Pressing Ctrl-Enter within the comment box starts the commit
-  whereas pressing Escape aborts it
+- Feature: Dropping a file on Fuel now adds that file to Fossil
+- Feature: Commit Dialog: Pressing Ctrl-Enter within the comment box commences the commit
+  whereas Escape aborts it
 - Feature: Support for localization
 - Localisations:
 	Greek

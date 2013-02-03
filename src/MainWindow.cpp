@@ -2535,29 +2535,54 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 //------------------------------------------------------------------------------
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
-	QList<QUrl> urls = event->mimeData()->urls();
-	if(urls.length()!=1)
-		return;
-
-	QFileInfo finfo(urls.first().toLocalFile());
-	if(finfo.isDir() || finfo.suffix() == FOSSIL_EXT || finfo.fileName() == FOSSIL_CHECKOUT1 || finfo.fileName() == FOSSIL_CHECKOUT2 )
-	{
-		event->acceptProposedAction();
-		return;
-	}
+	event->acceptProposedAction();
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::dropEvent(QDropEvent *event)
 {
 	QList<QUrl> urls = event->mimeData()->urls();
-	if(urls.length()!=1)
+
+	if(urls.length()==0)
 		return;
 
+	// When dropping a folder or a checkout file, open the associated worksspace
 	QFileInfo finfo(urls.first().toLocalFile());
 	if(finfo.isDir() || finfo.suffix() == FOSSIL_EXT || finfo.fileName() == FOSSIL_CHECKOUT1 || finfo.fileName() == FOSSIL_CHECKOUT2 )
 	{
 		event->acceptProposedAction();
 		openWorkspace(finfo.absoluteFilePath());
 	}
+	else // Otherwise add
+	{
+		QStringList newfiles;
+
+		Q_FOREACH(const QUrl &url, urls)
+		{
+			QFileInfo finfo(url.toLocalFile());
+			QString abspath = finfo.absoluteFilePath();
+
+			// Within the current workspace ?
+			if(abspath.indexOf(currentWorkspace)!=0)
+				continue; // skip
+
+			// Remove workspace from full path
+			QString wkpath = abspath.right(abspath.length()-currentWorkspace.length()-1);
+
+			newfiles.append(wkpath);
+		}
+
+		// Any files to add?
+		if(!newfiles.empty())
+		{
+			if(!FileActionDialog::run(this, tr("Add files"), tr("The following files will be added.")+"\n"+tr("Are you sure?"), newfiles))
+				return;
+
+			// Do Add
+			runFossil(QStringList() << "add" << QuotePaths(newfiles) );
+
+			refresh();
+		}
+	}
 }
+
