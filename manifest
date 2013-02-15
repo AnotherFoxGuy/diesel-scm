@@ -1,5 +1,5 @@
-C Added\ssupport\sfor\sadding\sfiles\sto\sFosill\svia\sdrag\sand\sdrop\n
-D 2013-02-03T02:58:26.117
+C Ignore\sdrops\sfrom\sthe\ssame\sfuel\swindow\n
+D 2013-02-15T04:02:18.198
 F dist/arch/PKGBUILD bf020b73b610f4c14e38feba027fe8f45b4fbc5c
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -186,7 +186,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp e08adbae093d2a436d74666b7c7a3643cc5ad832
+F src/MainWindow.cpp 1ce71ed04d4f2a1a57bbd273c42854d7f1e018af
 F src/MainWindow.h 9c70fd9db3bbd5f96132563819b50d21517aa740
 F src/SettingsDialog.cpp 96650f3b7c24cb18bcf18def9860642bc58b9251
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
@@ -200,7 +200,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 624844304042b74c462df27793a433183049f43f
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P b0ae319a2a85eb7373c7b66ba761205977e16b51
-R 6fb911c63a9bc706856ae41578f922cd
+P 5bda1c48427cedd99a70fab9d051b28af0fc064f
+R 1dc414ab1d4b579f0721583250efe149
 U kostas
-Z 3b175d2a68256c4d2b1303bdd8b28ddd
+Z 9dcac8b0a21ab67cf364854545724053

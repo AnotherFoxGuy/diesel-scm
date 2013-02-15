@@ -2535,7 +2535,9 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 //------------------------------------------------------------------------------
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
-	event->acceptProposedAction();
+	// Ignore drops from the same window
+	if(event->source() != this)
+		event->acceptProposedAction();
 }
 
 //------------------------------------------------------------------------------
@@ -2553,7 +2555,7 @@ void MainWindow::dropEvent(QDropEvent *event)
 		event->acceptProposedAction();
 		openWorkspace(finfo.absoluteFilePath());
 	}
-	else // Otherwise add
+	else // Otherwise if not a workspace file and within a workspace, add
 	{
 		QStringList newfiles;
 
