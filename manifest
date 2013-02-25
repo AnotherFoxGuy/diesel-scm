@@ -1,5 +1,5 @@
-C Ignore\sdrops\sfrom\sthe\ssame\sfuel\swindow\n
-D 2013-02-15T04:02:18.198
+C Updated\stranslations\nPushed\sEnglish/Greek\schanges\sto\sTransifex\n
+D 2013-02-25T11:48:39.243
 F dist/arch/PKGBUILD bf020b73b610f4c14e38feba027fe8f45b4fbc5c
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -8,11 +8,11 @@ F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro 9924b8c961a342363503827b42404d3e87e24a1a
 F intl/convert.bat 7e878e302a8be2324fd51b9eed1aab272dbd8bbd x
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
-F intl/de_DE.ts 6230de8f647218960853b339909cf8c3d09f45ed
-F intl/el_GR.ts fb2cb5834e3425fde1e142bab37a07967591670e
-F intl/en_US.ts 1c061af1efde5117db44839b3ce26d347b7de231
-F intl/es_ES.ts d493333e98c5113ddc036875e7d156d90eb8d1be
-F intl/fr_FR.ts 421124bf339322b260630bbd3a3b53e952240054
+F intl/de_DE.ts fb9d0847c61ed3bd06f20d4bbfd07d46686d321e
+F intl/el_GR.ts 3f36e2b09d5ac0885062b1798392898c7dc99f9b
+F intl/en_US.ts 1e715b33361965b323364ff31832f85b86ffaf5c
+F intl/es_ES.ts f76969cdf7fac09c5f7d3f0881d3392b4126953a
+F intl/fr_FR.ts d225db46a66bbca4ebf1353b5df0c658df98d72d
 F intl/update.sh b5312e108eec47f9c8cb7d6790c57335e6b52829 x
 F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
 F rsrc/fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
@@ -194,13 +194,13 @@ F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
 F src/main.cpp 8f8790822f82870a12169bcf204e571138adb065
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
-F ui/BrowserWidget.ui 76d1d497c842f4b8d83149df9c144cde2f7ae3aa
+F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 624844304042b74c462df27793a433183049f43f
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 5bda1c48427cedd99a70fab9d051b28af0fc064f
-R 1dc414ab1d4b579f0721583250efe149
+P d45b311e64e49833f7c35a4385aa828235d488e2
+R effd0058fefea6bdd0a60941f6eee72b
 U kostas
-Z 9dcac8b0a21ab67cf364854545724053
+Z 6ace6da2360cdfaa907d08001b0fb097

@@ -10,9 +10,6 @@
     <height>300</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
@@ -86,7 +83,7 @@
      <normaloff>:/icons/icons/Button Close-01.png</normaloff>:/icons/icons/Button Close-01.png</iconset>
    </property>
    <property name="text">
-    <string>browserStop</string>
+    <string>Stop</string>
    </property>
   </action>
  </widget>

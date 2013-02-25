@@ -3,6 +3,32 @@
 <TS version="2.0" language="es_ES" sourcelanguage="en.US">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
+    <name>BrowserWidget</name>
+    <message>
+        <location filename="../ui/BrowserWidget.ui" line="50"/>
+        <location filename="../ui/BrowserWidget.ui" line="53"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/BrowserWidget.ui" line="62"/>
+        <location filename="../ui/BrowserWidget.ui" line="65"/>
+        <source>Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/BrowserWidget.ui" line="74"/>
+        <location filename="../ui/BrowserWidget.ui" line="77"/>
+        <source>Refresh</source>
+        <translation type="unfinished">Refrescar</translation>
+    </message>
+    <message>
+        <location filename="../ui/BrowserWidget.ui" line="86"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CloneDialog</name>
     <message>
         <location filename="../ui/CloneDialog.ui" line="17"/>
@@ -106,507 +132,529 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/MainWindow.ui" line="14"/>
+        <location filename="../ui/MainWindow.ui" line="17"/>
         <source>Fuel</source>
         <translation>Fuel</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="185"/>
+        <location filename="../ui/MainWindow.ui" line="188"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitácora</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="211"/>
+        <location filename="../ui/MainWindow.ui" line="214"/>
         <source>Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Explorador</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="238"/>
+        <location filename="../ui/MainWindow.ui" line="244"/>
         <source>&amp;File</source>
         <translation>&amp;Archivo</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="253"/>
+        <location filename="../ui/MainWindow.ui" line="259"/>
         <source>&amp;Help</source>
         <translation>A&amp;yuda</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="259"/>
+        <location filename="../ui/MainWindow.ui" line="265"/>
         <source>&amp;View</source>
         <translation>&amp;Ver</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="276"/>
+        <location filename="../ui/MainWindow.ui" line="282"/>
         <source>Main Toolbar</source>
         <translation>Barra principal de herramientas</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="330"/>
+        <location filename="../ui/MainWindow.ui" line="336"/>
         <source>Refresh</source>
         <translation>Refrescar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="333"/>
-        <location filename="../ui/MainWindow.ui" line="336"/>
+        <location filename="../ui/MainWindow.ui" line="339"/>
+        <location filename="../ui/MainWindow.ui" line="342"/>
         <source>Refresh the views</source>
         <translation>Refrescar las vistas</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="339"/>
+        <location filename="../ui/MainWindow.ui" line="345"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="348"/>
+        <location filename="../ui/MainWindow.ui" line="354"/>
         <source>Commit</source>
         <translation>Entregar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="351"/>
-        <location filename="../ui/MainWindow.ui" line="354"/>
+        <location filename="../ui/MainWindow.ui" line="357"/>
+        <location filename="../ui/MainWindow.ui" line="360"/>
         <source>Commit modifications</source>
         <translation>Entregar modificaciones</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="357"/>
+        <location filename="../ui/MainWindow.ui" line="363"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="366"/>
+        <location filename="../ui/MainWindow.ui" line="372"/>
         <source>Diff</source>
         <translation>Diferencias</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="369"/>
-        <location filename="../ui/MainWindow.ui" line="372"/>
+        <location filename="../ui/MainWindow.ui" line="375"/>
+        <location filename="../ui/MainWindow.ui" line="378"/>
         <source>Display the differences between the current and last committed version</source>
         <translation>Muestre las diferencias entre la versión actual y la última entregada</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="375"/>
+        <location filename="../ui/MainWindow.ui" line="381"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="384"/>
+        <location filename="../ui/MainWindow.ui" line="390"/>
         <source>Add</source>
         <translation>Añadir</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="387"/>
-        <location filename="../ui/MainWindow.ui" line="390"/>
+        <location filename="../ui/MainWindow.ui" line="393"/>
+        <location filename="../ui/MainWindow.ui" line="396"/>
         <source>Add files to the repository</source>
         <translation>Añadir archivos al depósito</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="393"/>
+        <location filename="../ui/MainWindow.ui" line="399"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="402"/>
+        <location filename="../ui/MainWindow.ui" line="408"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="405"/>
-        <location filename="../ui/MainWindow.ui" line="408"/>
+        <location filename="../ui/MainWindow.ui" line="411"/>
+        <location filename="../ui/MainWindow.ui" line="414"/>
         <source>Delete files from the repository</source>
         <translation>Eliminar archivos del depósito</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="411"/>
+        <location filename="../ui/MainWindow.ui" line="417"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="420"/>
+        <location filename="../ui/MainWindow.ui" line="426"/>
         <source>&amp;New...</source>
         <translation>&amp;Nuevo</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="423"/>
-        <location filename="../ui/MainWindow.ui" line="426"/>
+        <location filename="../ui/MainWindow.ui" line="429"/>
+        <location filename="../ui/MainWindow.ui" line="432"/>
         <source>Make a new Fossil repository</source>
         <translation>Hacer un nuevo depósito de Fossil</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="429"/>
+        <location filename="../ui/MainWindow.ui" line="435"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="438"/>
+        <location filename="../ui/MainWindow.ui" line="444"/>
         <source>&amp;Open...</source>
         <translation>A&amp;brir</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="441"/>
-        <location filename="../ui/MainWindow.ui" line="444"/>
+        <location filename="../ui/MainWindow.ui" line="447"/>
+        <location filename="../ui/MainWindow.ui" line="450"/>
         <source>Open a Fossil repository or workspace folder</source>
         <translation>Abrir un depósito de Fossil o una carpeta de trabajo</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="447"/>
+        <location filename="../ui/MainWindow.ui" line="453"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="455"/>
+        <location filename="../ui/MainWindow.ui" line="461"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="458"/>
-        <location filename="../ui/MainWindow.ui" line="461"/>
+        <location filename="../ui/MainWindow.ui" line="464"/>
+        <location filename="../ui/MainWindow.ui" line="467"/>
         <source>Close the current workspace</source>
         <translation>Cerrar el área de trabajo acatual</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="470"/>
+        <location filename="../ui/MainWindow.ui" line="476"/>
         <source>Clone...</source>
         <translation>Clonar...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="479"/>
+        <source>Clone a remote repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="488"/>
         <source>Push</source>
         <translation>Empujar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="482"/>
-        <location filename="../ui/MainWindow.ui" line="485"/>
+        <location filename="../ui/MainWindow.ui" line="491"/>
+        <location filename="../ui/MainWindow.ui" line="494"/>
         <source>Push changes to the remote repository</source>
         <translation>Empujar cambios al depósito remoto</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="488"/>
+        <location filename="../ui/MainWindow.ui" line="497"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="497"/>
+        <location filename="../ui/MainWindow.ui" line="506"/>
         <source>Pull</source>
         <translation>Halar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="500"/>
-        <location filename="../ui/MainWindow.ui" line="503"/>
+        <location filename="../ui/MainWindow.ui" line="509"/>
+        <location filename="../ui/MainWindow.ui" line="512"/>
         <source>Pull changes from the remote repository</source>
         <translation>Halar cambios del depósito remoto</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="506"/>
+        <location filename="../ui/MainWindow.ui" line="515"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="515"/>
-        <location filename="../src/MainWindow.cpp" line="1874"/>
+        <location filename="../ui/MainWindow.ui" line="524"/>
+        <location filename="../src/MainWindow.cpp" line="1892"/>
         <source>Rename</source>
         <translation>Renombrar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="518"/>
-        <location filename="../ui/MainWindow.ui" line="521"/>
+        <location filename="../ui/MainWindow.ui" line="527"/>
+        <location filename="../ui/MainWindow.ui" line="530"/>
         <source>Rename the selected file</source>
         <translation>Renombrar el archivo seleccionado</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="524"/>
+        <location filename="../ui/MainWindow.ui" line="533"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="533"/>
+        <location filename="../ui/MainWindow.ui" line="542"/>
         <source>&amp;Quit</source>
         <translation>&amp;Terminar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="536"/>
+        <location filename="../ui/MainWindow.ui" line="545"/>
         <source>Quit</source>
         <translation>Terminar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="539"/>
+        <location filename="../ui/MainWindow.ui" line="548"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="551"/>
+        <location filename="../ui/MainWindow.ui" line="560"/>
         <source>History</source>
         <translation>Historia</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="554"/>
-        <location filename="../ui/MainWindow.ui" line="557"/>
+        <location filename="../ui/MainWindow.ui" line="563"/>
+        <location filename="../ui/MainWindow.ui" line="566"/>
         <source>Display the version history of a file via the Fossil UI</source>
         <translation>Mostrar las versiones de un archivo con la IU de Fossil</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="560"/>
+        <location filename="../ui/MainWindow.ui" line="569"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="572"/>
+        <location filename="../ui/MainWindow.ui" line="581"/>
         <source>Fossil UI</source>
         <translation>IU de Fossil</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="575"/>
-        <location filename="../ui/MainWindow.ui" line="578"/>
-        <source>Starts the Fosill UI in the Web Browser</source>
-        <translation>Iniciar la IU de Fossil en el explorador web</translation>
+        <location filename="../ui/MainWindow.ui" line="584"/>
+        <location filename="../ui/MainWindow.ui" line="587"/>
+        <source>Starts the Fosil UI in the Web Browser</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="587"/>
+        <location filename="../ui/MainWindow.ui" line="641"/>
+        <source>Open File</source>
+        <translation type="unfinished">Abrir Archivo</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="795"/>
+        <location filename="../ui/MainWindow.ui" line="798"/>
+        <source>View files as a list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="869"/>
+        <location filename="../ui/MainWindow.ui" line="872"/>
+        <source>View Stashed Changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts the Fosill UI in the Web Browser</source>
+        <translation type="obsolete">Iniciar la IU de Fossil en el explorador web</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="596"/>
         <source>Revert</source>
         <translation>Revertir</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="590"/>
-        <location filename="../ui/MainWindow.ui" line="593"/>
+        <location filename="../ui/MainWindow.ui" line="599"/>
+        <location filename="../ui/MainWindow.ui" line="602"/>
         <source>Revert files to the last commited version</source>
         <translation>Revertir los archivos a la última versión entregada</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="602"/>
+        <location filename="../ui/MainWindow.ui" line="611"/>
         <source>Clear Log</source>
         <translation>Limpiar la bitácora</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="605"/>
+        <location filename="../ui/MainWindow.ui" line="614"/>
         <source>Clears the log</source>
         <translation>Limpia la bitácora</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="608"/>
+        <location filename="../ui/MainWindow.ui" line="617"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="617"/>
+        <location filename="../ui/MainWindow.ui" line="626"/>
         <source>Timeline</source>
         <translation>Cronología</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="620"/>
-        <location filename="../ui/MainWindow.ui" line="623"/>
+        <location filename="../ui/MainWindow.ui" line="629"/>
+        <location filename="../ui/MainWindow.ui" line="632"/>
         <source>Display the change history of the Fossil repository</source>
         <translation>Mostrar la historia de cambios del depósito de Fossil</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="632"/>
         <source>Open file</source>
-        <translation>Abrir archivo</translation>
+        <translation type="obsolete">Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="635"/>
-        <location filename="../ui/MainWindow.ui" line="638"/>
+        <location filename="../ui/MainWindow.ui" line="644"/>
+        <location filename="../ui/MainWindow.ui" line="647"/>
         <source>Open the selected file</source>
         <translation>Abrir el archivo seleccionado</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="641"/>
+        <location filename="../ui/MainWindow.ui" line="650"/>
         <source>Ctrl+Return</source>
         <translation>Ctrl+Intro</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="650"/>
+        <location filename="../ui/MainWindow.ui" line="659"/>
         <source>Open Containing</source>
         <translation>Abra Conteniendo</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="653"/>
-        <location filename="../ui/MainWindow.ui" line="656"/>
+        <location filename="../ui/MainWindow.ui" line="662"/>
+        <location filename="../ui/MainWindow.ui" line="665"/>
         <source>Open the folder containing the selected file</source>
         <translation>Abra la carpeta conteniendo el archivo seleccionado</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="659"/>
+        <location filename="../ui/MainWindow.ui" line="668"/>
         <source>Alt+Return</source>
         <translation>Alt+Intro</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="668"/>
-        <location filename="../src/MainWindow.cpp" line="1929"/>
+        <location filename="../ui/MainWindow.ui" line="677"/>
+        <location filename="../src/MainWindow.cpp" line="1947"/>
         <source>Undo</source>
         <translation>Deshacer</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="671"/>
-        <location filename="../ui/MainWindow.ui" line="674"/>
+        <location filename="../ui/MainWindow.ui" line="680"/>
+        <location filename="../ui/MainWindow.ui" line="683"/>
         <source>Undo the last Fossil action</source>
         <translation>Deshacer la última acción de Fossil</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="677"/>
+        <location filename="../ui/MainWindow.ui" line="686"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="686"/>
+        <location filename="../ui/MainWindow.ui" line="695"/>
         <source>&amp;About...</source>
         <translation>&amp;Sobre</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="689"/>
+        <location filename="../ui/MainWindow.ui" line="698"/>
         <source>About Fuel</source>
         <translation>Sobre Fuel</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="698"/>
-        <location filename="../src/MainWindow.cpp" line="1976"/>
+        <location filename="../ui/MainWindow.ui" line="707"/>
+        <location filename="../src/MainWindow.cpp" line="1995"/>
         <source>Update</source>
         <translation>Actualizar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="701"/>
-        <location filename="../ui/MainWindow.ui" line="704"/>
+        <location filename="../ui/MainWindow.ui" line="710"/>
+        <location filename="../ui/MainWindow.ui" line="713"/>
         <source>Update the workspace to the latest version</source>
         <translation>Actualizar el área de trabajo a la última versión</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="707"/>
+        <location filename="../ui/MainWindow.ui" line="716"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="716"/>
+        <location filename="../ui/MainWindow.ui" line="725"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Preferencias</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="719"/>
-        <location filename="../ui/MainWindow.ui" line="722"/>
+        <location filename="../ui/MainWindow.ui" line="728"/>
+        <location filename="../ui/MainWindow.ui" line="731"/>
         <source>Fuel Preferences</source>
         <translation>Preferencias de Fuel</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="733"/>
+        <location filename="../ui/MainWindow.ui" line="742"/>
         <source>&amp;Modified</source>
         <translation>&amp;Modificado</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="736"/>
+        <location filename="../ui/MainWindow.ui" line="745"/>
         <source>Show modifed files</source>
         <translation>Mostrar archivos modificados</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="747"/>
+        <location filename="../ui/MainWindow.ui" line="756"/>
         <source>&amp;Unchanged</source>
         <translation>&amp;Inalterado</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="750"/>
+        <location filename="../ui/MainWindow.ui" line="759"/>
         <source>Show unchanged files</source>
         <translation>Mostrar archivos sin cambios</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="761"/>
+        <location filename="../ui/MainWindow.ui" line="770"/>
         <source>Un&amp;known</source>
         <translation>&amp;Desconocido</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="764"/>
+        <location filename="../ui/MainWindow.ui" line="773"/>
         <source>Show unknown files</source>
         <translation>Mostrar archivos desconocidos</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="772"/>
+        <location filename="../ui/MainWindow.ui" line="781"/>
         <source>&amp;Ignored</source>
         <translation>&amp;Ignorar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="775"/>
+        <location filename="../ui/MainWindow.ui" line="784"/>
         <source>Show ignored files</source>
         <translation>Mostrar archivos ignorados</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="783"/>
+        <location filename="../ui/MainWindow.ui" line="792"/>
         <source>File &amp;List</source>
         <translation>&amp;Lista de archivos</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="786"/>
-        <location filename="../ui/MainWindow.ui" line="789"/>
         <source>View as files as a list</source>
-        <translation>Ver archivos como lista</translation>
+        <translation type="obsolete">Ver archivos como lista</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="792"/>
+        <location filename="../ui/MainWindow.ui" line="801"/>
         <source>View the workspace as a list of files</source>
         <translation>Ver el área de trabajo como lista de archivos</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="801"/>
+        <location filename="../ui/MainWindow.ui" line="810"/>
         <source>Open Folder</source>
         <translation>Abrir carpeta</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="804"/>
-        <location filename="../ui/MainWindow.ui" line="807"/>
+        <location filename="../ui/MainWindow.ui" line="813"/>
+        <location filename="../ui/MainWindow.ui" line="816"/>
         <source>Open the selected folder</source>
         <translation>Abrir la carpeta seleccionada</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="816"/>
-        <location filename="../src/MainWindow.cpp" line="2182"/>
-        <location filename="../src/MainWindow.cpp" line="2227"/>
+        <location filename="../ui/MainWindow.ui" line="825"/>
+        <location filename="../src/MainWindow.cpp" line="2201"/>
+        <location filename="../src/MainWindow.cpp" line="2246"/>
         <source>Rename Folder</source>
         <translation>Renombrar carpeta</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="819"/>
-        <location filename="../ui/MainWindow.ui" line="822"/>
+        <location filename="../ui/MainWindow.ui" line="828"/>
+        <location filename="../ui/MainWindow.ui" line="831"/>
         <source>Rename the selected folder</source>
         <translation>Renombrar la carpeta seleccionada</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="831"/>
+        <location filename="../ui/MainWindow.ui" line="840"/>
+        <location filename="../ui/MainWindow.ui" line="843"/>
         <source>Stash changes</source>
         <translation>Apartar cambios</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="834"/>
         <source>Show the stash</source>
-        <translation>Mostrar lo apartado</translation>
+        <translation type="obsolete">Mostrar lo apartado</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="843"/>
-        <location filename="../src/MainWindow.cpp" line="2379"/>
+        <location filename="../ui/MainWindow.ui" line="852"/>
+        <location filename="../src/MainWindow.cpp" line="2398"/>
         <source>Apply Stash</source>
         <translation>Aplicar lo apartado</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="846"/>
-        <location filename="../ui/MainWindow.ui" line="849"/>
+        <location filename="../ui/MainWindow.ui" line="855"/>
+        <location filename="../ui/MainWindow.ui" line="858"/>
         <source>Apply stashed changes</source>
         <translation>Aplicar cambios apartados</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="857"/>
+        <location filename="../ui/MainWindow.ui" line="866"/>
         <source>&amp;Stashed Changes</source>
         <translation>Cambios apartado&amp;s</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="860"/>
         <source>View the Stash</source>
-        <translation>Ver lo apartado</translation>
+        <translation type="obsolete">Ver lo apartado</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="863"/>
+        <location filename="../ui/MainWindow.ui" line="875"/>
         <source>Show the list of stashed changes</source>
         <translation>Mostrar la lista de cambios apartados</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="872"/>
+        <location filename="../ui/MainWindow.ui" line="884"/>
         <source>Delete Stash</source>
         <translation>Eliminar lo apartado</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="881"/>
+        <location filename="../ui/MainWindow.ui" line="893"/>
         <source>Diff Stash</source>
         <translation>Diferencias en lo apartado</translation>
     </message>
@@ -620,20 +668,20 @@
         <location filename="../src/MainWindow.cpp" line="450"/>
         <location filename="../src/MainWindow.cpp" line="468"/>
         <location filename="../src/MainWindow.cpp" line="501"/>
-        <location filename="../src/MainWindow.cpp" line="1694"/>
-        <location filename="../src/MainWindow.cpp" line="1708"/>
-        <location filename="../src/MainWindow.cpp" line="1750"/>
-        <location filename="../src/MainWindow.cpp" line="1759"/>
-        <location filename="../src/MainWindow.cpp" line="1882"/>
-        <location filename="../src/MainWindow.cpp" line="2194"/>
-        <location filename="../src/MainWindow.cpp" line="2203"/>
-        <location filename="../src/MainWindow.cpp" line="2266"/>
-        <location filename="../src/MainWindow.cpp" line="2279"/>
-        <location filename="../src/MainWindow.cpp" line="2287"/>
-        <location filename="../src/MainWindow.cpp" line="2301"/>
-        <location filename="../src/MainWindow.cpp" line="2307"/>
-        <location filename="../src/MainWindow.cpp" line="2349"/>
-        <location filename="../src/MainWindow.cpp" line="2358"/>
+        <location filename="../src/MainWindow.cpp" line="1712"/>
+        <location filename="../src/MainWindow.cpp" line="1726"/>
+        <location filename="../src/MainWindow.cpp" line="1768"/>
+        <location filename="../src/MainWindow.cpp" line="1777"/>
+        <location filename="../src/MainWindow.cpp" line="1900"/>
+        <location filename="../src/MainWindow.cpp" line="2213"/>
+        <location filename="../src/MainWindow.cpp" line="2222"/>
+        <location filename="../src/MainWindow.cpp" line="2285"/>
+        <location filename="../src/MainWindow.cpp" line="2298"/>
+        <location filename="../src/MainWindow.cpp" line="2306"/>
+        <location filename="../src/MainWindow.cpp" line="2320"/>
+        <location filename="../src/MainWindow.cpp" line="2326"/>
+        <location filename="../src/MainWindow.cpp" line="2368"/>
+        <location filename="../src/MainWindow.cpp" line="2377"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
@@ -720,9 +768,8 @@ Se ha abortado la creación del depósito.</translation>
         <translation>Cerrar área de trabajo.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="462"/>
         <source>Are you sure want to close this workspace?</source>
-        <translation>¿Está seguro que quiere cerrar el área de trabajo?</translation>
+        <translation type="obsolete">¿Está seguro que quiere cerrar el área de trabajo?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="468"/>
@@ -762,17 +809,9 @@ Are there still uncommitted changes available?</source>
         <translation>Carpetas</translation>
     </message>
     <message>
-        <source>S</source>
-        <translation type="obsolete">S</translation>
-    </message>
-    <message>
         <location filename="../src/MainWindow.cpp" line="143"/>
         <source>File</source>
         <translation>Archivo</translation>
-    </message>
-    <message>
-        <source>Ext</source>
-        <translation type="obsolete">Extensión</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="143"/>
@@ -787,175 +826,183 @@ Are there still uncommitted changes available?</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="143"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estatus</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="143"/>
         <source>Extension</source>
+        <translation>Extensión</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="462"/>
+        <source>Are you sure you want to close this workspace?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="879"/>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>Editado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="880"/>
         <source>Unchanged</source>
-        <translation type="unfinished"></translation>
+        <translation>No modificado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="881"/>
         <source>Added</source>
-        <translation type="unfinished"></translation>
+        <translation>Añadido</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="882"/>
         <source>Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="883"/>
         <source>Renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Renombrado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="884"/>
         <source>Missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Faltante</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="900"/>
+        <location filename="../src/MainWindow.cpp" line="902"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconocido</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="985"/>
+        <location filename="../src/MainWindow.cpp" line="991"/>
         <source>Stashes</source>
         <translation>Apartados</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1078"/>
+        <location filename="../src/MainWindow.cpp" line="1084"/>
         <source>Running Fossil</source>
         <translation>Ejecutando Fossil</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1090"/>
-        <location filename="../src/MainWindow.cpp" line="1604"/>
+        <location filename="../src/MainWindow.cpp" line="1096"/>
+        <location filename="../src/MainWindow.cpp" line="1622"/>
         <source>Could not start Fossil executable &apos;%s&apos;</source>
         <translation>No se pudo iniciar el ejecutable de Fossil %s</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1111"/>
+        <location filename="../src/MainWindow.cpp" line="1127"/>
         <source>Terminated</source>
         <translation>Terminado</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1586"/>
+        <location filename="../src/MainWindow.cpp" line="1604"/>
         <source>Fossil UI is already running</source>
         <translation>La IU de Fossil ya está funcionando</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1595"/>
+        <location filename="../src/MainWindow.cpp" line="1613"/>
         <source>Starting Fossil browser UI. Please wait.</source>
         <translation>Iniciando el explorador de la IU de Fossil.  Espere por favor.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1694"/>
-        <location filename="../src/MainWindow.cpp" line="1708"/>
+        <location filename="../src/MainWindow.cpp" line="1712"/>
+        <location filename="../src/MainWindow.cpp" line="1726"/>
         <source>A remote repository has not been specified.
 Use the preferences window to set the remote repostory location</source>
         <translation>No se ha especificado un depósito remoto.
 Use la ventana de preferencias para establecer la ubicación del depósito remoto.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1727"/>
+        <location filename="../src/MainWindow.cpp" line="1745"/>
         <source>Commit Changes</source>
         <translation>Entregar Cambios</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1750"/>
-        <location filename="../src/MainWindow.cpp" line="1759"/>
+        <location filename="../src/MainWindow.cpp" line="1768"/>
+        <location filename="../src/MainWindow.cpp" line="1777"/>
         <source>Could not generate comment file</source>
         <translation>No se pudo generar el archivo de comentarios</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1796"/>
+        <location filename="../src/MainWindow.cpp" line="1814"/>
+        <location filename="../src/MainWindow.cpp" line="2580"/>
         <source>Add files</source>
         <translation>Añadir archivos</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1796"/>
+        <location filename="../src/MainWindow.cpp" line="1814"/>
+        <location filename="../src/MainWindow.cpp" line="2580"/>
         <source>The following files will be added.</source>
         <translation>Los siguientes archivos serán añadidos</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1796"/>
-        <location filename="../src/MainWindow.cpp" line="1821"/>
-        <location filename="../src/MainWindow.cpp" line="1853"/>
-        <location filename="../src/MainWindow.cpp" line="1929"/>
-        <location filename="../src/MainWindow.cpp" line="1976"/>
-        <location filename="../src/MainWindow.cpp" line="2228"/>
-        <location filename="../src/MainWindow.cpp" line="2379"/>
-        <location filename="../src/MainWindow.cpp" line="2420"/>
+        <location filename="../src/MainWindow.cpp" line="1814"/>
+        <location filename="../src/MainWindow.cpp" line="1839"/>
+        <location filename="../src/MainWindow.cpp" line="1871"/>
+        <location filename="../src/MainWindow.cpp" line="1947"/>
+        <location filename="../src/MainWindow.cpp" line="1995"/>
+        <location filename="../src/MainWindow.cpp" line="2247"/>
+        <location filename="../src/MainWindow.cpp" line="2398"/>
+        <location filename="../src/MainWindow.cpp" line="2439"/>
+        <location filename="../src/MainWindow.cpp" line="2580"/>
         <source>Are you sure?</source>
         <translation>¿Está usted seguro?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1821"/>
+        <location filename="../src/MainWindow.cpp" line="1839"/>
         <source>Remove files</source>
         <translation>Quitar archivos</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1821"/>
+        <location filename="../src/MainWindow.cpp" line="1839"/>
         <source>The following files will be removed from the repository.</source>
         <translation>Se quitarán los siguientes archivos del depósito</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1821"/>
+        <location filename="../src/MainWindow.cpp" line="1839"/>
         <source>Also delete the local files</source>
         <translation>También elimine los archivos locales</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1853"/>
+        <location filename="../src/MainWindow.cpp" line="1871"/>
         <source>Revert files</source>
         <translation>Revertir archivos</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1853"/>
+        <location filename="../src/MainWindow.cpp" line="1871"/>
         <source>The following files will be reverted.</source>
         <translation>Se revertirán los siguientes archivos</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1874"/>
-        <location filename="../src/MainWindow.cpp" line="2182"/>
+        <location filename="../src/MainWindow.cpp" line="1892"/>
+        <location filename="../src/MainWindow.cpp" line="2201"/>
         <source>New name</source>
         <translation>Nuevo nombre</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1882"/>
+        <location filename="../src/MainWindow.cpp" line="1900"/>
         <source>File &apos;%0&apos; already exists.
 Rename aborted.</source>
         <translation>El archivo &apos;%0&apos; ya existe.
 Se abortó el renombrado.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1929"/>
+        <location filename="../src/MainWindow.cpp" line="1947"/>
         <source>The following actions will be undone.</source>
         <translation>Se desharán las siguientes acciones.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1948"/>
+        <location filename="../src/MainWindow.cpp" line="1966"/>
         <source>Fossil version %0</source>
         <translation>La versión de Fossil es %0</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1951"/>
+        <location filename="../src/MainWindow.cpp" line="1969"/>
         <source>About Fuel...</source>
         <translation>Sobre Fuel...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1953"/>
+        <location filename="../src/MainWindow.cpp" line="1971"/>
         <source>a GUI frontend to the Fossil SCM
 by Kostas Karanikolas
 Released under the GNU GPL</source>
@@ -964,148 +1011,148 @@ por Kostas Karanikolas
 Liberado bajo la licencia GNU GPL</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1957"/>
+        <location filename="../src/MainWindow.cpp" line="1975"/>
         <source>Icons by Deleket - Jojo Mendoza
 Available under the CC Attribution Noncommercial No Derivative 3.0 License</source>
         <translation>Íconos por Deleket - Jojo Mendoza
 Disponbile bajo la Licencia de Reconocimiento de Creación Colectiva 3.0 CC sin derivados comerciales</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1959"/>
+        <location filename="../src/MainWindow.cpp" line="1977"/>
         <source>Translations with the help of:</source>
         <translation>Traducciones con la ayuda de: </translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1976"/>
+        <location filename="../src/MainWindow.cpp" line="1995"/>
         <source>The following files will be updated.</source>
         <translation>Se actualizarán los siguientes archivos</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2194"/>
-        <location filename="../src/MainWindow.cpp" line="2203"/>
+        <location filename="../src/MainWindow.cpp" line="2213"/>
+        <location filename="../src/MainWindow.cpp" line="2222"/>
         <source>Cannot rename folder.</source>
         <translation>No puedo renombrar la carpeta</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2194"/>
+        <location filename="../src/MainWindow.cpp" line="2213"/>
         <source>Folder name contains invalid characters.</source>
         <translation>El nombre de la carpeta contiene caracteres inválidos</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2203"/>
+        <location filename="../src/MainWindow.cpp" line="2222"/>
         <source>This folder exists already.</source>
         <translation>Esta carpeta ya existía</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2227"/>
+        <location filename="../src/MainWindow.cpp" line="2246"/>
         <source>Renaming folder &apos;%0&apos; to &apos;%1&apos;
 The following files will be moved in the repository.</source>
         <translation>Renombrando carpeta &apos;%0&apos; a &apos;%1&apos;.
 Los siguientes archivos serán movidos al depósito.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2230"/>
+        <location filename="../src/MainWindow.cpp" line="2249"/>
         <source>Also move the workspace files</source>
         <translation>También mueva los archivos del área de trabajo</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2243"/>
+        <location filename="../src/MainWindow.cpp" line="2262"/>
         <source>Move aborted due to errors</source>
         <translation>Movida abortada por errores</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2263"/>
+        <location filename="../src/MainWindow.cpp" line="2282"/>
         <source>Creating folder &apos;%0&apos;</source>
         <translation>Creando la carpeta &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2266"/>
+        <location filename="../src/MainWindow.cpp" line="2285"/>
         <source>Cannot make target folder &apos;%0&apos;</source>
         <translation>No puedo hacer la carpeta destino &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2279"/>
+        <location filename="../src/MainWindow.cpp" line="2298"/>
         <source>Target file &apos;%0&apos; exists already</source>
         <translation>El archivo destino &apos;%0&apos; ya existe</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2283"/>
+        <location filename="../src/MainWindow.cpp" line="2302"/>
         <source>Copying file &apos;%0&apos; to &apos;%1&apos;</source>
         <translation>Copiando archivo &apos;%0&apos; a &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2287"/>
+        <location filename="../src/MainWindow.cpp" line="2306"/>
         <source>Cannot copy file &apos;%0&apos; to &apos;%1&apos;</source>
         <translation>No puedo copiar el archivo &apos;%0&apos; a &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2297"/>
+        <location filename="../src/MainWindow.cpp" line="2316"/>
         <source>Removing old file &apos;%0&apos;</source>
         <translation>Removiendo el archivo anterior &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2301"/>
+        <location filename="../src/MainWindow.cpp" line="2320"/>
         <source>Source file &apos;%0&apos; does not exist</source>
         <translation>Archivo de código &apos;%0&apos; no existe</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2307"/>
+        <location filename="../src/MainWindow.cpp" line="2326"/>
         <source>Cannot remove file &apos;%0&apos;</source>
         <translation>No se puede remover el archivo &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2312"/>
+        <location filename="../src/MainWindow.cpp" line="2331"/>
         <source>Folder renamed completed. Don&apos;t forget to commit!</source>
         <translation>Completado el renombrado de la carpeta. ¡No olvide entregar!</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2341"/>
+        <location filename="../src/MainWindow.cpp" line="2360"/>
         <source>Revert stashed files</source>
         <translation>Revertir archivos apartados</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2342"/>
+        <location filename="../src/MainWindow.cpp" line="2361"/>
         <source>Stash Changes</source>
         <translation>Apartar cambios</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2349"/>
+        <location filename="../src/MainWindow.cpp" line="2368"/>
         <source>Invalid stash name</source>
         <translation>Nombre de apartado inválido</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2358"/>
+        <location filename="../src/MainWindow.cpp" line="2377"/>
         <source>This stash already exists</source>
         <translation>Este apartado ya existe</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2379"/>
+        <location filename="../src/MainWindow.cpp" line="2398"/>
         <source>The following stashes will be applied.</source>
         <translation>Serán aplicados los siguientes apartados</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2379"/>
+        <location filename="../src/MainWindow.cpp" line="2398"/>
         <source>Delete after applying</source>
         <translation>Borrar después de aplicar</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2390"/>
+        <location filename="../src/MainWindow.cpp" line="2409"/>
         <source>Stash application aborted due to errors</source>
         <translation>Aplicación de cambios apartados fue abortada debido a errores</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2403"/>
-        <location filename="../src/MainWindow.cpp" line="2431"/>
+        <location filename="../src/MainWindow.cpp" line="2422"/>
+        <location filename="../src/MainWindow.cpp" line="2450"/>
         <source>Stash deletion aborted due to errors</source>
         <translation>Abortada la eliminación de apartados debido a errores</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2420"/>
+        <location filename="../src/MainWindow.cpp" line="2439"/>
         <source>Delete Stashes</source>
         <translation>Borrar apartados</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2420"/>
+        <location filename="../src/MainWindow.cpp" line="2439"/>
         <source>The following stashes will be deleted.</source>
         <translation>Serán borrados los siguientes cambios apartados</translation>
     </message>
@@ -1162,12 +1209,12 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="169"/>
         <source>HTTP Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto HTTP</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="176"/>
         <source>HTTP port to use for the Fossil web interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto HTTP utilizado para la interface web de Fossil</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="189"/>
@@ -1187,12 +1234,12 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="212"/>
         <source>Web Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Explorador Web</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="225"/>
         <source>Web browser to use for the Fossil web interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Explorador Web a usar para la interface web de Fossil</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="238"/>
@@ -1276,12 +1323,12 @@ Por ejemplo http://nombreusuario:contraseña@servidor.com/fossil</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="50"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="51"/>
         <source>Internal</source>
-        <translation type="unfinished"></translation>
+        <translation>Interno</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="106"/>
@@ -1315,8 +1362,12 @@ Por ejemplo http://nombreusuario:contraseña@servidor.com/fossil</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="144"/>
+        <source>Are you sure you want to clear the commit message history?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Are you sure want to clear the commit message history?</source>
-        <translation>¿Está seguro que quiere limpiar la historia de mensajes de entrega?</translation>
+        <translation type="obsolete">¿Está seguro que quiere limpiar la historia de mensajes de entrega?</translation>
     </message>
 </context>
 </TS>

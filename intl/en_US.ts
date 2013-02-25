@@ -1,90 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="en.US" sourcelanguage="en.US">
+<TS version="2.0" language="en" sourcelanguage="en">
 <defaultcodec>UTF-8</defaultcodec>
+<context>
+    <name>BrowserWidget</name>
+    <message>
+        <location filename="../ui/BrowserWidget.ui" line="50"/>
+        <location filename="../ui/BrowserWidget.ui" line="53"/>
+        <source>Back</source>
+        <translation>Back</translation>
+    </message>
+    <message>
+        <location filename="../ui/BrowserWidget.ui" line="62"/>
+        <location filename="../ui/BrowserWidget.ui" line="65"/>
+        <source>Forward</source>
+        <translation>Forward</translation>
+    </message>
+    <message>
+        <location filename="../ui/BrowserWidget.ui" line="74"/>
+        <location filename="../ui/BrowserWidget.ui" line="77"/>
+        <source>Refresh</source>
+        <translation>Refresh</translation>
+    </message>
+    <message>
+        <location filename="../ui/BrowserWidget.ui" line="86"/>
+        <source>Stop</source>
+        <translation>Stop</translation>
+    </message>
+</context>
 <context>
     <name>CloneDialog</name>
     <message>
         <location filename="../ui/CloneDialog.ui" line="17"/>
         <source>Clone Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Clone Repository</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="28"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="35"/>
         <source>The URL of the source repository</source>
-        <translation type="unfinished"></translation>
+        <translation>The URL of the source repository</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="42"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation>User Name</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="49"/>
         <source>The user name used to access the remote repository. Leave blank if not required</source>
-        <translation type="unfinished"></translation>
+        <translation>The user name used to access the remote repository. Leave blank if not required</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="56"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Password</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="63"/>
         <source>The password used to access the remote repository. Leave blank if not required</source>
-        <translation type="unfinished"></translation>
+        <translation>The password used to access the remote repository. Leave blank if not required</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="73"/>
         <source>Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Repository</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="82"/>
         <source>Path to the local repository file</source>
-        <translation type="unfinished"></translation>
+        <translation>Path to the local repository file</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="101"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="52"/>
         <location filename="../src/CloneDialog.cpp" line="61"/>
         <location filename="../src/CloneDialog.cpp" line="87"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="52"/>
         <source>Invalid URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Invalid URL.</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="61"/>
         <source>Invalid Repository File.</source>
-        <translation type="unfinished"></translation>
+        <translation>Invalid Repository File.</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="72"/>
         <source>Fossil Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil Repository</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="76"/>
         <source>Select Fossil Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Select Fossil Repository</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="87"/>
         <source>This repository file already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>This repository file already exists.</translation>
     </message>
 </context>
 <context>
@@ -92,7 +118,7 @@
     <message>
         <location filename="../ui/CommitDialog.ui" line="17"/>
         <source>Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>Commit</translation>
     </message>
 </context>
 <context>
@@ -100,515 +126,537 @@
     <message>
         <location filename="../ui/FileActionDialog.ui" line="17"/>
         <source>File Action</source>
-        <translation type="unfinished"></translation>
+        <translation>File Action</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/MainWindow.ui" line="14"/>
+        <location filename="../ui/MainWindow.ui" line="17"/>
         <source>Fuel</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuel</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="185"/>
+        <location filename="../ui/MainWindow.ui" line="188"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Log</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="211"/>
+        <location filename="../ui/MainWindow.ui" line="214"/>
         <source>Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Browser</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="238"/>
+        <location filename="../ui/MainWindow.ui" line="244"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="253"/>
-        <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;File</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="259"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Help</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="265"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;View</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="276"/>
+        <location filename="../ui/MainWindow.ui" line="282"/>
         <source>Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Main Toolbar</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="330"/>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="333"/>
         <location filename="../ui/MainWindow.ui" line="336"/>
-        <source>Refresh the views</source>
-        <translation type="unfinished"></translation>
+        <source>Refresh</source>
+        <translation>Refresh</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="339"/>
+        <location filename="../ui/MainWindow.ui" line="342"/>
+        <source>Refresh the views</source>
+        <translation>Refresh the views</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="345"/>
         <source>F5</source>
-        <translation type="unfinished"></translation>
+        <translation>F5</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="348"/>
-        <source>Commit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="351"/>
         <location filename="../ui/MainWindow.ui" line="354"/>
-        <source>Commit modifications</source>
-        <translation type="unfinished"></translation>
+        <source>Commit</source>
+        <translation>Commit</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="357"/>
+        <location filename="../ui/MainWindow.ui" line="360"/>
+        <source>Commit modifications</source>
+        <translation>Commit modifications</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="363"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="366"/>
-        <source>Diff</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="369"/>
         <location filename="../ui/MainWindow.ui" line="372"/>
-        <source>Display the differences between the current and last committed version</source>
-        <translation type="unfinished"></translation>
+        <source>Diff</source>
+        <translation>Diff</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="375"/>
+        <location filename="../ui/MainWindow.ui" line="378"/>
+        <source>Display the differences between the current and last committed version</source>
+        <translation>Display the differences between the current and last committed version</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="381"/>
         <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="384"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="387"/>
         <location filename="../ui/MainWindow.ui" line="390"/>
-        <source>Add files to the repository</source>
-        <translation type="unfinished"></translation>
+        <source>Add</source>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="393"/>
+        <location filename="../ui/MainWindow.ui" line="396"/>
+        <source>Add files to the repository</source>
+        <translation>Add files to the repository</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="399"/>
         <source>Ctrl++</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="402"/>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="405"/>
         <location filename="../ui/MainWindow.ui" line="408"/>
-        <source>Delete files from the repository</source>
-        <translation type="unfinished"></translation>
+        <source>Delete</source>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="411"/>
+        <location filename="../ui/MainWindow.ui" line="414"/>
+        <source>Delete files from the repository</source>
+        <translation>Delete files from the repository</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="417"/>
         <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="420"/>
-        <source>&amp;New...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="423"/>
         <location filename="../ui/MainWindow.ui" line="426"/>
-        <source>Make a new Fossil repository</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;New...</source>
+        <translation>&amp;New...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="429"/>
+        <location filename="../ui/MainWindow.ui" line="432"/>
+        <source>Make a new Fossil repository</source>
+        <translation>Make a new Fossil repository</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="435"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="438"/>
-        <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="441"/>
         <location filename="../ui/MainWindow.ui" line="444"/>
-        <source>Open a Fossil repository or workspace folder</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Open...</source>
+        <translation>&amp;Open...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="447"/>
+        <location filename="../ui/MainWindow.ui" line="450"/>
+        <source>Open a Fossil repository or workspace folder</source>
+        <translation>Open a Fossil repository or workspace folder</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="453"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="455"/>
-        <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="458"/>
         <location filename="../ui/MainWindow.ui" line="461"/>
-        <source>Close the current workspace</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Close</source>
+        <translation>&amp;Close</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="470"/>
+        <location filename="../ui/MainWindow.ui" line="464"/>
+        <location filename="../ui/MainWindow.ui" line="467"/>
+        <source>Close the current workspace</source>
+        <translation>Close the current workspace</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="476"/>
         <source>Clone...</source>
-        <translation type="unfinished"></translation>
+        <translation>Clone...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="479"/>
-        <source>Push</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="482"/>
-        <location filename="../ui/MainWindow.ui" line="485"/>
-        <source>Push changes to the remote repository</source>
-        <translation type="unfinished"></translation>
+        <source>Clone a remote repository</source>
+        <translation>Clone a remote repository</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="488"/>
-        <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <source>Push</source>
+        <translation>Push</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="491"/>
+        <location filename="../ui/MainWindow.ui" line="494"/>
+        <source>Push changes to the remote repository</source>
+        <translation>Push changes to the remote repository</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="497"/>
-        <source>Pull</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="500"/>
-        <location filename="../ui/MainWindow.ui" line="503"/>
-        <source>Pull changes from the remote repository</source>
-        <translation type="unfinished"></translation>
+        <source>Ctrl+P</source>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="506"/>
-        <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <source>Pull</source>
+        <translation>Pull</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="509"/>
+        <location filename="../ui/MainWindow.ui" line="512"/>
+        <source>Pull changes from the remote repository</source>
+        <translation>Pull changes from the remote repository</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="515"/>
-        <location filename="../src/MainWindow.cpp" line="1874"/>
-        <source>Rename</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="518"/>
-        <location filename="../ui/MainWindow.ui" line="521"/>
-        <source>Rename the selected file</source>
-        <translation type="unfinished"></translation>
+        <source>Ctrl+L</source>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="524"/>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/MainWindow.cpp" line="1892"/>
+        <source>Rename</source>
+        <translation>Rename</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="527"/>
+        <location filename="../ui/MainWindow.ui" line="530"/>
+        <source>Rename the selected file</source>
+        <translation>Rename the selected file</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="533"/>
+        <source>Ctrl+R</source>
+        <translation>Ctrl+R</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="542"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Quit</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="536"/>
+        <location filename="../ui/MainWindow.ui" line="545"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="539"/>
+        <location filename="../ui/MainWindow.ui" line="548"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="551"/>
-        <source>History</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="554"/>
-        <location filename="../ui/MainWindow.ui" line="557"/>
-        <source>Display the version history of a file via the Fossil UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="560"/>
+        <source>History</source>
+        <translation>History</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="563"/>
+        <location filename="../ui/MainWindow.ui" line="566"/>
+        <source>Display the version history of a file via the Fossil UI</source>
+        <translation>Display the version history of a file via the Fossil UI</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="569"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="572"/>
+        <location filename="../ui/MainWindow.ui" line="581"/>
         <source>Fossil UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil UI</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="575"/>
-        <location filename="../ui/MainWindow.ui" line="578"/>
-        <source>Starts the Fosill UI in the Web Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../ui/MainWindow.ui" line="584"/>
         <location filename="../ui/MainWindow.ui" line="587"/>
-        <source>Revert</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="590"/>
-        <location filename="../ui/MainWindow.ui" line="593"/>
-        <source>Revert files to the last commited version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="602"/>
-        <source>Clear Log</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="605"/>
-        <source>Clears the log</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="608"/>
-        <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="617"/>
-        <source>Timeline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="620"/>
-        <location filename="../ui/MainWindow.ui" line="623"/>
-        <source>Display the change history of the Fossil repository</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="632"/>
-        <source>Open file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="635"/>
-        <location filename="../ui/MainWindow.ui" line="638"/>
-        <source>Open the selected file</source>
-        <translation type="unfinished"></translation>
+        <source>Starts the Fosil UI in the Web Browser</source>
+        <translation>Starts the Fosil UI in the Web Browser</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="641"/>
-        <source>Ctrl+Return</source>
-        <translation type="unfinished"></translation>
+        <source>Open File</source>
+        <translation>Open File</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="795"/>
+        <location filename="../ui/MainWindow.ui" line="798"/>
+        <source>View files as a list</source>
+        <translation>View files as a list</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="869"/>
+        <location filename="../ui/MainWindow.ui" line="872"/>
+        <source>View Stashed Changes</source>
+        <translation>View Stashed Changes</translation>
+    </message>
+    <message>
+        <source>Starts the Fosill UI in the Web Browser</source>
+        <translation type="obsolete">Starts the Fosill UI in the Web Browser</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="596"/>
+        <source>Revert</source>
+        <translation>Revert</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="599"/>
+        <location filename="../ui/MainWindow.ui" line="602"/>
+        <source>Revert files to the last commited version</source>
+        <translation>Revert files to the last commited version</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="611"/>
+        <source>Clear Log</source>
+        <translation>Clear Log</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="614"/>
+        <source>Clears the log</source>
+        <translation>Clears the log</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="617"/>
+        <source>Ctrl+K</source>
+        <translation>Ctrl+K</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="626"/>
+        <source>Timeline</source>
+        <translation>Timeline</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="629"/>
+        <location filename="../ui/MainWindow.ui" line="632"/>
+        <source>Display the change history of the Fossil repository</source>
+        <translation>Display the change history of the Fossil repository</translation>
+    </message>
+    <message>
+        <source>Open file</source>
+        <translation type="obsolete">Open file</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="644"/>
+        <location filename="../ui/MainWindow.ui" line="647"/>
+        <source>Open the selected file</source>
+        <translation>Open the selected file</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="650"/>
-        <source>Open Containing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="653"/>
-        <location filename="../ui/MainWindow.ui" line="656"/>
-        <source>Open the folder containing the selected file</source>
-        <translation type="unfinished"></translation>
+        <source>Ctrl+Return</source>
+        <translation>Ctrl+Return</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="659"/>
-        <source>Alt+Return</source>
-        <translation type="unfinished"></translation>
+        <source>Open Containing</source>
+        <translation>Open Containing</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="662"/>
+        <location filename="../ui/MainWindow.ui" line="665"/>
+        <source>Open the folder containing the selected file</source>
+        <translation>Open the folder containing the selected file</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="668"/>
-        <location filename="../src/MainWindow.cpp" line="1929"/>
-        <source>Undo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="671"/>
-        <location filename="../ui/MainWindow.ui" line="674"/>
-        <source>Undo the last Fossil action</source>
-        <translation type="unfinished"></translation>
+        <source>Alt+Return</source>
+        <translation>Alt+Return</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="677"/>
-        <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/MainWindow.cpp" line="1947"/>
+        <source>Undo</source>
+        <translation>Undo</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="680"/>
+        <location filename="../ui/MainWindow.ui" line="683"/>
+        <source>Undo the last Fossil action</source>
+        <translation>Undo the last Fossil action</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="686"/>
-        <source>&amp;About...</source>
-        <translation type="unfinished"></translation>
+        <source>Ctrl+Z</source>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="689"/>
-        <source>About Fuel</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/MainWindow.ui" line="695"/>
+        <source>&amp;About...</source>
+        <translation>&amp;About...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="698"/>
-        <location filename="../src/MainWindow.cpp" line="1976"/>
-        <source>Update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="701"/>
-        <location filename="../ui/MainWindow.ui" line="704"/>
-        <source>Update the workspace to the latest version</source>
-        <translation type="unfinished"></translation>
+        <source>About Fuel</source>
+        <translation>About Fuel</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="707"/>
-        <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/MainWindow.cpp" line="1995"/>
+        <source>Update</source>
+        <translation>Update</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="710"/>
+        <location filename="../ui/MainWindow.ui" line="713"/>
+        <source>Update the workspace to the latest version</source>
+        <translation>Update the workspace to the latest version</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="716"/>
+        <source>Ctrl+U</source>
+        <translation>Ctrl+U</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="725"/>
         <source>&amp;Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Preferences...</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="719"/>
-        <location filename="../ui/MainWindow.ui" line="722"/>
+        <location filename="../ui/MainWindow.ui" line="728"/>
+        <location filename="../ui/MainWindow.ui" line="731"/>
         <source>Fuel Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuel Preferences</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="733"/>
+        <location filename="../ui/MainWindow.ui" line="742"/>
         <source>&amp;Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Modified</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="736"/>
+        <location filename="../ui/MainWindow.ui" line="745"/>
         <source>Show modifed files</source>
-        <translation type="unfinished"></translation>
+        <translation>Show modifed files</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="747"/>
+        <location filename="../ui/MainWindow.ui" line="756"/>
         <source>&amp;Unchanged</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Unchanged</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="750"/>
+        <location filename="../ui/MainWindow.ui" line="759"/>
         <source>Show unchanged files</source>
-        <translation type="unfinished"></translation>
+        <translation>Show unchanged files</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="761"/>
+        <location filename="../ui/MainWindow.ui" line="770"/>
         <source>Un&amp;known</source>
-        <translation type="unfinished"></translation>
+        <translation>Un&amp;known</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="764"/>
+        <location filename="../ui/MainWindow.ui" line="773"/>
         <source>Show unknown files</source>
-        <translation type="unfinished"></translation>
+        <translation>Show unknown files</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="772"/>
+        <location filename="../ui/MainWindow.ui" line="781"/>
         <source>&amp;Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ignored</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="775"/>
+        <location filename="../ui/MainWindow.ui" line="784"/>
         <source>Show ignored files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="783"/>
-        <source>File &amp;List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="786"/>
-        <location filename="../ui/MainWindow.ui" line="789"/>
-        <source>View as files as a list</source>
-        <translation type="unfinished"></translation>
+        <translation>Show ignored files</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="792"/>
-        <source>View the workspace as a list of files</source>
-        <translation type="unfinished"></translation>
+        <source>File &amp;List</source>
+        <translation>File &amp;List</translation>
+    </message>
+    <message>
+        <source>View as files as a list</source>
+        <translation type="obsolete">View as files as a list</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="801"/>
+        <source>View the workspace as a list of files</source>
+        <translation>View the workspace as a list of files</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="810"/>
         <source>Open Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Open Folder</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="804"/>
-        <location filename="../ui/MainWindow.ui" line="807"/>
-        <source>Open the selected folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../ui/MainWindow.ui" line="813"/>
         <location filename="../ui/MainWindow.ui" line="816"/>
-        <location filename="../src/MainWindow.cpp" line="2182"/>
-        <location filename="../src/MainWindow.cpp" line="2227"/>
+        <source>Open the selected folder</source>
+        <translation>Open the selected folder</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="825"/>
+        <location filename="../src/MainWindow.cpp" line="2201"/>
+        <location filename="../src/MainWindow.cpp" line="2246"/>
         <source>Rename Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Rename Folder</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="819"/>
-        <location filename="../ui/MainWindow.ui" line="822"/>
-        <source>Rename the selected folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../ui/MainWindow.ui" line="828"/>
         <location filename="../ui/MainWindow.ui" line="831"/>
-        <source>Stash changes</source>
-        <translation type="unfinished"></translation>
+        <source>Rename the selected folder</source>
+        <translation>Rename the selected folder</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="834"/>
-        <source>Show the stash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../ui/MainWindow.ui" line="840"/>
         <location filename="../ui/MainWindow.ui" line="843"/>
-        <location filename="../src/MainWindow.cpp" line="2379"/>
+        <source>Stash changes</source>
+        <translation>Stash changes</translation>
+    </message>
+    <message>
+        <source>Show the stash</source>
+        <translation type="obsolete">Show the stash</translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="852"/>
+        <location filename="../src/MainWindow.cpp" line="2398"/>
         <source>Apply Stash</source>
-        <translation type="unfinished"></translation>
+        <translation>Apply Stash</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="846"/>
-        <location filename="../ui/MainWindow.ui" line="849"/>
+        <location filename="../ui/MainWindow.ui" line="855"/>
+        <location filename="../ui/MainWindow.ui" line="858"/>
         <source>Apply stashed changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Apply stashed changes</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="857"/>
+        <location filename="../ui/MainWindow.ui" line="866"/>
         <source>&amp;Stashed Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stashed Changes</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="860"/>
         <source>View the Stash</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">View the Stash</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="863"/>
+        <location filename="../ui/MainWindow.ui" line="875"/>
         <source>Show the list of stashed changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Show the list of stashed changes</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="872"/>
+        <location filename="../ui/MainWindow.ui" line="884"/>
         <source>Delete Stash</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete Stash</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="881"/>
+        <location filename="../ui/MainWindow.ui" line="893"/>
         <source>Diff Stash</source>
-        <translation type="unfinished"></translation>
+        <translation>Diff Stash</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="268"/>
@@ -620,477 +668,493 @@
         <location filename="../src/MainWindow.cpp" line="450"/>
         <location filename="../src/MainWindow.cpp" line="468"/>
         <location filename="../src/MainWindow.cpp" line="501"/>
-        <location filename="../src/MainWindow.cpp" line="1694"/>
-        <location filename="../src/MainWindow.cpp" line="1708"/>
-        <location filename="../src/MainWindow.cpp" line="1750"/>
-        <location filename="../src/MainWindow.cpp" line="1759"/>
-        <location filename="../src/MainWindow.cpp" line="1882"/>
-        <location filename="../src/MainWindow.cpp" line="2194"/>
-        <location filename="../src/MainWindow.cpp" line="2203"/>
-        <location filename="../src/MainWindow.cpp" line="2266"/>
-        <location filename="../src/MainWindow.cpp" line="2279"/>
-        <location filename="../src/MainWindow.cpp" line="2287"/>
-        <location filename="../src/MainWindow.cpp" line="2301"/>
-        <location filename="../src/MainWindow.cpp" line="2307"/>
-        <location filename="../src/MainWindow.cpp" line="2349"/>
-        <location filename="../src/MainWindow.cpp" line="2358"/>
+        <location filename="../src/MainWindow.cpp" line="1712"/>
+        <location filename="../src/MainWindow.cpp" line="1726"/>
+        <location filename="../src/MainWindow.cpp" line="1768"/>
+        <location filename="../src/MainWindow.cpp" line="1777"/>
+        <location filename="../src/MainWindow.cpp" line="1900"/>
+        <location filename="../src/MainWindow.cpp" line="2213"/>
+        <location filename="../src/MainWindow.cpp" line="2222"/>
+        <location filename="../src/MainWindow.cpp" line="2285"/>
+        <location filename="../src/MainWindow.cpp" line="2298"/>
+        <location filename="../src/MainWindow.cpp" line="2306"/>
+        <location filename="../src/MainWindow.cpp" line="2320"/>
+        <location filename="../src/MainWindow.cpp" line="2326"/>
+        <location filename="../src/MainWindow.cpp" line="2368"/>
+        <location filename="../src/MainWindow.cpp" line="2377"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="268"/>
         <source>Could not change current directory to &apos;%0&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not change current directory to &apos;%0&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="310"/>
         <source>Open Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Open Workspace</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="310"/>
         <source>A workspace does not exist in this folder.
 Would you like to create one here?</source>
-        <translation type="unfinished"></translation>
+        <translation>A workspace does not exist in this folder.
+Would you like to create one here?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="314"/>
         <location filename="../src/MainWindow.cpp" line="416"/>
         <source>Select Workspace Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Select Workspace Folder</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="325"/>
         <location filename="../src/MainWindow.cpp" line="439"/>
         <source>Could not change current directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not change current directory</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="333"/>
         <location filename="../src/MainWindow.cpp" line="450"/>
         <source>Could not open repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not open repository.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="371"/>
         <source>Fossil Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil Files</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="375"/>
         <source>Open Fossil Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Open Fossil Repository</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="388"/>
         <source>Fossil Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil Repositories</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="393"/>
         <source>New Fossil Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>New Fossil Repository</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="403"/>
         <source>A repository file already exists.
 Repository creation aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>A repository file already exists.
+Repository creation aborted.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="412"/>
         <source>Create Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Create Workspace</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="412"/>
         <source>Would you like to create a workspace in the same folder?</source>
-        <translation type="unfinished"></translation>
+        <translation>Would you like to create a workspace in the same folder?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="431"/>
         <source>Could not create repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not create repository.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="462"/>
         <source>Close Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Close Workspace</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="462"/>
         <source>Are you sure want to close this workspace?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Are you sure want to close this workspace?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="468"/>
         <source>Cannot close the workspace.
 Are there still uncommitted changes available?</source>
-        <translation type="unfinished"></translation>
+        <translation>Cannot close the workspace.
+Are there still uncommitted changes available?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="501"/>
         <source>Could not clone the repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not clone the repository</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="605"/>
         <source>No workspace detected.</source>
-        <translation type="unfinished"></translation>
+        <translation>No workspace detected.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="613"/>
         <source>Old repository schema detected. Consider running &apos;fossil rebuild&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Old repository schema detected. Consider running &apos;fossil rebuild&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="650"/>
         <source>Scanning Workspace...</source>
-        <translation type="unfinished"></translation>
+        <translation>Scanning Workspace...</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="690"/>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Updating...</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="850"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Folders</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="143"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="143"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Modified</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="143"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Path</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="143"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="143"/>
         <source>Extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Extension</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="462"/>
+        <source>Are you sure you want to close this workspace?</source>
+        <translation>Are you sure you want to close this workspace?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="879"/>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>Edited</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="880"/>
         <source>Unchanged</source>
-        <translation type="unfinished"></translation>
+        <translation>Unchanged</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="881"/>
         <source>Added</source>
-        <translation type="unfinished"></translation>
+        <translation>Added</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="882"/>
         <source>Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Deleted</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="883"/>
         <source>Renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Renamed</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="884"/>
         <source>Missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Missing</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="900"/>
+        <location filename="../src/MainWindow.cpp" line="902"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Unknown</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="985"/>
+        <location filename="../src/MainWindow.cpp" line="991"/>
         <source>Stashes</source>
-        <translation type="unfinished"></translation>
+        <translation>Stashes</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1078"/>
+        <location filename="../src/MainWindow.cpp" line="1084"/>
         <source>Running Fossil</source>
-        <translation type="unfinished"></translation>
+        <translation>Running Fossil</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1090"/>
-        <location filename="../src/MainWindow.cpp" line="1604"/>
+        <location filename="../src/MainWindow.cpp" line="1096"/>
+        <location filename="../src/MainWindow.cpp" line="1622"/>
         <source>Could not start Fossil executable &apos;%s&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not start Fossil executable &apos;%s&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1111"/>
+        <location filename="../src/MainWindow.cpp" line="1127"/>
         <source>Terminated</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminated</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1586"/>
+        <location filename="../src/MainWindow.cpp" line="1604"/>
         <source>Fossil UI is already running</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil UI is already running</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1595"/>
+        <location filename="../src/MainWindow.cpp" line="1613"/>
         <source>Starting Fossil browser UI. Please wait.</source>
-        <translation type="unfinished"></translation>
+        <translation>Starting Fossil browser UI. Please wait.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1694"/>
-        <location filename="../src/MainWindow.cpp" line="1708"/>
+        <location filename="../src/MainWindow.cpp" line="1712"/>
+        <location filename="../src/MainWindow.cpp" line="1726"/>
         <source>A remote repository has not been specified.
 Use the preferences window to set the remote repostory location</source>
-        <translation type="unfinished"></translation>
+        <translation>A remote repository has not been specified.
+Use the preferences window to set the remote repostory location</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1727"/>
+        <location filename="../src/MainWindow.cpp" line="1745"/>
         <source>Commit Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Commit Changes</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1750"/>
-        <location filename="../src/MainWindow.cpp" line="1759"/>
+        <location filename="../src/MainWindow.cpp" line="1768"/>
+        <location filename="../src/MainWindow.cpp" line="1777"/>
         <source>Could not generate comment file</source>
-        <translation type="unfinished"></translation>
+        <translation>Could not generate comment file</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1796"/>
+        <location filename="../src/MainWindow.cpp" line="1814"/>
+        <location filename="../src/MainWindow.cpp" line="2580"/>
         <source>Add files</source>
-        <translation type="unfinished"></translation>
+        <translation>Add files</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1796"/>
+        <location filename="../src/MainWindow.cpp" line="1814"/>
+        <location filename="../src/MainWindow.cpp" line="2580"/>
         <source>The following files will be added.</source>
-        <translation type="unfinished"></translation>
+        <translation>The following files will be added.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1796"/>
-        <location filename="../src/MainWindow.cpp" line="1821"/>
-        <location filename="../src/MainWindow.cpp" line="1853"/>
-        <location filename="../src/MainWindow.cpp" line="1929"/>
-        <location filename="../src/MainWindow.cpp" line="1976"/>
-        <location filename="../src/MainWindow.cpp" line="2228"/>
-        <location filename="../src/MainWindow.cpp" line="2379"/>
-        <location filename="../src/MainWindow.cpp" line="2420"/>
+        <location filename="../src/MainWindow.cpp" line="1814"/>
+        <location filename="../src/MainWindow.cpp" line="1839"/>
+        <location filename="../src/MainWindow.cpp" line="1871"/>
+        <location filename="../src/MainWindow.cpp" line="1947"/>
+        <location filename="../src/MainWindow.cpp" line="1995"/>
+        <location filename="../src/MainWindow.cpp" line="2247"/>
+        <location filename="../src/MainWindow.cpp" line="2398"/>
+        <location filename="../src/MainWindow.cpp" line="2439"/>
+        <location filename="../src/MainWindow.cpp" line="2580"/>
         <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Are you sure?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1821"/>
+        <location filename="../src/MainWindow.cpp" line="1839"/>
         <source>Remove files</source>
-        <translation type="unfinished"></translation>
+        <translation>Remove files</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1821"/>
+        <location filename="../src/MainWindow.cpp" line="1839"/>
         <source>The following files will be removed from the repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>The following files will be removed from the repository.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1821"/>
+        <location filename="../src/MainWindow.cpp" line="1839"/>
         <source>Also delete the local files</source>
-        <translation type="unfinished"></translation>
+        <translation>Also delete the local files</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1853"/>
+        <location filename="../src/MainWindow.cpp" line="1871"/>
         <source>Revert files</source>
-        <translation type="unfinished"></translation>
+        <translation>Revert files</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1853"/>
+        <location filename="../src/MainWindow.cpp" line="1871"/>
         <source>The following files will be reverted.</source>
-        <translation type="unfinished"></translation>
+        <translation>The following files will be reverted.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1874"/>
-        <location filename="../src/MainWindow.cpp" line="2182"/>
+        <location filename="../src/MainWindow.cpp" line="1892"/>
+        <location filename="../src/MainWindow.cpp" line="2201"/>
         <source>New name</source>
-        <translation type="unfinished"></translation>
+        <translation>New name</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1882"/>
+        <location filename="../src/MainWindow.cpp" line="1900"/>
         <source>File &apos;%0&apos; already exists.
 Rename aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>File &apos;%0&apos; already exists.
+Rename aborted.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1929"/>
+        <location filename="../src/MainWindow.cpp" line="1947"/>
         <source>The following actions will be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>The following actions will be undone.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1948"/>
+        <location filename="../src/MainWindow.cpp" line="1966"/>
         <source>Fossil version %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil version %0</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1951"/>
+        <location filename="../src/MainWindow.cpp" line="1969"/>
         <source>About Fuel...</source>
-        <translation type="unfinished"></translation>
+        <translation>About Fuel...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1953"/>
+        <location filename="../src/MainWindow.cpp" line="1971"/>
         <source>a GUI frontend to the Fossil SCM
 by Kostas Karanikolas
 Released under the GNU GPL</source>
-        <translation type="unfinished"></translation>
+        <translation>a GUI frontend to the Fossil SCM
+by Kostas Karanikolas
+Released under the GNU GPL</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1957"/>
+        <location filename="../src/MainWindow.cpp" line="1975"/>
         <source>Icons by Deleket - Jojo Mendoza
 Available under the CC Attribution Noncommercial No Derivative 3.0 License</source>
-        <translation type="unfinished"></translation>
+        <translation>Icons by Deleket - Jojo Mendoza
+Available under the CC Attribution Noncommercial No Derivative 3.0 License</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1959"/>
+        <location filename="../src/MainWindow.cpp" line="1977"/>
         <source>Translations with the help of:</source>
-        <translation type="unfinished"></translation>
+        <translation>Translations with the help of:</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1976"/>
+        <location filename="../src/MainWindow.cpp" line="1995"/>
         <source>The following files will be updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>The following files will be updated.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2194"/>
-        <location filename="../src/MainWindow.cpp" line="2203"/>
+        <location filename="../src/MainWindow.cpp" line="2213"/>
+        <location filename="../src/MainWindow.cpp" line="2222"/>
         <source>Cannot rename folder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cannot rename folder.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2194"/>
+        <location filename="../src/MainWindow.cpp" line="2213"/>
         <source>Folder name contains invalid characters.</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder name contains invalid characters.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2203"/>
+        <location filename="../src/MainWindow.cpp" line="2222"/>
         <source>This folder exists already.</source>
-        <translation type="unfinished"></translation>
+        <translation>This folder exists already.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2227"/>
+        <location filename="../src/MainWindow.cpp" line="2246"/>
         <source>Renaming folder &apos;%0&apos; to &apos;%1&apos;
 The following files will be moved in the repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Renaming folder &apos;%0&apos; to &apos;%1&apos;
+The following files will be moved in the repository.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2230"/>
+        <location filename="../src/MainWindow.cpp" line="2249"/>
         <source>Also move the workspace files</source>
-        <translation type="unfinished"></translation>
+        <translation>Also move the workspace files</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2243"/>
+        <location filename="../src/MainWindow.cpp" line="2262"/>
         <source>Move aborted due to errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Move aborted due to errors</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2263"/>
+        <location filename="../src/MainWindow.cpp" line="2282"/>
         <source>Creating folder &apos;%0&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Creating folder &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2266"/>
+        <location filename="../src/MainWindow.cpp" line="2285"/>
         <source>Cannot make target folder &apos;%0&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Cannot make target folder &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2279"/>
+        <location filename="../src/MainWindow.cpp" line="2298"/>
         <source>Target file &apos;%0&apos; exists already</source>
-        <translation type="unfinished"></translation>
+        <translation>Target file &apos;%0&apos; exists already</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2283"/>
+        <location filename="../src/MainWindow.cpp" line="2302"/>
         <source>Copying file &apos;%0&apos; to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Copying file &apos;%0&apos; to &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2287"/>
+        <location filename="../src/MainWindow.cpp" line="2306"/>
         <source>Cannot copy file &apos;%0&apos; to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Cannot copy file &apos;%0&apos; to &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2297"/>
+        <location filename="../src/MainWindow.cpp" line="2316"/>
         <source>Removing old file &apos;%0&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Removing old file &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2301"/>
+        <location filename="../src/MainWindow.cpp" line="2320"/>
         <source>Source file &apos;%0&apos; does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Source file &apos;%0&apos; does not exist</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2307"/>
+        <location filename="../src/MainWindow.cpp" line="2326"/>
         <source>Cannot remove file &apos;%0&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Cannot remove file &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2312"/>
+        <location filename="../src/MainWindow.cpp" line="2331"/>
         <source>Folder renamed completed. Don&apos;t forget to commit!</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder renamed completed. Don&apos;t forget to commit!</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2341"/>
+        <location filename="../src/MainWindow.cpp" line="2360"/>
         <source>Revert stashed files</source>
-        <translation type="unfinished"></translation>
+        <translation>Revert stashed files</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2342"/>
+        <location filename="../src/MainWindow.cpp" line="2361"/>
         <source>Stash Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Stash Changes</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2349"/>
+        <location filename="../src/MainWindow.cpp" line="2368"/>
         <source>Invalid stash name</source>
-        <translation type="unfinished"></translation>
+        <translation>Invalid stash name</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2358"/>
+        <location filename="../src/MainWindow.cpp" line="2377"/>
         <source>This stash already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>This stash already exists</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2379"/>
+        <location filename="../src/MainWindow.cpp" line="2398"/>
         <source>The following stashes will be applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>The following stashes will be applied.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2379"/>
+        <location filename="../src/MainWindow.cpp" line="2398"/>
         <source>Delete after applying</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete after applying</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2390"/>
+        <location filename="../src/MainWindow.cpp" line="2409"/>
         <source>Stash application aborted due to errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Stash application aborted due to errors</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2403"/>
-        <location filename="../src/MainWindow.cpp" line="2431"/>
+        <location filename="../src/MainWindow.cpp" line="2422"/>
+        <location filename="../src/MainWindow.cpp" line="2450"/>
         <source>Stash deletion aborted due to errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Stash deletion aborted due to errors</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2420"/>
+        <location filename="../src/MainWindow.cpp" line="2439"/>
         <source>Delete Stashes</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete Stashes</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2420"/>
+        <location filename="../src/MainWindow.cpp" line="2439"/>
         <source>The following stashes will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>The following stashes will be deleted.</translation>
     </message>
 </context>
 <context>
@@ -1098,206 +1162,212 @@ The following files will be moved in the repository.</source>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="17"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Settings</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="34"/>
         <source>Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Application</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="46"/>
         <source>Fossil Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil Path</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="55"/>
         <source>Path to the Fossil executable. Leave blank to use the default Fossil</source>
-        <translation type="unfinished"></translation>
+        <translation>Path to the Fossil executable. Leave blank to use the default Fossil</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="74"/>
         <location filename="../ui/SettingsDialog.ui" line="117"/>
         <location filename="../ui/SettingsDialog.ui" line="160"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="89"/>
         <source>Graphical Diff </source>
-        <translation type="unfinished"></translation>
+        <translation>Graphical Diff </translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="98"/>
         <source>Path to graphical diff tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Path to graphical diff tool</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="132"/>
         <source>Graphical Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>Graphical Merge</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="141"/>
         <source>Path to the graphical merge tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Path to the graphical merge tool</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="169"/>
         <source>HTTP Port</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP Port</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="176"/>
         <source>HTTP port to use for the Fossil web interface</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP port to use for the Fossil web interface</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="189"/>
         <source>Commit Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Commit Messages</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="202"/>
         <source>Clear the commit message history</source>
-        <translation type="unfinished"></translation>
+        <translation>Clear the commit message history</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="205"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Clear</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="212"/>
         <source>Web Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Browser</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="225"/>
         <source>Web browser to use for the Fossil web interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Web browser to use for the Fossil web interface</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="238"/>
         <source>Double-click Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Double-click Action</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="251"/>
         <source>Action to perfom when double-clicking a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Action to perfom when double-clicking a file</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="261"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Language</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="274"/>
         <source>Language for the user interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Language for the user interface</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="286"/>
         <source>Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Repository</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="304"/>
         <source>Remote Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Remote Url</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="317"/>
         <source>The remote url used to push/pull changes.
 URL style user names and passwords are also supported.
 For example http://username:password@server.com/fossil</source>
-        <translation type="unfinished"></translation>
+        <translation>The remote url used to push/pull changes.
+URL style user names and passwords are also supported.
+For example http://username:password@server.com/fossil</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="332"/>
         <source>Ignore List</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignore List</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="345"/>
         <source>A comma separated list of glob-style file/path patterns ignored in Fossil file operations</source>
-        <translation type="unfinished"></translation>
+        <translation>A comma separated list of glob-style file/path patterns ignored in Fossil file operations</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="358"/>
         <source>Ignore CR/NL</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignore CR/NL</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="371"/>
         <source>A comma separated list of glob-style file patterns to exclude from Fossil&apos;s CR/NL consistency checking</source>
-        <translation type="unfinished"></translation>
+        <translation>A comma separated list of glob-style file patterns to exclude from Fossil&apos;s CR/NL consistency checking</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="17"/>
         <source>Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Applications</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="46"/>
         <source>Diff File</source>
-        <translation type="unfinished"></translation>
+        <translation>Diff File</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="47"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>Open File</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="48"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Open Containing Folder</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="50"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="51"/>
         <source>Internal</source>
-        <translation type="unfinished"></translation>
+        <translation>Internal</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="106"/>
         <source>Restart required</source>
-        <translation type="unfinished"></translation>
+        <translation>Restart required</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="106"/>
         <source>The language change will take effect after restarting the application</source>
-        <translation type="unfinished"></translation>
+        <translation>The language change will take effect after restarting the application</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="120"/>
         <source>Select Fossil executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Select Fossil executable</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="128"/>
         <source>Select Graphical Diff application</source>
-        <translation type="unfinished"></translation>
+        <translation>Select Graphical Diff application</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="136"/>
         <source>Select Graphical Merge application</source>
-        <translation type="unfinished"></translation>
+        <translation>Select Graphical Merge application</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="144"/>
         <source>Clear Commit Message History</source>
-        <translation type="unfinished"></translation>
+        <translation>Clear Commit Message History</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="144"/>
+        <source>Are you sure you want to clear the commit message history?</source>
+        <translation>Are you sure you want to clear the commit message history?</translation>
+    </message>
+    <message>
         <source>Are you sure want to clear the commit message history?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Are you sure want to clear the commit message history?</translation>
     </message>
 </context>
 </TS>
