@@ -1093,7 +1093,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	process.start(fossil, args);
 	if(!process.waitForStarted())
 	{
-		log(tr("Could not start Fossil executable '%s'").arg(fossil)+"\n");
+		log(tr("Could not start Fossil executable '%0'").arg(fossil)+"\n");
 		return false;
 	}
 	const QChar EOL_MARK('\n');

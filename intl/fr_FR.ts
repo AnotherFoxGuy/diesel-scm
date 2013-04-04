@@ -8,24 +8,24 @@
         <location filename="../ui/BrowserWidget.ui" line="50"/>
         <location filename="../ui/BrowserWidget.ui" line="53"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Précédent</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="62"/>
         <location filename="../ui/BrowserWidget.ui" line="65"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Suivant</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="74"/>
         <location filename="../ui/BrowserWidget.ui" line="77"/>
         <source>Refresh</source>
-        <translation type="unfinished">Actualiser</translation>
+        <translation>Actualiser</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="86"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter</translation>
     </message>
 </context>
 <context>
@@ -33,7 +33,7 @@
     <message>
         <location filename="../ui/CloneDialog.ui" line="17"/>
         <source>Clone Repository</source>
-        <translation>Cloner un Dépôt</translation>
+        <translation>Cloner un dépôt</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="28"/>
@@ -48,7 +48,7 @@
     <message>
         <location filename="../ui/CloneDialog.ui" line="42"/>
         <source>User Name</source>
-        <translation>Nom d&apos;Utilisateur</translation>
+        <translation>Nom d&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="49"/>
@@ -58,7 +58,7 @@
     <message>
         <location filename="../ui/CloneDialog.ui" line="56"/>
         <source>Password</source>
-        <translation>Mot de Passe</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="63"/>
@@ -90,7 +90,7 @@
     <message>
         <location filename="../src/CloneDialog.cpp" line="52"/>
         <source>Invalid URL.</source>
-        <translation>URL Invalide.</translation>
+        <translation>URL invalide.</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="61"/>
@@ -105,7 +105,7 @@
     <message>
         <location filename="../src/CloneDialog.cpp" line="76"/>
         <source>Select Fossil Repository</source>
-        <translation>Sélectionner un Dépôt Fossil</translation>
+        <translation>Sélectionner un dépôt Fossil</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="87"/>
@@ -126,7 +126,7 @@
     <message>
         <location filename="../ui/FileActionDialog.ui" line="17"/>
         <source>File Action</source>
-        <translation>Action sur Fichier</translation>
+        <translation>Action sur fichier</translation>
     </message>
 </context>
 <context>
@@ -164,7 +164,7 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="282"/>
         <source>Main Toolbar</source>
-        <translation>Barre d&apos;Outils Principale</translation>
+        <translation>Barre d&apos;outils principale</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="336"/>
@@ -297,7 +297,7 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="479"/>
         <source>Clone a remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Cloner un dépôt distant</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="488"/>
@@ -387,29 +387,29 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="584"/>
         <location filename="../ui/MainWindow.ui" line="587"/>
-        <source>Starts the Fosil UI in the Web Browser</source>
-        <translation type="unfinished"></translation>
+        <source>Starts the Fossil UI in the Web Browser</source>
+        <translation>Démarre l&apos;IHM Fossil dans le navigateur web</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="641"/>
         <source>Open File</source>
-        <translation type="unfinished">Ouvrir le Fichier</translation>
+        <translation>Ouvrir le fichier</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="795"/>
         <location filename="../ui/MainWindow.ui" line="798"/>
         <source>View files as a list</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les fichiers sous forme de liste</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="869"/>
         <location filename="../ui/MainWindow.ui" line="872"/>
         <source>View Stashed Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les fichiers mis en réserve</translation>
     </message>
     <message>
-        <source>Starts the Fosill UI in the Web Browser</source>
-        <translation type="obsolete">Lance l&apos;IHM Fossil dans le navigateur web</translation>
+        <source>Starts the Fossil UI in the Web Browser</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="596"/>
@@ -425,7 +425,7 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="611"/>
         <source>Clear Log</source>
-        <translation>Effacer le Journal</translation>
+        <translation>Effacer le journal</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="614"/>
@@ -450,7 +450,7 @@
     </message>
     <message>
         <source>Open file</source>
-        <translation type="obsolete">Ouvrir le Fichier</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="644"/>
@@ -466,7 +466,7 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="659"/>
         <source>Open Containing</source>
-        <translation>Ouvrir le Dossier</translation>
+        <translation>Ouvrir le dossier</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="662"/>
@@ -499,7 +499,7 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="695"/>
         <source>&amp;About...</source>
-        <translation>À &amp;propos</translation>
+        <translation>À &amp;propos...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="698"/>
@@ -510,7 +510,7 @@
         <location filename="../ui/MainWindow.ui" line="707"/>
         <location filename="../src/MainWindow.cpp" line="1995"/>
         <source>Update</source>
-        <translation>Mettre à Jour</translation>
+        <translation>Mettre à jour</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="710"/>
@@ -577,11 +577,11 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="792"/>
         <source>File &amp;List</source>
-        <translation>&amp;Liste de Fichiers</translation>
+        <translation>&amp;Liste de fichiers</translation>
     </message>
     <message>
         <source>View as files as a list</source>
-        <translation type="obsolete">Afficher les fichiers sous forme de liste</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="801"/>
@@ -591,7 +591,7 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="810"/>
         <source>Open Folder</source>
-        <translation>Ouvrir le Dossier</translation>
+        <translation>Ouvrir le dossier</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="813"/>
@@ -604,7 +604,7 @@
         <location filename="../src/MainWindow.cpp" line="2201"/>
         <location filename="../src/MainWindow.cpp" line="2246"/>
         <source>Rename Folder</source>
-        <translation>Renommer le Dossier</translation>
+        <translation>Renommer le dossier</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="828"/>
@@ -616,17 +616,17 @@
         <location filename="../ui/MainWindow.ui" line="840"/>
         <location filename="../ui/MainWindow.ui" line="843"/>
         <source>Stash changes</source>
-        <translation>Mettre en réserve des modifications</translation>
+        <translation>Mettre des modifications en réserve</translation>
     </message>
     <message>
         <source>Show the stash</source>
-        <translation type="obsolete">Montrer la réserve</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="852"/>
         <location filename="../src/MainWindow.cpp" line="2398"/>
         <source>Apply Stash</source>
-        <translation>Appliquer la Réserve</translation>
+        <translation>Appliquer la réserve</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="855"/>
@@ -637,11 +637,11 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="866"/>
         <source>&amp;Stashed Changes</source>
-        <translation>Modifications en &amp;Réserve</translation>
+        <translation>Modifications en réserve</translation>
     </message>
     <message>
         <source>View the Stash</source>
-        <translation type="obsolete">Afficher la Réserve</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="875"/>
@@ -651,12 +651,12 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="884"/>
         <source>Delete Stash</source>
-        <translation>Supprimer la Réserve</translation>
+        <translation>Supprimer la réserve</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="893"/>
         <source>Diff Stash</source>
-        <translation>Comparer la Réserve</translation>
+        <translation>Comparer la réserve</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="268"/>
@@ -693,7 +693,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="310"/>
         <source>Open Workspace</source>
-        <translation>Ouvrir l&apos;Espace de Travail</translation>
+        <translation>Ouvrir l&apos;espace de travail</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="310"/>
@@ -706,7 +706,7 @@ Souhaitez-vous en créer un ici ?</translation>
         <location filename="../src/MainWindow.cpp" line="314"/>
         <location filename="../src/MainWindow.cpp" line="416"/>
         <source>Select Workspace Folder</source>
-        <translation>Sélectionner un Dossier d&apos;Espace de Travail</translation>
+        <translation>Sélectionner un dossier d&apos;espace de travail</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="325"/>
@@ -728,7 +728,7 @@ Souhaitez-vous en créer un ici ?</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="375"/>
         <source>Open Fossil Repository</source>
-        <translation>Ouvrir un Dépôt Fossil</translation>
+        <translation>Ouvrir un dépôt Fossil</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="388"/>
@@ -738,7 +738,7 @@ Souhaitez-vous en créer un ici ?</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="393"/>
         <source>New Fossil Repository</source>
-        <translation>Nouveau Dépôt Fossil</translation>
+        <translation>Nouveau dépôt Fossil</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="403"/>
@@ -750,7 +750,7 @@ Repository creation aborted.</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="412"/>
         <source>Create Workspace</source>
-        <translation>Créer un Espace de Travail</translation>
+        <translation>Créer un espace de travail</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="412"/>
@@ -765,11 +765,11 @@ Repository creation aborted.</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="462"/>
         <source>Close Workspace</source>
-        <translation>Fermer l&apos;Espace de Travail</translation>
+        <translation>Fermer l&apos;espace de travail</translation>
     </message>
     <message>
         <source>Are you sure want to close this workspace?</source>
-        <translation type="obsolete">Êtes-vous sûr de vouloir fermer cet espace de travail ?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="468"/>
@@ -791,17 +791,17 @@ Existe-t-il des modifications non encore livrées ?</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="613"/>
         <source>Old repository schema detected. Consider running &apos;fossil rebuild&apos;</source>
-        <translation>Ancien format de dépôt détecté. Vous devriez envisager d&apos;exécuter &apos;fossil rebuild&apos;.</translation>
+        <translation>Ancien format de dépôt détecté. Vous devriez exécuter &apos;fossil rebuild&apos;.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="650"/>
         <source>Scanning Workspace...</source>
-        <translation>Analyse de l&apos;Espace de Travail...</translation>
+        <translation>Analyse de l&apos;espace de travail...</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="690"/>
         <source>Updating...</source>
-        <translation>Mise à Jour...</translation>
+        <translation>Mise à jour...</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="850"/>
@@ -836,7 +836,7 @@ Existe-t-il des modifications non encore livrées ?</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="462"/>
         <source>Are you sure you want to close this workspace?</source>
-        <translation type="unfinished"></translation>
+        <translation>Êtes-vous sûr de vouloir fermer cet espace de travail ?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="879"/>
@@ -886,8 +886,8 @@ Existe-t-il des modifications non encore livrées ?</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="1096"/>
         <location filename="../src/MainWindow.cpp" line="1622"/>
-        <source>Could not start Fossil executable &apos;%s&apos;</source>
-        <translation>Impossible de démarrer l&apos;exécutable Fossil &apos;%s&apos;.</translation>
+        <source>Could not start Fossil executable &apos;%0&apos;</source>
+        <translation>Impossible de démarrer l&apos;exécutable Fossil &apos;%0&apos;.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1127"/>
@@ -915,7 +915,7 @@ Utilisez la fenêtre de préférences pour indiquer l&apos;emplacement du dépô
     <message>
         <location filename="../src/MainWindow.cpp" line="1745"/>
         <source>Commit Changes</source>
-        <translation>Livrer des Modifications</translation>
+        <translation>Livrer des modifications</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1768"/>
@@ -927,7 +927,7 @@ Utilisez la fenêtre de préférences pour indiquer l&apos;emplacement du dépô
         <location filename="../src/MainWindow.cpp" line="1814"/>
         <location filename="../src/MainWindow.cpp" line="2580"/>
         <source>Add files</source>
-        <translation>Ajouter des Fichiers</translation>
+        <translation>Ajouter des fichiers</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1814"/>
@@ -951,7 +951,7 @@ Utilisez la fenêtre de préférences pour indiquer l&apos;emplacement du dépô
     <message>
         <location filename="../src/MainWindow.cpp" line="1839"/>
         <source>Remove files</source>
-        <translation>Supprimer des Fichiers</translation>
+        <translation>Supprimer des fichiers</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1839"/>
@@ -966,7 +966,7 @@ Utilisez la fenêtre de préférences pour indiquer l&apos;emplacement du dépô
     <message>
         <location filename="../src/MainWindow.cpp" line="1871"/>
         <source>Revert files</source>
-        <translation>Rétablir des Fichiers</translation>
+        <translation>Rétablir des fichiers</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1871"/>
@@ -981,7 +981,7 @@ Utilisez la fenêtre de préférences pour indiquer l&apos;emplacement du dépô
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1900"/>
-        <source>File &apos;%0&apos; already exists.
+        <source>File '%0' already exists.
 Rename aborted.</source>
         <translation>Le fichier &apos;%0&apos; existe déjà.
 Échec du renommage.</translation>
@@ -1045,7 +1045,7 @@ Disponible sous licence CC 3.0 Attribution - Pas d’Utilisation Commerciale - P
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2246"/>
-        <source>Renaming folder &apos;%0&apos; to &apos;%1&apos;
+        <source>Renaming folder '%0' to '%1'
 The following files will be moved in the repository.</source>
         <translation>Renommage du dossier &apos;%0&apos; en &apos;%1&apos;.
 Les fichiers suivants seront déplacés dans le dépôt.</translation>
@@ -1113,7 +1113,7 @@ Les fichiers suivants seront déplacés dans le dépôt.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2361"/>
         <source>Stash Changes</source>
-        <translation>Mettre en Réserve des Modifications</translation>
+        <translation>Mettre des modifications en réserve</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2368"/>
@@ -1149,7 +1149,7 @@ Les fichiers suivants seront déplacés dans le dépôt.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2439"/>
         <source>Delete Stashes</source>
-        <translation>Supprimer des Réserves</translation>
+        <translation>Supprimer des réserves</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2439"/>
@@ -1189,7 +1189,7 @@ Les fichiers suivants seront déplacés dans le dépôt.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="89"/>
         <source>Graphical Diff </source>
-        <translation>Comparaison Graphique</translation>
+        <translation>Comparaison graphique</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="98"/>
@@ -1199,7 +1199,7 @@ Les fichiers suivants seront déplacés dans le dépôt.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="132"/>
         <source>Graphical Merge</source>
-        <translation>Fusion Graphique</translation>
+        <translation>Fusion graphique</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="141"/>
@@ -1219,7 +1219,7 @@ Les fichiers suivants seront déplacés dans le dépôt.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="189"/>
         <source>Commit Messages</source>
-        <translation>Messages de Livraison</translation>
+        <translation>Messages de livraison</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="202"/>
@@ -1234,7 +1234,7 @@ Les fichiers suivants seront déplacés dans le dépôt.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="212"/>
         <source>Web Browser</source>
-        <translation>Navigateur Web</translation>
+        <translation>Navigateur web</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="225"/>
@@ -1244,7 +1244,7 @@ Les fichiers suivants seront déplacés dans le dépôt.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="238"/>
         <source>Double-click Action</source>
-        <translation>Action du Double-Clic</translation>
+        <translation>Action du double-clic</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="251"/>
@@ -1269,7 +1269,7 @@ Les fichiers suivants seront déplacés dans le dépôt.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="304"/>
         <source>Remote Url</source>
-        <translation>URL Distante</translation>
+        <translation>URL distante</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="317"/>
@@ -1283,7 +1283,7 @@ Par exemple http://username:password@server.com/fossil</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="332"/>
         <source>Ignore List</source>
-        <translation>Liste d&apos;Ignorés</translation>
+        <translation>Liste d&apos;ignorés</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="345"/>
@@ -1293,7 +1293,7 @@ Par exemple http://username:password@server.com/fossil</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="358"/>
         <source>Ignore CR/NL</source>
-        <translation>CR/NL Ignorés</translation>
+        <translation>CR/NL ignorés</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="371"/>
@@ -1308,22 +1308,22 @@ Par exemple http://username:password@server.com/fossil</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="46"/>
         <source>Diff File</source>
-        <translation>Comparer le Fichier</translation>
+        <translation>Comparer le fichier</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="47"/>
         <source>Open File</source>
-        <translation>Ouvrir le Fichier</translation>
+        <translation>Ouvrir le fichier</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="48"/>
         <source>Open Containing Folder</source>
-        <translation>Ouvrir le Dossier Contenant</translation>
+        <translation>Ouvrir le dossier contenant</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="50"/>
         <source>System</source>
-        <translation>System</translation>
+        <translation>Système</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="51"/>
@@ -1343,31 +1343,31 @@ Par exemple http://username:password@server.com/fossil</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="120"/>
         <source>Select Fossil executable</source>
-        <translation>Sélectionner l&apos;Exécutable Fossil</translation>
+        <translation>Sélectionner l&apos;exécutable Fossil</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="128"/>
         <source>Select Graphical Diff application</source>
-        <translation>Sélectionner l&apos;Application de Comparaison Graphique</translation>
+        <translation>Sélectionner l&apos;application de comparaison graphique</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="136"/>
         <source>Select Graphical Merge application</source>
-        <translation>Sélectionner l&apos;Application de Fusion Graphique</translation>
+        <translation>Sélectionner l&apos;application de fusion graphique</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="144"/>
         <source>Clear Commit Message History</source>
-        <translation>Effacer l&apos;Historique des Messages de Livraison</translation>
+        <translation>Effacer l&apos;historique des messages de livraison</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="144"/>
         <source>Are you sure you want to clear the commit message history?</source>
-        <translation type="unfinished"></translation>
+        <translation>Êtes-vous sûr de vouloir effacer l&apos;historique des messages de livraison ?</translation>
     </message>
     <message>
         <source>Are you sure want to clear the commit message history?</source>
-        <translation type="obsolete">Êtes-vous sûr de vouloir effacer l&apos;historique des messages de livraison ?</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

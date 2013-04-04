@@ -581,10 +581,10 @@
 	<string>Fossil UI</string>
    </property>
    <property name="toolTip">
-	<string>Starts the Fosil UI in the Web Browser</string>
+	<string>Starts the Fossil UI in the Web Browser</string>
    </property>
    <property name="statusTip">
-	<string>Starts the Fosil UI in the Web Browser</string>
+	<string>Starts the Fossil UI in the Web Browser</string>
    </property>
   </action>
   <action name="actionRevert">

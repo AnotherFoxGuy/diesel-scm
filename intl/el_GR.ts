@@ -387,8 +387,8 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="584"/>
         <location filename="../ui/MainWindow.ui" line="587"/>
-        <source>Starts the Fosil UI in the Web Browser</source>
-        <translation>Εκκίνηση του Fosill UI μέσω του Web Browser</translation>
+        <source>Starts the Fossil UI in the Web Browser</source>
+        <translation>Εκκίνηση του Fossil UI μέσω του Web Browser</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="641"/>
@@ -408,8 +408,8 @@
         <translation>Προβολή των στοιβών</translation>
     </message>
     <message>
-        <source>Starts the Fosill UI in the Web Browser</source>
-        <translation type="obsolete">Εκκίνηση του Fosill UI μέσω του Web Browser</translation>
+        <source>Starts the Fossil UI in the Web Browser</source>
+        <translation type="obsolete">Εκκίνηση του Fossil UI μέσω του Web Browser</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="596"/>
@@ -886,8 +886,8 @@ Are there still uncommitted changes available?</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="1096"/>
         <location filename="../src/MainWindow.cpp" line="1622"/>
-        <source>Could not start Fossil executable &apos;%s&apos;</source>
-        <translation>Η εκκίνηση του εκτελέσιμου Fossil &apos;%s&apos; δεν ήταν δυνατή</translation>
+        <source>Could not start Fossil executable &apos;%0&apos;</source>
+        <translation>Η εκκίνηση του εκτελέσιμου Fossil &apos;%0&apos; δεν ήταν δυνατή</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1127"/>

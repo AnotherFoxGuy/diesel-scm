@@ -257,7 +257,8 @@ bool Settings::HasValue(const QString &name) const
 //-----------------------------------------------------------------------------
 const QVariant Settings::GetValue(const QString &name)
 {
-	Q_ASSERT(HasValue(name));
+	if(!HasValue(name))
+		return QVariant();
 	return store->value(name);
 }
 

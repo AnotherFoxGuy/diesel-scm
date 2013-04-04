@@ -387,8 +387,8 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="584"/>
         <location filename="../ui/MainWindow.ui" line="587"/>
-        <source>Starts the Fosil UI in the Web Browser</source>
-        <translation>Starts the Fosil UI in the Web Browser</translation>
+        <source>Starts the Fossil UI in the Web Browser</source>
+        <translation>Starts the Fossil UI in the Web Browser</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="641"/>
@@ -408,8 +408,8 @@
         <translation>View Stashed Changes</translation>
     </message>
     <message>
-        <source>Starts the Fosill UI in the Web Browser</source>
-        <translation type="obsolete">Starts the Fosill UI in the Web Browser</translation>
+        <source>Starts the Fossil UI in the Web Browser</source>
+        <translation type="obsolete">Starts the Fossil UI in the Web Browser</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="596"/>
@@ -886,8 +886,8 @@ Are there still uncommitted changes available?</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="1096"/>
         <location filename="../src/MainWindow.cpp" line="1622"/>
-        <source>Could not start Fossil executable &apos;%s&apos;</source>
-        <translation>Could not start Fossil executable &apos;%s&apos;</translation>
+        <source>Could not start Fossil executable &apos;%0&apos;</source>
+        <translation>Could not start Fossil executable &apos;%0&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1127"/>

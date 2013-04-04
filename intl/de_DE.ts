@@ -387,7 +387,7 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="584"/>
         <location filename="../ui/MainWindow.ui" line="587"/>
-        <source>Starts the Fosil UI in the Web Browser</source>
+        <source>Starts the Fossil UI in the Web Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -408,7 +408,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Starts the Fosill UI in the Web Browser</source>
+        <source>Starts the Fossil UI in the Web Browser</source>
         <translation type="obsolete">Starte das Fossil UI im Browser</translation>
     </message>
     <message>
@@ -887,8 +887,8 @@ Bitte perpektivisch &apos;fossil rebuild&apos; ausführen</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="1096"/>
         <location filename="../src/MainWindow.cpp" line="1622"/>
-        <source>Could not start Fossil executable &apos;%s&apos;</source>
-        <translation>Konnte Fossildatei &apos;%s&apos; nicht starten</translation>
+        <source>Could not start Fossil executable &apos;%0&apos;</source>
+        <translation>Konnte Fossildatei &apos;%0&apos; nicht starten</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1127"/>

@@ -1,5 +1,5 @@
-C Updated\sArch\spkgbuild\sfor\snew\sqt\spackage\sstructure\n
-D 2013-03-03T13:25:08.032
+C Updated\stranslations\nFixed\sassert\sin\sdebug\sbuild\n
+D 2013-04-04T14:12:35.712
 F dist/arch/PKGBUILD e6e0ada3856c94748557c3f18827b83f1ae06b17
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -8,11 +8,11 @@ F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro 9924b8c961a342363503827b42404d3e87e24a1a
 F intl/convert.bat 7e878e302a8be2324fd51b9eed1aab272dbd8bbd x
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
-F intl/de_DE.ts fb9d0847c61ed3bd06f20d4bbfd07d46686d321e
-F intl/el_GR.ts 3f36e2b09d5ac0885062b1798392898c7dc99f9b
-F intl/en_US.ts 1e715b33361965b323364ff31832f85b86ffaf5c
-F intl/es_ES.ts f76969cdf7fac09c5f7d3f0881d3392b4126953a
-F intl/fr_FR.ts d225db46a66bbca4ebf1353b5df0c658df98d72d
+F intl/de_DE.ts ca35d7eb8b7dea47d5c8e33f4605798664cd88c3
+F intl/el_GR.ts 8c0bf34cad9696c641d208578a19bb510b24e23d
+F intl/en_US.ts 54dd57590d03bc4573a6603128d55eedccfb7598
+F intl/es_ES.ts 2b778aabd6e615f60ec62219e8e18bf886019e2b
+F intl/fr_FR.ts 27dcc9e4aeccb71b27977606f7bb9e30db82ea53
 F intl/update.sh b5312e108eec47f9c8cb7d6790c57335e6b52829 x
 F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
 F rsrc/fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
@@ -186,9 +186,9 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 1ce71ed04d4f2a1a57bbd273c42854d7f1e018af
+F src/MainWindow.cpp 59456ae5b02871e78c1d38fefed9165d6e94c64c
 F src/MainWindow.h 9c70fd9db3bbd5f96132563819b50d21517aa740
-F src/SettingsDialog.cpp 96650f3b7c24cb18bcf18def9860642bc58b9251
+F src/SettingsDialog.cpp f0b834ff886b705d2823f052dba2a14c6421f1ef
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
 F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
@@ -198,9 +198,9 @@ F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/MainWindow.ui 624844304042b74c462df27793a433183049f43f
+F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 8640e5e0d81bb73fc2a5ad2e7acdef57b1f1aee3
-R 837b33d5c1a309ec18ce0c320daa876d
+P a8c6a89e8e36b53201b4573c5ed2161a224aed06
+R 4151bf4a36a5fc500d9f416b58f87836
 U kostas
-Z bde06928c3bda04dc626b8d32c4e2ce0
+Z 8a0ccbedc3b19a1424dea71cb9cbffdb
