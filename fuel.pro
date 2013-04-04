@@ -9,7 +9,7 @@ TEMPLATE = app
 
 win32 {
 	RC_FILE = rsrc/fuel.rc
-	LIBS += -luser32 -lshell32
+        LIBS += -luser32 -lshell32 -luuid
 }
 
 macx {
