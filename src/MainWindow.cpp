@@ -146,7 +146,11 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	// Needed on OSX as the preset value from the GUI editor is not always reflected
 	ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 	ui->tableView->horizontalHeader()->setMovable(true);
+#else
+	ui->tableView->horizontalHeader()->setSectionsMovable(true);
+#endif
 	ui->tableView->horizontalHeader()->setStretchLastSection(true);
 
 	// TreeView
@@ -496,7 +500,7 @@ void MainWindow::on_actionCloneRepository_triggered()
 	log("<b>&gt;"+logcmd.join(" ")+"</b><br>", true);
 
 	// Clone Repo
-	if(!runFossil(cmd, 0, RUNGLAGS_SILENT_INPUT))
+	if(!runFossil(cmd, 0, RUNFLAGS_SILENT_INPUT))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not clone the repository"), QMessageBox::Ok);
 		return;
@@ -642,7 +646,7 @@ void MainWindow::scanWorkspace()
 
 	// Retrieve the status of files tracked by fossil
 	QStringList res;
-	if(!runFossil(QStringList() << "ls" << "-l", &res, RUNGLAGS_SILENT_ALL))
+	if(!runFossil(QStringList() << "ls" << "-l", &res, RUNFLAGS_SILENT_ALL))
 		return;
 
 	bool scan_files = ui->actionViewUnknown->isChecked();
@@ -761,7 +765,7 @@ void MainWindow::scanWorkspace()
 	// Load the stash
 	stashMap.clear();
 	res.clear();
-	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNGLAGS_SILENT_ALL))
+	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNFLAGS_SILENT_ALL))
 		return;
 
 	// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
@@ -949,7 +953,7 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 
 	// We need to determine the reason why fossil has failed
 	// so we delay processing of the exit_code
-	if(!runFossilRaw(QStringList() << "info", &res, &exit_code, RUNGLAGS_SILENT_ALL))
+	if(!runFossilRaw(QStringList() << "info", &res, &exit_code, RUNFLAGS_SILENT_ALL))
 		return REPO_NOT_FOUND;
 
 	bool run_ok = exit_code == EXIT_SUCCESS;
@@ -1056,9 +1060,9 @@ static QString ParseFossilQuery(QString line)
 // issued an error
 bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags)
 {
-	bool silent_input = (runFlags & RUNGLAGS_SILENT_INPUT) != 0;
-	bool silent_output = (runFlags & RUNGLAGS_SILENT_OUTPUT) != 0;
-	bool detached = (runFlags & RUNGLAGS_DETACHED) != 0;
+	bool silent_input = (runFlags & RUNFLAGS_SILENT_INPUT) != 0;
+	bool silent_output = (runFlags & RUNFLAGS_SILENT_OUTPUT) != 0;
+	bool detached = (runFlags & RUNFLAGS_DETACHED) != 0;
 
 	if(!silent_input)
 	{
@@ -1202,17 +1206,17 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query, QMessageBox::YesToAll|QMessageBox::Yes|QMessageBox::No);
 			if(res==QMessageBox::Yes)
 			{
-				process.write(ans_yes.toAscii());
+				process.write(ans_yes.toLatin1());
 				log("Y\n");
 			}
 			else if(res==QMessageBox::YesAll)
 			{
-				process.write(ans_always.toAscii());
+				process.write(ans_always.toLatin1());
 				log("A\n");
 			}
 			else
 			{
-				process.write(ans_no.toAscii());
+				process.write(ans_no.toLatin1());
 				log("N\n");
 			}
 			buffer.clear();
@@ -1225,12 +1229,12 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 
 			if(res==QMessageBox::Yes)
 			{
-				process.write(ans_yes.toAscii());
+				process.write(ans_yes.toLatin1());
 				log("Y\n");
 			}
 			else
 			{
-				process.write(ans_no.toAscii());
+				process.write(ans_no.toLatin1());
 				log("N\n");
 			}
 
@@ -1243,12 +1247,12 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query, QMessageBox::YesToAll|QMessageBox::No);
 			if(res==QMessageBox::YesAll)
 			{
-				process.write(ans_always.toAscii());
+				process.write(ans_always.toLatin1());
 				log("A\n");
 			}
 			else
 			{
-				process.write(ans_no.toAscii());
+				process.write(ans_no.toLatin1());
 				log("N\n");
 			}
 			buffer.clear();
@@ -1582,7 +1586,7 @@ void MainWindow::getStashViewSelection(QStringList &stashNames, bool allIfEmpty)
 bool MainWindow::diffFile(QString repoFile)
 {
 	// Run the diff detached
-	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, RUNGLAGS_DETACHED);
+	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, RUNFLAGS_DETACHED);
 }
 
 //------------------------------------------------------------------------------
@@ -1959,19 +1963,22 @@ void MainWindow::on_actionAbout_triggered()
 	QString fossil_ver;
 	QStringList res;
 
-	if(runFossil(QStringList() << "version", &res, RUNGLAGS_SILENT_ALL) && res.length()==1)
+	if(runFossil(QStringList() << "version", &res, RUNFLAGS_SILENT_ALL) && res.length()==1)
 	{
 		int off = res[0].indexOf("version ");
 		if(off!=-1)
-			fossil_ver = tr("Fossil version %0").arg(res[0].mid(off)) + "\n\n";
+			fossil_ver = tr("Fossil version %0").arg(res[0].mid(off+8)) + "\n";
 	}
+
+	QString qt_ver = tr("QT version %0").arg(QT_VERSION_STR) + "\n\n";
 
 	QMessageBox::about(this, tr("About Fuel..."),
 					   QCoreApplication::applicationName() + " "+ QCoreApplication::applicationVersion() + " " +
 						tr("a GUI frontend to the Fossil SCM\n"
 							"by Kostas Karanikolas\n"
-							"Released under the GNU GPL")+"\n\n"
-					   + fossil_ver +
+							"Released under the GNU GPL")+"\n\n" +
+					   fossil_ver +
+					   qt_ver +
 						tr("Icons by Deleket - Jojo Mendoza\n"
 							"Available under the CC Attribution Noncommercial No Derivative 3.0 License") + "\n\n" +
 						tr("Translations with the help of:") + "\n"
@@ -1986,7 +1993,7 @@ void MainWindow::on_actionUpdate_triggered()
 {
 	QStringList res;
 
-	if(!runFossil(QStringList() << "update" << "--nochange", &res, RUNGLAGS_SILENT_ALL))
+	if(!runFossil(QStringList() << "update" << "--nochange", &res, RUNFLAGS_SILENT_ALL))
 		return;
 
 	if(res.length()==0)
@@ -2006,7 +2013,7 @@ void MainWindow::loadFossilSettings()
 {
 	// Also retrieve the fossil global settings
 	QStringList out;
-	if(!runFossil(QStringList() << "settings", &out, RUNGLAGS_SILENT_ALL))
+	if(!runFossil(QStringList() << "settings", &out, RUNFLAGS_SILENT_ALL))
 		return;
 
 	QStringMap kv = MakeKeyValues(out);
@@ -2021,7 +2028,7 @@ void MainWindow::loadFossilSettings()
 		{
 			// Retrieve existing url
 			QStringList out;
-			if(runFossil(QStringList() << name, &out, RUNGLAGS_SILENT_ALL) && out.length()==1)
+			if(runFossil(QStringList() << name, &out, RUNFLAGS_SILENT_ALL) && out.length()==1)
 				it.value().Value = out[0].trimmed();
 
 			continue;
@@ -2066,7 +2073,7 @@ void MainWindow::on_actionSettings_triggered()
 		if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
 		{
 			// Run as silent to avoid displaying credentials in the log
-			runFossil(QStringList() << "remote-url" << QuotePath(it.value().Value.toString()), 0, RUNGLAGS_SILENT_INPUT);
+			runFossil(QStringList() << "remote-url" << QuotePath(it.value().Value.toString()), 0, RUNFLAGS_SILENT_INPUT);
 			continue;
 		}
 

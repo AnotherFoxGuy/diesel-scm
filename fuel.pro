@@ -4,12 +4,16 @@
 
 QT    += core gui webkit
 
+contains(QT_VERSION, ^5\\..*) {
+	QT += widgets webkitwidgets
+}
+
 TARGET = Fuel
 TEMPLATE = app
 
 win32 {
 	RC_FILE = rsrc/fuel.rc
-        LIBS += -luser32 -lshell32 -luuid
+	LIBS += -luser32 -lshell32 -luuid
 }
 
 macx {
@@ -38,7 +42,7 @@ unix:!macx {
 INCLUDEPATH += src
 
 SOURCES += src/main.cpp\
-		src/MainWindow.cpp \
+	src/MainWindow.cpp \
 	src/CommitDialog.cpp \
 	src/FileActionDialog.cpp \
 	src/SettingsDialog.cpp \
@@ -46,8 +50,8 @@ SOURCES += src/main.cpp\
 	src/FileTableView.cpp \
 	src/CloneDialog.cpp \
 	src/LoggedProcess.cpp \
-    src/BrowserWidget.cpp \
-    src/CustomWebView.cpp
+	src/BrowserWidget.cpp \
+	src/CustomWebView.cpp
 
 HEADERS  += src/MainWindow.h \
 	src/CommitDialog.h \
@@ -57,15 +61,15 @@ HEADERS  += src/MainWindow.h \
 	src/FileTableView.h \
 	src/CloneDialog.h \
 	src/LoggedProcess.h \
-    src/BrowserWidget.h \
-    src/CustomWebView.h
+	src/BrowserWidget.h \
+	src/CustomWebView.h
 
 FORMS    += ui/MainWindow.ui \
 	ui/CommitDialog.ui \
 	ui/FileActionDialog.ui \
 	ui/SettingsDialog.ui \
 	ui/CloneDialog.ui \
-    ui/BrowserWidget.ui
+	ui/BrowserWidget.ui
 
 RESOURCES += \
 	rsrc/resources.qrc

@@ -1,11 +1,11 @@
-C Fixed\slink\serror\son\swindows\sin\snewer\sversions\sof\smingw\n\n
-D 2013-04-04T14:13:21.839
+C Initial\sQT5\sSupport\nMinor\sfixes\n
+D 2013-05-14T15:25:12.667
 F dist/arch/PKGBUILD e6e0ada3856c94748557c3f18827b83f1ae06b17
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt a190c5c88663a52f3206f1970700fce0906c8ed9
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro 1d6f6e3a4f11d6b620ede9e689339b5a557b31f6
+F fuel.pro 3b4380436f341611245c1fa8e3cf4737db5eaf5e
 F intl/convert.bat 7e878e302a8be2324fd51b9eed1aab272dbd8bbd x
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
 F intl/de_DE.ts ca35d7eb8b7dea47d5c8e33f4605798664cd88c3
@@ -186,9 +186,9 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 59456ae5b02871e78c1d38fefed9165d6e94c64c
-F src/MainWindow.h 9c70fd9db3bbd5f96132563819b50d21517aa740
-F src/SettingsDialog.cpp f0b834ff886b705d2823f052dba2a14c6421f1ef
+F src/MainWindow.cpp b7c0659d51861c45700ce19b7dcde10f5b370404
+F src/MainWindow.h 3e0ed4d5f6a531401e0aed92d1cd0eb29543d62b
+F src/SettingsDialog.cpp 5c515baf88f43bb56a150a75dab7fbf753512aeb
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
 F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
 F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
@@ -200,7 +200,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 3074d4c5f5701d9edcbea76ffafc4ae4ff3c7c60
-R f4de5dbe7f27ddfe61dd6e91046519c2
+P 560caeb5557f39c27f4632181f9f5f3731fdb0b3
+R d3856874ca7fe2f9ecd22c3947e35801
 U kostas
-Z 05fe6f909a125405fc204ff403fd3ebb
+Z 768dc6286211ec6161b7878570b55ea1

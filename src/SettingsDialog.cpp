@@ -223,7 +223,9 @@ Settings::~Settings()
 void Settings::ApplyEnvironment()
 {
 	QString lang_id = GetValue(FUEL_SETTING_LANGUAGE).toString();
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 	QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+#endif
 	if(!InstallLang(lang_id))
 		SetValue(FUEL_SETTING_LANGUAGE, "en_US");
 }
