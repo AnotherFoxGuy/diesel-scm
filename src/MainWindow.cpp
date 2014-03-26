@@ -23,6 +23,7 @@
 #include "CloneDialog.h"
 #include "Utils.h"
 #include "LoggedProcess.h"
+#include "UpdateDialog.h"
 
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
@@ -2009,6 +2010,19 @@ void MainWindow::on_actionUpdate_triggered()
 }
 
 //------------------------------------------------------------------------------
+void MainWindow::on_actionUpdateRevision_triggered()
+{
+	// fossil tag list
+	// fossil update --latest
+	//UpdateDialog dlg(this);
+	QString revision;
+	if(!UpdateDialog::run(this, revision))
+		return;
+
+
+}
+
+//------------------------------------------------------------------------------
 void MainWindow::loadFossilSettings()
 {
 	// Also retrieve the fossil global settings
@@ -2594,4 +2608,52 @@ void MainWindow::dropEvent(QDropEvent *event)
 		}
 	}
 }
+
+
+//------------------------------------------------------------------------------
+// Show or hide the advanced actions based on the keyboard modifier state
+void MainWindow::updateAdvancedActions(bool forceDisable)
+{
+	bool active = qApp->queryKeyboardModifiers() & Qt::ControlModifier;
+
+	if(active && !forceDisable)
+	{
+		QList<QAction*> actions = ui->mainToolBar->actions();
+		actions[3] = ui->actionUpdateRevision;
+		ui->mainToolBar->clear();
+		ui->mainToolBar->addActions(actions);
+	}
+	else
+	{
+		QList<QAction*> actions = ui->mainToolBar->actions();
+		actions[3] = ui->actionUpdate;
+		ui->mainToolBar->clear();
+		ui->mainToolBar->addActions(actions);
+	}
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::keyPressEvent(QKeyEvent *)
+{
+	updateAdvancedActions();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::keyReleaseEvent(QKeyEvent *)
+{
+	updateAdvancedActions();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::enterEvent(QEvent *)
+{
+	updateAdvancedActions();
+}
+//------------------------------------------------------------------------------
+void MainWindow::leaveEvent(QEvent *)
+{
+	updateAdvancedActions(true);
+}
+
+
 

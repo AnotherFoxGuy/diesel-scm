@@ -51,7 +51,8 @@ SOURCES += src/main.cpp\
 	src/CloneDialog.cpp \
 	src/LoggedProcess.cpp \
 	src/BrowserWidget.cpp \
-	src/CustomWebView.cpp
+	src/CustomWebView.cpp \
+	src/UpdateDialog.cpp
 
 HEADERS  += src/MainWindow.h \
 	src/CommitDialog.h \
@@ -62,14 +63,16 @@ HEADERS  += src/MainWindow.h \
 	src/CloneDialog.h \
 	src/LoggedProcess.h \
 	src/BrowserWidget.h \
-	src/CustomWebView.h
+	src/CustomWebView.h \
+	src/UpdateDialog.h
 
 FORMS    += ui/MainWindow.ui \
 	ui/CommitDialog.ui \
 	ui/FileActionDialog.ui \
 	ui/SettingsDialog.ui \
 	ui/CloneDialog.ui \
-	ui/BrowserWidget.ui
+	ui/BrowserWidget.ui \
+	ui/UpdateDialog.ui
 
 RESOURCES += \
 	rsrc/resources.qrc

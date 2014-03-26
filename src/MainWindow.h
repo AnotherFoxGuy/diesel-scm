@@ -166,6 +166,11 @@ private:
 	void fossilBrowse(const QString &fossilUrl);
 	void dragEnterEvent(class QDragEnterEvent *event);
 	void dropEvent(class QDropEvent *event);
+	void keyPressEvent(QKeyEvent *);
+	void keyReleaseEvent(QKeyEvent *);
+	void updateAdvancedActions(bool forceDisable=false);
+	virtual void enterEvent(QEvent *);
+	virtual void leaveEvent(QEvent *);
 
 
 	virtual QMenu *createPopupMenu();
@@ -233,6 +238,7 @@ private slots:
 	void on_actionDiffStash_triggered();
 	void on_textBrowser_customContextMenuRequested(const QPoint &pos);
 	void on_tableView_customContextMenuRequested(const QPoint &pos);
+	void on_actionUpdateRevision_triggered();
 
 private:
 	enum
