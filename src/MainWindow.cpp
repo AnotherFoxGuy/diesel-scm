@@ -1170,10 +1170,11 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		// Check if we have a query
 		bool ends_qmark = !last_line.isEmpty() && last_line[last_line.length()-1]=='?';
 		bool have_yn_query = last_line.toLower().indexOf("y/n")!=-1;
-		bool have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1 || last_line.toLower().indexOf("yes/no/all")!=-1;
+		bool have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1 || last_line.toLower().indexOf("yes/no/all")!=-1 || last_line.toLower().indexOf("a=all/y/n")!=-1;
 		bool have_an_query = last_line.toLower().indexOf("a=always/n")!=-1;
+		bool have_acyn_query = last_line.toLower().indexOf("a=all/c=convert/y/n")!=-1;
 
-		bool have_query = ends_qmark && (have_yn_query || have_yna_query || have_an_query);
+		bool have_query = ends_qmark && (have_yn_query || have_yna_query || have_an_query || have_acyn_query);
 
 		// Flush all complete lines to the log and output
 		QStringList log_lines = buffer.left(last_line_start).split(EOL_MARK);
@@ -1199,7 +1200,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		buffer = buffer.mid(last_line_start+1) ;
 
 		// Now process any query
-		if(have_query && have_yna_query)
+		if(have_query && (have_yna_query || have_acyn_query)) // FIXME: We are not handling the "convert" part
 		{
 			log(last_line);
 			QString query = ParseFossilQuery(last_line);

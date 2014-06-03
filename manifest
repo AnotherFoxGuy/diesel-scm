@@ -1,5 +1,5 @@
-C Initial\sQT5\sSupport\nMinor\sfixes\n
-D 2013-05-14T15:25:12.667
+C Added\ssupport\sfor\smore\sfossil\squeries\n
+D 2014-06-03T16:57:40.645
 F dist/arch/PKGBUILD e6e0ada3856c94748557c3f18827b83f1ae06b17
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -186,7 +186,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp b7c0659d51861c45700ce19b7dcde10f5b370404
+F src/MainWindow.cpp e243d3533ae33ea98ccccabbc93e9f39dffd58ff
 F src/MainWindow.h 3e0ed4d5f6a531401e0aed92d1cd0eb29543d62b
 F src/SettingsDialog.cpp 5c515baf88f43bb56a150a75dab7fbf753512aeb
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
@@ -200,7 +200,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 560caeb5557f39c27f4632181f9f5f3731fdb0b3
-R d3856874ca7fe2f9ecd22c3947e35801
+P 15630ec9d832cd6c843ca0896677120d34879100
+R 8395458778c27fc7be73d91dcb58ec8a
 U kostas
-Z 768dc6286211ec6161b7878570b55ea1
+Z ed41a7e7c4e059475d80a87419f694b9
