@@ -153,6 +153,7 @@ void SettingsDialog::CreateLangMap()
 	langMap.append(LangMap("en_US", "English (US)"));
 	langMap.append(LangMap("es_ES", "Spanish (ES)"));
 	langMap.append(LangMap("fr_FR", "French (FR)"));
+	langMap.append(LangMap("ru_RU", "Russian (RU)"));
 }
 
 //-----------------------------------------------------------------------------

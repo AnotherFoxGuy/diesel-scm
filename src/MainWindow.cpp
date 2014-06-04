@@ -1986,6 +1986,7 @@ void MainWindow::on_actionAbout_triggered()
 							"stayawake (German de_DE)\n"
 							"djnavas (Spanish es_ES)\n"
 							"Fringale (French fr_FR)\n"
+							"mouse166 (Russian ru_RU)\n"
 					   );
 }
 

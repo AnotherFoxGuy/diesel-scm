@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE" sourcelanguage="en.US">
-<defaultcodec>UTF-8</defaultcodec>
+<TS version="2.1" language="de_DE" sourcelanguage="en.US">
 <context>
     <name>BrowserWidget</name>
     <message>
@@ -333,7 +332,7 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="524"/>
-        <location filename="../src/MainWindow.cpp" line="1892"/>
+        <location filename="../src/MainWindow.cpp" line="1896"/>
         <source>Rename</source>
         <translation>Umbenennen</translation>
     </message>
@@ -388,7 +387,7 @@
         <location filename="../ui/MainWindow.ui" line="584"/>
         <location filename="../ui/MainWindow.ui" line="587"/>
         <source>Starts the Fossil UI in the Web Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Starte das Fossil UI im Browser</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="641"/>
@@ -406,10 +405,6 @@
         <location filename="../ui/MainWindow.ui" line="872"/>
         <source>View Stashed Changes</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Starts the Fossil UI in the Web Browser</source>
-        <translation type="obsolete">Starte das Fossil UI im Browser</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="596"/>
@@ -481,7 +476,7 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="677"/>
-        <location filename="../src/MainWindow.cpp" line="1947"/>
+        <location filename="../src/MainWindow.cpp" line="1951"/>
         <source>Undo</source>
         <translation>Rückgängig</translation>
     </message>
@@ -508,7 +503,7 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="707"/>
-        <location filename="../src/MainWindow.cpp" line="1995"/>
+        <location filename="../src/MainWindow.cpp" line="2002"/>
         <source>Update</source>
         <translation>Aktualisieren</translation>
     </message>
@@ -601,8 +596,8 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="825"/>
-        <location filename="../src/MainWindow.cpp" line="2201"/>
-        <location filename="../src/MainWindow.cpp" line="2246"/>
+        <location filename="../src/MainWindow.cpp" line="2208"/>
+        <location filename="../src/MainWindow.cpp" line="2253"/>
         <source>Rename Folder</source>
         <translation>Ordner umbenennen</translation>
     </message>
@@ -624,7 +619,7 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="852"/>
-        <location filename="../src/MainWindow.cpp" line="2398"/>
+        <location filename="../src/MainWindow.cpp" line="2405"/>
         <source>Apply Stash</source>
         <translation>Stash anwenden</translation>
     </message>
@@ -659,111 +654,111 @@
         <translation>Stash diffen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="268"/>
-        <location filename="../src/MainWindow.cpp" line="325"/>
-        <location filename="../src/MainWindow.cpp" line="333"/>
-        <location filename="../src/MainWindow.cpp" line="403"/>
-        <location filename="../src/MainWindow.cpp" line="431"/>
-        <location filename="../src/MainWindow.cpp" line="439"/>
-        <location filename="../src/MainWindow.cpp" line="450"/>
-        <location filename="../src/MainWindow.cpp" line="468"/>
-        <location filename="../src/MainWindow.cpp" line="501"/>
-        <location filename="../src/MainWindow.cpp" line="1712"/>
-        <location filename="../src/MainWindow.cpp" line="1726"/>
-        <location filename="../src/MainWindow.cpp" line="1768"/>
-        <location filename="../src/MainWindow.cpp" line="1777"/>
-        <location filename="../src/MainWindow.cpp" line="1900"/>
-        <location filename="../src/MainWindow.cpp" line="2213"/>
-        <location filename="../src/MainWindow.cpp" line="2222"/>
-        <location filename="../src/MainWindow.cpp" line="2285"/>
-        <location filename="../src/MainWindow.cpp" line="2298"/>
-        <location filename="../src/MainWindow.cpp" line="2306"/>
-        <location filename="../src/MainWindow.cpp" line="2320"/>
-        <location filename="../src/MainWindow.cpp" line="2326"/>
-        <location filename="../src/MainWindow.cpp" line="2368"/>
-        <location filename="../src/MainWindow.cpp" line="2377"/>
+        <location filename="../src/MainWindow.cpp" line="272"/>
+        <location filename="../src/MainWindow.cpp" line="329"/>
+        <location filename="../src/MainWindow.cpp" line="337"/>
+        <location filename="../src/MainWindow.cpp" line="407"/>
+        <location filename="../src/MainWindow.cpp" line="435"/>
+        <location filename="../src/MainWindow.cpp" line="443"/>
+        <location filename="../src/MainWindow.cpp" line="454"/>
+        <location filename="../src/MainWindow.cpp" line="472"/>
+        <location filename="../src/MainWindow.cpp" line="505"/>
+        <location filename="../src/MainWindow.cpp" line="1716"/>
+        <location filename="../src/MainWindow.cpp" line="1730"/>
+        <location filename="../src/MainWindow.cpp" line="1772"/>
+        <location filename="../src/MainWindow.cpp" line="1781"/>
+        <location filename="../src/MainWindow.cpp" line="1904"/>
+        <location filename="../src/MainWindow.cpp" line="2220"/>
+        <location filename="../src/MainWindow.cpp" line="2229"/>
+        <location filename="../src/MainWindow.cpp" line="2292"/>
+        <location filename="../src/MainWindow.cpp" line="2305"/>
+        <location filename="../src/MainWindow.cpp" line="2313"/>
+        <location filename="../src/MainWindow.cpp" line="2327"/>
+        <location filename="../src/MainWindow.cpp" line="2333"/>
+        <location filename="../src/MainWindow.cpp" line="2375"/>
+        <location filename="../src/MainWindow.cpp" line="2384"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="268"/>
+        <location filename="../src/MainWindow.cpp" line="272"/>
         <source>Could not change current directory to &apos;%0&apos;</source>
         <translation>Konnte aktuelles Verzeichnis nicht nach &apos;%0&apos; verändern.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="310"/>
+        <location filename="../src/MainWindow.cpp" line="314"/>
         <source>Open Workspace</source>
         <translation>Öffne Arbeitsumgebung</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="310"/>
+        <location filename="../src/MainWindow.cpp" line="314"/>
         <source>A workspace does not exist in this folder.
 Would you like to create one here?</source>
         <translation>Eine Arbeitsumgebung existiert nicht in diesem Ordner.
 Möchtest du hier eine erstellen?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="314"/>
-        <location filename="../src/MainWindow.cpp" line="416"/>
+        <location filename="../src/MainWindow.cpp" line="318"/>
+        <location filename="../src/MainWindow.cpp" line="420"/>
         <source>Select Workspace Folder</source>
         <translation>Wähle Arbeitsumgebungsordner aus</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="325"/>
-        <location filename="../src/MainWindow.cpp" line="439"/>
+        <location filename="../src/MainWindow.cpp" line="329"/>
+        <location filename="../src/MainWindow.cpp" line="443"/>
         <source>Could not change current directory</source>
         <translation>Konnte aktuelles Verzeichnis nicht ändern.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="333"/>
-        <location filename="../src/MainWindow.cpp" line="450"/>
+        <location filename="../src/MainWindow.cpp" line="337"/>
+        <location filename="../src/MainWindow.cpp" line="454"/>
         <source>Could not open repository.</source>
         <translation>Konnte Repository nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="371"/>
+        <location filename="../src/MainWindow.cpp" line="375"/>
         <source>Fossil Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="375"/>
+        <location filename="../src/MainWindow.cpp" line="379"/>
         <source>Open Fossil Repository</source>
         <translation>Öffne Fossil Repository</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="388"/>
+        <location filename="../src/MainWindow.cpp" line="392"/>
         <source>Fossil Repositories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="393"/>
+        <location filename="../src/MainWindow.cpp" line="397"/>
         <source>New Fossil Repository</source>
         <translation>Neues Fossil Repository</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="403"/>
+        <location filename="../src/MainWindow.cpp" line="407"/>
         <source>A repository file already exists.
 Repository creation aborted.</source>
         <translation>Eine Repositorydatei existiert bereits. 
 Erstellung abgebrochen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="412"/>
+        <location filename="../src/MainWindow.cpp" line="416"/>
         <source>Create Workspace</source>
         <translation>Erstelle Arbeitsumgebung</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="412"/>
+        <location filename="../src/MainWindow.cpp" line="416"/>
         <source>Would you like to create a workspace in the same folder?</source>
         <translation>Möchtest du eine neue Arbeitsumgebung im gleichen Ordner erstellen?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="431"/>
+        <location filename="../src/MainWindow.cpp" line="435"/>
         <source>Could not create repository.</source>
         <translation>Konnte Repository nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="462"/>
+        <location filename="../src/MainWindow.cpp" line="466"/>
         <source>Close Workspace</source>
         <translation>Arbeitsumgebung schließen</translation>
     </message>
@@ -772,40 +767,40 @@ Erstellung abgebrochen.</translation>
         <translation type="obsolete">Bist du sicher, das du die Arbeitsumgebung schließen möchtest?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="468"/>
+        <location filename="../src/MainWindow.cpp" line="472"/>
         <source>Cannot close the workspace.
 Are there still uncommitted changes available?</source>
         <translation>Kann Arbeitsumgebung nicht schließen.
 Gibt es noch nicht comittete Änderungen?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="501"/>
+        <location filename="../src/MainWindow.cpp" line="505"/>
         <source>Could not clone the repository</source>
         <translation>Konnte Repository nicht klonen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="605"/>
+        <location filename="../src/MainWindow.cpp" line="609"/>
         <source>No workspace detected.</source>
         <translation>Keine Arbeitsumgebung gefunden.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="613"/>
+        <location filename="../src/MainWindow.cpp" line="617"/>
         <source>Old repository schema detected. Consider running &apos;fossil rebuild&apos;</source>
         <translation>Altes Repository Schema erkannt. 
 Bitte perpektivisch &apos;fossil rebuild&apos; ausführen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="650"/>
+        <location filename="../src/MainWindow.cpp" line="654"/>
         <source>Scanning Workspace...</source>
         <translation>Durchsuche Arbeitsumgebung</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="690"/>
+        <location filename="../src/MainWindow.cpp" line="694"/>
         <source>Updating...</source>
         <translation>Aktualisiere...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="850"/>
+        <location filename="../src/MainWindow.cpp" line="854"/>
         <source>Folders</source>
         <translation>Ordner</translation>
     </message>
@@ -835,175 +830,184 @@ Bitte perpektivisch &apos;fossil rebuild&apos; ausführen</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="462"/>
+        <location filename="../src/MainWindow.cpp" line="466"/>
         <source>Are you sure you want to close this workspace?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="879"/>
+        <location filename="../src/MainWindow.cpp" line="883"/>
         <source>Edited</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="880"/>
+        <location filename="../src/MainWindow.cpp" line="884"/>
         <source>Unchanged</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="881"/>
+        <location filename="../src/MainWindow.cpp" line="885"/>
         <source>Added</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="882"/>
+        <location filename="../src/MainWindow.cpp" line="886"/>
         <source>Deleted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="883"/>
+        <location filename="../src/MainWindow.cpp" line="887"/>
         <source>Renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="884"/>
+        <location filename="../src/MainWindow.cpp" line="888"/>
         <source>Missing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="902"/>
+        <location filename="../src/MainWindow.cpp" line="906"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="991"/>
+        <location filename="../src/MainWindow.cpp" line="995"/>
         <source>Stashes</source>
         <translation>Zurücksetzungen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1084"/>
+        <location filename="../src/MainWindow.cpp" line="1088"/>
         <source>Running Fossil</source>
         <translation>Fossil ausführen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1096"/>
-        <location filename="../src/MainWindow.cpp" line="1622"/>
+        <location filename="../src/MainWindow.cpp" line="1100"/>
         <source>Could not start Fossil executable &apos;%0&apos;</source>
         <translation>Konnte Fossildatei &apos;%0&apos; nicht starten</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1127"/>
+        <location filename="../src/MainWindow.cpp" line="1131"/>
         <source>Terminated</source>
         <translation>Beendet</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1604"/>
+        <location filename="../src/MainWindow.cpp" line="1608"/>
         <source>Fossil UI is already running</source>
         <translation>Fossil UI läuft bereits</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1613"/>
+        <location filename="../src/MainWindow.cpp" line="1617"/>
         <source>Starting Fossil browser UI. Please wait.</source>
         <translation>Starte Fossil Browser UI. Bitte warten</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1712"/>
-        <location filename="../src/MainWindow.cpp" line="1726"/>
+        <location filename="../src/MainWindow.cpp" line="1626"/>
+        <source>Could not start Fossil executable &apos;%s&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="1716"/>
+        <location filename="../src/MainWindow.cpp" line="1730"/>
         <source>A remote repository has not been specified.
 Use the preferences window to set the remote repostory location</source>
         <translation>Es wurde kein Repositorz angegeben.
 Benutz das Optionenfenster um den Ort des nicht lokalen Repositories auszuwählen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1745"/>
+        <location filename="../src/MainWindow.cpp" line="1749"/>
         <source>Commit Changes</source>
         <translation>Änderungen committen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1768"/>
-        <location filename="../src/MainWindow.cpp" line="1777"/>
+        <location filename="../src/MainWindow.cpp" line="1772"/>
+        <location filename="../src/MainWindow.cpp" line="1781"/>
         <source>Could not generate comment file</source>
         <translation>Konnte Kommentardatei nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1814"/>
-        <location filename="../src/MainWindow.cpp" line="2580"/>
+        <location filename="../src/MainWindow.cpp" line="1818"/>
+        <location filename="../src/MainWindow.cpp" line="2587"/>
         <source>Add files</source>
         <translation>Dateien hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1814"/>
-        <location filename="../src/MainWindow.cpp" line="2580"/>
+        <location filename="../src/MainWindow.cpp" line="1818"/>
+        <location filename="../src/MainWindow.cpp" line="2587"/>
         <source>The following files will be added.</source>
         <translation>Die folgenden Dateien werden hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1814"/>
-        <location filename="../src/MainWindow.cpp" line="1839"/>
-        <location filename="../src/MainWindow.cpp" line="1871"/>
-        <location filename="../src/MainWindow.cpp" line="1947"/>
-        <location filename="../src/MainWindow.cpp" line="1995"/>
-        <location filename="../src/MainWindow.cpp" line="2247"/>
-        <location filename="../src/MainWindow.cpp" line="2398"/>
-        <location filename="../src/MainWindow.cpp" line="2439"/>
-        <location filename="../src/MainWindow.cpp" line="2580"/>
+        <location filename="../src/MainWindow.cpp" line="1818"/>
+        <location filename="../src/MainWindow.cpp" line="1843"/>
+        <location filename="../src/MainWindow.cpp" line="1875"/>
+        <location filename="../src/MainWindow.cpp" line="1951"/>
+        <location filename="../src/MainWindow.cpp" line="2002"/>
+        <location filename="../src/MainWindow.cpp" line="2254"/>
+        <location filename="../src/MainWindow.cpp" line="2405"/>
+        <location filename="../src/MainWindow.cpp" line="2446"/>
+        <location filename="../src/MainWindow.cpp" line="2587"/>
         <source>Are you sure?</source>
         <translation>Bist du sicher?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1839"/>
+        <location filename="../src/MainWindow.cpp" line="1843"/>
         <source>Remove files</source>
         <translation>Dateien entfernen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1839"/>
+        <location filename="../src/MainWindow.cpp" line="1843"/>
         <source>The following files will be removed from the repository.</source>
         <translation>Die folgenden Dateien werden aus dem Repository entfernt</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1839"/>
+        <location filename="../src/MainWindow.cpp" line="1843"/>
         <source>Also delete the local files</source>
         <translation>Auch die lokalen Dateien entfernen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1871"/>
+        <location filename="../src/MainWindow.cpp" line="1875"/>
         <source>Revert files</source>
         <translation>Dateien yurücksetzen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1871"/>
+        <location filename="../src/MainWindow.cpp" line="1875"/>
         <source>The following files will be reverted.</source>
         <translation>Die folgenden Dateien werden zurückgesetzt</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1892"/>
-        <location filename="../src/MainWindow.cpp" line="2201"/>
+        <location filename="../src/MainWindow.cpp" line="1896"/>
+        <location filename="../src/MainWindow.cpp" line="2208"/>
         <source>New name</source>
         <translation>Neuer Name</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1900"/>
+        <location filename="../src/MainWindow.cpp" line="1904"/>
         <source>File &apos;%0&apos; already exists.
 Rename aborted.</source>
         <translation>Datei &apos;%0&apos; existiert bereits. 
 Umbenennung abgebrochen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1947"/>
+        <location filename="../src/MainWindow.cpp" line="1951"/>
         <source>The following actions will be undone.</source>
         <translation>Die folgenden Aktionen werden rückg#ängig gemacht</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1966"/>
+        <location filename="../src/MainWindow.cpp" line="1970"/>
         <source>Fossil version %0</source>
         <translation>Fossil version %0</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1969"/>
+        <location filename="../src/MainWindow.cpp" line="1973"/>
+        <source>QT version %0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="1975"/>
         <source>About Fuel...</source>
         <translation>Über Fuel...</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1971"/>
+        <location filename="../src/MainWindow.cpp" line="1977"/>
         <source>a GUI frontend to the Fossil SCM
 by Kostas Karanikolas
 Released under the GNU GPL</source>
@@ -1012,148 +1016,148 @@ von Kostas Karanikolas
 Veröffentlicht unter der GNU GPL</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1975"/>
+        <location filename="../src/MainWindow.cpp" line="1982"/>
         <source>Icons by Deleket - Jojo Mendoza
 Available under the CC Attribution Noncommercial No Derivative 3.0 License</source>
         <translation>Icons von Deleket - Jojo Mendoya
 Verfügbar unter CC Attribution Noncommercial No Derivative 3.0 Lizenz</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1977"/>
+        <location filename="../src/MainWindow.cpp" line="1984"/>
         <source>Translations with the help of:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1995"/>
+        <location filename="../src/MainWindow.cpp" line="2002"/>
         <source>The following files will be updated.</source>
         <translation>Die folgenden Dateien werden aktualisiert</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2213"/>
-        <location filename="../src/MainWindow.cpp" line="2222"/>
+        <location filename="../src/MainWindow.cpp" line="2220"/>
+        <location filename="../src/MainWindow.cpp" line="2229"/>
         <source>Cannot rename folder.</source>
         <translation>Kann Ordner nicht umbenennen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2213"/>
+        <location filename="../src/MainWindow.cpp" line="2220"/>
         <source>Folder name contains invalid characters.</source>
         <translation>Ordnername enthält ungültige Zeichen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2222"/>
+        <location filename="../src/MainWindow.cpp" line="2229"/>
         <source>This folder exists already.</source>
         <translation>Dieser Ordner existiert bereits.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2246"/>
+        <location filename="../src/MainWindow.cpp" line="2253"/>
         <source>Renaming folder &apos;%0&apos; to &apos;%1&apos;
 The following files will be moved in the repository.</source>
         <translation>Benenne Ordner &apos;%0&apos; in &apos;%1&apos; um.
 Die folgenden Dateien werden in das Repository verschoben.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2249"/>
+        <location filename="../src/MainWindow.cpp" line="2256"/>
         <source>Also move the workspace files</source>
         <translation>Auch die Arbeitsumgebungsdateien verschieben</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2262"/>
+        <location filename="../src/MainWindow.cpp" line="2269"/>
         <source>Move aborted due to errors</source>
         <translation>Verschieben aufgrund von Fehler abgebrochen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2282"/>
+        <location filename="../src/MainWindow.cpp" line="2289"/>
         <source>Creating folder &apos;%0&apos;</source>
         <translation>Erstelle Ordner &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2285"/>
+        <location filename="../src/MainWindow.cpp" line="2292"/>
         <source>Cannot make target folder &apos;%0&apos;</source>
         <translation>Kann Zielordner &apos;%0&apos; nicht erstellen </translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2298"/>
+        <location filename="../src/MainWindow.cpp" line="2305"/>
         <source>Target file &apos;%0&apos; exists already</source>
         <translation>Zieldatei &apos;%0&apos; existiert bereits</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2302"/>
+        <location filename="../src/MainWindow.cpp" line="2309"/>
         <source>Copying file &apos;%0&apos; to &apos;%1&apos;</source>
         <translation>Kopiere Datei &apos;%0&apos; nach &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2306"/>
+        <location filename="../src/MainWindow.cpp" line="2313"/>
         <source>Cannot copy file &apos;%0&apos; to &apos;%1&apos;</source>
         <translation>Kann Datei &apos;%0&apos; nicht nach &apos;%1&apos; kopieren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2316"/>
+        <location filename="../src/MainWindow.cpp" line="2323"/>
         <source>Removing old file &apos;%0&apos;</source>
         <translation>Entferene alte Datei &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2320"/>
+        <location filename="../src/MainWindow.cpp" line="2327"/>
         <source>Source file &apos;%0&apos; does not exist</source>
         <translation>Quelldatei &apos;%0&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2326"/>
+        <location filename="../src/MainWindow.cpp" line="2333"/>
         <source>Cannot remove file &apos;%0&apos;</source>
         <translation>Kann Datei &apos;%0&apos; nicht entfernen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2331"/>
+        <location filename="../src/MainWindow.cpp" line="2338"/>
         <source>Folder renamed completed. Don&apos;t forget to commit!</source>
         <translation>Ordnerumbenennung fertig. Vergiss nicht zu comitten!</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2360"/>
+        <location filename="../src/MainWindow.cpp" line="2367"/>
         <source>Revert stashed files</source>
         <translation>gestashte Dateien zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2361"/>
+        <location filename="../src/MainWindow.cpp" line="2368"/>
         <source>Stash Changes</source>
         <translation>Veränderungen stashen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2368"/>
+        <location filename="../src/MainWindow.cpp" line="2375"/>
         <source>Invalid stash name</source>
         <translation>Ungültiger Stashname</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2377"/>
+        <location filename="../src/MainWindow.cpp" line="2384"/>
         <source>This stash already exists</source>
         <translation>Dieser Stash existiert bereits</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2398"/>
+        <location filename="../src/MainWindow.cpp" line="2405"/>
         <source>The following stashes will be applied.</source>
         <translation>Die folgenden Stashes werden angewendet.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2398"/>
+        <location filename="../src/MainWindow.cpp" line="2405"/>
         <source>Delete after applying</source>
         <translation>Nach Anwendung entfernen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2409"/>
+        <location filename="../src/MainWindow.cpp" line="2416"/>
         <source>Stash application aborted due to errors</source>
         <translation>Anwendung der Stashes aufgrund von Fehlern abgebrochen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2422"/>
-        <location filename="../src/MainWindow.cpp" line="2450"/>
+        <location filename="../src/MainWindow.cpp" line="2429"/>
+        <location filename="../src/MainWindow.cpp" line="2457"/>
         <source>Stash deletion aborted due to errors</source>
         <translation>Stashentfernung aufgrund von Fehlern abgebrochen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2439"/>
+        <location filename="../src/MainWindow.cpp" line="2446"/>
         <source>Delete Stashes</source>
         <translation>Stashes entfernen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2439"/>
+        <location filename="../src/MainWindow.cpp" line="2446"/>
         <source>The following stashes will be deleted.</source>
         <translation>Die folgenden Stashes werden entfernt</translation>
     </message>

@@ -1,16 +1,24 @@
-Fuel V0.9.7 (2013-XX-XX)
+Fuel V0.9.8 (2014-XX-XX)
+============
+- Improved query handling
+- Localisations:
+	Russian (Thanks Mouse166)
+
+Fuel V0.9.7 (Unreleased)
 ============
 - Feature: Optionally use the internal browser for the Fossil UI
 - Feature: Support for persisting the state (Column order and sizes) of the File View
-- Feature: Dropping a fossil checkout file or workspace folder on Fuel now opens that workspace
+- Feature: Dropping a Fossil checkout file or workspace folder on Fuel now opens that workspace
 - Feature: Dropping a file on Fuel now adds that file to Fossil
 - Feature: Commit Dialog: Pressing Ctrl-Enter within the comment box commences the commit
   whereas Escape aborts it
 - Feature: Support for localization
 - Localisations:
-	Greek
+	French (Thanks Fringale)
 	German (Thanks stayawake)
+	Greek
 	Spanish (Thanks djnavas)
+- Feature: Support for QT5
 - Distribution: Fuel is now available in the Arch User Repository
 
 Fuel V0.9.6 (2012-05-13)

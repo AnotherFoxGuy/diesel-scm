@@ -6,8 +6,8 @@ pkgdesc="A GUI front-end to Fossil SCM"
 arch=(i686 x86_64)
 url="http://code.google.com/p/fuel-scm/"
 license=('GPL2')
-depends=('qt4>=4.7.0', 'qtwebkit>=2.2.2' 'fossil')
-source=("http://fuel-scm.googlecode.com/files/${pkgname}-${pkgver}-test.tar.gz")
+depends=('qt5>=5.2.0', 'qtwebkit>=5.2.0' 'fossil')
+source=("http://fuelscm.org/files/releases/${pkgname}-${pkgver}.tar.gz")
 
 md5sums=(ce86b6879871b3e8193d9469c985899e) #generate with 'makepkg -g'
 
