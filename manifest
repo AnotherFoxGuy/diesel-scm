@@ -1,5 +1,5 @@
-C Added\sRussian\slocalization\s(Thanks\smouse166)
-D 2014-06-04T16:21:42.958
+C Added\smissing\stranslation\sfile
+D 2014-07-11T14:49:02.921
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -13,6 +13,7 @@ F intl/el_GR.ts e8f071623fe4abba239525faffb40c2668213562
 F intl/en_US.ts 6e79fac7386159e54bbb0a7aa5fd0289db225fd7
 F intl/es_ES.ts e496c635422af27b481b4eef760c2423c49e2f7c
 F intl/fr_FR.ts aadb20d1108405f9d8651725857457259380e7b1
+F intl/ru_RU.ts 7cae908a70e4eab660a449b07685be43bc0c7b7f
 F intl/update.sh b5312e108eec47f9c8cb7d6790c57335e6b52829 x
 F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
 F rsrc/fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
@@ -200,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 883a2adb3d7f604214798b5a390af759b842f710
-R 8a1fb741db6ae4ee38a84d8c83e789bf
+P eb4cdf56ed9074850e909a18946a5f7c4c42707e
+R b2fdba2dc622d52144cdc3a6d3060242
 U kostas
-Z 1ae49c5eeff52fba9a6238f6204e7ba6
+Z 82baf1b64495681355eb3533df4e848e
