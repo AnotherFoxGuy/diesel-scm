@@ -2,23 +2,19 @@
 setlocal EnableDelayedExpansion
 set SCRIPTDIR=%CD%
 set PRJDIR=%SCRIPTDIR%\..
-set INTLDIR=%SCRIPTDIR%
-set QTPATH=C:\Qt\QtSDK\Desktop\Qt\4.8.1\mingw
+set QTPATH=C:\Qt\5.3\mingw482_32
 
 echo Converting localizations
+del %PRJDIR%\rsrc\intl\*
+if not exist %PRJDIR%\rsrc\intl\ mkdir %PRJDIR%\rsrc\intl\
 
-del %PRJDIR\rsrc\intl\*
-if not exist %PRJDIR\rsrc\intl\ mkdir %PRJDIR\rsrc\intl\
+REM Convert all except the en_US which is 
+REM the original text in the code
 
-for %i in ( %INTLDIR%\*.ts ) do (
-	set BASE=%~ni
-	
-	REM Convert all except the en_US which is 
-	REM the original text in the code
-	if not "!BASE!"=="en_US" (
-		echo !BASE!
-		%QTPATH%\bin\lrelease %i -qm %PRJDIR\rsrc\intl\!BASE!.qm
-	)
-)
+%QTPATH%\bin\lrelease de_DE.ts -qm ..\rsrc\intl\de_DE.qm
+%QTPATH%\bin\lrelease el_GR.ts -qm ..\rsrc\intl\el_GR.qm
+%QTPATH%\bin\lrelease es_ES.ts -qm ..\rsrc\intl\es_ES.qm
+%QTPATH%\bin\lrelease fr_FR.ts -qm ..\rsrc\intl\fr_FR.qm
+%QTPATH%\bin\lrelease ru_RU.ts -qm ..\rsrc\intl\ru_RU.qm
 
 endlocal

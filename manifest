@@ -1,12 +1,12 @@
-C Added\smissing\stranslation\sfile
-D 2014-07-11T14:49:02.921
+C Simplified\slocalisation\sconversion\sscript
+D 2014-07-15T15:10:02.206
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt cc626cd9352d7e630c5cd0a74f35fdc6180a8bf9
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro d15cce9435cf605947ae41e53869020e90563336
-F intl/convert.bat 7e878e302a8be2324fd51b9eed1aab272dbd8bbd x
+F intl/convert.bat bbe13b51e51d01b8f3bf78af4857cf5416b7d036 x
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
 F intl/de_DE.ts 4acf6f379792a7e425ea143d440e8d5c01b391aa
 F intl/el_GR.ts e8f071623fe4abba239525faffb40c2668213562
@@ -201,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P eb4cdf56ed9074850e909a18946a5f7c4c42707e
-R b2fdba2dc622d52144cdc3a6d3060242
+P e57b41e07e0ab31a1b6a949211352224145a3d44
+R 06473a96180a1a67aeed741ac68aa542
 U kostas
-Z 82baf1b64495681355eb3533df4e848e
+Z 693ca7eab8d1a063fb213e373519b433
