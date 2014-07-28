@@ -1162,8 +1162,23 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		int last_line_start = buffer.lastIndexOf(EOL_MARK);
 
 		QString last_line;
+		QString before_last_line;
 		if(last_line_start != -1)
+		{
 			last_line = buffer.mid(last_line_start+1); // Including the EOL
+
+			// Detect previous line
+			if(last_line_start>0)
+			{
+				int before_last_line_start = buffer.lastIndexOf(EOL_MARK, last_line_start-1);
+				// No line before ?
+				if(before_last_line_start==-1)
+					before_last_line_start = 0; // Use entire line
+
+				// Extract previous line
+				before_last_line = buffer.mid(before_last_line_start, last_line_start-before_last_line_start);
+			}
+		}
 		else
 			last_line = buffer;
 
@@ -1211,6 +1226,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			// Map the Convert option to the Apply button
 			if(have_acyn_query)
 			{
+				query = before_last_line + query;
 				buttons |= QMessageBox::Apply;
 			}
 
