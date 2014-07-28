@@ -39,7 +39,7 @@ static bool DialogQueryText(QWidget *parent, const QString &title, const QString
 #endif
 
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 // Explorer File Context Menu support. Based on http://www.microsoft.com/msj/0497/wicked/wicked0497.aspx
 #include <shlobj.h>
 

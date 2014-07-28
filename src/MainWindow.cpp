@@ -27,6 +27,7 @@
 #define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
 
 #define PATH_SEP			"/"
+static const unsigned char UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 
 //-----------------------------------------------------------------------------
 enum
@@ -211,8 +212,8 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->statusBar->insertPermanentWidget(0, progressBar);
 	progressBar->setVisible(false);
 
-#ifdef Q_WS_MACX
-	// Native applications on OSX don't use menu icons
+#ifdef Q_OS_MACX
+	// Native applications on OSX don't have menu icons
 	foreach(QAction *a, ui->menuBar->actions())
 		a->setIconVisibleInMenu(false);
 	foreach(QAction *a, ui->menuFile->actions())
@@ -1104,11 +1105,12 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	QString ans_yes = 'y' + EOL_MARK;
 	QString ans_no = 'n' + EOL_MARK;
 	QString ans_always = 'a' + EOL_MARK;
+	QString ans_convert = 'c' + EOL_MARK;
 
 	fossilAbort = false;
 	QString buffer;
 
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN
 	QTextCodec *codec = QTextCodec::codecForName("UTF-8");
 #else
 	QTextCodec *codec = QTextCodec::codecForLocale();
@@ -1129,7 +1131,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		if(fossilAbort)
 		{
 			log("\n* "+tr("Terminated")+" *\n");
-			#ifdef Q_WS_WIN
+			#ifdef Q_OS_WIN		// Verify this is still true on Qt5
 				process.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
 			#else
 				process.terminate();
@@ -1200,11 +1202,19 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		buffer = buffer.mid(last_line_start+1) ;
 
 		// Now process any query
-		if(have_query && (have_yna_query || have_acyn_query)) // FIXME: We are not handling the "convert" part
+		if(have_query && (have_yna_query || have_acyn_query))
 		{
 			log(last_line);
 			QString query = ParseFossilQuery(last_line);
-			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query, QMessageBox::YesToAll|QMessageBox::Yes|QMessageBox::No);
+			QMessageBox::StandardButtons buttons = QMessageBox::YesToAll|QMessageBox::Yes|QMessageBox::No;
+
+			// Map the Convert option to the Apply button
+			if(have_acyn_query)
+			{
+				buttons |= QMessageBox::Apply;
+			}
+
+			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query, buttons);
 			if(res==QMessageBox::Yes)
 			{
 				process.write(ans_yes.toLatin1());
@@ -1214,6 +1224,11 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			{
 				process.write(ans_always.toLatin1());
 				log("A\n");
+			}
+			else if(res==QMessageBox::Apply)
+			{
+				process.write(ans_convert.toLatin1());
+				log("C\n");
 			}
 			else
 			{
@@ -1286,7 +1301,7 @@ QString MainWindow::getFossilPath()
 		return QDir::toNativeSeparators(fossil_path);
 
 	QString fossil_exe = "fossil";
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN
 	fossil_exe += ".exe";
 #endif
 	// Use our fossil if available
@@ -1638,7 +1653,7 @@ void MainWindow::stopUI()
 {
 	if(uiRunning())
 	{
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 		fossilUI.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
 #else
 		fossilUI.terminate();
@@ -1783,6 +1798,10 @@ void MainWindow::on_actionCommit_triggered()
 		return;
 	}
 
+	// Write BOM
+	comment_file.write(reinterpret_cast<const char *>(UTF8_BOM), sizeof(UTF8_BOM));
+
+	// Write Comment
 	comment_file.write(msg.toUtf8());
 	comment_file.close();
 
@@ -2514,7 +2533,7 @@ void MainWindow::on_textBrowser_customContextMenuRequested(const QPoint &pos)
 void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 {
 	QPoint gpos = QCursor::pos();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 	if(qApp->keyboardModifiers() & Qt::SHIFT)
 	{
 		ui->tableView->selectionModel()->select(ui->tableView->indexAt(pos), QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
@@ -2525,7 +2544,7 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 		{
 			QString fname = getCurrentWorkspace() + PATH_SEP + fnames[0];
 			fname = QDir::toNativeSeparators(fname);
-			if(ShowExplorerMenu(winId(), fname, gpos))
+			if(ShowExplorerMenu((HWND)winId(), fname, gpos))
 				refresh();
 		}
 	}

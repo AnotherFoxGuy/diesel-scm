@@ -15,7 +15,7 @@
 QString SettingsDialog::SelectExe(QWidget *parent, const QString &description)
 {
 	QString filter(tr("Applications"));
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 	filter += " (*.exe)";
 #else
 	filter += " (*)";

@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
 	app.setOrganizationName("Fuel-SCM");
 
 
-	#ifdef Q_WS_MACX
-		// Native OSX applications don't use menu icons
+	#ifdef Q_OS_MACX
+		// Native OSX applications don't have menu icons
 		app.setAttribute(Qt::AA_DontShowIconsInMenus);
 	#endif
 	{

@@ -2,14 +2,13 @@
 setlocal EnableDelayedExpansion
 set SCRIPTDIR=%CD%
 set PRJDIR=%SCRIPTDIR%\..
-set QTPATH=C:\Qt\5.3\mingw482_32
+set QTPATH=C:\Qt\Qt5.3.1\5.3\mingw482_32
 
 echo Converting localizations
-del %PRJDIR%\rsrc\intl\*
+del /q %PRJDIR%\rsrc\intl\*
 if not exist %PRJDIR%\rsrc\intl\ mkdir %PRJDIR%\rsrc\intl\
 
-REM Convert all except the en_US which is 
-REM the original text in the code
+REM Convert all except the en_US which is the original text in the code
 
 %QTPATH%\bin\lrelease de_DE.ts -qm ..\rsrc\intl\de_DE.qm
 %QTPATH%\bin\lrelease el_GR.ts -qm ..\rsrc\intl\el_GR.qm

@@ -1,12 +1,12 @@
-C Simplified\slocalisation\sconversion\sscript
-D 2014-07-15T15:10:02.206
+C Comment\sfiles\snow\sstart\swith\sa\sUTF-8\sBOM\s\nAdded\san\s"Apply"\sMessageBox\sbutton\sto\shandle\sthe\sconvert\soption\sasked\sby\sfossil\nConverted\sQ_WS_*\sto\sQ_OS_*\ssince\sthe\sfirst\sno\slonger\sexists\sin\sQT5
+D 2014-07-28T10:38:37.856
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt cc626cd9352d7e630c5cd0a74f35fdc6180a8bf9
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro d15cce9435cf605947ae41e53869020e90563336
-F intl/convert.bat bbe13b51e51d01b8f3bf78af4857cf5416b7d036 x
+F intl/convert.bat 90152e8b17c9c9bd79d8bf99fa70b9c4258064ec x
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
 F intl/de_DE.ts 4acf6f379792a7e425ea143d440e8d5c01b391aa
 F intl/el_GR.ts e8f071623fe4abba239525faffb40c2668213562
@@ -187,13 +187,13 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp f5b550c638659e48dd618d99309261b828fde0e2
+F src/MainWindow.cpp 2db7b4ca002c61985432fcf71c97a6a1ab482f3f
 F src/MainWindow.h 3e0ed4d5f6a531401e0aed92d1cd0eb29543d62b
-F src/SettingsDialog.cpp 91bf5225e85bbe5544ac10d4d1182b09b4dc4c30
+F src/SettingsDialog.cpp effff92f746a71b07f0e6a72a21caac5a9085123
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
-F src/Utils.cpp caca5268e3194abe77211040bf9511a82909d2e6
-F src/Utils.h 5af911147390879176e587fc60fb662490bb9e97
-F src/main.cpp 8f8790822f82870a12169bcf204e571138adb065
+F src/Utils.cpp 9aff456712e4276b49083426301b3b96d3819c77
+F src/Utils.h c546e478a1225a28c99cd4c30f70cf9be9804a2a
+F src/main.cpp 8db6ff84fc37464645415ef74562b328d2c5abc5
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
@@ -201,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P e57b41e07e0ab31a1b6a949211352224145a3d44
-R 06473a96180a1a67aeed741ac68aa542
-U kostas
-Z 693ca7eab8d1a063fb213e373519b433
+P 05251390b4dac6dc122efb007cd84650e410a0d1
+R 8e737c57d203e492166f8d579f5e0a13
+U Kostas
+Z 3b353f1973572f26eb2307e7504f1871
