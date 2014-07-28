@@ -1,5 +1,5 @@
-C Improved\sfossil\squery\sparsing\sto\shandle\scr/nl\sconversions\squeries\n
-D 2014-07-28T10:55:56.111
+C Added\s"Conflicted"\sfile\sstate
+D 2014-07-28T12:50:34.341
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -187,8 +187,8 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp a09935e15a667fee4205f92c3a904715832bb0e4
-F src/MainWindow.h 3e0ed4d5f6a531401e0aed92d1cd0eb29543d62b
+F src/MainWindow.cpp 6e217d10880fc3d544d4a0de384684feb1152647
+F src/MainWindow.h 631af46749d69c3be1b5c1427c7ff6bd43855ad5
 F src/SettingsDialog.cpp effff92f746a71b07f0e6a72a21caac5a9085123
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
 F src/Utils.cpp 9aff456712e4276b49083426301b3b96d3819c77
@@ -201,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P f99bd8ac7960cb1758222d2211937e99708f67f3
-R 17a11a3a86c01fbe80865209da47dbda
-U Kostas
-Z 6fc79358cc91a5421ead178604d9fdec
+P 7963dcf290a49ba949e056b48a3af0d0ca133315
+R 7cc42803281cfb74eff59dd67dd7f8ff
+U kostas
+Z e410287ea9cd406de0252a5ee7596353

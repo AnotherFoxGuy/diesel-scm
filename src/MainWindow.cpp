@@ -729,6 +729,8 @@ void MainWindow::scanWorkspace()
 			type = RepoFile::TYPE_RENAMED;
 		else if(status_text=="UNCHANGED")
 			type = RepoFile::TYPE_UNCHANGED;
+		else if(status_text=="CONFLICT")
+			type = RepoFile::TYPE_CONFLICTED;
 
 		// Filter unwanted file types
 		if( ((type & RepoFile::TYPE_MODIFIED) && !ui->actionViewModified->isChecked()) ||
@@ -887,6 +889,7 @@ void MainWindow::updateFileView()
 		{   RepoFile::TYPE_DELETED, tr("Deleted"), ":icons/icons/Button Close-01.png" },
 		{   RepoFile::TYPE_RENAMED, tr("Renamed"), ":icons/icons/Button Reload-01.png" },
 		{   RepoFile::TYPE_MISSING, tr("Missing"), ":icons/icons/Button Help-01.png" },
+		{   RepoFile::TYPE_CONFLICTED, tr("Conflicted"), ":icons/icons/Button Blank Red-01.png" },
 	};
 
 	QFileIconProvider icon_provider;
