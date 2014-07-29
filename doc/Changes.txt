@@ -1,6 +1,9 @@
 Fuel V0.9.8 (2014-XX-XX)
 ============
-- Improved query handling
+- Feature: Long Operations can now be aborted by pressing the Escape key
+- Improvement: Better support for commit messages with international characters
+- Improvement: Fossil queries about CR/NL inconsistencies are now handled better
+- Improvement: Files in Conflicted state are now shown
 - Localisations:
 	Russian (Thanks Mouse166)
 
@@ -10,8 +13,8 @@ Fuel V0.9.7 (Unreleased)
 - Feature: Support for persisting the state (Column order and sizes) of the File View
 - Feature: Dropping a Fossil checkout file or workspace folder on Fuel now opens that workspace
 - Feature: Dropping a file on Fuel now adds that file to Fossil
-- Feature: Commit Dialog: Pressing Ctrl-Enter within the comment box commences the commit
-  whereas Escape aborts it
+- Feature: Commit Dialog: Pressing Ctrl-Enter within the comment box commences the commit,
+  and Escape aborts it
 - Feature: Support for localization
 - Localisations:
 	French (Thanks Fringale)

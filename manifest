@@ -1,9 +1,9 @@
-C -\sPerform\sthe\sfirst\sworkspace\sscan\safter\sthe\smain\swindow\sis\svisible\n-\sAborted\sscans\snow\sleave\sthe\sworkspace\sstate\sempty\sto\sprevent\sincorrect\soperation\n-\sMinor\srefactoring
-D 2014-07-29T14:09:36.103
+C Updated\sthe\sChanges\sfile
+D 2014-07-29T14:27:35.190
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
-F doc/Changes.txt cc626cd9352d7e630c5cd0a74f35fdc6180a8bf9
+F doc/Changes.txt 99e6d8e4a534f48a1ced8477d27c847ae2b6a708
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro d15cce9435cf605947ae41e53869020e90563336
 F intl/convert.bat 90152e8b17c9c9bd79d8bf99fa70b9c4258064ec x
@@ -201,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P ac8a195f2fcfaa16e849461ae63aa01f88d1794d
-R 0de503ecd93bfe74dd7fd86b2c3e51e5
+P be20b59a51389fdf0527c039742581032b52e3a5
+R d396c9d4b0068966052bb42922fc7b81
 U kostas
-Z 5ca34810e5aa3638217680aac3bf6987
+Z 744a93da5663e789e19997fa71af25b8
