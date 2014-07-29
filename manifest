@@ -1,5 +1,5 @@
-C Added\s"Conflicted"\sfile\sstate
-D 2014-07-28T12:50:34.341
+C Refreshed\slocalizations\nChanged\sversion\sto\s0.9.8
+D 2014-07-29T08:30:53.427
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -8,12 +8,12 @@ F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro d15cce9435cf605947ae41e53869020e90563336
 F intl/convert.bat 90152e8b17c9c9bd79d8bf99fa70b9c4258064ec x
 F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
-F intl/de_DE.ts 4acf6f379792a7e425ea143d440e8d5c01b391aa
-F intl/el_GR.ts e8f071623fe4abba239525faffb40c2668213562
-F intl/en_US.ts 6e79fac7386159e54bbb0a7aa5fd0289db225fd7
-F intl/es_ES.ts e496c635422af27b481b4eef760c2423c49e2f7c
-F intl/fr_FR.ts aadb20d1108405f9d8651725857457259380e7b1
-F intl/ru_RU.ts 7cae908a70e4eab660a449b07685be43bc0c7b7f
+F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
+F intl/el_GR.ts 1b805ee57309d02059d9e3e4cb49d945f9d9ac82
+F intl/en_US.ts 7917816efedf35d5f4f798d18896d7aa0cb3c71b
+F intl/es_ES.ts fbddd3374f7999e602536de9870ae1fef0c28ea8
+F intl/fr_FR.ts 8d2c00ab00927ee5239c1d273f380bbe4cfb2464
+F intl/ru_RU.ts 74189b3ee2b30b0b47b2db5bd7c9935db84947fc
 F intl/update.sh b5312e108eec47f9c8cb7d6790c57335e6b52829 x
 F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
 F rsrc/fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
@@ -193,7 +193,7 @@ F src/SettingsDialog.cpp effff92f746a71b07f0e6a72a21caac5a9085123
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
 F src/Utils.cpp 9aff456712e4276b49083426301b3b96d3819c77
 F src/Utils.h c546e478a1225a28c99cd4c30f70cf9be9804a2a
-F src/main.cpp 8db6ff84fc37464645415ef74562b328d2c5abc5
+F src/main.cpp 3150a2a1fb103f120a3dcda581a7a41a3c246715
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
@@ -201,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 7963dcf290a49ba949e056b48a3af0d0ca133315
-R 7cc42803281cfb74eff59dd67dd7f8ff
-U kostas
-Z e410287ea9cd406de0252a5ee7596353
+P 9d073dbbd5ca3382a184e8693107a01d1c72a754
+R 67239183343409750edd50bfaecdfddc
+U Kostas
+Z 00d2fb0baf1c9e413735cf3928ad8ed0
