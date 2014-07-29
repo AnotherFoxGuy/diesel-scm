@@ -25,10 +25,15 @@
 #include "Utils.h"
 #include "LoggedProcess.h"
 
-#define COUNTOF(array) (sizeof(array)/sizeof(array[0]))
+#define COUNTOF(array)			(sizeof(array)/sizeof(array[0]))
 
-#define PATH_SEP			"/"
-static const unsigned char UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
+#define PATH_SEP				"/"
+
+static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
+
+// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
+static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
+
 
 //-----------------------------------------------------------------------------
 enum
@@ -229,15 +234,14 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	viewMode = VIEWMODE_TREE;
 
 	applySettings();
-	refreshOnShow = true;
 
 	// Apply any explicit workspace path if available
 	if(workspacePath && !workspacePath->isEmpty())
 		openWorkspace(*workspacePath);
 
-	abortCurrentAction = false;
+	abortOperation = false;
 
-	connect(this, SIGNAL(show), SLOT(onShow()), Qt::DirectConnection);
+	rebuildRecent();
 }
 
 //------------------------------------------------------------------------------
@@ -669,7 +673,7 @@ void MainWindow::scanWorkspace()
 	workspaceFiles.clear();
 	pathSet.clear();
 
-	abortCurrentAction = false;
+	abortOperation = false;
 
 	if(scan_files)
 	{
@@ -683,13 +687,8 @@ void MainWindow::scanWorkspace()
 			ignore = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().replace(',',';');
 		}
 
-		if(!scanDirectory(all_files, wkdir, wkdir, ignore, abortCurrentAction))
-		{
-			setBusy(false);
-			setStatus("");
-			QApplication::restoreOverrideCursor();
-			return;
-		}
+		if(!scanDirectory(all_files, wkdir, wkdir, ignore, abortOperation))
+			goto _done;
 
 		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
 		{
@@ -783,30 +782,22 @@ void MainWindow::scanWorkspace()
 	stashMap.clear();
 	res.clear();
 	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNFLAGS_SILENT_ALL))
-	{
-		setBusy(false);
-		setStatus("");
-		QApplication::restoreOverrideCursor();
-		return;
-	}
-
-	// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
-	QRegExp stash_rx("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
+		goto _done;
 
 	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); )
 	{
 		QString line = *line_it;
 
-		int index = stash_rx.indexIn(line);
+		int index = REGEX_STASH.indexIn(line);
 		if(index==-1)
 			break;
 
-		QString id = stash_rx.cap(1);
+		QString id = REGEX_STASH.cap(1);
 		++line_it;
 
 		QString name;
 		// Finish at an anonymous stash or start of a new stash ?
-		if(line_it==res.end() || stash_rx.indexIn(*line_it)!=-1)
+		if(line_it==res.end() || REGEX_STASH.indexIn(*line_it)!=-1)
 			name = line.trimmed();
 		else // Named stash
 		{
@@ -821,6 +812,7 @@ void MainWindow::scanWorkspace()
 
 
 	// Update the file item model
+_done:
 	updateDirView();
 	updateFileView();
 	updateStashView();
@@ -1129,7 +1121,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	QString ans_always = 'a' + EOL_MARK;
 	QString ans_convert = 'c' + EOL_MARK;
 
-	abortCurrentAction = false;
+	abortOperation = false;
 	QString buffer;
 
 #ifdef Q_OS_WIN
@@ -1150,7 +1142,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		if(state!=QProcess::Running && bytes_avail<1)
 			break;
 
-		if(abortCurrentAction)
+		if(abortOperation)
 		{
 			#ifdef Q_OS_WIN		// Verify this is still true on Qt5
 				process.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
@@ -2666,19 +2658,15 @@ void MainWindow::setBusy(bool busy)
 //------------------------------------------------------------------------------
 void MainWindow::onAbort()
 {
-	abortCurrentAction = true;
-	log("\n* "+tr("Terminated")+" *\n");
+	abortOperation = true;
+	// FIXME: Rename this to something better, Operation Aborted
+	log("<br><b>* "+tr("Terminated")+" *</b><br>", true);
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::onShow()
+void MainWindow::fullRefresh()
 {
-	if(refreshOnShow)
-	{
-		refresh();
-		rebuildRecent();
-		// Select the Root of the tree to update the file view
-		selectRootDir();
-		refreshOnShow = false;
-	}
+	refresh();
+	// Select the Root of the tree to update the file view
+	selectRootDir();
 }

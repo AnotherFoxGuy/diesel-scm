@@ -120,6 +120,7 @@ public:
 	explicit MainWindow(Settings &_settings, QWidget *parent = 0, QString *workspacePath = 0);
 	~MainWindow();
 	bool diffFile(QString repoFile);
+	void fullRefresh();
 
 private:
 	typedef QSet<QString> stringset_t;
@@ -192,7 +193,6 @@ private slots:
 	void onTreeViewSelectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
 	void onFileViewDragOut();
 	void onAbort();
-	void onShow();
 
 	// Designer slots
 	void on_actionRefresh_triggered();
@@ -251,8 +251,7 @@ private:
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QProgressBar	*progressBar;
 	class QShortcut		*abortShortcut;
-	bool				abortCurrentAction;
-	bool				refreshOnShow;
+	bool				abortOperation;
 
 	Settings			&settings;
 	QString				projectName;

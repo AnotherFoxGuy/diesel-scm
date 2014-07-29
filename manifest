@@ -1,5 +1,5 @@
-C Initial\ssupport\sfor\sabortable\srefreshes\n
-D 2014-07-29T11:59:44.606
+C -\sPerform\sthe\sfirst\sworkspace\sscan\safter\sthe\smain\swindow\sis\svisible\n-\sAborted\sscans\snow\sleave\sthe\sworkspace\sstate\sempty\sto\sprevent\sincorrect\soperation\n-\sMinor\srefactoring
+D 2014-07-29T14:09:36.103
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -187,13 +187,13 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp ec7c571b7664e537998ae8930e5e9d6cb1994fb3
-F src/MainWindow.h 6ee1c046c176782130a064a9feed35def4d93af6
+F src/MainWindow.cpp 0299d46ad799733c7e179a120b6a535b5f5fb2ab
+F src/MainWindow.h dc0a9ed7de8a338e56c38c00ec303796f31bd24d
 F src/SettingsDialog.cpp effff92f746a71b07f0e6a72a21caac5a9085123
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
 F src/Utils.cpp 9aff456712e4276b49083426301b3b96d3819c77
 F src/Utils.h c546e478a1225a28c99cd4c30f70cf9be9804a2a
-F src/main.cpp 3150a2a1fb103f120a3dcda581a7a41a3c246715
+F src/main.cpp 99a9d7e0634f4ea54259542cacfbb9d1e76ccb75
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
@@ -201,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 30ee66fdd239b24a6450dbb8b2dee4b904813a55
-R 7a758f7890147cf5446303afc8b7b101
-U Kostas
-Z edd995531a4645688e87cfd0c0dd161e
+P ac8a195f2fcfaa16e849461ae63aa01f88d1794d
+R 0de503ecd93bfe74dd7fd86b2c3e51e5
+U kostas
+Z 5ca34810e5aa3638217680aac3bf6987

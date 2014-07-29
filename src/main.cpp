@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
 						   0,
 						   workspace.isEmpty() ? 0 : &workspace);
 		mainwin.show();
+		mainwin.fullRefresh();
 		return app.exec();
 
 	}
