@@ -1,23 +1,24 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include <QFileDialog>
-#include <QStandardItem>
-#include <QProcess>
-#include <QSettings>
-#include <QDesktopServices>
 #include <QDateTime>
-#include <QLabel>
-#include <QTemporaryFile>
-#include <QMessageBox>
-#include <QUrl>
-#include <QInputDialog>
-#include <QDrag>
-#include <QMimeData>
-#include <QFileIconProvider>
 #include <QDebug>
-#include <QProgressBar>
+#include <QDesktopServices>
+#include <QDrag>
 #include <QDragEnterEvent>
+#include <QFileDialog>
+#include <QFileIconProvider>
+#include <QInputDialog>
+#include <QLabel>
+#include <QMessageBox>
+#include <QMimeData>
+#include <QProcess>
+#include <QProgressBar>
+#include <QSettings>
+#include <QShortcut>
+#include <QStandardItem>
+#include <QTemporaryFile>
 #include <QTextCodec>
+#include <QUrl>
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
@@ -220,21 +221,23 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 		a->setIconVisibleInMenu(false);
 #endif
 
+	abortShortcut = new QShortcut(QKeySequence("Escape"), this);
+	abortShortcut->setContext(Qt::ApplicationShortcut);
+	abortShortcut->setEnabled(false);
+	connect(abortShortcut, SIGNAL(activated()), this, SLOT(onAbort()));
+
 	viewMode = VIEWMODE_TREE;
 
 	applySettings();
+	refreshOnShow = true;
 
 	// Apply any explicit workspace path if available
 	if(workspacePath && !workspacePath->isEmpty())
 		openWorkspace(*workspacePath);
 
-	refresh();
-	rebuildRecent();
+	abortCurrentAction = false;
 
-	// Select the Root of the tree to update the file view
-	selectRootDir();
-
-	fossilAbort = false;
+	connect(this, SIGNAL(show), SLOT(onShow()), Qt::DirectConnection);
 }
 
 //------------------------------------------------------------------------------
@@ -543,7 +546,7 @@ void MainWindow::onOpenRecent()
 }
 
 //------------------------------------------------------------------------------
-bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec)
+bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool &abort)
 {
 	QDir dir(dirPath);
 
@@ -553,6 +556,9 @@ bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, c
 	QFileInfoList list = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
 	for (int i=0; i<list.count(); ++i)
 	{
+		if(abort)
+			return false;
+
 		QFileInfo info = list[i];
 		QString filename = info.fileName();
 		QString filepath = info.filePath();
@@ -565,7 +571,7 @@ bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, c
 
 		if (info.isDir())
 		{
-			if(!scanDirectory(entries, filepath, baseDir, ignoreSpec))
+			if(!scanDirectory(entries, filepath, baseDir, ignoreSpec, abort))
 				return false;
 		}
 		else
@@ -653,7 +659,7 @@ void MainWindow::scanWorkspace()
 	bool scan_files = ui->actionViewUnknown->isChecked();
 
 	setStatus(tr("Scanning Workspace..."));
-	setEnabled(false);
+	setBusy(true);
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
 	// Dispose RepoFiles
@@ -662,6 +668,8 @@ void MainWindow::scanWorkspace()
 
 	workspaceFiles.clear();
 	pathSet.clear();
+
+	abortCurrentAction = false;
 
 	if(scan_files)
 	{
@@ -675,7 +683,13 @@ void MainWindow::scanWorkspace()
 			ignore = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().replace(',',';');
 		}
 
-		scanDirectory(all_files, wkdir, wkdir, ignore);
+		if(!scanDirectory(all_files, wkdir, wkdir, ignore, abortCurrentAction))
+		{
+			setBusy(false);
+			setStatus("");
+			QApplication::restoreOverrideCursor();
+			return;
+		}
 
 		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
 		{
@@ -769,7 +783,12 @@ void MainWindow::scanWorkspace()
 	stashMap.clear();
 	res.clear();
 	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNFLAGS_SILENT_ALL))
+	{
+		setBusy(false);
+		setStatus("");
+		QApplication::restoreOverrideCursor();
 		return;
+	}
 
 	// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
 	QRegExp stash_rx("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
@@ -806,7 +825,7 @@ void MainWindow::scanWorkspace()
 	updateFileView();
 	updateStashView();
 
-	setEnabled(true);
+	setBusy(false);
 	setStatus("");
 	QApplication::restoreOverrideCursor();
 }
@@ -1110,7 +1129,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 	QString ans_always = 'a' + EOL_MARK;
 	QString ans_convert = 'c' + EOL_MARK;
 
-	fossilAbort = false;
+	abortCurrentAction = false;
 	QString buffer;
 
 #ifdef Q_OS_WIN
@@ -1131,9 +1150,8 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		if(state!=QProcess::Running && bytes_avail<1)
 			break;
 
-		if(fossilAbort)
+		if(abortCurrentAction)
 		{
-			log("\n* "+tr("Terminated")+" *\n");
 			#ifdef Q_OS_WIN		// Verify this is still true on Qt5
 				process.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
 			#else
@@ -1229,7 +1247,7 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			// Map the Convert option to the Apply button
 			if(have_acyn_query)
 			{
-				query = before_last_line + query;
+				query = before_last_line + "\n" + query;
 				buttons |= QMessageBox::Apply;
 			}
 
@@ -2635,3 +2653,32 @@ void MainWindow::dropEvent(QDropEvent *event)
 	}
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::setBusy(bool busy)
+{
+	abortShortcut->setEnabled(busy);
+	bool enabled = !busy;
+	ui->menuBar->setEnabled(enabled);
+	ui->mainToolBar->setEnabled(enabled);
+	ui->centralWidget->setEnabled(enabled);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::onAbort()
+{
+	abortCurrentAction = true;
+	log("\n* "+tr("Terminated")+" *\n");
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::onShow()
+{
+	if(refreshOnShow)
+	{
+		refresh();
+		rebuildRecent();
+		// Select the Root of the tree to update the file view
+		selectRootDir();
+		refreshOnShow = false;
+	}
+}

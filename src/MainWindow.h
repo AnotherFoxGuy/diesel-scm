@@ -159,7 +159,7 @@ private:
 	void loadFossilSettings();
 	QString getFossilPath();
 	QString getFossilHttpAddress();
-	bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec);
+	bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort);
 	void updateDirView();
 	void updateFileView();
 	void updateStashView();
@@ -167,8 +167,7 @@ private:
 	void fossilBrowse(const QString &fossilUrl);
 	void dragEnterEvent(class QDragEnterEvent *event);
 	void dropEvent(class QDropEvent *event);
-
-
+	void setBusy(bool busy);
 	virtual QMenu *createPopupMenu();
 
 	enum RepoStatus
@@ -192,6 +191,8 @@ private slots:
 	void onOpenRecent();
 	void onTreeViewSelectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
 	void onFileViewDragOut();
+	void onAbort();
+	void onShow();
 
 	// Designer slots
 	void on_actionRefresh_triggered();
@@ -249,7 +250,9 @@ private:
 	QProcess			fossilUI;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QProgressBar	*progressBar;
-	bool				fossilAbort;	// FIXME: No GUI for it yet
+	class QShortcut		*abortShortcut;
+	bool				abortCurrentAction;
+	bool				refreshOnShow;
 
 	Settings			&settings;
 	QString				projectName;
