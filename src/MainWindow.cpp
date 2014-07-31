@@ -1236,12 +1236,14 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 			QString query = ParseFossilQuery(last_line);
 			QMessageBox::StandardButtons buttons = QMessageBox::YesToAll|QMessageBox::Yes|QMessageBox::No;
 
+			// Add any extra text available to the query
+			before_last_line = before_last_line.trimmed();
+			if(!before_last_line.isEmpty())
+				query = before_last_line + "\n" + query;
+
 			// Map the Convert option to the Apply button
 			if(have_acyn_query)
-			{
-				query = before_last_line + "\n" + query;
 				buttons |= QMessageBox::Apply;
-			}
 
 			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query, buttons);
 			if(res==QMessageBox::Yes)
