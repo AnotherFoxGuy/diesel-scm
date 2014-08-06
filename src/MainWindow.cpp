@@ -489,15 +489,20 @@ void MainWindow::on_actionCloseRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCloneRepository_triggered()
 {
-	QUrl url;
+	QUrl url, url_proxy;
 	QString repository;
 
-	if(!CloneDialog::run(this, url, repository))
+	if(!CloneDialog::run(this, url, repository, url_proxy))
 		return;
 
 	stopUI();
 
 	// Actual command
+	QStringList cmd = QStringList() << "clone";
+
+	// Log Command
+	QStringList logcmd = QStringList() << "fossil" << "clone";
+
 	QString source = url.toString();
 	QString logsource = url.toString(QUrl::RemovePassword);
 	if(url.isLocalFile())
@@ -505,11 +510,14 @@ void MainWindow::on_actionCloneRepository_triggered()
 		source = url.toLocalFile();
 		logsource = source;
 	}
+	cmd << source << repository;
+	logcmd << logsource << repository;
 
-	QStringList cmd = QStringList() << "clone" << source << repository;
-
-	// Log Command
-	QStringList logcmd = QStringList() << "fossil" << "clone" << logsource << repository;
+	if(!url_proxy.isEmpty())
+	{
+		cmd << "--proxy" << url_proxy.toString();
+		logcmd << "--proxy" << url_proxy.toString(QUrl::RemovePassword);
+	}
 
 	log("<b>&gt;"+logcmd.join(" ")+"</b><br>", true);
 
@@ -521,7 +529,6 @@ void MainWindow::on_actionCloneRepository_triggered()
 	}
 
 	openWorkspace(repository);
-
 }
 
 //------------------------------------------------------------------------------

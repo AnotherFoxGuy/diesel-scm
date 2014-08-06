@@ -21,7 +21,7 @@ CloneDialog::~CloneDialog()
 }
 
 //-----------------------------------------------------------------------------
-bool CloneDialog::run(QWidget *parent, QUrl &url, QString &repository)
+bool CloneDialog::run(QWidget *parent, QUrl &url, QString &repository, QUrl &urlProxy)
 {
 	CloneDialog dlg(parent);
 
@@ -61,37 +61,69 @@ bool CloneDialog::run(QWidget *parent, QUrl &url, QString &repository)
 	if(!dlg.ui->linePassword->text().trimmed().isEmpty())
 		url.setPassword(dlg.ui->linePassword->text());
 
-	if(dlg.ui->lineRepository->text().isEmpty())
+	if(dlg.ui->lineTargetRepository->text().isEmpty())
 	{
 		QMessageBox::critical(parent, tr("Error"), tr("Invalid Repository File."), QMessageBox::Ok );
 		return false;
 	}
 
-	repository = dlg.ui->lineRepository->text();
+	urlProxy = QUrl::fromUserInput(dlg.ui->lineHttpProxyUrl->text());
+	if(!urlProxy.isEmpty() && !urlProxy.isValid())
+	{
+		QMessageBox::critical(parent, tr("Error"), tr("Invalid Proxy URL."), QMessageBox::Ok );
+		return false;
+	}
+
+	repository = dlg.ui->lineTargetRepository->text();
 	return true;
 }
 
 //-----------------------------------------------------------------------------
-void CloneDialog::on_btnSelectRepository_clicked()
+void CloneDialog::GetRepositoryPath(QString &pathResult)
 {
 	QString filter(tr("Fossil Repository") + QString(" (*." FOSSIL_EXT ")"));
 
-	QString path = QFileDialog::getSaveFileName(
+	pathResult = QFileDialog::getSaveFileName(
 				this,
 				tr("Select Fossil Repository"),
-				QDir::toNativeSeparators(ui->lineRepository->text()),
+				QDir::toNativeSeparators(pathResult),
 				filter,
 				&filter,
 				QFileDialog::DontConfirmOverwrite);
+}
 
-	if(path.isEmpty())
+//-----------------------------------------------------------------------------
+void CloneDialog::on_btnSelectSourceRepo_clicked()
+{
+	QString path = ui->lineURL->text();
+	GetRepositoryPath(path);
+
+	if(path.trimmed().isEmpty())
+		return;
+
+	if(!QFile::exists(path))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Invalid Repository File."), QMessageBox::Ok);
+		return;
+	}
+
+	ui->lineURL->setText(QDir::toNativeSeparators(path));
+}
+
+//-----------------------------------------------------------------------------
+void CloneDialog::on_btnSelectTargetRepo_clicked()
+{
+	QString path = ui->lineTargetRepository->text();
+	GetRepositoryPath(path);
+
+	if(path.trimmed().isEmpty())
 		return;
 
 	if(QFile::exists(path))
 	{
-		QMessageBox::critical(this, tr("Error"), tr("This repository file already exists."), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("This repository file already exists."), QMessageBox::Ok);
 		return;
 	}
 
-	ui->lineRepository->setText(QDir::toNativeSeparators(path));
+	ui->lineTargetRepository->setText(QDir::toNativeSeparators(path));
 }

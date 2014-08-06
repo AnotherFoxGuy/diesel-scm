@@ -1,5 +1,5 @@
-C Fixed\sincorrect\shandling\sof\slocal\sand\sUNC\spaths\swhen\scloning\srepositories
-D 2014-08-06T08:32:53.011
+C Added\sHTTP\sProxy\ssupport\sduring\sclone\nAdded\sfile\sdialog\sfor\sselecting\sa\slocal\ssource\srepository\sfor\scloning\n
+D 2014-08-06T09:26:38.427
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -175,8 +175,8 @@ F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc 227b1a42d7ee792386392872d747a176b508992c
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
-F src/CloneDialog.cpp d1c83e1a2990dbfcfd103e2e1d615d9341670fe6
-F src/CloneDialog.h c97e8c266819292622ca3e84b68e04e81ec05ba3
+F src/CloneDialog.cpp 812ef7d361c16da21540b7047c9d4d5e74f18539
+F src/CloneDialog.h e9f0fc8e5cc5ea2e7c43d6e77b5c4a9cc850b59e
 F src/CommitDialog.cpp 5300522ac11bc1096a11a6ce22f8c1665d4afc05
 F src/CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
 F src/CustomWebView.cpp b7dd0c41977c2cba005df07ed8967ba6f58d07d9
@@ -187,7 +187,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 12cee8367ac4acddbd6f0624515e496ce6dea0dc
+F src/MainWindow.cpp 37cb55d2f4aa76b10b62ea26f587d0274a0d2825
 F src/MainWindow.h dc0a9ed7de8a338e56c38c00ec303796f31bd24d
 F src/SettingsDialog.cpp effff92f746a71b07f0e6a72a21caac5a9085123
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
@@ -196,12 +196,12 @@ F src/Utils.h c546e478a1225a28c99cd4c30f70cf9be9804a2a
 F src/main.cpp 99a9d7e0634f4ea54259542cacfbb9d1e76ccb75
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
-F ui/CloneDialog.ui 0fc820804df91f16506ee466a44519fdd44e468f
+F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 964aff7d35acde4197dc863a6808f3a980b4e6cc
-R 7861d49b2a424e0f2a9269a1a083579d
+P ab62f1bafdc523e1ea7e661676aeb49c82ed93e0
+R 00c2d284c49659d6bd8cdefc48dda277
 U Kostas
-Z d65dc6acc17e6929dc2ad68921f22d35
+Z ce59286858ace7eb1a835975ddb00b23

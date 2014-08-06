@@ -19,12 +19,15 @@ public:
 	explicit CloneDialog(QWidget *parent = 0);
 	~CloneDialog();
 
-	static bool run(QWidget *parent, class QUrl &url, QString &repository);
+	static bool run(QWidget *parent, class QUrl &url, QString &repository, QUrl& urlProxy);
 
 private slots:
-	void on_btnSelectRepository_clicked();
+	void on_btnSelectSourceRepo_clicked();
+	void on_btnSelectTargetRepo_clicked();
 
 private:
+	void GetRepositoryPath(QString &pathResult);
+
 	Ui::CloneDialog *ui;
 };
 
