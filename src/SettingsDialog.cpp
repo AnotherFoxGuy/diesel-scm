@@ -67,8 +67,8 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 					LangIdToName(lang)));
 
 	// Repo Settings
-	ui->lineGDiffCommand->setText(QDir::toNativeSeparators(settings->GetFossilValue(FOSSIL_SETTING_GDIFF_CMD).toString()));
-	ui->lineGMergeCommand->setText(QDir::toNativeSeparators(settings->GetFossilValue(FOSSIL_SETTING_GMERGE_CMD).toString()));
+	ui->lineGDiffCommand->setText(settings->GetFossilValue(FOSSIL_SETTING_GDIFF_CMD).toString());
+	ui->lineGMergeCommand->setText(settings->GetFossilValue(FOSSIL_SETTING_GMERGE_CMD).toString());
 	ui->lineRemoteURL->setText(settings->GetFossilValue(FOSSIL_SETTING_REMOTE_URL).toString());
 	ui->lineIgnore->setText(settings->GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString());
 	ui->lineIgnoreCRNL->setText(settings->GetFossilValue(FOSSIL_SETTING_CRNL_GLOB).toString());
@@ -105,8 +105,8 @@ void SettingsDialog::on_buttonBox_accepted()
 	if(curr_langid != new_langid)
 		QMessageBox::information(this, tr("Restart required"), tr("The language change will take effect after restarting the application"), QMessageBox::Ok);
 
-	settings->SetFossilValue(FOSSIL_SETTING_GDIFF_CMD, QDir::fromNativeSeparators(ui->lineGDiffCommand->text()));
-	settings->SetFossilValue(FOSSIL_SETTING_GMERGE_CMD, QDir::fromNativeSeparators(ui->lineGMergeCommand->text()));
+	settings->SetFossilValue(FOSSIL_SETTING_GDIFF_CMD, ui->lineGDiffCommand->text());
+	settings->SetFossilValue(FOSSIL_SETTING_GMERGE_CMD, ui->lineGMergeCommand->text());
 	settings->SetFossilValue(FOSSIL_SETTING_REMOTE_URL, ui->lineRemoteURL->text());
 	settings->SetFossilValue(FOSSIL_SETTING_IGNORE_GLOB, ui->lineIgnore->text());
 	settings->SetFossilValue(FOSSIL_SETTING_CRNL_GLOB, ui->lineIgnoreCRNL->text());
@@ -135,7 +135,7 @@ void SettingsDialog::on_btnSelectGMerge_clicked()
 {
 	QString path = SelectExe(this, tr("Select Graphical Merge application"));
 	if(!path.isEmpty())
-		ui->lineGMergeCommand->setText(QDir::toNativeSeparators(path));
+		ui->lineGMergeCommand->setText(path);
 }
 
 //-----------------------------------------------------------------------------

@@ -1,5 +1,5 @@
-C Added\sHTTP\sProxy\ssupport\sduring\sclone\nAdded\sfile\sdialog\sfor\sselecting\sa\slocal\ssource\srepository\sfor\scloning\n
-D 2014-08-06T09:26:38.427
+C Removed\sall\spath\sconversion\sfor\sthe\sgdiff\sand\sgmerge\ssettings.\nThe\ssettings\sare\snow\sstored\sin\sthe\splatform\snative\sformat.\sThis\sshould\sfix\sthe\sissue\swhere\sfuel\swas\sproviding\sfossil\swith\san\sincorrect\scommand\sline\sfor\sthe\sgmerge\ssetting
+D 2014-08-06T10:06:10.992
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -187,9 +187,9 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 37cb55d2f4aa76b10b62ea26f587d0274a0d2825
+F src/MainWindow.cpp f321f9e0b9aa3f55966f3c19fb3d3c3488676fe1
 F src/MainWindow.h dc0a9ed7de8a338e56c38c00ec303796f31bd24d
-F src/SettingsDialog.cpp effff92f746a71b07f0e6a72a21caac5a9085123
+F src/SettingsDialog.cpp 515166bcaedf16432208bf8ef6bffec1529b1198
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
 F src/Utils.cpp 9aff456712e4276b49083426301b3b96d3819c77
 F src/Utils.h c546e478a1225a28c99cd4c30f70cf9be9804a2a
@@ -201,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P ab62f1bafdc523e1ea7e661676aeb49c82ed93e0
-R 00c2d284c49659d6bd8cdefc48dda277
+P 872751fabaa47ac1f1f9d4caa4bdb42ae2e371cd
+R c0ce9739ba0809720ddd275ca5e66571
 U Kostas
-Z ce59286858ace7eb1a835975ddb00b23
+Z 0f01ed065c4316a05b26b5aa37511ad2

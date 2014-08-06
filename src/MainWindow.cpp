@@ -2150,7 +2150,7 @@ void MainWindow::on_actionSettings_triggered()
 		if(value.isEmpty())
 			params << "unset" << name;
 		else
-			params << "settings" << name << "\"" + value + "\"";
+			params << "settings" << name << value;
 
 		if(type == Settings::Setting::TYPE_FOSSIL_GLOBAL)
 			params << "-global";
