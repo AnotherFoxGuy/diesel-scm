@@ -1,5 +1,5 @@
-C Always\sappend\sthe\sextra\squery\sline\swhen\savailable\n
-D 2014-07-31T07:22:03.075
+C Fixed\sincorrect\shandling\sof\slocal\sand\sUNC\spaths\swhen\scloning\srepositories
+D 2014-08-06T08:32:53.011
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -175,7 +175,7 @@ F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc 227b1a42d7ee792386392872d747a176b508992c
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
-F src/CloneDialog.cpp 8652480baa3f13f0f0e7df019751338c7cbeb1b5
+F src/CloneDialog.cpp d1c83e1a2990dbfcfd103e2e1d615d9341670fe6
 F src/CloneDialog.h c97e8c266819292622ca3e84b68e04e81ec05ba3
 F src/CommitDialog.cpp 5300522ac11bc1096a11a6ce22f8c1665d4afc05
 F src/CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
@@ -187,7 +187,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 63d36b11b72440ac75bba593937166a298347024
+F src/MainWindow.cpp 12cee8367ac4acddbd6f0624515e496ce6dea0dc
 F src/MainWindow.h dc0a9ed7de8a338e56c38c00ec303796f31bd24d
 F src/SettingsDialog.cpp effff92f746a71b07f0e6a72a21caac5a9085123
 F src/SettingsDialog.h 01c1f876c64f750ba8820a0d745e377acabe4921
@@ -201,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 55aefad7145c40d936c43759789d1b50e361b020
-P 449bb5db0e4ccc3ec2115f913c0d01fb25f94970
-R 1a2ebb4cba235d48d4d86d8d68a7ffa6
+P 964aff7d35acde4197dc863a6808f3a980b4e6cc
+R 7861d49b2a424e0f2a9269a1a083579d
 U Kostas
-Z 9bb94d29299a1dc4cf8412f6bb79d30e
+Z d65dc6acc17e6929dc2ad68921f22d35

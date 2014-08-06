@@ -498,12 +498,18 @@ void MainWindow::on_actionCloneRepository_triggered()
 	stopUI();
 
 	// Actual command
-	QStringList cmd = QStringList() << "clone" << url.toString() << repository;
+	QString source = url.toString();
+	QString logsource = url.toString(QUrl::RemovePassword);
+	if(url.isLocalFile())
+	{
+		source = url.toLocalFile();
+		logsource = source;
+	}
+
+	QStringList cmd = QStringList() << "clone" << source << repository;
 
 	// Log Command
-	if(!url.password().isEmpty())
-		url.setPassword("*****");
-	QStringList logcmd = QStringList() << "fossil" << "clone" << url.toString() << repository;
+	QStringList logcmd = QStringList() << "fossil" << "clone" << logsource << repository;
 
 	log("<b>&gt;"+logcmd.join(" ")+"</b><br>", true);
 

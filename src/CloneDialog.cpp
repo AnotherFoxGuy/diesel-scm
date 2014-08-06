@@ -46,17 +46,22 @@ bool CloneDialog::run(QWidget *parent, QUrl &url, QString &repository)
 	if(dlg.exec() != QDialog::Accepted)
 		return false;
 
-	url.setUrl(dlg.ui->lineURL->text());
+	QString urltext = dlg.ui->lineURL->text();
+
+	url = QUrl::fromUserInput(urltext);
 	if(url.isEmpty() || !url.isValid())
 	{
 		QMessageBox::critical(parent, tr("Error"), tr("Invalid URL."), QMessageBox::Ok );
 		return false;
 	}
 
-	url.setUserName(dlg.ui->lineUserName->text());
-	url.setPassword(dlg.ui->linePassword->text());
+	if(!dlg.ui->lineUserName->text().trimmed().isEmpty())
+		url.setUserName(dlg.ui->lineUserName->text());
 
-	if(dlg.ui->lineRepository->text().isEmpty() )
+	if(!dlg.ui->linePassword->text().trimmed().isEmpty())
+		url.setPassword(dlg.ui->linePassword->text());
+
+	if(dlg.ui->lineRepository->text().isEmpty())
 	{
 		QMessageBox::critical(parent, tr("Error"), tr("Invalid Repository File."), QMessageBox::Ok );
 		return false;
