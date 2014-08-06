@@ -20,6 +20,7 @@ namespace Ui {
 
 #define FOSSIL_SETTING_GDIFF_CMD			"gdiff-command"
 #define FOSSIL_SETTING_GMERGE_CMD			"gmerge-command"
+#define FOSSIL_SETTING_PROXY_URL			"proxy"
 #define FOSSIL_SETTING_IGNORE_GLOB			"ignore-glob"
 #define FOSSIL_SETTING_CRNL_GLOB			"crnl-glob"
 #define FOSSIL_SETTING_REMOTE_URL			"remote-url"

@@ -66,9 +66,12 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 				ui->cmbActiveLanguage->findText(
 					LangIdToName(lang)));
 
-	// Repo Settings
+	// Global Settings
 	ui->lineGDiffCommand->setText(settings->GetFossilValue(FOSSIL_SETTING_GDIFF_CMD).toString());
 	ui->lineGMergeCommand->setText(settings->GetFossilValue(FOSSIL_SETTING_GMERGE_CMD).toString());
+	ui->lineProxy->setText(settings->GetFossilValue(FOSSIL_SETTING_PROXY_URL).toString());
+
+	// Repository Settings
 	ui->lineRemoteURL->setText(settings->GetFossilValue(FOSSIL_SETTING_REMOTE_URL).toString());
 	ui->lineIgnore->setText(settings->GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString());
 	ui->lineIgnoreCRNL->setText(settings->GetFossilValue(FOSSIL_SETTING_CRNL_GLOB).toString());
@@ -107,9 +110,12 @@ void SettingsDialog::on_buttonBox_accepted()
 
 	settings->SetFossilValue(FOSSIL_SETTING_GDIFF_CMD, ui->lineGDiffCommand->text());
 	settings->SetFossilValue(FOSSIL_SETTING_GMERGE_CMD, ui->lineGMergeCommand->text());
+	settings->SetFossilValue(FOSSIL_SETTING_PROXY_URL, ui->lineProxy->text());
+
 	settings->SetFossilValue(FOSSIL_SETTING_REMOTE_URL, ui->lineRemoteURL->text());
 	settings->SetFossilValue(FOSSIL_SETTING_IGNORE_GLOB, ui->lineIgnore->text());
 	settings->SetFossilValue(FOSSIL_SETTING_CRNL_GLOB, ui->lineIgnoreCRNL->text());
+
 
 	settings->ApplyEnvironment();
 }
@@ -185,6 +191,8 @@ Settings::Settings(bool portableMode) : store(0)
 {
 	Mappings.insert(FOSSIL_SETTING_GDIFF_CMD, Setting("", Setting::TYPE_FOSSIL_GLOBAL));
 	Mappings.insert(FOSSIL_SETTING_GMERGE_CMD, Setting("", Setting::TYPE_FOSSIL_GLOBAL));
+	Mappings.insert(FOSSIL_SETTING_PROXY_URL, Setting("", Setting::TYPE_FOSSIL_GLOBAL));
+
 	Mappings.insert(FOSSIL_SETTING_IGNORE_GLOB, Setting("", Setting::TYPE_FOSSIL_LOCAL));
 	Mappings.insert(FOSSIL_SETTING_CRNL_GLOB, Setting("", Setting::TYPE_FOSSIL_LOCAL));
 	Mappings.insert(FOSSIL_SETTING_REMOTE_URL, Setting("off", Setting::TYPE_FOSSIL_COMMAND));
