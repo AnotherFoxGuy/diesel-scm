@@ -1,5 +1,5 @@
-C Fixed\sissue\swhere\sconflicted\sfiles\scould\snot\sbe\sreverted
-D 2014-08-26T12:30:14.717
+C Fixed\slocalization\sconversion\sscript\sfailing\son\ssome\ssystems\n
+D 2014-10-08T11:37:12.267
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -7,7 +7,7 @@ F doc/Changes.txt 99e6d8e4a534f48a1ced8477d27c847ae2b6a708
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro d15cce9435cf605947ae41e53869020e90563336
 F intl/convert.bat 90152e8b17c9c9bd79d8bf99fa70b9c4258064ec x
-F intl/convert.sh 5694496585ff5f4363c90ff8b6f48e19e0b6b4aa x
+F intl/convert.sh e99d2b4c25f242bcf0f4457b6ea8eac2014f4279 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
 F intl/el_GR.ts 1b805ee57309d02059d9e3e4cb49d945f9d9ac82
 F intl/en_US.ts 7917816efedf35d5f4f798d18896d7aa0cb3c71b
@@ -201,7 +201,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 6aae13994552e35d6bac4e0936b032a1179c1466
-R 564b4c555c22f1d02d8810e5a92713cd
+P 48ee3014e8868c79f7b8639a9110a24e5743d184
+R 1307d761441df0ea4a8789b029447caa
 U kostas
-Z fdb140e1a5e582d623cdd472b454b5a3
+Z 893de58dbf7e4dd471f0657bbb676858

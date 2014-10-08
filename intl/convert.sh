@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PRJDIR=$SCRIPTDIR/..
 INTLDIR=$SCRIPTDIR
