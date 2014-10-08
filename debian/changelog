@@ -1,0 +1,5 @@
+fuel (0.9.6-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Kostas <kostas@unknown>  Wed, 08 Oct 2014 12:10:32 +0300

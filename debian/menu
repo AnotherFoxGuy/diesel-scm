@@ -1,0 +1,6 @@
+?package(fuel):\
+  needs="X11"\
+  section="Applications/File Management"\
+  title="Fuel"\
+  icon32x32="/usr/share/pixmaps/fuel.png"\
+  command="/usr/bin/fuel"

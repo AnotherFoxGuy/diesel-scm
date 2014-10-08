@@ -1,5 +1,14 @@
-C Fixed\slocalization\sconversion\sscript\sfailing\son\ssome\ssystems\n
-D 2014-10-08T11:37:12.267
+C Added\sinitial\sdebian\spackage\ssupport\n
+D 2014-10-08T11:37:29.891
+F debian/changelog 19b96029fa5c46944f5c9ffb9a75ce47a19e1dda
+F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
+F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
+F debian/copyright 6bcc83e13533b6cc208f3cd423f1f483163b62ad
+F debian/fuel.install 761f61f2c45aa522df4ffb345121c10da958cb63
+F debian/menu aa1321fe6597a631df5cc978a3cf7b21ac1a3657
+F debian/rules 468914cbcf1bcc252ab3f616e1fdc2b37bc10b5d x
+F debian/source/format 1064dc0ce263680c076a1005f35ec906a5cf5a32
+F debian/watch 34f0921ff100a3e16a7ad84dcc303731de830a60
 F dist/arch/PKGBUILD 1d72dad77767f94a6b1a018067188e61927fa564
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
@@ -201,7 +210,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 48ee3014e8868c79f7b8639a9110a24e5743d184
-R 1307d761441df0ea4a8789b029447caa
+P 004aa493fb4f30d46bdb814510edb3f35a6df429
+R 053c7d3b3307359d789ab45afeb571ec
 U kostas
-Z 893de58dbf7e4dd471f0657bbb676858
+Z 2f7ef756b1b618383fabc5a6a1bde7ac

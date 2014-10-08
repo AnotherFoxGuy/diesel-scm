@@ -1,0 +1,17 @@
+Source: fuel
+Section: x11
+Priority: optional
+Maintainer: Kostas Karanikolas <karanikolas@gmail.com>
+Build-Depends: cdbs, debhelper (>= 8.0.0), qtbase5-dev, qttools5-dev-tools, 
+ libqt5webkit5-dev
+Standards-Version: 3.9.4
+Homepage: http://fuelscm.org
+#Vcs-Git: git://git.debian.org/collab-maint/fuel.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/fuel.git;a=summary
+
+Package: fuel
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: fossil
+Description: Fossil SCM GUI
+ Fuel is cross-platform GUI front-end for the Fossil SCM tool written in Qt. 
