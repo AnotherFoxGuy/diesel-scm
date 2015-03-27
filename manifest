@@ -1,5 +1,5 @@
-C -\sAdded\sPortuguese\stranslation\s(Thanks\semansije)\n-\sGetting\sready\sfor\sV1.0.0\sRelease
-D 2015-03-27T17:18:54.251
+C Updated\sPKGBUILD
+D 2015-03-27T17:40:06.541
 F debian/changelog 19b96029fa5c46944f5c9ffb9a75ce47a19e1dda
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -9,7 +9,7 @@ F debian/menu aa1321fe6597a631df5cc978a3cf7b21ac1a3657
 F debian/rules 468914cbcf1bcc252ab3f616e1fdc2b37bc10b5d x
 F debian/source/format 1064dc0ce263680c076a1005f35ec906a5cf5a32
 F debian/watch 34f0921ff100a3e16a7ad84dcc303731de830a60
-F dist/arch/PKGBUILD 0c046f3b4bbf733a64bad092a31bb42351c7e3ed
+F dist/arch/PKGBUILD 746a7f401e27a37b720b13c564ca4c9b86bc4185
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
@@ -211,7 +211,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 264d8ca990a0964c6d79fc9fd803cb361da23947
-R 483d1b2f795d1ab5f2bf2ccf3a168a6b
+P 4316f39e171811d18bf86f592bdaca858683df12
+R 9d6d562066ce8b5ec521460ce3621e11
 U kostas
-Z 34703eeb740e976db29bf8eb17ddb7f2
+Z 89500a51133b332a41438fd8f3ff9b96
