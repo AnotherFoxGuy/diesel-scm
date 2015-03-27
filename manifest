@@ -1,5 +1,5 @@
-C Updated\sPKGBUILD
-D 2015-03-27T18:09:04.179
+C Updated\sapplication\sversion
+D 2015-03-27T18:25:42.323
 F debian/changelog 19b96029fa5c46944f5c9ffb9a75ce47a19e1dda
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -203,7 +203,7 @@ F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp 9aff456712e4276b49083426301b3b96d3819c77
 F src/Utils.h c546e478a1225a28c99cd4c30f70cf9be9804a2a
-F src/main.cpp 99a9d7e0634f4ea54259542cacfbb9d1e76ccb75
+F src/main.cpp 0bba433f16072096cba1d48733b4e801df144800
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
@@ -211,7 +211,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 25bddf93fec4f964758dac86b08f5d609cd531bb
-R 294a9e78811f8cab40e204deb11e9b37
+P ca68fe622ce88483d769d78281f7e98ed0f70e9e
+R 0d1dd353890d2cf810a406f276a6938b
 U kostas
-Z 2e9d06f9aef2c0e94a4f448f0cb83195
+Z a91ed61381f99fa788c67281b0b4d5ce
