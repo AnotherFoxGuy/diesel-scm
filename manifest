@@ -1,5 +1,5 @@
-C Additional\sQt5\sbuild\sfixes
-D 2015-03-27T17:46:16.736
+C Updated\sPKGBUILD
+D 2015-03-27T18:09:04.179
 F debian/changelog 19b96029fa5c46944f5c9ffb9a75ce47a19e1dda
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -9,7 +9,7 @@ F debian/menu aa1321fe6597a631df5cc978a3cf7b21ac1a3657
 F debian/rules 468914cbcf1bcc252ab3f616e1fdc2b37bc10b5d x
 F debian/source/format 1064dc0ce263680c076a1005f35ec906a5cf5a32
 F debian/watch 34f0921ff100a3e16a7ad84dcc303731de830a60
-F dist/arch/PKGBUILD 746a7f401e27a37b720b13c564ca4c9b86bc4185
+F dist/arch/PKGBUILD e08bdd82de34beeba1ef22ce6b6aa1900637581c
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
@@ -211,7 +211,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P a466c81979e0a8848c7e48c92459d960f23520c2
-R 63409ad168aada1f5defc012cb694c20
+P 25bddf93fec4f964758dac86b08f5d609cd531bb
+R 294a9e78811f8cab40e204deb11e9b37
 U kostas
-Z 01cb31c2d63ae755af84f4ee5171e0fa
+Z 2e9d06f9aef2c0e94a4f448f0cb83195
