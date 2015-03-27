@@ -82,5 +82,6 @@ TRANSLATIONS += \
 	intl/de_DE.ts \
 	intl/es_ES.ts \
 	intl/fr_FR.ts \
-	intl/ru_RU.ts
+	intl/ru_RU.ts \
+	intl/pt_PT.ts
 

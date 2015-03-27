@@ -1,4 +1,4 @@
-Fuel V0.9.8 (2014-XX-XX)
+Fuel V1.0.0 (2015-03-28)
 ============
 - Feature: Long Operations can now be aborted by pressing the Escape key
 - Improvement: Better support for commit messages with international characters
@@ -6,6 +6,7 @@ Fuel V0.9.8 (2014-XX-XX)
 - Improvement: Files in Conflicted state are now shown
 - Localisations:
 	Russian (Thanks Mouse166)
+	Portuguese (Thanks emansije)
 
 Fuel V0.9.7 (Unreleased)
 ============

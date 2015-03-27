@@ -2046,10 +2046,11 @@ void MainWindow::on_actionAbout_triggered()
 						tr("Icons by Deleket - Jojo Mendoza\n"
 							"Available under the CC Attribution Noncommercial No Derivative 3.0 License") + "\n\n" +
 						tr("Translations with the help of:") + "\n"
-							"stayawake (German de_DE)\n"
-							"djnavas (Spanish es_ES)\n"
-							"Fringale (French fr_FR)\n"
-							"mouse166 (Russian ru_RU)\n"
+							"stayawake: de_DE\n"
+							"djnavas: es_ES\n"
+							"Fringale: fr_FR\n"
+							"mouse166: ru_RU\n"
+							"emansije: pt_PT\n"
 					   );
 }
 

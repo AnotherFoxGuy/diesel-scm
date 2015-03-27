@@ -1,6 +1,6 @@
 # Maintainer: Kostas Karanikolas <lastname[at]gmail[dot]com>
 pkgname=fuel
-pkgver=0.9.7
+pkgver=1.0.0
 pkgrel=2
 pkgdesc="A GUI front-end to Fossil SCM"
 arch=(i686 x86_64)
@@ -9,14 +9,14 @@ license=('GPL2')
 depends=('qt5>=5.2.0', 'qtwebkit>=5.2.0' 'fossil')
 source=("http://fuelscm.org/files/releases/${pkgname}-${pkgver}.tar.gz")
 
-md5sums=(ce86b6879871b3e8193d9469c985899e) #generate with 'makepkg -g'
+md5sums=(ce86b6879871b3e8193d9469c985899e) # Generate with 'makepkg -g'
 
 build() {
   cd "${srcdir}"
   [ -d build ] && rm -r build
   mkdir build
   cd build
-  qmake-qt4 "${srcdir}/${pkgname}-${pkgver}/fuel.pro"
+  qmake-qt5 "${srcdir}/${pkgname}-${pkgver}/fuel.pro"
   make
 }
 
