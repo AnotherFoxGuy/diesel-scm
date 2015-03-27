@@ -1,5 +1,5 @@
-C Updated\sPKGBUILD
-D 2015-03-27T17:40:06.541
+C Additional\sQt5\sbuild\sfixes
+D 2015-03-27T17:46:16.736
 F debian/changelog 19b96029fa5c46944f5c9ffb9a75ce47a19e1dda
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -16,7 +16,7 @@ F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro 844a18c3faf5239e0d0025d8b7feac3900c28e71
 F intl/convert.bat a4c0198e6df9e39469e81d1d702fccffe74ed691 x
-F intl/convert.sh e99d2b4c25f242bcf0f4457b6ea8eac2014f4279 x
+F intl/convert.sh 40ca4d0474063faefb6bd51dd37e0e732a7e82aa x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
 F intl/el_GR.ts 1b805ee57309d02059d9e3e4cb49d945f9d9ac82
 F intl/en_US.ts 7917816efedf35d5f4f798d18896d7aa0cb3c71b
@@ -24,7 +24,7 @@ F intl/es_ES.ts fbddd3374f7999e602536de9870ae1fef0c28ea8
 F intl/fr_FR.ts 8d2c00ab00927ee5239c1d273f380bbe4cfb2464
 F intl/pt_PT.ts f93bcc3df5447ab1d85407e1dec4cd68c03d2245
 F intl/ru_RU.ts 74189b3ee2b30b0b47b2db5bd7c9935db84947fc
-F intl/update.sh b5312e108eec47f9c8cb7d6790c57335e6b52829 x
+F intl/update.sh 39d4561630ba6681bb27e7beadc225a31469728f x
 F rsrc/fuel.desktop 43145556bc61f5a91b497c38a16aec44af271d29
 F rsrc/fuel.rc 8e9ac966f283102c11a77cd7f936cdc09e09bd79
 F rsrc/icons/Address\sBook-01.png ef2cec80ea5a559b72e8be4a344a1869fe69cbd8
@@ -211,7 +211,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 4316f39e171811d18bf86f592bdaca858683df12
-R 9d6d562066ce8b5ec521460ce3621e11
+P a466c81979e0a8848c7e48c92459d960f23520c2
+R 63409ad168aada1f5defc012cb694c20
 U kostas
-Z 89500a51133b332a41438fd8f3ff9b96
+Z 01cb31c2d63ae755af84f4ee5171e0fa

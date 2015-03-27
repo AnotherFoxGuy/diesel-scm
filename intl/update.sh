@@ -1,5 +1,5 @@
 #!/bin/sh
 
 # Update existing translations
-lupdate ../fuel.pro
+lupdate-qt5 ../fuel.pro
 
