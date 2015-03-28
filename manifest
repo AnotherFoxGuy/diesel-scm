@@ -1,5 +1,5 @@
-C Corrected\sPKGBUILD\sdependency\sversions
-D 2015-03-27T18:43:04.122
+C Localisation\sconversion\sscript\snow\sdetects\swhich\sversion\slrelease\sis\savailable\sin\sthe\ssystem
+D 2015-03-28T09:56:25.490
 F debian/changelog 19b96029fa5c46944f5c9ffb9a75ce47a19e1dda
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -16,7 +16,7 @@ F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro 844a18c3faf5239e0d0025d8b7feac3900c28e71
 F intl/convert.bat a4c0198e6df9e39469e81d1d702fccffe74ed691 x
-F intl/convert.sh 40ca4d0474063faefb6bd51dd37e0e732a7e82aa x
+F intl/convert.sh 2ca2179ff53e727f241925b75e19182607883c45 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
 F intl/el_GR.ts 1b805ee57309d02059d9e3e4cb49d945f9d9ac82
 F intl/en_US.ts 7917816efedf35d5f4f798d18896d7aa0cb3c71b
@@ -211,7 +211,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 28586a5428d5c5b0aab1c14a2c858e4eb79e4bed
-R 29a7a32a5099d4c415eb24844a7884b4
+P b6bc371c5d50ce549cd2fa53889cc2395b35d810
+R c2f054fcbb5f828ecb86bdbe3af9f5fd
 U kostas
-Z b3bd7a3268a1d8acfdc5f1aeeb24ad92
+Z 6fb70ff4e6ba2addeb4f3fed4c1e1336
