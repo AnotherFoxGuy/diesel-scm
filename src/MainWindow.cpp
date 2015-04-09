@@ -349,14 +349,20 @@ bool MainWindow::openWorkspace(const QString &path)
 		else
 		{
 			if(!QDir(wkspace).exists())
+			{
+				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 				return false;
+			}
 			setCurrentWorkspace(wkspace);
 		}
 	}
 	else
 	{
 		if(!QDir(wkspace).exists())
+		{
+			QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 			return false;
+		}
 		setCurrentWorkspace(wkspace);
 	}
 
