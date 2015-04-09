@@ -1,5 +1,5 @@
-C Localisation\sconversion\sscript\snow\sdetects\swhich\sversion\slrelease\sis\savailable\sin\sthe\ssystem
-D 2015-03-28T09:56:25.490
+C Allow\sadded\sfiles\sto\sbe\sreverted.\sFixes\s[72d5fb6fec]\s
+D 2015-04-09T10:49:42.881
 F debian/changelog 19b96029fa5c46944f5c9ffb9a75ce47a19e1dda
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -197,7 +197,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp a228d45fde194eace0cb7833d3da8757b49142ab
+F src/MainWindow.cpp cbafd636bc0176075527e9274fca25614db58b8e
 F src/MainWindow.h dc0a9ed7de8a338e56c38c00ec303796f31bd24d
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
@@ -211,7 +211,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P b6bc371c5d50ce549cd2fa53889cc2395b35d810
-R c2f054fcbb5f828ecb86bdbe3af9f5fd
+P 4286422aff75481222f2855360bdc6c18c588e38
+R 3c6bb9d7d703c4d96117c4793a38d635
 U kostas
-Z 6fb70ff4e6ba2addeb4f3fed4c1e1336
+Z e0afd5994aa469a336a7de20ea6c41f1

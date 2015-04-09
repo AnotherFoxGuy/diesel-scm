@@ -1931,7 +1931,7 @@ void MainWindow::on_actionDelete_triggered()
 void MainWindow::on_actionRevert_triggered()
 {
 	QStringList modified_files;
-	getSelectionFilenames(modified_files, RepoFile::TYPE_EDITTED|RepoFile::TYPE_DELETED|RepoFile::TYPE_MISSING|RepoFile::TYPE_CONFLICTED);
+	getSelectionFilenames(modified_files, RepoFile::TYPE_EDITTED|RepoFile::TYPE_ADDED|RepoFile::TYPE_DELETED|RepoFile::TYPE_MISSING|RepoFile::TYPE_CONFLICTED);
 
 	if(modified_files.empty())
 		return;
