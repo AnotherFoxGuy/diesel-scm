@@ -1,6 +1,6 @@
-C Covered\smore\scases\swith\san\serror\smessage\swhen\sopening\sa\srepository\sfailed.\sFixes\s[6e08966e80]
-D 2015-04-09T11:46:34.895
-F debian/changelog 19b96029fa5c46944f5c9ffb9a75ce47a19e1dda
+C Update\sdebian\schangelog
+D 2015-04-09T11:47:20.635
+F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
 F debian/copyright 6bcc83e13533b6cc208f3cd423f1f483163b62ad
@@ -211,7 +211,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 25812c7fba2c2c125e461f59c8c5577252072e99
-R 07ad42b0bfc927bafc0ef6551d0be48f
+P d2e3f8c14dafd2ba1b13b6d3b97e12acca400199
+R 0602335f8c0470e31a0a13006dfd1e0c
 U kostas
-Z 5f3f79c81669b270d1c23d8e57630bf0
+Z 765b78e65931323ff0257b7b823d0509

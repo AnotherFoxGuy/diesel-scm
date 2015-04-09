@@ -1,5 +1,8 @@
-fuel (0.9.6-1) unstable; urgency=low
-
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
-
- -- Kostas <kostas@unknown>  Wed, 08 Oct 2014 12:10:32 +0300
+fuel (1.0.0-1) unstable; urgency=low
+  * Feature: Long Operations can now be aborted by pressing the Escape key
+  * Improvement: Better support for commit messages with international characters
+  * Improvement: Fossil queries about CR/NL inconsistencies are now handled better
+  * Improvement: Files in Conflicted state are now shown
+  * Added localisations: Russia, Portuguese
+ 
+ -- Kostas <karanikolas@gmail.com>  Sat, 28 Mar 2015 12:00:00 +0200
