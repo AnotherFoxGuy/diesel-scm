@@ -1109,6 +1109,8 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 
 	QString fossil = getFossilPath();
 
+	// Detached processes use the command-line only, to avoid having to wait
+	// for the temporary args file to be released before returing
 	if(detached)
 		return QProcess::startDetached(fossil, args, wkdir);
 
@@ -1118,11 +1120,37 @@ bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int 
 		status_msg = QString("Fossil %0").arg(args[0].toCaseFolded());
 	ScopedStatus status(status_msg, ui, progressBar);
 
+	// Generate args file
+	const QStringList *final_args = &args;
+	QTemporaryFile args_file;
+	if(!args_file.open())
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not generate command line file"), QMessageBox::Ok );
+		return false;
+	}
+
+	// Write BOM
+	args_file.write(reinterpret_cast<const char *>(UTF8_BOM), sizeof(UTF8_BOM));
+
+	// Write Args
+	foreach(const QString &arg, args)
+	{
+		args_file.write(arg.toUtf8());
+		args_file.write("\n");
+	}
+	args_file.close();
+
+	// Replace args with args filename
+	QStringList run_args;
+	run_args.append("--args");
+	run_args.append(args_file.fileName());
+	final_args = &run_args;
+
 	// Create fossil process
 	LoggedProcess process(this);
 	process.setWorkingDirectory(wkdir);
 
-	process.start(fossil, args);
+	process.start(fossil, *final_args);
 	if(!process.waitForStarted())
 	{
 		log(tr("Could not start Fossil executable '%0'").arg(fossil)+"\n");
