@@ -1,5 +1,5 @@
-C Updated\slocalization\sconversion\sscript\n
-D 2015-04-18T19:08:37.895
+C Fixed\sLocalization\sconversion\son\swindows\swhich\sincorrectly\sgenerated\sRussian\sfor\sthe\sPortuguese\stext
+D 2015-04-18T19:34:38.771
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -15,7 +15,7 @@ F doc/Building.txt 7c0f1060d4a08ed330058d4a3a68905c05228381
 F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro 844a18c3faf5239e0d0025d8b7feac3900c28e71
-F intl/convert.bat d14474bcac75167244c5a5e0df6d3434ace0b603 x
+F intl/convert.bat 4222ae403418381452b843929d15259ea9850ab1 x
 F intl/convert.sh 2ca2179ff53e727f241925b75e19182607883c45 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
 F intl/el_GR.ts 1b805ee57309d02059d9e3e4cb49d945f9d9ac82
@@ -211,7 +211,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 0305679852d0394c1d40b837fb7449b3f880b418
-R e623c043a2cae6d59f392ff1aed5f1c7
+P ab222d5e30ea8069959b10e083edbad6c5fb8848
+R 98800fe13ea6bc401bbe98414e199b44
 U kostas
-Z b46cd4580deccbc6976c3d681da2f4a9
+Z f954b985a770d5190edcd019beee816a
