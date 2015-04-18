@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 set SCRIPTDIR=%CD%
 set PRJDIR=%SCRIPTDIR%\..
-set QTPATH=C:\Qt\Qt5.3.1\5.3\mingw482_32
+set QTPATH=C:\Qt\5.4\mingw491_32
 
 echo Converting localizations
 del /q %PRJDIR%\rsrc\intl\*
