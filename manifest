@@ -1,5 +1,5 @@
-C Fixed\sLocalization\sconversion\son\swindows\swhich\sincorrectly\sgenerated\sRussian\sfor\sthe\sPortuguese\stext
-D 2015-04-18T19:34:38.771
+C Added\sfossil\s->\sgit\ssynchronization\sscript\n
+D 2015-04-24T10:16:22.224
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -204,6 +204,7 @@ F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp 9aff456712e4276b49083426301b3b96d3819c77
 F src/Utils.h c546e478a1225a28c99cd4c30f70cf9be9804a2a
 F src/main.cpp 0bba433f16072096cba1d48733b4e801df144800
+F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
@@ -211,7 +212,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P ab222d5e30ea8069959b10e083edbad6c5fb8848
-R 98800fe13ea6bc401bbe98414e199b44
+P bde553c9433cc6aebffeb7fb7a06f91e9f13ff61
+R 9d42d8cc5a09ea8521c2462b487eea0b
 U kostas
-Z f954b985a770d5190edcd019beee816a
+Z e4ef0d3fd56ae5c648bf5c7b9bcd2a2d
