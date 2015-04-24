@@ -1,5 +1,6 @@
-C Added\sfossil\s->\sgit\ssynchronization\sscript\n
-D 2015-04-24T10:16:22.224
+C Added\sTravis-CI\sbuild\n
+D 2015-04-24T11:54:07.957
+F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -212,7 +213,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7ede8bbb54513e0771fdf5d5a2566d88c81b73ad
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P bde553c9433cc6aebffeb7fb7a06f91e9f13ff61
-R 9d42d8cc5a09ea8521c2462b487eea0b
+P f7f4a3c45d4eefbc9577821d83a47ccdbb495cc0
+R be8db796b6e1d4d0f347d21f1ad6bdc4
 U kostas
-Z e4ef0d3fd56ae5c648bf5c7b9bcd2a2d
+Z 29113408f77727bd0409e8a71ee7cabb
