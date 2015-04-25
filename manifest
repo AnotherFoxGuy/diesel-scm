@@ -1,5 +1,5 @@
-C OSX:\sLocalized\smenus\snow\sintegrate\sbetter\sin\sOSX\n
-D 2015-04-25T14:46:36.553
+C Fixed\sformatting\sin\sbuilding\sinstructions
+D 2015-04-25T15:10:40.587
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -12,7 +12,7 @@ F debian/source/format 1064dc0ce263680c076a1005f35ec906a5cf5a32
 F debian/watch 34f0921ff100a3e16a7ad84dcc303731de830a60
 F dist/arch/PKGBUILD 80dfadf4e2602f390e8b1119d0fc958e3c6f2b41
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
-F doc/Building.txt b575c1eaecd1eb83a7ffc39931edc934d5cc49ec
+F doc/Building.txt 17b43fa23da764b5d1b828cc48c5a95e612bbd8f
 F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro 844a18c3faf5239e0d0025d8b7feac3900c28e71
@@ -213,7 +213,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 3c5332bad121fe233106059c3217d61bf1741a73
-R c962178a62e461a8147559e1d039b71c
+P 9314ddc02dd302435a4aea987f16cb847a1076b6
+R 7cb8f99d09af03a8c7fc0a6cb6e77784
 U kostas
-Z 87a9b929412237c6cd48f6d4393313e9
+Z e7407fd42cdfa4ddd4dc6e2cd76018f5

@@ -73,13 +73,13 @@ Mac OS X
 Build Steps:
 
 1. Open a Terminal and add your Qt bin folder to the path
-    export PATH=$PATH:/path/to/qt/version/clang_64/bin
+	export PATH=$PATH:/path/to/qt/version/clang_64/bin
 
 2. Go into the folder containing the Fuel source code
 	cd fuel
 
 3. Generate localization files
-    intl/convert.sh
+	intl/convert.sh
 
 4. Generate the makefile with qmake
 	qmake fuel.pro -spec macx-clang CONFIG+=release
@@ -105,7 +105,7 @@ Build Steps:
 	cd fuel
 
 2. Generate localization files
-    intl/convert.sh
+	intl/convert.sh
 
 3. Generate the makefile with qmake
 	qmake fuel.pro
