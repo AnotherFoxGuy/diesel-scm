@@ -3,8 +3,8 @@ Building from Source
 
 Prerequisites
 -------------------------------------------------------------------------------
-Building Fuel from source requires Qt version 4. Qt is available at:
-	http://qt.nokia.com/downloads
+Building Fuel from source requires Qt version 4 or 5. Qt is available at:
+	http://www.qt.io/download-open-source/
 
 To run Fuel a compiled binary of Fossil must be available either in the system 
 path or in the same folder as the Fuel executable. You can find the latest
@@ -15,17 +15,16 @@ Fossil binaries from the Fossil homepage at:
 Retrieving the source
 -------------------------------------------------------------------------------
 The source is available as a tar.gz archive at the following location
-	https://fuel-scm.googlecode.com/files/fuel-{VERSION}.tar.gz
-So for version 0.9.6 the package name would be fuel-0.9.6.tar.gz
+	http://fuelscm.org/fossil/wiki?name=Downloads
 
-Additionally you can clone the source code directly from Chisel using fossil
+Additionally you can clone the source code directly from our site using fossil
 	mkdir fuel
 	cd fuel
-	fossil clone https://chiselapp.com/user/karanik/repository/fuel fuel.fossil
+	fossil clone http://fuelscm.org/fossil fuel.fossil
 	fossil open fuel.fossil
 
 
-Windows
+Windows (Qt4)
 -------------------------------------------------------------------------------
 1. Open a Command Prompt and cd into the folder containing the Fuel source code
 	cd fuel
@@ -73,22 +72,28 @@ Mac OS X
 -------------------------------------------------------------------------------
 Build Steps:
 
-1. Open a Terminal and cd into the folder containing the Fuel source code
+1. Open a Terminal and add your Qt bin folder to the path
+    export PATH=$PATH:/path/to/qt/version/clang_64/bin
+
+2. Go into the folder containing the Fuel source code
 	cd fuel
 
-2. Generate the makefile with qmake
-	/path/to/qt/bin/qmake fuel.pro -spec macx-g++ CONFIG+=release
+3. Generate localization files
+    intl/convert.sh
 
-3. Build the project
+4. Generate the makefile with qmake
+	qmake fuel.pro -spec macx-clang CONFIG+=release
+
+5. Build the project
 	make
 
-4. (Optional) Include the Fossil executable within the Fuel application bundle
+6. (Optional) Include the Fossil executable within the Fuel application bundle
 	cp /location/to/fossil Fuel.app/Contents/MacOS
 
-5. Package Qt dependencies into Fuel to make a standalone application bundle
-	/path/to/qt/bin/macdeployqt Fuel.app
+7. Package Qt dependencies into Fuel to make a standalone application bundle
+	macdeployqt Fuel.app
 
-6. Enjoy
+8. Enjoy
 	open Fuel.app
 
 
@@ -99,12 +104,15 @@ Build Steps:
 1. cd into the folder containing the Fuel source code
 	cd fuel
 
-2. Generate the makefile with qmake
+2. Generate localization files
+    intl/convert.sh
+
+3. Generate the makefile with qmake
 	qmake fuel.pro
 
-3. Build the project
+4. Build the project
 	make
 
-4. Enjoy
+5. Enjoy
 	./Fuel
 
