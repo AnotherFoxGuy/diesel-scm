@@ -498,14 +498,20 @@ void MainWindow::on_actionCloseRepository_triggered()
 		return;
 
 	// Close Repo
+#ifndef BRIDGE_ENABLED
 	if(!runFossil(QStringList() << "close"))
+#else
+	if(!bridge.closeRepository())
+#endif
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes available?"), QMessageBox::Ok );
 		return;
 	}
 
+#ifdef BRIDGE_ENABLED
 	stopUI();
 	setCurrentWorkspace("");
+#endif
 	refresh();
 }
 
@@ -647,6 +653,8 @@ void MainWindow::enableActions(bool on)
 //------------------------------------------------------------------------------
 bool MainWindow::refresh()
 {
+	QString title = "Fuel";
+
 	// Load repository info
 	RepoStatus st = getRepoStatus();
 
@@ -656,6 +664,7 @@ bool MainWindow::refresh()
 		enableActions(false);
 		repoFileModel.removeRows(0, repoFileModel.rowCount());
 		repoDirModel.clear();
+		setWindowTitle(title);
 		return false;
 	}
 	else if(st==REPO_OLD_SCHEMA)
@@ -664,6 +673,7 @@ bool MainWindow::refresh()
 		enableActions(false);
 		repoFileModel.removeRows(0, repoFileModel.rowCount());
 		repoDirModel.clear();
+		setWindowTitle(title);
 		return true;
 	}
 
@@ -671,8 +681,6 @@ bool MainWindow::refresh()
 	scanWorkspace();
 	setStatus("");
 	enableActions(true);
-
-	QString title = "Fuel";
 
 	if(!getProjectName().isEmpty())
 		title += " - " + getProjectName();

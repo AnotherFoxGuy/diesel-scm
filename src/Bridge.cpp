@@ -86,6 +86,17 @@ bool Bridge::newRepository(const QString& repositoryPath)
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::closeRepository()
+{
+	if(!runFossil(QStringList() << "close"))
+		return false;
+
+	stopUI();
+	setCurrentWorkspace("");
+	return true;
+}
+
+//------------------------------------------------------------------------------
 static QString ParseFossilQuery(QString line)
 {
 	// Extract question
