@@ -261,7 +261,9 @@ private:
 	QString				projectName;
 	QString				repositoryFile;
 	QStringList			workspaceHistory;
+#ifndef BRIDGE_ENABLED
 	QString				currentWorkspace;
+#endif
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
 

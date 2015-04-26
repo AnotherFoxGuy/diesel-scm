@@ -56,6 +56,15 @@ public:
 
 	RepoStatus getRepoStatus();
 
+	void setCurrentWorkspace(const QString &workspace)
+	{
+		currentWorkspace = workspace;
+	}
+
+	const QString &getCurrentWorkspace()
+	{
+		return currentWorkspace;
+	}
 
 
 	bool uiRunning() const;
@@ -72,10 +81,6 @@ private:
 			(*logCallback)(logTextBrowser, text, isHTML);
 	}
 
-	const QString &getCurrentWorkspace()
-	{
-		return currentWorkspace;
-	}
 
 	QString getFossilPath();
 

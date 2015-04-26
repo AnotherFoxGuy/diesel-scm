@@ -262,7 +262,11 @@ MainWindow::~MainWindow()
 //-----------------------------------------------------------------------------
 const QString &MainWindow::getCurrentWorkspace()
 {
+#ifndef BRIDGE_ENABLED
 	return currentWorkspace;
+#else
+	return bridge.getCurrentWorkspace();
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -270,13 +274,22 @@ void MainWindow::setCurrentWorkspace(const QString &workspace)
 {
 	if(workspace.isEmpty())
 	{
+#ifndef BRIDGE_ENABLED
 		currentWorkspace.clear();
+#else
+		bridge.setCurrentWorkspace("");
+#endif
 		return;
 	}
 
 	QString new_workspace = QFileInfo(workspace).absoluteFilePath();
 
+#ifndef BRIDGE_ENABLED
 	currentWorkspace = new_workspace;
+#else
+	bridge.setCurrentWorkspace(new_workspace);
+#endif
+
 	addWorkspace(new_workspace);
 
 	if(!QDir::setCurrent(new_workspace))
@@ -2736,11 +2749,11 @@ void MainWindow::dropEvent(QDropEvent *event)
 			QString abspath = finfo.absoluteFilePath();
 
 			// Within the current workspace ?
-			if(abspath.indexOf(currentWorkspace)!=0)
+			if(abspath.indexOf(getCurrentWorkspace())!=0)
 				continue; // skip
 
 			// Remove workspace from full path
-			QString wkpath = abspath.right(abspath.length()-currentWorkspace.length()-1);
+			QString wkpath = abspath.right(abspath.length()-getCurrentWorkspace().length()-1);
 
 			newfiles.append(wkpath);
 		}
