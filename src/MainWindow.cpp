@@ -34,6 +34,7 @@ static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 // 19: [5c46757d4b9765] on 2012-04-22 04:41:15
 static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
 
+//#define BRIDGE_DISABLED
 
 //-----------------------------------------------------------------------------
 enum
@@ -234,6 +235,8 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	viewMode = VIEWMODE_TREE;
 
 	applySettings();
+
+	bridge.Init(this, 0, 0, "", "");
 
 	// Apply any explicit workspace path if available
 	if(workspacePath && !workspacePath->isEmpty())
@@ -980,6 +983,7 @@ void MainWindow::updateFileView()
 }
 
 //------------------------------------------------------------------------------
+#ifdef BRIDGE_DISABLED
 MainWindow::RepoStatus MainWindow::getRepoStatus()
 {
 	QStringList res;
@@ -1020,6 +1024,12 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 
 	return run_ok ? REPO_OK : REPO_NOT_FOUND;
 }
+#else
+MainWindow::RepoStatus MainWindow::getRepoStatus()
+{
+	return (MainWindow::RepoStatus) bridge.getRepoStatus();
+}
+#endif
 //------------------------------------------------------------------------------
 void MainWindow::updateStashView()
 {
@@ -1064,6 +1074,8 @@ void MainWindow::on_actionClearLog_triggered()
 	ui->textBrowser->clear();
 }
 
+
+#ifdef BRIDGE_DISABLED
 //------------------------------------------------------------------------------
 bool MainWindow::runFossil(const QStringList &args, QStringList *output, int runFlags)
 {
@@ -1391,6 +1403,21 @@ QString MainWindow::getFossilPath()
 	// Otherwise assume there is a "fossil" executable in the path
 	return fossil_exe;
 }
+#else
+
+bool MainWindow::runFossil(const QStringList &args, QStringList *output, int runFlags)
+{
+	return bridge.runFossil(args, output, runFlags);
+}
+
+//------------------------------------------------------------------------------
+bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags)
+{
+	return bridge.runFossilRaw(args, output, exitCode, runFlags);
+
+}
+#endif
+
 //------------------------------------------------------------------------------
 void MainWindow::applySettings()
 {
@@ -1695,6 +1722,7 @@ void MainWindow::on_actionDiff_triggered()
 }
 
 //------------------------------------------------------------------------------
+#ifdef BRIDGE_DISABLED
 bool MainWindow::startUI()
 {
 	if(uiRunning())
@@ -1741,6 +1769,23 @@ void MainWindow::stopUI()
 
 	ui->actionFossilUI->setChecked(false);
 }
+#else
+bool MainWindow::startUI()
+{
+	QString port = settings.GetValue(FUEL_SETTING_HTTP_PORT).toString();
+	bool started = bridge.startUI(port);
+	ui->actionFossilUI->setChecked(started);
+	return started;
+}
+//------------------------------------------------------------------------------
+void MainWindow::stopUI()
+{
+	bridge.stopUI();
+	ui->actionFossilUI->setChecked(false);
+}
+
+#endif
+
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionFossilUI_triggered()

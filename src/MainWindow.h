@@ -10,6 +10,7 @@
 #include <QProcess>
 #include <QSet>
 #include "SettingsDialog.h"
+#include "Bridge.h"
 
 namespace Ui {
 	class MainWindow;
@@ -260,6 +261,8 @@ private:
 	QString				currentWorkspace;
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
+
+	Bridge				bridge;
 
 	// Repository State
 	typedef QList<RepoFile*> filelist_t;
