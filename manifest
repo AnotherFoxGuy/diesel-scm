@@ -1,5 +1,5 @@
-C Refactored\srepositoryFile\n
-D 2015-04-26T12:27:51.155
+C Fixed\sstatus\sbar\supdates
+D 2015-04-26T13:57:13.333
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -184,7 +184,7 @@ F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc 4098be128fd6c045db933d041fe8844b14643a6f
-F src/Bridge.cpp b34f14d8d887c9db6b27a84b6423931bf262e7a0
+F src/Bridge.cpp 7c4c368c8c8923122116f9f8e1d0d3cfb037444b
 F src/Bridge.h 4e32aaea72c4ca2e5703cb8a19b67e233a7b735a
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
@@ -200,8 +200,8 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp ee9cedf5766d169a0548f0621f939c5bf7a35167
-F src/MainWindow.h 3b94fb6a1f877c7ab861ae5ab29c4516c09301a4
+F src/MainWindow.cpp 664178a97f540e6015efc302f019efdd90db7b1c
+F src/MainWindow.h 3e19e5af60fa9bf0b7049fce70e2f030f8514ac9
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp 9aff456712e4276b49083426301b3b96d3819c77
@@ -215,7 +215,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 1d1ec089cdb02738d99efcc66c1b32bb0e3208e0
-R 8f891191e4c7bf83fb23055f9a6cd4b2
+P 880213d7d5ad220ae0a8c453e367d87f069c67b7
+R 68848428b73aa9c48d56ef567d781a32
 U kostas
-Z 5b7acc471a730941f76f2cc8e3fb3853
+Z 42c2887151fe2c1da8c90c1b39de078e

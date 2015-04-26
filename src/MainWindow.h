@@ -140,7 +140,9 @@ private:
 	bool refresh();
 	void scanWorkspace();
 	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
+#ifndef BRIDGE_ENABLED
 	bool runFossilRaw(const QStringList &args, QStringList *output=0, int *exitCode=0, int runFlags=RUNFLAGS_NONE);
+#endif
 	void applySettings();
 	void updateSettings();
 	const QString &getCurrentWorkspace();

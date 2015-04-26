@@ -600,7 +600,6 @@ bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, c
 			return false;
 
 		QFileInfo info = list[i];
-		QString filename = info.fileName();
 		QString filepath = info.filePath();
 		QString rel_path = filepath;
 		rel_path.remove(baseDir+PATH_SEP);
@@ -1428,14 +1427,13 @@ QString MainWindow::getFossilPath()
 
 bool MainWindow::runFossil(const QStringList &args, QStringList *output, int runFlags)
 {
+	// Make StatusBar message
+	QString status_msg = tr("Running Fossil");
+	if(args.length() > 0)
+		status_msg = QString("Fossil %0").arg(args[0].toCaseFolded());
+	ScopedStatus status(status_msg, ui, progressBar);
+
 	return bridge.runFossil(args, output, runFlags);
-}
-
-//------------------------------------------------------------------------------
-bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags)
-{
-	return bridge.runFossilRaw(args, output, exitCode, runFlags);
-
 }
 #endif
 

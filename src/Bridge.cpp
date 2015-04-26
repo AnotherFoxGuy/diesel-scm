@@ -110,14 +110,6 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	if(detached)
 		return QProcess::startDetached(fossil, args, wkdir);
 
-	// Make StatusBar message
-#if 0 // FIXME
-	QString status_msg = tr("Running Fossil");
-	if(args.length() > 0)
-		status_msg = QString("Fossil %0").arg(args[0].toCaseFolded());
-	ScopedStatus status(status_msg, ui, progressBar);
-#endif
-
 	// Generate args file
 	const QStringList *final_args = &args;
 	QTemporaryFile args_file;
