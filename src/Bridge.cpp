@@ -230,6 +230,45 @@ bool Bridge::removeFiles(const QStringList& fileList, bool deleteLocal)
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::revertFiles(const QStringList& fileList)
+{
+	if(fileList.empty())
+		return false;
+
+	// Do Revert
+	return runFossil(QStringList() << "revert" << QuotePaths(fileList));
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::renameFile(const QString &beforePath, const QString &afterPath)
+{
+	// Ensure we can rename the file
+	if(!QFileInfo(beforePath).exists() || QFileInfo(afterPath).exists())
+		return false;
+
+	// Do Rename
+	if(!runFossil(QStringList() << "mv" << QuotePath(beforePath) << QuotePath(afterPath)))
+		return false;
+
+	QString wkdir = getCurrentWorkspace() + QDir::separator();
+
+	// Also rename the file
+	return QFile::rename(wkdir+beforePath, wkdir+afterPath);
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::undo(QStringList &result, bool explainOnly)
+{
+	QStringList params;
+	params << "undo";
+
+	if(explainOnly)
+		params << "--explain";
+
+	return runFossil(params, &result);
+}
+
+//------------------------------------------------------------------------------
 bool Bridge::stashList(stashmap_t& stashes)
 {
 	stashes.clear();

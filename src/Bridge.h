@@ -100,6 +100,9 @@ public:
 	bool commitFiles(const QStringList &fileList, const QString &comment);
 	bool addFiles(const QStringList& fileList);
 	bool removeFiles(const QStringList& fileList, bool deleteLocal);
+	bool revertFiles(const QStringList& fileList);
+	bool renameFile(const QString& beforePath, const QString& afterPath);
+	bool undo(QStringList& result, bool explainOnly);
 private:
 	void log(const QString &text, bool isHTML=false)
 	{

@@ -2117,7 +2117,11 @@ void MainWindow::on_actionRevert_triggered()
 		return;
 
 	// Do Revert
+#ifndef BRIDGE_ENABLED
 	runFossil(QStringList() << "revert" << QuotePaths(modified_files) );
+#else
+	bridge.revertFiles(modified_files);
+#endif
 
 	refresh();
 }
@@ -2146,13 +2150,17 @@ void MainWindow::on_actionRename_triggered()
 		return;
 	}
 
+#ifndef BRIDGE_ENABLED
 	// Do Rename
 	runFossil(QStringList() << "mv" << QuotePath(fi_before.filePath()) << QuotePath(fi_after.filePath()) );
 
 	QString wkdir = getCurrentWorkspace() + QDir::separator();
 
 	// Also rename the file
-	QFile::rename( wkdir+fi_before.filePath(), wkdir+fi_after.filePath());
+	QFile::rename(wkdir+fi_before.filePath(), wkdir+fi_after.filePath());
+#else
+	bridge.renameFile(fi_before.filePath(), fi_after.filePath());
+#endif
 
 	refresh();
 }
@@ -2183,6 +2191,7 @@ void MainWindow::on_actionUndo_triggered()
 	// Gather Undo actions
 	QStringList res;
 
+#ifndef BRIDGE_ENABLED
 	if(!runFossil(QStringList() << "undo" << "--explain", &res ))
 		return;
 
@@ -2194,6 +2203,18 @@ void MainWindow::on_actionUndo_triggered()
 
 	// Do Undo
 	runFossil(QStringList() << "undo" );
+#else
+	bridge.undo(res, true);
+
+	if(res.length()>0 && res[0]=="No undo or redo is available")
+		return;
+
+	if(!FileActionDialog::run(this, tr("Undo"), tr("The following actions will be undone.")+"\n"+tr("Are you sure?"), res))
+		return;
+
+	// Do Undo
+	bridge.undo(res, false);
+#endif
 
 	refresh();
 }
