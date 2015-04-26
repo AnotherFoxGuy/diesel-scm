@@ -34,8 +34,6 @@ static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 // 19: [5c46757d4b9765] on 2012-04-22 04:41:15
 static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
 
-//#define BRIDGE_DISABLED
-
 //-----------------------------------------------------------------------------
 enum
 {
@@ -236,7 +234,9 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	applySettings();
 
-	bridge.Init(this, 0, 0, "", "");
+#ifdef BRIDGE_ENABLED
+	bridge.Init(this, &log, ui->textBrowser, "", "");
+#endif
 
 	// Apply any explicit workspace path if available
 	if(workspacePath && !workspacePath->isEmpty())
@@ -983,7 +983,7 @@ void MainWindow::updateFileView()
 }
 
 //------------------------------------------------------------------------------
-#ifdef BRIDGE_DISABLED
+#ifndef BRIDGE_ENABLED
 MainWindow::RepoStatus MainWindow::getRepoStatus()
 {
 	QStringList res;
@@ -1050,16 +1050,22 @@ void MainWindow::updateStashView()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::log(const QString &text, bool isHTML)
+void MainWindow::log(QTextBrowser *textBrowser, const QString &text, bool isHTML)
 {
-	QTextCursor c = ui->textBrowser->textCursor();
+	QTextCursor c = textBrowser->textCursor();
 	c.movePosition(QTextCursor::End);
-	ui->textBrowser->setTextCursor(c);
+	textBrowser->setTextCursor(c);
 
 	if(isHTML)
-		ui->textBrowser->insertHtml(text);
+		textBrowser->insertHtml(text);
 	else
-		ui->textBrowser->insertPlainText(text);
+		textBrowser->insertPlainText(text);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::log(const QString &text, bool isHTML)
+{
+	log(ui->textBrowser, text, isHTML);
 }
 
 //------------------------------------------------------------------------------
@@ -1075,7 +1081,7 @@ void MainWindow::on_actionClearLog_triggered()
 }
 
 
-#ifdef BRIDGE_DISABLED
+#ifndef BRIDGE_ENABLED
 //------------------------------------------------------------------------------
 bool MainWindow::runFossil(const QStringList &args, QStringList *output, int runFlags)
 {
@@ -1722,7 +1728,7 @@ void MainWindow::on_actionDiff_triggered()
 }
 
 //------------------------------------------------------------------------------
-#ifdef BRIDGE_DISABLED
+#ifndef BRIDGE_ENABLED
 bool MainWindow::startUI()
 {
 	if(uiRunning())

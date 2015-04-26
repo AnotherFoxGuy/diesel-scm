@@ -12,6 +12,8 @@
 #include "SettingsDialog.h"
 #include "Bridge.h"
 
+#define BRIDGE_ENABLED
+
 namespace Ui {
 	class MainWindow;
 }
@@ -143,6 +145,7 @@ private:
 	void updateSettings();
 	const QString &getCurrentWorkspace();
 	void setCurrentWorkspace(const QString &workspace);
+	static void log(QTextBrowser *textBrowser, const QString &text, bool isHTML);
 	void log(const QString &text, bool isHTML=false);
 	void setStatus(const QString &text);
 	bool uiRunning() const;
@@ -262,7 +265,9 @@ private:
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
 
+#ifdef BRIDGE_ENABLED
 	Bridge				bridge;
+#endif
 
 	// Repository State
 	typedef QList<RepoFile*> filelist_t;

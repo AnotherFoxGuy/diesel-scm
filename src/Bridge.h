@@ -5,6 +5,7 @@ class QStringList;
 #include <QString>
 #include <QObject>
 #include <QProcess>
+#include <QTextBrowser>
 
 
 class Bridge : public QObject
@@ -14,7 +15,7 @@ public:
 	: QObject(0)
 	, parentWidget(0)
 	, abortOperation(false)
-	, logCallbackObject(0)
+	, logTextBrowser(0)
 	{
 	}
 
@@ -31,14 +32,14 @@ public:
 		RUNFLAGS_DETACHED		= 1<<2
 	};
 
-	typedef void(*log_callback_t)(const QString &text, bool isHTML, QObject *object);
+	typedef void(*log_callback_t)(QTextBrowser *textBrowser, const QString &text, bool isHTML);
 
 
-	void Init(QWidget *parent, log_callback_t callback, QObject *callbackObject, const QString &fossPath, const QString &workspace)
+	void Init(QWidget *parent, log_callback_t callback, QTextBrowser *textBrowser, const QString &fossPath, const QString &workspace)
 	{
 		parentWidget = parent;
 		logCallback = callback;
-		logCallbackObject = callbackObject;
+		logTextBrowser = textBrowser;
 
 		fossilPath = fossPath;
 		currentWorkspace = workspace;
@@ -68,7 +69,7 @@ private:
 	void log(const QString &text, bool isHTML=false)
 	{
 		if(logCallback)
-			(*logCallback)(text, isHTML, logCallbackObject);
+			(*logCallback)(logTextBrowser, text, isHTML);
 	}
 
 	const QString &getCurrentWorkspace()
@@ -82,7 +83,7 @@ private:
 	bool				abortOperation;	// FIXME: No GUI for it yet
 
 	log_callback_t		logCallback;
-	QObject				*logCallbackObject;
+	QTextBrowser		*logTextBrowser;
 	QString				currentWorkspace;
 	QString				fossilPath;		// The value from the settings
 
