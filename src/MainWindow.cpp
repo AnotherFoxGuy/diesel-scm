@@ -2039,7 +2039,11 @@ void MainWindow::on_actionAdd_triggered()
 		return;
 
 	// Do Add
+#ifndef BRIDGE_ENABLED
 	runFossil(QStringList() << "add" << QuotePaths(selection) );
+#else
+	bridge.addFiles(selection);
+#endif
 
 	refresh();
 }
@@ -2063,6 +2067,7 @@ void MainWindow::on_actionDelete_triggered()
 	if(!FileActionDialog::run(this, tr("Remove files"), tr("The following files will be removed from the repository.")+"\n"+tr("Are you sure?"), all_files, tr("Also delete the local files"), &remove_local ))
 		return;
 
+#ifndef BRIDGE_ENABLED
 	if(!repo_files.empty())
 	{
 		// Do Delete
@@ -2079,6 +2084,22 @@ void MainWindow::on_actionDelete_triggered()
 				QFile::remove(fi.filePath());
 		}
 	}
+#else
+	// Remove repository files
+	if(!repo_files.empty())
+		bridge.removeFiles(repo_files, remove_local);
+
+	// Remove unknown local files if selected
+	if(remove_local)
+	{
+		for(int i=0; i<unknown_files.size(); ++i)
+		{
+			QFileInfo fi(getCurrentWorkspace() + QDir::separator() + unknown_files[i]);
+			if(fi.exists())
+				QFile::remove(fi.filePath());
+		}
+	}
+#endif
 
 	refresh();
 }

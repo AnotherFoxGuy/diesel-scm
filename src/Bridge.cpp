@@ -197,6 +197,39 @@ bool Bridge::commitFiles(const QStringList& fileList, const QString& comment)
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::addFiles(const QStringList& fileList)
+{
+	if(fileList.empty())
+		return false;
+
+	// Do Add
+	return runFossil(QStringList() << "add" << QuotePaths(fileList));
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::removeFiles(const QStringList& fileList, bool deleteLocal)
+{
+	if(fileList.empty())
+		return false;
+
+	// Do Delete
+	if(!runFossil(QStringList() << "delete" << QuotePaths(fileList)))
+		return false;
+
+	if(deleteLocal)
+	{
+		for(int i=0; i<fileList.size(); ++i)
+		{
+			QFileInfo fi(getCurrentWorkspace() + QDir::separator() + fileList[i]);
+			if(fi.exists())
+				QFile::remove(fi.filePath());
+		}
+	}
+
+	return true;
+}
+
+//------------------------------------------------------------------------------
 bool Bridge::stashList(stashmap_t& stashes)
 {
 	stashes.clear();

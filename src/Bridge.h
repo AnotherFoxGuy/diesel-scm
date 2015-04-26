@@ -98,9 +98,8 @@ public:
 	bool stashList(stashmap_t &stashes);
 	bool diffFile(const QString &repoFile);
 	bool commitFiles(const QStringList &fileList, const QString &comment);
-
-
-
+	bool addFiles(const QStringList& fileList);
+	bool removeFiles(const QStringList& fileList, bool deleteLocal);
 private:
 	void log(const QString &text, bool isHTML=false)
 	{
