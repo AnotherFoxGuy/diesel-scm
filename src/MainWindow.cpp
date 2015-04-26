@@ -355,9 +355,9 @@ bool MainWindow::openWorkspace(const QString &path)
 				return false;
 			}
 
-			repositoryFile = fi.absoluteFilePath();
+			setRepositoryFile(fi.absoluteFilePath());
 
-			if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile)))
+			if(!runFossil(QStringList() << "open" << QuotePath(getRepositoryFile())))
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 				return false;
@@ -458,10 +458,10 @@ void MainWindow::on_actionNewRepository_triggered()
 	stopUI();
 	on_actionClearLog_triggered();
 
-	repositoryFile = repo_path_info.absoluteFilePath();
+	setRepositoryFile(repo_path_info.absoluteFilePath());
 
 	// Create repository
-	if(!runFossil(QStringList() << "new" << QuotePath(repositoryFile)))
+	if(!runFossil(QStringList() << "new" << QuotePath(getRepositoryFile())))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
 		return;
@@ -480,7 +480,7 @@ void MainWindow::on_actionNewRepository_triggered()
 		ui->actionViewUnknown->setChecked(true);
 
 	// Open repo
-	if(!runFossil(QStringList() << "open" << QuotePath(repositoryFile)))
+	if(!runFossil(QStringList() << "open" << QuotePath(getRepositoryFile())))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 		return;
@@ -733,7 +733,7 @@ void MainWindow::scanWorkspace()
 			QString fullpath = it->absoluteFilePath();
 
 			// Skip fossil files
-			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!repositoryFile.isEmpty() && QFileInfo(fullpath) == QFileInfo(repositoryFile)))
+			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!getRepositoryFile().isEmpty() && QFileInfo(fullpath) == QFileInfo(getRepositoryFile())))
 				continue;
 
 			RepoFile *rf = new RepoFile(*it, RepoFile::TYPE_UNKNOWN, wkdir);
@@ -1033,7 +1033,7 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 			if(key=="project-name")
 				projectName = value;
 			else if(key=="repository")
-				repositoryFile = value;
+				setRepositoryFile(value);
 		}
 	}
 

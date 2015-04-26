@@ -72,12 +72,21 @@ public:
 		return projectName;
 	}
 
+	const QString &getRepositoryFile() const
+	{
+		return repositoryFile;
+	}
+
+	void setRepositoryFile(const QString &filename)
+	{
+		repositoryFile = filename;
+	}
+
 
 	bool uiRunning() const;
 	bool startUI(const QString &httpPort);
 	void stopUI();
 
-	QString repositoryFile;
 
 private:
 	void log(const QString &text, bool isHTML=false)
@@ -96,9 +105,8 @@ private:
 	QTextBrowser		*logTextBrowser;
 	QString				currentWorkspace;
 	QString				fossilPath;		// The value from the settings
-
-	QString projectName;
-
+	QString				repositoryFile;
+	QString				projectName;
 
 	QProcess			fossilUI;
 };

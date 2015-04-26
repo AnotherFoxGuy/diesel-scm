@@ -258,15 +258,21 @@ private:
 	bool				abortOperation;
 
 	Settings			&settings;
-	QString				repositoryFile;
 	QStringList			workspaceHistory;
 #ifndef BRIDGE_ENABLED
 	QString				projectName;
 	QString				currentWorkspace;
+	QString				repositoryFile;
+
+	const QString &		getRepositoryFile() const { return repositoryFile; }
+	void				setRepositoryFile(const QString &filename) { repositoryFile = filename; }
 	const QString &		getProjectName() const { return projectName; }
 #else
 	Bridge				bridge;
 	const QString &		getProjectName() const { return bridge.getProjectName(); }
+	const QString &		getRepositoryFile() const { return bridge.getRepositoryFile(); }
+	void				setRepositoryFile(const QString &filename) { bridge.setRepositoryFile(filename); }
+
 #endif
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
