@@ -1901,7 +1901,11 @@ void MainWindow::on_actionPush_triggered()
 		return;
 	}
 
+#ifndef BRIDGE_ENABLED
 	runFossil(QStringList() << "push");
+#else
+	bridge.pushRepository();
+#endif
 }
 
 //------------------------------------------------------------------------------
@@ -1915,7 +1919,11 @@ void MainWindow::on_actionPull_triggered()
 		return;
 	}
 
+#ifndef BRIDGE_ENABLED
 	runFossil(QStringList() << "pull");
+#else
+	bridge.pullRepository();
+#endif
 }
 
 //------------------------------------------------------------------------------

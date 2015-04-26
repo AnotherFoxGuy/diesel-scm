@@ -110,6 +110,18 @@ bool Bridge::listFiles(QStringList &files)
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::pushRepository()
+{
+	return runFossil(QStringList() << "push");
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::pullRepository()
+{
+	return runFossil(QStringList() << "pull");
+}
+
+//------------------------------------------------------------------------------
 bool Bridge::stashList(stashmap_t& stashes)
 {
 	stashes.clear();

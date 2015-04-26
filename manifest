@@ -1,5 +1,5 @@
-C Wrapped\s"ls"\sand\s"stash\sls"
-D 2015-04-26T18:16:42.936
+C Wrapped\s"push"\sand\s"pull"
+D 2015-04-26T18:26:39.720
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -184,8 +184,8 @@ F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc 4098be128fd6c045db933d041fe8844b14643a6f
-F src/Bridge.cpp 3d5eefd4610276e72b76d0e941df949b7de3f917
-F src/Bridge.h b06f3721408c7393a3470c053034d40aa0bfacf8
+F src/Bridge.cpp 4fbc6cbebfa20008c575e0d52d4eafe4b18caf99
+F src/Bridge.h 8c266069dfe6cfb1a870b09e20c568fb506a0829
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
 F src/CloneDialog.cpp 812ef7d361c16da21540b7047c9d4d5e74f18539
@@ -200,7 +200,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 929ee7209b7ac1c472abdb1d6b0ad9f63ef70715
+F src/MainWindow.cpp e585e885e496697d180e021deb514b04acdce659
 F src/MainWindow.h 11328bb6544faca0175b64a88809f13e1da0f488
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
@@ -215,7 +215,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P c449a826c83c98c4e33e7adb31841684b4ed6084
-R 40fad144dce1c43251709699c6928532
+P 8d81e12735d7c999ea5fca07c4c1683b68a5ad66
+R bea6f8fdaa1d3a52307231819083669e
 U kostas
-Z 33c7b3fa11b5a9b519b06c31d0739d75
+Z ced14dfb75cb5108cd5ba6e92482ad2b
