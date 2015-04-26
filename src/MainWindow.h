@@ -145,7 +145,7 @@ private:
 	void setCurrentWorkspace(const QString &workspace);
 	void log(const QString &text, bool isHTML=false);
 	void setStatus(const QString &text);
-	bool uiRunning() const { return fossilUI.state() == QProcess::Running; }
+	bool uiRunning() const;
 	void getSelectionFilenames(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
 	void getFileViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
 	void getDirViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);

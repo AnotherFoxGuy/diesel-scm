@@ -1769,6 +1769,13 @@ void MainWindow::stopUI()
 
 	ui->actionFossilUI->setChecked(false);
 }
+
+//------------------------------------------------------------------------------
+bool MainWindow::uiRunning() const
+{
+	return fossilUI.state() == QProcess::Running;
+}
+
 #else
 bool MainWindow::startUI()
 {
@@ -1782,6 +1789,12 @@ void MainWindow::stopUI()
 {
 	bridge.stopUI();
 	ui->actionFossilUI->setChecked(false);
+}
+
+//------------------------------------------------------------------------------
+bool MainWindow::uiRunning() const
+{
+	return bridge.uiRunning();
 }
 
 #endif
