@@ -258,18 +258,19 @@ private:
 	bool				abortOperation;
 
 	Settings			&settings;
-	QString				projectName;
 	QString				repositoryFile;
 	QStringList			workspaceHistory;
 #ifndef BRIDGE_ENABLED
+	QString				projectName;
 	QString				currentWorkspace;
+	const QString &		getProjectName() const { return projectName; }
+#else
+	Bridge				bridge;
+	const QString &		getProjectName() const { return bridge.getProjectName(); }
 #endif
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
 
-#ifdef BRIDGE_ENABLED
-	Bridge				bridge;
-#endif
 
 	// Repository State
 	typedef QList<RepoFile*> filelist_t;

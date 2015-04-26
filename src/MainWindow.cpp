@@ -232,11 +232,12 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	viewMode = VIEWMODE_TREE;
 
-	applySettings();
-
 #ifdef BRIDGE_ENABLED
+	// Need to be before applySettings which sets the last workspace
 	bridge.Init(this, &log, ui->textBrowser, "", "");
 #endif
+
+	applySettings();
 
 	// Apply any explicit workspace path if available
 	if(workspacePath && !workspacePath->isEmpty())
@@ -673,8 +674,9 @@ bool MainWindow::refresh()
 	enableActions(true);
 
 	QString title = "Fuel";
-	if(!projectName.isEmpty())
-		title += " - "+projectName;
+
+	if(!getProjectName().isEmpty())
+		title += " - " + getProjectName();
 
 	setWindowTitle(title);
 	return true;
@@ -903,7 +905,7 @@ void MainWindow::updateDirView()
 	header << tr("Folders");
 	repoDirModel.setHorizontalHeaderLabels(header);
 
-	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), projectName);
+	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), getProjectName());
 	root->setData(""); // Empty Path
 	root->setEditable(false);
 

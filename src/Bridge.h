@@ -61,9 +61,15 @@ public:
 		currentWorkspace = workspace;
 	}
 
-	const QString &getCurrentWorkspace()
+	const QString &getCurrentWorkspace() const
 	{
 		return currentWorkspace;
+	}
+
+
+	const QString &getProjectName() const
+	{
+		return projectName;
 	}
 
 
@@ -71,7 +77,6 @@ public:
 	bool startUI(const QString &httpPort);
 	void stopUI();
 
-	QString projectName;
 	QString repositoryFile;
 
 private:
@@ -91,6 +96,9 @@ private:
 	QTextBrowser		*logTextBrowser;
 	QString				currentWorkspace;
 	QString				fossilPath;		// The value from the settings
+
+	QString projectName;
+
 
 	QProcess			fossilUI;
 };
