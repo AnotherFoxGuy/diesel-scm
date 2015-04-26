@@ -332,8 +332,8 @@ bool MainWindow::openWorkspace(const QString &path)
 					return false;
 			}
 
+			// Ok open the repository file
 #ifndef BRIDGE_ENABLED
-			// Ok open the fossil
 			if(!QDir::setCurrent(wkspace))
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not change current directory"), QMessageBox::Ok );
@@ -344,17 +344,14 @@ bool MainWindow::openWorkspace(const QString &path)
 			setRepositoryFile(fi.absoluteFilePath());
 
 			if(!runFossil(QStringList() << "open" << QuotePath(getRepositoryFile())))
-			{
-				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
-				return false;
-			}
 #else
 			if(!bridge.openRepository(fi.absoluteFilePath(), wkspace))
+#endif
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 				return false;
 			}
-#endif
+
 		}
 		else
 		{
@@ -451,15 +448,21 @@ void MainWindow::on_actionNewRepository_triggered()
 	stopUI();
 	on_actionClearLog_triggered();
 
-	setRepositoryFile(repo_path_info.absoluteFilePath());
-
 	// Create repository
+	QString repo_abs_path = repo_path_info.absoluteFilePath();
+#ifndef BRIDGE_ENABLED
+	setRepositoryFile(repo_abs_path);
+
 	if(!runFossil(QStringList() << "new" << QuotePath(getRepositoryFile())))
+#else
+	if(!bridge.newRepository(repo_abs_path))
+#endif
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
 		return;
 	}
 
+#ifndef BRIDGE_ENABLED
 	// Create workspace
 	setCurrentWorkspace(wkdir);
 	if(!QDir::setCurrent(wkdir))
@@ -468,16 +471,20 @@ void MainWindow::on_actionNewRepository_triggered()
 		return;
 	}
 
-	// Disable unknown file filter
-	if(!ui->actionViewUnknown->isChecked())
-		ui->actionViewUnknown->setChecked(true);
-
 	// Open repo
 	if(!runFossil(QStringList() << "open" << QuotePath(getRepositoryFile())))
+#else
+	if(!bridge.openRepository(repo_abs_path, wkdir))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 		return;
 	}
+#endif
+
+	// Disable unknown file filter
+	if(!ui->actionViewUnknown->isChecked())
+		ui->actionViewUnknown->setChecked(true);
+
 	refresh();
 }
 

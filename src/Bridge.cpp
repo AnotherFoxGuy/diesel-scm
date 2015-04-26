@@ -73,6 +73,19 @@ bool Bridge::openRepository(const QString& repositoryPath, const QString& worksp
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::newRepository(const QString& repositoryPath)
+{
+	QFileInfo fi(repositoryPath);
+
+	if(fi.exists())
+		return false;
+
+	if(!runFossil(QStringList() << "new" << QuotePath(fi.absoluteFilePath())))
+		return false;
+	return true;
+}
+
+//------------------------------------------------------------------------------
 static QString ParseFossilQuery(QString line)
 {
 	// Extract question

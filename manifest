@@ -1,5 +1,5 @@
-C Refactored\sopenRepository
-D 2015-04-26T17:13:29.338
+C Wrapped\s"fossil\sopen"\sand\s"fossil\snew"
+D 2015-04-26T17:31:26.309
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -184,8 +184,8 @@ F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc 4098be128fd6c045db933d041fe8844b14643a6f
-F src/Bridge.cpp faf3de171463d77ba28948e5f40a6593090b973f
-F src/Bridge.h 78f856817740777eafc2cb3ebde876eefb8d97cb
+F src/Bridge.cpp 60aeda77aa45d0392882163ebb2a76c180887edf
+F src/Bridge.h ed662224c9e1dfcefce7b20e61bf9233d4658739
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
 F src/CloneDialog.cpp 812ef7d361c16da21540b7047c9d4d5e74f18539
@@ -200,7 +200,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 6115f40df16453946c2d1531d9f073744474dc7e
+F src/MainWindow.cpp 1a566742892c79d9ae82c9ecd30a7104f3fd7dda
 F src/MainWindow.h 3e19e5af60fa9bf0b7049fce70e2f030f8514ac9
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
@@ -215,7 +215,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P bf0e885bf80d28fda92ed20315d93445bb2b42a6
-R 5dd6a3a3a992f4b262039fc6c8121b23
+P 02a7b672e1d634b703ee5f30258153c3f4610886
+R 9b9bafb1d1fed894392a7cd8221a1f0d
 U kostas
-Z 1d7b8fe8bfa0d1e122d9f1d78dba5383
+Z 8897bdc7ab9789c2ea95847e8892a35c

@@ -83,6 +83,7 @@ public:
 
 
 	bool openRepository(const QString &repositoryPath, const QString& workspacePath);
+	bool newRepository(const QString &repositoryPath);
 
 	bool uiRunning() const;
 	bool startUI(const QString &httpPort);
