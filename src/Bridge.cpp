@@ -11,8 +11,15 @@
 
 static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 
-#include "Utils.h"
+// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
+static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
 
+#define FOSSIL_CHECKOUT1	"_FOSSIL_"
+#define FOSSIL_CHECKOUT2	".fslckout"
+#define FOSSIL_EXT			"fossil"
+#define PATH_SEP			"/"
+
+//------------------------------------------------------------------------------
 Bridge::RepoStatus Bridge::getRepoStatus()
 {
 	QStringList res;
@@ -97,6 +104,50 @@ bool Bridge::closeRepository()
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::listFiles(QStringList &files)
+{
+	return runFossil(QStringList() << "ls" << "-l", &files, RUNFLAGS_SILENT_ALL);
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::stashList(stashmap_t& stashes)
+{
+	stashes.clear();
+	QStringList res;
+
+	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNFLAGS_SILENT_ALL))
+		return false;
+
+	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); )
+	{
+		QString line = *line_it;
+
+		int index = REGEX_STASH.indexIn(line);
+		if(index==-1)
+			break;
+
+		QString id = REGEX_STASH.cap(1);
+		++line_it;
+
+		QString name;
+		// Finish at an anonymous stash or start of a new stash ?
+		if(line_it==res.end() || REGEX_STASH.indexIn(*line_it)!=-1)
+			name = line.trimmed();
+		else // Named stash
+		{
+			// Parse stash name
+			name = (*line_it);
+			name = name.trimmed();
+			++line_it;
+		}
+
+		stashes.insert(name, id);
+	}
+
+	return true;
+}
+
+//------------------------------------------------------------------------------
 static QString ParseFossilQuery(QString line)
 {
 	// Extract question
@@ -111,7 +162,6 @@ static QString ParseFossilQuery(QString line)
 	return line;
 }
 
-
 //------------------------------------------------------------------------------
 bool Bridge::runFossil(const QStringList &args, QStringList *output, int runFlags)
 {
@@ -121,7 +171,6 @@ bool Bridge::runFossil(const QStringList &args, QStringList *output, int runFlag
 
 	return exit_code == EXIT_SUCCESS;
 }
-
 
 //------------------------------------------------------------------------------
 // Run fossil. Returns true if execution was successful regardless if fossil
@@ -420,12 +469,7 @@ QString Bridge::getFossilPath()
 }
 
 
-#define FOSSIL_CHECKOUT1	"_FOSSIL_"
-#define FOSSIL_CHECKOUT2	".fslckout"
-#define FOSSIL_EXT			"fossil"
-#define PATH_SEP			"/"
-
-
+//------------------------------------------------------------------------------
 bool Bridge::isWorkspace(const QString &path)
 {
 	if(path.length()==0)

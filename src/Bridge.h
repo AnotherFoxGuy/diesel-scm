@@ -7,6 +7,7 @@ class QStringList;
 #include <QProcess>
 #include <QTextBrowser>
 
+typedef QMap<QString, QString> stashmap_t;
 
 class Bridge : public QObject
 {
@@ -90,6 +91,8 @@ public:
 	bool startUI(const QString &httpPort);
 	void stopUI();
 
+	bool listFiles(QStringList& files);
+	bool stashList(stashmap_t &stashes);
 
 private:
 	void log(const QString &text, bool isHTML=false)

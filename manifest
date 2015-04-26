@@ -1,5 +1,5 @@
-C -\sWrapped\s"fossil\sclose"\n-\sFixed\sinvalid\swindow\stitle\swhen\sclosing\sa\sworkspace\n
-D 2015-04-26T17:40:58.322
+C Wrapped\s"ls"\sand\s"stash\sls"
+D 2015-04-26T18:16:42.936
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -184,8 +184,8 @@ F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc 4098be128fd6c045db933d041fe8844b14643a6f
-F src/Bridge.cpp 0dbac79acbd9d0d4a324a36a81ccfa17ab78724a
-F src/Bridge.h 991532ea29129af8212b2c6993d45f29f9e55098
+F src/Bridge.cpp 3d5eefd4610276e72b76d0e941df949b7de3f917
+F src/Bridge.h b06f3721408c7393a3470c053034d40aa0bfacf8
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
 F src/CloneDialog.cpp 812ef7d361c16da21540b7047c9d4d5e74f18539
@@ -200,12 +200,12 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp b76f75859164a1f6466d698f6de2e287cbb7d220
-F src/MainWindow.h 3e19e5af60fa9bf0b7049fce70e2f030f8514ac9
+F src/MainWindow.cpp 929ee7209b7ac1c472abdb1d6b0ad9f63ef70715
+F src/MainWindow.h 11328bb6544faca0175b64a88809f13e1da0f488
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp f78728e0817b1db23007ba0d2c5c26980ee7ebca
-F src/Utils.h 9c9ee6c918fccaded2ae212d45514de7c9527f82
+F src/Utils.h bece95535a98daeb3ea0653352c0a1bb63d39ba8
 F src/main.cpp 2ac8badc2a63fa123ceae53382ce24cfe1b5a54b
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -215,7 +215,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P edf97efd4a0adc050076296c896e68371ecb0be0
-R 248142aaf1fb4256b0aef0b34c37e023
+P c449a826c83c98c4e33e7adb31841684b4ed6084
+R 40fad144dce1c43251709699c6928532
 U kostas
-Z 80bf5b981b23e692892835541310d2c6
+Z 33c7b3fa11b5a9b519b06c31d0739d75

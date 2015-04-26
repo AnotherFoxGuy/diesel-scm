@@ -25,8 +25,6 @@
 #include "Utils.h"
 #include "LoggedProcess.h"
 
-#define COUNTOF(array)			(sizeof(array)/sizeof(array[0]))
-
 #define PATH_SEP				"/"
 
 static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
@@ -701,7 +699,11 @@ void MainWindow::scanWorkspace()
 
 	// Retrieve the status of files tracked by fossil
 	QStringList res;
+#ifndef BRIDGE_ENABLED
 	if(!runFossil(QStringList() << "ls" << "-l", &res, RUNFLAGS_SILENT_ALL))
+#else
+	if(!bridge.listFiles(res))
+#endif
 		return;
 
 	bool scan_files = ui->actionViewUnknown->isChecked();
@@ -823,6 +825,7 @@ void MainWindow::scanWorkspace()
 	}
 
 	// Load the stash
+#ifndef BRIDGE_ENABLED
 	stashMap.clear();
 	res.clear();
 	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNFLAGS_SILENT_ALL))
@@ -853,7 +856,9 @@ void MainWindow::scanWorkspace()
 
 		stashMap.insert(name, id);
 	}
-
+#else
+	bridge.stashList(stashMap);
+#endif
 
 	// Update the file item model
 _done:

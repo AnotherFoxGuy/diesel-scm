@@ -283,7 +283,6 @@ private:
 	// Repository State
 	typedef QList<RepoFile*> filelist_t;
 	typedef QMap<QString, RepoFile*> filemap_t;
-	typedef QMap<QString, QString> stashmap_t;
 	filemap_t			workspaceFiles;
 	stringset_t			pathSet;
 	stashmap_t			stashMap;
