@@ -88,13 +88,18 @@ public:
 	bool closeRepository();
 	bool pushRepository();
 	bool pullRepository();
+	bool cloneRepository(const QString &repository, const QUrl &url, const QUrl &proxyUrl);
 
 	bool uiRunning() const;
 	bool startUI(const QString &httpPort);
 	void stopUI();
 
-	bool listFiles(QStringList& files);
+	bool listFiles(QStringList &files);
 	bool stashList(stashmap_t &stashes);
+	bool diffFile(const QString &repoFile);
+	bool commitFiles(const QStringList &fileList, const QString &comment);
+
+
 
 private:
 	void log(const QString &text, bool isHTML=false)

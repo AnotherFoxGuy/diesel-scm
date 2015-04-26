@@ -122,7 +122,7 @@ class MainWindow : public QMainWindow
 public:
 	explicit MainWindow(Settings &_settings, QWidget *parent = 0, QString *workspacePath = 0);
 	~MainWindow();
-	bool diffFile(QString repoFile);
+	bool diffFile(const QString& repoFile);
 	void fullRefresh();
 
 private:

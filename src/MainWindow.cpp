@@ -524,6 +524,7 @@ void MainWindow::on_actionCloneRepository_triggered()
 
 	stopUI();
 
+#ifndef BRIDGE_ENABLED
 	// Actual command
 	QStringList cmd = QStringList() << "clone";
 
@@ -550,6 +551,9 @@ void MainWindow::on_actionCloneRepository_triggered()
 
 	// Clone Repo
 	if(!runFossil(cmd, 0, RUNFLAGS_SILENT_INPUT))
+#else
+	if(!bridge.cloneRepository(repository, url, url_proxy))
+#endif
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not clone the repository"), QMessageBox::Ok);
 		return;
@@ -1736,10 +1740,14 @@ void MainWindow::getStashViewSelection(QStringList &stashNames, bool allIfEmpty)
 }
 
 //------------------------------------------------------------------------------
-bool MainWindow::diffFile(QString repoFile)
+bool MainWindow::diffFile(const QString &repoFile)
 {
+#ifndef BRIDGE_ENABLED
 	// Run the diff detached
 	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, RUNFLAGS_DETACHED);
+#else
+	return bridge.diffFile(repoFile);
+#endif
 }
 
 //------------------------------------------------------------------------------
@@ -1956,6 +1964,7 @@ void MainWindow::on_actionCommit_triggered()
 		return;
 
 	// Do commit
+#ifndef BRIDGE_ENABLED
 	QString comment_fname;
 	{
 		QTemporaryFile temp_file;
@@ -1997,6 +2006,21 @@ void MainWindow::on_actionCommit_triggered()
 
 	runFossil(params);
 	QFile::remove(comment_fname);
+#else
+	QStringList files;
+
+	// When a subset of files has been selected, explicitely specify each file.
+	// Otherwise all files will be implicitly committed by fossil. This is necessary
+	// when committing after a merge where fossil thinks that we are trying to do
+	// a partial commit which is not permitted.
+	QStringList all_modified_files;
+	getAllFilenames(all_modified_files, RepoFile::TYPE_MODIFIED);
+
+	if(commit_files.size() != all_modified_files.size())
+		files = commit_files;
+
+	bridge.commitFiles(files, msg);
+#endif
 
 	refresh();
 }

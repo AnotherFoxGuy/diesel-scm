@@ -122,6 +122,81 @@ bool Bridge::pullRepository()
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::cloneRepository(const QString& repository, const QUrl& url, const QUrl& proxyUrl)
+{
+	// Actual command
+	QStringList cmd = QStringList() << "clone";
+
+	// Log Command
+	QStringList logcmd = QStringList() << "fossil" << "clone";
+
+	QString source = url.toString();
+	QString logsource = url.toString(QUrl::RemovePassword);
+	if(url.isLocalFile())
+	{
+		source = url.toLocalFile();
+		logsource = source;
+	}
+	cmd << source << repository;
+	logcmd << logsource << repository;
+
+	if(!proxyUrl.isEmpty())
+	{
+		cmd << "--proxy" << proxyUrl.toString();
+		logcmd << "--proxy" << proxyUrl.toString(QUrl::RemovePassword);
+	}
+
+	log("<b>&gt;"+logcmd.join(" ")+"</b><br>", true);
+
+	// Clone Repo
+	if(!runFossil(cmd, 0, RUNFLAGS_SILENT_INPUT))
+		return false;
+
+	return true;
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::diffFile(const QString &repoFile)
+{
+	// Run the diff detached
+	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, RUNFLAGS_DETACHED);
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::commitFiles(const QStringList& fileList, const QString& comment)
+{
+	// Do commit
+	QString comment_fname;
+	{
+		QTemporaryFile temp_file;
+		if(!temp_file.open())
+			return false;
+
+		comment_fname = temp_file.fileName();
+	}
+
+	QFile comment_file(comment_fname);
+	if(!comment_file.open(QIODevice::WriteOnly))
+		return false;
+
+	// Write BOM
+	comment_file.write(reinterpret_cast<const char *>(UTF8_BOM), sizeof(UTF8_BOM));
+
+	// Write Comment
+	comment_file.write(comment.toUtf8());
+	comment_file.close();
+
+	// Generate fossil parameters.
+	QStringList params;
+	params << "commit" << "--message-file" << QuotePath(comment_fname);
+	params << QuotePaths(fileList);
+
+	runFossil(params);
+	QFile::remove(comment_fname);
+	return true;
+}
+
+//------------------------------------------------------------------------------
 bool Bridge::stashList(stashmap_t& stashes)
 {
 	stashes.clear();
