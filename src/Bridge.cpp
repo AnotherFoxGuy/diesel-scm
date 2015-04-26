@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QTemporaryFile>
+#include "Utils.h"
 
 static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 
@@ -52,6 +53,25 @@ Bridge::RepoStatus Bridge::getRepoStatus()
 
 	return run_ok ? REPO_OK : REPO_NOT_FOUND;
 }
+
+//------------------------------------------------------------------------------
+bool Bridge::openRepository(const QString& repositoryPath, const QString& workspacePath)
+{
+	QFileInfo fi(repositoryPath);
+
+	if(!QDir::setCurrent(workspacePath) || !fi.isFile())
+		return false;
+
+	QString abspath = fi.absoluteFilePath();
+	setCurrentWorkspace(workspacePath);
+	setRepositoryFile(abspath);
+
+	if(!runFossil(QStringList() << "open" << QuotePath(abspath)))
+		return false;
+
+	return true;
+}
+
 //------------------------------------------------------------------------------
 static QString ParseFossilQuery(QString line)
 {

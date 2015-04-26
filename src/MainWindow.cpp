@@ -56,21 +56,6 @@ enum
 };
 
 //-----------------------------------------------------------------------------
-static QString QuotePath(const QString &path)
-{
-	return path;
-}
-
-//-----------------------------------------------------------------------------
-static QStringList QuotePaths(const QStringList &paths)
-{
-	QStringList res;
-	for(int i=0; i<paths.size(); ++i)
-		res.append(QuotePath(paths[i]));
-	return res;
-}
-
-//-----------------------------------------------------------------------------
 typedef QMap<QString, QString> QStringMap;
 static QStringMap MakeKeyValues(QStringList lines)
 {
@@ -347,14 +332,15 @@ bool MainWindow::openWorkspace(const QString &path)
 					return false;
 			}
 
+#ifndef BRIDGE_ENABLED
 			// Ok open the fossil
-			setCurrentWorkspace(wkspace);
 			if(!QDir::setCurrent(wkspace))
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not change current directory"), QMessageBox::Ok );
 				return false;
 			}
 
+			setCurrentWorkspace(wkspace);
 			setRepositoryFile(fi.absoluteFilePath());
 
 			if(!runFossil(QStringList() << "open" << QuotePath(getRepositoryFile())))
@@ -362,6 +348,13 @@ bool MainWindow::openWorkspace(const QString &path)
 				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 				return false;
 			}
+#else
+			if(!bridge.openRepository(fi.absoluteFilePath(), wkspace))
+			{
+				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
+				return false;
+			}
+#endif
 		}
 		else
 		{

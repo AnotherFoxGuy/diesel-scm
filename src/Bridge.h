@@ -20,9 +20,6 @@ public:
 	}
 
 
-	bool runFossil(const QStringList &args, QStringList *output, int runFlags);
-	bool runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags);
-
 	enum RunFlags
 	{
 		RUNFLAGS_NONE			= 0<<0,
@@ -45,6 +42,8 @@ public:
 		currentWorkspace = workspace;
 	}
 
+	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
+	bool runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags);
 
 	static bool isWorkspace(const QString &path);
 	enum RepoStatus
@@ -82,6 +81,8 @@ public:
 		repositoryFile = filename;
 	}
 
+
+	bool openRepository(const QString &repositoryPath, const QString& workspacePath);
 
 	bool uiRunning() const;
 	bool startUI(const QString &httpPort);

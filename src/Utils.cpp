@@ -15,6 +15,21 @@ QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, c
 }
 
 //-----------------------------------------------------------------------------
+QString QuotePath(const QString &path)
+{
+	return path;
+}
+
+//-----------------------------------------------------------------------------
+QStringList QuotePaths(const QStringList &paths)
+{
+	QStringList res;
+	for(int i=0; i<paths.size(); ++i)
+		res.append(QuotePath(paths[i]));
+	return res;
+}
+
+//-----------------------------------------------------------------------------
 #if 0 // Unused
 #include <QInputDialog>
 
@@ -158,7 +173,7 @@ bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint)
 	// IShellFolder interface.
 	//
 	bool bResult = false;
-	
+
 	LPMALLOC pMalloc;
 	if (!SUCCEEDED (SHGetMalloc (&pMalloc)))
 		return bResult;
