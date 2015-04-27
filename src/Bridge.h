@@ -5,6 +5,7 @@ class QStringList;
 #include <QString>
 #include <QObject>
 #include <QProcess>
+#include <QMessageBox>
 
 typedef QMap<QString, QString> stashmap_t;
 
@@ -35,22 +36,20 @@ public:
 		virtual void logText(const QString &text, bool isHTML)=0;
 		virtual void beginProcess(const QString &text)=0;
 		virtual void endProcess()=0;
+		virtual QMessageBox::StandardButton Query(const QString &title, const QString &query, QMessageBox::StandardButtons buttons)=0;
 	};
 
 
 	Bridge()
 	: QObject(0)
-	, parentWidget(0)
 	, abortOperation(false)
 	, uiCallback(0)
 	{
 	}
 
-	void Init(QWidget *parent, UICallback *callback, const QString &fossPath, const QString &workspace)
+	void Init(UICallback *callback, const QString &fossPath, const QString &workspace)
 	{
-		parentWidget = parent;
 		uiCallback = callback;
-
 		fossilPath = fossPath;
 		currentWorkspace = workspace;
 	}
@@ -129,12 +128,9 @@ private:
 			uiCallback->logText(text, isHTML);
 	}
 
+	QString	getFossilPath();
 
-	QString getFossilPath();
-
-	QWidget				*parentWidget;	// fixme
 	bool				abortOperation;	// FIXME: No GUI for it yet
-
 	UICallback			*uiCallback;
 	QString				currentWorkspace;
 	QString				fossilPath;		// The value from the settings

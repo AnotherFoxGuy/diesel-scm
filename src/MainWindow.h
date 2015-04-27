@@ -230,6 +230,8 @@ private:
 		virtual void logText(const QString& text, bool isHTML);
 		virtual void beginProcess(const QString& text);
 		virtual void endProcess();
+		virtual QMessageBox::StandardButton Query(const QString &title, const QString &query, QMessageBox::StandardButtons buttons);
+
 
 	private:
 		class MainWindow *mainWindow;
@@ -241,7 +243,6 @@ private:
 	{
 		MAX_RECENT=5
 	};
-
 
 	Ui::MainWindow		*ui;
 	QStandardItemModel	repoFileModel;
@@ -258,10 +259,6 @@ private:
 
 	MainWinUICallback	uiCallback;
 	Bridge				bridge;
-	const QString &		getProjectName() const { return bridge.getProjectName(); }
-	const QString &		getRepositoryFile() const { return bridge.getRepositoryFile(); }
-	void				setRepositoryFile(const QString &filename) { bridge.setRepositoryFile(filename); }
-
 
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree

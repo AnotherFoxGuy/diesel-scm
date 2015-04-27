@@ -4,7 +4,6 @@
 #include <LoggedProcess.h>
 #include <QTextCodec>
 #include <QDebug>
-#include <QMessageBox>
 #include <QDir>
 #include <QTemporaryFile>
 #include <QUrl>
@@ -529,7 +528,10 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	final_args = &run_args;
 
 	// Create fossil process
-	LoggedProcess process(parentWidget);
+	// FIXME: when we are sure this works delete this
+	// LoggedProcess process(parentWidget*/);
+	LoggedProcess process(0);
+
 	process.setWorkingDirectory(wkdir);
 
 	process.start(fossil, *final_args);
@@ -557,6 +559,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	QTextDecoder *decoder = codec->makeDecoder();
 	Q_ASSERT(decoder);
 
+	Q_ASSERT(uiCallback);
 #ifdef QT_DEBUG
 	size_t input_index = 0;
 #endif
@@ -673,7 +676,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 			if(have_acyn_query)
 				buttons |= QMessageBox::Apply;
 
-			QMessageBox::StandardButton res = DialogQuery(parentWidget, "Fossil", query, buttons);
+			QMessageBox::StandardButton res = uiCallback->Query("Fossil", query, buttons);
 			if(res==QMessageBox::Yes)
 			{
 				process.write(ans_yes.toLatin1());
@@ -700,7 +703,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		{
 			log(last_line);
 			QString query = ParseFossilQuery(last_line);
-			QMessageBox::StandardButton res = DialogQuery(parentWidget, "Fossil", query);
+			QMessageBox::StandardButton res = uiCallback->Query("Fossil", query, QMessageBox::Yes|QMessageBox::No);
 
 			if(res==QMessageBox::Yes)
 			{
@@ -719,7 +722,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		{
 			log(last_line);
 			QString query = ParseFossilQuery(last_line);
-			QMessageBox::StandardButton res = DialogQuery(parentWidget, "Fossil", query, QMessageBox::YesToAll|QMessageBox::No);
+			QMessageBox::StandardButton res = uiCallback->Query("Fossil", query, QMessageBox::YesToAll|QMessageBox::No);
 			if(res==QMessageBox::YesAll)
 			{
 				process.write(ans_always.toLatin1());
@@ -802,7 +805,9 @@ bool Bridge::startUI(const QString &httpPort)
 		return true;
 	}
 
-	fossilUI.setParent(parentWidget);
+	// FIXME: when we are sure this works delete this
+	//fossilUI.setParent(parentWidget);
+
 	fossilUI.setProcessChannelMode(QProcess::MergedChannels);
 	fossilUI.setWorkingDirectory(getCurrentWorkspace());
 

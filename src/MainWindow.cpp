@@ -190,7 +190,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	uiCallback.init(this);
 	// Need to be before applySettings which sets the last workspace
-	bridge.Init(this, &uiCallback, "", "");
+	bridge.Init(&uiCallback, "", "");
 
 	applySettings();
 
@@ -577,8 +577,8 @@ bool MainWindow::refresh()
 	setStatus("");
 	enableActions(true);
 
-	if(!getProjectName().isEmpty())
-		title += " - " + getProjectName();
+	if(!bridge.getProjectName().isEmpty())
+		title += " - " + bridge.getProjectName();
 
 	setWindowTitle(title);
 	return true;
@@ -635,7 +635,7 @@ void MainWindow::scanWorkspace()
 			QString fullpath = it->absoluteFilePath();
 
 			// Skip fossil files
-			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!getRepositoryFile().isEmpty() && QFileInfo(fullpath) == QFileInfo(getRepositoryFile())))
+			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!bridge.getRepositoryFile().isEmpty() && QFileInfo(fullpath) == QFileInfo(bridge.getRepositoryFile())))
 				continue;
 
 			RepoFile *rf = new RepoFile(*it, RepoFile::TYPE_UNKNOWN, wkdir);
@@ -777,7 +777,7 @@ void MainWindow::updateDirView()
 	header << tr("Folders");
 	repoDirModel.setHorizontalHeaderLabels(header);
 
-	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), getProjectName());
+	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), bridge.getProjectName());
 	root->setData(""); // Empty Path
 	root->setEditable(false);
 
@@ -2188,4 +2188,10 @@ void MainWindow::MainWinUICallback::endProcess()
 	Q_ASSERT(mainWindow);
 	mainWindow->ui->statusBar->clearMessage();
 	mainWindow->progressBar->setHidden(true);
+}
+
+//------------------------------------------------------------------------------
+QMessageBox::StandardButton MainWindow::MainWinUICallback::Query(const QString &title, const QString &query, QMessageBox::StandardButtons buttons)
+{
+	return DialogQuery(mainWindow, title, query, buttons);
 }
