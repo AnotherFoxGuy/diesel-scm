@@ -1441,7 +1441,7 @@ QString MainWindow::getFossilPath()
 	return fossil_exe;
 }
 #else
-
+#if 1
 bool MainWindow::runFossil(const QStringList &args, QStringList *output, int runFlags)
 {
 	// Make StatusBar message
@@ -1452,6 +1452,7 @@ bool MainWindow::runFossil(const QStringList &args, QStringList *output, int run
 
 	return bridge.runFossil(args, output, runFlags);
 }
+#endif
 #endif
 
 //------------------------------------------------------------------------------
@@ -2314,7 +2315,9 @@ void MainWindow::loadFossilSettings()
 		Settings::Setting::SettingType type = it->Type;
 
 		// Command types we issue directly on fossil
-		if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
+
+		//if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
+		if(name == FOSSIL_SETTING_REMOTE_URL)
 		{
 			// Retrieve existing url
 			QStringList out;
@@ -2323,6 +2326,8 @@ void MainWindow::loadFossilSettings()
 
 			continue;
 		}
+
+		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
 
 		// Otherwise it must be a fossil setting
 		if(!kv.contains(name))
@@ -2360,16 +2365,23 @@ void MainWindow::on_actionSettings_triggered()
 		Settings::Setting::SettingType type = it.value().Type;
 
 		// Command types we issue directly on fossil
-		if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
+		// FIXME: major uglyness with settings management
+		//if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
+		if(name == FOSSIL_SETTING_REMOTE_URL)
 		{
 			// Run as silent to avoid displaying credentials in the log
+#ifndef BRIDGE_H
 			runFossil(QStringList() << "remote-url" << QuotePath(it.value().Value.toString()), 0, RUNFLAGS_SILENT_INPUT);
+#else
+			bridge.setRemoteUrl(it.value().Value.toString());
+#endif
 			continue;
 		}
 
 		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
 
 		QString value = it.value().Value.toString();
+#ifndef BRIDGE_H
 		QStringList params;
 
 		if(value.isEmpty())
@@ -2381,6 +2393,9 @@ void MainWindow::on_actionSettings_triggered()
 			params << "-global";
 
 		runFossil(params);
+#else
+		bridge.setFossilSetting(name, value, type == Settings::Setting::TYPE_FOSSIL_GLOBAL);
+#endif
 	}
 }
 
@@ -2681,11 +2696,15 @@ void MainWindow::on_actionNewStash_triggered()
 	}
 
 	// Do Stash
+#ifndef BRIDGE_ENABLED
 	QString command = "snapshot";
 	if(revert)
 		command = "save";
 
 	runFossil(QStringList() << "stash" << command << "-m" << stash_name << QuotePaths(stashed_files) );
+#else
+	bridge.stashNew(stashed_files, stash_name, revert);
+#endif
 	refresh();
 }
 
@@ -2705,7 +2724,11 @@ void MainWindow::on_actionApplyStash_triggered()
 		stashmap_t::iterator id_it = stashMap.find(*it);
 		Q_ASSERT(id_it!=stashMap.end());
 
+#ifndef BRIDGE_ENABLED
 		if(!runFossil(QStringList() << "stash" << "apply" << *id_it))
+#else
+		if(!bridge.stashApply(*id_it))
+#endif
 		{
 			log(tr("Stash application aborted due to errors")+"\n");
 			return;
@@ -2717,8 +2740,12 @@ void MainWindow::on_actionApplyStash_triggered()
 	{
 		stashmap_t::iterator id_it = stashMap.find(*it);
 		Q_ASSERT(id_it!=stashMap.end());
-
+#ifndef BRIDGE_ENABLED
 		if(!runFossil(QStringList() << "stash" << "drop" << *id_it))
+#else
+		if(!bridge.stashDrop(*id_it))
+#endif
+
 		{
 			log(tr("Stash deletion aborted due to errors")+"\n");
 			return;
@@ -2746,7 +2773,11 @@ void MainWindow::on_actionDeleteStash_triggered()
 		stashmap_t::iterator id_it = stashMap.find(*it);
 		Q_ASSERT(id_it!=stashMap.end());
 
+#ifndef BRIDGE_ENABLED
 		if(!runFossil(QStringList() << "stash" << "drop" << *id_it))
+#else
+		if(!bridge.stashDrop(*id_it))
+#endif
 		{
 			log(tr("Stash deletion aborted due to errors")+"\n");
 			return;
@@ -2769,7 +2800,11 @@ void MainWindow::on_actionDiffStash_triggered()
 	Q_ASSERT(id_it!=stashMap.end());
 
 	// Run diff
+#ifndef BRIDGE_ENABLED
 	runFossil(QStringList() << "stash" << "diff" << *id_it, 0);
+#else
+	bridge.stashDiff(*id_it);
+#endif
 }
 
 //------------------------------------------------------------------------------
@@ -2882,7 +2917,11 @@ void MainWindow::dropEvent(QDropEvent *event)
 				return;
 
 			// Do Add
+#ifndef BRIDGE_ENABLED
 			runFossil(QStringList() << "add" << QuotePaths(newfiles) );
+#else
+			bridge.addFiles(newfiles);
+#endif
 
 			refresh();
 		}

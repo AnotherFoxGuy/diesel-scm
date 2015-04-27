@@ -97,7 +97,6 @@ public:
 	void stopUI();
 
 	bool listFiles(QStringList &files);
-	bool stashList(stashmap_t &stashes);
 	bool diffFile(const QString &repoFile);
 	bool commitFiles(const QStringList &fileList, const QString &comment);
 	bool addFiles(const QStringList& fileList);
@@ -107,6 +106,15 @@ public:
 	bool undoRepository(QStringList& result, bool explainOnly);
 	bool updateRepository(QStringList& result, bool explainOnly);
 	bool getFossilSettings(QStringList& result);
+	bool setFossilSetting(const QString &name, const QString &value, bool global);
+	bool setRemoteUrl(const QString &url);
+
+	bool stashNew(const QStringList& fileList, const QString& name, bool revert);
+	bool stashList(stashmap_t &stashes);
+	bool stashApply(const QString& name);
+	bool stashDrop(const QString& name);
+	bool stashDiff(const QString& name);
+
 private:
 	void log(const QString &text, bool isHTML=false)
 	{

@@ -309,6 +309,48 @@ bool Bridge::getFossilSettings(QStringList &result)
 	return runFossil(QStringList() << "settings", &result, RUNFLAGS_SILENT_ALL);
 }
 
+//------------------------------------------------------------------------------
+bool Bridge::setFossilSetting(const QString& name, const QString& value, bool global)
+{
+	QStringList params;
+
+	if(value.isEmpty())
+		params << "unset" << name;
+	else
+		params << "settings" << name << value;
+
+	if(global)
+		params << "-global";
+
+	return runFossil(params);
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::setRemoteUrl(const QString& url)
+{
+	QString u = url;
+
+	if(url.isEmpty())
+		u = "off";
+
+	// Run as silent to avoid displaying credentials in the log
+	// FIXME: maybe use a QUrl instead
+	return runFossil(QStringList() << "remote-url" << u, 0, RUNFLAGS_SILENT_INPUT);
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::stashNew(const QStringList& fileList, const QString& name, bool revert)
+{
+	// Do Stash
+	// Snapshot just records the changes into the stash
+	QString command = "snapshot";
+
+	// Save also reverts the stashed files
+	if(revert)
+		command = "save";
+
+	return runFossil(QStringList() << "stash" << command << "-m" << name << QuotePaths(fileList));
+}
 
 //------------------------------------------------------------------------------
 bool Bridge::stashList(stashmap_t& stashes)
@@ -346,6 +388,24 @@ bool Bridge::stashList(stashmap_t& stashes)
 	}
 
 	return true;
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::stashApply(const QString& name)
+{
+	return runFossil(QStringList() << "stash" << "apply" << name);
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::stashDrop(const QString& name)
+{
+	return runFossil(QStringList() << "stash" << "apply" << name);
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::stashDiff(const QString& name)
+{
+	return runFossil(QStringList() << "stash" << "diff" << name, 0);
 }
 
 //------------------------------------------------------------------------------
@@ -459,6 +519,10 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	QTextDecoder *decoder = codec->makeDecoder();
 	Q_ASSERT(decoder);
 
+#ifdef QT_DEBUG
+	size_t input_index = 0;
+#endif
+
 	while(true)
 	{
 		QProcess::ProcessState state = process.state();
@@ -483,7 +547,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 
 		#ifdef QT_DEBUG // Log fossil output in debug builds
 		if(!input.isEmpty())
-			qDebug() << input;
+			qDebug() << "[" << ++input_index << "] '" << input.data() << "'\n";
 		#endif
 
 		buffer += decoder->toUnicode(input);
@@ -536,8 +600,8 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		QStringList log_lines = buffer.left(last_line_start).split(EOL_MARK);
 		for(int l=0; l<log_lines.length(); ++l)
 		{
-			// Do not output the last line if it not complete
-			if(l==log_lines.length()-1 && buffer[buffer.length()-1] != EOL_MARK )
+			// Do not output the last line if it not complete. The first one should be ok though
+			if(l>0 && l==log_lines.length()-1 && buffer[buffer.length()-1] != EOL_MARK )
 				continue;
 
 			QString line = log_lines[l].trimmed();
