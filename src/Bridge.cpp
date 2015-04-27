@@ -156,6 +156,24 @@ bool Bridge::cloneRepository(const QString& repository, const QUrl& url, const Q
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::getFossilVersion(QString& version)
+{
+	QStringList res;
+	if(!runFossil(QStringList() << "version", &res, RUNFLAGS_SILENT_ALL) && res.length()==1)
+		return false;
+
+	if(res.length()==0)
+		return false;
+
+	int off = res[0].indexOf("version ");
+	if(off==-1)
+		return false;
+
+	version = res[0].mid(off+8);
+	return true;
+}
+
+//------------------------------------------------------------------------------
 bool Bridge::diffFile(const QString &repoFile)
 {
 	// Run the diff detached

@@ -90,6 +90,8 @@ public:
 	bool pullRepository();
 	bool cloneRepository(const QString &repository, const QUrl &url, const QUrl &proxyUrl);
 
+	bool getFossilVersion(QString &version);
+
 	bool uiRunning() const;
 	bool startUI(const QString &httpPort);
 	void stopUI();

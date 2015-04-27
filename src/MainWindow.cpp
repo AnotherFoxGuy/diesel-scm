@@ -2223,14 +2223,19 @@ void MainWindow::on_actionUndo_triggered()
 void MainWindow::on_actionAbout_triggered()
 {
 	QString fossil_ver;
-	QStringList res;
 
+#ifndef BRIDGE_ENABLED
+	QStringList res;
 	if(runFossil(QStringList() << "version", &res, RUNFLAGS_SILENT_ALL) && res.length()==1)
 	{
 		int off = res[0].indexOf("version ");
 		if(off!=-1)
 			fossil_ver = tr("Fossil version %0").arg(res[0].mid(off+8)) + "\n";
 	}
+#else
+	if(bridge.getFossilVersion(fossil_ver))
+		fossil_ver = tr("Fossil version %0").arg(fossil_ver) + "\n";
+#endif
 
 	QString qt_ver = tr("QT version %0").arg(QT_VERSION_STR) + "\n\n";
 
