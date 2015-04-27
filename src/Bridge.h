@@ -27,7 +27,7 @@ enum RepoStatus
 	REPO_OLD_SCHEMA
 };
 
-class Bridge : public QObject
+class Bridge
 {
 public:
 	class UICallback
@@ -41,17 +41,16 @@ public:
 
 
 	Bridge()
-	: QObject(0)
-	, abortOperation(false)
+	: abortOperation(false)
 	, uiCallback(0)
 	{
 	}
 
-	void Init(UICallback *callback, const QString &fossPath, const QString &workspace)
+	void Init(UICallback *callback)
 	{
 		uiCallback = callback;
-		fossilPath = fossPath;
-		currentWorkspace = workspace;
+		fossilPath.clear();
+		currentWorkspace.clear();
 	}
 
 	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
@@ -94,7 +93,8 @@ public:
 	bool pushRepository();
 	bool pullRepository();
 	bool cloneRepository(const QString &repository, const QUrl &url, const QUrl &proxyUrl);
-
+	bool undoRepository(QStringList& result, bool explainOnly);
+	bool updateRepository(QStringList& result, bool explainOnly);
 	bool getFossilVersion(QString &version);
 
 	bool uiRunning() const;
@@ -108,8 +108,6 @@ public:
 	bool removeFiles(const QStringList& fileList, bool deleteLocal);
 	bool revertFiles(const QStringList& fileList);
 	bool renameFile(const QString& beforePath, const QString& afterPath, bool renameLocal);
-	bool undoRepository(QStringList& result, bool explainOnly);
-	bool updateRepository(QStringList& result, bool explainOnly);
 	bool getFossilSettings(QStringList& result);
 	bool setFossilSetting(const QString &name, const QString &value, bool global);
 	bool setRemoteUrl(const QString &url);
@@ -136,7 +134,6 @@ private:
 	QString				fossilPath;		// The value from the settings
 	QString				repositoryFile;
 	QString				projectName;
-
 	QProcess			fossilUI;
 };
 

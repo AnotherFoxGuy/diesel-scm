@@ -190,7 +190,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	uiCallback.init(this);
 	// Need to be before applySettings which sets the last workspace
-	bridge.Init(&uiCallback, "", "");
+	bridge.Init(&uiCallback);
 
 	applySettings();
 

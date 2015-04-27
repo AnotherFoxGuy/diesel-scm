@@ -496,7 +496,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		return QProcess::startDetached(fossil, args, wkdir);
 
 	// Make status message
-	QString status_msg = tr("Running Fossil");
+	QString status_msg = QObject::tr("Running Fossil");
 	if(args.length() > 0)
 		status_msg = QString("Fossil %0").arg(args[0].toCaseFolded());
 	ScopedFossilStatus status(uiCallback, status_msg);
@@ -506,7 +506,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	QTemporaryFile args_file;
 	if(!args_file.open())
 	{
-		log(tr("Could not generate command line file"));
+		log(QObject::tr("Could not generate command line file"));
 		return false;
 	}
 
@@ -537,7 +537,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	process.start(fossil, *final_args);
 	if(!process.waitForStarted())
 	{
-		log(tr("Could not start Fossil executable '%0'").arg(fossil)+"\n");
+		log(QObject::tr("Could not start Fossil executable '%0'").arg(fossil)+"\n");
 		return false;
 	}
 	const QChar EOL_MARK('\n');
@@ -574,7 +574,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 
 		if(abortOperation)
 		{
-			log("\n* "+tr("Terminated")+" *\n");
+			log("\n* "+QObject::tr("Terminated")+" *\n");
 			#ifdef Q_OS_WIN		// Verify this is still true on Qt5
 				process.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
 			#else
@@ -801,7 +801,7 @@ bool Bridge::startUI(const QString &httpPort)
 {
 	if(uiRunning())
 	{
-		log(tr("Fossil UI is already running")+"\n");
+		log(QObject::tr("Fossil UI is already running")+"\n");
 		return true;
 	}
 
@@ -812,14 +812,14 @@ bool Bridge::startUI(const QString &httpPort)
 	fossilUI.setWorkingDirectory(getCurrentWorkspace());
 
 	log("<b>&gt; fossil ui</b><br>", true);
-	log(tr("Starting Fossil browser UI. Please wait.")+"\n");
+	log(QObject::tr("Starting Fossil browser UI. Please wait.")+"\n");
 	QString fossil = getFossilPath();
 
 	fossilUI.start(fossil, QStringList() << "server" << "--localauth" << "-P" << httpPort );
 
 	if(!fossilUI.waitForStarted() || fossilUI.state()!=QProcess::Running)
 	{
-		log(tr("Could not start Fossil executable '%s'").arg(fossil)+"\n");
+		log(QObject::tr("Could not start Fossil executable '%s'").arg(fossil)+"\n");
 		return false;
 	}
 
