@@ -104,7 +104,8 @@ public:
 	bool removeFiles(const QStringList& fileList, bool deleteLocal);
 	bool revertFiles(const QStringList& fileList);
 	bool renameFile(const QString& beforePath, const QString& afterPath);
-	bool undo(QStringList& result, bool explainOnly);
+	bool undoRepository(QStringList& result, bool explainOnly);
+	bool updateRepository(QStringList& result, bool explainOnly);
 private:
 	void log(const QString &text, bool isHTML=false)
 	{

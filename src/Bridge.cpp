@@ -275,7 +275,7 @@ bool Bridge::renameFile(const QString &beforePath, const QString &afterPath)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::undo(QStringList &result, bool explainOnly)
+bool Bridge::undoRepository(QStringList &result, bool explainOnly)
 {
 	QStringList params;
 	params << "undo";
@@ -283,6 +283,20 @@ bool Bridge::undo(QStringList &result, bool explainOnly)
 	if(explainOnly)
 		params << "--explain";
 
+	result.clear();
+	return runFossil(params, &result);
+}
+
+//------------------------------------------------------------------------------
+bool Bridge::updateRepository(QStringList &result, bool explainOnly)
+{
+	QStringList params;
+	params << "update";
+
+	if(explainOnly)
+		params << "--nochange";
+
+	result.clear();
 	return runFossil(params, &result);
 }
 

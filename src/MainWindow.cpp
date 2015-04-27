@@ -2204,7 +2204,7 @@ void MainWindow::on_actionUndo_triggered()
 	// Do Undo
 	runFossil(QStringList() << "undo" );
 #else
-	bridge.undo(res, true);
+	bridge.undoRepository(res, true);
 
 	if(res.length()>0 && res[0]=="No undo or redo is available")
 		return;
@@ -2213,7 +2213,7 @@ void MainWindow::on_actionUndo_triggered()
 		return;
 
 	// Do Undo
-	bridge.undo(res, false);
+	bridge.undoRepository(res, false);
 #endif
 
 	refresh();
@@ -2261,7 +2261,7 @@ void MainWindow::on_actionAbout_triggered()
 void MainWindow::on_actionUpdate_triggered()
 {
 	QStringList res;
-
+#ifndef BRIDGE_ENABLED
 	if(!runFossil(QStringList() << "update" << "--nochange", &res, RUNFLAGS_SILENT_ALL))
 		return;
 
@@ -2273,6 +2273,20 @@ void MainWindow::on_actionUpdate_triggered()
 
 	// Do Update
 	runFossil(QStringList() << "update" );
+#else
+	if(!bridge.updateRepository(res, true))
+		return;
+
+	// Fixme: parse "changes:      None. Already up-to-date" and avoid dialog
+
+	if(res.length()==0)
+		return;
+
+	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
+		return;
+
+	bridge.updateRepository(res, false);
+#endif
 
 	refresh();
 }
