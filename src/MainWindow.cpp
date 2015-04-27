@@ -80,6 +80,7 @@ static QStringMap MakeKeyValues(QStringList lines)
 }
 
 
+#ifndef BRIDGE_ENABLED
 ///////////////////////////////////////////////////////////////////////////////
 class ScopedStatus
 {
@@ -99,6 +100,7 @@ private:
 	Ui::MainWindow *ui;
 	QProgressBar *progressBar;
 };
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspacePath) :
@@ -216,8 +218,9 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	viewMode = VIEWMODE_TREE;
 
 #ifdef BRIDGE_ENABLED
+	uiCallback.init(this);
 	// Need to be before applySettings which sets the last workspace
-	bridge.Init(this, &log, ui->textBrowser, "", "");
+	bridge.Init(this, &uiCallback, ui->textBrowser, "", "");
 #endif
 
 	applySettings();
@@ -2959,3 +2962,28 @@ void MainWindow::fullRefresh()
 	// Select the Root of the tree to update the file view
 	selectRootDir();
 }
+
+#ifdef BRIDGE_ENABLED
+//------------------------------------------------------------------------------
+void MainWindow::MainWinUICallback::logText(const QString& text, bool isHTML)
+{
+	Q_ASSERT(mainWindow);
+	mainWindow->log(text, isHTML);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::MainWinUICallback::beginProcess(const QString& text)
+{
+	Q_ASSERT(mainWindow);
+	mainWindow->ui->statusBar->showMessage(text);
+	mainWindow->progressBar->setHidden(false);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::MainWinUICallback::endProcess()
+{
+	Q_ASSERT(mainWindow);
+	mainWindow->ui->statusBar->clearMessage();
+	mainWindow->progressBar->setHidden(true);
+}
+#endif

@@ -21,21 +21,27 @@ enum RunFlags
 class Bridge : public QObject
 {
 public:
+	class UICallback
+	{
+	public:
+		virtual void logText(const QString &text, bool isHTML)=0;
+		virtual void beginProcess(const QString &text)=0;
+		virtual void endProcess()=0;
+	};
+
+
 	Bridge()
 	: QObject(0)
 	, parentWidget(0)
 	, abortOperation(false)
-	, logTextBrowser(0)
+	, uiCallback(0)
 	{
 	}
 
-	typedef void(*log_callback_t)(QTextBrowser *textBrowser, const QString &text, bool isHTML);
-
-
-	void Init(QWidget *parent, log_callback_t callback, QTextBrowser *textBrowser, const QString &fossPath, const QString &workspace)
+	void Init(QWidget *parent, UICallback *callback, QTextBrowser *textBrowser, const QString &fossPath, const QString &workspace)
 	{
 		parentWidget = parent;
-		logCallback = callback;
+		uiCallback = callback;
 		logTextBrowser = textBrowser;
 
 		fossilPath = fossPath;
@@ -118,8 +124,8 @@ public:
 private:
 	void log(const QString &text, bool isHTML=false)
 	{
-		if(logCallback)
-			(*logCallback)(logTextBrowser, text, isHTML);
+		if(uiCallback)
+			uiCallback->logText(text, isHTML);
 	}
 
 
@@ -128,7 +134,7 @@ private:
 	QWidget				*parentWidget;	// fixme
 	bool				abortOperation;	// FIXME: No GUI for it yet
 
-	log_callback_t		logCallback;
+	UICallback			*uiCallback;
 	QTextBrowser		*logTextBrowser;
 	QString				currentWorkspace;
 	QString				fossilPath;		// The value from the settings

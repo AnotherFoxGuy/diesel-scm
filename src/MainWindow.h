@@ -235,6 +235,29 @@ private slots:
 	void on_tableView_customContextMenuRequested(const QPoint &pos);
 
 private:
+#ifdef BRIDGE_ENABLED
+	class MainWinUICallback : public Bridge::UICallback
+	{
+	public:
+		MainWinUICallback() : mainWindow(0)
+		{}
+
+		void init(class MainWindow *mainWindow)
+		{
+			this->mainWindow = mainWindow;
+		}
+
+		virtual void logText(const QString& text, bool isHTML);
+		virtual void beginProcess(const QString& text);
+		virtual void endProcess();
+
+	private:
+		class MainWindow *mainWindow;
+	};
+#endif
+
+	friend class MainWinUICallback;
+
 	enum
 	{
 		MAX_RECENT=5
@@ -262,6 +285,7 @@ private:
 	void				setRepositoryFile(const QString &filename) { repositoryFile = filename; }
 	const QString &		getProjectName() const { return projectName; }
 #else
+	MainWinUICallback		uiCallback;
 	Bridge				bridge;
 	const QString &		getProjectName() const { return bridge.getProjectName(); }
 	const QString &		getRepositoryFile() const { return bridge.getRepositoryFile(); }

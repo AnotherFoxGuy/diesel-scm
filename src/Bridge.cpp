@@ -19,6 +19,24 @@ static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(
 #define FOSSIL_EXT			"fossil"
 #define PATH_SEP			"/"
 
+
+///////////////////////////////////////////////////////////////////////////////
+class ScopedFossilStatus
+{
+public:
+	ScopedFossilStatus(Bridge::UICallback *callback, const QString &text) : uiCallback(callback)
+	{
+		uiCallback->beginProcess(text);
+	}
+
+	~ScopedFossilStatus()
+	{
+		uiCallback->endProcess();
+	}
+private:
+	Bridge::UICallback *uiCallback;
+};
+
 //------------------------------------------------------------------------------
 Bridge::RepoStatus Bridge::getRepoStatus()
 {
@@ -477,6 +495,12 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	// for the temporary args file to be released before returing
 	if(detached)
 		return QProcess::startDetached(fossil, args, wkdir);
+
+	// Make status message
+	QString status_msg = tr("Running Fossil");
+	if(args.length() > 0)
+		status_msg = QString("Fossil %0").arg(args[0].toCaseFolded());
+	ScopedFossilStatus status(uiCallback, status_msg);
 
 	// Generate args file
 	const QStringList *final_args = &args;
