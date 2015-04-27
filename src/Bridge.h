@@ -103,7 +103,7 @@ public:
 	bool addFiles(const QStringList& fileList);
 	bool removeFiles(const QStringList& fileList, bool deleteLocal);
 	bool revertFiles(const QStringList& fileList);
-	bool renameFile(const QString& beforePath, const QString& afterPath);
+	bool renameFile(const QString& beforePath, const QString& afterPath, bool renameLocal);
 	bool undoRepository(QStringList& result, bool explainOnly);
 	bool updateRepository(QStringList& result, bool explainOnly);
 private:

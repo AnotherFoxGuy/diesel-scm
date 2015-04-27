@@ -258,7 +258,7 @@ bool Bridge::revertFiles(const QStringList& fileList)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::renameFile(const QString &beforePath, const QString &afterPath)
+bool Bridge::renameFile(const QString &beforePath, const QString &afterPath, bool renameLocal)
 {
 	// Ensure we can rename the file
 	if(!QFileInfo(beforePath).exists() || QFileInfo(afterPath).exists())
@@ -271,7 +271,10 @@ bool Bridge::renameFile(const QString &beforePath, const QString &afterPath)
 	QString wkdir = getCurrentWorkspace() + QDir::separator();
 
 	// Also rename the file
-	return QFile::rename(wkdir+beforePath, wkdir+afterPath);
+	if(renameLocal && !QFile::rename(wkdir+beforePath, wkdir+afterPath))
+		return false;
+
+	return true;
 }
 
 //------------------------------------------------------------------------------

@@ -1828,6 +1828,7 @@ bool MainWindow::startUI()
 void MainWindow::stopUI()
 {
 	bridge.stopUI();
+	ui->webView->load(QUrl("about:blank"));
 	ui->actionFossilUI->setChecked(false);
 }
 
@@ -2159,7 +2160,7 @@ void MainWindow::on_actionRename_triggered()
 	// Also rename the file
 	QFile::rename(wkdir+fi_before.filePath(), wkdir+fi_after.filePath());
 #else
-	bridge.renameFile(fi_before.filePath(), fi_after.filePath());
+	bridge.renameFile(fi_before.filePath(), fi_after.filePath(), true);
 #endif
 
 	refresh();
@@ -2547,7 +2548,11 @@ void MainWindow::on_actionRenameFolder_triggered()
 		RepoFile *r = files_to_move[i];
 		const QString &new_file_path = new_paths[i] + PATH_SEP + r->getFilename();
 
+#ifndef BRIDGE_ENABLED
 		if(!runFossil(QStringList() << "mv" <<  QuotePath(r->getFilePath()) << QuotePath(new_file_path)))
+#else
+		if(!bridge.renameFile(r->getFilePath(), new_file_path, false))
+#endif
 		{
 			log(tr("Move aborted due to errors")+"\n");
 			goto _exit;
