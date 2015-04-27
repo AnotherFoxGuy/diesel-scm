@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QTemporaryFile>
+#include <QUrl>
 #include "Utils.h"
 
 static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };

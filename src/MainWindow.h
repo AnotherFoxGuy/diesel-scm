@@ -139,7 +139,6 @@ private:
 	void updateSettings();
 	const QString &getCurrentWorkspace();
 	void setCurrentWorkspace(const QString &workspace);
-	static void log(QTextBrowser *textBrowser, const QString &text, bool isHTML);
 	void log(const QString &text, bool isHTML=false);
 	void setStatus(const QString &text);
 	bool uiRunning() const;
@@ -285,7 +284,7 @@ private:
 	void				setRepositoryFile(const QString &filename) { repositoryFile = filename; }
 	const QString &		getProjectName() const { return projectName; }
 #else
-	MainWinUICallback		uiCallback;
+	MainWinUICallback	uiCallback;
 	Bridge				bridge;
 	const QString &		getProjectName() const { return bridge.getProjectName(); }
 	const QString &		getRepositoryFile() const { return bridge.getRepositoryFile(); }
@@ -294,7 +293,6 @@ private:
 #endif
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
-
 
 	// Repository State
 	typedef QList<RepoFile*> filelist_t;

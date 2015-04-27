@@ -220,7 +220,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 #ifdef BRIDGE_ENABLED
 	uiCallback.init(this);
 	// Need to be before applySettings which sets the last workspace
-	bridge.Init(this, &uiCallback, ui->textBrowser, "", "");
+	bridge.Init(this, &uiCallback, "", "");
 #endif
 
 	applySettings();
@@ -1084,22 +1084,16 @@ void MainWindow::updateStashView()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::log(QTextBrowser *textBrowser, const QString &text, bool isHTML)
-{
-	QTextCursor c = textBrowser->textCursor();
-	c.movePosition(QTextCursor::End);
-	textBrowser->setTextCursor(c);
-
-	if(isHTML)
-		textBrowser->insertHtml(text);
-	else
-		textBrowser->insertPlainText(text);
-}
-
-//------------------------------------------------------------------------------
 void MainWindow::log(const QString &text, bool isHTML)
 {
-	log(ui->textBrowser, text, isHTML);
+	QTextCursor c = ui->textBrowser->textCursor();
+	c.movePosition(QTextCursor::End);
+	ui->textBrowser->setTextCursor(c);
+
+	if(isHTML)
+		ui->textBrowser->insertHtml(text);
+	else
+		ui->textBrowser->insertPlainText(text);
 }
 
 //------------------------------------------------------------------------------

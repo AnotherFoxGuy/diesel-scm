@@ -5,7 +5,6 @@ class QStringList;
 #include <QString>
 #include <QObject>
 #include <QProcess>
-#include <QTextBrowser>
 
 typedef QMap<QString, QString> stashmap_t;
 
@@ -38,11 +37,10 @@ public:
 	{
 	}
 
-	void Init(QWidget *parent, UICallback *callback, QTextBrowser *textBrowser, const QString &fossPath, const QString &workspace)
+	void Init(QWidget *parent, UICallback *callback, const QString &fossPath, const QString &workspace)
 	{
 		parentWidget = parent;
 		uiCallback = callback;
-		logTextBrowser = textBrowser;
 
 		fossilPath = fossPath;
 		currentWorkspace = workspace;
@@ -135,7 +133,6 @@ private:
 	bool				abortOperation;	// FIXME: No GUI for it yet
 
 	UICallback			*uiCallback;
-	QTextBrowser		*logTextBrowser;
 	QString				currentWorkspace;
 	QString				fossilPath;		// The value from the settings
 	QString				repositoryFile;
