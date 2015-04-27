@@ -1,5 +1,5 @@
-C More\srefactoring\n
-D 2015-04-27T19:15:43.096
+C Transitioned\sto\snew\sfossil\sbridge
+D 2015-04-27T19:31:43.310
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -200,8 +200,8 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 691e536058a9360f1a0db56c153638a196941283
-F src/MainWindow.h 9e4f2887690bffa9a154e7f9666f4655584256d1
+F src/MainWindow.cpp 8f20a49621c42bfa7ee5f6018900a9f6ef08f6c8
+F src/MainWindow.h 045b784735d86cef7ed415ca46dccf9b6a005c39
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp f78728e0817b1db23007ba0d2c5c26980ee7ebca
@@ -215,7 +215,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P b6473fc40399a46731c8741ceed7d3432d687c5a
-R 217c3c621c2a2ca89f57d3cea5717343
+P e2b03b2a965ec50382ea89d374ece4a6a56b72b5
+R 7230e39179ffadefe20ce40a0176c6fa
 U kostas
-Z 2a41dd117ed487365f20972afe89eb8f
+Z 1c155b4c26131deaf429fe2b750502dc

@@ -12,14 +12,9 @@
 #include "SettingsDialog.h"
 #include "Bridge.h"
 
-#define BRIDGE_ENABLED
-
 namespace Ui {
 	class MainWindow;
 }
-
-
-class QStringList;
 
 //////////////////////////////////////////////////////////////////////////
 // RepoFile
@@ -131,10 +126,6 @@ private:
 private:
 	bool refresh();
 	void scanWorkspace();
-#ifndef BRIDGE_ENABLED
-	bool runFossilRaw(const QStringList &args, QStringList *output=0, int *exitCode=0, int runFlags=RUNFLAGS_NONE);
-	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
-#endif
 	void applySettings();
 	void updateSettings();
 	const QString &getCurrentWorkspace();
@@ -167,10 +158,6 @@ private:
 	void dropEvent(class QDropEvent *event);
 	void setBusy(bool busy);
 	virtual QMenu *createPopupMenu();
-
-#ifndef BRIDGE_ENABLED
-	RepoStatus getRepoStatus();
-#endif
 
 	enum ViewMode
 	{
@@ -229,7 +216,6 @@ private slots:
 	void on_tableView_customContextMenuRequested(const QPoint &pos);
 
 private:
-#ifdef BRIDGE_ENABLED
 	class MainWinUICallback : public Bridge::UICallback
 	{
 	public:
@@ -248,7 +234,6 @@ private:
 	private:
 		class MainWindow *mainWindow;
 	};
-#endif
 
 	friend class MainWinUICallback;
 
@@ -270,22 +255,14 @@ private:
 
 	Settings			&settings;
 	QStringList			workspaceHistory;
-#ifndef BRIDGE_ENABLED
-	QString				projectName;
-	QString				currentWorkspace;
-	QString				repositoryFile;
 
-	const QString &		getRepositoryFile() const { return repositoryFile; }
-	void				setRepositoryFile(const QString &filename) { repositoryFile = filename; }
-	const QString &		getProjectName() const { return projectName; }
-#else
 	MainWinUICallback	uiCallback;
 	Bridge				bridge;
 	const QString &		getProjectName() const { return bridge.getProjectName(); }
 	const QString &		getRepositoryFile() const { return bridge.getRepositoryFile(); }
 	void				setRepositoryFile(const QString &filename) { bridge.setRepositoryFile(filename); }
 
-#endif
+
 	ViewMode			viewMode;
 	stringset_t			selectedDirs;	// The directory selected in the tree
 

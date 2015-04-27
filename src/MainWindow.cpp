@@ -25,13 +25,6 @@
 #include "Utils.h"
 #include "LoggedProcess.h"
 
-#ifndef BRIDGE_ENABLED
-static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
-
-// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
-static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
-#endif
-
 //-----------------------------------------------------------------------------
 enum
 {
@@ -79,28 +72,6 @@ static QStringMap MakeKeyValues(QStringList lines)
 	return res;
 }
 
-
-#ifndef BRIDGE_ENABLED
-///////////////////////////////////////////////////////////////////////////////
-class ScopedStatus
-{
-public:
-	ScopedStatus(const QString &text, Ui::MainWindow *mw, QProgressBar *bar) : ui(mw), progressBar(bar)
-	{
-		ui->statusBar->showMessage(text);
-		progressBar->setHidden(false);
-	}
-
-	~ScopedStatus()
-	{
-		ui->statusBar->clearMessage();
-		progressBar->setHidden(true);
-	}
-private:
-	Ui::MainWindow *ui;
-	QProgressBar *progressBar;
-};
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspacePath) :
@@ -217,11 +188,9 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	viewMode = VIEWMODE_TREE;
 
-#ifdef BRIDGE_ENABLED
 	uiCallback.init(this);
 	// Need to be before applySettings which sets the last workspace
 	bridge.Init(this, &uiCallback, "", "");
-#endif
 
 	applySettings();
 
@@ -249,11 +218,7 @@ MainWindow::~MainWindow()
 //-----------------------------------------------------------------------------
 const QString &MainWindow::getCurrentWorkspace()
 {
-#ifndef BRIDGE_ENABLED
-	return currentWorkspace;
-#else
 	return bridge.getCurrentWorkspace();
-#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -261,21 +226,13 @@ void MainWindow::setCurrentWorkspace(const QString &workspace)
 {
 	if(workspace.isEmpty())
 	{
-#ifndef BRIDGE_ENABLED
-		currentWorkspace.clear();
-#else
 		bridge.setCurrentWorkspace("");
-#endif
 		return;
 	}
 
 	QString new_workspace = QFileInfo(workspace).absoluteFilePath();
 
-#ifndef BRIDGE_ENABLED
-	currentWorkspace = new_workspace;
-#else
 	bridge.setCurrentWorkspace(new_workspace);
-#endif
 
 	addWorkspace(new_workspace);
 
@@ -334,20 +291,7 @@ bool MainWindow::openWorkspace(const QString &path)
 			}
 
 			// Ok open the repository file
-#ifndef BRIDGE_ENABLED
-			if(!QDir::setCurrent(wkspace))
-			{
-				QMessageBox::critical(this, tr("Error"), tr("Could not change current directory"), QMessageBox::Ok );
-				return false;
-			}
-
-			setCurrentWorkspace(wkspace);
-			setRepositoryFile(fi.absoluteFilePath());
-
-			if(!runFossil(QStringList() << "open" << QuotePath(getRepositoryFile())))
-#else
 			if(!bridge.openRepository(fi.absoluteFilePath(), wkspace))
-#endif
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 				return false;
@@ -451,36 +395,18 @@ void MainWindow::on_actionNewRepository_triggered()
 
 	// Create repository
 	QString repo_abs_path = repo_path_info.absoluteFilePath();
-#ifndef BRIDGE_ENABLED
-	setRepositoryFile(repo_abs_path);
 
-	if(!runFossil(QStringList() << "new" << QuotePath(getRepositoryFile())))
-#else
 	if(!bridge.newRepository(repo_abs_path))
-#endif
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
 		return;
 	}
 
-#ifndef BRIDGE_ENABLED
-	// Create workspace
-	setCurrentWorkspace(wkdir);
-	if(!QDir::setCurrent(wkdir))
-	{
-		QMessageBox::critical(this, tr("Error"), tr("Could not change current directory"), QMessageBox::Ok );
-		return;
-	}
-
-	// Open repo
-	if(!runFossil(QStringList() << "open" << QuotePath(getRepositoryFile())))
-#else
 	if(!bridge.openRepository(repo_abs_path, wkdir))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 		return;
 	}
-#endif
 
 	// Disable unknown file filter
 	if(!ui->actionViewUnknown->isChecked())
@@ -492,32 +418,21 @@ void MainWindow::on_actionNewRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCloseRepository_triggered()
 {
-#ifndef BRIDGE_ENABLED
-	if(getRepoStatus()!=REPO_OK)
-		return;
-#else
 	if(bridge.getRepoStatus()!=REPO_OK)
 		return;
-#endif
 
 	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), tr("Are you sure you want to close this workspace?")))
 		return;
 
 	// Close Repo
-#ifndef BRIDGE_ENABLED
-	if(!runFossil(QStringList() << "close"))
-#else
 	if(!bridge.closeRepository())
-#endif
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes available?"), QMessageBox::Ok );
 		return;
 	}
 
-#ifdef BRIDGE_ENABLED
 	stopUI();
 	setCurrentWorkspace("");
-#endif
 	refresh();
 }
 
@@ -532,36 +447,7 @@ void MainWindow::on_actionCloneRepository_triggered()
 
 	stopUI();
 
-#ifndef BRIDGE_ENABLED
-	// Actual command
-	QStringList cmd = QStringList() << "clone";
-
-	// Log Command
-	QStringList logcmd = QStringList() << "fossil" << "clone";
-
-	QString source = url.toString();
-	QString logsource = url.toString(QUrl::RemovePassword);
-	if(url.isLocalFile())
-	{
-		source = url.toLocalFile();
-		logsource = source;
-	}
-	cmd << source << repository;
-	logcmd << logsource << repository;
-
-	if(!url_proxy.isEmpty())
-	{
-		cmd << "--proxy" << url_proxy.toString();
-		logcmd << "--proxy" << url_proxy.toString(QUrl::RemovePassword);
-	}
-
-	log("<b>&gt;"+logcmd.join(" ")+"</b><br>", true);
-
-	// Clone Repo
-	if(!runFossil(cmd, 0, RUNFLAGS_SILENT_INPUT))
-#else
 	if(!bridge.cloneRepository(repository, url, url_proxy))
-#endif
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not clone the repository"), QMessageBox::Ok);
 		return;
@@ -665,11 +551,7 @@ bool MainWindow::refresh()
 	QString title = "Fuel";
 
 	// Load repository info
-#ifndef BRIDGE_ENABLED
-	RepoStatus st = getRepoStatus();
-#else
 	RepoStatus st = bridge.getRepoStatus();
-#endif
 
 	if(st==REPO_NOT_FOUND)
 	{
@@ -714,11 +596,7 @@ void MainWindow::scanWorkspace()
 
 	// Retrieve the status of files tracked by fossil
 	QStringList res;
-#ifndef BRIDGE_ENABLED
-	if(!runFossil(QStringList() << "ls" << "-l", &res, RUNFLAGS_SILENT_ALL))
-#else
 	if(!bridge.listFiles(res))
-#endif
 		return;
 
 	bool scan_files = ui->actionViewUnknown->isChecked();
@@ -840,40 +718,7 @@ void MainWindow::scanWorkspace()
 	}
 
 	// Load the stash
-#ifndef BRIDGE_ENABLED
-	stashMap.clear();
-	res.clear();
-	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNFLAGS_SILENT_ALL))
-		goto _done;
-
-	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); )
-	{
-		QString line = *line_it;
-
-		int index = REGEX_STASH.indexIn(line);
-		if(index==-1)
-			break;
-
-		QString id = REGEX_STASH.cap(1);
-		++line_it;
-
-		QString name;
-		// Finish at an anonymous stash or start of a new stash ?
-		if(line_it==res.end() || REGEX_STASH.indexIn(*line_it)!=-1)
-			name = line.trimmed();
-		else // Named stash
-		{
-			// Parse stash name
-			name = (*line_it);
-			name = name.trimmed();
-			++line_it;
-		}
-
-		stashMap.insert(name, id);
-	}
-#else
 	bridge.stashList(stashMap);
-#endif
 
 	// Update the file item model
 _done:
@@ -1025,56 +870,6 @@ void MainWindow::updateFileView()
 }
 
 //------------------------------------------------------------------------------
-#ifndef BRIDGE_ENABLED
-RepoStatus MainWindow::getRepoStatus()
-{
-	QStringList res;
-	int exit_code = EXIT_FAILURE;
-
-	// We need to determine the reason why fossil has failed
-	// so we delay processing of the exit_code
-	if(!runFossilRaw(QStringList() << "info", &res, &exit_code, RUNFLAGS_SILENT_ALL))
-		return REPO_NOT_FOUND;
-
-	bool run_ok = exit_code == EXIT_SUCCESS;
-
-	for(QStringList::iterator it=res.begin(); it!=res.end(); ++it)
-	{
-		int col_index = it->indexOf(':');
-		if(col_index==-1)
-			continue;
-
-		QString key = it->left(col_index).trimmed();
-		QString value = it->mid(col_index+1).trimmed();
-
-		if(key=="fossil")
-		{
-			if(value=="incorrect repository schema version")
-				return REPO_OLD_SCHEMA;
-			else if(value=="not within an open checkout")
-				return REPO_NOT_FOUND;
-		}
-
-		if(run_ok)
-		{
-			if(key=="project-name")
-				projectName = value;
-			else if(key=="repository")
-				setRepositoryFile(value);
-		}
-	}
-
-	return run_ok ? REPO_OK : REPO_NOT_FOUND;
-}
-#else
-#if 0
-MainWindow::RepoStatus MainWindow::getRepoStatus()
-{
-	return (MainWindow::RepoStatus) bridge.getRepoStatus();
-}
-#endif
-#endif
-//------------------------------------------------------------------------------
 void MainWindow::updateStashView()
 {
 	repoStashModel.clear();
@@ -1117,350 +912,6 @@ void MainWindow::on_actionClearLog_triggered()
 {
 	ui->textBrowser->clear();
 }
-
-
-#ifndef BRIDGE_ENABLED
-//------------------------------------------------------------------------------
-bool MainWindow::runFossil(const QStringList &args, QStringList *output, int runFlags)
-{
-	int exit_code = EXIT_FAILURE;
-	if(!runFossilRaw(args, output, &exit_code, runFlags))
-		return false;
-
-	return exit_code == EXIT_SUCCESS;
-}
-
-//------------------------------------------------------------------------------
-static QString ParseFossilQuery(QString line)
-{
-	// Extract question
-	int qend = line.lastIndexOf('(');
-	if(qend == -1)
-		qend = line.lastIndexOf('[');
-	Q_ASSERT(qend!=-1);
-	line = line.left(qend);
-	line = line.trimmed();
-	line += "?";
-	line[0]=QString(line[0]).toUpper()[0];
-	return line;
-}
-
-//------------------------------------------------------------------------------
-// Run fossil. Returns true if execution was successful regardless if fossil
-// issued an error
-bool MainWindow::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags)
-{
-	bool silent_input = (runFlags & RUNFLAGS_SILENT_INPUT) != 0;
-	bool silent_output = (runFlags & RUNFLAGS_SILENT_OUTPUT) != 0;
-	bool detached = (runFlags & RUNFLAGS_DETACHED) != 0;
-
-	if(!silent_input)
-	{
-		QString params;
-		foreach(QString p, args)
-		{
-			if(p.indexOf(' ')!=-1)
-				params += '"' + p + "\" ";
-			else
-				params += p + ' ';
-		}
-		log("<b>&gt; fossil "+params+"</b><br>", true);
-	}
-
-	QString wkdir = getCurrentWorkspace();
-
-	QString fossil = getFossilPath();
-
-	// Detached processes use the command-line only, to avoid having to wait
-	// for the temporary args file to be released before returing
-	if(detached)
-		return QProcess::startDetached(fossil, args, wkdir);
-
-	// Make StatusBar message
-	QString status_msg = tr("Running Fossil");
-	if(args.length() > 0)
-		status_msg = QString("Fossil %0").arg(args[0].toCaseFolded());
-	ScopedStatus status(status_msg, ui, progressBar);
-
-	// Generate args file
-	const QStringList *final_args = &args;
-	QTemporaryFile args_file;
-	if(!args_file.open())
-	{
-		QMessageBox::critical(this, tr("Error"), tr("Could not generate command line file"), QMessageBox::Ok );
-		return false;
-	}
-
-	// Write BOM
-	args_file.write(reinterpret_cast<const char *>(UTF8_BOM), sizeof(UTF8_BOM));
-
-	// Write Args
-	foreach(const QString &arg, args)
-	{
-		args_file.write(arg.toUtf8());
-		args_file.write("\n");
-	}
-	args_file.close();
-
-	// Replace args with args filename
-	QStringList run_args;
-	run_args.append("--args");
-	run_args.append(args_file.fileName());
-	final_args = &run_args;
-
-	// Create fossil process
-	LoggedProcess process(this);
-	process.setWorkingDirectory(wkdir);
-
-	process.start(fossil, *final_args);
-	if(!process.waitForStarted())
-	{
-		log(tr("Could not start Fossil executable '%0'").arg(fossil)+"\n");
-		return false;
-	}
-	const QChar EOL_MARK('\n');
-	QString ans_yes = 'y' + EOL_MARK;
-	QString ans_no = 'n' + EOL_MARK;
-	QString ans_always = 'a' + EOL_MARK;
-	QString ans_convert = 'c' + EOL_MARK;
-
-	abortOperation = false;
-	QString buffer;
-
-#ifdef Q_OS_WIN
-	QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-#else
-	QTextCodec *codec = QTextCodec::codecForLocale();
-#endif
-
-	Q_ASSERT(codec);
-	QTextDecoder *decoder = codec->makeDecoder();
-	Q_ASSERT(decoder);
-
-	while(true)
-	{
-		QProcess::ProcessState state = process.state();
-		qint64 bytes_avail = process.logBytesAvailable();
-
-		if(state!=QProcess::Running && bytes_avail<1)
-			break;
-
-		if(abortOperation)
-		{
-			#ifdef Q_OS_WIN		// Verify this is still true on Qt5
-				process.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
-			#else
-				process.terminate();
-			#endif
-			break;
-		}
-
-		QByteArray input;
-		process.getLogAndClear(input);
-
-		#ifdef QT_DEBUG // Log fossil output in debug builds
-		if(!input.isEmpty())
-			qDebug() << input;
-		#endif
-
-		buffer += decoder->toUnicode(input);
-
-		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-
-		if(buffer.isEmpty())
-			continue;
-
-		// Normalize line endings
-		buffer = buffer.replace("\r\n", "\n");
-		buffer = buffer.replace("\r", "\n");
-
-		// Extract the last line
-		int last_line_start = buffer.lastIndexOf(EOL_MARK);
-
-		QString last_line;
-		QString before_last_line;
-		if(last_line_start != -1)
-		{
-			last_line = buffer.mid(last_line_start+1); // Including the EOL
-
-			// Detect previous line
-			if(last_line_start>0)
-			{
-				int before_last_line_start = buffer.lastIndexOf(EOL_MARK, last_line_start-1);
-				// No line before ?
-				if(before_last_line_start==-1)
-					before_last_line_start = 0; // Use entire line
-
-				// Extract previous line
-				before_last_line = buffer.mid(before_last_line_start, last_line_start-before_last_line_start);
-			}
-		}
-		else
-			last_line = buffer;
-
-		last_line = last_line.trimmed();
-
-		// Check if we have a query
-		bool ends_qmark = !last_line.isEmpty() && last_line[last_line.length()-1]=='?';
-		bool have_yn_query = last_line.toLower().indexOf("y/n")!=-1;
-		bool have_yna_query = last_line.toLower().indexOf("a=always/y/n")!=-1 || last_line.toLower().indexOf("yes/no/all")!=-1 || last_line.toLower().indexOf("a=all/y/n")!=-1;
-		bool have_an_query = last_line.toLower().indexOf("a=always/n")!=-1;
-		bool have_acyn_query = last_line.toLower().indexOf("a=all/c=convert/y/n")!=-1;
-
-		bool have_query = ends_qmark && (have_yn_query || have_yna_query || have_an_query || have_acyn_query);
-
-		// Flush all complete lines to the log and output
-		QStringList log_lines = buffer.left(last_line_start).split(EOL_MARK);
-		for(int l=0; l<log_lines.length(); ++l)
-		{
-			// Do not output the last line if it not complete
-			if(l==log_lines.length()-1 && buffer[buffer.length()-1] != EOL_MARK )
-				continue;
-
-			QString line = log_lines[l].trimmed();
-
-			if(line.isEmpty())
-				continue;
-
-			if(output)
-				output->append(line);
-
-			if(!silent_output)
-				log(line+"\n");
-		}
-
-		// Remove everything we processed (including the EOL)
-		buffer = buffer.mid(last_line_start+1) ;
-
-		// Now process any query
-		if(have_query && (have_yna_query || have_acyn_query))
-		{
-			log(last_line);
-			QString query = ParseFossilQuery(last_line);
-			QMessageBox::StandardButtons buttons = QMessageBox::YesToAll|QMessageBox::Yes|QMessageBox::No;
-
-			// Add any extra text available to the query
-			before_last_line = before_last_line.trimmed();
-			if(!before_last_line.isEmpty())
-				query = before_last_line + "\n" + query;
-
-			// Map the Convert option to the Apply button
-			if(have_acyn_query)
-				buttons |= QMessageBox::Apply;
-
-			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query, buttons);
-			if(res==QMessageBox::Yes)
-			{
-				process.write(ans_yes.toLatin1());
-				log("Y\n");
-			}
-			else if(res==QMessageBox::YesAll)
-			{
-				process.write(ans_always.toLatin1());
-				log("A\n");
-			}
-			else if(res==QMessageBox::Apply)
-			{
-				process.write(ans_convert.toLatin1());
-				log("C\n");
-			}
-			else
-			{
-				process.write(ans_no.toLatin1());
-				log("N\n");
-			}
-			buffer.clear();
-		}
-		else if(have_query && have_yn_query)
-		{
-			log(last_line);
-			QString query = ParseFossilQuery(last_line);
-			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query);
-
-			if(res==QMessageBox::Yes)
-			{
-				process.write(ans_yes.toLatin1());
-				log("Y\n");
-			}
-			else
-			{
-				process.write(ans_no.toLatin1());
-				log("N\n");
-			}
-
-			buffer.clear();
-		}
-		else if(have_query && have_an_query)
-		{
-			log(last_line);
-			QString query = ParseFossilQuery(last_line);
-			QMessageBox::StandardButton res = DialogQuery(this, "Fossil", query, QMessageBox::YesToAll|QMessageBox::No);
-			if(res==QMessageBox::YesAll)
-			{
-				process.write(ans_always.toLatin1());
-				log("A\n");
-			}
-			else
-			{
-				process.write(ans_no.toLatin1());
-				log("N\n");
-			}
-			buffer.clear();
-		}
-	}
-
-	delete decoder;
-
-	// Must be finished by now
-	Q_ASSERT(process.state()==QProcess::NotRunning);
-
-	QProcess::ExitStatus es = process.exitStatus();
-
-	if(es!=QProcess::NormalExit)
-		return false;
-
-	if(exitCode)
-		*exitCode = process.exitCode();
-
-	return true;
-}
-
-
-//------------------------------------------------------------------------------
-QString MainWindow::getFossilPath()
-{
-	// Use the user-specified fossil if available
-	QString fossil_path = settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString();
-	if(!fossil_path.isEmpty())
-		return QDir::toNativeSeparators(fossil_path);
-
-	QString fossil_exe = "fossil";
-#ifdef Q_OS_WIN
-	fossil_exe += ".exe";
-#endif
-	// Use our fossil if available
-	QString fuel_fossil = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + fossil_exe);
-
-	if(QFile::exists(fuel_fossil))
-		return fuel_fossil;
-
-	// Otherwise assume there is a "fossil" executable in the path
-	return fossil_exe;
-}
-#else
-#if 0
-bool MainWindow::runFossil(const QStringList &args, QStringList *output, int runFlags)
-{
-	// Make StatusBar message
-	QString status_msg = tr("Running Fossil");
-	if(args.length() > 0)
-		status_msg = QString("Fossil %0").arg(args[0].toCaseFolded());
-	ScopedStatus status(status_msg, ui, progressBar);
-
-	return bridge.runFossil(args, output, runFlags);
-}
-#endif
-#endif
 
 //------------------------------------------------------------------------------
 void MainWindow::applySettings()
@@ -1750,12 +1201,7 @@ void MainWindow::getStashViewSelection(QStringList &stashNames, bool allIfEmpty)
 //------------------------------------------------------------------------------
 bool MainWindow::diffFile(const QString &repoFile)
 {
-#ifndef BRIDGE_ENABLED
-	// Run the diff detached
-	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, RUNFLAGS_DETACHED);
-#else
 	return bridge.diffFile(repoFile);
-#endif
 }
 
 //------------------------------------------------------------------------------
@@ -1770,61 +1216,6 @@ void MainWindow::on_actionDiff_triggered()
 }
 
 //------------------------------------------------------------------------------
-#ifndef BRIDGE_ENABLED
-bool MainWindow::startUI()
-{
-	if(uiRunning())
-	{
-		log(tr("Fossil UI is already running")+"\n");
-		return true;
-	}
-
-	fossilUI.setParent(this);
-	fossilUI.setProcessChannelMode(QProcess::MergedChannels);
-	fossilUI.setWorkingDirectory(getCurrentWorkspace());
-
-	log("<b>&gt; fossil ui</b><br>", true);
-	log(tr("Starting Fossil browser UI. Please wait.")+"\n");
-	QString fossil = getFossilPath();
-
-	QString port = settings.GetValue(FUEL_SETTING_HTTP_PORT).toString();
-
-	fossilUI.start(fossil, QStringList() << "server" << "--localauth" << "-P" << port );
-
-	if(!fossilUI.waitForStarted() || fossilUI.state()!=QProcess::Running)
-	{
-		log(tr("Could not start Fossil executable '%s'").arg(fossil)+"\n");
-		ui->actionFossilUI->setChecked(false);
-		return false;
-	}
-
-	ui->actionFossilUI->setChecked(true);
-	return true;
-}
-
-//------------------------------------------------------------------------------
-void MainWindow::stopUI()
-{
-	if(uiRunning())
-	{
-#ifdef Q_OS_WIN
-		fossilUI.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
-#else
-		fossilUI.terminate();
-#endif
-	}
-	fossilUI.close();
-
-	ui->actionFossilUI->setChecked(false);
-}
-
-//------------------------------------------------------------------------------
-bool MainWindow::uiRunning() const
-{
-	return fossilUI.state() == QProcess::Running;
-}
-
-#else
 bool MainWindow::startUI()
 {
 	QString port = settings.GetValue(FUEL_SETTING_HTTP_PORT).toString();
@@ -1845,9 +1236,6 @@ bool MainWindow::uiRunning() const
 {
 	return bridge.uiRunning();
 }
-
-#endif
-
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionFossilUI_triggered()
@@ -1918,11 +1306,7 @@ void MainWindow::on_actionPush_triggered()
 		return;
 	}
 
-#ifndef BRIDGE_ENABLED
-	runFossil(QStringList() << "push");
-#else
 	bridge.pushRepository();
-#endif
 }
 
 //------------------------------------------------------------------------------
@@ -1936,11 +1320,7 @@ void MainWindow::on_actionPull_triggered()
 		return;
 	}
 
-#ifndef BRIDGE_ENABLED
-	runFossil(QStringList() << "pull");
-#else
 	bridge.pullRepository();
-#endif
 }
 
 //------------------------------------------------------------------------------
@@ -1973,49 +1353,6 @@ void MainWindow::on_actionCommit_triggered()
 		return;
 
 	// Do commit
-#ifndef BRIDGE_ENABLED
-	QString comment_fname;
-	{
-		QTemporaryFile temp_file;
-		if(!temp_file.open())
-		{
-			QMessageBox::critical(this, tr("Error"), tr("Could not generate comment file"), QMessageBox::Ok );
-			return;
-		}
-		comment_fname = temp_file.fileName();
-	}
-
-	QFile comment_file(comment_fname);
-	if(!comment_file.open(QIODevice::WriteOnly))
-	{
-		QMessageBox::critical(this, tr("Error"), tr("Could not generate comment file"), QMessageBox::Ok );
-		return;
-	}
-
-	// Write BOM
-	comment_file.write(reinterpret_cast<const char *>(UTF8_BOM), sizeof(UTF8_BOM));
-
-	// Write Comment
-	comment_file.write(msg.toUtf8());
-	comment_file.close();
-
-	// Generate fossil parameters.
-	QStringList params;
-	params << "commit" << "--message-file" << QuotePath(comment_fname);
-
-	// When a subset of files has been selected, explicitely specify each file.
-	// Otherwise all files will be implicitly committed by fossil. This is necessary
-	// when committing after a merge where fossil thinks that we are trying to do
-	// a partial commit which is not permitted.
-	QStringList all_modified_files;
-	getAllFilenames(all_modified_files, RepoFile::TYPE_MODIFIED);
-
-	if(commit_files.size() != all_modified_files.size())
-		params  << QuotePaths(commit_files);
-
-	runFossil(params);
-	QFile::remove(comment_fname);
-#else
 	QStringList files;
 
 	// When a subset of files has been selected, explicitely specify each file.
@@ -2029,8 +1366,6 @@ void MainWindow::on_actionCommit_triggered()
 		files = commit_files;
 
 	bridge.commitFiles(files, msg);
-#endif
-
 	refresh();
 }
 
@@ -2048,12 +1383,7 @@ void MainWindow::on_actionAdd_triggered()
 		return;
 
 	// Do Add
-#ifndef BRIDGE_ENABLED
-	runFossil(QStringList() << "add" << QuotePaths(selection) );
-#else
 	bridge.addFiles(selection);
-#endif
-
 	refresh();
 }
 
@@ -2076,24 +1406,6 @@ void MainWindow::on_actionDelete_triggered()
 	if(!FileActionDialog::run(this, tr("Remove files"), tr("The following files will be removed from the repository.")+"\n"+tr("Are you sure?"), all_files, tr("Also delete the local files"), &remove_local ))
 		return;
 
-#ifndef BRIDGE_ENABLED
-	if(!repo_files.empty())
-	{
-		// Do Delete
-		if(!runFossil(QStringList() << "delete" << QuotePaths(repo_files)))
-			return;
-	}
-
-	if(remove_local)
-	{
-		for(int i=0; i<all_files.size(); ++i)
-		{
-			QFileInfo fi(getCurrentWorkspace() + QDir::separator() + all_files[i]);
-			if(fi.exists())
-				QFile::remove(fi.filePath());
-		}
-	}
-#else
 	// Remove repository files
 	if(!repo_files.empty())
 		bridge.removeFiles(repo_files, remove_local);
@@ -2108,7 +1420,6 @@ void MainWindow::on_actionDelete_triggered()
 				QFile::remove(fi.filePath());
 		}
 	}
-#endif
 
 	refresh();
 }
@@ -2126,12 +1437,7 @@ void MainWindow::on_actionRevert_triggered()
 		return;
 
 	// Do Revert
-#ifndef BRIDGE_ENABLED
-	runFossil(QStringList() << "revert" << QuotePaths(modified_files) );
-#else
 	bridge.revertFiles(modified_files);
-#endif
-
 	refresh();
 }
 
@@ -2159,17 +1465,8 @@ void MainWindow::on_actionRename_triggered()
 		return;
 	}
 
-#ifndef BRIDGE_ENABLED
 	// Do Rename
-	runFossil(QStringList() << "mv" << QuotePath(fi_before.filePath()) << QuotePath(fi_after.filePath()) );
-
-	QString wkdir = getCurrentWorkspace() + QDir::separator();
-
-	// Also rename the file
-	QFile::rename(wkdir+fi_before.filePath(), wkdir+fi_after.filePath());
-#else
 	bridge.renameFile(fi_before.filePath(), fi_after.filePath(), true);
-#endif
 
 	refresh();
 }
@@ -2200,19 +1497,7 @@ void MainWindow::on_actionUndo_triggered()
 	// Gather Undo actions
 	QStringList res;
 
-#ifndef BRIDGE_ENABLED
-	if(!runFossil(QStringList() << "undo" << "--explain", &res ))
-		return;
-
-	if(res.length()>0 && res[0]=="No undo or redo is available")
-		return;
-
-	if(!FileActionDialog::run(this, tr("Undo"), tr("The following actions will be undone.")+"\n"+tr("Are you sure?"), res))
-		return;
-
-	// Do Undo
-	runFossil(QStringList() << "undo" );
-#else
+	// Do test Undo
 	bridge.undoRepository(res, true);
 
 	if(res.length()>0 && res[0]=="No undo or redo is available")
@@ -2223,7 +1508,6 @@ void MainWindow::on_actionUndo_triggered()
 
 	// Do Undo
 	bridge.undoRepository(res, false);
-#endif
 
 	refresh();
 }
@@ -2233,18 +1517,8 @@ void MainWindow::on_actionAbout_triggered()
 {
 	QString fossil_ver;
 
-#ifndef BRIDGE_ENABLED
-	QStringList res;
-	if(runFossil(QStringList() << "version", &res, RUNFLAGS_SILENT_ALL) && res.length()==1)
-	{
-		int off = res[0].indexOf("version ");
-		if(off!=-1)
-			fossil_ver = tr("Fossil version %0").arg(res[0].mid(off+8)) + "\n";
-	}
-#else
 	if(bridge.getFossilVersion(fossil_ver))
 		fossil_ver = tr("Fossil version %0").arg(fossil_ver) + "\n";
-#endif
 
 	QString qt_ver = tr("QT version %0").arg(QT_VERSION_STR) + "\n\n";
 
@@ -2270,19 +1544,8 @@ void MainWindow::on_actionAbout_triggered()
 void MainWindow::on_actionUpdate_triggered()
 {
 	QStringList res;
-#ifndef BRIDGE_ENABLED
-	if(!runFossil(QStringList() << "update" << "--nochange", &res, RUNFLAGS_SILENT_ALL))
-		return;
 
-	if(res.length()==0)
-		return;
-
-	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
-		return;
-
-	// Do Update
-	runFossil(QStringList() << "update" );
-#else
+	// Do test update
 	if(!bridge.updateRepository(res, true))
 		return;
 
@@ -2294,8 +1557,8 @@ void MainWindow::on_actionUpdate_triggered()
 	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
 		return;
 
+	// Do update
 	bridge.updateRepository(res, false);
-#endif
 
 	refresh();
 }
@@ -2306,13 +1569,8 @@ void MainWindow::loadFossilSettings()
 	// Also retrieve the fossil global settings
 	QStringList out;
 
-#ifndef BRIDGE_ENABLED
-	if(!runFossil(QStringList() << "settings", &out, RUNFLAGS_SILENT_ALL))
-		return;
-#else
 	if(!bridge.getFossilSettings(out))
 		return;
-#endif
 
 	QStringMap kv = MakeKeyValues(out);
 
@@ -2323,20 +1581,12 @@ void MainWindow::loadFossilSettings()
 
 		// Command types we issue directly on fossil
 
-		//if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
 		if(name == FOSSIL_SETTING_REMOTE_URL)
 		{
 			// Retrieve existing url
-#ifndef BRIDGE_ENABLED
-			QStringList out;
-			if(runFossil(QStringList() << name, &out, RUNFLAGS_SILENT_ALL) && out.length()==1)
-				it.value().Value = out[0].trimmed();
-#else
 			QString url;
 			if(bridge.getRemoteUrl(url))
 				it.value().Value = url;
-#endif
-
 			continue;
 		}
 
@@ -2379,36 +1629,17 @@ void MainWindow::on_actionSettings_triggered()
 
 		// Command types we issue directly on fossil
 		// FIXME: major uglyness with settings management
-		//if(type == Settings::Setting::TYPE_FOSSIL_COMMAND)
 		if(name == FOSSIL_SETTING_REMOTE_URL)
 		{
 			// Run as silent to avoid displaying credentials in the log
-#ifndef BRIDGE_ENABLED
-			runFossil(QStringList() << "remote-url" << QuotePath(it.value().Value.toString()), 0, RUNFLAGS_SILENT_INPUT);
-#else
 			bridge.setRemoteUrl(it.value().Value.toString());
-#endif
 			continue;
 		}
 
 		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
 
 		QString value = it.value().Value.toString();
-#ifndef BRIDGE_ENABLED
-		QStringList params;
-
-		if(value.isEmpty())
-			params << "unset" << name;
-		else
-			params << "settings" << name << value;
-
-		if(type == Settings::Setting::TYPE_FOSSIL_GLOBAL)
-			params << "-global";
-
-		runFossil(params);
-#else
 		bridge.setFossilSetting(name, value, type == Settings::Setting::TYPE_FOSSIL_GLOBAL);
-#endif
 	}
 }
 
@@ -2582,11 +1813,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 		RepoFile *r = files_to_move[i];
 		const QString &new_file_path = new_paths[i] + PATH_SEPARATOR + r->getFilename();
 
-#ifndef BRIDGE_ENABLED
-		if(!runFossil(QStringList() << "mv" <<  QuotePath(r->getFilePath()) << QuotePath(new_file_path)))
-#else
 		if(!bridge.renameFile(r->getFilePath(), new_file_path, false))
-#endif
 		{
 			log(tr("Move aborted due to errors")+"\n");
 			goto _exit;
@@ -2709,15 +1936,8 @@ void MainWindow::on_actionNewStash_triggered()
 	}
 
 	// Do Stash
-#ifndef BRIDGE_ENABLED
-	QString command = "snapshot";
-	if(revert)
-		command = "save";
-
-	runFossil(QStringList() << "stash" << command << "-m" << stash_name << QuotePaths(stashed_files) );
-#else
 	bridge.stashNew(stashed_files, stash_name, revert);
-#endif
+
 	refresh();
 }
 
@@ -2737,11 +1957,7 @@ void MainWindow::on_actionApplyStash_triggered()
 		stashmap_t::iterator id_it = stashMap.find(*it);
 		Q_ASSERT(id_it!=stashMap.end());
 
-#ifndef BRIDGE_ENABLED
-		if(!runFossil(QStringList() << "stash" << "apply" << *id_it))
-#else
 		if(!bridge.stashApply(*id_it))
-#endif
 		{
 			log(tr("Stash application aborted due to errors")+"\n");
 			return;
@@ -2753,12 +1969,8 @@ void MainWindow::on_actionApplyStash_triggered()
 	{
 		stashmap_t::iterator id_it = stashMap.find(*it);
 		Q_ASSERT(id_it!=stashMap.end());
-#ifndef BRIDGE_ENABLED
-		if(!runFossil(QStringList() << "stash" << "drop" << *id_it))
-#else
-		if(!bridge.stashDrop(*id_it))
-#endif
 
+		if(!bridge.stashDrop(*id_it))
 		{
 			log(tr("Stash deletion aborted due to errors")+"\n");
 			return;
@@ -2786,11 +1998,7 @@ void MainWindow::on_actionDeleteStash_triggered()
 		stashmap_t::iterator id_it = stashMap.find(*it);
 		Q_ASSERT(id_it!=stashMap.end());
 
-#ifndef BRIDGE_ENABLED
-		if(!runFossil(QStringList() << "stash" << "drop" << *id_it))
-#else
 		if(!bridge.stashDrop(*id_it))
-#endif
 		{
 			log(tr("Stash deletion aborted due to errors")+"\n");
 			return;
@@ -2813,11 +2021,7 @@ void MainWindow::on_actionDiffStash_triggered()
 	Q_ASSERT(id_it!=stashMap.end());
 
 	// Run diff
-#ifndef BRIDGE_ENABLED
-	runFossil(QStringList() << "stash" << "diff" << *id_it, 0);
-#else
 	bridge.stashDiff(*id_it);
-#endif
 }
 
 //------------------------------------------------------------------------------
@@ -2930,11 +2134,7 @@ void MainWindow::dropEvent(QDropEvent *event)
 				return;
 
 			// Do Add
-#ifndef BRIDGE_ENABLED
-			runFossil(QStringList() << "add" << QuotePaths(newfiles) );
-#else
 			bridge.addFiles(newfiles);
-#endif
 
 			refresh();
 		}
@@ -2967,7 +2167,6 @@ void MainWindow::fullRefresh()
 	selectRootDir();
 }
 
-#ifdef BRIDGE_ENABLED
 //------------------------------------------------------------------------------
 void MainWindow::MainWinUICallback::logText(const QString& text, bool isHTML)
 {
@@ -2990,4 +2189,3 @@ void MainWindow::MainWinUICallback::endProcess()
 	mainWindow->ui->statusBar->clearMessage();
 	mainWindow->progressBar->setHidden(true);
 }
-#endif
