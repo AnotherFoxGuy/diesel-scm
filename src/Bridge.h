@@ -9,6 +9,15 @@ class QStringList;
 
 typedef QMap<QString, QString> stashmap_t;
 
+enum RunFlags
+{
+	RUNFLAGS_NONE			= 0<<0,
+	RUNFLAGS_SILENT_INPUT	= 1<<0,
+	RUNFLAGS_SILENT_OUTPUT	= 1<<1,
+	RUNFLAGS_SILENT_ALL		= RUNFLAGS_SILENT_INPUT | RUNFLAGS_SILENT_OUTPUT,
+	RUNFLAGS_DETACHED		= 1<<2
+};
+
 class Bridge : public QObject
 {
 public:
@@ -19,16 +28,6 @@ public:
 	, logTextBrowser(0)
 	{
 	}
-
-
-	enum RunFlags
-	{
-		RUNFLAGS_NONE			= 0<<0,
-		RUNFLAGS_SILENT_INPUT	= 1<<0,
-		RUNFLAGS_SILENT_OUTPUT	= 1<<1,
-		RUNFLAGS_SILENT_ALL		= RUNFLAGS_SILENT_INPUT | RUNFLAGS_SILENT_OUTPUT,
-		RUNFLAGS_DETACHED		= 1<<2
-	};
 
 	typedef void(*log_callback_t)(QTextBrowser *textBrowser, const QString &text, bool isHTML);
 
@@ -108,6 +107,7 @@ public:
 	bool getFossilSettings(QStringList& result);
 	bool setFossilSetting(const QString &name, const QString &value, bool global);
 	bool setRemoteUrl(const QString &url);
+	bool getRemoteUrl(QString &url);
 
 	bool stashNew(const QStringList& fileList, const QString& name, bool revert);
 	bool stashList(stashmap_t &stashes);

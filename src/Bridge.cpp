@@ -339,6 +339,20 @@ bool Bridge::setRemoteUrl(const QString& url)
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::getRemoteUrl(QString& url)
+{
+	url.clear();
+
+	QStringList out;
+	if(!runFossil(QStringList() << "remote-url", &out, RUNFLAGS_SILENT_ALL))
+		return false;
+
+	if(out.length()>0)
+		url = out[0].trimmed();
+	return true;
+}
+
+//------------------------------------------------------------------------------
 bool Bridge::stashNew(const QStringList& fileList, const QString& name, bool revert)
 {
 	// Do Stash
@@ -399,7 +413,7 @@ bool Bridge::stashApply(const QString& name)
 //------------------------------------------------------------------------------
 bool Bridge::stashDrop(const QString& name)
 {
-	return runFossil(QStringList() << "stash" << "apply" << name);
+	return runFossil(QStringList() << "stash" << "drop" << name);
 }
 
 //------------------------------------------------------------------------------

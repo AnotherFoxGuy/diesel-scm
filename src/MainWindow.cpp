@@ -1441,7 +1441,7 @@ QString MainWindow::getFossilPath()
 	return fossil_exe;
 }
 #else
-#if 1
+#if 0
 bool MainWindow::runFossil(const QStringList &args, QStringList *output, int runFlags)
 {
 	// Make StatusBar message
@@ -2320,9 +2320,15 @@ void MainWindow::loadFossilSettings()
 		if(name == FOSSIL_SETTING_REMOTE_URL)
 		{
 			// Retrieve existing url
+#ifndef BRIDGE_ENABLED
 			QStringList out;
 			if(runFossil(QStringList() << name, &out, RUNFLAGS_SILENT_ALL) && out.length()==1)
 				it.value().Value = out[0].trimmed();
+#else
+			QString url;
+			if(bridge.getRemoteUrl(url))
+				it.value().Value = url;
+#endif
 
 			continue;
 		}
@@ -2370,7 +2376,7 @@ void MainWindow::on_actionSettings_triggered()
 		if(name == FOSSIL_SETTING_REMOTE_URL)
 		{
 			// Run as silent to avoid displaying credentials in the log
-#ifndef BRIDGE_H
+#ifndef BRIDGE_ENABLED
 			runFossil(QStringList() << "remote-url" << QuotePath(it.value().Value.toString()), 0, RUNFLAGS_SILENT_INPUT);
 #else
 			bridge.setRemoteUrl(it.value().Value.toString());
@@ -2381,7 +2387,7 @@ void MainWindow::on_actionSettings_triggered()
 		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
 
 		QString value = it.value().Value.toString();
-#ifndef BRIDGE_H
+#ifndef BRIDGE_ENABLED
 		QStringList params;
 
 		if(value.isEmpty())

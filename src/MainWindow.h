@@ -127,21 +127,13 @@ public:
 
 private:
 	typedef QSet<QString> stringset_t;
-	enum RunFlags
-	{
-		RUNFLAGS_NONE			= 0<<0,
-		RUNFLAGS_SILENT_INPUT	= 1<<0,
-		RUNFLAGS_SILENT_OUTPUT	= 1<<1,
-		RUNFLAGS_SILENT_ALL		= RUNFLAGS_SILENT_INPUT | RUNFLAGS_SILENT_OUTPUT,
-		RUNFLAGS_DETACHED		= 1<<2
-	};
 
 private:
 	bool refresh();
 	void scanWorkspace();
-	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
 #ifndef BRIDGE_ENABLED
 	bool runFossilRaw(const QStringList &args, QStringList *output=0, int *exitCode=0, int runFlags=RUNFLAGS_NONE);
+	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
 #endif
 	void applySettings();
 	void updateSettings();
