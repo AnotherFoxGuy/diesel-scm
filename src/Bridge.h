@@ -8,6 +8,8 @@ class QStringList;
 
 typedef QMap<QString, QString> stashmap_t;
 
+#define PATH_SEPARATOR		"/"
+
 enum RunFlags
 {
 	RUNFLAGS_NONE			= 0<<0,
@@ -15,6 +17,13 @@ enum RunFlags
 	RUNFLAGS_SILENT_OUTPUT	= 1<<1,
 	RUNFLAGS_SILENT_ALL		= RUNFLAGS_SILENT_INPUT | RUNFLAGS_SILENT_OUTPUT,
 	RUNFLAGS_DETACHED		= 1<<2
+};
+
+enum RepoStatus
+{
+	REPO_OK,
+	REPO_NOT_FOUND,
+	REPO_OLD_SCHEMA
 };
 
 class Bridge : public QObject
@@ -50,12 +59,6 @@ public:
 	bool runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags);
 
 	static bool isWorkspace(const QString &path);
-	enum RepoStatus
-	{
-		REPO_OK,
-		REPO_NOT_FOUND,
-		REPO_OLD_SCHEMA
-	};
 
 	RepoStatus getRepoStatus();
 

@@ -25,12 +25,12 @@
 #include "Utils.h"
 #include "LoggedProcess.h"
 
-#define PATH_SEP				"/"
-
+#ifndef BRIDGE_ENABLED
 static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 
 // 19: [5c46757d4b9765] on 2012-04-22 04:41:15
 static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
+#endif
 
 //-----------------------------------------------------------------------------
 enum
@@ -317,8 +317,8 @@ bool MainWindow::openWorkspace(const QString &path)
 	if(fi.isFile())
 	{
 		wkspace = fi.absoluteDir().absolutePath();
-		QString checkout_file1 = wkspace + PATH_SEP + FOSSIL_CHECKOUT1;
-		QString checkout_file2 = wkspace + PATH_SEP + FOSSIL_CHECKOUT2;
+		QString checkout_file1 = wkspace + PATH_SEPARATOR + FOSSIL_CHECKOUT1;
+		QString checkout_file2 = wkspace + PATH_SEPARATOR + FOSSIL_CHECKOUT2;
 
 		if(!(QFileInfo(checkout_file1).exists() || QFileInfo(checkout_file2).exists()) )
 		{
@@ -492,8 +492,13 @@ void MainWindow::on_actionNewRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCloseRepository_triggered()
 {
+#ifndef BRIDGE_ENABLED
 	if(getRepoStatus()!=REPO_OK)
 		return;
+#else
+	if(bridge.getRepoStatus()!=REPO_OK)
+		return;
+#endif
 
 	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), tr("Are you sure you want to close this workspace?")))
 		return;
@@ -581,7 +586,6 @@ void MainWindow::rebuildRecent()
 		recentWorkspaceActs[i]->setData(workspaceHistory[i]);
 		recentWorkspaceActs[i]->setVisible(true);
 	}
-
 }
 
 //------------------------------------------------------------------------------
@@ -613,7 +617,7 @@ bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, c
 		QFileInfo info = list[i];
 		QString filepath = info.filePath();
 		QString rel_path = filepath;
-		rel_path.remove(baseDir+PATH_SEP);
+		rel_path.remove(baseDir+PATH_SEPARATOR);
 
 		// Skip ignored files
 		if(!ignoreSpec.isEmpty() && QDir::match(ignoreSpec, rel_path))
@@ -661,7 +665,11 @@ bool MainWindow::refresh()
 	QString title = "Fuel";
 
 	// Load repository info
+#ifndef BRIDGE_ENABLED
 	RepoStatus st = getRepoStatus();
+#else
+	RepoStatus st = bridge.getRepoStatus();
+#endif
 
 	if(st==REPO_NOT_FOUND)
 	{
@@ -1018,7 +1026,7 @@ void MainWindow::updateFileView()
 
 //------------------------------------------------------------------------------
 #ifndef BRIDGE_ENABLED
-MainWindow::RepoStatus MainWindow::getRepoStatus()
+RepoStatus MainWindow::getRepoStatus()
 {
 	QStringList res;
 	int exit_code = EXIT_FAILURE;
@@ -1059,10 +1067,12 @@ MainWindow::RepoStatus MainWindow::getRepoStatus()
 	return run_ok ? REPO_OK : REPO_NOT_FOUND;
 }
 #else
+#if 0
 MainWindow::RepoStatus MainWindow::getRepoStatus()
 {
 	return (MainWindow::RepoStatus) bridge.getRepoStatus();
 }
+#endif
 #endif
 //------------------------------------------------------------------------------
 void MainWindow::updateStashView()
@@ -2479,7 +2489,7 @@ void MainWindow::on_actionOpenFolder_triggered()
 void MainWindow::on_treeView_doubleClicked(const QModelIndex &index)
 {
 	QString target = repoDirModel.data(index, REPODIRMODEL_ROLE_PATH).toString();
-	target = getCurrentWorkspace() + PATH_SEP + target;
+	target = getCurrentWorkspace() + PATH_SEPARATOR + target;
 
 	QUrl url = QUrl::fromLocalFile(target);
 	QDesktopServices::openUrl(url);
@@ -2504,7 +2514,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 		return;
 	}
 
-	int dir_start = old_path.lastIndexOf(PATH_SEP);
+	int dir_start = old_path.lastIndexOf(PATH_SEPARATOR);
 	if(dir_start==-1)
 		dir_start = 0;
 	else
@@ -2550,7 +2560,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 		files_to_move.append(r);
 		QString new_dir = new_path + r->getPath().mid(old_path.length());
 		new_paths.append(new_dir);
-		QString new_file_path =  new_dir + PATH_SEP + r->getFilename();
+		QString new_file_path =  new_dir + PATH_SEPARATOR + r->getFilename();
 		operations.append(r->getFilePath() + " -> " + new_file_path);
 	}
 
@@ -2570,7 +2580,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	for(int i=0; i<files_to_move.length(); ++i)
 	{
 		RepoFile *r = files_to_move[i];
-		const QString &new_file_path = new_paths[i] + PATH_SEP + r->getFilename();
+		const QString &new_file_path = new_paths[i] + PATH_SEPARATOR + r->getFilename();
 
 #ifndef BRIDGE_ENABLED
 		if(!runFossil(QStringList() << "mv" <<  QuotePath(r->getFilePath()) << QuotePath(new_file_path)))
@@ -2589,7 +2599,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	// First ensure that the target directories exist, and if not make them
 	for(int i=0; i<files_to_move.length(); ++i)
 	{
-		QString target_path = QDir::cleanPath(getCurrentWorkspace() + PATH_SEP + new_paths[i] + PATH_SEP);
+		QString target_path = QDir::cleanPath(getCurrentWorkspace() + PATH_SEPARATOR + new_paths[i] + PATH_SEPARATOR);
 		QDir target(target_path);
 
 		if(target.exists())
@@ -2599,7 +2609,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 		Q_ASSERT(wkdir.exists());
 
 		log(tr("Creating folder '%0'").arg(target_path)+"\n");
-		if(!wkdir.mkpath(new_paths[i] + PATH_SEP + "."))
+		if(!wkdir.mkpath(new_paths[i] + PATH_SEPARATOR + "."))
 		{
 			QMessageBox::critical(this, tr("Error"), tr("Cannot make target folder '%0'").arg(target_path));
 			goto _exit;
@@ -2610,7 +2620,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	for(int i=0; i<files_to_move.length(); ++i)
 	{
 		RepoFile *r = files_to_move[i];
-		QString new_file_path = new_paths[i] + PATH_SEP + r->getFilename();
+		QString new_file_path = new_paths[i] + PATH_SEPARATOR + r->getFilename();
 
 		if(QFile::exists(new_file_path))
 		{

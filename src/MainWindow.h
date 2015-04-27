@@ -168,14 +168,9 @@ private:
 	void setBusy(bool busy);
 	virtual QMenu *createPopupMenu();
 
-	enum RepoStatus
-	{
-		REPO_OK,
-		REPO_NOT_FOUND,
-		REPO_OLD_SCHEMA
-	};
-
+#ifndef BRIDGE_ENABLED
 	RepoStatus getRepoStatus();
+#endif
 
 	enum ViewMode
 	{

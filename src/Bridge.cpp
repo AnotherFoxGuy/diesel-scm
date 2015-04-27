@@ -18,7 +18,6 @@ static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(
 #define FOSSIL_CHECKOUT1	"_FOSSIL_"
 #define FOSSIL_CHECKOUT2	".fslckout"
 #define FOSSIL_EXT			"fossil"
-#define PATH_SEP			"/"
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -39,7 +38,7 @@ private:
 };
 
 //------------------------------------------------------------------------------
-Bridge::RepoStatus Bridge::getRepoStatus()
+RepoStatus Bridge::getRepoStatus()
 {
 	QStringList res;
 	int exit_code = EXIT_FAILURE;
@@ -782,8 +781,8 @@ bool Bridge::isWorkspace(const QString &path)
 	QFileInfo fi(path);
 	QString wkspace = path;
 	wkspace = fi.absoluteDir().absolutePath();
-	QString checkout_file1 = wkspace + PATH_SEP + FOSSIL_CHECKOUT1;
-	QString checkout_file2 = wkspace + PATH_SEP + FOSSIL_CHECKOUT2;
+	QString checkout_file1 = wkspace + PATH_SEPARATOR + FOSSIL_CHECKOUT1;
+	QString checkout_file2 = wkspace + PATH_SEPARATOR + FOSSIL_CHECKOUT2;
 
 	return (QFileInfo(checkout_file1).exists() || QFileInfo(checkout_file2).exists());
 }
