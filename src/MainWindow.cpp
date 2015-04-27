@@ -2297,8 +2297,14 @@ void MainWindow::loadFossilSettings()
 {
 	// Also retrieve the fossil global settings
 	QStringList out;
+
+#ifndef BRIDGE_ENABLED
 	if(!runFossil(QStringList() << "settings", &out, RUNFLAGS_SILENT_ALL))
 		return;
+#else
+	if(!bridge.getFossilSettings(out))
+		return;
+#endif
 
 	QStringMap kv = MakeKeyValues(out);
 

@@ -304,6 +304,13 @@ bool Bridge::updateRepository(QStringList &result, bool explainOnly)
 }
 
 //------------------------------------------------------------------------------
+bool Bridge::getFossilSettings(QStringList &result)
+{
+	return runFossil(QStringList() << "settings", &result, RUNFLAGS_SILENT_ALL);
+}
+
+
+//------------------------------------------------------------------------------
 bool Bridge::stashList(stashmap_t& stashes)
 {
 	stashes.clear();

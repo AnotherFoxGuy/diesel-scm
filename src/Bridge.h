@@ -106,6 +106,7 @@ public:
 	bool renameFile(const QString& beforePath, const QString& afterPath, bool renameLocal);
 	bool undoRepository(QStringList& result, bool explainOnly);
 	bool updateRepository(QStringList& result, bool explainOnly);
+	bool getFossilSettings(QStringList& result);
 private:
 	void log(const QString &text, bool isHTML=false)
 	{
