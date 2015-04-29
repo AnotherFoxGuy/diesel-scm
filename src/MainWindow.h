@@ -252,7 +252,7 @@ private:
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QProgressBar	*progressBar;
 	class QShortcut		*abortShortcut;
-	bool				abortOperation;
+	bool				operationAborted;
 
 	Settings			&settings;
 	QStringList			workspaceHistory;

@@ -41,7 +41,7 @@ public:
 
 
 	Bridge()
-	: abortOperation(false)
+	: operationAborted(false)
 	, uiCallback(0)
 	{
 	}
@@ -86,7 +86,6 @@ public:
 		repositoryFile = filename;
 	}
 
-
 	bool openRepository(const QString &repositoryPath, const QString& workspacePath);
 	bool newRepository(const QString &repositoryPath);
 	bool closeRepository();
@@ -119,6 +118,8 @@ public:
 	bool stashDrop(const QString& name);
 	bool stashDiff(const QString& name);
 
+	void abortOperation() { operationAborted = true; }
+
 private:
 	void log(const QString &text, bool isHTML=false)
 	{
@@ -128,7 +129,7 @@ private:
 
 	QString	getFossilPath();
 
-	bool				abortOperation;	// FIXME: No GUI for it yet
+	bool				operationAborted;
 	UICallback			*uiCallback;
 	QString				currentWorkspace;
 	QString				fossilPath;		// The value from the settings

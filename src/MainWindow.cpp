@@ -198,7 +198,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	if(workspacePath && !workspacePath->isEmpty())
 		openWorkspace(*workspacePath);
 
-	abortOperation = false;
+	operationAborted = false;
 
 	rebuildRecent();
 }
@@ -612,7 +612,7 @@ void MainWindow::scanWorkspace()
 	workspaceFiles.clear();
 	pathSet.clear();
 
-	abortOperation = false;
+	operationAborted = false;
 
 	if(scan_files)
 	{
@@ -626,7 +626,7 @@ void MainWindow::scanWorkspace()
 			ignore = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().replace(',',';');
 		}
 
-		if(!scanDirectory(all_files, wkdir, wkdir, ignore, abortOperation))
+		if(!scanDirectory(all_files, wkdir, wkdir, ignore, operationAborted))
 			goto _done;
 
 		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
@@ -2154,7 +2154,8 @@ void MainWindow::setBusy(bool busy)
 //------------------------------------------------------------------------------
 void MainWindow::onAbort()
 {
-	abortOperation = true;
+	operationAborted = true;
+	bridge.abortOperation();
 	// FIXME: Rename this to something better, Operation Aborted
 	log("<br><b>* "+tr("Terminated")+" *</b><br>", true);
 }

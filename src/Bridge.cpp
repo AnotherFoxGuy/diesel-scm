@@ -546,7 +546,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	QString ans_always = 'a' + EOL_MARK;
 	QString ans_convert = 'c' + EOL_MARK;
 
-	abortOperation = false;
+	operationAborted = false;
 	QString buffer;
 
 #ifdef Q_OS_WIN
@@ -572,7 +572,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		if(state!=QProcess::Running && bytes_avail<1)
 			break;
 
-		if(abortOperation)
+		if(operationAborted)
 		{
 			log("\n* "+QObject::tr("Terminated")+" *\n");
 			#ifdef Q_OS_WIN		// Verify this is still true on Qt5
