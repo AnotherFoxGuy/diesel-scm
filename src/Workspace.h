@@ -6,7 +6,7 @@
 #include <QDir>
 #include <QSet>
 #include <QMap>
-#include "Bridge.h"
+#include "Fossil.h"
 
 //////////////////////////////////////////////////////////////////////////
 // WorkspaceFile
@@ -107,8 +107,8 @@ public:
 
 	void				clearState();
 
-	Bridge &			fossil() { return bridge; }
-	const Bridge &		fossil() const { return bridge; }
+	Fossil &			fossil() { return bridge; }
+	const Fossil &		fossil() const { return bridge; }
 
 	static bool			scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, UICallback &uiCallback);
 	void				scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, UICallback &uiCallback, bool &operationAborted);
@@ -121,7 +121,7 @@ public:
 	stashmap_t			&getStashes() { return stashMap; }
 
 private:
-	Bridge				bridge;
+	Fossil				bridge;
 	filemap_t			workspaceFiles;
 	stringset_t			pathSet;
 	stashmap_t			stashMap;

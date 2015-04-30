@@ -1,5 +1,5 @@
-#ifndef BRIDGE_H
-#define BRIDGE_H
+#ifndef FOSSIL_H
+#define FOSSIL_H
 
 class QStringList;
 #include <QString>
@@ -27,10 +27,10 @@ enum RepoStatus
 	REPO_OLD_SCHEMA
 };
 
-class Bridge
+class Fossil
 {
 public:
-	Bridge()
+	Fossil()
 	: operationAborted(false)
 	, uiCallback(0)
 	{
@@ -129,4 +129,4 @@ private:
 };
 
 
-#endif // BRIDGE_H
+#endif // FOSSIL_H

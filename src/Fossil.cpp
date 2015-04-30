@@ -1,4 +1,4 @@
-#include "Bridge.h"
+#include "Fossil.h"
 #include <QStringList>
 #include <QCoreApplication>
 #include <LoggedProcess.h>
@@ -15,7 +15,7 @@ static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
 
 ///////////////////////////////////////////////////////////////////////////////
-RepoStatus Bridge::getRepoStatus()
+RepoStatus Fossil::getRepoStatus()
 {
 	QStringList res;
 	int exit_code = EXIT_FAILURE;
@@ -57,7 +57,7 @@ RepoStatus Bridge::getRepoStatus()
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::openRepository(const QString& repositoryPath, const QString& workspacePath)
+bool Fossil::openRepository(const QString& repositoryPath, const QString& workspacePath)
 {
 	QFileInfo fi(repositoryPath);
 
@@ -75,7 +75,7 @@ bool Bridge::openRepository(const QString& repositoryPath, const QString& worksp
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::newRepository(const QString& repositoryPath)
+bool Fossil::newRepository(const QString& repositoryPath)
 {
 	QFileInfo fi(repositoryPath);
 
@@ -88,7 +88,7 @@ bool Bridge::newRepository(const QString& repositoryPath)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::closeRepository()
+bool Fossil::closeRepository()
 {
 	if(!runFossil(QStringList() << "close"))
 		return false;
@@ -99,25 +99,25 @@ bool Bridge::closeRepository()
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::listFiles(QStringList &files)
+bool Fossil::listFiles(QStringList &files)
 {
 	return runFossil(QStringList() << "ls" << "-l", &files, RUNFLAGS_SILENT_ALL);
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::pushRepository()
+bool Fossil::pushRepository()
 {
 	return runFossil(QStringList() << "push");
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::pullRepository()
+bool Fossil::pullRepository()
 {
 	return runFossil(QStringList() << "pull");
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::cloneRepository(const QString& repository, const QUrl& url, const QUrl& proxyUrl)
+bool Fossil::cloneRepository(const QString& repository, const QUrl& url, const QUrl& proxyUrl)
 {
 	// Actual command
 	QStringList cmd = QStringList() << "clone";
@@ -151,7 +151,7 @@ bool Bridge::cloneRepository(const QString& repository, const QUrl& url, const Q
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::getFossilVersion(QString& version)
+bool Fossil::getFossilVersion(QString& version)
 {
 	QStringList res;
 	if(!runFossil(QStringList() << "version", &res, RUNFLAGS_SILENT_ALL) && res.length()==1)
@@ -169,14 +169,14 @@ bool Bridge::getFossilVersion(QString& version)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::diffFile(const QString &repoFile)
+bool Fossil::diffFile(const QString &repoFile)
 {
 	// Run the diff detached
 	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, RUNFLAGS_DETACHED);
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::commitFiles(const QStringList& fileList, const QString& comment)
+bool Fossil::commitFiles(const QStringList& fileList, const QString& comment)
 {
 	// Do commit
 	QString comment_fname;
@@ -210,7 +210,7 @@ bool Bridge::commitFiles(const QStringList& fileList, const QString& comment)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::addFiles(const QStringList& fileList)
+bool Fossil::addFiles(const QStringList& fileList)
 {
 	if(fileList.empty())
 		return false;
@@ -220,7 +220,7 @@ bool Bridge::addFiles(const QStringList& fileList)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::removeFiles(const QStringList& fileList, bool deleteLocal)
+bool Fossil::removeFiles(const QStringList& fileList, bool deleteLocal)
 {
 	if(fileList.empty())
 		return false;
@@ -243,7 +243,7 @@ bool Bridge::removeFiles(const QStringList& fileList, bool deleteLocal)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::revertFiles(const QStringList& fileList)
+bool Fossil::revertFiles(const QStringList& fileList)
 {
 	if(fileList.empty())
 		return false;
@@ -253,7 +253,7 @@ bool Bridge::revertFiles(const QStringList& fileList)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::renameFile(const QString &beforePath, const QString &afterPath, bool renameLocal)
+bool Fossil::renameFile(const QString &beforePath, const QString &afterPath, bool renameLocal)
 {
 	// Ensure we can rename the file
 	if(!QFileInfo(beforePath).exists() || QFileInfo(afterPath).exists())
@@ -273,7 +273,7 @@ bool Bridge::renameFile(const QString &beforePath, const QString &afterPath, boo
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::undoRepository(QStringList &result, bool explainOnly)
+bool Fossil::undoRepository(QStringList &result, bool explainOnly)
 {
 	QStringList params;
 	params << "undo";
@@ -286,7 +286,7 @@ bool Bridge::undoRepository(QStringList &result, bool explainOnly)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::updateRepository(QStringList &result, bool explainOnly)
+bool Fossil::updateRepository(QStringList &result, bool explainOnly)
 {
 	QStringList params;
 	params << "update";
@@ -299,13 +299,13 @@ bool Bridge::updateRepository(QStringList &result, bool explainOnly)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::getFossilSettings(QStringList &result)
+bool Fossil::getFossilSettings(QStringList &result)
 {
 	return runFossil(QStringList() << "settings", &result, RUNFLAGS_SILENT_ALL);
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::setFossilSetting(const QString& name, const QString& value, bool global)
+bool Fossil::setFossilSetting(const QString& name, const QString& value, bool global)
 {
 	QStringList params;
 
@@ -321,7 +321,7 @@ bool Bridge::setFossilSetting(const QString& name, const QString& value, bool gl
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::setRemoteUrl(const QString& url)
+bool Fossil::setRemoteUrl(const QString& url)
 {
 	QString u = url;
 
@@ -334,7 +334,7 @@ bool Bridge::setRemoteUrl(const QString& url)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::getRemoteUrl(QString& url)
+bool Fossil::getRemoteUrl(QString& url)
 {
 	url.clear();
 
@@ -348,7 +348,7 @@ bool Bridge::getRemoteUrl(QString& url)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::stashNew(const QStringList& fileList, const QString& name, bool revert)
+bool Fossil::stashNew(const QStringList& fileList, const QString& name, bool revert)
 {
 	// Do Stash
 	// Snapshot just records the changes into the stash
@@ -362,7 +362,7 @@ bool Bridge::stashNew(const QStringList& fileList, const QString& name, bool rev
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::stashList(stashmap_t& stashes)
+bool Fossil::stashList(stashmap_t& stashes)
 {
 	stashes.clear();
 	QStringList res;
@@ -400,19 +400,19 @@ bool Bridge::stashList(stashmap_t& stashes)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::stashApply(const QString& name)
+bool Fossil::stashApply(const QString& name)
 {
 	return runFossil(QStringList() << "stash" << "apply" << name);
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::stashDrop(const QString& name)
+bool Fossil::stashDrop(const QString& name)
 {
 	return runFossil(QStringList() << "stash" << "drop" << name);
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::stashDiff(const QString& name)
+bool Fossil::stashDiff(const QString& name)
 {
 	return runFossil(QStringList() << "stash" << "diff" << name, 0);
 }
@@ -433,7 +433,7 @@ static QString ParseFossilQuery(QString line)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::runFossil(const QStringList &args, QStringList *output, int runFlags)
+bool Fossil::runFossil(const QStringList &args, QStringList *output, int runFlags)
 {
 	int exit_code = EXIT_FAILURE;
 	if(!runFossilRaw(args, output, &exit_code, runFlags))
@@ -445,7 +445,7 @@ bool Bridge::runFossil(const QStringList &args, QStringList *output, int runFlag
 //------------------------------------------------------------------------------
 // Run fossil. Returns true if execution was successful regardless if fossil
 // issued an error
-bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags)
+bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags)
 {
 	bool silent_input = (runFlags & RUNFLAGS_SILENT_INPUT) != 0;
 	bool silent_output = (runFlags & RUNFLAGS_SILENT_OUTPUT) != 0;
@@ -732,7 +732,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 }
 
 //------------------------------------------------------------------------------
-QString Bridge::getFossilPath()
+QString Fossil::getFossilPath()
 {
 	// Use the user-specified fossil if available
 	QString fossil_path = fossilPath;
@@ -754,7 +754,7 @@ QString Bridge::getFossilPath()
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::isWorkspace(const QString &path)
+bool Fossil::isWorkspace(const QString &path)
 {
 	if(path.length()==0)
 		return false;
@@ -769,13 +769,13 @@ bool Bridge::isWorkspace(const QString &path)
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::uiRunning() const
+bool Fossil::uiRunning() const
 {
 	return fossilUI.state() == QProcess::Running;
 }
 
 //------------------------------------------------------------------------------
-bool Bridge::startUI(const QString &httpPort)
+bool Fossil::startUI(const QString &httpPort)
 {
 	if(uiRunning())
 	{
@@ -805,7 +805,7 @@ bool Bridge::startUI(const QString &httpPort)
 }
 
 //------------------------------------------------------------------------------
-void Bridge::stopUI()
+void Fossil::stopUI()
 {
 	if(uiRunning())
 	{
