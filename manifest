@@ -1,5 +1,5 @@
-C Renamed\sRepoFile\sto\sWorkspaceFile
-D 2015-04-30T11:29:21.110
+C Added\smissing\sWorkspace.cpp/h
+D 2015-04-30T11:37:04.334
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -206,6 +206,8 @@ F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp f78728e0817b1db23007ba0d2c5c26980ee7ebca
 F src/Utils.h 48ca8ab324068df2bf5120c961216c297b94cb45
+F src/Workspace.cpp dd657ecc61161e2a14e821424a76220cfd4ca8ce
+F src/Workspace.h fa11507567ee6dc336e19d18dd9574da4823ae2f
 F src/main.cpp 2ac8badc2a63fa123ceae53382ce24cfe1b5a54b
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -215,7 +217,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 4c84ad9b0b25c9a77d935f9598b6705498d8e0ae
-R 09e377e3947cb9dc34273000bdb7e135
+P 8527bab97be43b2370eb03045dee3818fa8a2edf
+R a0658af9a44eb2edc8f67837992ca8ff
 U kostas
-Z acf05986975f53be7b8c33e091697cd2
+Z c61114eaf068b6a2a510be12e212e0db
