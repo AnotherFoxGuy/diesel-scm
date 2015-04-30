@@ -108,8 +108,12 @@ typedef QSet<QString> stringset_t;
 class Workspace
 {
 public:
+	~Workspace();
+
 	typedef QList<RepoFile*> filelist_t;
 	typedef QMap<QString, RepoFile*> filemap_t;
+
+	void				clearState();
 
 	Bridge &			fossil() { return bridge; }
 	const Bridge &		fossil() const { return bridge; }

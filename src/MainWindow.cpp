@@ -209,12 +209,15 @@ MainWindow::~MainWindow()
 	stopUI();
 	updateSettings();
 
-	// Dispose RepoFiles
-	for(Workspace::filemap_t::iterator it = getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
-		delete *it;
-
 	delete ui;
 }
+
+//-----------------------------------------------------------------------------
+Workspace::~Workspace()
+{
+	clearState();
+}
+
 //-----------------------------------------------------------------------------
 const QString &MainWindow::getCurrentWorkspace()
 {
@@ -584,6 +587,17 @@ bool MainWindow::refresh()
 }
 
 //------------------------------------------------------------------------------
+void Workspace::clearState()
+{
+	// Dispose RepoFiles
+	foreach(RepoFile *r, getFiles())
+		delete r;
+
+	getFiles().clear();
+	getPaths().clear();
+}
+
+//------------------------------------------------------------------------------
 void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, Bridge::UICallback &uiCallback, bool &operationAborted)
 {
 	// Scan all workspace files
@@ -600,12 +614,7 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 
 	bool scan_files = scanLocal;
 
-	// Dispose RepoFiles
-	for(Workspace::filemap_t::iterator it = getFiles().begin(); it!=getFiles().end(); ++it)
-		delete *it;
-
-	getFiles().clear();
-	getPaths().clear();
+	clearState();
 
 	operationAborted = false;
 
