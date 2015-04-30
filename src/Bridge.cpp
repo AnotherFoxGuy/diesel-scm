@@ -731,6 +731,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	return true;
 }
 
+//------------------------------------------------------------------------------
 QString Bridge::getFossilPath()
 {
 	// Use the user-specified fossil if available
@@ -751,7 +752,6 @@ QString Bridge::getFossilPath()
 	// Otherwise assume there is a "fossil" executable in the path
 	return fossil_exe;
 }
-
 
 //------------------------------------------------------------------------------
 bool Bridge::isWorkspace(const QString &path)
