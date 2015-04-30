@@ -1,5 +1,5 @@
-C Renamed\sBridge\sto\sFossil
-D 2015-04-30T12:15:14.026
+C Renamed\stableView\sto\sfileTableView\nRenamed\streeView\sto\sworkspaceTreeView\nRenamed\stableViewStash\sto\sstashTableView
+D 2015-04-30T16:23:15.640
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -196,12 +196,12 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp b54d136f05764535636da04bcc5f60b2eb97e5b6 w src/Bridge.cpp
-F src/Fossil.h e46ec6cdb5c23a34176050fbd90e561ac87c07f9 w src/Bridge.h
+F src/Fossil.cpp b54d136f05764535636da04bcc5f60b2eb97e5b6
+F src/Fossil.h e46ec6cdb5c23a34176050fbd90e561ac87c07f9
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp f6ffb8c6d1283a812084094426d51a5ea601fa35
-F src/MainWindow.h 970c7e42d07499a86b1f6cc5cbe3921e1fc1f9e3
+F src/MainWindow.cpp cbd80ad8b9bf4c090a913181e4725646677c9c0c
+F src/MainWindow.h d8d376f2efbf47c7a0241bb574994dbcf92300fb
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp f78728e0817b1db23007ba0d2c5c26980ee7ebca
@@ -215,9 +215,9 @@ F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
+F ui/MainWindow.ui c02f609b7f3a33c9be5f420591466ae5e398a988
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P c7b15ab434e33f5b73833256e97e2fabed8f1451
-R ea2eae273fa42edf7d181d3dcc962763
+P 77abfe4126ef0adf7d0c70df7a2aac918bcc4128
+R ed2ea66d15f08ec954000571498b8a1b
 U kostas
-Z 9d3003eee2f50a485b1e0f3f2f9bf646
+Z 56e75383c99242a3ba759cdca74a3ed4

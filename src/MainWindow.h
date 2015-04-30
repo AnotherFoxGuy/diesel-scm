@@ -67,7 +67,7 @@ private slots:
 	// Manual slots.
 	// Use a different naming scheme to prevent warnings from Qt's automatic signaling
 	void onOpenRecent();
-	void onTreeViewSelectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
+	void onWorkspaceTreeViewSelectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
 	void onFileViewDragOut();
 	void onAbort();
 
@@ -79,8 +79,8 @@ private slots:
 	void on_actionTimeline_triggered();
 	void on_actionHistory_triggered();
 	void on_actionClearLog_triggered();
-	void on_tableView_doubleClicked(const QModelIndex &index);
-	void on_treeView_doubleClicked(const QModelIndex &index);
+	void on_fileTableView_doubleClicked(const QModelIndex &index);
+	void on_workspaceTreeView_doubleClicked(const QModelIndex &index);
 	void on_actionOpenFile_triggered();
 	void on_actionPush_triggered();
 	void on_actionPull_triggered();
@@ -111,7 +111,7 @@ private slots:
 	void on_actionDeleteStash_triggered();
 	void on_actionDiffStash_triggered();
 	void on_textBrowser_customContextMenuRequested(const QPoint &pos);
-	void on_tableView_customContextMenuRequested(const QPoint &pos);
+	void on_fileTableView_customContextMenuRequested(const QPoint &pos);
 
 private:
 	class MainWinUICallback : public UICallback
