@@ -275,11 +275,11 @@ private:
 	bool				operationAborted;
 	stringset_t			selectedDirs;	// The directory selected in the tree
 
-	Workspace			repo;
-	Workspace &			getRepo() { return repo; }
+	Workspace			workspace;
+	Workspace &			getWorkspace() { return workspace; }
 
-	Bridge &			fossil() { return repo.fossil(); }
-	const Bridge &		fossil() const { return repo.fossil(); }
+	Bridge &			fossil() { return workspace.fossil(); }
+	const Bridge &		fossil() const { return workspace.fossil(); }
 
 	Settings			&settings;
 	QStringList			workspaceHistory;

@@ -85,7 +85,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	separator->setSeparator(true);
 
 	// TableView
-	ui->tableView->setModel(&getRepo().getFileModel());
+	ui->tableView->setModel(&getWorkspace().getFileModel());
 
 	ui->tableView->addAction(ui->actionDiff);
 	ui->tableView->addAction(ui->actionHistory);
@@ -103,8 +103,8 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	QStringList header;
 	header << tr("Status") << tr("File") << tr("Extension") << tr("Modified") << tr("Path");
-	getRepo().getFileModel().setHorizontalHeaderLabels(header);
-	getRepo().getFileModel().horizontalHeaderItem(COLUMN_STATUS)->setTextAlignment(Qt::AlignCenter);
+	getWorkspace().getFileModel().setHorizontalHeaderLabels(header);
+	getWorkspace().getFileModel().horizontalHeaderItem(COLUMN_STATUS)->setTextAlignment(Qt::AlignCenter);
 
 	// Needed on OSX as the preset value from the GUI editor is not always reflected
 	ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
@@ -116,7 +116,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->tableView->horizontalHeader()->setStretchLastSection(true);
 
 	// TreeView
-	ui->treeView->setModel(&getRepo().getDirModel());
+	ui->treeView->setModel(&getWorkspace().getDirModel());
 	connect( ui->treeView->selectionModel(),
 		SIGNAL( selectionChanged(const QItemSelection &, const QItemSelection &) ),
 		SLOT( onTreeViewSelectionChanged(const QItemSelection &, const QItemSelection &) ),
@@ -132,7 +132,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->treeView->addAction(ui->actionOpenFolder);
 
 	// StashView
-	ui->tableViewStash->setModel(&getRepo().getStashModel());
+	ui->tableViewStash->setModel(&getWorkspace().getStashModel());
 	ui->tableViewStash->addAction(ui->actionApplyStash);
 	ui->tableViewStash->addAction(ui->actionDiffStash);
 	ui->tableViewStash->addAction(ui->actionDeleteStash);
@@ -210,7 +210,7 @@ MainWindow::~MainWindow()
 	updateSettings();
 
 	// Dispose RepoFiles
-	for(Workspace::filemap_t::iterator it = getRepo().getFiles().begin(); it!=getRepo().getFiles().end(); ++it)
+	for(Workspace::filemap_t::iterator it = getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 		delete *it;
 
 	delete ui;
@@ -556,8 +556,8 @@ bool MainWindow::refresh()
 	{
 		setStatus(tr("No workspace detected."));
 		enableActions(false);
-		getRepo().getFileModel().removeRows(0, getRepo().getFileModel().rowCount());
-		getRepo().getDirModel().clear();
+		getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
+		getWorkspace().getDirModel().clear();
 		setWindowTitle(title);
 		return false;
 	}
@@ -565,8 +565,8 @@ bool MainWindow::refresh()
 	{
 		setStatus(tr("Old repository schema detected. Consider running 'fossil rebuild'"));
 		enableActions(false);
-		getRepo().getFileModel().removeRows(0, getRepo().getFileModel().rowCount());
-		getRepo().getDirModel().clear();
+		getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
+		getWorkspace().getDirModel().clear();
 		setWindowTitle(title);
 		return true;
 	}
@@ -724,7 +724,7 @@ _done:
 void MainWindow::scanWorkspace()
 {
 	setBusy(true);
-	getRepo().scanWorkspace(ui->actionViewUnknown->isChecked(),
+	getWorkspace().scanWorkspace(ui->actionViewUnknown->isChecked(),
 							ui->actionViewIgnored->isChecked(),
 							ui->actionViewModified->isChecked(),
 							ui->actionViewUnchanged->isChecked(),
@@ -780,18 +780,18 @@ static void addPathToTree(QStandardItem &root, const QString &path)
 void MainWindow::updateDirView()
 {
 	// Directory View
-	getRepo().getDirModel().clear();
+	getWorkspace().getDirModel().clear();
 
 	QStringList header;
 	header << tr("Folders");
-	getRepo().getDirModel().setHorizontalHeaderLabels(header);
+	getWorkspace().getDirModel().setHorizontalHeaderLabels(header);
 
 	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), fossil().getProjectName());
 	root->setData(""); // Empty Path
 	root->setEditable(false);
 
-	getRepo().getDirModel().appendRow(root);
-	for(stringset_t::iterator it = getRepo().getPaths().begin(); it!=getRepo().getPaths().end(); ++it)
+	getWorkspace().getDirModel().appendRow(root);
+	for(stringset_t::iterator it = getWorkspace().getPaths().begin(); it!=getWorkspace().getPaths().end(); ++it)
 	{
 		const QString &dir = *it;
 		if(dir.isEmpty())
@@ -807,7 +807,7 @@ void MainWindow::updateDirView()
 void MainWindow::updateFileView()
 {
 	// Clear content except headers
-	getRepo().getFileModel().removeRows(0, getRepo().getFileModel().rowCount());
+	getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
 
 	struct { RepoFile::EntryType type; QString text; const char *icon; }
 	stats[] =
@@ -826,7 +826,7 @@ void MainWindow::updateFileView()
 	bool display_path = viewMode==VIEWMODE_LIST || selectedDirs.count() > 1;
 
 	size_t item_id=0;
-	for(Workspace::filemap_t::iterator it = getRepo().getFiles().begin(); it!=getRepo().getFiles().end(); ++it)
+	for(Workspace::filemap_t::iterator it = getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
 		const RepoFile &e = *it.value();
 		QString path = e.getPath();
@@ -851,13 +851,13 @@ void MainWindow::updateFileView()
 
 		QStandardItem *status = new QStandardItem(QIcon(status_icon_path), status_text);
 		status->setToolTip(status_text);
-		getRepo().getFileModel().setItem(item_id, COLUMN_STATUS, status);
+		getWorkspace().getFileModel().setItem(item_id, COLUMN_STATUS, status);
 
 		QFileInfo finfo = e.getFileInfo();
 		QIcon icon = icon_provider.icon(finfo);
 
 		QStandardItem *filename_item = 0;
-		getRepo().getFileModel().setItem(item_id, COLUMN_PATH, new QStandardItem(path));
+		getWorkspace().getFileModel().setItem(item_id, COLUMN_PATH, new QStandardItem(path));
 
 		if(display_path)
 			filename_item = new QStandardItem(icon, QDir::toNativeSeparators(e.getFilePath()));
@@ -867,10 +867,10 @@ void MainWindow::updateFileView()
 		Q_ASSERT(filename_item);
 		// Keep the path in the user data
 		filename_item->setData(e.getFilePath());
-		getRepo().getFileModel().setItem(item_id, COLUMN_FILENAME, filename_item);
+		getWorkspace().getFileModel().setItem(item_id, COLUMN_FILENAME, filename_item);
 
-		getRepo().getFileModel().setItem(item_id, COLUMN_EXTENSION, new QStandardItem(finfo.suffix()));
-		getRepo().getFileModel().setItem(item_id, COLUMN_MODIFIED, new QStandardItem(finfo.lastModified().toString(Qt::SystemLocaleShortDate)));
+		getWorkspace().getFileModel().setItem(item_id, COLUMN_EXTENSION, new QStandardItem(finfo.suffix()));
+		getWorkspace().getFileModel().setItem(item_id, COLUMN_MODIFIED, new QStandardItem(finfo.lastModified().toString(Qt::SystemLocaleShortDate)));
 
 		++item_id;
 	}
@@ -881,17 +881,17 @@ void MainWindow::updateFileView()
 //------------------------------------------------------------------------------
 void MainWindow::updateStashView()
 {
-	getRepo().getStashModel().clear();
+	getWorkspace().getStashModel().clear();
 
 	QStringList header;
 	header << tr("Stashes");
-	getRepo().getStashModel().setHorizontalHeaderLabels(header);
+	getWorkspace().getStashModel().setHorizontalHeaderLabels(header);
 
-	for(stashmap_t::iterator it=getRepo().getStashes().begin(); it!=getRepo().getStashes().end(); ++it)
+	for(stashmap_t::iterator it=getWorkspace().getStashes().begin(); it!=getWorkspace().getStashes().end(); ++it)
 	{
 		QStandardItem *item = new QStandardItem(it.key());
 		item->setToolTip(it.key());
-		getRepo().getStashModel().appendRow(item);
+		getWorkspace().getStashModel().appendRow(item);
 	}
 	ui->tableViewStash->resizeColumnsToContents();
 	ui->tableViewStash->resizeRowsToContents();
@@ -945,7 +945,7 @@ void MainWindow::applySettings()
 	store->endArray();
 
 	store->beginReadArray("FileColumns");
-	for(int i=0; i<getRepo().getFileModel().columnCount(); ++i)
+	for(int i=0; i<getWorkspace().getFileModel().columnCount(); ++i)
 	{
 		store->setArrayIndex(i);
 		if(store->contains("Width"))
@@ -1019,8 +1019,8 @@ void MainWindow::updateSettings()
 	}
 	store->endArray();
 
-	store->beginWriteArray("FileColumns", getRepo().getFileModel().columnCount());
-	for(int i=0; i<getRepo().getFileModel().columnCount(); ++i)
+	store->beginWriteArray("FileColumns", getWorkspace().getFileModel().columnCount());
+	for(int i=0; i<getWorkspace().getFileModel().columnCount(); ++i)
 	{
 		store->setArrayIndex(i);
 		store->setValue("Width", ui->tableView->columnWidth(i));
@@ -1086,7 +1086,7 @@ void MainWindow::getSelectionPaths(stringset_t &paths)
 	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
 	{
 		const QModelIndex &mi = *mi_it;
-		QVariant data = getRepo().getDirModel().data(mi, REPODIRMODEL_ROLE_PATH);
+		QVariant data = getWorkspace().getDirModel().data(mi, REPODIRMODEL_ROLE_PATH);
 		paths.insert(data.toString());
 	}
 }
@@ -1094,7 +1094,7 @@ void MainWindow::getSelectionPaths(stringset_t &paths)
 // Select all workspace files that match the includeMask
 void MainWindow::getAllFilenames(QStringList &filenames, int includeMask)
 {
-	for(Workspace::filemap_t::iterator it=getRepo().getFiles().begin(); it!=getRepo().getFiles().end(); ++it)
+	for(Workspace::filemap_t::iterator it=getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
 		const RepoFile &e = *(*it);
 
@@ -1118,7 +1118,7 @@ void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bo
 	}
 
 	// Select the actual files form the selected directories
-	for(Workspace::filemap_t::iterator it=getRepo().getFiles().begin(); it!=getRepo().getFiles().end(); ++it)
+	for(Workspace::filemap_t::iterator it=getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
 		const RepoFile &e = *(*it);
 
@@ -1172,10 +1172,10 @@ void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, b
 		if(mi.column()!=COLUMN_FILENAME)
 			continue;
 
-		QVariant data = getRepo().getFileModel().data(mi, Qt::UserRole+1);
+		QVariant data = getWorkspace().getFileModel().data(mi, Qt::UserRole+1);
 		QString filename = data.toString();
-		Workspace::filemap_t::iterator e_it = getRepo().getFiles().find(filename);
-		Q_ASSERT(e_it!=getRepo().getFiles().end());
+		Workspace::filemap_t::iterator e_it = getWorkspace().getFiles().find(filename);
+		Q_ASSERT(e_it!=getWorkspace().getFiles().end());
 		const RepoFile &e = *e_it.value();
 
 		// Skip unwanted files
@@ -1202,7 +1202,7 @@ void MainWindow::getStashViewSelection(QStringList &stashNames, bool allIfEmpty)
 
 		if(mi.column()!=0)
 			continue;
-		QString name = getRepo().getStashModel().data(mi).toString();
+		QString name = getWorkspace().getStashModel().data(mi).toString();
 		stashNames.append(name);
 	}
 }
@@ -1706,7 +1706,7 @@ void MainWindow::onTreeViewSelectionChanged(const QItemSelection &/*selected*/, 
 	for(int i=0; i<num_selected; ++i)
 	{
 		QModelIndex index = selection.at(i);
-		QString dir = getRepo().getDirModel().data(index, REPODIRMODEL_ROLE_PATH).toString();
+		QString dir = getWorkspace().getDirModel().data(index, REPODIRMODEL_ROLE_PATH).toString();
 		selectedDirs.insert(dir);
 	}
 
@@ -1728,7 +1728,7 @@ void MainWindow::on_actionOpenFolder_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_treeView_doubleClicked(const QModelIndex &index)
 {
-	QString target = getRepo().getDirModel().data(index, REPODIRMODEL_ROLE_PATH).toString();
+	QString target = getWorkspace().getDirModel().data(index, REPODIRMODEL_ROLE_PATH).toString();
 	target = getCurrentWorkspace() + PATH_SEPARATOR + target;
 
 	QUrl url = QUrl::fromLocalFile(target);
@@ -1782,7 +1782,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 
 	QString new_path = old_path.left(dir_start) + new_name;
 
-	if(getRepo().getPaths().contains(new_path))
+	if(getWorkspace().getPaths().contains(new_path))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Cannot rename folder.")+"\n" +tr("This folder exists already."));
 		return;
@@ -1792,7 +1792,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	Workspace::filelist_t files_to_move;
 	QStringList new_paths;
 	QStringList operations;
-	foreach(RepoFile *r, getRepo().getFiles())
+	foreach(RepoFile *r, getWorkspace().getFiles())
 	{
 		if(r->getPath().indexOf(old_path)!=0)
 			continue;
@@ -1935,7 +1935,7 @@ void MainWindow::on_actionNewStash_triggered()
 	}
 
 	// Check that this stash does not exist
-	for(stashmap_t::iterator it=getRepo().getStashes().begin(); it!=getRepo().getStashes().end(); ++it)
+	for(stashmap_t::iterator it=getWorkspace().getStashes().begin(); it!=getWorkspace().getStashes().end(); ++it)
 	{
 		if(stash_name == it.key())
 		{
@@ -1963,8 +1963,8 @@ void MainWindow::on_actionApplyStash_triggered()
 	// Apply stashes
 	for(QStringList::iterator it=stashes.begin(); it!=stashes.end(); ++it)
 	{
-		stashmap_t::iterator id_it = getRepo().getStashes().find(*it);
-		Q_ASSERT(id_it!=getRepo().getStashes().end());
+		stashmap_t::iterator id_it = getWorkspace().getStashes().find(*it);
+		Q_ASSERT(id_it!=getWorkspace().getStashes().end());
 
 		if(!fossil().stashApply(*id_it))
 		{
@@ -1976,8 +1976,8 @@ void MainWindow::on_actionApplyStash_triggered()
 	// Delete stashes
 	for(QStringList::iterator it=stashes.begin(); delete_stashes && it!=stashes.end(); ++it)
 	{
-		stashmap_t::iterator id_it = getRepo().getStashes().find(*it);
-		Q_ASSERT(id_it!=getRepo().getStashes().end());
+		stashmap_t::iterator id_it = getWorkspace().getStashes().find(*it);
+		Q_ASSERT(id_it!=getWorkspace().getStashes().end());
 
 		if(!fossil().stashDrop(*id_it))
 		{
@@ -2004,8 +2004,8 @@ void MainWindow::on_actionDeleteStash_triggered()
 	// Delete stashes
 	for(QStringList::iterator it=stashes.begin(); it!=stashes.end(); ++it)
 	{
-		stashmap_t::iterator id_it = getRepo().getStashes().find(*it);
-		Q_ASSERT(id_it!=getRepo().getStashes().end());
+		stashmap_t::iterator id_it = getWorkspace().getStashes().find(*it);
+		Q_ASSERT(id_it!=getWorkspace().getStashes().end());
 
 		if(!fossil().stashDrop(*id_it))
 		{
@@ -2026,8 +2026,8 @@ void MainWindow::on_actionDiffStash_triggered()
 	if(stashes.length() != 1)
 		return;
 
-	stashmap_t::iterator id_it = getRepo().getStashes().find(*stashes.begin());
-	Q_ASSERT(id_it!=getRepo().getStashes().end());
+	stashmap_t::iterator id_it = getWorkspace().getStashes().find(*stashes.begin());
+	Q_ASSERT(id_it!=getWorkspace().getStashes().end());
 
 	// Run diff
 	fossil().stashDiff(*id_it);
