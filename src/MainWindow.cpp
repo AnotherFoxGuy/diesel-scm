@@ -584,11 +584,11 @@ bool MainWindow::refresh()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::scanWorkspace()
+void Repository::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, Bridge::UICallback &uiCallback, bool &operationAborted)
 {
 	// Scan all workspace files
 	QFileInfoList all_files;
-	QString wkdir = getCurrentWorkspace();
+	QString wkdir = fossil().getCurrentWorkspace();
 
 	if(wkdir.isEmpty())
 		return;
@@ -598,33 +598,32 @@ void MainWindow::scanWorkspace()
 	if(!fossil().listFiles(res))
 		return;
 
-	bool scan_files = ui->actionViewUnknown->isChecked();
-
-	setStatus(tr("Scanning Workspace..."));
-	setBusy(true);
+	bool scan_files = scanLocal;
 
 	// Dispose RepoFiles
-	for(Repository::filemap_t::iterator it = getRepo().workspaceFiles.begin(); it!=getRepo().workspaceFiles.end(); ++it)
+	for(Repository::filemap_t::iterator it = workspaceFiles.begin(); it!=workspaceFiles.end(); ++it)
 		delete *it;
 
-	getRepo().workspaceFiles.clear();
-	getRepo().pathSet.clear();
+	workspaceFiles.clear();
+	pathSet.clear();
 
 	operationAborted = false;
 
+	uiCallback.beginProcess("");
 	if(scan_files)
 	{
 		QCoreApplication::processEvents();
 
 		QString ignore;
 		// If we should not be showing ignored files, fill in the ignored spec
-		if(!ui->actionViewIgnored->isChecked())
+		if(!scanIgnored)
 		{
 			// QDir expects multiple specs being separated by a semicolon
-			ignore = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().replace(',',';');
+			ignore = ignoreGlob;
+			ignore.replace(',',';');
 		}
 
-		if(!getRepo().scanDirectory(all_files, wkdir, wkdir, ignore, operationAborted, uiCallback))
+		if(!scanDirectory(all_files, wkdir, wkdir, ignore, operationAborted, uiCallback))
 			goto _done;
 
 		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
@@ -637,13 +636,13 @@ void MainWindow::scanWorkspace()
 				continue;
 
 			RepoFile *rf = new RepoFile(*it, RepoFile::TYPE_UNKNOWN, wkdir);
-			getRepo().workspaceFiles.insert(rf->getFilePath(), rf);
-			getRepo().pathSet.insert(rf->getPath());
+			workspaceFiles.insert(rf->getFilePath(), rf);
+			pathSet.insert(rf->getPath());
 		}
 	}
+	uiCallback.endProcess();
 
-	setStatus(tr("Updating..."));
-	QCoreApplication::processEvents();
+	uiCallback.beginProcess(QObject::tr("Updating..."));
 
 	// Update Files and Directories
 
@@ -683,43 +682,56 @@ void MainWindow::scanWorkspace()
 			type = RepoFile::TYPE_CONFLICTED;
 
 		// Filter unwanted file types
-		if( ((type & RepoFile::TYPE_MODIFIED) && !ui->actionViewModified->isChecked()) ||
-			((type & RepoFile::TYPE_UNCHANGED) && !ui->actionViewUnchanged->isChecked() ))
+		if( ((type & RepoFile::TYPE_MODIFIED) && !scanModified) ||
+			((type & RepoFile::TYPE_UNCHANGED) && !scanUnchanged))
 		{
-			getRepo().workspaceFiles.remove(fname);
+			workspaceFiles.remove(fname);
 			continue;
 		}
 		else
 			add_missing = true;
 
-		Repository::filemap_t::iterator it = getRepo().workspaceFiles.find(fname);
+		Repository::filemap_t::iterator it = workspaceFiles.find(fname);
 
 		RepoFile *rf = 0;
-		if(add_missing && it==getRepo().workspaceFiles.end())
+		if(add_missing && it==workspaceFiles.end())
 		{
 			QFileInfo info(wkdir+QDir::separator()+fname);
 			rf = new RepoFile(info, type, wkdir);
-			getRepo().workspaceFiles.insert(rf->getFilePath(), rf);
+			workspaceFiles.insert(rf->getFilePath(), rf);
 		}
 
 		if(!rf)
 		{
-			it = getRepo().workspaceFiles.find(fname);
-			Q_ASSERT(it!=getRepo().workspaceFiles.end());
+			it = workspaceFiles.find(fname);
+			Q_ASSERT(it!=workspaceFiles.end());
 			rf = *it;
 		}
 
 		rf->setType(type);
 
 		QString path = rf->getPath();
-		getRepo().pathSet.insert(path);
+		pathSet.insert(path);
 	}
 
 	// Load the stash
-	fossil().stashList(getRepo().stashMap);
-
-	// Update the file item model
+	fossil().stashList(stashMap);
 _done:
+	uiCallback.endProcess();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::scanWorkspace()
+{
+	setBusy(true);
+	getRepo().scanWorkspace(ui->actionViewUnknown->isChecked(),
+							ui->actionViewIgnored->isChecked(),
+							ui->actionViewModified->isChecked(),
+							ui->actionViewUnchanged->isChecked(),
+							settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString(),
+							uiCallback,
+							operationAborted
+							);
 	updateDirView();
 	updateFileView();
 	updateStashView();
@@ -2183,6 +2195,7 @@ void MainWindow::MainWinUICallback::beginProcess(const QString& text)
 	Q_ASSERT(mainWindow);
 	mainWindow->ui->statusBar->showMessage(text);
 	mainWindow->progressBar->setHidden(false);
+	QCoreApplication::processEvents();
 }
 
 //------------------------------------------------------------------------------
@@ -2199,6 +2212,7 @@ void MainWindow::MainWinUICallback::endProcess()
 	Q_ASSERT(mainWindow);
 	mainWindow->ui->statusBar->clearMessage();
 	mainWindow->progressBar->setHidden(true);
+	QCoreApplication::processEvents();
 }
 
 //------------------------------------------------------------------------------

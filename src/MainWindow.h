@@ -124,7 +124,12 @@ public:
 	stashmap_t			stashMap;
 	stringset_t			selectedDirs;	// The directory selected in the tree
 
+	Bridge				bridge;
+	Bridge &			fossil() { return bridge; }
+	const Bridge &		fossil() const { return bridge; }
+
 	static bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, Bridge::UICallback &uiCallback);
+	void scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, Bridge::UICallback &uiCallback, bool &operationAborted);
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -165,7 +170,6 @@ private:
 	void loadFossilSettings();
 	QString getFossilPath();
 	QString getFossilHttpAddress();
-	//static bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort);
 	void updateDirView();
 	void updateFileView();
 	void updateStashView();
@@ -268,12 +272,11 @@ private:
 	class QShortcut		*abortShortcut;
 	bool				operationAborted;
 
-	Bridge				bridge;
-	Bridge &			fossil() { return bridge; }
-	const Bridge &		fossil() const { return bridge; }
-
 	Repository			repo;
 	Repository &		getRepo() { return repo; }
+
+	Bridge &			fossil() { return repo.bridge; }
+	const Bridge &		fossil() const { return repo.bridge; }
 
 	Settings			&settings;
 	QStringList			workspaceHistory;
