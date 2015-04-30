@@ -1,5 +1,5 @@
-C Fixed\sfossil\soperation\stermination\sflag\n
-D 2015-04-29T12:35:33.873
+C Moved\srepository\smodel\sdata\sto\sRepository\sclass\n
+D 2015-04-30T08:34:11.227
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -200,8 +200,8 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp f87fb7425ae220f2b00d6e35c7e51c189232ada7
-F src/MainWindow.h fb8783a0bcc82b61e63d0b52db157c4a31881380
+F src/MainWindow.cpp b73396d7d6ead5421e4a2776c73eb3909fe2b36b
+F src/MainWindow.h fc1a2a7afee8cea6f7d86c3a477d1687b6be3f3a
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp f78728e0817b1db23007ba0d2c5c26980ee7ebca
@@ -215,7 +215,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 0017b55685a3fe99a72757e9f6a8c3c261612413
-R 1a2fe39703e4ffd7fef355a18e8d5a76
+P f791fda7d73f7e7b71b28ecbaefd93330090a834
+R 23d93d1e0a50531951ca9e8e511e4bcb
 U kostas
-Z 30de43e6ae2e0ffe73371ce33c4e23bd
+Z 7b020d5baf7830f0328eb54332f8b242

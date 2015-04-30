@@ -107,6 +107,24 @@ private:
 	QString		Path;
 };
 
+
+typedef QSet<QString> stringset_t;
+
+class Repository
+{
+public:
+	QStandardItemModel	repoFileModel;
+	QStandardItemModel	repoDirModel;
+	QStandardItemModel	repoStashModel;
+	// Repository State
+	typedef QList<RepoFile*> filelist_t;
+	typedef QMap<QString, RepoFile*> filemap_t;
+	filemap_t			workspaceFiles;
+	stringset_t			pathSet;
+	stashmap_t			stashMap;
+	stringset_t			selectedDirs;	// The directory selected in the tree
+};
+
 //////////////////////////////////////////////////////////////////////////
 // MainWindow
 //////////////////////////////////////////////////////////////////////////
@@ -119,9 +137,6 @@ public:
 	~MainWindow();
 	bool diffFile(const QString& repoFile);
 	void fullRefresh();
-
-private:
-	typedef QSet<QString> stringset_t;
 
 private:
 	bool refresh();
@@ -245,14 +260,13 @@ private:
 	};
 
 	Ui::MainWindow		*ui;
-	QStandardItemModel	repoFileModel;
-	QStandardItemModel	repoDirModel;
-	QStandardItemModel	repoStashModel;
-	QProcess			fossilUI;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QProgressBar	*progressBar;
 	class QShortcut		*abortShortcut;
 	bool				operationAborted;
+
+	Repository			repo;
+	Repository &		getRepo() { return repo; }
 
 	Settings			&settings;
 	QStringList			workspaceHistory;
@@ -261,14 +275,6 @@ private:
 	Bridge				bridge;
 
 	ViewMode			viewMode;
-	stringset_t			selectedDirs;	// The directory selected in the tree
-
-	// Repository State
-	typedef QList<RepoFile*> filelist_t;
-	typedef QMap<QString, RepoFile*> filemap_t;
-	filemap_t			workspaceFiles;
-	stringset_t			pathSet;
-	stashmap_t			stashMap;
 };
 
 #endif // MAINWINDOW_H
