@@ -631,16 +631,16 @@ void MainWindow::updateFileView()
 	// Clear content except headers
 	getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
 
-	struct { RepoFile::EntryType type; QString text; const char *icon; }
+	struct { WorkspaceFile::Type type; QString text; const char *icon; }
 	stats[] =
 	{
-		{   RepoFile::TYPE_EDITTED, tr("Edited"), ":icons/icons/Button Blank Yellow-01.png" },
-		{   RepoFile::TYPE_UNCHANGED, tr("Unchanged"), ":icons/icons/Button Blank Green-01.png" },
-		{   RepoFile::TYPE_ADDED, tr("Added"), ":icons/icons/Button Add-01.png" },
-		{   RepoFile::TYPE_DELETED, tr("Deleted"), ":icons/icons/Button Close-01.png" },
-		{   RepoFile::TYPE_RENAMED, tr("Renamed"), ":icons/icons/Button Reload-01.png" },
-		{   RepoFile::TYPE_MISSING, tr("Missing"), ":icons/icons/Button Help-01.png" },
-		{   RepoFile::TYPE_CONFLICTED, tr("Conflicted"), ":icons/icons/Button Blank Red-01.png" },
+		{   WorkspaceFile::TYPE_EDITTED, tr("Edited"), ":icons/icons/Button Blank Yellow-01.png" },
+		{   WorkspaceFile::TYPE_UNCHANGED, tr("Unchanged"), ":icons/icons/Button Blank Green-01.png" },
+		{   WorkspaceFile::TYPE_ADDED, tr("Added"), ":icons/icons/Button Add-01.png" },
+		{   WorkspaceFile::TYPE_DELETED, tr("Deleted"), ":icons/icons/Button Close-01.png" },
+		{   WorkspaceFile::TYPE_RENAMED, tr("Renamed"), ":icons/icons/Button Reload-01.png" },
+		{   WorkspaceFile::TYPE_MISSING, tr("Missing"), ":icons/icons/Button Help-01.png" },
+		{   WorkspaceFile::TYPE_CONFLICTED, tr("Conflicted"), ":icons/icons/Button Blank Red-01.png" },
 	};
 
 	QFileIconProvider icon_provider;
@@ -650,7 +650,7 @@ void MainWindow::updateFileView()
 	size_t item_id=0;
 	for(Workspace::filemap_t::iterator it = getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
-		const RepoFile &e = *it.value();
+		const WorkspaceFile &e = *it.value();
 		QString path = e.getPath();
 
 		// In Tree mode, filter all items not included in the current dir
@@ -918,7 +918,7 @@ void MainWindow::getAllFilenames(QStringList &filenames, int includeMask)
 {
 	for(Workspace::filemap_t::iterator it=getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
-		const RepoFile &e = *(*it);
+		const WorkspaceFile &e = *(*it);
 
 		// Skip unwanted file types
 		if(!(includeMask & e.getType()))
@@ -942,7 +942,7 @@ void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bo
 	// Select the actual files form the selected directories
 	for(Workspace::filemap_t::iterator it=getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
-		const RepoFile &e = *(*it);
+		const WorkspaceFile &e = *(*it);
 
 		// Skip unwanted file types
 		if(!(includeMask & e.getType()))
@@ -998,7 +998,7 @@ void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, b
 		QString filename = data.toString();
 		Workspace::filemap_t::iterator e_it = getWorkspace().getFiles().find(filename);
 		Q_ASSERT(e_it!=getWorkspace().getFiles().end());
-		const RepoFile &e = *e_it.value();
+		const WorkspaceFile &e = *e_it.value();
 
 		// Skip unwanted files
 		if(!(includeMask & e.getType()))
@@ -1039,7 +1039,7 @@ bool MainWindow::diffFile(const QString &repoFile)
 void MainWindow::on_actionDiff_triggered()
 {
 	QStringList selection;
-	getSelectionFilenames(selection, RepoFile::TYPE_REPO);
+	getSelectionFilenames(selection, WorkspaceFile::TYPE_REPO);
 
 	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
 		if(!diffFile(*it))
@@ -1158,7 +1158,7 @@ void MainWindow::on_actionPull_triggered()
 void MainWindow::on_actionCommit_triggered()
 {
 	QStringList commit_files;
-	getSelectionFilenames(commit_files, RepoFile::TYPE_MODIFIED, true);
+	getSelectionFilenames(commit_files, WorkspaceFile::TYPE_MODIFIED, true);
 
 	if(commit_files.empty())
 		return;
@@ -1191,7 +1191,7 @@ void MainWindow::on_actionCommit_triggered()
 	// when committing after a merge where fossil thinks that we are trying to do
 	// a partial commit which is not permitted.
 	QStringList all_modified_files;
-	getAllFilenames(all_modified_files, RepoFile::TYPE_MODIFIED);
+	getAllFilenames(all_modified_files, WorkspaceFile::TYPE_MODIFIED);
 
 	if(commit_files.size() != all_modified_files.size())
 		files = commit_files;
@@ -1205,7 +1205,7 @@ void MainWindow::on_actionAdd_triggered()
 {
 	// Get unknown files only
 	QStringList selection;
-	getSelectionFilenames(selection, RepoFile::TYPE_UNKNOWN);
+	getSelectionFilenames(selection, WorkspaceFile::TYPE_UNKNOWN);
 
 	if(selection.empty())
 		return;
@@ -1222,10 +1222,10 @@ void MainWindow::on_actionAdd_triggered()
 void MainWindow::on_actionDelete_triggered()
 {
 	QStringList repo_files;
-	getSelectionFilenames(repo_files, RepoFile::TYPE_REPO);
+	getSelectionFilenames(repo_files, WorkspaceFile::TYPE_REPO);
 
 	QStringList unknown_files;
-	getSelectionFilenames(unknown_files, RepoFile::TYPE_UNKNOWN);
+	getSelectionFilenames(unknown_files, WorkspaceFile::TYPE_UNKNOWN);
 
 	QStringList all_files = repo_files+unknown_files;
 
@@ -1259,7 +1259,7 @@ void MainWindow::on_actionDelete_triggered()
 void MainWindow::on_actionRevert_triggered()
 {
 	QStringList modified_files;
-	getSelectionFilenames(modified_files, RepoFile::TYPE_EDITTED|RepoFile::TYPE_ADDED|RepoFile::TYPE_DELETED|RepoFile::TYPE_MISSING|RepoFile::TYPE_CONFLICTED);
+	getSelectionFilenames(modified_files, WorkspaceFile::TYPE_EDITTED|WorkspaceFile::TYPE_ADDED|WorkspaceFile::TYPE_DELETED|WorkspaceFile::TYPE_MISSING|WorkspaceFile::TYPE_CONFLICTED);
 
 	if(modified_files.empty())
 		return;
@@ -1276,7 +1276,7 @@ void MainWindow::on_actionRevert_triggered()
 void MainWindow::on_actionRename_triggered()
 {
 	QStringList repo_files;
-	getSelectionFilenames(repo_files, RepoFile::TYPE_REPO);
+	getSelectionFilenames(repo_files, WorkspaceFile::TYPE_REPO);
 
 	if(repo_files.length()!=1)
 		return;
@@ -1614,7 +1614,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	Workspace::filelist_t files_to_move;
 	QStringList new_paths;
 	QStringList operations;
-	foreach(RepoFile *r, getWorkspace().getFiles())
+	foreach(WorkspaceFile *r, getWorkspace().getFiles())
 	{
 		if(r->getPath().indexOf(old_path)!=0)
 			continue;
@@ -1641,7 +1641,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	Q_ASSERT(files_to_move.length() == new_paths.length());
 	for(int i=0; i<files_to_move.length(); ++i)
 	{
-		RepoFile *r = files_to_move[i];
+		WorkspaceFile *r = files_to_move[i];
 		const QString &new_file_path = new_paths[i] + PATH_SEPARATOR + r->getFilename();
 
 		if(!fossil().renameFile(r->getFilePath(), new_file_path, false))
@@ -1677,7 +1677,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	// Now that target directories exist copy files
 	for(int i=0; i<files_to_move.length(); ++i)
 	{
-		RepoFile *r = files_to_move[i];
+		WorkspaceFile *r = files_to_move[i];
 		QString new_file_path = new_paths[i] + PATH_SEPARATOR + r->getFilename();
 
 		if(QFile::exists(new_file_path))
@@ -1698,7 +1698,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	// Finally delete old files
 	for(int i=0; i<files_to_move.length(); ++i)
 	{
-		RepoFile *r = files_to_move[i];
+		WorkspaceFile *r = files_to_move[i];
 
 		log(tr("Removing old file '%0'").arg(r->getFilePath())+"\n");
 
@@ -1737,7 +1737,7 @@ void MainWindow::on_actionViewStash_triggered()
 void MainWindow::on_actionNewStash_triggered()
 {
 	QStringList stashed_files;
-	getSelectionFilenames(stashed_files, RepoFile::TYPE_MODIFIED, true);
+	getSelectionFilenames(stashed_files, WorkspaceFile::TYPE_MODIFIED, true);
 
 	if(stashed_files.empty())
 		return;
