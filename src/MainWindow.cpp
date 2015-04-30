@@ -190,7 +190,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	uiCallback.init(this);
 	// Need to be before applySettings which sets the last workspace
-	bridge.Init(&uiCallback);
+	fossil().Init(&uiCallback);
 
 	applySettings();
 
@@ -218,7 +218,7 @@ MainWindow::~MainWindow()
 //-----------------------------------------------------------------------------
 const QString &MainWindow::getCurrentWorkspace()
 {
-	return bridge.getCurrentWorkspace();
+	return fossil().getCurrentWorkspace();
 }
 
 //-----------------------------------------------------------------------------
@@ -226,13 +226,13 @@ void MainWindow::setCurrentWorkspace(const QString &workspace)
 {
 	if(workspace.isEmpty())
 	{
-		bridge.setCurrentWorkspace("");
+		fossil().setCurrentWorkspace("");
 		return;
 	}
 
 	QString new_workspace = QFileInfo(workspace).absoluteFilePath();
 
-	bridge.setCurrentWorkspace(new_workspace);
+	fossil().setCurrentWorkspace(new_workspace);
 
 	addWorkspace(new_workspace);
 
@@ -291,7 +291,7 @@ bool MainWindow::openWorkspace(const QString &path)
 			}
 
 			// Ok open the repository file
-			if(!bridge.openRepository(fi.absoluteFilePath(), wkspace))
+			if(!fossil().openRepository(fi.absoluteFilePath(), wkspace))
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 				return false;
@@ -396,13 +396,13 @@ void MainWindow::on_actionNewRepository_triggered()
 	// Create repository
 	QString repo_abs_path = repo_path_info.absoluteFilePath();
 
-	if(!bridge.newRepository(repo_abs_path))
+	if(!fossil().newRepository(repo_abs_path))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
 		return;
 	}
 
-	if(!bridge.openRepository(repo_abs_path, wkdir))
+	if(!fossil().openRepository(repo_abs_path, wkdir))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 		return;
@@ -418,14 +418,14 @@ void MainWindow::on_actionNewRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCloseRepository_triggered()
 {
-	if(bridge.getRepoStatus()!=REPO_OK)
+	if(fossil().getRepoStatus()!=REPO_OK)
 		return;
 
 	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), tr("Are you sure you want to close this workspace?")))
 		return;
 
 	// Close Repo
-	if(!bridge.closeRepository())
+	if(!fossil().closeRepository())
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes available?"), QMessageBox::Ok );
 		return;
@@ -447,7 +447,7 @@ void MainWindow::on_actionCloneRepository_triggered()
 
 	stopUI();
 
-	if(!bridge.cloneRepository(repository, url, url_proxy))
+	if(!fossil().cloneRepository(repository, url, url_proxy))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not clone the repository"), QMessageBox::Ok);
 		return;
@@ -551,7 +551,7 @@ bool MainWindow::refresh()
 	QString title = "Fuel";
 
 	// Load repository info
-	RepoStatus st = bridge.getRepoStatus();
+	RepoStatus st = fossil().getRepoStatus();
 
 	if(st==REPO_NOT_FOUND)
 	{
@@ -577,8 +577,8 @@ bool MainWindow::refresh()
 	setStatus("");
 	enableActions(true);
 
-	if(!bridge.getProjectName().isEmpty())
-		title += " - " + bridge.getProjectName();
+	if(!fossil().getProjectName().isEmpty())
+		title += " - " + fossil().getProjectName();
 
 	setWindowTitle(title);
 	return true;
@@ -596,7 +596,7 @@ void MainWindow::scanWorkspace()
 
 	// Retrieve the status of files tracked by fossil
 	QStringList res;
-	if(!bridge.listFiles(res))
+	if(!fossil().listFiles(res))
 		return;
 
 	bool scan_files = ui->actionViewUnknown->isChecked();
@@ -635,7 +635,7 @@ void MainWindow::scanWorkspace()
 			QString fullpath = it->absoluteFilePath();
 
 			// Skip fossil files
-			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!bridge.getRepositoryFile().isEmpty() && QFileInfo(fullpath) == QFileInfo(bridge.getRepositoryFile())))
+			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!fossil().getRepositoryFile().isEmpty() && QFileInfo(fullpath) == QFileInfo(fossil().getRepositoryFile())))
 				continue;
 
 			RepoFile *rf = new RepoFile(*it, RepoFile::TYPE_UNKNOWN, wkdir);
@@ -718,7 +718,7 @@ void MainWindow::scanWorkspace()
 	}
 
 	// Load the stash
-	bridge.stashList(getRepo().stashMap);
+	fossil().stashList(getRepo().stashMap);
 
 	// Update the file item model
 _done:
@@ -777,7 +777,7 @@ void MainWindow::updateDirView()
 	header << tr("Folders");
 	getRepo().repoDirModel.setHorizontalHeaderLabels(header);
 
-	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), bridge.getProjectName());
+	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), fossil().getProjectName());
 	root->setData(""); // Empty Path
 	root->setEditable(false);
 
@@ -1201,7 +1201,7 @@ void MainWindow::getStashViewSelection(QStringList &stashNames, bool allIfEmpty)
 //------------------------------------------------------------------------------
 bool MainWindow::diffFile(const QString &repoFile)
 {
-	return bridge.diffFile(repoFile);
+	return fossil().diffFile(repoFile);
 }
 
 //------------------------------------------------------------------------------
@@ -1219,14 +1219,14 @@ void MainWindow::on_actionDiff_triggered()
 bool MainWindow::startUI()
 {
 	QString port = settings.GetValue(FUEL_SETTING_HTTP_PORT).toString();
-	bool started = bridge.startUI(port);
+	bool started = fossil().startUI(port);
 	ui->actionFossilUI->setChecked(started);
 	return started;
 }
 //------------------------------------------------------------------------------
 void MainWindow::stopUI()
 {
-	bridge.stopUI();
+	fossil().stopUI();
 	ui->webView->load(QUrl("about:blank"));
 	ui->actionFossilUI->setChecked(false);
 }
@@ -1234,7 +1234,7 @@ void MainWindow::stopUI()
 //------------------------------------------------------------------------------
 bool MainWindow::uiRunning() const
 {
-	return bridge.uiRunning();
+	return fossil().uiRunning();
 }
 
 //------------------------------------------------------------------------------
@@ -1306,7 +1306,7 @@ void MainWindow::on_actionPush_triggered()
 		return;
 	}
 
-	bridge.pushRepository();
+	fossil().pushRepository();
 }
 
 //------------------------------------------------------------------------------
@@ -1320,7 +1320,7 @@ void MainWindow::on_actionPull_triggered()
 		return;
 	}
 
-	bridge.pullRepository();
+	fossil().pullRepository();
 }
 
 //------------------------------------------------------------------------------
@@ -1365,7 +1365,7 @@ void MainWindow::on_actionCommit_triggered()
 	if(commit_files.size() != all_modified_files.size())
 		files = commit_files;
 
-	bridge.commitFiles(files, msg);
+	fossil().commitFiles(files, msg);
 	refresh();
 }
 
@@ -1383,7 +1383,7 @@ void MainWindow::on_actionAdd_triggered()
 		return;
 
 	// Do Add
-	bridge.addFiles(selection);
+	fossil().addFiles(selection);
 	refresh();
 }
 
@@ -1408,7 +1408,7 @@ void MainWindow::on_actionDelete_triggered()
 
 	// Remove repository files
 	if(!repo_files.empty())
-		bridge.removeFiles(repo_files, remove_local);
+		fossil().removeFiles(repo_files, remove_local);
 
 	// Remove unknown local files if selected
 	if(remove_local)
@@ -1437,7 +1437,7 @@ void MainWindow::on_actionRevert_triggered()
 		return;
 
 	// Do Revert
-	bridge.revertFiles(modified_files);
+	fossil().revertFiles(modified_files);
 	refresh();
 }
 
@@ -1466,7 +1466,7 @@ void MainWindow::on_actionRename_triggered()
 	}
 
 	// Do Rename
-	bridge.renameFile(fi_before.filePath(), fi_after.filePath(), true);
+	fossil().renameFile(fi_before.filePath(), fi_after.filePath(), true);
 
 	refresh();
 }
@@ -1498,7 +1498,7 @@ void MainWindow::on_actionUndo_triggered()
 	QStringList res;
 
 	// Do test Undo
-	bridge.undoRepository(res, true);
+	fossil().undoRepository(res, true);
 
 	if(res.length()>0 && res[0]=="No undo or redo is available")
 		return;
@@ -1507,7 +1507,7 @@ void MainWindow::on_actionUndo_triggered()
 		return;
 
 	// Do Undo
-	bridge.undoRepository(res, false);
+	fossil().undoRepository(res, false);
 
 	refresh();
 }
@@ -1517,7 +1517,7 @@ void MainWindow::on_actionAbout_triggered()
 {
 	QString fossil_ver;
 
-	if(bridge.getFossilVersion(fossil_ver))
+	if(fossil().getFossilVersion(fossil_ver))
 		fossil_ver = tr("Fossil version %0").arg(fossil_ver) + "\n";
 
 	QString qt_ver = tr("QT version %0").arg(QT_VERSION_STR) + "\n\n";
@@ -1546,7 +1546,7 @@ void MainWindow::on_actionUpdate_triggered()
 	QStringList res;
 
 	// Do test update
-	if(!bridge.updateRepository(res, true))
+	if(!fossil().updateRepository(res, true))
 		return;
 
 	// Fixme: parse "changes:      None. Already up-to-date" and avoid dialog
@@ -1558,7 +1558,7 @@ void MainWindow::on_actionUpdate_triggered()
 		return;
 
 	// Do update
-	bridge.updateRepository(res, false);
+	fossil().updateRepository(res, false);
 
 	refresh();
 }
@@ -1569,7 +1569,7 @@ void MainWindow::loadFossilSettings()
 	// Also retrieve the fossil global settings
 	QStringList out;
 
-	if(!bridge.getFossilSettings(out))
+	if(!fossil().getFossilSettings(out))
 		return;
 
 	QStringMap kv = MakeKeyValues(out);
@@ -1585,7 +1585,7 @@ void MainWindow::loadFossilSettings()
 		{
 			// Retrieve existing url
 			QString url;
-			if(bridge.getRemoteUrl(url))
+			if(fossil().getRemoteUrl(url))
 				it.value().Value = url;
 			continue;
 		}
@@ -1632,14 +1632,14 @@ void MainWindow::on_actionSettings_triggered()
 		if(name == FOSSIL_SETTING_REMOTE_URL)
 		{
 			// Run as silent to avoid displaying credentials in the log
-			bridge.setRemoteUrl(it.value().Value.toString());
+			fossil().setRemoteUrl(it.value().Value.toString());
 			continue;
 		}
 
 		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
 
 		QString value = it.value().Value.toString();
-		bridge.setFossilSetting(name, value, type == Settings::Setting::TYPE_FOSSIL_GLOBAL);
+		fossil().setFossilSetting(name, value, type == Settings::Setting::TYPE_FOSSIL_GLOBAL);
 	}
 }
 
@@ -1813,7 +1813,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 		RepoFile *r = files_to_move[i];
 		const QString &new_file_path = new_paths[i] + PATH_SEPARATOR + r->getFilename();
 
-		if(!bridge.renameFile(r->getFilePath(), new_file_path, false))
+		if(!fossil().renameFile(r->getFilePath(), new_file_path, false))
 		{
 			log(tr("Move aborted due to errors")+"\n");
 			goto _exit;
@@ -1936,7 +1936,7 @@ void MainWindow::on_actionNewStash_triggered()
 	}
 
 	// Do Stash
-	bridge.stashNew(stashed_files, stash_name, revert);
+	fossil().stashNew(stashed_files, stash_name, revert);
 
 	refresh();
 }
@@ -1957,7 +1957,7 @@ void MainWindow::on_actionApplyStash_triggered()
 		stashmap_t::iterator id_it = getRepo().stashMap.find(*it);
 		Q_ASSERT(id_it!=getRepo().stashMap.end());
 
-		if(!bridge.stashApply(*id_it))
+		if(!fossil().stashApply(*id_it))
 		{
 			log(tr("Stash application aborted due to errors")+"\n");
 			return;
@@ -1970,7 +1970,7 @@ void MainWindow::on_actionApplyStash_triggered()
 		stashmap_t::iterator id_it = getRepo().stashMap.find(*it);
 		Q_ASSERT(id_it!=getRepo().stashMap.end());
 
-		if(!bridge.stashDrop(*id_it))
+		if(!fossil().stashDrop(*id_it))
 		{
 			log(tr("Stash deletion aborted due to errors")+"\n");
 			return;
@@ -1998,7 +1998,7 @@ void MainWindow::on_actionDeleteStash_triggered()
 		stashmap_t::iterator id_it = getRepo().stashMap.find(*it);
 		Q_ASSERT(id_it!=getRepo().stashMap.end());
 
-		if(!bridge.stashDrop(*id_it))
+		if(!fossil().stashDrop(*id_it))
 		{
 			log(tr("Stash deletion aborted due to errors")+"\n");
 			return;
@@ -2021,7 +2021,7 @@ void MainWindow::on_actionDiffStash_triggered()
 	Q_ASSERT(id_it!=getRepo().stashMap.end());
 
 	// Run diff
-	bridge.stashDiff(*id_it);
+	fossil().stashDiff(*id_it);
 }
 
 //------------------------------------------------------------------------------
@@ -2134,7 +2134,7 @@ void MainWindow::dropEvent(QDropEvent *event)
 				return;
 
 			// Do Add
-			bridge.addFiles(newfiles);
+			fossil().addFiles(newfiles);
 
 			refresh();
 		}
@@ -2155,7 +2155,7 @@ void MainWindow::setBusy(bool busy)
 void MainWindow::onAbort()
 {
 	operationAborted = true;
-	bridge.abortOperation();
+	fossil().abortOperation();
 	// FIXME: Rename this to something better, Operation Aborted
 	log("<br><b>* "+tr("Terminated")+" *</b><br>", true);
 }

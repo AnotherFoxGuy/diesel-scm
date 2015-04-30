@@ -265,6 +265,10 @@ private:
 	class QShortcut		*abortShortcut;
 	bool				operationAborted;
 
+	Bridge				bridge;
+	Bridge &			fossil() { return bridge; }
+	const Bridge &		fossil() const { return bridge; }
+
 	Repository			repo;
 	Repository &		getRepo() { return repo; }
 
@@ -272,7 +276,6 @@ private:
 	QStringList			workspaceHistory;
 
 	MainWinUICallback	uiCallback;
-	Bridge				bridge;
 
 	ViewMode			viewMode;
 };
