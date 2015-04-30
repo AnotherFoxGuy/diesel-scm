@@ -1,5 +1,5 @@
-C Moved\sscanWorkspace\sto\sRepository
-D 2015-04-30T10:30:47.754
+C Cleanup
+D 2015-04-30T10:36:18.967
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -201,7 +201,7 @@ F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
 F src/MainWindow.cpp 939c919b6ede21771df77ff9973da7b3e39808dc
-F src/MainWindow.h 49f8f8241f54e99101828de6501bd77780510c4c
+F src/MainWindow.h 9df3df4c1baf0f386e226b1991b2d1dbea0ecdbb
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp f78728e0817b1db23007ba0d2c5c26980ee7ebca
@@ -215,7 +215,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 4d94a638499c31672bf47de43407b1fa2531e716
-R 9c35dcfb53087265b1dc9de40e3abf6c
+P 61734cf430e041d514222c71f751feead5b7faf6
+R 753dd95663c89722dde887fa796bf2c1
 U kostas
-Z ba97d0832e88bf4227c1c8c175541671
+Z f5ff6cd15d239d70f6502ce6d67686d0

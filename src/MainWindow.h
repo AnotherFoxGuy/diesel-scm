@@ -68,11 +68,6 @@ struct RepoFile
 		return FileInfo;
 	}
 
-	bool isRepo() const
-	{
-		return Type == TYPE_UNCHANGED || Type == TYPE_EDITTED;
-	}
-
 	const QString &getFilePath() const
 	{
 		return FilePath;
