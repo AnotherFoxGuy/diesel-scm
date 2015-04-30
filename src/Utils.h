@@ -18,5 +18,32 @@ QStringList					QuotePaths(const QStringList &paths);
 	bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint);
 #endif
 
+class UICallback
+{
+public:
+	virtual void logText(const QString &text, bool isHTML)=0;
+	virtual void beginProcess(const QString &text)=0;
+	virtual void updateProcess(const QString &text)=0;
+	virtual void endProcess()=0;
+	virtual QMessageBox::StandardButton Query(const QString &title, const QString &query, QMessageBox::StandardButtons buttons)=0;
+};
+
+
+class ScopedStatus
+{
+public:
+	ScopedStatus(UICallback *callback, const QString &text) : uiCallback(callback)
+	{
+		uiCallback->beginProcess(text);
+	}
+
+	~ScopedStatus()
+	{
+		uiCallback->endProcess();
+	}
+
+private:
+	UICallback *uiCallback;
+};
 
 #endif // UTILS_H

@@ -6,11 +6,10 @@
 #include <QDir>
 #include <QSet>
 #include <QMap>
-
 #include "Bridge.h"
 
 //////////////////////////////////////////////////////////////////////////
-// RepoFile
+// WorkspaceFile
 //////////////////////////////////////////////////////////////////////////
 struct WorkspaceFile
 {
@@ -111,8 +110,8 @@ public:
 	Bridge &			fossil() { return bridge; }
 	const Bridge &		fossil() const { return bridge; }
 
-	static bool			scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, Bridge::UICallback &uiCallback);
-	void				scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, Bridge::UICallback &uiCallback, bool &operationAborted);
+	static bool			scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, UICallback &uiCallback);
+	void				scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, UICallback &uiCallback, bool &operationAborted);
 
 	QStandardItemModel	&getFileModel() { return repoFileModel; }
 	QStandardItemModel	&getDirModel() { return repoDirModel; }

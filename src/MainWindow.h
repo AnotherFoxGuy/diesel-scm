@@ -116,7 +116,7 @@ private slots:
 	void on_tableView_customContextMenuRequested(const QPoint &pos);
 
 private:
-	class MainWinUICallback : public Bridge::UICallback
+	class MainWinUICallback : public UICallback
 	{
 	public:
 		MainWinUICallback() : mainWindow(0)

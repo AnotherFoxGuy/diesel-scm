@@ -14,29 +14,7 @@ static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 // 19: [5c46757d4b9765] on 2012-04-22 04:41:15
 static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
 
-#define FOSSIL_CHECKOUT1	"_FOSSIL_"
-#define FOSSIL_CHECKOUT2	".fslckout"
-#define FOSSIL_EXT			"fossil"
-
-
 ///////////////////////////////////////////////////////////////////////////////
-class ScopedFossilStatus
-{
-public:
-	ScopedFossilStatus(Bridge::UICallback *callback, const QString &text) : uiCallback(callback)
-	{
-		uiCallback->beginProcess(text);
-	}
-
-	~ScopedFossilStatus()
-	{
-		uiCallback->endProcess();
-	}
-private:
-	Bridge::UICallback *uiCallback;
-};
-
-//------------------------------------------------------------------------------
 RepoStatus Bridge::getRepoStatus()
 {
 	QStringList res;
@@ -499,7 +477,7 @@ bool Bridge::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	QString status_msg = QObject::tr("Running Fossil");
 	if(args.length() > 0)
 		status_msg = QString("Fossil %0").arg(args[0].toCaseFolded());
-	ScopedFossilStatus status(uiCallback, status_msg);
+	ScopedStatus status(uiCallback, status_msg);
 
 	// Generate args file
 	const QStringList *final_args = &args;

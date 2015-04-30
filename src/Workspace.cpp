@@ -20,7 +20,7 @@ void Workspace::clearState()
 }
 
 //------------------------------------------------------------------------------
-bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool &abort, Bridge::UICallback &uiCallback)
+bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool &abort, UICallback &uiCallback)
 {
 	QDir dir(dirPath);
 
@@ -53,7 +53,7 @@ bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, co
 }
 
 //------------------------------------------------------------------------------
-void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, Bridge::UICallback &uiCallback, bool &operationAborted)
+void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, UICallback &uiCallback, bool &operationAborted)
 {
 	// Scan all workspace files
 	QFileInfoList all_files;

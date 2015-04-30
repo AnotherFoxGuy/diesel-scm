@@ -1,5 +1,5 @@
-C Added\smissing\sWorkspace.cpp/h
-D 2015-04-30T11:37:04.334
+C Moved\sUICallback\sand\sScopedCallback\sto\sUtils
+D 2015-04-30T11:43:31.832
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -184,8 +184,8 @@ F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc 4098be128fd6c045db933d041fe8844b14643a6f
-F src/Bridge.cpp 96aca0460c87ec2cdd154527a0583a00309ebcea
-F src/Bridge.h 9a3a3a52eb64c673a9dedac1d5d15a44aac71bc7
+F src/Bridge.cpp 5e67a6fd18dd3fdbc7f94addb47f1a8e50064318
+F src/Bridge.h cc0d0128e2d286aa7d578d1213bed100ee4c458e
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
 F src/CloneDialog.cpp 4fc5aa8146ac63ba6ba7341b1635b3025819d708
@@ -201,13 +201,13 @@ F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
 F src/MainWindow.cpp f6ffb8c6d1283a812084094426d51a5ea601fa35
-F src/MainWindow.h a10364f15b68ca12a8ed7a48ac35dd4da3645e28
+F src/MainWindow.h d91eda93c4b0ad4de12cfe8e0f069639f1842e95
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp f78728e0817b1db23007ba0d2c5c26980ee7ebca
-F src/Utils.h 48ca8ab324068df2bf5120c961216c297b94cb45
-F src/Workspace.cpp dd657ecc61161e2a14e821424a76220cfd4ca8ce
-F src/Workspace.h fa11507567ee6dc336e19d18dd9574da4823ae2f
+F src/Utils.h 8ad68bd227bd999eb6ea92a70bb4be2d6788d912
+F src/Workspace.cpp a1ca37e803d6bccb9ddf1f80df66148438e6ea21
+F src/Workspace.h 515d6ded914dd8be10a611ebbb0e9befc8d64174
 F src/main.cpp 2ac8badc2a63fa123ceae53382ce24cfe1b5a54b
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -217,7 +217,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 8527bab97be43b2370eb03045dee3818fa8a2edf
-R a0658af9a44eb2edc8f67837992ca8ff
+P 2e7553cddf1db1c9e22e883276829a8032dc9afb
+R 20e7fdb7267d96eb9c994d7779618370
 U kostas
-Z c61114eaf068b6a2a510be12e212e0db
+Z e23a9cc7623bde69f6e9e851375dd322
