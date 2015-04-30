@@ -487,12 +487,11 @@ void MainWindow::onOpenRecent()
 }
 
 //------------------------------------------------------------------------------
-bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool &abort)
+bool Repository::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool &abort, Bridge::UICallback &uiCallback)
 {
 	QDir dir(dirPath);
 
-	setStatus(dirPath);
-	QCoreApplication::processEvents();
+	uiCallback.updateProcess(dirPath);
 
 	QFileInfoList list = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
 	for (int i=0; i<list.count(); ++i)
@@ -511,7 +510,7 @@ bool MainWindow::scanDirectory(QFileInfoList &entries, const QString& dirPath, c
 
 		if (info.isDir())
 		{
-			if(!scanDirectory(entries, filepath, baseDir, ignoreSpec, abort))
+			if(!scanDirectory(entries, filepath, baseDir, ignoreSpec, abort, uiCallback))
 				return false;
 		}
 		else
@@ -603,7 +602,6 @@ void MainWindow::scanWorkspace()
 
 	setStatus(tr("Scanning Workspace..."));
 	setBusy(true);
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
 	// Dispose RepoFiles
 	for(Repository::filemap_t::iterator it = getRepo().workspaceFiles.begin(); it!=getRepo().workspaceFiles.end(); ++it)
@@ -626,7 +624,7 @@ void MainWindow::scanWorkspace()
 			ignore = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().replace(',',';');
 		}
 
-		if(!scanDirectory(all_files, wkdir, wkdir, ignore, operationAborted))
+		if(!getRepo().scanDirectory(all_files, wkdir, wkdir, ignore, operationAborted, uiCallback))
 			goto _done;
 
 		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)
@@ -728,7 +726,6 @@ _done:
 
 	setBusy(false);
 	setStatus("");
-	QApplication::restoreOverrideCursor();
 }
 
 //------------------------------------------------------------------------------
@@ -2144,6 +2141,11 @@ void MainWindow::dropEvent(QDropEvent *event)
 //------------------------------------------------------------------------------
 void MainWindow::setBusy(bool busy)
 {
+	if(busy)
+		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	else
+		QApplication::restoreOverrideCursor();
+
 	abortShortcut->setEnabled(busy);
 	bool enabled = !busy;
 	ui->menuBar->setEnabled(enabled);
@@ -2181,6 +2183,14 @@ void MainWindow::MainWinUICallback::beginProcess(const QString& text)
 	Q_ASSERT(mainWindow);
 	mainWindow->ui->statusBar->showMessage(text);
 	mainWindow->progressBar->setHidden(false);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::MainWinUICallback::updateProcess(const QString& text)
+{
+	Q_ASSERT(mainWindow);
+	mainWindow->ui->statusBar->showMessage(text);
+	QCoreApplication::processEvents();
 }
 
 //------------------------------------------------------------------------------

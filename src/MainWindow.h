@@ -123,6 +123,8 @@ public:
 	stringset_t			pathSet;
 	stashmap_t			stashMap;
 	stringset_t			selectedDirs;	// The directory selected in the tree
+
+	static bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, Bridge::UICallback &uiCallback);
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -163,7 +165,7 @@ private:
 	void loadFossilSettings();
 	QString getFossilPath();
 	QString getFossilHttpAddress();
-	bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort);
+	//static bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort);
 	void updateDirView();
 	void updateFileView();
 	void updateStashView();
@@ -244,6 +246,7 @@ private:
 
 		virtual void logText(const QString& text, bool isHTML);
 		virtual void beginProcess(const QString& text);
+		virtual void updateProcess(const QString& text);
 		virtual void endProcess();
 		virtual QMessageBox::StandardButton Query(const QString &title, const QString &query, QMessageBox::StandardButtons buttons);
 
