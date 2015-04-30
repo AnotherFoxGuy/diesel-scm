@@ -76,19 +76,19 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	QAction *separator = new QAction(this);
 	separator->setSeparator(true);
 
-	// TableView
-	ui->tableView->setModel(&getWorkspace().getFileModel());
+	// fileTableView
+	ui->fileTableView->setModel(&getWorkspace().getFileModel());
 
-	ui->tableView->addAction(ui->actionDiff);
-	ui->tableView->addAction(ui->actionHistory);
-	ui->tableView->addAction(ui->actionOpenFile);
-	ui->tableView->addAction(ui->actionOpenContaining);
-	ui->tableView->addAction(separator);
-	ui->tableView->addAction(ui->actionAdd);
-	ui->tableView->addAction(ui->actionRevert);
-	ui->tableView->addAction(ui->actionRename);
-	ui->tableView->addAction(ui->actionDelete);
-	connect( ui->tableView,
+	ui->fileTableView->addAction(ui->actionDiff);
+	ui->fileTableView->addAction(ui->actionHistory);
+	ui->fileTableView->addAction(ui->actionOpenFile);
+	ui->fileTableView->addAction(ui->actionOpenContaining);
+	ui->fileTableView->addAction(separator);
+	ui->fileTableView->addAction(ui->actionAdd);
+	ui->fileTableView->addAction(ui->actionRevert);
+	ui->fileTableView->addAction(ui->actionRename);
+	ui->fileTableView->addAction(ui->actionDelete);
+	connect( ui->fileTableView,
 		SIGNAL( dragOutEvent() ),
 		SLOT( onFileViewDragOut() ),
 		Qt::DirectConnection );
@@ -99,36 +99,36 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	getWorkspace().getFileModel().horizontalHeaderItem(COLUMN_STATUS)->setTextAlignment(Qt::AlignCenter);
 
 	// Needed on OSX as the preset value from the GUI editor is not always reflected
-	ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+	ui->fileTableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-	ui->tableView->horizontalHeader()->setMovable(true);
+	ui->fileTableView->horizontalHeader()->setMovable(true);
 #else
-	ui->tableView->horizontalHeader()->setSectionsMovable(true);
+	ui->fileTableView->horizontalHeader()->setSectionsMovable(true);
 #endif
-	ui->tableView->horizontalHeader()->setStretchLastSection(true);
+	ui->fileTableView->horizontalHeader()->setStretchLastSection(true);
 
-	// TreeView
-	ui->treeView->setModel(&getWorkspace().getDirModel());
-	connect( ui->treeView->selectionModel(),
+	// workspaceTreeView
+	ui->workspaceTreeView->setModel(&getWorkspace().getDirModel());
+	connect( ui->workspaceTreeView->selectionModel(),
 		SIGNAL( selectionChanged(const QItemSelection &, const QItemSelection &) ),
-		SLOT( onTreeViewSelectionChanged(const QItemSelection &, const QItemSelection &) ),
+		SLOT( onWorkspaceTreeViewSelectionChanged(const QItemSelection &, const QItemSelection &) ),
 		Qt::DirectConnection );
 
-	ui->treeView->addAction(ui->actionCommit);
-	ui->treeView->addAction(ui->actionOpenFolder);
-	ui->treeView->addAction(ui->actionAdd);
-	ui->treeView->addAction(ui->actionRevert);
-	ui->treeView->addAction(ui->actionDelete);
-	ui->treeView->addAction(separator);
-	ui->treeView->addAction(ui->actionRenameFolder);
-	ui->treeView->addAction(ui->actionOpenFolder);
+	ui->workspaceTreeView->addAction(ui->actionCommit);
+	ui->workspaceTreeView->addAction(ui->actionOpenFolder);
+	ui->workspaceTreeView->addAction(ui->actionAdd);
+	ui->workspaceTreeView->addAction(ui->actionRevert);
+	ui->workspaceTreeView->addAction(ui->actionDelete);
+	ui->workspaceTreeView->addAction(separator);
+	ui->workspaceTreeView->addAction(ui->actionRenameFolder);
+	ui->workspaceTreeView->addAction(ui->actionOpenFolder);
 
 	// StashView
-	ui->tableViewStash->setModel(&getWorkspace().getStashModel());
-	ui->tableViewStash->addAction(ui->actionApplyStash);
-	ui->tableViewStash->addAction(ui->actionDiffStash);
-	ui->tableViewStash->addAction(ui->actionDeleteStash);
-	ui->tableViewStash->horizontalHeader()->setSortIndicatorShown(false);
+	ui->stashTableView->setModel(&getWorkspace().getStashModel());
+	ui->stashTableView->addAction(ui->actionApplyStash);
+	ui->stashTableView->addAction(ui->actionDiffStash);
+	ui->stashTableView->addAction(ui->actionDeleteStash);
+	ui->stashTableView->horizontalHeader()->setSortIndicatorShown(false);
 
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
@@ -621,8 +621,8 @@ void MainWindow::updateDirView()
 
 		addPathToTree(*root, dir);
 	}
-	ui->treeView->expandToDepth(0);
-	ui->treeView->sortByColumn(0, Qt::AscendingOrder);
+	ui->workspaceTreeView->expandToDepth(0);
+	ui->workspaceTreeView->sortByColumn(0, Qt::AscendingOrder);
 }
 
 //------------------------------------------------------------------------------
@@ -641,6 +641,7 @@ void MainWindow::updateFileView()
 		{   WorkspaceFile::TYPE_RENAMED, tr("Renamed"), ":icons/icons/Button Reload-01.png" },
 		{   WorkspaceFile::TYPE_MISSING, tr("Missing"), ":icons/icons/Button Help-01.png" },
 		{   WorkspaceFile::TYPE_CONFLICTED, tr("Conflicted"), ":icons/icons/Button Blank Red-01.png" },
+		{   WorkspaceFile::TYPE_MERGED, tr("Merged"), ":icons/icons/Button Blank Yellow-01.png" },
 	};
 
 	QFileIconProvider icon_provider;
@@ -697,7 +698,7 @@ void MainWindow::updateFileView()
 		++item_id;
 	}
 
-	ui->tableView->resizeRowsToContents();
+	ui->fileTableView->resizeRowsToContents();
 }
 
 //------------------------------------------------------------------------------
@@ -715,8 +716,8 @@ void MainWindow::updateStashView()
 		item->setToolTip(it.key());
 		getWorkspace().getStashModel().appendRow(item);
 	}
-	ui->tableViewStash->resizeColumnsToContents();
-	ui->tableViewStash->resizeRowsToContents();
+	ui->stashTableView->resizeColumnsToContents();
+	ui->stashTableView->resizeRowsToContents();
 }
 
 //------------------------------------------------------------------------------
@@ -773,14 +774,14 @@ void MainWindow::applySettings()
 		if(store->contains("Width"))
 		{
 			int width = store->value("Width").toInt();
-			ui->tableView->setColumnWidth(i, width);
+			ui->fileTableView->setColumnWidth(i, width);
 		}
 
 		if(store->contains("Index"))
 		{
 			int index = store->value("Index").toInt();
-			int cur_index = ui->tableView->horizontalHeader()->visualIndex(i);
-			ui->tableView->horizontalHeader()->moveSection(cur_index, index);
+			int cur_index = ui->fileTableView->horizontalHeader()->visualIndex(i);
+			ui->fileTableView->horizontalHeader()->moveSection(cur_index, index);
 		}
 
 	}
@@ -816,11 +817,11 @@ void MainWindow::applySettings()
 		ui->actionViewAsList->setChecked(store->value("ViewAsList").toBool());
 		viewMode = store->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
-	ui->treeView->setVisible(viewMode == VIEWMODE_TREE);
+	ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
 
 	if(store->contains("ViewStash"))
 		ui->actionViewStash->setChecked(store->value("ViewStash").toBool());
-	ui->tableViewStash->setVisible(ui->actionViewStash->isChecked());
+	ui->stashTableView->setVisible(ui->actionViewStash->isChecked());
 
 }
 
@@ -845,8 +846,8 @@ void MainWindow::updateSettings()
 	for(int i=0; i<getWorkspace().getFileModel().columnCount(); ++i)
 	{
 		store->setArrayIndex(i);
-		store->setValue("Width", ui->tableView->columnWidth(i));
-		int index = ui->tableView->horizontalHeader()->visualIndex(i);
+		store->setValue("Width", ui->fileTableView->columnWidth(i));
+		int index = ui->fileTableView->horizontalHeader()->visualIndex(i);
 		store->setValue("Index", index);
 	}
 	store->endArray();
@@ -868,8 +869,8 @@ void MainWindow::selectRootDir()
 {
 	if(viewMode==VIEWMODE_TREE)
 	{
-		QModelIndex root_index = ui->treeView->model()->index(0, 0);
-		ui->treeView->selectionModel()->select(root_index, QItemSelectionModel::Select);
+		QModelIndex root_index = ui->workspaceTreeView->model()->index(0, 0);
+		ui->workspaceTreeView->selectionModel()->select(root_index, QItemSelectionModel::Select);
 	}
 }
 
@@ -894,7 +895,7 @@ void MainWindow::fossilBrowse(const QString &fossilUrl)
 //------------------------------------------------------------------------------
 void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, bool allIfEmpty)
 {
-	if(QApplication::focusWidget() == ui->treeView)
+	if(QApplication::focusWidget() == ui->workspaceTreeView)
 		getDirViewSelection(filenames, includeMask, allIfEmpty);
 	else
 		getFileViewSelection(filenames, includeMask, allIfEmpty);
@@ -904,7 +905,7 @@ void MainWindow::getSelectionFilenames(QStringList &filenames, int includeMask, 
 void MainWindow::getSelectionPaths(stringset_t &paths)
 {
 	// Determine the directories selected
-	QModelIndexList selection = ui->treeView->selectionModel()->selectedIndexes();
+	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
 	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
 	{
 		const QModelIndex &mi = *mi_it;
@@ -933,7 +934,7 @@ void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bo
 	// Determine the directories selected
 	stringset_t paths;
 
-	QModelIndexList selection = ui->treeView->selectionModel()->selectedIndexes();
+	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
 	if(!(selection.empty() && allIfEmpty))
 	{
 		getSelectionPaths(paths);
@@ -977,12 +978,12 @@ void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bo
 //------------------------------------------------------------------------------
 void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, bool allIfEmpty)
 {
-	QModelIndexList selection = ui->tableView->selectionModel()->selectedIndexes();
+	QModelIndexList selection = ui->fileTableView->selectionModel()->selectedIndexes();
 	if(selection.empty() && allIfEmpty)
 	{
-		ui->tableView->selectAll();
-		selection = ui->tableView->selectionModel()->selectedIndexes();
-		ui->tableView->clearSelection();
+		ui->fileTableView->selectAll();
+		selection = ui->fileTableView->selectionModel()->selectedIndexes();
+		ui->fileTableView->clearSelection();
 	}
 
 	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
@@ -1010,12 +1011,12 @@ void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, b
 //------------------------------------------------------------------------------
 void MainWindow::getStashViewSelection(QStringList &stashNames, bool allIfEmpty)
 {
-	QModelIndexList selection = ui->tableViewStash->selectionModel()->selectedIndexes();
+	QModelIndexList selection = ui->stashTableView->selectionModel()->selectedIndexes();
 	if(selection.empty() && allIfEmpty)
 	{
-		ui->tableViewStash->selectAll();
-		selection = ui->tableViewStash->selectionModel()->selectedIndexes();
-		ui->tableViewStash->clearSelection();
+		ui->stashTableView->selectAll();
+		selection = ui->stashTableView->selectionModel()->selectedIndexes();
+		ui->stashTableView->clearSelection();
 	}
 
 	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
@@ -1103,7 +1104,7 @@ void MainWindow::on_actionHistory_triggered()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_tableView_doubleClicked(const QModelIndex &/*index*/)
+void MainWindow::on_fileTableView_doubleClicked(const QModelIndex &/*index*/)
 {
 	int action = settings.GetValue(FUEL_SETTING_FILE_DBLCLICK).toInt();
 	if(action==FILE_DLBCLICK_ACTION_DIFF)
@@ -1259,7 +1260,7 @@ void MainWindow::on_actionDelete_triggered()
 void MainWindow::on_actionRevert_triggered()
 {
 	QStringList modified_files;
-	getSelectionFilenames(modified_files, WorkspaceFile::TYPE_EDITTED|WorkspaceFile::TYPE_ADDED|WorkspaceFile::TYPE_DELETED|WorkspaceFile::TYPE_MISSING|WorkspaceFile::TYPE_CONFLICTED);
+	getSelectionFilenames(modified_files, WorkspaceFile::TYPE_MODIFIED);
 
 	if(modified_files.empty())
 		return;
@@ -1502,7 +1503,7 @@ void MainWindow::on_actionViewIgnored_triggered()
 void MainWindow::on_actionViewAsList_triggered()
 {
 	viewMode =  ui->actionViewAsList->isChecked() ? VIEWMODE_LIST : VIEWMODE_TREE;
-	ui->treeView->setVisible(viewMode == VIEWMODE_TREE);
+	ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
 	updateFileView();
 }
 
@@ -1514,9 +1515,9 @@ QString MainWindow::getFossilHttpAddress()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::onTreeViewSelectionChanged(const QItemSelection &/*selected*/, const QItemSelection &/*deselected*/)
+void MainWindow::onWorkspaceTreeViewSelectionChanged(const QItemSelection &/*selected*/, const QItemSelection &/*deselected*/)
 {
-	QModelIndexList selection = ui->treeView->selectionModel()->selectedIndexes();
+	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
 	int num_selected = selection.count();
 
 	// Do not modify the selection if nothing is selected
@@ -1538,17 +1539,17 @@ void MainWindow::onTreeViewSelectionChanged(const QItemSelection &/*selected*/, 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionOpenFolder_triggered()
 {
-	const QItemSelection &selection =  ui->treeView->selectionModel()->selection();
+	const QItemSelection &selection =  ui->workspaceTreeView->selectionModel()->selection();
 
 	if(selection.indexes().count()!=1)
 		return;
 
 	QModelIndex index = selection.indexes().at(0);
-	on_treeView_doubleClicked(index);
+	on_workspaceTreeView_doubleClicked(index);
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_treeView_doubleClicked(const QModelIndex &index)
+void MainWindow::on_workspaceTreeView_doubleClicked(const QModelIndex &index)
 {
 	QString target = getWorkspace().getDirModel().data(index, REPODIRMODEL_ROLE_PATH).toString();
 	target = getCurrentWorkspace() + PATH_SEPARATOR + target;
@@ -1730,7 +1731,7 @@ QMenu * MainWindow::createPopupMenu()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionViewStash_triggered()
 {
-	ui->tableViewStash->setVisible(ui->actionViewStash->isChecked());
+	ui->stashTableView->setVisible(ui->actionViewStash->isChecked());
 }
 
 //------------------------------------------------------------------------------
@@ -1886,13 +1887,13 @@ void MainWindow::on_textBrowser_customContextMenuRequested(const QPoint &pos)
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
+void MainWindow::on_fileTableView_customContextMenuRequested(const QPoint &pos)
 {
 	QPoint gpos = QCursor::pos();
 #ifdef Q_OS_WIN
 	if(qApp->keyboardModifiers() & Qt::SHIFT)
 	{
-		ui->tableView->selectionModel()->select(ui->tableView->indexAt(pos), QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
+		ui->fileTableView->selectionModel()->select(ui->fileTableView->indexAt(pos), QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
 		QStringList fnames;
 		getSelectionFilenames(fnames);
 
@@ -1910,7 +1911,7 @@ void MainWindow::on_tableView_customContextMenuRequested(const QPoint &pos)
 #endif
 	{
 		QMenu *menu = new QMenu(this);
-		menu->addActions(ui->tableView->actions());
+		menu->addActions(ui->fileTableView->actions());
 		menu->popup(gpos);
 	}
 

@@ -116,8 +116,13 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 		if(line.length()==0)
 			continue;
 
-		QString status_text = line.left(10).trimmed();
-		QString fname = line.right(line.length() - 10).trimmed();
+		int space_index = line.indexOf(' ');
+		if(space_index==-1)
+			continue;
+
+		//QString status_text = line.left(10).trimmed();
+		QString status_text = line.left(space_index);
+		QString fname = line.right(line.length() - space_index).trimmed();
 		WorkspaceFile::Type type = WorkspaceFile::TYPE_UNKNOWN;
 
 		// Generate a RepoFile for all non-existant fossil files
@@ -144,6 +149,8 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 			type = WorkspaceFile::TYPE_UNCHANGED;
 		else if(status_text=="CONFLICT")
 			type = WorkspaceFile::TYPE_CONFLICTED;
+		else if(status_text=="UPDATED_BY_MERGE")
+			type = WorkspaceFile::TYPE_MERGED;
 
 		// Filter unwanted file types
 		if( ((type & WorkspaceFile::TYPE_MODIFIED) && !scanModified) ||
