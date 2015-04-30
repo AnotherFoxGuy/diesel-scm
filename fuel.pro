@@ -52,7 +52,8 @@ SOURCES += src/main.cpp\
 	src/LoggedProcess.cpp \
 	src/BrowserWidget.cpp \
 	src/CustomWebView.cpp \
-    src/Bridge.cpp
+    src/Bridge.cpp \
+    src/Workspace.cpp
 
 HEADERS  += src/MainWindow.h \
 	src/CommitDialog.h \
@@ -64,7 +65,8 @@ HEADERS  += src/MainWindow.h \
 	src/LoggedProcess.h \
 	src/BrowserWidget.h \
 	src/CustomWebView.h \
-    src/Bridge.h
+    src/Bridge.h \
+    src/Workspace.h
 
 FORMS    += ui/MainWindow.ui \
 	ui/CommitDialog.ui \

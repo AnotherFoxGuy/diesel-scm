@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QClipboard>
 #include <QUrl>
+#include "Utils.h"
 
 //-----------------------------------------------------------------------------
 CloneDialog::CloneDialog(QWidget *parent) :
