@@ -105,26 +105,34 @@ private:
 
 typedef QSet<QString> stringset_t;
 
-class Repository
+class Workspace
 {
 public:
-	QStandardItemModel	repoFileModel;
-	QStandardItemModel	repoDirModel;
-	QStandardItemModel	repoStashModel;
-	// Repository State
 	typedef QList<RepoFile*> filelist_t;
 	typedef QMap<QString, RepoFile*> filemap_t;
-	filemap_t			workspaceFiles;
-	stringset_t			pathSet;
-	stashmap_t			stashMap;
-	stringset_t			selectedDirs;	// The directory selected in the tree
 
-	Bridge				bridge;
 	Bridge &			fossil() { return bridge; }
 	const Bridge &		fossil() const { return bridge; }
 
-	static bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, Bridge::UICallback &uiCallback);
-	void scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, Bridge::UICallback &uiCallback, bool &operationAborted);
+	static bool			scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, Bridge::UICallback &uiCallback);
+	void				scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, Bridge::UICallback &uiCallback, bool &operationAborted);
+
+	QStandardItemModel	&getFileModel() { return repoFileModel; }
+	QStandardItemModel	&getDirModel() { return repoDirModel; }
+	QStandardItemModel	&getStashModel() { return repoStashModel; }
+	filemap_t			&getFiles() { return workspaceFiles; }
+	stringset_t			&getPaths() { return pathSet; }
+	stashmap_t			&getStashes() { return stashMap; }
+
+private:
+	Bridge				bridge;
+	filemap_t			workspaceFiles;
+	stringset_t			pathSet;
+	stashmap_t			stashMap;
+
+	QStandardItemModel	repoFileModel;
+	QStandardItemModel	repoDirModel;
+	QStandardItemModel	repoStashModel;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -163,7 +171,6 @@ private:
 	void rebuildRecent();
 	bool openWorkspace(const QString &path);
 	void loadFossilSettings();
-	QString getFossilPath();
 	QString getFossilHttpAddress();
 	void updateDirView();
 	void updateFileView();
@@ -266,12 +273,13 @@ private:
 	class QProgressBar	*progressBar;
 	class QShortcut		*abortShortcut;
 	bool				operationAborted;
+	stringset_t			selectedDirs;	// The directory selected in the tree
 
-	Repository			repo;
-	Repository &		getRepo() { return repo; }
+	Workspace			repo;
+	Workspace &			getRepo() { return repo; }
 
-	Bridge &			fossil() { return repo.bridge; }
-	const Bridge &		fossil() const { return repo.bridge; }
+	Bridge &			fossil() { return repo.fossil(); }
+	const Bridge &		fossil() const { return repo.fossil(); }
 
 	Settings			&settings;
 	QStringList			workspaceHistory;
