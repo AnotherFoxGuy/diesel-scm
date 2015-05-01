@@ -38,6 +38,50 @@ enum
 	REPODIRMODEL_ROLE_PATH = Qt::UserRole+1
 };
 
+struct TreeViewItem
+{
+	enum
+	{
+		TYPE_UNKNOWN,
+		TYPE_WORKSPACE,
+		TYPE_FOLDER,
+		TYPE_STASHES,
+		TYPE_STASH,
+		TYPE_BRANCHES,
+		TYPE_BRANCH,
+		TYPE_TAGS,
+		TYPE_TAG,
+		TYPE_REMOTES,
+		TYPE_SETTINGS
+	};
+
+	TreeViewItem()
+	: Type(TYPE_UNKNOWN)
+	{
+	}
+
+	TreeViewItem(int type, const QString &value)
+	: Type(type), Value(value)
+	{
+	}
+
+	TreeViewItem(const TreeViewItem &other)
+	{
+		Type = other.Type;
+		Value = other.Value;
+	}
+
+	int Type;
+	QString Value;
+
+	operator QVariant() const
+	{
+		return QVariant::fromValue(*this);
+	}
+};
+Q_DECLARE_METATYPE(TreeViewItem)
+
+
 //-----------------------------------------------------------------------------
 typedef QMap<QString, QString> QStringMap;
 static QStringMap MakeKeyValues(QStringList lines)
@@ -114,14 +158,16 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 		SLOT( onWorkspaceTreeViewSelectionChanged(const QItemSelection &, const QItemSelection &) ),
 		Qt::DirectConnection );
 
-	ui->workspaceTreeView->addAction(ui->actionCommit);
-	ui->workspaceTreeView->addAction(ui->actionOpenFolder);
-	ui->workspaceTreeView->addAction(ui->actionAdd);
-	ui->workspaceTreeView->addAction(ui->actionRevert);
-	ui->workspaceTreeView->addAction(ui->actionDelete);
-	ui->workspaceTreeView->addAction(separator);
-	ui->workspaceTreeView->addAction(ui->actionRenameFolder);
-	ui->workspaceTreeView->addAction(ui->actionOpenFolder);
+	// Workspace Menus
+	menuWorkspace = new QMenu(this);
+	menuWorkspace->addAction(ui->actionCommit);
+	menuWorkspace->addAction(ui->actionOpenFolder);
+	menuWorkspace->addAction(ui->actionAdd);
+	menuWorkspace->addAction(ui->actionRevert);
+	menuWorkspace->addAction(ui->actionDelete);
+	menuWorkspace->addAction(separator);
+	menuWorkspace->addAction(ui->actionRenameFolder);
+	menuWorkspace->addAction(ui->actionOpenFolder);
 
 	// StashView
 	ui->stashTableView->setModel(&getWorkspace().getStashModel());
@@ -129,6 +175,12 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->stashTableView->addAction(ui->actionDiffStash);
 	ui->stashTableView->addAction(ui->actionDeleteStash);
 	ui->stashTableView->horizontalHeader()->setSortIndicatorShown(false);
+
+	// StashMenu
+	menuStashes = new QMenu(this);
+	menuStashes->addAction(ui->actionApplyStash);
+	menuStashes->addAction(ui->actionDiffStash);
+	menuStashes->addAction(ui->actionDeleteStash);
 
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
@@ -590,7 +642,7 @@ static void addPathToTree(QStandardItem &root, const QString &path)
 		if(!found) // Generate it
 		{
 			QStandardItem *child = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), dir);
-			child->setData(fullpath); // keep the full path to simplify selection
+			child->setData(TreeViewItem(TreeViewItem::TYPE_FOLDER, fullpath), REPODIRMODEL_ROLE_PATH);
 			parent->appendRow(child);
 			parent = child;
 		}
@@ -605,24 +657,61 @@ void MainWindow::updateDirView()
 	getWorkspace().getDirModel().clear();
 
 	QStringList header;
-	header << tr("Folders");
+	header << fossil().getProjectName();
 	getWorkspace().getDirModel().setHorizontalHeaderLabels(header);
 
-	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), fossil().getProjectName());
-	root->setData(""); // Empty Path
-	root->setEditable(false);
+	QStandardItem *workspace = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), "Workspace");
+	workspace->setData(TreeViewItem(TreeViewItem::TYPE_WORKSPACE, ""), REPODIRMODEL_ROLE_PATH);
+	workspace->setEditable(false);
 
-	getWorkspace().getDirModel().appendRow(root);
-	for(stringset_t::iterator it = getWorkspace().getPaths().begin(); it!=getWorkspace().getPaths().end(); ++it)
+	getWorkspace().getDirModel().appendRow(workspace);
+	if(viewMode == VIEWMODE_TREE)
 	{
-		const QString &dir = *it;
-		if(dir.isEmpty())
-			continue;
+		for(stringset_t::iterator it = getWorkspace().getPaths().begin(); it!=getWorkspace().getPaths().end(); ++it)
+		{
+			const QString &dir = *it;
+			if(dir.isEmpty())
+				continue;
 
-		addPathToTree(*root, dir);
+			addPathToTree(*workspace, dir);
+		}
 	}
+
+	QStandardItem *branches = new QStandardItem(QIcon(":icons/icons/Document Organization Chart-01.png"), "Branches");
+	branches->setData(TreeViewItem(TreeViewItem::TYPE_BRANCHES, ""), REPODIRMODEL_ROLE_PATH);
+	branches->setEditable(false);
+	getWorkspace().getDirModel().appendRow(branches);
+
+	QStandardItem *stashes = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), "Stashes");
+	stashes->setData(TreeViewItem(TreeViewItem::TYPE_STASHES, ""), REPODIRMODEL_ROLE_PATH);
+	stashes->setEditable(false);
+	getWorkspace().getDirModel().appendRow(stashes);
+	for(stashmap_t::const_iterator it= getWorkspace().getStashes().begin(); it!=getWorkspace().getStashes().end(); ++it)
+	{
+		QStandardItem *stash = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), it.key());
+		stash->setData(TreeViewItem(TreeViewItem::TYPE_STASH, it.value()), REPODIRMODEL_ROLE_PATH);
+		stashes->appendRow(stash);
+	}
+
+
+	QStandardItem *tags = new QStandardItem(QIcon(":icons/icons/Book-01.png"), "Tags");
+	tags->setData(TreeViewItem(TreeViewItem::TYPE_TAGS, ""), REPODIRMODEL_ROLE_PATH);
+	tags->setEditable(false);
+	getWorkspace().getDirModel().appendRow(tags);
+
+	QStandardItem *remotes = new QStandardItem(QIcon(":icons/icons/Network PC-01.png"), "Remotes");
+	remotes->setData(TreeViewItem(TreeViewItem::TYPE_REMOTES, ""), REPODIRMODEL_ROLE_PATH);
+	remotes->setEditable(false);
+	getWorkspace().getDirModel().appendRow(remotes);
+
+	QStandardItem *settings = new QStandardItem(QIcon(":icons/icons/Gear-01.png"), "Settings");
+	settings->setData(TreeViewItem(TreeViewItem::TYPE_SETTINGS, ""), REPODIRMODEL_ROLE_PATH);
+	settings->setEditable(false);
+	getWorkspace().getDirModel().appendRow(settings);
+
+
 	ui->workspaceTreeView->expandToDepth(0);
-	ui->workspaceTreeView->sortByColumn(0, Qt::AscendingOrder);
+	//ui->workspaceTreeView->sortByColumn(0, Qt::AscendingOrder);
 }
 
 //------------------------------------------------------------------------------
@@ -817,7 +906,7 @@ void MainWindow::applySettings()
 		ui->actionViewAsList->setChecked(store->value("ViewAsList").toBool());
 		viewMode = store->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
-	ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
+	//ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
 
 	if(store->contains("ViewStash"))
 		ui->actionViewStash->setChecked(store->value("ViewStash").toBool());
@@ -867,6 +956,7 @@ void MainWindow::updateSettings()
 //------------------------------------------------------------------------------
 void MainWindow::selectRootDir()
 {
+	// FIXME: KKK
 	if(viewMode==VIEWMODE_TREE)
 	{
 		QModelIndex root_index = ui->workspaceTreeView->model()->index(0, 0);
@@ -906,11 +996,15 @@ void MainWindow::getSelectionPaths(stringset_t &paths)
 {
 	// Determine the directories selected
 	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
-	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
+	foreach(const QModelIndex &mi, selection)
 	{
-		const QModelIndex &mi = *mi_it;
-		QVariant data = getWorkspace().getDirModel().data(mi, REPODIRMODEL_ROLE_PATH);
-		paths.insert(data.toString());
+		QVariant data = Workspace().getDirModel().data(mi, REPODIRMODEL_ROLE_PATH);
+		Q_ASSERT(data.isValid());
+		TreeViewItem tv = data.value<TreeViewItem>();
+		if(tv.Type != TreeViewItem::TYPE_FOLDER)
+			continue;
+
+		paths.insert(tv.Value);
 	}
 }
 //------------------------------------------------------------------------------
@@ -1503,7 +1597,10 @@ void MainWindow::on_actionViewIgnored_triggered()
 void MainWindow::on_actionViewAsList_triggered()
 {
 	viewMode =  ui->actionViewAsList->isChecked() ? VIEWMODE_LIST : VIEWMODE_TREE;
+#if 0
 	ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
+#endif
+	updateDirView();
 	updateFileView();
 }
 
@@ -1517,23 +1614,34 @@ QString MainWindow::getFossilHttpAddress()
 //------------------------------------------------------------------------------
 void MainWindow::onWorkspaceTreeViewSelectionChanged(const QItemSelection &/*selected*/, const QItemSelection &/*deselected*/)
 {
-	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
-	int num_selected = selection.count();
+	QModelIndexList indices = ui->workspaceTreeView->selectionModel()->selectedIndexes();
 
 	// Do not modify the selection if nothing is selected
-	if(num_selected==0)
+	if(indices.empty())
 		return;
 
-	selectedDirs.clear();
+	stringset_t new_dirs;
 
-	for(int i=0; i<num_selected; ++i)
+	foreach(const QModelIndex &id, indices)
 	{
-		QModelIndex index = selection.at(i);
-		QString dir = getWorkspace().getDirModel().data(index, REPODIRMODEL_ROLE_PATH).toString();
-		selectedDirs.insert(dir);
+		Q_ASSERT(ui->workspaceTreeView->model()==&getWorkspace().getDirModel());
+		//QVariant data = getWorkspace().getDirModel().data(id, REPODIRMODEL_ROLE_PATH);
+		QVariant data = id.model()->data(id, REPODIRMODEL_ROLE_PATH);
+		Q_ASSERT(data.isValid());
+		TreeViewItem tv = data.value<TreeViewItem>();
+
+		if(tv.Type != TreeViewItem::TYPE_FOLDER && tv.Type != TreeViewItem::TYPE_WORKSPACE)
+			continue;
+
+		new_dirs.insert(tv.Value);
 	}
 
-	updateFileView();
+	// Update the selection if we have any new folders
+	if(!new_dirs.empty() && viewMode == VIEWMODE_TREE)
+	{
+		selectedDirs = new_dirs;
+		updateFileView();
+	}
 }
 
 //------------------------------------------------------------------------------
@@ -1551,7 +1659,11 @@ void MainWindow::on_actionOpenFolder_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_workspaceTreeView_doubleClicked(const QModelIndex &index)
 {
-	QString target = getWorkspace().getDirModel().data(index, REPODIRMODEL_ROLE_PATH).toString();
+	QVariant data = index.model()->data(index, REPODIRMODEL_ROLE_PATH);
+	Q_ASSERT(data.isValid());
+	TreeViewItem tv = data.value<TreeViewItem>();
+	QString target = tv.Value;
+
 	target = getCurrentWorkspace() + PATH_SEPARATOR + target;
 
 	QUrl url = QUrl::fromLocalFile(target);
@@ -1915,6 +2027,34 @@ void MainWindow::on_fileTableView_customContextMenuRequested(const QPoint &pos)
 		menu->popup(gpos);
 	}
 
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
+{
+	QModelIndexList indices = ui->workspaceTreeView->selectionModel()->selectedIndexes();
+
+	if(indices.empty())
+		return;
+
+	QMenu *menu = 0;
+
+	// Get first selected item
+	const QModelIndex &mi = indices.first();
+	QVariant data = getWorkspace().getDirModel().data(mi, REPODIRMODEL_ROLE_PATH);
+	Q_ASSERT(data.isValid());
+	TreeViewItem tv = data.value<TreeViewItem>();
+
+	if(tv.Type == TreeViewItem::TYPE_FOLDER ||  tv.Type == TreeViewItem::TYPE_WORKSPACE)
+		menu = menuWorkspace;
+	else if (tv.Type == TreeViewItem::TYPE_STASH || tv.Type == TreeViewItem::TYPE_STASHES)
+		menu = menuStashes;
+
+	if(menu)
+	{
+		QPoint pos = QCursor::pos();
+		menu->popup(pos);
+	}
 }
 
 //------------------------------------------------------------------------------

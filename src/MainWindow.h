@@ -112,6 +112,7 @@ private slots:
 	void on_actionDiffStash_triggered();
 	void on_textBrowser_customContextMenuRequested(const QPoint &pos);
 	void on_fileTableView_customContextMenuRequested(const QPoint &pos);
+	void on_workspaceTreeView_customContextMenuRequested(const QPoint &pos);
 
 private:
 	class MainWinUICallback : public UICallback
@@ -147,6 +148,9 @@ private:
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QProgressBar	*progressBar;
 	class QShortcut		*abortShortcut;
+	QMenu				*menuWorkspace;
+	QMenu				*menuStashes;
+
 	bool				operationAborted;
 	stringset_t			selectedDirs;	// The directory selected in the tree
 

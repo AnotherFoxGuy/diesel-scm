@@ -120,7 +120,6 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 		if(space_index==-1)
 			continue;
 
-		//QString status_text = line.left(10).trimmed();
 		QString status_text = line.left(space_index);
 		QString fname = line.right(line.length() - space_index).trimmed();
 		WorkspaceFile::Type type = WorkspaceFile::TYPE_UNKNOWN;
