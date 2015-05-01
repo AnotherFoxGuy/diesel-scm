@@ -36,7 +36,7 @@ private:
 	void getSelectionFilenames(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
 	void getFileViewSelection(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
 	void getDirViewSelection(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
-	void getStashViewSelection(QStringList &stashNames);
+	void getSelectionStashes(QStringList &stashNames);
 	void getSelectionPaths(stringset_t &paths);
 	void getAllFilenames(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL);
 	bool startUI();

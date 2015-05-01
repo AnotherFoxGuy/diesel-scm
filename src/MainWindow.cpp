@@ -1072,7 +1072,7 @@ void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, b
 	}
 }
 //------------------------------------------------------------------------------
-void MainWindow::getStashViewSelection(QStringList &stashNames)
+void MainWindow::getSelectionStashes(QStringList &stashNames)
 {
 	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
 
@@ -1850,7 +1850,7 @@ void MainWindow::on_actionNewStash_triggered()
 void MainWindow::on_actionApplyStash_triggered()
 {
 	QStringList stashes;
-	getStashViewSelection(stashes);
+	getSelectionStashes(stashes);
 
 	bool delete_stashes = false;
 	if(!FileActionDialog::run(this, tr("Apply Stash"), tr("The following stashes will be applied.")+"\n"+tr("Are you sure?"), stashes, tr("Delete after applying"), &delete_stashes))
@@ -1889,7 +1889,7 @@ void MainWindow::on_actionApplyStash_triggered()
 void MainWindow::on_actionDeleteStash_triggered()
 {
 	QStringList stashes;
-	getStashViewSelection(stashes);
+	getSelectionStashes(stashes);
 
 	if(stashes.empty())
 		return;
@@ -1917,7 +1917,7 @@ void MainWindow::on_actionDeleteStash_triggered()
 void MainWindow::on_actionDiffStash_triggered()
 {
 	QStringList stashes;
-	getStashViewSelection(stashes);
+	getSelectionStashes(stashes);
 
 	if(stashes.length() != 1)
 		return;
