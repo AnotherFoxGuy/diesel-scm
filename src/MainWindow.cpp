@@ -998,8 +998,9 @@ void MainWindow::getSelectionPaths(stringset_t &paths)
 	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
 	foreach(const QModelIndex &mi, selection)
 	{
-		QVariant data = Workspace().getDirModel().data(mi, REPODIRMODEL_ROLE_PATH);
+		QVariant data = mi.model()->data(mi, REPODIRMODEL_ROLE_PATH);
 		Q_ASSERT(data.isValid());
+
 		TreeViewItem tv = data.value<TreeViewItem>();
 		if(tv.Type != TreeViewItem::TYPE_FOLDER)
 			continue;
