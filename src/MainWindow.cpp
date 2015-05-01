@@ -1662,9 +1662,11 @@ void MainWindow::on_workspaceTreeView_doubleClicked(const QModelIndex &index)
 	QVariant data = index.model()->data(index, REPODIRMODEL_ROLE_PATH);
 	Q_ASSERT(data.isValid());
 	TreeViewItem tv = data.value<TreeViewItem>();
-	QString target = tv.Value;
 
-	target = getCurrentWorkspace() + PATH_SEPARATOR + target;
+	if(tv.Type!=TreeViewItem::TYPE_FOLDER && tv.Type!=TreeViewItem::TYPE_WORKSPACE)
+		return;
+
+	QString target = getCurrentWorkspace() + PATH_SEPARATOR + tv.Value;
 
 	QUrl url = QUrl::fromLocalFile(target);
 	QDesktopServices::openUrl(url);
