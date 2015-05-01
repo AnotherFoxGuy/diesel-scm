@@ -116,7 +116,7 @@ public:
 
 	QStandardItemModel	&getFileModel() { return repoFileModel; }
 	QStandardItemModel	&getDirModel() { return repoDirModel; }
-	QStandardItemModel	&getStashModel() { return repoStashModel; }
+
 	filemap_t			&getFiles() { return workspaceFiles; }
 	stringset_t			&getPaths() { return pathSet; }
 	stashmap_t			&getStashes() { return stashMap; }
@@ -129,7 +129,6 @@ private:
 
 	QStandardItemModel	repoFileModel;
 	QStandardItemModel	repoDirModel;
-	QStandardItemModel	repoStashModel;
 };
 
 #endif // WORKSPACE_H

@@ -1,5 +1,5 @@
-C Fixed\sgetSelectionPaths\n
-D 2015-05-01T19:13:19.529
+C Goodbye\sStash\sView\nWorking\sstash\smanagement\sin\sWorkspace\sview
+D 2015-05-01T19:29:12.162
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -200,14 +200,14 @@ F src/Fossil.cpp b54d136f05764535636da04bcc5f60b2eb97e5b6
 F src/Fossil.h e46ec6cdb5c23a34176050fbd90e561ac87c07f9
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp bdaa3a5c8dc96bc480bd8ee979abec791be403b2
-F src/MainWindow.h 5e0b71e6b795c32ae4207ffb44aa056b52674a10
+F src/MainWindow.cpp 50bcfea121159016f6658abcece3208b6cbc6419
+F src/MainWindow.h d21a0e993f44dfa6c751613fc07325ec287a58cf
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp f78728e0817b1db23007ba0d2c5c26980ee7ebca
 F src/Utils.h 8ad68bd227bd999eb6ea92a70bb4be2d6788d912
 F src/Workspace.cpp 114daa2d44228ac253056fdf74a45e977d181475
-F src/Workspace.h 9f1d34320abb378ae5a6e3360f8c8a5949029b88
+F src/Workspace.h 28e8e466df6ddce0bb80e8c9dbec7355d53f2c78
 F src/main.cpp 2ac8badc2a63fa123ceae53382ce24cfe1b5a54b
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -215,9 +215,9 @@ F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/MainWindow.ui ef46a06e46eb465703a8b7353b079c2e538104d7
+F ui/MainWindow.ui b735238428bad38bbb5c03e09975e5bb0fa156ab
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 63b2c047630f4f14ee0c1bd398d5df61433827dc
-R e18f69554275572e3401b0b43d69aa3d
+P 268641002b332e82e893dacce6698a2c298c4f98
+R 88c5523fcc03ef8f78e0d4bd0720be73
 U kostas
-Z c73159632c41ad626bc86208beab1c49
+Z ce07e9006ea4abb3d7459eb4c758192a

@@ -169,13 +169,6 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	menuWorkspace->addAction(ui->actionRenameFolder);
 	menuWorkspace->addAction(ui->actionOpenFolder);
 
-	// StashView
-	ui->stashTableView->setModel(&getWorkspace().getStashModel());
-	ui->stashTableView->addAction(ui->actionApplyStash);
-	ui->stashTableView->addAction(ui->actionDiffStash);
-	ui->stashTableView->addAction(ui->actionDeleteStash);
-	ui->stashTableView->horizontalHeader()->setSortIndicatorShown(false);
-
 	// StashMenu
 	menuStashes = new QMenu(this);
 	menuStashes->addAction(ui->actionApplyStash);
@@ -608,7 +601,6 @@ void MainWindow::scanWorkspace()
 							);
 	updateDirView();
 	updateFileView();
-	updateStashView();
 
 	setBusy(false);
 	setStatus("");
@@ -791,25 +783,6 @@ void MainWindow::updateFileView()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::updateStashView()
-{
-	getWorkspace().getStashModel().clear();
-
-	QStringList header;
-	header << tr("Stashes");
-	getWorkspace().getStashModel().setHorizontalHeaderLabels(header);
-
-	for(stashmap_t::iterator it=getWorkspace().getStashes().begin(); it!=getWorkspace().getStashes().end(); ++it)
-	{
-		QStandardItem *item = new QStandardItem(it.key());
-		item->setToolTip(it.key());
-		getWorkspace().getStashModel().appendRow(item);
-	}
-	ui->stashTableView->resizeColumnsToContents();
-	ui->stashTableView->resizeRowsToContents();
-}
-
-//------------------------------------------------------------------------------
 void MainWindow::log(const QString &text, bool isHTML)
 {
 	QTextCursor c = ui->textBrowser->textCursor();
@@ -907,11 +880,6 @@ void MainWindow::applySettings()
 		viewMode = store->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
 	//ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
-
-	if(store->contains("ViewStash"))
-		ui->actionViewStash->setChecked(store->value("ViewStash").toBool());
-	ui->stashTableView->setVisible(ui->actionViewStash->isChecked());
-
 }
 
 //------------------------------------------------------------------------------
@@ -1104,25 +1072,23 @@ void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, b
 	}
 }
 //------------------------------------------------------------------------------
-void MainWindow::getStashViewSelection(QStringList &stashNames, bool allIfEmpty)
+void MainWindow::getStashViewSelection(QStringList &stashNames)
 {
-	QModelIndexList selection = ui->stashTableView->selectionModel()->selectedIndexes();
-	if(selection.empty() && allIfEmpty)
-	{
-		ui->stashTableView->selectAll();
-		selection = ui->stashTableView->selectionModel()->selectedIndexes();
-		ui->stashTableView->clearSelection();
-	}
+	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
 
-	for(QModelIndexList::iterator mi_it = selection.begin(); mi_it!=selection.end(); ++mi_it)
+	foreach(const QModelIndex &mi, selection)
 	{
-		const QModelIndex &mi = *mi_it;
+		QVariant data = mi.model()->data(mi, REPODIRMODEL_ROLE_PATH);
+		Q_ASSERT(data.isValid());
+		TreeViewItem tv = data.value<TreeViewItem>();
 
-		if(mi.column()!=0)
+		if(tv.Type != TreeViewItem::TYPE_STASH)
 			continue;
-		QString name = getWorkspace().getStashModel().data(mi).toString();
+
+		QString name = mi.model()->data(mi, Qt::DisplayRole).toString();
 		stashNames.append(name);
 	}
+
 }
 
 //------------------------------------------------------------------------------
@@ -1625,8 +1591,6 @@ void MainWindow::onWorkspaceTreeViewSelectionChanged(const QItemSelection &/*sel
 
 	foreach(const QModelIndex &id, indices)
 	{
-		Q_ASSERT(ui->workspaceTreeView->model()==&getWorkspace().getDirModel());
-		//QVariant data = getWorkspace().getDirModel().data(id, REPODIRMODEL_ROLE_PATH);
 		QVariant data = id.model()->data(id, REPODIRMODEL_ROLE_PATH);
 		Q_ASSERT(data.isValid());
 		TreeViewItem tv = data.value<TreeViewItem>();
@@ -1841,12 +1805,6 @@ _exit:
 QMenu * MainWindow::createPopupMenu()
 {
 	return NULL;
-}
-
-//------------------------------------------------------------------------------
-void MainWindow::on_actionViewStash_triggered()
-{
-	ui->stashTableView->setVisible(ui->actionViewStash->isChecked());
 }
 
 //------------------------------------------------------------------------------

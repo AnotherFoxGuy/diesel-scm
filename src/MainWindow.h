@@ -36,7 +36,7 @@ private:
 	void getSelectionFilenames(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
 	void getFileViewSelection(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
 	void getDirViewSelection(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
-	void getStashViewSelection(QStringList &stashNames, bool allIfEmpty=false);
+	void getStashViewSelection(QStringList &stashNames);
 	void getSelectionPaths(stringset_t &paths);
 	void getAllFilenames(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL);
 	bool startUI();
@@ -49,7 +49,6 @@ private:
 	QString getFossilHttpAddress();
 	void updateDirView();
 	void updateFileView();
-	void updateStashView();
 	void selectRootDir();
 	void fossilBrowse(const QString &fossilUrl);
 	void dragEnterEvent(class QDragEnterEvent *event);
@@ -105,7 +104,6 @@ private slots:
 	void on_actionOpenRepository_triggered();
 	void on_actionCloseRepository_triggered();
 	void on_actionCloneRepository_triggered();
-	void on_actionViewStash_triggered();
 	void on_actionNewStash_triggered();
 	void on_actionApplyStash_triggered();
 	void on_actionDeleteStash_triggered();
