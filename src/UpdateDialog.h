@@ -16,8 +16,8 @@ public:
 	explicit UpdateDialog(QWidget *parent, const QStringList &completions, const QString &defaultValue);
 	~UpdateDialog();
 
-	static QString run(QWidget *parent, const QStringList &completions, const QString &defaultValue);
-
+	static QString runUpdate(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue);
+	static bool runNewTag(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, QString &revision, QString &name);
 
 private:
 	Ui::UpdateDialog *ui;

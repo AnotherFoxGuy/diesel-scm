@@ -115,6 +115,14 @@ private slots:
 
 	void on_actionUpdateRevision_triggered();
 
+	void on_actionNewTag_triggered();
+
+	void on_actionDeleteTag_triggered();
+
+	void on_actionNewBranch_triggered();
+
+	void on_actionMergeBranch_triggered();
+
 private:
 	class MainWinUICallback : public UICallback
 	{
@@ -151,9 +159,12 @@ private:
 	class QShortcut		*abortShortcut;
 	QMenu				*menuWorkspace;
 	QMenu				*menuStashes;
+	QMenu				*menuTags;
+	//QMenu				*menuBranches;
 
 	bool				operationAborted;
 	stringset_t			selectedDirs;	// The directory selected in the tree
+	QStringList			versionList;
 
 	Workspace			workspace;
 	Workspace &			getWorkspace() { return workspace; }

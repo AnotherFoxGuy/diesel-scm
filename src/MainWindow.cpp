@@ -18,6 +18,8 @@
 #include "UpdateDialog.h"
 #include "Utils.h"
 
+#define LATEST_VERSION "Latest"
+
 //-----------------------------------------------------------------------------
 enum
 {
@@ -175,6 +177,13 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	menuStashes->addAction(ui->actionApplyStash);
 	menuStashes->addAction(ui->actionDiffStash);
 	menuStashes->addAction(ui->actionDeleteStash);
+
+	// TagsMenu
+	menuTags = new QMenu(this);
+	menuTags->addAction(ui->actionNewTag);
+	menuTags->addAction(ui->actionDeleteTag);
+	menuTags->addAction(ui->actionUpdateRevision);
+
 
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
@@ -602,6 +611,14 @@ void MainWindow::scanWorkspace()
 							);
 	updateWorkspaceView();
 	updateFileView();
+
+	// Build default versions list
+	const QString latest = tr(LATEST_VERSION);
+
+	versionList.clear();
+	versionList.append(latest);
+	versionList += getWorkspace().getBranches();
+	versionList += getWorkspace().getTags();
 
 	setBusy(false);
 	setStatus("");
@@ -1480,44 +1497,6 @@ void MainWindow::on_actionUpdateRevision_triggered()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::updateRevision(const QString &revision)
-{
-	QStringList versions;
-	versions.append(tr("Latest version"));
-	versions += getWorkspace().getBranches();
-	versions += getWorkspace().getTags();
-	const QString latest = tr("Latest version");
-	QString defaultval = latest;
-
-	if(!revision.isEmpty())
-		defaultval = revision;
-
-	QString selected_revision = UpdateDialog::run(this, versions, defaultval);
-
-	if(selected_revision.isEmpty())
-		return;
-	else if(selected_revision == latest)
-		selected_revision = ""; // Empty revision is "latest"
-
-	QStringList res;
-
-	// Do test update
-	if(!fossil().updateRepository(res, selected_revision, true))
-		return;
-
-	// FIXME: parse "changes:      None. Already up-to-date" and avoid dialog
-	if(res.length()==0)
-		return;
-
-	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
-		return;
-
-	// Do update
-	fossil().updateRepository(res, selected_revision, false);
-	refresh();
-}
-
-//------------------------------------------------------------------------------
 void MainWindow::loadFossilSettings()
 {
 	// Also retrieve the fossil global settings
@@ -2071,6 +2050,8 @@ void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
 		menu = menuWorkspace;
 	else if (tv.Type == TreeViewItem::TYPE_STASH || tv.Type == TreeViewItem::TYPE_STASHES)
 		menu = menuStashes;
+	else if (tv.Type == TreeViewItem::TYPE_TAG || tv.Type == TreeViewItem::TYPE_TAGS)
+		menu = menuTags;
 
 	if(menu)
 	{
@@ -2206,3 +2187,71 @@ QMessageBox::StandardButton MainWindow::MainWinUICallback::Query(const QString &
 	return DialogQuery(mainWindow, title, query, buttons);
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::updateRevision(const QString &revision)
+{
+	const QString latest = tr(LATEST_VERSION);
+	QString defaultval = latest;
+
+	if(!revision.isEmpty())
+		defaultval = revision;
+
+	QString selected_revision = UpdateDialog::runUpdate(this, tr("Update workspace"), versionList, defaultval).trimmed();
+
+	if(selected_revision.isEmpty())
+		return;
+	else if(selected_revision == latest)
+		selected_revision = ""; // Empty revision is "latest"
+
+	QStringList res;
+
+	// Do test update
+	if(!fossil().updateRepository(res, selected_revision, true))
+		return;
+
+	// FIXME: parse "changes:      None. Already up-to-date" and avoid dialog
+	if(res.length()==0)
+		return;
+
+	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
+		return;
+
+	// Do update
+	fossil().updateRepository(res, selected_revision, false);
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionNewTag_triggered()
+{
+	// Default to current revision
+	QString revision = fossil().getCurrentRevision();
+
+	QString name;
+	if(!UpdateDialog::runNewTag(this, tr("New tag"), versionList, revision, revision, name))
+		return;
+
+	if(name.isEmpty() || getWorkspace().getTags().contains(name) || getWorkspace().getBranches().contains(name))
+		return;
+
+	fossil().tagNew(name, revision);
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionDeleteTag_triggered()
+{
+
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionNewBranch_triggered()
+{
+
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionMergeBranch_triggered()
+{
+
+}

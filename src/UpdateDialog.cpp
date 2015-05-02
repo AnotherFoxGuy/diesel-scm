@@ -24,11 +24,28 @@ UpdateDialog::~UpdateDialog()
 }
 
 //-----------------------------------------------------------------------------
-QString UpdateDialog::run(QWidget *parent, const QStringList &completions, const QString &defaultValue)
+QString UpdateDialog::runUpdate(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue)
 {
 	UpdateDialog dlg(parent, completions, defaultValue);
+	dlg.setWindowTitle(title);
+	dlg.ui->label_3->setVisible(false);
+	dlg.ui->lineName->setVisible(false);
 
 	if(dlg.exec() != QDialog::Accepted)
 		return QString("");
-	return dlg.ui->cmbRevision->currentText();
+	return dlg.ui->cmbRevision->currentText().trimmed();
+}
+
+//-----------------------------------------------------------------------------
+bool UpdateDialog::runNewTag(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, QString &revision, QString &name)
+{
+	UpdateDialog dlg(parent, completions, defaultValue);
+	dlg.setWindowTitle(title);
+
+	if(dlg.exec() != QDialog::Accepted)
+		return false;
+
+	revision = dlg.ui->cmbRevision->currentText().trimmed();
+	name = dlg.ui->lineName->text().trimmed();
+	return true;
 }

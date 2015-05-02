@@ -896,13 +896,50 @@
      <normaloff>:/icons/icons/Button Forward-01.png</normaloff>:/icons/icons/Button Forward-01.png</iconset>
    </property>
    <property name="text">
-    <string>UpdateRevision</string>
+    <string>Update to Revision</string>
    </property>
    <property name="toolTip">
     <string>Update the workspace to a specific revision</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+U</string>
+   </property>
+  </action>
+  <action name="actionNewTag">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icons/Highlighter Yellow-01.png</normaloff>:/icons/icons/Highlighter Yellow-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>New Tag</string>
+   </property>
+   <property name="toolTip">
+    <string>Tag current revision</string>
+   </property>
+  </action>
+  <action name="actionDeleteTag">
+   <property name="text">
+    <string>Delete Tag</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete tag</string>
+   </property>
+  </action>
+  <action name="actionNewBranch">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icons/Document Organization Chart-01.png</normaloff>:/icons/icons/Document Organization Chart-01.png</iconset>
+   </property>
+   <property name="text">
+    <string>New Branch</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a branch from the current revision</string>
+   </property>
+  </action>
+  <action name="actionMergeBranch">
+   <property name="text">
+    <string>Merge Branch</string>
    </property>
   </action>
  </widget>
