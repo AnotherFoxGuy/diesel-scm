@@ -4,7 +4,7 @@
 #include "ui_CommitDialog.h"
 #include "MainWindow.h" // Ugly. I know.
 
-CommitDialog::CommitDialog(QWidget *parent, QString title, QStringList &files, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue) :
+CommitDialog::CommitDialog(QWidget *parent, const QString &title, QStringList &files, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue) :
 	QDialog(parent, Qt::Sheet),
 	ui(new Ui::CommitDialog)
 {
@@ -77,7 +77,7 @@ CommitDialog::~CommitDialog()
 }
 
 //------------------------------------------------------------------------------
-bool CommitDialog::run(QWidget *parent, QString title, QStringList &files, QString &commitMsg, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue)
+bool CommitDialog::run(QWidget *parent, const QString &title, QStringList &files, QString &commitMsg, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue)
 {
 	CommitDialog dlg(parent, title, files, history, singleLineEntry, checkBoxText, checkBoxValue);
 	int res = dlg.exec();

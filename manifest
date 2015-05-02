@@ -1,5 +1,5 @@
-C Parse\sthe\sworkspace\sactive\stags\sand\srevision\n
-D 2015-05-02T18:22:31.909
+C Minor\sfixes
+D 2015-05-02T18:22:55.606
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -188,8 +188,8 @@ F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
 F src/CloneDialog.cpp 4fc5aa8146ac63ba6ba7341b1635b3025819d708
 F src/CloneDialog.h 8813d91f893eb3eb86a4ea5e50f9a53a0ea07047
-F src/CommitDialog.cpp 5300522ac11bc1096a11a6ce22f8c1665d4afc05
-F src/CommitDialog.h f1ee8db92103164e7db55a8407ccdcff24571b72
+F src/CommitDialog.cpp 6d9b8287c26c1f8fbe5b40971d41dc0f7132c4cf
+F src/CommitDialog.h 45fa33c4745cbb54b3cd3d56e6341ae84058ce54
 F src/CustomWebView.cpp b7dd0c41977c2cba005df07ed8967ba6f58d07d9
 F src/CustomWebView.h fbc8ee55812d1acb3c3b2bc31be7533e8a112822
 F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
@@ -220,7 +220,7 @@ F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 798a40a0fd715b0544f608543e09038e2b1fb69a
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
 F ui/UpdateDialog.ui 129596c2deb60211f25cefd785696ca7c7c56d42
-P 203cae37a6553c26a3844dcfdd3386eae9be288f
-R f1ac3114a2193bf3db758206b5ce489e
+P 2bf8e2a8aba307659c07044e1e6d155d287ac6b6
+R 9ec2464989774dd3cf301c6239b3e097
 U kostas
-Z 9e4990ffad6b2eda98502a8702251545
+Z 6bbfd3e22c509dd5f01fbba39ce51089
