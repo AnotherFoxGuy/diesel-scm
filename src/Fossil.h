@@ -83,7 +83,7 @@ public:
 	bool pullRepository();
 	bool cloneRepository(const QString &repository, const QUrl &url, const QUrl &proxyUrl);
 	bool undoRepository(QStringList& result, bool explainOnly);
-	bool updateRepository(QStringList& result, bool explainOnly);
+	bool updateRepository(QStringList& result, const QString& revision, bool explainOnly);
 	bool getFossilVersion(QString &version);
 
 	bool uiRunning() const;

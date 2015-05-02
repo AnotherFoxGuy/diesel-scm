@@ -286,13 +286,19 @@ bool Fossil::undoRepository(QStringList &result, bool explainOnly)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::updateRepository(QStringList &result, bool explainOnly)
+bool Fossil::updateRepository(QStringList &result, const QString &revision, bool explainOnly)
 {
 	QStringList params;
 	params << "update";
 
 	if(explainOnly)
 		params << "--nochange";
+
+	if(revision.isEmpty())
+		params << "--latest";
+	else
+		params << revision;
+
 
 	result.clear();
 	return runFossil(params, &result);

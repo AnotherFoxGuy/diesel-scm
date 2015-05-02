@@ -28,6 +28,7 @@ private:
 	void scanWorkspace();
 	void applySettings();
 	void updateSettings();
+	void updateRevision(const QString& revision);
 	const QString &getCurrentWorkspace();
 	void setCurrentWorkspace(const QString &workspace);
 	void log(const QString &text, bool isHTML=false);
@@ -111,6 +112,8 @@ private slots:
 	void on_textBrowser_customContextMenuRequested(const QPoint &pos);
 	void on_fileTableView_customContextMenuRequested(const QPoint &pos);
 	void on_workspaceTreeView_customContextMenuRequested(const QPoint &pos);
+
+	void on_actionUpdateRevision_triggered();
 
 private:
 	class MainWinUICallback : public UICallback

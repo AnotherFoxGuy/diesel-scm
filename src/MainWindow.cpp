@@ -15,6 +15,7 @@
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
+#include "UpdateDialog.h"
 #include "Utils.h"
 
 //-----------------------------------------------------------------------------
@@ -1455,10 +1456,10 @@ void MainWindow::on_actionUpdate_triggered()
 	QStringList res;
 
 	// Do test update
-	if(!fossil().updateRepository(res, true))
+	if(!fossil().updateRepository(res, "", true))
 		return;
 
-	// Fixme: parse "changes:      None. Already up-to-date" and avoid dialog
+	// FIXME: parse "changes:      None. Already up-to-date" and avoid dialog
 
 	if(res.length()==0)
 		return;
@@ -1467,8 +1468,52 @@ void MainWindow::on_actionUpdate_triggered()
 		return;
 
 	// Do update
-	fossil().updateRepository(res, false);
+	fossil().updateRepository(res, "", false);
 
+	refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionUpdateRevision_triggered()
+{
+	updateRevision("");
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::updateRevision(const QString &revision)
+{
+	QStringList versions;
+	versions.append(tr("Latest version"));
+	versions += getWorkspace().getBranches();
+	versions += getWorkspace().getTags();
+	const QString latest = tr("Latest version");
+	QString defaultval = latest;
+
+	if(!revision.isEmpty())
+		defaultval = revision;
+
+	QString selected_revision = UpdateDialog::run(this, versions, defaultval);
+
+	if(selected_revision.isEmpty())
+		return;
+	else if(selected_revision == latest)
+		selected_revision = ""; // Empty revision is "latest"
+
+	QStringList res;
+
+	// Do test update
+	if(!fossil().updateRepository(res, selected_revision, true))
+		return;
+
+	// FIXME: parse "changes:      None. Already up-to-date" and avoid dialog
+	if(res.length()==0)
+		return;
+
+	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
+		return;
+
+	// Do update
+	fossil().updateRepository(res, selected_revision, false);
 	refresh();
 }
 
@@ -2160,3 +2205,4 @@ QMessageBox::StandardButton MainWindow::MainWinUICallback::Query(const QString &
 {
 	return DialogQuery(mainWindow, title, query, buttons);
 }
+
