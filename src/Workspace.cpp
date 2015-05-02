@@ -186,6 +186,15 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 
 	// Load the stash
 	fossil().stashList(getStashes());
+
+	fossil().branchList(branchList, branchList);
+
+	fossil().tagList(tagList);
+	// Fossil includes the branches in the tag list
+	// So remove them
+	foreach(const QString &name, branchList)
+		tagList.removeAll(name);
+
 _done:
 	uiCallback.endProcess();
 }

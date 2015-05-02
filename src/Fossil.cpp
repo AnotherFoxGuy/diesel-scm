@@ -418,6 +418,63 @@ bool Fossil::stashDiff(const QString& name)
 }
 
 //------------------------------------------------------------------------------
+bool Fossil::tagList(QStringList& tags)
+{
+	tags.clear();
+	QStringList res;
+
+	if(!runFossil(QStringList() << "tag" << "ls", &res, RUNFLAGS_SILENT_ALL))
+		return false;
+
+	foreach(const QString &line, res)
+	{
+		QString tag = line.trimmed();
+
+		if(tag.isEmpty())
+			continue;
+		tags.append(tag);
+	}
+	tags.sort();
+	return true;
+}
+
+//------------------------------------------------------------------------------
+bool Fossil::branchList(QStringList& branches, QStringList& activeBranches)
+{
+	branches.clear();
+	activeBranches.clear();
+	QStringList res;
+
+	if(!runFossil(QStringList() << "branch" , &res, RUNFLAGS_SILENT_ALL))
+		return false;
+
+	foreach(const QString &line, res)
+	{
+		QString name = line.trimmed();
+
+		if(name.isEmpty())
+			continue;
+
+		// Active branches start with a start
+		int active_index = name.indexOf('*');
+		bool is_active = (active_index != -1) && active_index==0;
+
+		// Strip
+		if(is_active)
+		{
+			name = name.mid(is_active+1).trimmed();
+			activeBranches.append(name);
+		}
+		else
+			branches.append(name);
+	}
+
+	branches.sort();
+	activeBranches.sort();
+	return true;
+}
+
+//------------------------------------------------------------------------------
 static QString ParseFossilQuery(QString line)
 {
 	// Extract question

@@ -110,6 +110,9 @@ public:
 
 	void abortOperation() { operationAborted = true; }
 
+	bool tagList(QStringList& tags);
+	bool branchList(QStringList& branches, QStringList& activeBranches);
+
 private:
 	void log(const QString &text, bool isHTML=false)
 	{

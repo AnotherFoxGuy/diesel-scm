@@ -669,33 +669,49 @@ void MainWindow::updateDirView()
 		}
 	}
 
+	// Branches
 	QStandardItem *branches = new QStandardItem(QIcon(":icons/icons/Document Organization Chart-01.png"), "Branches");
 	branches->setData(TreeViewItem(TreeViewItem::TYPE_BRANCHES, ""), REPODIRMODEL_ROLE_PATH);
 	branches->setEditable(false);
 	getWorkspace().getDirModel().appendRow(branches);
+	foreach(const QString &branch_name, getWorkspace().getBranches())
+	{
+		QStandardItem *branch = new QStandardItem(QIcon(":icons/icons/Document Organization Chart-01.png"), branch_name);
+		branch->setData(TreeViewItem(TreeViewItem::TYPE_BRANCH, branch_name), REPODIRMODEL_ROLE_PATH);
+		branches->appendRow(branch);
+	}
 
+	// Tags
+	QStandardItem *tags = new QStandardItem(QIcon(":icons/icons/Book-01.png"), "Tags");
+	tags->setData(TreeViewItem(TreeViewItem::TYPE_TAGS, ""), REPODIRMODEL_ROLE_PATH);
+	tags->setEditable(false);
+	getWorkspace().getDirModel().appendRow(tags);
+	foreach(const QString &tag_name, getWorkspace().getTags())
+	{
+		QStandardItem *tag = new QStandardItem(QIcon(":icons/icons/Book-01.png"), tag_name);
+		tag->setData(TreeViewItem(TreeViewItem::TYPE_TAG, tag_name), REPODIRMODEL_ROLE_PATH);
+		tags->appendRow(tag);
+	}
+
+	// Stashes
 	QStandardItem *stashes = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), "Stashes");
 	stashes->setData(TreeViewItem(TreeViewItem::TYPE_STASHES, ""), REPODIRMODEL_ROLE_PATH);
 	stashes->setEditable(false);
 	getWorkspace().getDirModel().appendRow(stashes);
 	for(stashmap_t::const_iterator it= getWorkspace().getStashes().begin(); it!=getWorkspace().getStashes().end(); ++it)
 	{
-		QStandardItem *stash = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), it.key());
+		QStandardItem *stash = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), it.key());
 		stash->setData(TreeViewItem(TreeViewItem::TYPE_STASH, it.value()), REPODIRMODEL_ROLE_PATH);
 		stashes->appendRow(stash);
 	}
 
-
-	QStandardItem *tags = new QStandardItem(QIcon(":icons/icons/Book-01.png"), "Tags");
-	tags->setData(TreeViewItem(TreeViewItem::TYPE_TAGS, ""), REPODIRMODEL_ROLE_PATH);
-	tags->setEditable(false);
-	getWorkspace().getDirModel().appendRow(tags);
-
+	// Remotes
 	QStandardItem *remotes = new QStandardItem(QIcon(":icons/icons/Network PC-01.png"), "Remotes");
 	remotes->setData(TreeViewItem(TreeViewItem::TYPE_REMOTES, ""), REPODIRMODEL_ROLE_PATH);
 	remotes->setEditable(false);
 	getWorkspace().getDirModel().appendRow(remotes);
 
+	// Settings
 	QStandardItem *settings = new QStandardItem(QIcon(":icons/icons/Gear-01.png"), "Settings");
 	settings->setData(TreeViewItem(TreeViewItem::TYPE_SETTINGS, ""), REPODIRMODEL_ROLE_PATH);
 	settings->setEditable(false);

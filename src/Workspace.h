@@ -120,12 +120,16 @@ public:
 	filemap_t			&getFiles() { return workspaceFiles; }
 	stringset_t			&getPaths() { return pathSet; }
 	stashmap_t			&getStashes() { return stashMap; }
+	QStringList			&getTags() { return tagList; }
+	QStringList			&getBranches() { return branchList; }
 
 private:
 	Fossil				bridge;
 	filemap_t			workspaceFiles;
 	stringset_t			pathSet;
 	stashmap_t			stashMap;
+	QStringList			branchList;
+	QStringList			tagList;
 
 	QStandardItemModel	repoFileModel;
 	QStandardItemModel	repoDirModel;
