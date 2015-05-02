@@ -599,7 +599,7 @@ void MainWindow::scanWorkspace()
 							uiCallback,
 							operationAborted
 							);
-	updateDirView();
+	updateWorkspaceView();
 	updateFileView();
 
 	setBusy(false);
@@ -643,16 +643,16 @@ static void addPathToTree(QStandardItem &root, const QString &path)
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::updateDirView()
+void MainWindow::updateWorkspaceView()
 {
 	// Directory View
 	getWorkspace().getDirModel().clear();
 
 	QStringList header;
-	header << fossil().getProjectName();
+	header << tr("Workspace");
 	getWorkspace().getDirModel().setHorizontalHeaderLabels(header);
 
-	QStandardItem *workspace = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), "Workspace");
+	QStandardItem *workspace = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), tr("Files") );
 	workspace->setData(TreeViewItem(TreeViewItem::TYPE_WORKSPACE, ""), REPODIRMODEL_ROLE_PATH);
 	workspace->setEditable(false);
 
@@ -1583,7 +1583,7 @@ void MainWindow::on_actionViewAsList_triggered()
 #if 0
 	ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
 #endif
-	updateDirView();
+	updateWorkspaceView();
 	updateFileView();
 }
 

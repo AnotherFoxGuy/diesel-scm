@@ -47,7 +47,7 @@ private:
 	bool openWorkspace(const QString &path);
 	void loadFossilSettings();
 	QString getFossilHttpAddress();
-	void updateDirView();
+	void updateWorkspaceView();
 	void updateFileView();
 	void selectRootDir();
 	void fossilBrowse(const QString &fossilUrl);

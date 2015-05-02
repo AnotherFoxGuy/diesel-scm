@@ -1,5 +1,5 @@
-C Added\stag\sand\sbranch\slist\sto\sworkspace\sview
-D 2015-05-02T12:44:09.110
+C Renamed\supdateDirView\sto\supdateWorkspaceView\nDisabled\ssorting\sin\sthe\sworkspace\sview
+D 2015-05-02T14:37:35.228
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -200,8 +200,8 @@ F src/Fossil.cpp c19b0e9b510743e7a49c7f0d2b4c5eba4b93382e
 F src/Fossil.h 33b6845a8adbc351f82c5256282671a6c3d864d2
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 87b8831f7035c4584c2b4b728ad0b72f17ac63f1
-F src/MainWindow.h ef23aacdae4a6795fc19d9c24b3c76394a7b669d
+F src/MainWindow.cpp 5ed1c10b7ac306fa2594f7dae36028ac3cce3730
+F src/MainWindow.h 13810b522080c52541112a68890f75d20e3d8f13
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp f78728e0817b1db23007ba0d2c5c26980ee7ebca
@@ -215,9 +215,9 @@ F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/MainWindow.ui b735238428bad38bbb5c03e09975e5bb0fa156ab
+F ui/MainWindow.ui f18e1ca4dbbf1ad031dd6660e3b1bef927bf32e8
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 82357d43ca742466e08d3794bdc9a4ab800ad867
-R 32a798815197954f6956d147e48ec66c
+P 304f9bd6c61babe7abc522c1a1301fe3f1887505
+R 8eb683509bb23eb5a25729fe59a5def6
 U kostas
-Z da4f0b035007563aa632b403c0d99df8
+Z e1f07217ec9a1e8b6c63138e70dfd9dd
