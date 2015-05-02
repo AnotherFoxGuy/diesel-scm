@@ -3,6 +3,7 @@
 
 class QStringList;
 #include <QString>
+#include <QStringList>
 #include <QObject>
 #include <QProcess>
 #include "Utils.h"
@@ -111,7 +112,13 @@ public:
 	void abortOperation() { operationAborted = true; }
 
 	bool tagList(QStringList& tags);
+	bool tagNew(const QString& name, const QString& revision);
+	bool tagDelete(const QString& name);
+
 	bool branchList(QStringList& branches, QStringList& activeBranches);
+
+	const QString &getCurrentRevision() const { return currentRevision; }
+	const QStringList &getCurrentTags() const { return currentTags; }
 
 private:
 	void log(const QString &text, bool isHTML=false)
@@ -128,6 +135,8 @@ private:
 	QString				fossilPath;		// The value from the settings
 	QString				repositoryFile;
 	QString				projectName;
+	QString				currentRevision;
+	QStringList			currentTags;
 	QProcess			fossilUI;
 };
 

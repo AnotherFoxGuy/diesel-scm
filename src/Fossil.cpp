@@ -50,6 +50,21 @@ RepoStatus Fossil::getRepoStatus()
 				projectName = value;
 			else if(key=="repository")
 				repositoryFile = value;
+			else if(key=="checkout")
+			{
+				// f2121dad5e4565f55ed9ef882484dd5934af565f 2015-04-26 17:27:39 UTC
+				QStringList tokens = value.split(' ', QString::SkipEmptyParts);
+				Q_ASSERT(tokens.length()>0);
+				currentRevision = tokens[0].trimmed();
+			}
+			else if(key=="tags")
+			{
+				currentTags.clear();
+				QStringList tokens = value.split(',', QString::SkipEmptyParts);
+				foreach(const QString &tag, tokens)
+					currentTags.append(tag);
+				currentTags.sort();
+			}
 		}
 	}
 
@@ -441,6 +456,16 @@ bool Fossil::tagList(QStringList& tags)
 		tags.append(tag);
 	}
 	tags.sort();
+	return true;
+}
+
+//------------------------------------------------------------------------------
+bool Fossil::tagNew(const QString& name, const QString& revision)
+{
+	QStringList res;
+
+	if(!runFossil(QStringList() << "tag" << "add" << name << revision, &res, RUNFLAGS_SILENT_ALL))
+		return false;
 	return true;
 }
 
