@@ -10,6 +10,7 @@
 #include <QInputDialog>
 #include <QMimeData>
 #include <QProgressBar>
+#include <QLabel>
 #include <QSettings>
 #include <QShortcut>
 #include "CommitDialog.h"
@@ -193,6 +194,15 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	// TabWidget
 	ui->tabWidget->setCurrentIndex(TAB_LOG);
 
+	lblRevision = new QLabel();
+	ui->statusBar->insertPermanentWidget(0, lblRevision);
+	lblRevision->setVisible(true);
+
+	lblTags = new QLabel();
+	ui->statusBar->insertPermanentWidget(1, lblTags);
+	lblTags->setVisible(true);
+
+
 	// Construct ProgressBar
 	progressBar = new QProgressBar();
 	progressBar->setMinimum(0);
@@ -200,8 +210,9 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	progressBar->setMaximumSize(170, 16);
 	progressBar->setAlignment(Qt::AlignCenter);
 	progressBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
-	ui->statusBar->insertPermanentWidget(0, progressBar);
+	ui->statusBar->insertPermanentWidget(2, progressBar);
 	progressBar->setVisible(false);
+
 
 #ifdef Q_OS_MACX
 	// Native applications on OSX don't have menu icons
@@ -605,6 +616,11 @@ void MainWindow::scanWorkspace()
 
 	setBusy(false);
 	setStatus("");
+	lblRevision->setText(tr("Revision: %0").arg(fossil().getCurrentRevision()));
+	lblRevision->setVisible(true);
+
+	lblTags->setText(tr("Tags: %0").arg(fossil().getCurrentTags().join(' ')));
+	lblTags->setVisible(true);
 }
 
 //------------------------------------------------------------------------------
@@ -2164,6 +2180,8 @@ void MainWindow::MainWinUICallback::beginProcess(const QString& text)
 {
 	Q_ASSERT(mainWindow);
 	mainWindow->ui->statusBar->showMessage(text);
+	mainWindow->lblTags->setHidden(true);
+	mainWindow->lblRevision->setHidden(true);
 	mainWindow->progressBar->setHidden(false);
 	QCoreApplication::processEvents();
 }
@@ -2181,6 +2199,8 @@ void MainWindow::MainWinUICallback::endProcess()
 {
 	Q_ASSERT(mainWindow);
 	mainWindow->ui->statusBar->clearMessage();
+	mainWindow->lblTags->setHidden(false);
+	mainWindow->lblRevision->setHidden(false);
 	mainWindow->progressBar->setHidden(true);
 	QCoreApplication::processEvents();
 }

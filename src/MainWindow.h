@@ -153,6 +153,8 @@ private:
 	Ui::MainWindow		*ui;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QProgressBar	*progressBar;
+	class QLabel		*lblRevision;
+	class QLabel		*lblTags;
 	class QShortcut		*abortShortcut;
 	QMenu				*menuWorkspace;
 	QMenu				*menuStashes;
