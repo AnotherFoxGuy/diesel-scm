@@ -463,7 +463,7 @@ bool Fossil::tagList(QStringMap& tags)
 
 		info.clear();
 
-		if(!runFossil(QStringList() << "info" << tag, &info, RUNFLAGS_SILENT_ALL))
+		if(!runFossil(QStringList() << "info" << "tag:"+tag, &info, RUNFLAGS_SILENT_ALL))
 			return false;
 
 		QStringMap props;
@@ -495,7 +495,7 @@ bool Fossil::tagDelete(const QString& name, const QString &revision)
 {
 	QStringList res;
 
-	if(!runFossil(QStringList() << "tag" << "cancel" << name << revision, &res))
+	if(!runFossil(QStringList() << "tag" << "cancel" << "tag:"+name << revision, &res))
 		return false;
 
 	return true;
@@ -730,6 +730,12 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		#endif
 
 		buffer += decoder->toUnicode(input);
+
+
+		#ifdef QT_DEBUG // breakpint
+		//if(buffer.indexOf("SQLITE_CANTOPEN")!=-1)
+		//	qDebug() << "Breakpoint\n";
+		#endif
 
 		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
