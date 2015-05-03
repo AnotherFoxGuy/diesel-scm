@@ -17,6 +17,7 @@ public:
 	~UpdateDialog();
 
 	static QString runUpdate(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue);
+	static QString runMerge(QWidget* parent, const QString& title, const QStringList& completions, const QString& defaultValue, bool& integrate);
 	static bool runNewTag(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, QString &revision, QString &name);
 
 private:

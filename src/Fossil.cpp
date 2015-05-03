@@ -532,6 +532,43 @@ bool Fossil::branchList(QStringList& branches, QStringList& activeBranches)
 }
 
 //------------------------------------------------------------------------------
+bool Fossil::branchNew(const QString& name, const QString& revisionBasis, bool isPrivate)
+{
+	QStringList params;
+
+	params <<"branch"  << "new" << name << revisionBasis;
+
+	if(isPrivate)
+		params << "--private";
+
+	QStringList res;
+
+	if(!runFossil(params, &res))
+		return false;
+	return true;
+}
+
+//------------------------------------------------------------------------------
+bool Fossil::branchMerge(QStringList &res, const QString& revision, bool integrate, bool testOnly)
+{
+	QStringList params;
+
+	params <<"merge";
+
+	if(integrate)
+		params << "--integrate";
+
+	if(testOnly)
+		params << "--dry-run";
+
+	params << revision;
+
+	if(!runFossil(params, &res))
+		return false;
+	return true;
+}
+
+//------------------------------------------------------------------------------
 static QString ParseFossilQuery(QString line)
 {
 	// Extract question

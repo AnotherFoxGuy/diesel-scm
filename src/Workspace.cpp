@@ -148,7 +148,7 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 			type = WorkspaceFile::TYPE_UNCHANGED;
 		else if(status_text=="CONFLICT")
 			type = WorkspaceFile::TYPE_CONFLICTED;
-		else if(status_text=="UPDATED_BY_MERGE")
+		else if(status_text=="UPDATED_BY_MERGE" || status_text=="ADDED_BY_MERGE" || status_text=="ADDED_BY_INTEGRATE" || status_text=="UPDATED_BY_INTEGRATE")
 			type = WorkspaceFile::TYPE_MERGED;
 
 		// Filter unwanted file types

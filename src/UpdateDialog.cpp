@@ -28,8 +28,12 @@ QString UpdateDialog::runUpdate(QWidget *parent, const QString &title, const QSt
 {
 	UpdateDialog dlg(parent, completions, defaultValue);
 	dlg.setWindowTitle(title);
-	dlg.ui->label_3->setVisible(false);
+	dlg.ui->lblName->setVisible(false);
 	dlg.ui->lineName->setVisible(false);
+	dlg.ui->lblIntegrate->setVisible(false);
+	dlg.ui->chkIntegrate->setVisible(false);
+
+	dlg.adjustSize();
 
 	if(dlg.exec() != QDialog::Accepted)
 		return QString("");
@@ -37,10 +41,37 @@ QString UpdateDialog::runUpdate(QWidget *parent, const QString &title, const QSt
 }
 
 //-----------------------------------------------------------------------------
+QString UpdateDialog::runMerge(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, bool &integrate)
+{
+	UpdateDialog dlg(parent, completions, defaultValue);
+	dlg.setWindowTitle(title);
+	dlg.ui->lblName->setVisible(false);
+	dlg.ui->lineName->setVisible(false);
+	dlg.ui->lblIntegrate->setVisible(true);
+	dlg.ui->chkIntegrate->setVisible(true);
+	dlg.ui->chkIntegrate->setChecked(integrate);
+	dlg.adjustSize();
+
+	if(dlg.exec() != QDialog::Accepted)
+		return QString("");
+
+	integrate = dlg.ui->chkIntegrate->checkState() == Qt::Checked;
+
+	return dlg.ui->cmbRevision->currentText().trimmed();
+}
+
+
+//-----------------------------------------------------------------------------
 bool UpdateDialog::runNewTag(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, QString &revision, QString &name)
 {
 	UpdateDialog dlg(parent, completions, defaultValue);
 	dlg.setWindowTitle(title);
+
+	dlg.ui->lblName->setVisible(true);
+	dlg.ui->lineName->setVisible(true);
+	dlg.ui->lblIntegrate->setVisible(false);
+	dlg.ui->chkIntegrate->setVisible(false);
+	dlg.adjustSize();
 
 	if(dlg.exec() != QDialog::Accepted)
 		return false;

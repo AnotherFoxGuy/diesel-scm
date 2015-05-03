@@ -18,7 +18,8 @@
 #include "UpdateDialog.h"
 #include "Utils.h"
 
-#define LATEST_VERSION "Latest"
+#define LATEST_VERSION "Latest Revision"
+#define CURRENT_VERSION "Current Revision"
 
 //-----------------------------------------------------------------------------
 enum
@@ -147,6 +148,8 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	// StashMenu
 	menuStashes = new QMenu(this);
+	menuStashes->addAction(ui->actionNewStash);
+	menuStashes->addAction(separator);
 	menuStashes->addAction(ui->actionApplyStash);
 	menuStashes->addAction(ui->actionDiffStash);
 	menuStashes->addAction(ui->actionDeleteStash);
@@ -154,9 +157,16 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	// TagsMenu
 	menuTags = new QMenu(this);
 	menuTags->addAction(ui->actionNewTag);
+	menuTags->addAction(separator);
 	menuTags->addAction(ui->actionDeleteTag);
 	menuTags->addAction(ui->actionUpdateRevision);
 
+	// BranchesMenu
+	menuBranches = new QMenu(this);
+	menuBranches->addAction(ui->actionNewBranch);
+	menuBranches->addAction(separator);
+	menuBranches->addAction(ui->actionMergeBranch);
+	menuBranches->addAction(ui->actionUpdateRevision);
 
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
@@ -586,10 +596,7 @@ void MainWindow::scanWorkspace()
 	updateFileView();
 
 	// Build default versions list
-	const QString latest = tr(LATEST_VERSION);
-
 	versionList.clear();
-	versionList.append(latest);
 	versionList += getWorkspace().getBranches();
 	versionList += getWorkspace().getTags().keys();
 
@@ -1474,7 +1481,13 @@ void MainWindow::on_actionUpdate_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionUpdateRevision_triggered()
 {
-	updateRevision("");
+	QStringList selected = selectedBranches + selectedTags;
+
+	QString revision;
+	if(!selected.isEmpty())
+		revision = selected.first();
+
+	updateRevision(revision);
 }
 
 //------------------------------------------------------------------------------
@@ -1610,6 +1623,8 @@ void MainWindow::onWorkspaceTreeViewSelectionChanged(const QItemSelection &/*sel
 		return;
 
 	stringset_t new_dirs;
+	selectedTags.clear();
+	selectedBranches.clear();
 
 	foreach(const QModelIndex &id, indices)
 	{
@@ -2039,6 +2054,8 @@ void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
 		menu = menuStashes;
 	else if (tv.Type == TreeViewItem::TYPE_TAG || tv.Type == TreeViewItem::TYPE_TAGS)
 		menu = menuTags;
+	else if (tv.Type == TreeViewItem::TYPE_BRANCH || tv.Type == TreeViewItem::TYPE_BRANCHES)
+		menu = menuBranches;
 
 	if(menu)
 	{
@@ -2221,11 +2238,14 @@ void MainWindow::on_actionNewTag_triggered()
 	QString revision = fossil().getCurrentRevision();
 
 	QString name;
-	if(!UpdateDialog::runNewTag(this, tr("New tag"), versionList, revision, revision, name))
+	if(!UpdateDialog::runNewTag(this, tr("New Tag"), versionList, revision, revision, name))
 		return;
 
 	if(name.isEmpty() || getWorkspace().getTags().contains(name) || getWorkspace().getBranches().contains(name))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Invalid name."), QMessageBox::Ok );
 		return;
+	}
 
 	fossil().tagNew(name, revision);
 	refresh();
@@ -2253,11 +2273,58 @@ void MainWindow::on_actionDeleteTag_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionNewBranch_triggered()
 {
+	// Default to current revision
+	QString revision = fossil().getCurrentRevision();
 
+	QString branch_name;
+	if(!UpdateDialog::runNewTag(this, tr("New Branch"), versionList, revision, revision, branch_name))
+		return;
+
+	if(branch_name.isEmpty() || getWorkspace().getTags().contains(branch_name) || getWorkspace().getBranches().contains(branch_name))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Invalid name."), QMessageBox::Ok );
+		return;
+	}
+
+	if(!fossil().branchNew(branch_name, revision, false))
+		return;
+
+	if(QMessageBox::Yes == DialogQuery(this, tr("New Branch"), tr("Would you like to check-out the branch '%0' ?").arg(branch_name)))
+		updateRevision(branch_name);
+	else
+		refresh();
+}
+//------------------------------------------------------------------------------
+void MainWindow::MergeRevision(const QString &defaultRevision)
+{
+	QStringList res;
+	QString revision = defaultRevision;
+
+	bool integrate = false;
+	revision = UpdateDialog::runMerge(this, tr("Merge"), versionList, revision, integrate);
+
+	if(revision.isEmpty())
+		return;
+
+	// Do test merge
+	if(!fossil().branchMerge(res, revision, integrate, true))
+		return;
+
+	if(!FileActionDialog::run(this, tr("Merge"), tr("The following changesd will be made.")+"\n"+tr("Are you sure?"), res))
+		return;
+
+	// Do update
+	fossil().branchMerge(res, revision, integrate, false);
+
+	refresh();
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionMergeBranch_triggered()
 {
+	QString revision;
 
+	if(!selectedBranches.isEmpty())
+		revision = selectedBranches.first();
+	MergeRevision(revision);
 }

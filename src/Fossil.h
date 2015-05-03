@@ -116,6 +116,8 @@ public:
 	bool tagDelete(const QString& name, const QString& revision);
 
 	bool branchList(QStringList& branches, QStringList& activeBranches);
+	bool branchNew(const QString& name, const QString& revisionBasis, bool isPrivate=false);
+	bool branchMerge(QStringList& res, const QString& revision, bool integrate, bool testOnly);
 
 	const QString &getCurrentRevision() const { return currentRevision; }
 	const QStringList &getCurrentTags() const { return currentTags; }

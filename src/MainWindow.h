@@ -51,6 +51,8 @@ private:
 	void updateWorkspaceView();
 	void updateFileView();
 	void selectRootDir();
+	void MergeRevision(const QString& defaultRevision);
+
 	void fossilBrowse(const QString &fossilUrl);
 	void dragEnterEvent(class QDragEnterEvent *event);
 	void dropEvent(class QDropEvent *event);
@@ -112,15 +114,10 @@ private slots:
 	void on_textBrowser_customContextMenuRequested(const QPoint &pos);
 	void on_fileTableView_customContextMenuRequested(const QPoint &pos);
 	void on_workspaceTreeView_customContextMenuRequested(const QPoint &pos);
-
 	void on_actionUpdateRevision_triggered();
-
 	void on_actionNewTag_triggered();
-
 	void on_actionDeleteTag_triggered();
-
 	void on_actionNewBranch_triggered();
-
 	void on_actionMergeBranch_triggered();
 
 private:
@@ -160,7 +157,7 @@ private:
 	QMenu				*menuWorkspace;
 	QMenu				*menuStashes;
 	QMenu				*menuTags;
-	//QMenu				*menuBranches;
+	QMenu				*menuBranches;
 
 	bool				operationAborted;
 	stringset_t			selectedDirs;	// The directory selected in the tree

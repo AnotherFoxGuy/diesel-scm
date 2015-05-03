@@ -10,8 +10,14 @@
     <x>0</x>
     <y>0</y>
     <width>478</width>
-    <height>113</height>
+    <height>146</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -20,7 +26,7 @@
    <item>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="lblRevision">
        <property name="text">
         <string>Revision</string>
        </property>
@@ -34,7 +40,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="lblName">
        <property name="text">
         <string>Name</string>
        </property>
@@ -42,6 +48,20 @@
      </item>
      <item row="1" column="1">
       <widget class="QLineEdit" name="lineName"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lblIntegrate">
+       <property name="text">
+        <string>Integrate</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QCheckBox" name="chkIntegrate">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
