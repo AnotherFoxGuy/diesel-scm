@@ -6,7 +6,6 @@
 #include <QDrag>
 #include <QDragEnterEvent>
 #include <QFileDialog>
-#include <QFileIconProvider>
 #include <QInputDialog>
 #include <QLabel>
 #include <QMessageBox>
@@ -842,7 +841,7 @@ _done:
 }
 
 //------------------------------------------------------------------------------
-static void addPathToTree(QStandardItem &root, const QString &path)
+static void addPathToTree(QStandardItem &root, const QString &path, const QIcon &folderIcon)
 {
 	QStringList dirs = path.split('/');
 	QStandardItem *parent = &root;
@@ -868,7 +867,7 @@ static void addPathToTree(QStandardItem &root, const QString &path)
 
 		if(!found) // Generate it
 		{
-			QStandardItem *child = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), dir);
+			QStandardItem *child = new QStandardItem(folderIcon, dir);
 			child->setData(fullpath); // keep the full path to simplify selection
 			parent->appendRow(child);
 			parent = child;
@@ -887,7 +886,7 @@ void MainWindow::updateDirView()
 	header << tr("Folders");
 	repoDirModel.setHorizontalHeaderLabels(header);
 
-	QStandardItem *root = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), projectName);
+	QStandardItem *root = new QStandardItem(getInternalIcon(":icons/icons/My Documents-01.png"), projectName);
 	root->setData(""); // Empty Path
 	root->setEditable(false);
 
@@ -898,7 +897,7 @@ void MainWindow::updateDirView()
 		if(dir.isEmpty())
 			continue;
 
-		addPathToTree(*root, dir);
+		addPathToTree(*root, dir, getInternalIcon(":icons/icons/Folder-01.png"));
 	}
 	ui->treeView->expandToDepth(0);
 	ui->treeView->sortByColumn(0, Qt::AscendingOrder);
@@ -921,8 +920,6 @@ void MainWindow::updateFileView()
 		{   RepoFile::TYPE_MISSING, tr("Missing"), ":icons/icons/Button Help-01.png" },
 		{   RepoFile::TYPE_CONFLICTED, tr("Conflicted"), ":icons/icons/Button Blank Red-01.png" },
 	};
-
-	QFileIconProvider icon_provider;
 
 	bool display_path = viewMode==VIEWMODE_LIST || selectedDirs.count() > 1;
 
@@ -950,20 +947,26 @@ void MainWindow::updateFileView()
 			}
 		}
 
-		QStandardItem *status = new QStandardItem(QIcon(status_icon_path), status_text);
+		QStandardItem *status = new QStandardItem(getInternalIcon(status_icon_path), status_text);
 		status->setToolTip(status_text);
 		repoFileModel.setItem(item_id, COLUMN_STATUS, status);
 
 		QFileInfo finfo = e.getFileInfo();
-		QIcon icon = icon_provider.icon(finfo);
+		QString icon_type = iconProvider.type(finfo);
+
+
+		if(!iconCache.contains(icon_type))
+			iconCache.insert(icon_type, iconProvider.icon(finfo));
+
+		const QIcon *icon = &iconCache[icon_type];
 
 		QStandardItem *filename_item = 0;
 		repoFileModel.setItem(item_id, COLUMN_PATH, new QStandardItem(path));
 
 		if(display_path)
-			filename_item = new QStandardItem(icon, QDir::toNativeSeparators(e.getFilePath()));
+			filename_item = new QStandardItem(*icon, QDir::toNativeSeparators(e.getFilePath()));
 		else
-			filename_item = new QStandardItem(icon, e.getFilename());
+			filename_item = new QStandardItem(*icon, e.getFilename());
 
 		Q_ASSERT(filename_item);
 		// Keep the path in the user data
@@ -2445,6 +2448,16 @@ _exit:
 QMenu * MainWindow::createPopupMenu()
 {
 	return NULL;
+}
+
+//------------------------------------------------------------------------------
+const QIcon &MainWindow::getInternalIcon(const char* name)
+{
+	if(iconCache.contains(name))
+		return iconCache[name];
+
+	iconCache.insert(name, QIcon(name));
+	return iconCache[name];
 }
 
 //------------------------------------------------------------------------------

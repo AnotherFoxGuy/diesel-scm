@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QProcess>
+#include <QFileIconProvider>
 #include <QSet>
 #include "SettingsDialog.h"
 
@@ -170,6 +171,7 @@ private:
 	void dropEvent(class QDropEvent *event);
 	void setBusy(bool busy);
 	virtual QMenu *createPopupMenu();
+	const QIcon& getInternalIcon(const char *name);
 
 	enum RepoStatus
 	{
@@ -242,8 +244,11 @@ private:
 		MAX_RECENT=5
 	};
 
+	typedef QMap<QString, QIcon> icon_map_t;
 
 	Ui::MainWindow		*ui;
+	QFileIconProvider	iconProvider;
+	icon_map_t			iconCache;
 	QStandardItemModel	repoFileModel;
 	QStandardItemModel	repoDirModel;
 	QStandardItemModel	repoStashModel;
