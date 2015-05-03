@@ -114,7 +114,6 @@ private slots:
 	void on_textBrowser_customContextMenuRequested(const QPoint &pos);
 	void on_fileTableView_customContextMenuRequested(const QPoint &pos);
 	void on_workspaceTreeView_customContextMenuRequested(const QPoint &pos);
-	void on_actionUpdateRevision_triggered();
 	void on_actionNewTag_triggered();
 	void on_actionDeleteTag_triggered();
 	void on_actionNewBranch_triggered();

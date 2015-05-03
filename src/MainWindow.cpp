@@ -159,14 +159,14 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	menuTags->addAction(ui->actionNewTag);
 	menuTags->addAction(separator);
 	menuTags->addAction(ui->actionDeleteTag);
-	menuTags->addAction(ui->actionUpdateRevision);
+	menuTags->addAction(ui->actionUpdate);
 
 	// BranchesMenu
 	menuBranches = new QMenu(this);
 	menuBranches->addAction(ui->actionNewBranch);
 	menuBranches->addAction(separator);
 	menuBranches->addAction(ui->actionMergeBranch);
-	menuBranches->addAction(ui->actionUpdateRevision);
+	menuBranches->addAction(ui->actionUpdate);
 
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
@@ -722,6 +722,7 @@ void MainWindow::updateWorkspaceView()
 		stashes->appendRow(stash);
 	}
 
+#if 0 // Unimplemented for now
 	// Remotes
 	QStandardItem *remotes = new QStandardItem(QIcon(":icons/icons/Network PC-01.png"), "Remotes");
 	remotes->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTES, ""), ROLE_WORKSPACE_ITEM);
@@ -733,8 +734,7 @@ void MainWindow::updateWorkspaceView()
 	settings->setData(WorkspaceItem(WorkspaceItem::TYPE_SETTINGS, ""), ROLE_WORKSPACE_ITEM);
 	settings->setEditable(false);
 	getWorkspace().getDirModel().appendRow(settings);
-
-
+#endif
 	ui->workspaceTreeView->expandToDepth(0);
 	//ui->workspaceTreeView->sortByColumn(0, Qt::AscendingOrder);
 }
@@ -1468,33 +1468,6 @@ void MainWindow::on_actionAbout_triggered()
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionUpdate_triggered()
-{
-	QStringList res;
-
-	// Do test update
-	if(!fossil().updateRepository(res, "", true))
-		return;
-
-	if(res.length()==0)
-		return;
-
-	QStringMap kv;
-	ParseProperties(kv, res, ':');
-	// If no changes exit
-	if(kv.contains("changes") && kv["changes"].indexOf("None.")!=-1)
-		return;
-
-	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
-		return;
-
-	// Do update
-	fossil().updateRepository(res, "", false);
-
-	refresh();
-}
-
-//------------------------------------------------------------------------------
-void MainWindow::on_actionUpdateRevision_triggered()
 {
 	QStringList selected = selectedBranches + selectedTags;
 

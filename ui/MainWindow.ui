@@ -293,7 +293,6 @@
    <addaction name="separator"/>
    <addaction name="actionCommit"/>
    <addaction name="actionUpdate"/>
-   <addaction name="actionUpdateRevision"/>
    <addaction name="separator"/>
    <addaction name="actionPush"/>
    <addaction name="actionPull"/>
@@ -701,7 +700,7 @@
     <string>Update</string>
    </property>
    <property name="toolTip">
-    <string>Update the workspace to the latest version</string>
+    <string>Update the workspace to a revision</string>
    </property>
    <property name="statusTip">
     <string>Update the workspace to the latest version</string>
@@ -888,21 +887,6 @@
    </property>
    <property name="text">
     <string>Diff Stash</string>
-   </property>
-  </action>
-  <action name="actionUpdateRevision">
-   <property name="icon">
-    <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Button Forward-01.png</normaloff>:/icons/icons/Button Forward-01.png</iconset>
-   </property>
-   <property name="text">
-    <string>Update to Revision</string>
-   </property>
-   <property name="toolTip">
-    <string>Update the workspace to a specific revision</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+U</string>
    </property>
   </action>
   <action name="actionNewTag">
