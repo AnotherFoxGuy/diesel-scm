@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QSet>
 #include <QMap>
+#include "Utils.h"
 #include "Fossil.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -120,7 +121,7 @@ public:
 	filemap_t			&getFiles() { return workspaceFiles; }
 	stringset_t			&getPaths() { return pathSet; }
 	stashmap_t			&getStashes() { return stashMap; }
-	QStringList			&getTags() { return tagList; }
+	QStringMap			&getTags() { return tags; }
 	QStringList			&getBranches() { return branchList; }
 
 private:
@@ -129,7 +130,7 @@ private:
 	stringset_t			pathSet;
 	stashmap_t			stashMap;
 	QStringList			branchList;
-	QStringList			tagList;
+	QStringMap			tags;
 
 	QStandardItemModel	repoFileModel;
 	QStandardItemModel	repoDirModel;

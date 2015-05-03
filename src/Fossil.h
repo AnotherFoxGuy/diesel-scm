@@ -111,9 +111,9 @@ public:
 
 	void abortOperation() { operationAborted = true; }
 
-	bool tagList(QStringList& tags);
+	bool tagList(QStringMap& tags);
 	bool tagNew(const QString& name, const QString& revision);
-	bool tagDelete(const QString& name);
+	bool tagDelete(const QString& name, const QString& revision);
 
 	bool branchList(QStringList& branches, QStringList& activeBranches);
 

@@ -439,23 +439,38 @@ bool Fossil::stashDiff(const QString& name)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::tagList(QStringList& tags)
+bool Fossil::tagList(QStringMap& tags)
 {
 	tags.clear();
-	QStringList res;
+	QStringList tagnames;
 
-	if(!runFossil(QStringList() << "tag" << "ls", &res, RUNFLAGS_SILENT_ALL))
+	if(!runFossil(QStringList() << "tag" << "ls", &tagnames, RUNFLAGS_SILENT_ALL))
 		return false;
 
-	foreach(const QString &line, res)
+	QStringList info;
+	foreach(const QString &line, tagnames)
 	{
 		QString tag = line.trimmed();
 
 		if(tag.isEmpty())
 			continue;
-		tags.append(tag);
+
+		info.clear();
+
+		if(!runFossil(QStringList() << "info" << tag, &info, RUNFLAGS_SILENT_ALL))
+			return false;
+
+		QStringMap props;
+		ParseProperties(props, info, ':');
+		Q_ASSERT(props.contains("uuid"));
+
+		// uuid:         0e29a46f036d2e0cc89727190ad34c2dfdc5737c 2015-04-27 15:41:45 UTC
+		QStringList uuid = props["uuid"].trimmed().split(' ');
+		Q_ASSERT(uuid.length()>0);
+
+		QString revision = uuid[0].trimmed();
+		tags.insert(tag, revision);
 	}
-	tags.sort();
 	return true;
 }
 
@@ -464,8 +479,19 @@ bool Fossil::tagNew(const QString& name, const QString& revision)
 {
 	QStringList res;
 
-	if(!runFossil(QStringList() << "tag" << "add" << name << revision, &res, RUNFLAGS_SILENT_ALL))
+	if(!runFossil(QStringList() << "tag" << "add" << name << revision, &res))
 		return false;
+	return true;
+}
+
+//------------------------------------------------------------------------------
+bool Fossil::tagDelete(const QString& name, const QString &revision)
+{
+	QStringList res;
+
+	if(!runFossil(QStringList() << "tag" << "cancel" << name << revision, &res))
+		return false;
+
 	return true;
 }
 

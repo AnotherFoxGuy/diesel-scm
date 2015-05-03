@@ -164,6 +164,8 @@ private:
 
 	bool				operationAborted;
 	stringset_t			selectedDirs;	// The directory selected in the tree
+	QStringList			selectedTags;
+	QStringList			selectedBranches;
 	QStringList			versionList;
 
 	Workspace			workspace;

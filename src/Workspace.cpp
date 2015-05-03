@@ -189,11 +189,11 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 
 	fossil().branchList(branchList, branchList);
 
-	fossil().tagList(tagList);
+	fossil().tagList(tags);
 	// Fossil includes the branches in the tag list
 	// So remove them
 	foreach(const QString &name, branchList)
-		tagList.removeAll(name);
+		tags.remove(name);
 
 _done:
 	uiCallback.endProcess();

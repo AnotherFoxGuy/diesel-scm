@@ -1,5 +1,5 @@
-C Prevent\sunnecessary\sdialog\swhen\supdating\swith\sno\snew\schanges
-D 2015-05-03T09:22:18.712
+C Support\sfor\sdeleting\stags\nWhen\sparsing\stags,\salso\skeep\strack\sof\sthe\scheckin\suuid\nFixed\skey-value\sparsing\nPrevent\sapply\sstash\swhen\snothing\sis\sselected
+D 2015-05-03T10:05:46.143
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -196,20 +196,20 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp 8abdf4c95dfd2728fb11a2a07ea5c05eabba27d6
-F src/Fossil.h 7954818fa3168d56901f8549ca5ae56987f48a6a
+F src/Fossil.cpp 46edbf48a7f09c0673136c726f62cf3e95e92f1e
+F src/Fossil.h 7e45c12f80c06af78bf7a13cce75e0b105e0b99a
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp b7d4d636adeb84fece029e234c5eae89576c2dcf
-F src/MainWindow.h e8b8be6b33e68a894d6ed84597f4767c83daf750
+F src/MainWindow.cpp b671fe2af7eb0c0abfecfde6840e1871d81b8b2e
+F src/MainWindow.h dffe67ceb1d7a51b858ce8a0fb688bfa7e90c5be
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/UpdateDialog.cpp 5f9ff02aeed08ab3a69d0a9a3b3efeefbc38f3d4
 F src/UpdateDialog.h 93c6ad9bd814f23e431c67bcd01928f33e10a80b
-F src/Utils.cpp 0a95368bb776a5c34c5baa94e490795ac28085db
+F src/Utils.cpp 748a58f19187aff7f3b867894129291cbe091678
 F src/Utils.h 9cc125f59b8d46ff47bbde4c2cf9bc77f8e2553b
-F src/Workspace.cpp fca14549ff85125a9fb7fd8a2722198055ea9f9a
-F src/Workspace.h 8c965e73a966432e45ce80f4a223167eeafc3abe
+F src/Workspace.cpp 329b9ecd8363089b5fb230c0fd3606f2e9dab73a
+F src/Workspace.h 890fdb5f6b768809bc962374d22422dbfb6e89a1
 F src/main.cpp 2ac8badc2a63fa123ceae53382ce24cfe1b5a54b
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -220,7 +220,7 @@ F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 90bbd2df0afd46e82d4a850882a22f30d3bffe38
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
 F ui/UpdateDialog.ui 636fd495d481ade1f20a65f79b538b9a49bbf1fa
-P 579a9a1fb06478cd37359eb106dcabc9c9c5fa5c
-R 30503d6fb517411a767917fc163e9df3
+P f718ab845eb859700e230090f2fcbc7ddb068e62
+R 197606d9fc8722007f17afea79985f5b
 U kostas
-Z 75fb60e450053acd43b176a1071af21e
+Z ca089f166e60a5d33f43d6190be818dc

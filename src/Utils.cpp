@@ -320,7 +320,7 @@ void ParseProperties(QStringMap &properties, const QStringList &lines, QChar sep
 		if(index!=-1)
 		{
 			key = l.left(index).trimmed();
-			value = l.mid(index).trimmed();
+			value = l.mid(index+1).trimmed();
 		}
 		else
 			key = l;

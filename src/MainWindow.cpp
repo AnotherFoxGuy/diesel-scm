@@ -591,7 +591,10 @@ void MainWindow::scanWorkspace()
 	versionList.clear();
 	versionList.append(latest);
 	versionList += getWorkspace().getBranches();
-	versionList += getWorkspace().getTags();
+	versionList += getWorkspace().getTags().keys();
+
+	selectedTags.clear();
+	selectedBranches.clear();
 
 	setBusy(false);
 	setStatus("");
@@ -677,8 +680,9 @@ void MainWindow::updateWorkspaceView()
 	tags->setData(TreeViewItem(TreeViewItem::TYPE_TAGS, ""), REPODIRMODEL_ROLE_PATH);
 	tags->setEditable(false);
 	getWorkspace().getDirModel().appendRow(tags);
-	foreach(const QString &tag_name, getWorkspace().getTags())
+	for(QStringMap::const_iterator it=getWorkspace().getTags().begin(); it!=getWorkspace().getTags().end(); ++it)
 	{
+		const QString &tag_name = it.key();
 		QStandardItem *tag = new QStandardItem(QIcon(":icons/icons/Book-01.png"), tag_name);
 		tag->setData(TreeViewItem(TreeViewItem::TYPE_TAG, tag_name), REPODIRMODEL_ROLE_PATH);
 		tags->appendRow(tag);
@@ -1613,10 +1617,12 @@ void MainWindow::onWorkspaceTreeViewSelectionChanged(const QItemSelection &/*sel
 		Q_ASSERT(data.isValid());
 		TreeViewItem tv = data.value<TreeViewItem>();
 
-		if(tv.Type != TreeViewItem::TYPE_FOLDER && tv.Type != TreeViewItem::TYPE_WORKSPACE)
-			continue;
-
-		new_dirs.insert(tv.Value);
+		if(tv.Type == TreeViewItem::TYPE_FOLDER || tv.Type == TreeViewItem::TYPE_WORKSPACE)
+			new_dirs.insert(tv.Value);
+		else if(tv.Type == TreeViewItem::TYPE_TAG)
+			selectedTags.append(tv.Value);
+		else if(tv.Type == TreeViewItem::TYPE_BRANCH)
+			selectedBranches.append(tv.Value);
 	}
 
 	// Update the selection if we have any new folders
@@ -1869,6 +1875,9 @@ void MainWindow::on_actionApplyStash_triggered()
 {
 	QStringList stashes;
 	getSelectionStashes(stashes);
+
+	if(stashes.empty())
+		return;
 
 	bool delete_stashes = false;
 	if(!FileActionDialog::run(this, tr("Apply Stash"), tr("The following stashes will be applied.")+"\n"+tr("Are you sure?"), stashes, tr("Delete after applying"), &delete_stashes))
@@ -2225,7 +2234,20 @@ void MainWindow::on_actionNewTag_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionDeleteTag_triggered()
 {
+	if(selectedTags.size()!=1)
+		return;
 
+	const QString &tagname = selectedTags.first();
+
+	if(QMessageBox::Yes != DialogQuery(this, tr("Delete Tag"), tr("Are you sure want to delete the tag %0 ?").arg(tagname)))
+		return;
+
+	Q_ASSERT(getWorkspace().getTags().contains(tagname));
+
+	const QString &revision = getWorkspace().getTags()[tagname];
+
+	fossil().tagDelete(tagname, revision);
+	refresh();
 }
 
 //------------------------------------------------------------------------------
