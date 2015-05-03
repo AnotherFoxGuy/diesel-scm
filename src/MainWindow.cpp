@@ -39,10 +39,10 @@ enum
 
 enum
 {
-	REPODIRMODEL_ROLE_PATH = Qt::UserRole+1
+	ROLE_WORKSPACE_ITEM = Qt::UserRole+1
 };
 
-struct TreeViewItem
+struct WorkspaceItem
 {
 	enum
 	{
@@ -59,17 +59,17 @@ struct TreeViewItem
 		TYPE_SETTINGS
 	};
 
-	TreeViewItem()
+	WorkspaceItem()
 	: Type(TYPE_UNKNOWN)
 	{
 	}
 
-	TreeViewItem(int type, const QString &value)
+	WorkspaceItem(int type, const QString &value)
 	: Type(type), Value(value)
 	{
 	}
 
-	TreeViewItem(const TreeViewItem &other)
+	WorkspaceItem(const WorkspaceItem &other)
 	{
 		Type = other.Type;
 		Value = other.Value;
@@ -83,7 +83,7 @@ struct TreeViewItem
 		return QVariant::fromValue(*this);
 	}
 };
-Q_DECLARE_METATYPE(TreeViewItem)
+Q_DECLARE_METATYPE(WorkspaceItem)
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -650,7 +650,7 @@ static void addPathToTree(QStandardItem &root, const QString &path)
 		if(!found) // Generate it
 		{
 			QStandardItem *child = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), dir);
-			child->setData(TreeViewItem(TreeViewItem::TYPE_FOLDER, fullpath), REPODIRMODEL_ROLE_PATH);
+			child->setData(WorkspaceItem(WorkspaceItem::TYPE_FOLDER, fullpath), ROLE_WORKSPACE_ITEM);
 			parent->appendRow(child);
 			parent = child;
 		}
@@ -669,7 +669,7 @@ void MainWindow::updateWorkspaceView()
 	getWorkspace().getDirModel().setHorizontalHeaderLabels(header);
 
 	QStandardItem *workspace = new QStandardItem(QIcon(":icons/icons/Folder-01.png"), tr("Files") );
-	workspace->setData(TreeViewItem(TreeViewItem::TYPE_WORKSPACE, ""), REPODIRMODEL_ROLE_PATH);
+	workspace->setData(WorkspaceItem(WorkspaceItem::TYPE_WORKSPACE, ""), ROLE_WORKSPACE_ITEM);
 	workspace->setEditable(false);
 
 	getWorkspace().getDirModel().appendRow(workspace);
@@ -687,50 +687,50 @@ void MainWindow::updateWorkspaceView()
 
 	// Branches
 	QStandardItem *branches = new QStandardItem(QIcon(":icons/icons/Document Organization Chart-01.png"), "Branches");
-	branches->setData(TreeViewItem(TreeViewItem::TYPE_BRANCHES, ""), REPODIRMODEL_ROLE_PATH);
+	branches->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCHES, ""), ROLE_WORKSPACE_ITEM);
 	branches->setEditable(false);
 	getWorkspace().getDirModel().appendRow(branches);
 	foreach(const QString &branch_name, getWorkspace().getBranches())
 	{
 		QStandardItem *branch = new QStandardItem(QIcon(":icons/icons/Document Organization Chart-01.png"), branch_name);
-		branch->setData(TreeViewItem(TreeViewItem::TYPE_BRANCH, branch_name), REPODIRMODEL_ROLE_PATH);
+		branch->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCH, branch_name), ROLE_WORKSPACE_ITEM);
 		branches->appendRow(branch);
 	}
 
 	// Tags
 	QStandardItem *tags = new QStandardItem(QIcon(":icons/icons/Book-01.png"), "Tags");
-	tags->setData(TreeViewItem(TreeViewItem::TYPE_TAGS, ""), REPODIRMODEL_ROLE_PATH);
+	tags->setData(WorkspaceItem(WorkspaceItem::TYPE_TAGS, ""), ROLE_WORKSPACE_ITEM);
 	tags->setEditable(false);
 	getWorkspace().getDirModel().appendRow(tags);
 	for(QStringMap::const_iterator it=getWorkspace().getTags().begin(); it!=getWorkspace().getTags().end(); ++it)
 	{
 		const QString &tag_name = it.key();
 		QStandardItem *tag = new QStandardItem(QIcon(":icons/icons/Book-01.png"), tag_name);
-		tag->setData(TreeViewItem(TreeViewItem::TYPE_TAG, tag_name), REPODIRMODEL_ROLE_PATH);
+		tag->setData(WorkspaceItem(WorkspaceItem::TYPE_TAG, tag_name), ROLE_WORKSPACE_ITEM);
 		tags->appendRow(tag);
 	}
 
 	// Stashes
 	QStandardItem *stashes = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), "Stashes");
-	stashes->setData(TreeViewItem(TreeViewItem::TYPE_STASHES, ""), REPODIRMODEL_ROLE_PATH);
+	stashes->setData(WorkspaceItem(WorkspaceItem::TYPE_STASHES, ""), ROLE_WORKSPACE_ITEM);
 	stashes->setEditable(false);
 	getWorkspace().getDirModel().appendRow(stashes);
 	for(stashmap_t::const_iterator it= getWorkspace().getStashes().begin(); it!=getWorkspace().getStashes().end(); ++it)
 	{
 		QStandardItem *stash = new QStandardItem(QIcon(":icons/icons/My Documents-01.png"), it.key());
-		stash->setData(TreeViewItem(TreeViewItem::TYPE_STASH, it.value()), REPODIRMODEL_ROLE_PATH);
+		stash->setData(WorkspaceItem(WorkspaceItem::TYPE_STASH, it.value()), ROLE_WORKSPACE_ITEM);
 		stashes->appendRow(stash);
 	}
 
 	// Remotes
 	QStandardItem *remotes = new QStandardItem(QIcon(":icons/icons/Network PC-01.png"), "Remotes");
-	remotes->setData(TreeViewItem(TreeViewItem::TYPE_REMOTES, ""), REPODIRMODEL_ROLE_PATH);
+	remotes->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTES, ""), ROLE_WORKSPACE_ITEM);
 	remotes->setEditable(false);
 	getWorkspace().getDirModel().appendRow(remotes);
 
 	// Settings
 	QStandardItem *settings = new QStandardItem(QIcon(":icons/icons/Gear-01.png"), "Settings");
-	settings->setData(TreeViewItem(TreeViewItem::TYPE_SETTINGS, ""), REPODIRMODEL_ROLE_PATH);
+	settings->setData(WorkspaceItem(WorkspaceItem::TYPE_SETTINGS, ""), ROLE_WORKSPACE_ITEM);
 	settings->setEditable(false);
 	getWorkspace().getDirModel().appendRow(settings);
 
@@ -999,11 +999,11 @@ void MainWindow::getSelectionPaths(stringset_t &paths)
 	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
 	foreach(const QModelIndex &mi, selection)
 	{
-		QVariant data = mi.model()->data(mi, REPODIRMODEL_ROLE_PATH);
+		QVariant data = mi.model()->data(mi, ROLE_WORKSPACE_ITEM);
 		Q_ASSERT(data.isValid());
 
-		TreeViewItem tv = data.value<TreeViewItem>();
-		if(tv.Type != TreeViewItem::TYPE_FOLDER)
+		WorkspaceItem tv = data.value<WorkspaceItem>();
+		if(tv.Type != WorkspaceItem::TYPE_FOLDER)
 			continue;
 
 		paths.insert(tv.Value);
@@ -1111,11 +1111,11 @@ void MainWindow::getSelectionStashes(QStringList &stashNames)
 
 	foreach(const QModelIndex &mi, selection)
 	{
-		QVariant data = mi.model()->data(mi, REPODIRMODEL_ROLE_PATH);
+		QVariant data = mi.model()->data(mi, ROLE_WORKSPACE_ITEM);
 		Q_ASSERT(data.isValid());
-		TreeViewItem tv = data.value<TreeViewItem>();
+		WorkspaceItem tv = data.value<WorkspaceItem>();
 
-		if(tv.Type != TreeViewItem::TYPE_STASH)
+		if(tv.Type != WorkspaceItem::TYPE_STASH)
 			continue;
 
 		QString name = mi.model()->data(mi, Qt::DisplayRole).toString();
@@ -1643,15 +1643,15 @@ void MainWindow::onWorkspaceTreeViewSelectionChanged(const QItemSelection &/*sel
 
 	foreach(const QModelIndex &id, indices)
 	{
-		QVariant data = id.model()->data(id, REPODIRMODEL_ROLE_PATH);
+		QVariant data = id.model()->data(id, ROLE_WORKSPACE_ITEM);
 		Q_ASSERT(data.isValid());
-		TreeViewItem tv = data.value<TreeViewItem>();
+		WorkspaceItem tv = data.value<WorkspaceItem>();
 
-		if(tv.Type == TreeViewItem::TYPE_FOLDER || tv.Type == TreeViewItem::TYPE_WORKSPACE)
+		if(tv.Type == WorkspaceItem::TYPE_FOLDER || tv.Type == WorkspaceItem::TYPE_WORKSPACE)
 			new_dirs.insert(tv.Value);
-		else if(tv.Type == TreeViewItem::TYPE_TAG)
+		else if(tv.Type == WorkspaceItem::TYPE_TAG)
 			selectedTags.append(tv.Value);
-		else if(tv.Type == TreeViewItem::TYPE_BRANCH)
+		else if(tv.Type == WorkspaceItem::TYPE_BRANCH)
 			selectedBranches.append(tv.Value);
 	}
 
@@ -1678,11 +1678,11 @@ void MainWindow::on_actionOpenFolder_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_workspaceTreeView_doubleClicked(const QModelIndex &index)
 {
-	QVariant data = index.model()->data(index, REPODIRMODEL_ROLE_PATH);
+	QVariant data = index.model()->data(index, ROLE_WORKSPACE_ITEM);
 	Q_ASSERT(data.isValid());
-	TreeViewItem tv = data.value<TreeViewItem>();
+	WorkspaceItem tv = data.value<WorkspaceItem>();
 
-	if(tv.Type!=TreeViewItem::TYPE_FOLDER && tv.Type!=TreeViewItem::TYPE_WORKSPACE)
+	if(tv.Type!=WorkspaceItem::TYPE_FOLDER && tv.Type!=WorkspaceItem::TYPE_WORKSPACE)
 		return;
 
 	QString target = getCurrentWorkspace() + PATH_SEPARATOR + tv.Value;
@@ -2059,17 +2059,17 @@ void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
 
 	// Get first selected item
 	const QModelIndex &mi = indices.first();
-	QVariant data = getWorkspace().getDirModel().data(mi, REPODIRMODEL_ROLE_PATH);
+	QVariant data = getWorkspace().getDirModel().data(mi, ROLE_WORKSPACE_ITEM);
 	Q_ASSERT(data.isValid());
-	TreeViewItem tv = data.value<TreeViewItem>();
+	WorkspaceItem tv = data.value<WorkspaceItem>();
 
-	if(tv.Type == TreeViewItem::TYPE_FOLDER ||  tv.Type == TreeViewItem::TYPE_WORKSPACE)
+	if(tv.Type == WorkspaceItem::TYPE_FOLDER ||  tv.Type == WorkspaceItem::TYPE_WORKSPACE)
 		menu = menuWorkspace;
-	else if (tv.Type == TreeViewItem::TYPE_STASH || tv.Type == TreeViewItem::TYPE_STASHES)
+	else if (tv.Type == WorkspaceItem::TYPE_STASH || tv.Type == WorkspaceItem::TYPE_STASHES)
 		menu = menuStashes;
-	else if (tv.Type == TreeViewItem::TYPE_TAG || tv.Type == TreeViewItem::TYPE_TAGS)
+	else if (tv.Type == WorkspaceItem::TYPE_TAG || tv.Type == WorkspaceItem::TYPE_TAGS)
 		menu = menuTags;
-	else if (tv.Type == TreeViewItem::TYPE_BRANCH || tv.Type == TreeViewItem::TYPE_BRANCHES)
+	else if (tv.Type == WorkspaceItem::TYPE_BRANCH || tv.Type == WorkspaceItem::TYPE_BRANCHES)
 		menu = menuBranches;
 
 	if(menu)
