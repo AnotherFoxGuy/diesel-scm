@@ -19,8 +19,7 @@
 #include "RevisionDialog.h"
 #include "Utils.h"
 
-#define LATEST_VERSION "Latest Revision"
-#define CURRENT_VERSION "Current Revision"
+#define REVISION_LATEST "Latest"
 
 //-----------------------------------------------------------------------------
 enum
@@ -2214,7 +2213,7 @@ QMessageBox::StandardButton MainWindow::MainWinUICallback::Query(const QString &
 //------------------------------------------------------------------------------
 void MainWindow::updateRevision(const QString &revision)
 {
-	const QString latest = tr(LATEST_VERSION);
+	const QString latest = tr(REVISION_LATEST);
 	QString defaultval = latest;
 
 	if(!revision.isEmpty())
@@ -2233,7 +2232,6 @@ void MainWindow::updateRevision(const QString &revision)
 	if(!fossil().updateRepository(res, selected_revision, true))
 		return;
 
-	// FIXME: parse "changes:      None. Already up-to-date" and avoid dialog
 	if(res.length()==0)
 		return;
 
@@ -2309,10 +2307,8 @@ void MainWindow::on_actionNewBranch_triggered()
 	if(!fossil().branchNew(branch_name, revision, false))
 		return;
 
-	if(QMessageBox::Yes == DialogQuery(this, tr("New Branch"), tr("Would you like to check-out the branch '%0' ?").arg(branch_name)))
-		updateRevision(branch_name);
-	else
-		refresh();
+	// Update to this branch.
+	updateRevision(branch_name);
 }
 //------------------------------------------------------------------------------
 void MainWindow::MergeRevision(const QString &defaultRevision)
@@ -2322,7 +2318,7 @@ void MainWindow::MergeRevision(const QString &defaultRevision)
 
 	bool integrate = false;
 	bool force = false;
-	revision = RevisionDialog::runMerge(this, tr("Merge"), versionList, revision, integrate, force);
+	revision = RevisionDialog::runMerge(this, tr("Merge Branch"), versionList, revision, integrate, force);
 
 	if(revision.isEmpty())
 		return;
@@ -2331,7 +2327,7 @@ void MainWindow::MergeRevision(const QString &defaultRevision)
 	if(!fossil().branchMerge(res, revision, integrate, force, true))
 		return;
 
-	if(!FileActionDialog::run(this, tr("Merge"), tr("The following changesd will be made.")+"\n"+tr("Are you sure?"), res))
+	if(!FileActionDialog::run(this, tr("Merge"), tr("The following changes will be applied.")+"\n"+tr("Are you sure?"), res))
 		return;
 
 	// Do update
