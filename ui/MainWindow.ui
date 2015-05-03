@@ -918,6 +918,10 @@
    </property>
   </action>
   <action name="actionDeleteTag">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icons/Button Close-01.png</normaloff>:/icons/icons/Button Close-01.png</iconset>
+   </property>
    <property name="text">
     <string>Delete Tag</string>
    </property>
@@ -938,6 +942,10 @@
    </property>
   </action>
   <action name="actionMergeBranch">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icons/Document Flow Chart-01.png</normaloff>:/icons/icons/Document Flow Chart-01.png</iconset>
+   </property>
    <property name="text">
     <string>Merge Branch</string>
    </property>

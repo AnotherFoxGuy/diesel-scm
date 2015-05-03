@@ -1459,7 +1459,7 @@ void MainWindow::on_actionUpdate_triggered()
 	QStringMap kv;
 	ParseProperties(kv, res, ':');
 	// If no changes exit
-	if(kv.contains("changes") && kv["changes"].indexOf("None."))
+	if(kv.contains("changes") && kv["changes"].indexOf("None.")!=-1)
 		return;
 
 	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
@@ -2203,7 +2203,7 @@ void MainWindow::updateRevision(const QString &revision)
 	QStringMap kv;
 	ParseProperties(kv, res, ':');
 	// If no changes exit
-	if(kv.contains("changes") && kv["changes"].indexOf("None."))
+	if(kv.contains("changes") && kv["changes"].indexOf("None.")!=-1)
 		return;
 
 	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
@@ -2239,7 +2239,7 @@ void MainWindow::on_actionDeleteTag_triggered()
 
 	const QString &tagname = selectedTags.first();
 
-	if(QMessageBox::Yes != DialogQuery(this, tr("Delete Tag"), tr("Are you sure want to delete the tag %0 ?").arg(tagname)))
+	if(QMessageBox::Yes != DialogQuery(this, tr("Delete Tag"), tr("Are you sure want to delete the tag '%0' ?").arg(tagname)))
 		return;
 
 	Q_ASSERT(getWorkspace().getTags().contains(tagname));
