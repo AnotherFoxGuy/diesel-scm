@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UpdateDialog</class>
- <widget class="QDialog" name="UpdateDialog">
+ <class>RevisionDialog</class>
+ <widget class="QDialog" name="RevisionDialog">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -96,7 +96,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>UpdateDialog</receiver>
+   <receiver>RevisionDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -112,7 +112,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>UpdateDialog</receiver>
+   <receiver>RevisionDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

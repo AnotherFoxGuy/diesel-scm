@@ -47,7 +47,7 @@ SOURCES += src/main.cpp\
 	src/FileActionDialog.cpp \
 	src/SettingsDialog.cpp \
 	src/CloneDialog.cpp \
-	src/UpdateDialog.cpp \
+	src/RevisionDialog.cpp \
 	src/Utils.cpp \
 	src/FileTableView.cpp \
 	src/LoggedProcess.cpp \
@@ -61,7 +61,7 @@ HEADERS  += src/MainWindow.h \
 	src/FileActionDialog.h \
 	src/SettingsDialog.h \
 	src/CloneDialog.h \
-	src/UpdateDialog.h \
+	src/RevisionDialog.h \
 	src/Utils.h \
 	src/FileTableView.h \
 	src/LoggedProcess.h \
@@ -76,7 +76,7 @@ FORMS    += ui/MainWindow.ui \
 	ui/SettingsDialog.ui \
 	ui/CloneDialog.ui \
 	ui/BrowserWidget.ui \
-	ui/UpdateDialog.ui
+	ui/RevisionDialog.ui
 
 RESOURCES += \
 	rsrc/resources.qrc

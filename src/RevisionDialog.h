@@ -1,28 +1,28 @@
-#ifndef UPDATEDIALOG_H
-#define UPDATEDIALOG_H
+#ifndef REVISIONDIALOG_H
+#define REVISIONDIALOG_H
 
 #include <QDialog>
 #include <QCompleter>
 
 namespace Ui {
-	class UpdateDialog;
+	class RevisionDialog;
 }
 
-class UpdateDialog : public QDialog
+class RevisionDialog : public QDialog
 {
 	Q_OBJECT
 
 public:
-	explicit UpdateDialog(QWidget *parent, const QStringList &completions, const QString &defaultValue);
-	~UpdateDialog();
+	explicit RevisionDialog(QWidget *parent, const QStringList &completions, const QString &defaultValue);
+	~RevisionDialog();
 
 	static QString runUpdate(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue);
 	static QString runMerge(QWidget* parent, const QString& title, const QStringList& completions, const QString& defaultValue, bool& integrate, bool& force);
 	static bool runNewTag(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, QString &revision, QString &name);
 
 private:
-	Ui::UpdateDialog *ui;
+	Ui::RevisionDialog *ui;
 	QCompleter	completer;
 };
 
-#endif // UPDATEDIALOG_H
+#endif // REVISIONDIALOG_H

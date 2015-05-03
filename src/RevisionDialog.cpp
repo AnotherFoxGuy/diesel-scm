@@ -1,11 +1,11 @@
-#include "UpdateDialog.h"
-#include "ui_UpdateDialog.h"
+#include "RevisionDialog.h"
+#include "ui_RevisionDialog.h"
 #include "Utils.h"
 
 //-----------------------------------------------------------------------------
-UpdateDialog::UpdateDialog(QWidget *parent, const QStringList &completions, const QString &defaultValue) :
+RevisionDialog::RevisionDialog(QWidget *parent, const QStringList &completions, const QString &defaultValue) :
 	QDialog(parent),
-	ui(new Ui::UpdateDialog),
+	ui(new Ui::RevisionDialog),
 	completer(completions, parent)
 {
 	ui->setupUi(this);
@@ -18,15 +18,15 @@ UpdateDialog::UpdateDialog(QWidget *parent, const QStringList &completions, cons
 }
 
 //-----------------------------------------------------------------------------
-UpdateDialog::~UpdateDialog()
+RevisionDialog::~RevisionDialog()
 {
 	delete ui;
 }
 
 //-----------------------------------------------------------------------------
-QString UpdateDialog::runUpdate(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue)
+QString RevisionDialog::runUpdate(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue)
 {
-	UpdateDialog dlg(parent, completions, defaultValue);
+	RevisionDialog dlg(parent, completions, defaultValue);
 	dlg.setWindowTitle(title);
 	dlg.ui->lblName->setVisible(false);
 	dlg.ui->lineName->setVisible(false);
@@ -43,9 +43,9 @@ QString UpdateDialog::runUpdate(QWidget *parent, const QString &title, const QSt
 }
 
 //-----------------------------------------------------------------------------
-QString UpdateDialog::runMerge(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, bool &integrate, bool &force)
+QString RevisionDialog::runMerge(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, bool &integrate, bool &force)
 {
-	UpdateDialog dlg(parent, completions, defaultValue);
+	RevisionDialog dlg(parent, completions, defaultValue);
 	dlg.setWindowTitle(title);
 	dlg.ui->lblName->setVisible(false);
 	dlg.ui->lineName->setVisible(false);
@@ -69,9 +69,9 @@ QString UpdateDialog::runMerge(QWidget *parent, const QString &title, const QStr
 
 
 //-----------------------------------------------------------------------------
-bool UpdateDialog::runNewTag(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, QString &revision, QString &name)
+bool RevisionDialog::runNewTag(QWidget *parent, const QString &title, const QStringList &completions, const QString &defaultValue, QString &revision, QString &name)
 {
-	UpdateDialog dlg(parent, completions, defaultValue);
+	RevisionDialog dlg(parent, completions, defaultValue);
 	dlg.setWindowTitle(title);
 
 	dlg.ui->lblName->setVisible(true);

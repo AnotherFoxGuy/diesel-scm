@@ -16,7 +16,7 @@
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
-#include "UpdateDialog.h"
+#include "RevisionDialog.h"
 #include "Utils.h"
 
 #define LATEST_VERSION "Latest Revision"
@@ -2220,7 +2220,7 @@ void MainWindow::updateRevision(const QString &revision)
 	if(!revision.isEmpty())
 		defaultval = revision;
 
-	QString selected_revision = UpdateDialog::runUpdate(this, tr("Update workspace"), versionList, defaultval).trimmed();
+	QString selected_revision = RevisionDialog::runUpdate(this, tr("Update workspace"), versionList, defaultval).trimmed();
 
 	if(selected_revision.isEmpty())
 		return;
@@ -2258,7 +2258,7 @@ void MainWindow::on_actionNewTag_triggered()
 	QString revision = fossil().getCurrentRevision();
 
 	QString name;
-	if(!UpdateDialog::runNewTag(this, tr("New Tag"), versionList, revision, revision, name))
+	if(!RevisionDialog::runNewTag(this, tr("New Tag"), versionList, revision, revision, name))
 		return;
 
 	if(name.isEmpty() || getWorkspace().getTags().contains(name) || getWorkspace().getBranches().contains(name))
@@ -2297,7 +2297,7 @@ void MainWindow::on_actionNewBranch_triggered()
 	QString revision = fossil().getCurrentRevision();
 
 	QString branch_name;
-	if(!UpdateDialog::runNewTag(this, tr("New Branch"), versionList, revision, revision, branch_name))
+	if(!RevisionDialog::runNewTag(this, tr("New Branch"), versionList, revision, revision, branch_name))
 		return;
 
 	if(branch_name.isEmpty() || getWorkspace().getTags().contains(branch_name) || getWorkspace().getBranches().contains(branch_name))
@@ -2322,7 +2322,7 @@ void MainWindow::MergeRevision(const QString &defaultRevision)
 
 	bool integrate = false;
 	bool force = false;
-	revision = UpdateDialog::runMerge(this, tr("Merge"), versionList, revision, integrate, force);
+	revision = RevisionDialog::runMerge(this, tr("Merge"), versionList, revision, integrate, force);
 
 	if(revision.isEmpty())
 		return;
