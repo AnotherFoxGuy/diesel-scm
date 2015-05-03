@@ -725,14 +725,34 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		process.getLogAndClear(input);
 
 		#ifdef QT_DEBUG // Log fossil output in debug builds
-		if(!input.isEmpty())
+		if(!input.isEmpty() && (runFlags & RUNFLAGS_DEBUG) )
 			qDebug() << "[" << ++input_index << "] '" << input.data() << "'\n";
 		#endif
 
 		buffer += decoder->toUnicode(input);
-
-
-		#ifdef QT_DEBUG // breakpint
+#if 0 // Keep this for now to simulate bad parses
+		if(runFlags & RUNFLAGS_DEBUG)
+		{
+			static int debug=1;
+			if(debug==1)
+			{
+				buffer = "     4: [df2233aabe09ef] on 2013-02-03 02:51:33\n"
+						 "     History\n"
+						 "     5: [df2233aabe09ef] on 2013-02-15 03:55:37\n"
+						 "     ";
+				debug++;
+			}
+			else if(debug==2)
+			{
+				buffer = " Diff\n"
+						 " ";
+				debug++;
+			}
+			else
+				buffer="";
+		}
+#endif
+		#ifdef QT_DEBUG // breakpoint
 		//if(buffer.indexOf("SQLITE_CANTOPEN")!=-1)
 		//	qDebug() << "Breakpoint\n";
 		#endif
@@ -759,9 +779,12 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 			if(last_line_start>0)
 			{
 				int before_last_line_start = buffer.lastIndexOf(EOL_MARK, last_line_start-1);
-				// No line before ?
+
+				// No new-line before ?
 				if(before_last_line_start==-1)
 					before_last_line_start = 0; // Use entire line
+				else
+					++before_last_line_start; // Skip new-line
 
 				// Extract previous line
 				before_last_line = buffer.mid(before_last_line_start, last_line_start-before_last_line_start);
@@ -785,11 +808,18 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		QStringList log_lines = buffer.left(last_line_start).split(EOL_MARK);
 		for(int l=0; l<log_lines.length(); ++l)
 		{
-			// Do not output the last line if it not complete. The first one should be ok though
-			if(l>0 && l==log_lines.length()-1 && buffer[buffer.length()-1] != EOL_MARK )
+			// Skip last line if we have a query. This will be handled manually further down
+			if(have_query && l==log_lines.length()-1)
 				continue;
 
 			QString line = log_lines[l].trimmed();
+
+		#ifdef QT_DEBUG
+			if(runFlags & RUNFLAGS_DEBUG)
+			{
+				qDebug() << "LINE: " << line << "\n";
+			}
+		#endif
 
 			if(line.isEmpty())
 				continue;
