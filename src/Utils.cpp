@@ -306,3 +306,26 @@ bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint)
 
 #endif
 
+//-----------------------------------------------------------------------------
+void ParseProperties(QStringMap &properties, const QStringList &lines, QChar separator)
+{
+	properties.clear();
+	foreach(QString l, lines)
+	{
+		l = l.trimmed();
+		int index = l.indexOf(separator);
+
+		QString key;
+		QString value;
+		if(index!=-1)
+		{
+			key = l.left(index).trimmed();
+			value = l.mid(index).trimmed();
+		}
+		else
+			key = l;
+
+		properties.insert(key, value);
+	}
+}
+

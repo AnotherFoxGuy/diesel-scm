@@ -85,33 +85,6 @@ struct TreeViewItem
 Q_DECLARE_METATYPE(TreeViewItem)
 
 
-//-----------------------------------------------------------------------------
-typedef QMap<QString, QString> QStringMap;
-static QStringMap MakeKeyValues(QStringList lines)
-{
-	QStringMap res;
-
-	foreach(QString l, lines)
-	{
-		l = l.trimmed();
-		int index = l.indexOf(' ');
-
-		QString key;
-		QString value;
-		if(index!=-1)
-		{
-			key = l.left(index).trimmed();
-			value = l.mid(index).trimmed();
-		}
-		else
-			key = l;
-
-		res.insert(key, value);
-	}
-	return res;
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspacePath) :
 	QMainWindow(parent),
@@ -1476,9 +1449,13 @@ void MainWindow::on_actionUpdate_triggered()
 	if(!fossil().updateRepository(res, "", true))
 		return;
 
-	// FIXME: parse "changes:      None. Already up-to-date" and avoid dialog
-
 	if(res.length()==0)
+		return;
+
+	QStringMap kv;
+	ParseProperties(kv, res, ':');
+	// If no changes exit
+	if(kv.contains("changes") && kv["changes"].indexOf("None."))
 		return;
 
 	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))
@@ -1505,7 +1482,8 @@ void MainWindow::loadFossilSettings()
 	if(!fossil().getFossilSettings(out))
 		return;
 
-	QStringMap kv = MakeKeyValues(out);
+	QStringMap kv;
+	ParseProperties(kv, out);
 
 	for(Settings::mappings_t::iterator it=settings.GetMappings().begin(); it!=settings.GetMappings().end(); ++it)
 	{
@@ -2211,6 +2189,12 @@ void MainWindow::updateRevision(const QString &revision)
 
 	// FIXME: parse "changes:      None. Already up-to-date" and avoid dialog
 	if(res.length()==0)
+		return;
+
+	QStringMap kv;
+	ParseProperties(kv, res, ':');
+	// If no changes exit
+	if(kv.contains("changes") && kv["changes"].indexOf("None."))
 		return;
 
 	if(!FileActionDialog::run(this, tr("Update"), tr("The following files will be updated.")+"\n"+tr("Are you sure?"), res))

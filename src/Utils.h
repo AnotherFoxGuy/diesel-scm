@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QMessageBox>
+#include <QMap>
 
 #define COUNTOF(array)			(sizeof(array)/sizeof(array[0]))
 #define FOSSIL_CHECKOUT1	"_FOSSIL_"
@@ -13,6 +14,9 @@
 QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons = QMessageBox::Yes|QMessageBox::No);
 QString						QuotePath(const QString &path);
 QStringList					QuotePaths(const QStringList &paths);
+
+typedef QMap<QString, QString> QStringMap;
+void						ParseProperties(QStringMap &properties, const QStringList &lines, QChar separator=' ');
 
 #ifdef Q_OS_WIN
 	bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint);
