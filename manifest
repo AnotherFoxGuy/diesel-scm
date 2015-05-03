@@ -1,5 +1,5 @@
-C Fixed\sbug\swhere\sa\sfossil\soutput\sline\swould\snot\sbe\soutput\sunder\scertain\sconditions
-D 2015-05-03T17:57:33.003
+C Merged\swith\strunk\nPorted\sthe\sicon\scache
+D 2015-05-03T19:27:50.028
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -200,8 +200,8 @@ F src/Fossil.cpp ca7ad24622e1fc1a03c92d7ae9b51afc17f7c09c
 F src/Fossil.h d65a7461d213bcc30f08724d3306c6ee00843217
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 0a5183c05ff08b635cd9517182b2357240ea52be
-F src/MainWindow.h 725b4b5ed259029fd3de4bda65ca89f35c37e55e
+F src/MainWindow.cpp e56d3fe486a388a27f39648de7a58fab8be2824e
+F src/MainWindow.h 2b84fe52f8184364d63a7c9518500017b866e8ea
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
@@ -220,7 +220,7 @@ F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 9dd0f9ef3f486413c9af912ac557c0e7bf9c6f50
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P a297f70942e3dccf9904c054fb9e633edb9c59cb
-R e0fe347c0fa4907206bddff7538284f8
+P 2744a0db324c05cb0f4e2e73128d8c3837d66479 964b28f34fae482959ce8a96cbc6106f8702fb33
+R 5246702db3f74ca03143a4c68bf370e8
 U kostas
-Z 101db116ff5c22dbcc32decf8bc34dd6
+Z 59727ab2a076e48750a62615838a345e

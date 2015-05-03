@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStringList>
+#include <QFileIconProvider>
 #include "SettingsDialog.h"
 #include "Workspace.h"
 
@@ -58,6 +59,7 @@ private:
 	void dropEvent(class QDropEvent *event);
 	void setBusy(bool busy);
 	virtual QMenu *createPopupMenu();
+	const QIcon& getInternalIcon(const char *name);
 
 	enum ViewMode
 	{
@@ -149,7 +151,11 @@ private:
 		MAX_RECENT=5
 	};
 
+	typedef QMap<QString, QIcon> icon_map_t;
+
 	Ui::MainWindow		*ui;
+	QFileIconProvider	iconProvider;
+	icon_map_t			iconCache;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QProgressBar	*progressBar;
 	class QLabel		*lblRevision;
