@@ -120,6 +120,12 @@ bool Fossil::listFiles(QStringList &files)
 }
 
 //------------------------------------------------------------------------------
+bool Fossil::status(QStringList &result)
+{
+	return runFossil(QStringList() << "status", &result, RUNFLAGS_SILENT_ALL);
+}
+
+//------------------------------------------------------------------------------
 bool Fossil::pushRepository()
 {
 	return runFossil(QStringList() << "push");
@@ -549,7 +555,7 @@ bool Fossil::branchNew(const QString& name, const QString& revisionBasis, bool i
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::branchMerge(QStringList &res, const QString& revision, bool integrate, bool testOnly)
+bool Fossil::branchMerge(QStringList &res, const QString& revision, bool integrate, bool force, bool testOnly)
 {
 	QStringList params;
 
@@ -557,6 +563,9 @@ bool Fossil::branchMerge(QStringList &res, const QString& revision, bool integra
 
 	if(integrate)
 		params << "--integrate";
+
+	if(force)
+		params << "--force";
 
 	if(testOnly)
 		params << "--dry-run";

@@ -92,6 +92,8 @@ public:
 	void stopUI();
 
 	bool listFiles(QStringList &files);
+	bool status(QStringList& result);
+
 	bool diffFile(const QString &repoFile);
 	bool commitFiles(const QStringList &fileList, const QString &comment);
 	bool addFiles(const QStringList& fileList);
@@ -117,7 +119,7 @@ public:
 
 	bool branchList(QStringList& branches, QStringList& activeBranches);
 	bool branchNew(const QString& name, const QString& revisionBasis, bool isPrivate=false);
-	bool branchMerge(QStringList& res, const QString& revision, bool integrate, bool testOnly);
+	bool branchMerge(QStringList& res, const QString& revision, bool integrate, bool force, bool testOnly);
 
 	const QString &getCurrentRevision() const { return currentRevision; }
 	const QStringList &getCurrentTags() const { return currentTags; }

@@ -17,6 +17,10 @@ void Workspace::clearState()
 
 	getFiles().clear();
 	getPaths().clear();
+	stashMap.clear();
+	branchList.clear();
+	tags.clear();
+	isIntegrated = false;
 }
 
 //------------------------------------------------------------------------------
@@ -184,7 +188,20 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 		getPaths().insert(path);
 	}
 
-	// Load the stash
+	// Check if the repository needs integration
+	res.clear();
+	fossil().status(res);
+	isIntegrated = false;
+	foreach(const QString &l, res)
+	{
+		if(l.trimmed().indexOf("INTEGRATE")==0)
+		{
+			isIntegrated = true;
+			break;
+		}
+	}
+
+	// Load the stashes, branches and tags
 	fossil().stashList(getStashes());
 
 	fossil().branchList(branchList, branchList);

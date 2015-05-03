@@ -1240,7 +1240,7 @@ void MainWindow::on_actionCommit_triggered()
 	QStringList commit_files;
 	getSelectionFilenames(commit_files, WorkspaceFile::TYPE_MODIFIED, true);
 
-	if(commit_files.empty())
+	if(commit_files.empty() && !getWorkspace().otherChanges())
 		return;
 
 	QStringList commit_msgs = settings.GetValue(FUEL_SETTING_COMMIT_MSG).toStringList();
@@ -1260,7 +1260,7 @@ void MainWindow::on_actionCommit_triggered()
 		return;
 
 	// Since via the commit dialog the user can deselect all files
-	if(commit_files.empty())
+	if(commit_files.empty() && !getWorkspace().otherChanges())
 		return;
 
 	// Do commit
@@ -2004,7 +2004,7 @@ void MainWindow::on_textBrowser_customContextMenuRequested(const QPoint &pos)
 //------------------------------------------------------------------------------
 void MainWindow::on_fileTableView_customContextMenuRequested(const QPoint &pos)
 {
-	QPoint gpos = QCursor::pos();
+	QPoint gpos = QCursor::pos() + QPoint(1, 1);
 #ifdef Q_OS_WIN
 	if(qApp->keyboardModifiers() & Qt::SHIFT)
 	{
@@ -2059,7 +2059,7 @@ void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
 
 	if(menu)
 	{
-		QPoint pos = QCursor::pos();
+		QPoint pos = QCursor::pos() + QPoint(1, 1);
 		menu->popup(pos);
 	}
 }
@@ -2301,20 +2301,23 @@ void MainWindow::MergeRevision(const QString &defaultRevision)
 	QString revision = defaultRevision;
 
 	bool integrate = false;
-	revision = UpdateDialog::runMerge(this, tr("Merge"), versionList, revision, integrate);
+	bool force = false;
+	revision = UpdateDialog::runMerge(this, tr("Merge"), versionList, revision, integrate, force);
 
 	if(revision.isEmpty())
 		return;
 
 	// Do test merge
-	if(!fossil().branchMerge(res, revision, integrate, true))
+	if(!fossil().branchMerge(res, revision, integrate, force, true))
 		return;
 
 	if(!FileActionDialog::run(this, tr("Merge"), tr("The following changesd will be made.")+"\n"+tr("Are you sure?"), res))
 		return;
 
 	// Do update
-	fossil().branchMerge(res, revision, integrate, false);
+	fossil().branchMerge(res, revision, integrate, force, false);
+
+	log(tr("Merge completed. Don't forget to commit!")+"\n");
 
 	refresh();
 }

@@ -1,5 +1,5 @@
-C Added\smerge\ssupport
-D 2015-05-03T11:44:04.852
+C Commits\sare\snow\sallowed\swhen\sa\smerge\sintegration\shas\soccured\seven\swhen\sno\sfiles\sare\smodified\nSupport\sfor\sforced\smerges\nContext\smenus\sare\soffset\sby\sa\spixel\sto\sprevent\sunintended\sclicks\n
+D 2015-05-03T12:27:11.377
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -196,20 +196,20 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp 57363e0f487f325ba2eae6fdcf29756c9b1ae4a9
-F src/Fossil.h fb34964797dc10cea02bdf2e3f2c97a74fddafc5
+F src/Fossil.cpp 01b620c7ca283be385211e8276aad98dc642b0ef
+F src/Fossil.h f9b49ed930af2159f97a86ce0f6da821a0b0819e
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 7ae75136eb3a2f867de4281cbe428a176c3d11c8
+F src/MainWindow.cpp 1ea5808d0ad4cff7adaa7c910a4438bef3245cbc
 F src/MainWindow.h a4f3c753debe65d6231721c9948c4e8dee699021
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
-F src/UpdateDialog.cpp 08b0261de45babd947a0fbbd5af6bf8b58b74735
-F src/UpdateDialog.h bf04816f3cc5425beaaca72ca05bcc793d4ca204
+F src/UpdateDialog.cpp 4dd021bc57dde4f6e3f444f5f8a02f5a4a736478
+F src/UpdateDialog.h b3ecf0401659a9e48a4f832bd996fe27c6d15f40
 F src/Utils.cpp 748a58f19187aff7f3b867894129291cbe091678
 F src/Utils.h 9cc125f59b8d46ff47bbde4c2cf9bc77f8e2553b
-F src/Workspace.cpp 12edd94656a0aaef20798f883b59af3074466cec
-F src/Workspace.h 890fdb5f6b768809bc962374d22422dbfb6e89a1
+F src/Workspace.cpp f68a4ca05d1b7c5c345fbd89527691813593c663
+F src/Workspace.h e13d21c15f27c2b36368a06f4316f261ff782814
 F src/main.cpp 2ac8badc2a63fa123ceae53382ce24cfe1b5a54b
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -219,8 +219,8 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui d4fc7971a0717677adb1be0bb88502dfcb92f5c4
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-F ui/UpdateDialog.ui cd909f40c16e439181664e53bc3e86c2df647e3f
-P 87468705beaaef842877ab8459e287a61edf4bc3
-R 5791f89a3c32b1103d6b1aa0c81d25f4
+F ui/UpdateDialog.ui 392cdba296dd4b79145992a85e79748e7c34580d
+P ac65fbf8d33a9e64fb97bd8652a43b4d11c8e538
+R 999f69cdb7954fc29187e1f6edb999d1
 U kostas
-Z 6e82b9757fd44eb9f7e8cfc7e84094f4
+Z 5cfca8d448bbfd5145ee8de41f944a10

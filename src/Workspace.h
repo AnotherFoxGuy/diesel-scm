@@ -123,6 +123,7 @@ public:
 	stashmap_t			&getStashes() { return stashMap; }
 	QStringMap			&getTags() { return tags; }
 	QStringList			&getBranches() { return branchList; }
+	bool				otherChanges() const { return isIntegrated; }
 
 private:
 	Fossil				bridge;
@@ -131,6 +132,7 @@ private:
 	stashmap_t			stashMap;
 	QStringList			branchList;
 	QStringMap			tags;
+	bool				isIntegrated;
 
 	QStandardItemModel	repoFileModel;
 	QStandardItemModel	repoDirModel;
