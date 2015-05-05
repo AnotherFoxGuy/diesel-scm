@@ -2,10 +2,11 @@
 # Fuel
 #-------------------------------------------------
 
-QT    += core gui webkit
+QT    = core gui webkit
 
 contains(QT_VERSION, ^5\\..*) {
 	QT += widgets webkitwidgets
+	QT -= quick multimediawidgets opengl printsupport qml multimedia positioning sensors
 }
 
 TARGET = Fuel

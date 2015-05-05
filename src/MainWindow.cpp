@@ -2015,7 +2015,7 @@ void MainWindow::on_fileTableView_customContextMenuRequested(const QPoint &pos)
 
 		if(fnames.size()==1)
 		{
-			QString fname = getCurrentWorkspace() + PATH_SEP + fnames[0];
+			QString fname = getCurrentWorkspace() + PATH_SEPARATOR + fnames[0];
 			fname = QDir::toNativeSeparators(fname);
 			if(ShowExplorerMenu((HWND)winId(), fname, gpos))
 				refresh();
