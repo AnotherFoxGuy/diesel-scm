@@ -74,6 +74,8 @@ private slots:
 	void onWorkspaceTreeViewSelectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
 	void onFileViewDragOut();
 	void onAbort();
+	void onSearchBoxTextChanged(const QString &text);
+	void onSearch();
 
 	// Designer slots
 	void on_actionRefresh_triggered();
@@ -161,6 +163,8 @@ private:
 	class QLabel		*lblRevision;
 	class QLabel		*lblTags;
 	class QShortcut		*abortShortcut;
+	class SearchBox		*searchBox;
+	class QShortcut		*searchShortcut;
 	QMenu				*menuWorkspace;
 	QMenu				*menuStashes;
 	QMenu				*menuTags;

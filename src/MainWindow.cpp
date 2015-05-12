@@ -12,6 +12,7 @@
 #include <QLabel>
 #include <QSettings>
 #include <QShortcut>
+#include "SearchBox.h"
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
@@ -83,7 +84,6 @@ struct WorkspaceItem
 	}
 };
 Q_DECLARE_METATYPE(WorkspaceItem)
-
 
 ///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspacePath) :
@@ -230,6 +230,30 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	abortShortcut->setEnabled(false);
 	connect(abortShortcut, SIGNAL(activated()), this, SLOT(onAbort()));
 
+	// Searchbox
+	// Add spacer to pad to right
+	QWidget* spacer = new QWidget();
+	spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	ui->mainToolBar->addWidget(spacer);
+
+	// Search shortcut
+	searchShortcut = new QShortcut(QKeySequence(QKeySequence::Find), this);
+	searchShortcut->setContext(Qt::ApplicationShortcut);
+	searchShortcut->setEnabled(true);
+	connect(searchShortcut, SIGNAL(activated()), this, SLOT(onSearch()));
+
+
+	// Create SearchBox
+	searchBox = new SearchBox(this);
+	searchBox->setPlaceholderText(tr("Find (%0)").arg(searchShortcut->key().toString()));
+	searchBox->setMaximumWidth(450);
+	ui->mainToolBar->addWidget(searchBox);
+
+	connect( searchBox,
+		SIGNAL( textChanged(const QString&)),
+		SLOT( onSearchBoxTextChanged(const QString&)),
+		Qt::DirectConnection );
+
 	viewMode = VIEWMODE_TREE;
 
 	uiCallback.init(this);
@@ -373,6 +397,7 @@ bool MainWindow::openWorkspace(const QString &path)
 
 	// Select the Root of the tree to update the file view
 	selectRootDir();
+	searchBox->clear();
 	return true;
 }
 
@@ -760,37 +785,45 @@ void MainWindow::updateFileView()
 
 	bool display_path = viewMode==VIEWMODE_LIST || selectedDirs.count() > 1;
 
+	const QString &status_unknown = QString(tr("Unknown"));
+	const QString &search_text = searchBox->text();
+
 	size_t item_id=0;
 	for(Workspace::filemap_t::iterator it = getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
 		const WorkspaceFile &e = *it.value();
-		QString path = e.getPath();
+		const QString &path = e.getPath();
+		const QString &file_path = e.getFilePath();
+		QString native_file_path = QDir::toNativeSeparators(file_path);
+
+		// Apply filter if available
+		if(!search_text.isEmpty() && !native_file_path.contains(search_text, Qt::CaseInsensitive))
+			continue;
 
 		// In Tree mode, filter all items not included in the current dir
 		if(viewMode==VIEWMODE_TREE && !selectedDirs.contains(path))
 			continue;
 
 		// Status Column
-		QString status_text = QString(tr("Unknown"));
+		const QString *status_text = &status_unknown;
 		const char *status_icon_path= ":icons/icons/Button Blank Gray-01.png"; // Default icon
 
 		for(size_t t=0; t<COUNTOF(stats); ++t)
 		{
 			if(e.getType() == stats[t].type)
 			{
-				status_text = stats[t].text;
+				status_text = &stats[t].text;
 				status_icon_path = stats[t].icon;
 				break;
 			}
 		}
 
-		QStandardItem *status = new QStandardItem(getInternalIcon(status_icon_path), status_text);
-		status->setToolTip(status_text);
+		QStandardItem *status = new QStandardItem(getInternalIcon(status_icon_path), *status_text);
+		status->setToolTip(*status_text);
 		getWorkspace().getFileModel().setItem(item_id, COLUMN_STATUS, status);
 
 		QFileInfo finfo = e.getFileInfo();
 		QString icon_type = iconProvider.type(finfo);
-
 
 		if(!iconCache.contains(icon_type))
 			iconCache.insert(icon_type, iconProvider.icon(finfo));
@@ -801,13 +834,13 @@ void MainWindow::updateFileView()
 		getWorkspace().getFileModel().setItem(item_id, COLUMN_PATH, new QStandardItem(path));
 
 		if(display_path)
-			filename_item = new QStandardItem(*icon, QDir::toNativeSeparators(e.getFilePath()));
+			filename_item = new QStandardItem(*icon, native_file_path);
 		else
 			filename_item = new QStandardItem(*icon, e.getFilename());
 
 		Q_ASSERT(filename_item);
 		// Keep the path in the user data
-		filename_item->setData(e.getFilePath());
+		filename_item->setData(file_path);
 		getWorkspace().getFileModel().setItem(item_id, COLUMN_FILENAME, filename_item);
 
 		getWorkspace().getFileModel().setItem(item_id, COLUMN_EXTENSION, new QStandardItem(finfo.suffix()));
@@ -2333,4 +2366,17 @@ void MainWindow::on_actionMergeBranch_triggered()
 	if(!selectedBranches.isEmpty())
 		revision = selectedBranches.first();
 	MergeRevision(revision);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::onSearchBoxTextChanged(const QString &)
+{
+	updateFileView();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::onSearch()
+{
+	searchBox->selectAll();
+	searchBox->setFocus();
 }
