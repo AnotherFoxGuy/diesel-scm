@@ -129,6 +129,11 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	// workspaceTreeView
 	ui->workspaceTreeView->setModel(&getWorkspace().getDirModel());
+
+	header.clear();
+	header << tr("Workspace");
+	getWorkspace().getDirModel().setHorizontalHeaderLabels(header);
+
 	connect( ui->workspaceTreeView->selectionModel(),
 		SIGNAL( selectionChanged(const QItemSelection &, const QItemSelection &) ),
 		SLOT( onWorkspaceTreeViewSelectionChanged(const QItemSelection &, const QItemSelection &) ),
@@ -660,12 +665,8 @@ static void addPathToTree(QStandardItem &root, const QString &path, const QIcon 
 //------------------------------------------------------------------------------
 void MainWindow::updateWorkspaceView()
 {
-	// Directory View
-	getWorkspace().getDirModel().clear();
-
-	QStringList header;
-	header << tr("Workspace");
-	getWorkspace().getDirModel().setHorizontalHeaderLabels(header);
+	// Clear content except headers
+	getWorkspace().getDirModel().removeRows(0, getWorkspace().getDirModel().rowCount());
 
 	QStandardItem *workspace = new QStandardItem(getInternalIcon(":icons/icons/Folder-01.png"), tr("Files") );
 	workspace->setData(WorkspaceItem(WorkspaceItem::TYPE_WORKSPACE, ""), ROLE_WORKSPACE_ITEM);
