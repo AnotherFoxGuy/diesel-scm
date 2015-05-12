@@ -1,5 +1,5 @@
-C Implemented\san\sicon\scache\sto\sspeed-up\sworkspace\srefresh\n
-D 2015-05-03T19:14:10.535
+C Set\sversion\sto\s1.0.1
+D 2015-05-12T18:18:33.512
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -204,7 +204,7 @@ F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
 F src/Utils.cpp 9aff456712e4276b49083426301b3b96d3819c77
 F src/Utils.h c546e478a1225a28c99cd4c30f70cf9be9804a2a
-F src/main.cpp 0bba433f16072096cba1d48733b4e801df144800
+F src/main.cpp e1217b2331f1b0fd30756fc80a72f9676f09cf6b
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
@@ -213,7 +213,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 6b51d631f61ea685cf4ce84b3c34954dcd6338e2
-R 4dbdcef2e6b8d98135af80d15f437e02
+P 964b28f34fae482959ce8a96cbc6106f8702fb33
+R 52b73271a5ba6efcdf8cd8ac7e8910df
 U kostas
-Z ccf17d40f1e416c2bd9554afa0bd3798
+Z e4adddbe2917b1cd621d67e57ca27d42
