@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 	QApplication app(argc, argv);
 	app.setApplicationName("Fuel");
 	app.setApplicationVersion("2.0.0");
-	app.setOrganizationDomain("fuelscm.org");
+	app.setOrganizationDomain("fuel-scm.org");
 	app.setOrganizationName("Fuel-SCM");
 
 
