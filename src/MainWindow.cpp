@@ -719,6 +719,14 @@ void MainWindow::updateWorkspaceView()
 	{
 		QStandardItem *branch = new QStandardItem(getInternalIcon(":icons/icons/Document Organization Chart-01.png"), branch_name);
 		branch->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCH, branch_name), ROLE_WORKSPACE_ITEM);
+
+		bool active = fossil().getCurrentTags().contains(branch_name);
+		if(active)
+		{
+			QFont font = branch->font();
+			font.setBold(true);
+			branch->setFont(font);
+		}
 		branches->appendRow(branch);
 	}
 
@@ -730,8 +738,18 @@ void MainWindow::updateWorkspaceView()
 	for(QStringMap::const_iterator it=getWorkspace().getTags().begin(); it!=getWorkspace().getTags().end(); ++it)
 	{
 		const QString &tag_name = it.key();
+
+
 		QStandardItem *tag = new QStandardItem(getInternalIcon(":icons/icons/Book-01.png"), tag_name);
 		tag->setData(WorkspaceItem(WorkspaceItem::TYPE_TAG, tag_name), ROLE_WORKSPACE_ITEM);
+
+		bool active = fossil().getCurrentTags().contains(tag_name);
+		if(active)
+		{
+			QFont font = tag->font();
+			font.setBold(true);
+			tag->setFont(font);
+		}
 		tags->appendRow(tag);
 	}
 
