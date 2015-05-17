@@ -1,5 +1,5 @@
-C Display\scurrent\stags\sand\sbranches\sas\sbold\sin\sworkspace\sview
-D 2015-05-12T20:44:53.278
+C Fixed\smissing\sworkspace\sview\sheader\swhen\srepository\sa\sis\snot\savailable
+D 2015-05-17T10:08:19.918
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -200,7 +200,7 @@ F src/Fossil.cpp ca7ad24622e1fc1a03c92d7ae9b51afc17f7c09c
 F src/Fossil.h d65a7461d213bcc30f08724d3306c6ee00843217
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 20aa6bdb15e5040bc4a9109bc4e29e494f56d15a
+F src/MainWindow.cpp 0c0a9edf7a891b2af9c87c17ebcd4dbfa56a8be5
 F src/MainWindow.h 7a2ac41cdd205acccd64a5314f25621ecb616288
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
@@ -222,7 +222,7 @@ F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 9dd0f9ef3f486413c9af912ac557c0e7bf9c6f50
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 097bed86191fae72e1bf76078b8e9d8da37b2932
-R 8241982b5439365ee06da36eacd2c911
+P 59372f35e863ab4a2363baf3b0df87cbb4a183ce
+R 9e3e71d3c83ef4dbbdedfee0f5a8b6b5
 U kostas
-Z d350a72e02396a189726dcf5b3f96791
+Z af213baf2ef19edc096b07b6c3cbac9a

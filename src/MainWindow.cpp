@@ -591,7 +591,7 @@ bool MainWindow::refresh()
 		setStatus(tr("No workspace detected."));
 		enableActions(false);
 		getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
-		getWorkspace().getDirModel().clear();
+		getWorkspace().getDirModel().removeRows(0, getWorkspace().getFileModel().rowCount());
 		setWindowTitle(title);
 		return false;
 	}
@@ -600,7 +600,7 @@ bool MainWindow::refresh()
 		setStatus(tr("Old repository schema detected. Consider running 'fossil rebuild'"));
 		enableActions(false);
 		getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
-		getWorkspace().getDirModel().clear();
+		getWorkspace().getDirModel().removeRows(0, getWorkspace().getFileModel().rowCount());
 		setWindowTitle(title);
 		return true;
 	}
