@@ -259,6 +259,7 @@
     <addaction name="actionViewIgnored"/>
     <addaction name="separator"/>
     <addaction name="actionViewAsList"/>
+    <addaction name="actionViewAsFolders"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -932,6 +933,20 @@
    </property>
    <property name="text">
     <string>Merge Branch</string>
+   </property>
+  </action>
+  <action name="actionViewAsFolders">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Files and F&amp;olders</string>
+   </property>
+   <property name="toolTip">
+    <string>View files and folders</string>
+   </property>
+   <property name="statusTip">
+    <string>View the workspace as files and folders</string>
    </property>
   </action>
  </widget>

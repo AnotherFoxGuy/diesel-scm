@@ -1,5 +1,5 @@
-C Renamed\sDirModel\sto\sTreeModel
-D 2015-05-17T10:13:46.499
+C Separated\sView->File\sList\schecked\smenu\soption\sinto\stwo\sseparate\smutually\sexclusive\soptions
+D 2015-05-17T11:19:18.730
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -200,8 +200,8 @@ F src/Fossil.cpp ca7ad24622e1fc1a03c92d7ae9b51afc17f7c09c
 F src/Fossil.h d65a7461d213bcc30f08724d3306c6ee00843217
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp ec6143d24b4a0be026fb46ed65cf02ee04086417
-F src/MainWindow.h 7a2ac41cdd205acccd64a5314f25621ecb616288
+F src/MainWindow.cpp 5b69ea329562ebcd311a674185d4ec42e7cee713
+F src/MainWindow.h f2141839cccb3941df9ed7288588f2de3a5c8179
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
 F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
@@ -219,10 +219,10 @@ F ui/BrowserWidget.ui 5ad98b13773afadb20a1a2c22148aaebe5dbd95d
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/MainWindow.ui 9dd0f9ef3f486413c9af912ac557c0e7bf9c6f50
+F ui/MainWindow.ui a35d624f5643b56d0c6f13c4b3eb30bd2d77206c
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 37e191368a0f6880991fd27fb08ebf1144f6626f
-R fdbfaaf7e049e20aebbeead5bf6d1135
+P b49ff56d2af6aca465d8b2ce3b5a9455341e7a1c
+R ce5353eef0ea32df84e4f1e586546ba7
 U kostas
-Z 25c2de0408c1af282fd060662d16444f
+Z 5aa327a30bd3d5e5ed1705c3ba145211

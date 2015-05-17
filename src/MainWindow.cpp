@@ -965,6 +965,7 @@ void MainWindow::applySettings()
 	if(store->contains("ViewAsList"))
 	{
 		ui->actionViewAsList->setChecked(store->value("ViewAsList").toBool());
+		ui->actionViewAsFolders->setChecked(!store->value("ViewAsList").toBool());
 		viewMode = store->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
 	//ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
@@ -1641,10 +1642,18 @@ void MainWindow::on_actionViewIgnored_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionViewAsList_triggered()
 {
-	viewMode =  ui->actionViewAsList->isChecked() ? VIEWMODE_LIST : VIEWMODE_TREE;
-#if 0
-	ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
-#endif
+	ui->actionViewAsFolders->setChecked(!ui->actionViewAsList->isChecked());
+	viewMode = ui->actionViewAsList->isChecked() ? VIEWMODE_LIST : VIEWMODE_TREE;
+
+	updateWorkspaceView();
+	updateFileView();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionViewAsFolders_triggered()
+{
+	ui->actionViewAsList->setChecked(!ui->actionViewAsFolders->isChecked());
+	viewMode = ui->actionViewAsList->isChecked() ? VIEWMODE_LIST : VIEWMODE_TREE;
 	updateWorkspaceView();
 	updateFileView();
 }
@@ -2398,3 +2407,5 @@ void MainWindow::onSearch()
 	searchBox->selectAll();
 	searchBox->setFocus();
 }
+
+

@@ -105,6 +105,7 @@ private slots:
 	void on_actionViewUnknown_triggered();
 	void on_actionViewIgnored_triggered();
 	void on_actionViewAsList_triggered();
+	void on_actionViewAsFolders_triggered();
 	void on_actionOpenFolder_triggered();
 	void on_actionRenameFolder_triggered();
 	void on_actionNewRepository_triggered();
