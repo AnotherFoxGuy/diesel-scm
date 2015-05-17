@@ -1,5 +1,5 @@
-C Separated\sView->File\sList\schecked\smenu\soption\sinto\stwo\sseparate\smutually\sexclusive\soptions
-D 2015-05-17T11:19:18.730
+C Maintain\sthe\sworkspace\sstate\seven\swhen\srefreshing
+D 2015-05-17T16:43:55.245
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -200,7 +200,7 @@ F src/Fossil.cpp ca7ad24622e1fc1a03c92d7ae9b51afc17f7c09c
 F src/Fossil.h d65a7461d213bcc30f08724d3306c6ee00843217
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 5b69ea329562ebcd311a674185d4ec42e7cee713
+F src/MainWindow.cpp a354f84278c1a59c385eaff73c3c8cea6cab6f0b
 F src/MainWindow.h f2141839cccb3941df9ed7288588f2de3a5c8179
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
@@ -208,8 +208,8 @@ F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
 F src/SearchBox.h 0c78d3a68136dab3e0e71b83ae36f22bd2688ab2
 F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
 F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
-F src/Utils.cpp 748a58f19187aff7f3b867894129291cbe091678
-F src/Utils.h 9cc125f59b8d46ff47bbde4c2cf9bc77f8e2553b
+F src/Utils.cpp f61a53fb79d47ecb714833805106f4956746faaa
+F src/Utils.h 213decaa09151cb7397207e3ea2dde70b994b6a0
 F src/Workspace.cpp f68a4ca05d1b7c5c345fbd89527691813593c663
 F src/Workspace.h d6649a3ae1cd0fbad55237030313e85530417271
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
@@ -222,7 +222,7 @@ F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui a35d624f5643b56d0c6f13c4b3eb30bd2d77206c
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P b49ff56d2af6aca465d8b2ce3b5a9455341e7a1c
-R ce5353eef0ea32df84e4f1e586546ba7
+P 502ce5e1b68dd97da3b9a779e5683d2f1ddcb61c
+R 02b904e8c4daad9d4def2ef7d9cea429
 U kostas
-Z 5aa327a30bd3d5e5ed1705c3ba145211
+Z d1ccd1d3dcbc5bb7805478bf9b9cb4e5

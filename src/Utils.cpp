@@ -329,3 +329,41 @@ void ParseProperties(QStringMap &properties, const QStringList &lines, QChar sep
 	}
 }
 
+
+//------------------------------------------------------------------------------
+void GetStandardItemTextRecursive(QString &name, const QStandardItem &item, const QChar &separator)
+{
+	if(item.parent())
+	{
+		GetStandardItemTextRecursive(name, *item.parent());
+		name.append(separator);
+	}
+
+	name.append(item.data(Qt::DisplayRole).toString());
+}
+
+//------------------------------------------------------------------------------
+void BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItem &item)
+{
+	QString name;
+	GetStandardItemTextRecursive(name, item);
+	map.insert(name, item.index());
+
+	for(int i=0; i<item.rowCount(); ++i)
+	{
+		const QStandardItem *child = item.child(i);
+		Q_ASSERT(child);
+		BuildNameToModelIndex(map, *child);
+	}
+}
+
+//------------------------------------------------------------------------------
+void BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItemModel &model)
+{
+	for(int i=0; i<model.rowCount(); ++i)
+	{
+		const QStandardItem *item = model.item(i);
+		Q_ASSERT(item);
+		BuildNameToModelIndex(map, *item);
+	}
+}

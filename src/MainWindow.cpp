@@ -690,6 +690,24 @@ static void addPathToTree(QStandardItem &root, const QString &path, const QIcon 
 //------------------------------------------------------------------------------
 void MainWindow::updateWorkspaceView()
 {
+	// Record expanded tree-node names, and selection
+	name_modelindex_map_t name_map;
+	BuildNameToModelIndex(name_map, getWorkspace().getTreeModel());
+	stringset_t expanded_items;
+	stringset_t selected_items;
+
+	const QItemSelection selection = ui->workspaceTreeView->selectionModel()->selection();
+
+	for(name_modelindex_map_t::const_iterator it=name_map.begin(); it!=name_map.end(); ++it)
+	{
+		const QModelIndex mi = it.value();
+		if(ui->workspaceTreeView->isExpanded(mi))
+			expanded_items.insert(it.key());
+
+		if(selection.contains(mi))
+			selected_items.insert(it.key());
+	}
+
 	// Clear content except headers
 	getWorkspace().getTreeModel().removeRows(0, getWorkspace().getTreeModel().rowCount());
 
@@ -708,6 +726,9 @@ void MainWindow::updateWorkspaceView()
 
 			addPathToTree(*workspace, dir, getInternalIcon(":icons/icons/Folder-01.png"));
 		}
+
+		// Expand root folder
+		ui->workspaceTreeView->setExpanded(workspace->index(), true);
 	}
 
 	// Branches
@@ -778,8 +799,28 @@ void MainWindow::updateWorkspaceView()
 	settings->setEditable(false);
 	getWorkspace().getDirModel().appendRow(settings);
 #endif
-	ui->workspaceTreeView->expandToDepth(0);
-	//ui->workspaceTreeView->sortByColumn(0, Qt::AscendingOrder);
+
+	// Expand previously selected nodes
+	name_map.clear();
+	BuildNameToModelIndex(name_map, getWorkspace().getTreeModel());
+
+	for(stringset_t::const_iterator it=expanded_items.begin(); it!=expanded_items.end(); ++it)
+	{
+		name_modelindex_map_t::const_iterator mi_it = name_map.find(*it);
+		if(mi_it!=name_map.end())
+			ui->workspaceTreeView->setExpanded(mi_it.value(), true);
+	}
+
+	// Select previous selected item
+	for(stringset_t::const_iterator it=selected_items.begin(); it!=selected_items.end(); ++it)
+	{
+		name_modelindex_map_t::const_iterator mi_it = name_map.find(*it);
+		if(mi_it!=name_map.end())
+		{
+			const QModelIndex &mi = mi_it.value();
+			ui->workspaceTreeView->selectionModel()->select(mi, QItemSelectionModel::Select);
+		}
+	}
 }
 
 //------------------------------------------------------------------------------
