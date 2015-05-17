@@ -128,11 +128,11 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->fileTableView->horizontalHeader()->setStretchLastSection(true);
 
 	// workspaceTreeView
-	ui->workspaceTreeView->setModel(&getWorkspace().getDirModel());
+	ui->workspaceTreeView->setModel(&getWorkspace().getTreeModel());
 
 	header.clear();
 	header << tr("Workspace");
-	getWorkspace().getDirModel().setHorizontalHeaderLabels(header);
+	getWorkspace().getTreeModel().setHorizontalHeaderLabels(header);
 
 	connect( ui->workspaceTreeView->selectionModel(),
 		SIGNAL( selectionChanged(const QItemSelection &, const QItemSelection &) ),
@@ -591,7 +591,7 @@ bool MainWindow::refresh()
 		setStatus(tr("No workspace detected."));
 		enableActions(false);
 		getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
-		getWorkspace().getDirModel().removeRows(0, getWorkspace().getFileModel().rowCount());
+		getWorkspace().getTreeModel().removeRows(0, getWorkspace().getFileModel().rowCount());
 		setWindowTitle(title);
 		return false;
 	}
@@ -600,7 +600,7 @@ bool MainWindow::refresh()
 		setStatus(tr("Old repository schema detected. Consider running 'fossil rebuild'"));
 		enableActions(false);
 		getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
-		getWorkspace().getDirModel().removeRows(0, getWorkspace().getFileModel().rowCount());
+		getWorkspace().getTreeModel().removeRows(0, getWorkspace().getFileModel().rowCount());
 		setWindowTitle(title);
 		return true;
 	}
@@ -691,13 +691,13 @@ static void addPathToTree(QStandardItem &root, const QString &path, const QIcon 
 void MainWindow::updateWorkspaceView()
 {
 	// Clear content except headers
-	getWorkspace().getDirModel().removeRows(0, getWorkspace().getDirModel().rowCount());
+	getWorkspace().getTreeModel().removeRows(0, getWorkspace().getTreeModel().rowCount());
 
 	QStandardItem *workspace = new QStandardItem(getInternalIcon(":icons/icons/Folder-01.png"), tr("Files") );
 	workspace->setData(WorkspaceItem(WorkspaceItem::TYPE_WORKSPACE, ""), ROLE_WORKSPACE_ITEM);
 	workspace->setEditable(false);
 
-	getWorkspace().getDirModel().appendRow(workspace);
+	getWorkspace().getTreeModel().appendRow(workspace);
 	if(viewMode == VIEWMODE_TREE)
 	{
 		for(stringset_t::iterator it = getWorkspace().getPaths().begin(); it!=getWorkspace().getPaths().end(); ++it)
@@ -714,7 +714,7 @@ void MainWindow::updateWorkspaceView()
 	QStandardItem *branches = new QStandardItem(getInternalIcon(":icons/icons/Document Organization Chart-01.png"), "Branches");
 	branches->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCHES, ""), ROLE_WORKSPACE_ITEM);
 	branches->setEditable(false);
-	getWorkspace().getDirModel().appendRow(branches);
+	getWorkspace().getTreeModel().appendRow(branches);
 	foreach(const QString &branch_name, getWorkspace().getBranches())
 	{
 		QStandardItem *branch = new QStandardItem(getInternalIcon(":icons/icons/Document Organization Chart-01.png"), branch_name);
@@ -734,7 +734,7 @@ void MainWindow::updateWorkspaceView()
 	QStandardItem *tags = new QStandardItem(getInternalIcon(":icons/icons/Book-01.png"), "Tags");
 	tags->setData(WorkspaceItem(WorkspaceItem::TYPE_TAGS, ""), ROLE_WORKSPACE_ITEM);
 	tags->setEditable(false);
-	getWorkspace().getDirModel().appendRow(tags);
+	getWorkspace().getTreeModel().appendRow(tags);
 	for(QStringMap::const_iterator it=getWorkspace().getTags().begin(); it!=getWorkspace().getTags().end(); ++it)
 	{
 		const QString &tag_name = it.key();
@@ -757,7 +757,7 @@ void MainWindow::updateWorkspaceView()
 	QStandardItem *stashes = new QStandardItem(getInternalIcon(":icons/icons/My Documents-01.png"), "Stashes");
 	stashes->setData(WorkspaceItem(WorkspaceItem::TYPE_STASHES, ""), ROLE_WORKSPACE_ITEM);
 	stashes->setEditable(false);
-	getWorkspace().getDirModel().appendRow(stashes);
+	getWorkspace().getTreeModel().appendRow(stashes);
 	for(stashmap_t::const_iterator it= getWorkspace().getStashes().begin(); it!=getWorkspace().getStashes().end(); ++it)
 	{
 		QStandardItem *stash = new QStandardItem(getInternalIcon(":icons/icons/My Documents-01.png"), it.key());
@@ -2097,7 +2097,7 @@ void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
 
 	// Get first selected item
 	const QModelIndex &mi = indices.first();
-	QVariant data = getWorkspace().getDirModel().data(mi, ROLE_WORKSPACE_ITEM);
+	QVariant data = getWorkspace().getTreeModel().data(mi, ROLE_WORKSPACE_ITEM);
 	Q_ASSERT(data.isValid());
 	WorkspaceItem tv = data.value<WorkspaceItem>();
 

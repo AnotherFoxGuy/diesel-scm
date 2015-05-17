@@ -99,6 +99,10 @@ private:
 
 typedef QSet<QString> stringset_t;
 
+//////////////////////////////////////////////////////////////////////////
+// Workspace
+//////////////////////////////////////////////////////////////////////////
+
 class Workspace
 {
 public:
@@ -116,7 +120,7 @@ public:
 	void				scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, UICallback &uiCallback, bool &operationAborted);
 
 	QStandardItemModel	&getFileModel() { return repoFileModel; }
-	QStandardItemModel	&getDirModel() { return repoDirModel; }
+	QStandardItemModel	&getTreeModel() { return repoTreeModel; }
 
 	filemap_t			&getFiles() { return workspaceFiles; }
 	stringset_t			&getPaths() { return pathSet; }
@@ -135,7 +139,7 @@ private:
 	bool				isIntegrated;
 
 	QStandardItemModel	repoFileModel;
-	QStandardItemModel	repoDirModel;
+	QStandardItemModel	repoTreeModel;
 };
 
 #endif // WORKSPACE_H
