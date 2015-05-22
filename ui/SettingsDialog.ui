@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Settings</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../rsrc/resources.qrc">
+    <normaloff>:/icons/icon-application</normaloff>:/icons/icon-application</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -26,10 +30,6 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="tabApp">
-      <attribute name="icon">
-       <iconset resource="../rsrc/resources.qrc">
-        <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
-      </attribute>
       <attribute name="title">
        <string>Application</string>
       </attribute>
@@ -304,10 +304,6 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabRepo">
-      <attribute name="icon">
-       <iconset resource="../rsrc/resources.qrc">
-        <normaloff>:/icons/icons/Book-01.png</normaloff>:/icons/icons/Book-01.png</iconset>
-      </attribute>
       <attribute name="title">
        <string>Repository</string>
       </attribute>
