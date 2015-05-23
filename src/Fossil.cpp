@@ -197,7 +197,7 @@ bool Fossil::diffFile(const QString &repoFile)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::commitFiles(const QStringList& fileList, const QString& comment)
+bool Fossil::commitFiles(const QStringList& fileList, const QString& comment, const QString &newBranchName, bool isPrivateBranch)
 {
 	// Do commit
 	QString comment_fname;
@@ -223,6 +223,17 @@ bool Fossil::commitFiles(const QStringList& fileList, const QString& comment)
 	// Generate fossil parameters.
 	QStringList params;
 	params << "commit" << "--message-file" << QuotePath(comment_fname);
+
+	// Commit to new branch
+	if(!newBranchName.isEmpty())
+	{
+		params << "--branch" << newBranchName;
+
+		// Private branches are not synced with remotes
+		if(isPrivateBranch)
+			params << "--private";
+	}
+
 	params << QuotePaths(fileList);
 
 	runFossil(params);

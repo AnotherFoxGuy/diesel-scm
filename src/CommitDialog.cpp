@@ -110,6 +110,19 @@ bool CommitDialog::run(QWidget *parent, const QString &title, QStringList &files
 }
 
 //------------------------------------------------------------------------------
+bool CommitDialog::runCommit(QWidget* parent, QStringList& files, QString& commitMsg, const QStringList& commitMsgHistory)
+{
+	return run(parent, tr("Commit Changes"), files, commitMsg, &commitMsgHistory, false, 0, 0);
+}
+
+//------------------------------------------------------------------------------
+bool CommitDialog::runStashNew(QWidget* parent, QStringList& stashedFiles, QString& stashName, bool& checkBoxValue)
+{
+	QString checkbox_text = tr("Revert stashed files");
+	return run(parent, tr("Stash Changes"), stashedFiles, stashName, 0, true, &checkbox_text, &checkBoxValue);
+}
+
+//------------------------------------------------------------------------------
 void CommitDialog::on_comboBox_activated(int index)
 {
 	Q_ASSERT(index < commitMessages.length());

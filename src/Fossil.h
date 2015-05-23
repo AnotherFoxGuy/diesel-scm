@@ -96,7 +96,7 @@ public:
 	bool status(QStringList& result);
 
 	bool diffFile(const QString &repoFile);
-	bool commitFiles(const QStringList &fileList, const QString &comment);
+	bool commitFiles(const QStringList &fileList, const QString &comment, const QString& newBranchName, bool isPrivateBranch);
 	bool addFiles(const QStringList& fileList);
 	bool removeFiles(const QStringList& fileList, bool deleteLocal);
 	bool revertFiles(const QStringList& fileList);

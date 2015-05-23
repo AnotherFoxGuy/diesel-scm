@@ -1358,7 +1358,7 @@ void MainWindow::on_actionCommit_triggered()
 	QStringList commit_msgs = settings.GetValue(FUEL_SETTING_COMMIT_MSG).toStringList();
 
 	QString msg;
-	bool aborted = !CommitDialog::run(this, tr("Commit Changes"), commit_files, msg, &commit_msgs);
+	bool aborted = !CommitDialog::runCommit(this, commit_files, msg, commit_msgs);
 
 	// Aborted or not we always keep the commit messages.
 	// (This has saved me way too many times on TortoiseSVN)
@@ -1388,7 +1388,11 @@ void MainWindow::on_actionCommit_triggered()
 	if(commit_files.size() != all_modified_files.size())
 		files = commit_files;
 
-	fossil().commitFiles(files, msg);
+	// FIXME: add UI
+	QString branch_name="";
+	bool private_branch = false;
+
+	fossil().commitFiles(files, msg, branch_name, private_branch);
 	refresh();
 }
 
@@ -1960,8 +1964,8 @@ void MainWindow::on_actionNewStash_triggered()
 
 	QString stash_name;
 	bool revert = false;
-	QString checkbox_text = tr("Revert stashed files");
-	if(!CommitDialog::run(this, tr("Stash Changes"), stashed_files, stash_name, 0, true, &checkbox_text, &revert) || stashed_files.empty())
+
+	if(!CommitDialog::runStashNew(this, stashed_files, stash_name, revert) || stashed_files.empty())
 		return;
 
 	stash_name = stash_name.trimmed();

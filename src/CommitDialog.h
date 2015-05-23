@@ -16,7 +16,11 @@ public:
 	explicit CommitDialog(QWidget *parent, const QString &title, QStringList &files, const QStringList *history=0, bool singleLineEntry=false, const QString *checkBoxText=0, bool *checkBoxValue=0);
 	~CommitDialog();
 
-	static bool run(QWidget *parent, const QString &title, QStringList &files, QString &commitMsg, const QStringList *history=0, bool singleLineEntry=false, const QString *checkBoxText=0, bool *checkBoxValue=0);
+	static bool runStashNew(QWidget* parent, QStringList& stashedFiles, QString& stashName, bool &checkBoxValue);
+	static bool runCommit(QWidget* parent, QStringList& files, QString& commitMsg, const QStringList &commitMsgHistory);
+
+private:
+	static bool run(QWidget *parent, const QString &title, QStringList &files, QString &commitMsg, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue);
 
 private slots:
 	void on_comboBox_activated(int index);
