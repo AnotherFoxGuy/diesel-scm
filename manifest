@@ -1,5 +1,5 @@
-C Added\sView\sAll\sFiles\soption\n
-D 2015-05-24T09:00:03.257
+C Fixed\smissing\sworkspace\stree\sheader
+D 2015-05-24T14:47:14.342
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -219,10 +219,10 @@ F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 5270bbf9c0b0c64d695420388160e2bb0e217d9f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/MainWindow.ui 13f5dee5a09a535dad7410bca36b80b81cdb3a36
+F ui/MainWindow.ui 62465473277cca143d1618579a3375551e551ab3
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 5aafd8784268ea7cd828330d4673500b8f38d6db
-P 34efdbe98a491079ce2a2ae97c701ed5af118a4c
-R 6b21fa6d345f234ccb01b39f5e1f28b8
+P 239c19ebecb1565f0c9e3319b1ea3d18bce59ab9
+R 3bccc129817cf3b1d6570a99f0682985
 U kostas
-Z 946f9f191acc62afc553b9c6b7567862
+Z 23e2a55234a8daa618ea7c34e0b6d98a
