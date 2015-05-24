@@ -1000,7 +1000,13 @@ bool Fossil::startUI(const QString &httpPort)
 	log(QObject::tr("Starting Fossil browser UI. Please wait.")+"\n");
 	QString fossil = getFossilPath();
 
-	fossilUI.start(fossil, QStringList() << "server" << "--localauth" << "-P" << httpPort );
+	QStringList params;
+	params << "server" << "--localauth";
+
+	if(!httpPort.isEmpty())
+		params << "-P" << httpPort;
+
+	fossilUI.start(params);
 
 	if(!fossilUI.waitForStarted() || fossilUI.state()!=QProcess::Running)
 	{
