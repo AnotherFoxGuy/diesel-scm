@@ -5,7 +5,7 @@ class QStringList;
 #include <QString>
 #include <QStringList>
 #include <QObject>
-#include <QProcess>
+#include "LoggedProcess.h"
 #include "Utils.h"
 
 typedef QMap<QString, QString> stashmap_t;
@@ -125,6 +125,9 @@ public:
 	const QString &getCurrentRevision() const { return currentRevision; }
 	const QStringList &getCurrentTags() const { return currentTags; }
 
+	const QString &getUIHttpPort() const { return fossilUIPort; }
+	QString getUIHttpAddress() const;
+
 private:
 	void log(const QString &text, bool isHTML=false)
 	{
@@ -142,7 +145,8 @@ private:
 	QString				projectName;
 	QString				currentRevision;
 	QStringList			currentTags;
-	QProcess			fossilUI;
+	LoggedProcess		fossilUI;
+	QString				fossilUIPort;
 };
 
 

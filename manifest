@@ -1,5 +1,5 @@
-C Fossil\sui\sport\sis\snow\soptional\n
-D 2015-05-24T17:08:46.715
+C Fuel\snow\suses\sthe\shttp\sport\sthat\sFossil\sreports\swhen\sstarting\sthe\sweb\sui.\n
+D 2015-05-24T17:44:01.161
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -196,12 +196,12 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp 62b898eeaa8c664619a3c8ed01295ef287771f75
-F src/Fossil.h 651d2a1c052abe2804f9eff366bf2561dc54f7eb
+F src/Fossil.cpp 0d4c50327a61c48506d2d45e28cd6f71f1697ea2
+F src/Fossil.h 31765ef57e20a860914372d56c024033b30aa765
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 537c458f5b7ad78ee3b9ad2e8479cac2f6dd8ec3
-F src/MainWindow.h cfc19137172a9200cff2b68676cbb26c2611a7d8
+F src/MainWindow.cpp c25a7a4898b9fe80154d2cb7abb81bcafcd50dd6
+F src/MainWindow.h d398df5f8b27d7f1ccae6a7f1fd5ef2c2236002b
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
 F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
@@ -224,7 +224,7 @@ F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 22dc5cebf86223754dc8e0b14707b4cb81c95cc6
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 5aafd8784268ea7cd828330d4673500b8f38d6db
-P 46641dde6cd75e57b23d7df78b9e06e3c1e38993
-R 3ce93b5fd6cc01079b013a2f74f1f2a5
+P 7ffecfc49aeb4ccb8b2972ac5c6eddd265d3b578
+R c614f64a06cb8d44d405228318daf9d9
 U kostas
-Z 288d5f9c12ff4d2d05a8c8b09dbdb7e7
+Z d1c35d582fe773add2faa8e714e12402

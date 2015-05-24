@@ -48,7 +48,6 @@ private:
 	void rebuildRecent();
 	bool openWorkspace(const QString &path);
 	void loadFossilSettings();
-	QString getFossilHttpAddress();
 	void updateWorkspaceView();
 	void updateFileView();
 	void selectRootDir();

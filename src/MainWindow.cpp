@@ -1083,7 +1083,7 @@ void MainWindow::fossilBrowse(const QString &fossilUrl)
 
 	bool use_internal = settings.GetValue(FUEL_SETTING_WEB_BROWSER).toInt() == 1;
 
-	QUrl url = QUrl(getFossilHttpAddress()+fossilUrl);
+	QUrl url = QUrl(fossil().getUIHttpAddress()+fossilUrl);
 
 	if(use_internal)
 	{
@@ -1254,8 +1254,7 @@ void MainWindow::on_actionDiff_triggered()
 //------------------------------------------------------------------------------
 bool MainWindow::startUI()
 {
-	QString port = settings.GetValue(FUEL_SETTING_HTTP_PORT).toString();
-	bool started = fossil().startUI(port);
+	bool started = fossil().startUI("");
 	ui->actionFossilUI->setChecked(started);
 	return started;
 }
@@ -1722,13 +1721,6 @@ void MainWindow::on_actionViewAsFolders_triggered()
 	viewMode = ui->actionViewAsList->isChecked() ? VIEWMODE_LIST : VIEWMODE_TREE;
 	updateWorkspaceView();
 	updateFileView();
-}
-
-//------------------------------------------------------------------------------
-QString MainWindow::getFossilHttpAddress()
-{
-	QString port = settings.GetValue(FUEL_SETTING_HTTP_PORT).toString();
-	return "http://127.0.0.1:"+port;
 }
 
 //------------------------------------------------------------------------------

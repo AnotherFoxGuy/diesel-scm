@@ -1,7 +1,6 @@
 #include "Fossil.h"
 #include <QStringList>
 #include <QCoreApplication>
-#include <LoggedProcess.h>
 #include <QTextCodec>
 #include <QDebug>
 #include <QDir>
@@ -13,6 +12,9 @@ static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 
 // 19: [5c46757d4b9765] on 2012-04-22 04:41:15
 static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
+
+// Listening for HTTP requests on TCP port 8081
+static const QRegExp			REGEX_PORT(".*TCP port ([0-9]+)\\n", Qt::CaseSensitive);
 
 ///////////////////////////////////////////////////////////////////////////////
 RepoStatus Fossil::getRepoStatus()
@@ -1006,7 +1008,7 @@ bool Fossil::startUI(const QString &httpPort)
 	if(!httpPort.isEmpty())
 		params << "-P" << httpPort;
 
-	fossilUI.start(params);
+	fossilUI.start(getFossilPath(), params);
 
 	if(!fossilUI.waitForStarted() || fossilUI.state()!=QProcess::Running)
 	{
@@ -1014,6 +1016,50 @@ bool Fossil::startUI(const QString &httpPort)
 		return false;
 	}
 
+#ifdef Q_OS_WIN
+	QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+#else
+	QTextCodec *codec = QTextCodec::codecForLocale();
+#endif
+
+	Q_ASSERT(codec);
+	QTextDecoder *decoder = codec->makeDecoder();
+	Q_ASSERT(decoder);
+
+	fossilUIPort.clear();
+
+	// Wait for fossil to report the http port
+	QString buffer;
+	while(true)
+	{
+		QProcess::ProcessState state = fossilUI.state();
+		qint64 bytes_avail = fossilUI.logBytesAvailable();
+
+		if(state!=QProcess::Running && bytes_avail<1)
+			break;
+
+		QByteArray input;
+		fossilUI.getLogAndClear(input);
+
+		buffer += decoder->toUnicode(input);
+
+		// Normalize line endings
+		buffer = buffer.replace("\r\n", "\n");
+		buffer = buffer.replace("\r", "\n");
+
+		int index = REGEX_PORT.indexIn(buffer);
+		if(index==-1)
+		{
+			QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+			continue;
+		}
+
+		// Extract port
+		fossilUIPort = REGEX_PORT.cap(1).trimmed();
+
+		// Done parsing
+		break;
+	}
 	return true;
 }
 
@@ -1029,4 +1075,13 @@ void Fossil::stopUI()
 #endif
 	}
 	fossilUI.close();
+	fossilUIPort.clear();
+}
+
+//------------------------------------------------------------------------------
+QString Fossil::getUIHttpAddress() const
+{
+	if(fossilUIPort.isEmpty())
+		return QString();
+	return "http://127.0.0.1:"+fossilUIPort;
 }
