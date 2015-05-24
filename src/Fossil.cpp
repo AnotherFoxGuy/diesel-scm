@@ -227,7 +227,7 @@ bool Fossil::commitFiles(const QStringList& fileList, const QString& comment, co
 	// Commit to new branch
 	if(!newBranchName.isEmpty())
 	{
-		params << "--branch" << newBranchName;
+		params << "--branch" << newBranchName.trimmed();
 
 		// Private branches are not synced with remotes
 		if(isPrivateBranch)

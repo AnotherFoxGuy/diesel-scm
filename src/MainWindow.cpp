@@ -1358,7 +1358,9 @@ void MainWindow::on_actionCommit_triggered()
 	QStringList commit_msgs = settings.GetValue(FUEL_SETTING_COMMIT_MSG).toStringList();
 
 	QString msg;
-	bool aborted = !CommitDialog::runCommit(this, commit_files, msg, commit_msgs);
+	QString branch_name="";
+	bool private_branch = false;
+	bool aborted = !CommitDialog::runCommit(this, commit_files, msg, commit_msgs, branch_name, private_branch);
 
 	// Aborted or not we always keep the commit messages.
 	// (This has saved me way too many times on TortoiseSVN)
@@ -1387,10 +1389,6 @@ void MainWindow::on_actionCommit_triggered()
 
 	if(commit_files.size() != all_modified_files.size())
 		files = commit_files;
-
-	// FIXME: add UI
-	QString branch_name="";
-	bool private_branch = false;
 
 	fossil().commitFiles(files, msg, branch_name, private_branch);
 	refresh();

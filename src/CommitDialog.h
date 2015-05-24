@@ -13,19 +13,17 @@ class CommitDialog : public QDialog
 	Q_OBJECT
 
 public:
-	explicit CommitDialog(QWidget *parent, const QString &title, QStringList &files, const QStringList *history=0, bool singleLineEntry=false, const QString *checkBoxText=0, bool *checkBoxValue=0);
+	explicit CommitDialog(QWidget *parent, const QString &title, QStringList &files, const QStringList *history, bool stashMode);
 	~CommitDialog();
 
-	static bool runStashNew(QWidget* parent, QStringList& stashedFiles, QString& stashName, bool &checkBoxValue);
-	static bool runCommit(QWidget* parent, QStringList& files, QString& commitMsg, const QStringList &commitMsgHistory);
-
-private:
-	static bool run(QWidget *parent, const QString &title, QStringList &files, QString &commitMsg, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue);
+	static bool runStashNew(QWidget* parent, QStringList& stashedFiles, QString& stashName, bool &revertFiles);
+	static bool runCommit(QWidget* parent, QStringList& files, QString& commitMsg, const QStringList &commitMsgHistory, QString& branchName, bool& privateBranch);
 
 private slots:
 	void on_comboBox_activated(int index);
 	void on_listView_doubleClicked(const QModelIndex &index);
 	void on_listView_clicked(const QModelIndex &index);
+	void on_chkNewBranch_toggled(bool checked);
 
 private:
 	Ui::CommitDialog *ui;

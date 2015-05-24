@@ -1,5 +1,5 @@
-C Initial\swork\son\sbranching\sduring\scommit\nRefactored\sCommitDialog\susage
-D 2015-05-23T11:48:50.173
+C Added\sbranch\son\scommit\nRefactored\sCommitDialog\n
+D 2015-05-24T08:47:24.547
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -188,19 +188,19 @@ F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
 F src/CloneDialog.cpp 4fc5aa8146ac63ba6ba7341b1635b3025819d708
 F src/CloneDialog.h 8813d91f893eb3eb86a4ea5e50f9a53a0ea07047
-F src/CommitDialog.cpp 32a4860171b9dfe5b0cea15bc534dd56c00b4631
-F src/CommitDialog.h edec8c152e6b40e248c48d8f56e8d8e218e2c2c8
+F src/CommitDialog.cpp bbf5fe1c66d28068cc3fd061f4f9f1faa9e89196
+F src/CommitDialog.h 921bf27c0c538ab9e9d6bdc750064337d346270b
 F src/CustomWebView.cpp b7dd0c41977c2cba005df07ed8967ba6f58d07d9
 F src/CustomWebView.h fbc8ee55812d1acb3c3b2bc31be7533e8a112822
 F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp 0df84415b9c380b03e7e10f0777f6e92f3fa9584
+F src/Fossil.cpp a0b44c6b77de686e45cb4d84cfbf94865c8b39bf
 F src/Fossil.h 651d2a1c052abe2804f9eff366bf2561dc54f7eb
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 6e8aa088373fc0e501fef144a1cdd94eb0fe2f91
+F src/MainWindow.cpp ff43767952214b51530537efea858027cb408356
 F src/MainWindow.h f2141839cccb3941df9ed7288588f2de3a5c8179
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
@@ -217,12 +217,12 @@ F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
-F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
+F ui/CommitDialog.ui 5270bbf9c0b0c64d695420388160e2bb0e217d9f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 7f11c2ca1c3e371c71db27ae0fe6ad3758e6b5e1
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 5aafd8784268ea7cd828330d4673500b8f38d6db
-P 999f57bd1e05e99c67a921c09f782da170ae827c
-R d4e513e4fb3bc634010d85fa4326ab7b
+P 4b4c7cdb6d717d381081bbfbd7e9657acf32d089
+R e360bba7a506e0fc5f0fa38b4d129c9b
 U kostas
-Z d83ca9723da4099dee50cb4eb2941d68
+Z 6beeae656e862ad56c841db3d3bac58a
