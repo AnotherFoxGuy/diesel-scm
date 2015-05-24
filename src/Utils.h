@@ -15,6 +15,7 @@
 QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons = QMessageBox::Yes|QMessageBox::No);
 QString						QuotePath(const QString &path);
 QStringList					QuotePaths(const QStringList &paths);
+QString						SelectExe(QWidget *parent, const QString &description);
 
 
 typedef QMap<QString, QModelIndex> name_modelindex_map_t;

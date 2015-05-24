@@ -1,6 +1,5 @@
 #include "SettingsDialog.h"
 #include "ui_SettingsDialog.h"
-#include <QFileDialog>
 #include "Utils.h"
 
 #include <QSettings>
@@ -10,28 +9,6 @@
 #include <QResource>
 #include <QTextCodec>
 
-
-///////////////////////////////////////////////////////////////////////////////
-QString SettingsDialog::SelectExe(QWidget *parent, const QString &description)
-{
-	QString filter(tr("Applications"));
-#ifdef Q_OS_WIN
-	filter += " (*.exe)";
-#else
-	filter += " (*)";
-#endif
-	QString path = QFileDialog::getOpenFileName(
-				parent,
-				description,
-				QString(),
-				filter,
-				&filter);
-
-	if(!QFile::exists(path))
-		return QString();
-
-	return path;
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :

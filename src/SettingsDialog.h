@@ -97,7 +97,6 @@ private slots:
 	void on_btnClearMessageHistory_clicked();
 
 private:
-	static QString SelectExe(QWidget *parent, const QString &description);
 	QString LangIdToName(const QString &id);
 	QString LangNameToId(const QString &name);
 	void CreateLangMap();

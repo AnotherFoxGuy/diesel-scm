@@ -1,5 +1,5 @@
-C Added\sWorkspace\smenu\nSome\saction\srefactoring
-D 2015-05-24T15:28:43.887
+C Moved\sSelectExe\sto\sUtils
+D 2015-05-24T15:45:51.077
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -206,10 +206,10 @@ F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
 F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
 F src/SearchBox.h 0c78d3a68136dab3e0e71b83ae36f22bd2688ab2
-F src/SettingsDialog.cpp a46cff5e5dd425e3dbdd15632abfd5829f5562b4
-F src/SettingsDialog.h 4e2790f581e991c744ae9f86580f1972b8c7ff43
-F src/Utils.cpp f61a53fb79d47ecb714833805106f4956746faaa
-F src/Utils.h 213decaa09151cb7397207e3ea2dde70b994b6a0
+F src/SettingsDialog.cpp fe771a03bc3c595ab070d0fa58cd55c96b2b0700
+F src/SettingsDialog.h 062bf5eee4cdc74827e5194492c067b6d92d8cb7
+F src/Utils.cpp c48e3316f3a0a5d735e8d4953710500358985e32
+F src/Utils.h c2a28611bd77fb35ea3dcf65fb60ed585f68aa3c
 F src/Workspace.cpp f68a4ca05d1b7c5c345fbd89527691813593c663
 F src/Workspace.h d6649a3ae1cd0fbad55237030313e85530417271
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
@@ -222,7 +222,7 @@ F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 22dc5cebf86223754dc8e0b14707b4cb81c95cc6
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 5aafd8784268ea7cd828330d4673500b8f38d6db
-P c50d8ea3ed378c1f9efbb6d83e93ffd1ce050db0
-R 6da61eacec95d19b45b31627041306ab
+P 343b1675fb8eb023a04a1b84131f132d382f01dc
+R 70af19af3348536f9c96e9c764dbfede
 U kostas
-Z 54a69f89b2494f325606e1959873a5e9
+Z ba13e6b10c9aabe3aab350fa0e173506

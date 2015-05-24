@@ -1,6 +1,7 @@
 #include "Utils.h"
 #include <QMessageBox>
 #include <QDialogButtonBox>
+#include <QFileDialog>
 
 ///////////////////////////////////////////////////////////////////////////////
 QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons)
@@ -29,6 +30,27 @@ QStringList QuotePaths(const QStringList &paths)
 	return res;
 }
 
+//-----------------------------------------------------------------------------
+QString SelectExe(QWidget *parent, const QString &description)
+{
+	QString filter(QObject::tr("Applications"));
+#ifdef Q_OS_WIN
+	filter += " (*.exe)";
+#else
+	filter += " (*)";
+#endif
+	QString path = QFileDialog::getOpenFileName(
+				parent,
+				description,
+				QString(),
+				filter,
+				&filter);
+
+	if(!QFile::exists(path))
+		return QString();
+
+	return path;
+}
 //-----------------------------------------------------------------------------
 #if 0 // Unused
 #include <QInputDialog>
