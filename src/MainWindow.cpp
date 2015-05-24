@@ -1683,6 +1683,16 @@ void MainWindow::on_actionViewIgnored_triggered()
 }
 
 //------------------------------------------------------------------------------
+void MainWindow::on_actionViewAll_triggered()
+{
+	ui->actionViewModified->setChecked(true);
+	ui->actionViewUnchanged->setChecked(true);
+	ui->actionViewUnknown->setChecked(true);
+	ui->actionViewIgnored->setChecked(true);
+	refresh();
+}
+
+//------------------------------------------------------------------------------
 void MainWindow::on_actionViewAsList_triggered()
 {
 	ui->actionViewAsFolders->setChecked(!ui->actionViewAsList->isChecked());
@@ -2450,5 +2460,4 @@ void MainWindow::onSearch()
 	searchBox->selectAll();
 	searchBox->setFocus();
 }
-
 

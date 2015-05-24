@@ -81,7 +81,7 @@
          <bool>false</bool>
         </property>
         <attribute name="headerVisible">
-         <bool>true</bool>
+         <bool>false</bool>
         </attribute>
         <attribute name="headerShowSortIndicator" stdset="0">
          <bool>false</bool>
@@ -257,6 +257,7 @@
     <addaction name="actionViewUnchanged"/>
     <addaction name="actionViewUnknown"/>
     <addaction name="actionViewIgnored"/>
+    <addaction name="actionViewAll"/>
     <addaction name="separator"/>
     <addaction name="actionViewAsList"/>
     <addaction name="actionViewAsFolders"/>
@@ -930,6 +931,14 @@
    </property>
    <property name="statusTip">
     <string>View the workspace as files and folders</string>
+   </property>
+  </action>
+  <action name="actionViewAll">
+   <property name="text">
+    <string>&amp;All</string>
+   </property>
+   <property name="statusTip">
+    <string>Show all files</string>
    </property>
   </action>
  </widget>
