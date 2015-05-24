@@ -113,16 +113,16 @@ private slots:
 	void on_actionOpenRepository_triggered();
 	void on_actionCloseRepository_triggered();
 	void on_actionCloneRepository_triggered();
-	void on_actionNewStash_triggered();
+	void on_actionCreateStash_triggered();
 	void on_actionApplyStash_triggered();
 	void on_actionDeleteStash_triggered();
 	void on_actionDiffStash_triggered();
 	void on_textBrowser_customContextMenuRequested(const QPoint &pos);
 	void on_fileTableView_customContextMenuRequested(const QPoint &pos);
 	void on_workspaceTreeView_customContextMenuRequested(const QPoint &pos);
-	void on_actionNewTag_triggered();
+	void on_actionCreateTag_triggered();
 	void on_actionDeleteTag_triggered();
-	void on_actionNewBranch_triggered();
+	void on_actionCreateBranch_triggered();
 	void on_actionMergeBranch_triggered();
 
 private:

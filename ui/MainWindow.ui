@@ -259,8 +259,27 @@
     <addaction name="actionViewAsList"/>
     <addaction name="actionViewAsFolders"/>
    </widget>
+   <widget class="QMenu" name="menuWorkspace">
+    <property name="title">
+     <string>&amp;Workspace</string>
+    </property>
+    <addaction name="actionRefresh"/>
+    <addaction name="separator"/>
+    <addaction name="actionCommit"/>
+    <addaction name="actionUpdate"/>
+    <addaction name="separator"/>
+    <addaction name="actionPush"/>
+    <addaction name="actionPull"/>
+    <addaction name="separator"/>
+    <addaction name="actionUndo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCreateBranch"/>
+    <addaction name="actionCreateTag"/>
+    <addaction name="actionCreateStash"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
+   <addaction name="menuWorkspace"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -302,7 +321,7 @@
    <addaction name="actionRevert"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
-   <addaction name="actionNewStash"/>
+   <addaction name="actionCreateStash"/>
    <addaction name="separator"/>
    <addaction name="actionDiff"/>
    <addaction name="actionHistory"/>
@@ -319,7 +338,7 @@
      <normaloff>:/icons/icon-action-refresh</normaloff>:/icons/icon-action-refresh</iconset>
    </property>
    <property name="text">
-    <string>Refresh</string>
+    <string>&amp;Refresh</string>
    </property>
    <property name="toolTip">
     <string>Refresh the views</string>
@@ -337,7 +356,7 @@
      <normaloff>:/icons/icon-action-commit</normaloff>:/icons/icon-action-commit</iconset>
    </property>
    <property name="text">
-    <string>Commit</string>
+    <string>&amp;Commit</string>
    </property>
    <property name="toolTip">
     <string>Commit modifications</string>
@@ -471,7 +490,7 @@
      <normaloff>:/icons/icon-action-push</normaloff>:/icons/icon-action-push</iconset>
    </property>
    <property name="text">
-    <string>Push</string>
+    <string>&amp;Push</string>
    </property>
    <property name="toolTip">
     <string>Push changes to the remote repository</string>
@@ -489,7 +508,7 @@
      <normaloff>:/icons/icon-action-pull</normaloff>:/icons/icon-action-pull</iconset>
    </property>
    <property name="text">
-    <string>Pull</string>
+    <string>Pu&amp;ll</string>
    </property>
    <property name="toolTip">
     <string>Pull changes from the remote repository</string>
@@ -663,7 +682,7 @@
      <normaloff>:/icons/icon-action-undo</normaloff>:/icons/icon-action-undo</iconset>
    </property>
    <property name="text">
-    <string>Undo</string>
+    <string>U&amp;ndo</string>
    </property>
    <property name="toolTip">
     <string>Undo the last Fossil action</string>
@@ -696,7 +715,7 @@
      <normaloff>:/icons/icon-action-update</normaloff>:/icons/icon-action-update</iconset>
    </property>
    <property name="text">
-    <string>Update</string>
+    <string>&amp;Update</string>
    </property>
    <property name="toolTip">
     <string>Update the workspace to a revision</string>
@@ -826,13 +845,13 @@
     <string>Rename the selected folder</string>
    </property>
   </action>
-  <action name="actionNewStash">
+  <action name="actionCreateStash">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icon-action-stash-new</normaloff>:/icons/icon-action-stash-new</iconset>
    </property>
    <property name="text">
-    <string>Stash changes</string>
+    <string>&amp;Stash Changes</string>
    </property>
    <property name="statusTip">
     <string>Stash changes</string>
@@ -871,13 +890,13 @@
     <string>Diff Stash</string>
    </property>
   </action>
-  <action name="actionNewTag">
+  <action name="actionCreateTag">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icon-action-tag-new</normaloff>:/icons/icon-action-tag-new</iconset>
    </property>
    <property name="text">
-    <string>New Tag</string>
+    <string>Create &amp;Tag</string>
    </property>
    <property name="toolTip">
     <string>Tag current revision</string>
@@ -895,13 +914,13 @@
     <string>Delete tag</string>
    </property>
   </action>
-  <action name="actionNewBranch">
+  <action name="actionCreateBranch">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
      <normaloff>:/icons/icon-item-branch</normaloff>:/icons/icon-item-branch</iconset>
    </property>
    <property name="text">
-    <string>New Branch</string>
+    <string>Create &amp;Branch</string>
    </property>
    <property name="toolTip">
     <string>Create a branch from the current revision</string>

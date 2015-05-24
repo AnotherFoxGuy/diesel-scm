@@ -152,7 +152,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	// StashMenu
 	menuStashes = new QMenu(this);
-	menuStashes->addAction(ui->actionNewStash);
+	menuStashes->addAction(ui->actionCreateStash);
 	menuStashes->addAction(separator);
 	menuStashes->addAction(ui->actionApplyStash);
 	menuStashes->addAction(ui->actionDiffStash);
@@ -160,14 +160,14 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	// TagsMenu
 	menuTags = new QMenu(this);
-	menuTags->addAction(ui->actionNewTag);
+	menuTags->addAction(ui->actionCreateTag);
 	menuTags->addAction(separator);
 	menuTags->addAction(ui->actionDeleteTag);
 	menuTags->addAction(ui->actionUpdate);
 
 	// BranchesMenu
 	menuBranches = new QMenu(this);
-	menuBranches->addAction(ui->actionNewBranch);
+	menuBranches->addAction(ui->actionCreateBranch);
 	menuBranches->addAction(separator);
 	menuBranches->addAction(ui->actionMergeBranch);
 	menuBranches->addAction(ui->actionUpdate);
@@ -556,27 +556,38 @@ void MainWindow::onOpenRecent()
 //------------------------------------------------------------------------------
 void MainWindow::enableActions(bool on)
 {
-	ui->actionCommit->setEnabled(on);
-	ui->actionDiff->setEnabled(on);
-	ui->actionAdd->setEnabled(on);
-	ui->actionDelete->setEnabled(on);
-	ui->actionPush->setEnabled(on);
-	ui->actionPull->setEnabled(on);
-	ui->actionRename->setEnabled(on);
-	ui->actionHistory->setEnabled(on);
-	ui->actionFossilUI->setEnabled(on);
-	ui->actionRevert->setEnabled(on);
-	ui->actionTimeline->setEnabled(on);
-	ui->actionOpenFile->setEnabled(on);
-	ui->actionOpenContaining->setEnabled(on);
-	ui->actionUndo->setEnabled(on);
-	ui->actionUpdate->setEnabled(on);
-	ui->actionOpenFolder->setEnabled(on);
-	ui->actionRenameFolder->setEnabled(on);
-	ui->actionNewStash->setEnabled(on);
-	ui->actionDeleteStash->setEnabled(on);
-	ui->actionDiffStash->setEnabled(on);
-	ui->actionApplyStash->setEnabled(on);
+	QAction *actions[] = {
+		ui->actionCommit,
+		ui->actionDiff,
+		ui->actionAdd,
+		ui->actionDelete,
+		ui->actionPush,
+		ui->actionPull,
+		ui->actionRename,
+		ui->actionHistory,
+		ui->actionFossilUI,
+		ui->actionRevert,
+		ui->actionTimeline,
+		ui->actionOpenFile,
+		ui->actionOpenContaining,
+		ui->actionUndo,
+		ui->actionUpdate,
+		ui->actionOpenFolder,
+		ui->actionRenameFolder,
+		ui->actionCreateStash,
+		ui->actionDeleteStash,
+		ui->actionDiffStash,
+		ui->actionApplyStash,
+		ui->actionDeleteStash,
+		ui->actionCreateTag,
+		ui->actionDeleteTag,
+		ui->actionCreateBranch,
+		ui->actionMergeBranch,
+	};
+
+	for(size_t i=0; i<COUNTOF(actions); ++i)
+		actions[i]->setEnabled(on);
+
 }
 //------------------------------------------------------------------------------
 bool MainWindow::refresh()
@@ -732,7 +743,7 @@ void MainWindow::updateWorkspaceView()
 	}
 
 	// Branches
-	QStandardItem *branches = new QStandardItem(getInternalIcon(":icons/icon-item-branch"), "Branches");
+	QStandardItem *branches = new QStandardItem(getInternalIcon(":icons/icon-item-branch"), tr("Branches"));
 	branches->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCHES, ""), ROLE_WORKSPACE_ITEM);
 	branches->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(branches);
@@ -752,7 +763,7 @@ void MainWindow::updateWorkspaceView()
 	}
 
 	// Tags
-	QStandardItem *tags = new QStandardItem(getInternalIcon(":icons/icon-item-tag"), "Tags");
+	QStandardItem *tags = new QStandardItem(getInternalIcon(":icons/icon-item-tag"), tr("Tags"));
 	tags->setData(WorkspaceItem(WorkspaceItem::TYPE_TAGS, ""), ROLE_WORKSPACE_ITEM);
 	tags->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(tags);
@@ -776,7 +787,7 @@ void MainWindow::updateWorkspaceView()
 
 	// FIXME: Unique Icon name
 	// Stashes
-	QStandardItem *stashes = new QStandardItem(getInternalIcon(":icons/icon-action-repo-open"), "Stashes");
+	QStandardItem *stashes = new QStandardItem(getInternalIcon(":icons/icon-action-repo-open"), tr("Stashes"));
 	stashes->setData(WorkspaceItem(WorkspaceItem::TYPE_STASHES, ""), ROLE_WORKSPACE_ITEM);
 	stashes->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(stashes);
@@ -787,18 +798,20 @@ void MainWindow::updateWorkspaceView()
 		stashes->appendRow(stash);
 	}
 
-#if 0 // Unimplemented for now
+#if 0
 	// Remotes
-	QStandardItem *remotes = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), "Remotes");
+	QStandardItem *remotes = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), tr("Remotes"));
 	remotes->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTES, ""), ROLE_WORKSPACE_ITEM);
 	remotes->setEditable(false);
-	getWorkspace().getDirModel().appendRow(remotes);
+	getWorkspace().getTreeModel().appendRow(remotes);
+#endif
 
+#if 0 // Unimplemented for now
 	// Settings
-	QStandardItem *settings = new QStandardItem(getInternalIcon(":icons/icon-action-settings"), "Settings");
+	QStandardItem *settings = new QStandardItem(getInternalIcon(":icons/icon-action-settings"), tr("Settings"));
 	settings->setData(WorkspaceItem(WorkspaceItem::TYPE_SETTINGS, ""), ROLE_WORKSPACE_ITEM);
 	settings->setEditable(false);
-	getWorkspace().getDirModel().appendRow(settings);
+	getWorkspace().getTreeModel().appendRow(settings);
 #endif
 
 	// Expand previously selected nodes
@@ -1962,7 +1975,7 @@ const QIcon &MainWindow::getInternalIcon(const char* name)
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionNewStash_triggered()
+void MainWindow::on_actionCreateStash_triggered()
 {
 	QStringList stashed_files;
 	getSelectionFilenames(stashed_files, WorkspaceFile::TYPE_MODIFIED, true);
@@ -2350,13 +2363,13 @@ void MainWindow::updateRevision(const QString &revision)
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionNewTag_triggered()
+void MainWindow::on_actionCreateTag_triggered()
 {
 	// Default to current revision
 	QString revision = fossil().getCurrentRevision();
 
 	QString name;
-	if(!RevisionDialog::runNewTag(this, tr("New Tag"), versionList, revision, revision, name))
+	if(!RevisionDialog::runNewTag(this, tr("Create Tag"), versionList, revision, revision, name))
 		return;
 
 	if(name.isEmpty() || getWorkspace().getTags().contains(name) || getWorkspace().getBranches().contains(name))
@@ -2389,13 +2402,13 @@ void MainWindow::on_actionDeleteTag_triggered()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionNewBranch_triggered()
+void MainWindow::on_actionCreateBranch_triggered()
 {
 	// Default to current revision
 	QString revision = fossil().getCurrentRevision();
 
 	QString branch_name;
-	if(!RevisionDialog::runNewTag(this, tr("New Branch"), versionList, revision, revision, branch_name))
+	if(!RevisionDialog::runNewTag(this, tr("Create Branch"), versionList, revision, revision, branch_name))
 		return;
 
 	if(branch_name.isEmpty() || getWorkspace().getTags().contains(branch_name) || getWorkspace().getBranches().contains(branch_name))

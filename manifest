@@ -1,5 +1,5 @@
-C Fixed\smissing\sworkspace\stree\sheader
-D 2015-05-24T14:47:14.342
+C Added\sWorkspace\smenu\nSome\saction\srefactoring
+D 2015-05-24T15:28:43.887
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -200,8 +200,8 @@ F src/Fossil.cpp a0b44c6b77de686e45cb4d84cfbf94865c8b39bf
 F src/Fossil.h 651d2a1c052abe2804f9eff366bf2561dc54f7eb
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp f0803414a83d70d357c1aa4a43ff20397eb9878f
-F src/MainWindow.h 0a10bf6f5c3ebf2aae1cef9e387289764d47586d
+F src/MainWindow.cpp 537c458f5b7ad78ee3b9ad2e8479cac2f6dd8ec3
+F src/MainWindow.h cfc19137172a9200cff2b68676cbb26c2611a7d8
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
 F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
@@ -219,10 +219,10 @@ F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 5270bbf9c0b0c64d695420388160e2bb0e217d9f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/MainWindow.ui 62465473277cca143d1618579a3375551e551ab3
+F ui/MainWindow.ui 22dc5cebf86223754dc8e0b14707b4cb81c95cc6
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 5aafd8784268ea7cd828330d4673500b8f38d6db
-P 239c19ebecb1565f0c9e3319b1ea3d18bce59ab9
-R 3bccc129817cf3b1d6570a99f0682985
+P c50d8ea3ed378c1f9efbb6d83e93ffd1ce050db0
+R 6da61eacec95d19b45b31627041306ab
 U kostas
-Z 23e2a55234a8daa618ea7c34e0b6d98a
+Z 54a69f89b2494f325606e1959873a5e9
