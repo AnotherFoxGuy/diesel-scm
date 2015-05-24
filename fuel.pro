@@ -56,7 +56,8 @@ SOURCES += src/main.cpp\
 	src/CustomWebView.cpp \
 	src/Fossil.cpp \
 	src/Workspace.cpp \
-    src/SearchBox.cpp
+	src/SearchBox.cpp \
+	src/Settings.cpp
 
 HEADERS  += src/MainWindow.h \
 	src/CommitDialog.h \
@@ -71,7 +72,8 @@ HEADERS  += src/MainWindow.h \
 	src/CustomWebView.h \
 	src/Fossil.h \
 	src/Workspace.h \
-    src/SearchBox.h
+	src/SearchBox.h \
+	src/Settings.h
 
 FORMS    += ui/MainWindow.ui \
 	ui/CommitDialog.ui \

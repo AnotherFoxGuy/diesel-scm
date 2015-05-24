@@ -1,5 +1,5 @@
-C Moved\sSelectExe\sto\sUtils
-D 2015-05-24T15:45:51.077
+C Moved\sSettings\sto\sseparate\sfiles
+D 2015-05-24T15:55:14.690
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -15,7 +15,7 @@ F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 17b43fa23da764b5d1b828cc48c5a95e612bbd8f
 F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro b1813a5c54474ca67e484aec4cc9a246ca9a1b07
+F fuel.pro 81afa5c27542c0ac63faa6a310a0e6bb98244609
 F intl/convert.bat 4222ae403418381452b843929d15259ea9850ab1 x
 F intl/convert.sh 2ca2179ff53e727f241925b75e19182607883c45 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
@@ -206,8 +206,10 @@ F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
 F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
 F src/SearchBox.h 0c78d3a68136dab3e0e71b83ae36f22bd2688ab2
-F src/SettingsDialog.cpp fe771a03bc3c595ab070d0fa58cd55c96b2b0700
-F src/SettingsDialog.h 062bf5eee4cdc74827e5194492c067b6d92d8cb7
+F src/Settings.cpp 90eb11d68d0b55a144aab0d78946de98399ceef6
+F src/Settings.h 43fe09ee02ca5b7adb3cc5ab467b078ce3a9a980
+F src/SettingsDialog.cpp efc9de9eac816074036b8f4215f1a0cbcbb9e46d
+F src/SettingsDialog.h 02223bf6d3bf51a21ca9d7206e0ecc6f7d6206b7
 F src/Utils.cpp c48e3316f3a0a5d735e8d4953710500358985e32
 F src/Utils.h c2a28611bd77fb35ea3dcf65fb60ed585f68aa3c
 F src/Workspace.cpp f68a4ca05d1b7c5c345fbd89527691813593c663
@@ -222,7 +224,7 @@ F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 22dc5cebf86223754dc8e0b14707b4cb81c95cc6
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 5aafd8784268ea7cd828330d4673500b8f38d6db
-P 343b1675fb8eb023a04a1b84131f132d382f01dc
-R 70af19af3348536f9c96e9c764dbfede
+P 5dcb374fdf60b627d8f0452cea8add32a2c900e8
+R f555b4b17a768b27e9982054ac627534
 U kostas
-Z ba13e6b10c9aabe3aab350fa0e173506
+Z 6d75632de0f5ea31adfadb3e318adc99
