@@ -13,6 +13,7 @@ Settings::Settings(bool portableMode) : store(0)
 	Mappings.insert(FOSSIL_SETTING_GDIFF_CMD, Setting("", Setting::TYPE_FOSSIL_GLOBAL));
 	Mappings.insert(FOSSIL_SETTING_GMERGE_CMD, Setting("", Setting::TYPE_FOSSIL_GLOBAL));
 	Mappings.insert(FOSSIL_SETTING_PROXY_URL, Setting("", Setting::TYPE_FOSSIL_GLOBAL));
+	Mappings.insert(FOSSIL_SETTING_HTTP_PORT, Setting("", Setting::TYPE_FOSSIL_GLOBAL));
 
 	Mappings.insert(FOSSIL_SETTING_IGNORE_GLOB, Setting("", Setting::TYPE_FOSSIL_LOCAL));
 	Mappings.insert(FOSSIL_SETTING_CRNL_GLOB, Setting("", Setting::TYPE_FOSSIL_LOCAL));
@@ -36,8 +37,6 @@ Settings::Settings(bool portableMode) : store(0)
 		SetValue(FUEL_SETTING_LANGUAGE, QLocale::system().name());
 	if(!HasValue(FUEL_SETTING_WEB_BROWSER))
 		SetValue(FUEL_SETTING_WEB_BROWSER, 0);
-	if(!HasValue(FUEL_SETTING_HTTP_PORT))
-		SetValue(FUEL_SETTING_HTTP_PORT, "8090");
 
 	ApplyEnvironment();
 }

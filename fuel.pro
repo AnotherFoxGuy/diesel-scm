@@ -47,6 +47,7 @@ SOURCES += src/main.cpp\
 	src/CommitDialog.cpp \
 	src/FileActionDialog.cpp \
 	src/SettingsDialog.cpp \
+	src/FslSettingsDialog.cpp \
 	src/CloneDialog.cpp \
 	src/RevisionDialog.cpp \
 	src/Utils.cpp \
@@ -63,6 +64,7 @@ HEADERS  += src/MainWindow.h \
 	src/CommitDialog.h \
 	src/FileActionDialog.h \
 	src/SettingsDialog.h \
+	src/FslSettingsDialog.h \
 	src/CloneDialog.h \
 	src/RevisionDialog.h \
 	src/Utils.h \
@@ -79,6 +81,7 @@ FORMS    += ui/MainWindow.ui \
 	ui/CommitDialog.ui \
 	ui/FileActionDialog.ui \
 	ui/SettingsDialog.ui \
+	ui/FslSettingsDialog.ui \
 	ui/CloneDialog.ui \
 	ui/BrowserWidget.ui \
 	ui/RevisionDialog.ui

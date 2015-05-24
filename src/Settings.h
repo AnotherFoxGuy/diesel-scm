@@ -10,7 +10,6 @@
 #define FUEL_SETTING_FILE_DBLCLICK			"FileDblClickAction"
 #define FUEL_SETTING_LANGUAGE				"Language"
 #define FUEL_SETTING_WEB_BROWSER			"WebBrowser"
-#define FUEL_SETTING_HTTP_PORT				"HTTPPort"
 
 #define FOSSIL_SETTING_GDIFF_CMD			"gdiff-command"
 #define FOSSIL_SETTING_GMERGE_CMD			"gmerge-command"
@@ -18,6 +17,7 @@
 #define FOSSIL_SETTING_IGNORE_GLOB			"ignore-glob"
 #define FOSSIL_SETTING_CRNL_GLOB			"crnl-glob"
 #define FOSSIL_SETTING_REMOTE_URL			"remote-url"
+#define FOSSIL_SETTING_HTTP_PORT			"http-port"
 
 
 enum FileDblClickAction

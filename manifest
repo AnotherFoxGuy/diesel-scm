@@ -1,5 +1,5 @@
-C Fuel\snow\suses\sthe\shttp\sport\sthat\sFossil\sreports\swhen\sstarting\sthe\sweb\sui.\n
-D 2015-05-24T17:44:01.161
+C Separated\sApplication\sand\sFossil\ssettings\sinto\sseparate\sdialogs.
+D 2015-05-24T18:19:19.178
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -15,7 +15,7 @@ F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 17b43fa23da764b5d1b828cc48c5a95e612bbd8f
 F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro 81afa5c27542c0ac63faa6a310a0e6bb98244609
+F fuel.pro b010c4ee3093112003a9d27045927efce5985dab
 F intl/convert.bat 4222ae403418381452b843929d15259ea9850ab1 x
 F intl/convert.sh 2ca2179ff53e727f241925b75e19182607883c45 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
@@ -198,18 +198,20 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/Fossil.cpp 0d4c50327a61c48506d2d45e28cd6f71f1697ea2
 F src/Fossil.h 31765ef57e20a860914372d56c024033b30aa765
+F src/FslSettingsDialog.cpp f5a34a70ecb0560d2b6eea6bf27e42048548aedd
+F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp c25a7a4898b9fe80154d2cb7abb81bcafcd50dd6
-F src/MainWindow.h d398df5f8b27d7f1ccae6a7f1fd5ef2c2236002b
+F src/MainWindow.cpp 4cbfa1fdf3092b97649711388576230e4808d50e
+F src/MainWindow.h a848462f21423b5c1e0c218cab1805c308299607
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
 F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
 F src/SearchBox.h 0c78d3a68136dab3e0e71b83ae36f22bd2688ab2
-F src/Settings.cpp 90eb11d68d0b55a144aab0d78946de98399ceef6
-F src/Settings.h 43fe09ee02ca5b7adb3cc5ab467b078ce3a9a980
-F src/SettingsDialog.cpp efc9de9eac816074036b8f4215f1a0cbcbb9e46d
-F src/SettingsDialog.h 02223bf6d3bf51a21ca9d7206e0ecc6f7d6206b7
+F src/Settings.cpp 6ab826273b9693bfcd65f0f59b550ae2aa3577f1
+F src/Settings.h 1ff8bb71e19949150e8caa4f5e5f13f8810e496b
+F src/SettingsDialog.cpp 25be4c351dd21ea9132321944f42dc0bc22fb128
+F src/SettingsDialog.h b324dfd77ca3ad24fd83588aaf79a7e4c291e716
 F src/Utils.cpp c48e3316f3a0a5d735e8d4953710500358985e32
 F src/Utils.h c2a28611bd77fb35ea3dcf65fb60ed585f68aa3c
 F src/Workspace.cpp f68a4ca05d1b7c5c345fbd89527691813593c663
@@ -219,12 +221,13 @@ F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
-F ui/CommitDialog.ui 5270bbf9c0b0c64d695420388160e2bb0e217d9f
+F ui/CommitDialog.ui aea77347eef82b6b591f31fb058a1bb96193c728
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/MainWindow.ui 22dc5cebf86223754dc8e0b14707b4cb81c95cc6
+F ui/FslSettingsDialog.ui 042717833d8efea905b4fc380bad580be809717d w ui/FossilSettingsDialog.ui
+F ui/MainWindow.ui adf8714bec560da44cd84d74f2ce60f7cea09a70
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
-F ui/SettingsDialog.ui 5aafd8784268ea7cd828330d4673500b8f38d6db
-P 7ffecfc49aeb4ccb8b2972ac5c6eddd265d3b578
-R c614f64a06cb8d44d405228318daf9d9
+F ui/SettingsDialog.ui 4c480cd595a32664d01c85bf74845c4282fc0068
+P 5c9a7defad9f6c77db2447df1d904e24001ec40e
+R 2a40906bd18bac1ee536fd4bf0202e77
 U kostas
-Z d1c35d582fe773add2faa8e714e12402
+Z 4c1489c21209abe55181b48a52b2520c

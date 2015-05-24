@@ -12,6 +12,8 @@
 #include <QLabel>
 #include <QSettings>
 #include <QShortcut>
+#include "SettingsDialog.h"
+#include "FslSettingsDialog.h"
 #include "SearchBox.h"
 #include "CommitDialog.h"
 #include "FileActionDialog.h"
@@ -19,7 +21,7 @@
 #include "RevisionDialog.h"
 #include "Utils.h"
 
-#define REVISION_LATEST "Latest"
+#define REVISION_LATEST "Latest revision"
 
 //-----------------------------------------------------------------------------
 enum
@@ -1642,10 +1644,18 @@ void MainWindow::loadFossilSettings()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionSettings_triggered()
 {
+	// Run the dialog
+	if(!SettingsDialog::run(this, settings))
+		return;
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionFossilSettings_triggered()
+{
 	loadFossilSettings();
 
 	// Run the dialog
-	if(!SettingsDialog::run(this, settings))
+	if(!FslSettingsDialog::run(this, settings))
 		return;
 
 	// Apply settings
@@ -1668,6 +1678,7 @@ void MainWindow::on_actionSettings_triggered()
 		QString value = it.value().Value.toString();
 		fossil().setFossilSetting(name, value, type == Settings::Setting::TYPE_FOSSIL_GLOBAL);
 	}
+
 }
 
 //------------------------------------------------------------------------------

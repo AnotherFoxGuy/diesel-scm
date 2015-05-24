@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QStringList>
 #include <QFileIconProvider>
-#include "SettingsDialog.h"
+#include "Settings.h"
 #include "Workspace.h"
 
 namespace Ui {
@@ -99,6 +99,7 @@ private slots:
 	void on_actionAbout_triggered();
 	void on_actionUpdate_triggered();
 	void on_actionSettings_triggered();
+	void on_actionFossilSettings_triggered();
 	void on_actionViewUnchanged_triggered();
 	void on_actionViewModified_triggered();
 	void on_actionViewUnknown_triggered();

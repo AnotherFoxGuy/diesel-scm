@@ -276,6 +276,8 @@
     <addaction name="actionCreateBranch"/>
     <addaction name="actionCreateTag"/>
     <addaction name="actionCreateStash"/>
+    <addaction name="separator"/>
+    <addaction name="actionFossilSettings"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -925,6 +927,9 @@
    <property name="toolTip">
     <string>Create a branch from the current revision</string>
    </property>
+   <property name="statusTip">
+    <string>Create a branch from the current revision</string>
+   </property>
   </action>
   <action name="actionMergeBranch">
    <property name="icon">
@@ -955,6 +960,15 @@
    </property>
    <property name="statusTip">
     <string>Show all files</string>
+   </property>
+  </action>
+  <action name="actionFossilSettings">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icon-action-settings</normaloff>:/icons/icon-action-settings</iconset>
+   </property>
+   <property name="text">
+    <string>F&amp;ossil Settings</string>
    </property>
   </action>
  </widget>
