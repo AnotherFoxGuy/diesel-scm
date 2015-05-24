@@ -323,8 +323,6 @@
    <addaction name="actionRevert"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
-   <addaction name="actionCreateStash"/>
-   <addaction name="separator"/>
    <addaction name="actionDiff"/>
    <addaction name="actionHistory"/>
    <addaction name="separator"/>
@@ -663,7 +661,7 @@
   <action name="actionOpenContaining">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icon-item-folder</normaloff>:/icons/icon-item-folder</iconset>
+     <normaloff>:/icons/icon-action-folder-explore</normaloff>:/icons/icon-action-folder-explore</iconset>
    </property>
    <property name="text">
     <string>Open Containing</string>
@@ -901,7 +899,10 @@
     <string>Create &amp;Tag</string>
    </property>
    <property name="toolTip">
-    <string>Tag current revision</string>
+    <string>Create a tag for a revision</string>
+   </property>
+   <property name="statusTip">
+    <string>Create a tag for a revision</string>
    </property>
   </action>
   <action name="actionDeleteTag">
@@ -913,7 +914,7 @@
     <string>Delete Tag</string>
    </property>
    <property name="toolTip">
-    <string>Delete tag</string>
+    <string>Delete Tag</string>
    </property>
   </action>
   <action name="actionCreateBranch">
@@ -925,10 +926,10 @@
     <string>Create &amp;Branch</string>
    </property>
    <property name="toolTip">
-    <string>Create a branch from the current revision</string>
+    <string>Create a branch from a revision</string>
    </property>
    <property name="statusTip">
-    <string>Create a branch from the current revision</string>
+    <string>Create a branch from a revision</string>
    </property>
   </action>
   <action name="actionMergeBranch">
@@ -938,6 +939,12 @@
    </property>
    <property name="text">
     <string>Merge Branch</string>
+   </property>
+   <property name="toolTip">
+    <string>Merge with a branch</string>
+   </property>
+   <property name="statusTip">
+    <string>Merge with a branch</string>
    </property>
   </action>
   <action name="actionViewAsFolders">

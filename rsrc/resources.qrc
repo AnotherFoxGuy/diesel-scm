@@ -96,6 +96,7 @@
 	<file alias="icon-action-stash-apply">icons/Folder Compressed-01.png</file>
 	<file alias="icon-action-stash-delete">icons/Folder Delete-01.png</file>
 	<file alias="icon-action-stash-diff">icons/Folder Explorer-01.png</file>
+	<file alias="icon-action-folder-explore">icons/Folder Explorer-01.png</file>
 	<file>icons/Folder Generic Blue-01.png</file>
 	<file>icons/Folder Generic Green-01.png</file>
 	<file>icons/Folder Generic Red-01.png</file>

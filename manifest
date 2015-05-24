@@ -1,5 +1,5 @@
-C Separated\sApplication\sand\sFossil\ssettings\sinto\sseparate\sdialogs.
-D 2015-05-24T18:19:19.178
+C Removed\sCreate\sStash\sfrom\stoolbar\nChanged\s"Open\sContaining"\sicon\nMinor\scosmetic\schanges
+D 2015-05-24T18:37:29.618
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -183,7 +183,7 @@ F rsrc/icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
-F rsrc/resources.qrc 3864cdcf37e8e746380d33988efacd5c95c6e384
+F rsrc/resources.qrc 388225a5b09c56c12d4cbde8b4d0b4466740fc97
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
 F src/CloneDialog.cpp 4fc5aa8146ac63ba6ba7341b1635b3025819d708
@@ -223,11 +223,11 @@ F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui aea77347eef82b6b591f31fb058a1bb96193c728
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/FslSettingsDialog.ui 042717833d8efea905b4fc380bad580be809717d w ui/FossilSettingsDialog.ui
-F ui/MainWindow.ui adf8714bec560da44cd84d74f2ce60f7cea09a70
+F ui/FslSettingsDialog.ui 042717833d8efea905b4fc380bad580be809717d
+F ui/MainWindow.ui 2d36b1ba9886356802f2cddf12c4cabb5ee1acde
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 4c480cd595a32664d01c85bf74845c4282fc0068
-P 5c9a7defad9f6c77db2447df1d904e24001ec40e
-R 2a40906bd18bac1ee536fd4bf0202e77
+P 97d0d1e2408832e1fc8b532e059b2141afd9ac55
+R 8f806c4029c039de40ed9c8c7d5c5dca
 U kostas
-Z 4c1489c21209abe55181b48a52b2520c
+Z 44ccd8fda388c2e574389286ae9da408
