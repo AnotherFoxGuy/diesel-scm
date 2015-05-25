@@ -19,6 +19,7 @@
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
 #include "RevisionDialog.h"
+#include "RemoteDialog.h"
 #include "Utils.h"
 
 #define REVISION_LATEST "Latest revision"
@@ -58,7 +59,7 @@ struct WorkspaceItem
 		TYPE_TAGS,
 		TYPE_TAG,
 		TYPE_REMOTES,
-		TYPE_SETTINGS
+		TYPE_REMOTE,
 	};
 
 	WorkspaceItem()
@@ -173,6 +174,10 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	menuBranches->addAction(separator);
 	menuBranches->addAction(ui->actionMergeBranch);
 	menuBranches->addAction(ui->actionUpdate);
+
+	// RemotesMenu
+	menuRemotes = new QMenu(this);
+	menuRemotes->addAction(ui->actionEditRemote);
 
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
@@ -800,20 +805,19 @@ void MainWindow::updateWorkspaceView()
 		stashes->appendRow(stash);
 	}
 
-#if 0
+#if 1
 	// Remotes
 	QStandardItem *remotes = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), tr("Remotes"));
 	remotes->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTES, ""), ROLE_WORKSPACE_ITEM);
 	remotes->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(remotes);
-#endif
+	{
+		QStandardItem *default_url = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), tr("Default"));
+		QString url = settings.GetFossilValue(FOSSIL_SETTING_REMOTE_URL).toString();
+		default_url->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTE, url), ROLE_WORKSPACE_ITEM);
+		remotes->appendRow(default_url);
+	}
 
-#if 0 // Unimplemented for now
-	// Settings
-	QStandardItem *settings = new QStandardItem(getInternalIcon(":icons/icon-action-settings"), tr("Settings"));
-	settings->setData(WorkspaceItem(WorkspaceItem::TYPE_SETTINGS, ""), ROLE_WORKSPACE_ITEM);
-	settings->setEditable(false);
-	getWorkspace().getTreeModel().appendRow(settings);
 #endif
 
 	// Expand previously selected nodes
@@ -1233,9 +1237,26 @@ void MainWindow::getSelectionStashes(QStringList &stashNames)
 		QString name = mi.model()->data(mi, Qt::DisplayRole).toString();
 		stashNames.append(name);
 	}
-
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::getSelectionRemotes(QStringList &remoteUrls)
+{
+	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
+
+	foreach(const QModelIndex &mi, selection)
+	{
+		QVariant data = mi.model()->data(mi, ROLE_WORKSPACE_ITEM);
+		Q_ASSERT(data.isValid());
+		WorkspaceItem tv = data.value<WorkspaceItem>();
+
+		if(tv.Type != WorkspaceItem::TYPE_REMOTE)
+			continue;
+
+		QString url = tv.Value;
+		remoteUrls.append(url);
+	}
+}
 //------------------------------------------------------------------------------
 bool MainWindow::diffFile(const QString &repoFile)
 {
@@ -2187,6 +2208,8 @@ void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
 		menu = menuTags;
 	else if (tv.Type == WorkspaceItem::TYPE_BRANCH || tv.Type == WorkspaceItem::TYPE_BRANCHES)
 		menu = menuBranches;
+	else if (tv.Type == WorkspaceItem::TYPE_REMOTE)
+		menu = menuRemotes;
 
 	if(menu)
 	{
@@ -2477,3 +2500,17 @@ void MainWindow::onSearch()
 	searchBox->setFocus();
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::on_actionEditRemote_triggered()
+{
+	QStringList remotes;
+	getSelectionRemotes(remotes);
+
+	if(remotes.empty())
+		return;
+
+	QUrl url(remotes.first());
+
+	if(!RemoteDialog::run(this, url))
+		return;
+}

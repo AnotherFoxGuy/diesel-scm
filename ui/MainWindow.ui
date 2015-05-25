@@ -978,6 +978,14 @@
     <string>F&amp;ossil Settings</string>
    </property>
   </action>
+  <action name="actionEditRemote">
+   <property name="text">
+    <string>Edit Remote</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit Remote URL</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
