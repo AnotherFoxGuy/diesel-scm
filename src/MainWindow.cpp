@@ -2505,12 +2505,18 @@ void MainWindow::on_actionEditRemote_triggered()
 {
 	QStringList remotes;
 	getSelectionRemotes(remotes);
-
 	if(remotes.empty())
 		return;
 
 	QUrl url(remotes.first());
+	bool exists = KeychainGet(this, url);
 
 	if(!RemoteDialog::run(this, url))
 		return;
+
+	if(exists)
+		KeychainDelete(this, url);
+
+	if(!KeychainSet(this, url))
+		QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
 }

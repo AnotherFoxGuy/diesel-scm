@@ -1,5 +1,5 @@
-C Initial\swork\son\sremote\smanagement
-D 2015-05-25T12:27:27.983
+C Implemented\sremote\scredential\sstorage\svia\sqtkeychain\nImported\sqtkeychain
+D 2015-05-25T14:03:38.817
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -15,7 +15,29 @@ F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 17b43fa23da764b5d1b828cc48c5a95e612bbd8f
 F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
-F fuel.pro 641f62716fc90c9430f5c4cbc415c9d63f833a52
+F ext/qtkeychain/CMakeLists.txt fc1afa05034f2765ba243ce758a7e9d6b6efe2d6
+F ext/qtkeychain/COPYING d0f83c8198fdd5464d2373015b7b64ce7cae607e
+F ext/qtkeychain/ChangeLog 1703279e17036995806ba1719033d14840a8a7e2
+F ext/qtkeychain/QtKeychainBuildTreeSettings.cmake.in a50c3b646181124f15b946c3297f13012e959341
+F ext/qtkeychain/QtKeychainConfig.cmake.in ac7c87e54854a06c51e00f833f21f8323d1e6884
+F ext/qtkeychain/QtKeychainConfigVersion.cmake.in 3b650037d5775f28802c0471afe2cf6dbe51084e
+F ext/qtkeychain/ReadMe.markdown 65fe7f400600aa98a9a7fa5c3fc842ad8699cc43
+F ext/qtkeychain/ReadMe.txt 65fe7f400600aa98a9a7fa5c3fc842ad8699cc43
+F ext/qtkeychain/cmake/Modules/GNUInstallDirs.cmake 7a2ccf81f25546e93a6f48c792cdebaae51857e9
+F ext/qtkeychain/gnomekeyring.cpp 7fa97bd4ffb7c9df00d25e56cd9173d34109afe6
+F ext/qtkeychain/gnomekeyring_p.h 7f6acaf6d00b36bd08f5f31ba9136efa969e9875
+F ext/qtkeychain/keychain.cpp 427cbda7c6a76de995b1f1b4caa700cd06a9d19a
+F ext/qtkeychain/keychain.h f084c671b481af6ac7ce00bf641055a3cfc9cf9b
+F ext/qtkeychain/keychain_mac.cpp a028f6fc5e40f9ab88c94ebe30b8b0ae417f2f34
+F ext/qtkeychain/keychain_p.h 36f4caee2cbdbde971a1105ab388681ad2924665
+F ext/qtkeychain/keychain_unix.cpp 8e657da9acd9e86b2fdec19dc40f1afa4a1c5191
+F ext/qtkeychain/keychain_win.cpp e52877828703650219c1c674e618c7211f588d0d
+F ext/qtkeychain/org.kde.KWallet.xml f3729fda9f8fa8031a6f69415dcc29455c3c9ae6
+F ext/qtkeychain/qkeychain_export.h d756528188ef9bf3c4461ecc80048f06c362b54b
+F ext/qtkeychain/testclient.cpp cb1290a9584b627306a7bfdf1c02a8bbae503f5f
+F ext/qtkeychain/translations/qtkeychain_de.ts 0a70c8205c066c30ed8172f0670942de1fc5eede
+F ext/qtkeychain/translations/qtkeychain_ro.ts f16939382fd1a047b0692426bc82847347f14b32
+F fuel.pro 0522a3f57fa34122d47ccd0a62bf14aeb1caeb03
 F intl/convert.bat 4222ae403418381452b843929d15259ea9850ab1 x
 F intl/convert.sh 2ca2179ff53e727f241925b75e19182607883c45 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
@@ -202,9 +224,9 @@ F src/FslSettingsDialog.cpp f5a34a70ecb0560d2b6eea6bf27e42048548aedd
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 717ccd4c91127a08d8cc71d46d8df1a40db62146
+F src/MainWindow.cpp 2bfafff682c13a9176b4f4200c54c2c5c55b8ae8
 F src/MainWindow.h 6cb82a4fc337793a339ffef4728e6d30b7b74305
-F src/RemoteDialog.cpp f0ee2d05e6d6c079f2a00bb551431407eb9d783d
+F src/RemoteDialog.cpp 03a6cf213d6dde68ee0ceb8d122e05da2d491724
 F src/RemoteDialog.h 364e867210ec55d8d6d23d0c8078f2517b2389ec
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
@@ -214,8 +236,8 @@ F src/Settings.cpp 6ab826273b9693bfcd65f0f59b550ae2aa3577f1
 F src/Settings.h 1ff8bb71e19949150e8caa4f5e5f13f8810e496b
 F src/SettingsDialog.cpp 25be4c351dd21ea9132321944f42dc0bc22fb128
 F src/SettingsDialog.h b324dfd77ca3ad24fd83588aaf79a7e4c291e716
-F src/Utils.cpp c48e3316f3a0a5d735e8d4953710500358985e32
-F src/Utils.h c2a28611bd77fb35ea3dcf65fb60ed585f68aa3c
+F src/Utils.cpp abfd679b8a4a320207abe385b8f3a4af8f646a55
+F src/Utils.h c293175ea08801aa4f0513bf2820213f8958f704
 F src/Workspace.cpp f68a4ca05d1b7c5c345fbd89527691813593c663
 F src/Workspace.h d6649a3ae1cd0fbad55237030313e85530417271
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
@@ -230,10 +252,7 @@ F ui/MainWindow.ui 72d363caef1a9ce0484509cdf3e5f924af363381
 F ui/RemoteDialog.ui aa738503e4f6625ed8d7cc46169a319a39b0e575
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 4c480cd595a32664d01c85bf74845c4282fc0068
-P 7ebac37b3255e6721889c070b7327a96c63b6c97
-R 70bbd6d1fd63555631752f47198d7051
-T *branch * remote-management
-T *sym-remote-management *
-T -sym-new-workspace *
+P 13d3a5222dfe24a33a72efffff0ecb0b5bfefe73
+R 9e773ad6f2945f8bd613b0b9f6e23acf
 U kostas
-Z a9dba47682969d430cd680d884c75123
+Z 96c30d4c2ad3ef32f51d03d388cfc133
