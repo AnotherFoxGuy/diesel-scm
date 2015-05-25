@@ -1,5 +1,5 @@
-C Implemented\sremote\scredential\sstorage\svia\sqtkeychain\nImported\sqtkeychain
-D 2015-05-25T14:03:38.817
+C Working\sFuel-managed\sremote-url\nNo\smore\sFOSSIL_SETTING_REMOTE_URL\suglyness\n
+D 2015-05-25T19:59:37.320
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -218,22 +218,22 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp 0d4c50327a61c48506d2d45e28cd6f71f1697ea2
-F src/Fossil.h 31765ef57e20a860914372d56c024033b30aa765
-F src/FslSettingsDialog.cpp f5a34a70ecb0560d2b6eea6bf27e42048548aedd
+F src/Fossil.cpp 2b03aeec20149a1b89f10118058fac8ca33425fc
+F src/Fossil.h e706992b331385660d57df6a27e5418342c14e19
+F src/FslSettingsDialog.cpp 2531d3709f0eab66651671e3edead2ca720d07d5
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 2bfafff682c13a9176b4f4200c54c2c5c55b8ae8
-F src/MainWindow.h 6cb82a4fc337793a339ffef4728e6d30b7b74305
+F src/MainWindow.cpp 08e207cc8ef8d59ab1ce92157d8a243bd932ae06
+F src/MainWindow.h f5981b4144debe4b624afd52223f24fb7b7f2324
 F src/RemoteDialog.cpp 03a6cf213d6dde68ee0ceb8d122e05da2d491724
 F src/RemoteDialog.h 364e867210ec55d8d6d23d0c8078f2517b2389ec
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
 F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
 F src/SearchBox.h 0c78d3a68136dab3e0e71b83ae36f22bd2688ab2
-F src/Settings.cpp 6ab826273b9693bfcd65f0f59b550ae2aa3577f1
-F src/Settings.h 1ff8bb71e19949150e8caa4f5e5f13f8810e496b
+F src/Settings.cpp 7a674604caa9d9f5ffb6b73d95745bde09525389
+F src/Settings.h 376d0a115237edfb91dee774b10996d35ed197ec
 F src/SettingsDialog.cpp 25be4c351dd21ea9132321944f42dc0bc22fb128
 F src/SettingsDialog.h b324dfd77ca3ad24fd83588aaf79a7e4c291e716
 F src/Utils.cpp abfd679b8a4a320207abe385b8f3a4af8f646a55
@@ -247,12 +247,12 @@ F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui aea77347eef82b6b591f31fb058a1bb96193c728
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
-F ui/FslSettingsDialog.ui 042717833d8efea905b4fc380bad580be809717d
-F ui/MainWindow.ui 72d363caef1a9ce0484509cdf3e5f924af363381
+F ui/FslSettingsDialog.ui eb3d4cb764cab90b01e82922237d8c42d6ce1749
+F ui/MainWindow.ui d51fe6d742278eafffedfd13dd543a3daf30c4a8
 F ui/RemoteDialog.ui aa738503e4f6625ed8d7cc46169a319a39b0e575
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 4c480cd595a32664d01c85bf74845c4282fc0068
-P 13d3a5222dfe24a33a72efffff0ecb0b5bfefe73
-R 9e773ad6f2945f8bd613b0b9f6e23acf
+P 7c068aa8acdae1b86dee004d2d4cd7fb42904186
+R 0b17bbb41582e9b9eaa8683364460607
 U kostas
-Z 96c30d4c2ad3ef32f51d03d388cfc133
+Z 108dbf16cab161c35c5ff6a9ffa4b8af

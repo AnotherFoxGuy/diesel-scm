@@ -16,7 +16,6 @@
 #define FOSSIL_SETTING_PROXY_URL			"proxy"
 #define FOSSIL_SETTING_IGNORE_GLOB			"ignore-glob"
 #define FOSSIL_SETTING_CRNL_GLOB			"crnl-glob"
-#define FOSSIL_SETTING_REMOTE_URL			"remote-url"
 #define FOSSIL_SETTING_HTTP_PORT			"http-port"
 
 

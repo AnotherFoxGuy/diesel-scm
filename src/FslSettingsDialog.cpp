@@ -20,7 +20,6 @@ FslSettingsDialog::FslSettingsDialog(QWidget *parent, Settings &_settings) :
 	ui->lineProxy->setText(settings->GetFossilValue(FOSSIL_SETTING_PROXY_URL).toString());
 
 	// Repository Settings
-	ui->lineRemoteURL->setText(settings->GetFossilValue(FOSSIL_SETTING_REMOTE_URL).toString());
 	ui->lineIgnore->setText(settings->GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString());
 	ui->lineIgnoreCRNL->setText(settings->GetFossilValue(FOSSIL_SETTING_CRNL_GLOB).toString());
 }
@@ -47,7 +46,6 @@ void FslSettingsDialog::on_buttonBox_accepted()
 	settings->SetFossilValue(FOSSIL_SETTING_GMERGE_CMD, ui->lineGMergeCommand->text());
 	settings->SetFossilValue(FOSSIL_SETTING_PROXY_URL, ui->lineProxy->text());
 
-	settings->SetFossilValue(FOSSIL_SETTING_REMOTE_URL, ui->lineRemoteURL->text());
 	settings->SetFossilValue(FOSSIL_SETTING_IGNORE_GLOB, ui->lineIgnore->text());
 	settings->SetFossilValue(FOSSIL_SETTING_CRNL_GLOB, ui->lineIgnoreCRNL->text());
 

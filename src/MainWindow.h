@@ -90,6 +90,8 @@ private slots:
 	void on_actionOpenFile_triggered();
 	void on_actionPush_triggered();
 	void on_actionPull_triggered();
+	void on_actionPushRemote_triggered();
+	void on_actionPullRemote_triggered();
 	void on_actionCommit_triggered();
 	void on_actionAdd_triggered();
 	void on_actionDelete_triggered();
@@ -126,6 +128,8 @@ private slots:
 	void on_actionCreateBranch_triggered();
 	void on_actionMergeBranch_triggered();
 	void on_actionEditRemote_triggered();
+	void on_actionSetDefaultRemote_triggered();
+	void on_actionAddRemote_triggered();
 
 private:
 	class MainWinUICallback : public UICallback

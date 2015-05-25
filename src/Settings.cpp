@@ -17,7 +17,6 @@ Settings::Settings(bool portableMode) : store(0)
 
 	Mappings.insert(FOSSIL_SETTING_IGNORE_GLOB, Setting("", Setting::TYPE_FOSSIL_LOCAL));
 	Mappings.insert(FOSSIL_SETTING_CRNL_GLOB, Setting("", Setting::TYPE_FOSSIL_LOCAL));
-	Mappings.insert(FOSSIL_SETTING_REMOTE_URL, Setting("off", Setting::TYPE_FOSSIL_COMMAND));
 
 	// Go into portable mode when explicitly requested or if a config file exists next to the executable
 	QString ini_path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + QCoreApplication::applicationName() + ".ini");
