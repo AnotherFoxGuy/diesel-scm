@@ -1,6 +1,7 @@
 #include "Utils.h"
 #include <QMessageBox>
 #include <QDialogButtonBox>
+#include <QFileDialog>
 
 ///////////////////////////////////////////////////////////////////////////////
 QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons)
@@ -14,6 +15,42 @@ QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, c
 	return res;
 }
 
+//-----------------------------------------------------------------------------
+QString QuotePath(const QString &path)
+{
+	return path;
+}
+
+//-----------------------------------------------------------------------------
+QStringList QuotePaths(const QStringList &paths)
+{
+	QStringList res;
+	for(int i=0; i<paths.size(); ++i)
+		res.append(QuotePath(paths[i]));
+	return res;
+}
+
+//-----------------------------------------------------------------------------
+QString SelectExe(QWidget *parent, const QString &description)
+{
+	QString filter(QObject::tr("Applications"));
+#ifdef Q_OS_WIN
+	filter += " (*.exe)";
+#else
+	filter += " (*)";
+#endif
+	QString path = QFileDialog::getOpenFileName(
+				parent,
+				description,
+				QString(),
+				filter,
+				&filter);
+
+	if(!QFile::exists(path))
+		return QString();
+
+	return path;
+}
 //-----------------------------------------------------------------------------
 #if 0 // Unused
 #include <QInputDialog>
@@ -158,7 +195,7 @@ bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint)
 	// IShellFolder interface.
 	//
 	bool bResult = false;
-	
+
 	LPMALLOC pMalloc;
 	if (!SUCCEEDED (SHGetMalloc (&pMalloc)))
 		return bResult;
@@ -291,3 +328,64 @@ bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint)
 
 #endif
 
+//-----------------------------------------------------------------------------
+void ParseProperties(QStringMap &properties, const QStringList &lines, QChar separator)
+{
+	properties.clear();
+	foreach(QString l, lines)
+	{
+		l = l.trimmed();
+		int index = l.indexOf(separator);
+
+		QString key;
+		QString value;
+		if(index!=-1)
+		{
+			key = l.left(index).trimmed();
+			value = l.mid(index+1).trimmed();
+		}
+		else
+			key = l;
+
+		properties.insert(key, value);
+	}
+}
+
+
+//------------------------------------------------------------------------------
+void GetStandardItemTextRecursive(QString &name, const QStandardItem &item, const QChar &separator)
+{
+	if(item.parent())
+	{
+		GetStandardItemTextRecursive(name, *item.parent());
+		name.append(separator);
+	}
+
+	name.append(item.data(Qt::DisplayRole).toString());
+}
+
+//------------------------------------------------------------------------------
+void BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItem &item)
+{
+	QString name;
+	GetStandardItemTextRecursive(name, item);
+	map.insert(name, item.index());
+
+	for(int i=0; i<item.rowCount(); ++i)
+	{
+		const QStandardItem *child = item.child(i);
+		Q_ASSERT(child);
+		BuildNameToModelIndex(map, *child);
+	}
+}
+
+//------------------------------------------------------------------------------
+void BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItemModel &model)
+{
+	for(int i=0; i<model.rowCount(); ++i)
+	{
+		const QStandardItem *item = model.item(i);
+		Q_ASSERT(item);
+		BuildNameToModelIndex(map, *item);
+	}
+}

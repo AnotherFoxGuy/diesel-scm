@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../rsrc/resources.qrc">
-    <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
+    <normaloff>:/icons/icon-application</normaloff>:/icons/icon-application</iconset>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
    <bool>true</bool>
@@ -58,7 +58,7 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <widget class="QTreeView" name="treeView">
+       <widget class="QTreeView" name="workspaceTreeView">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>20</horstretch>
@@ -66,7 +66,7 @@
          </sizepolicy>
         </property>
         <property name="contextMenuPolicy">
-         <enum>Qt::ActionsContextMenu</enum>
+         <enum>Qt::CustomContextMenu</enum>
         </property>
         <property name="editTriggers">
          <set>QAbstractItemView::NoEditTriggers</set>
@@ -78,16 +78,13 @@
          <enum>QAbstractItemView::SelectItems</enum>
         </property>
         <property name="sortingEnabled">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
-        <attribute name="headerVisible">
-         <bool>true</bool>
-        </attribute>
         <attribute name="headerShowSortIndicator" stdset="0">
          <bool>false</bool>
         </attribute>
        </widget>
-       <widget class="FileTableView" name="tableView">
+       <widget class="FileTableView" name="fileTableView">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>80</horstretch>
@@ -140,44 +137,6 @@
          <number>30</number>
         </attribute>
        </widget>
-       <widget class="QTableView" name="tableViewStash">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-          <horstretch>20</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="contextMenuPolicy">
-         <enum>Qt::ActionsContextMenu</enum>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
-        </property>
-        <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectRows</enum>
-        </property>
-        <property name="showGrid">
-         <bool>false</bool>
-        </property>
-        <property name="sortingEnabled">
-         <bool>true</bool>
-        </property>
-        <property name="wordWrap">
-         <bool>false</bool>
-        </property>
-        <attribute name="horizontalHeaderHighlightSections">
-         <bool>false</bool>
-        </attribute>
-        <attribute name="horizontalHeaderStretchLastSection">
-         <bool>true</bool>
-        </attribute>
-        <attribute name="verticalHeaderVisible">
-         <bool>false</bool>
-        </attribute>
-       </widget>
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="sizePolicy">
@@ -190,7 +149,7 @@
         <enum>QTabWidget::South</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabLog">
         <attribute name="title">
@@ -263,7 +222,7 @@
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -295,13 +254,34 @@
     <addaction name="actionViewUnchanged"/>
     <addaction name="actionViewUnknown"/>
     <addaction name="actionViewIgnored"/>
-    <addaction name="separator"/>
-    <addaction name="actionViewStash"/>
+    <addaction name="actionViewAll"/>
     <addaction name="separator"/>
     <addaction name="actionViewAsList"/>
+    <addaction name="actionViewAsFolders"/>
+   </widget>
+   <widget class="QMenu" name="menuWorkspace">
+    <property name="title">
+     <string>&amp;Workspace</string>
+    </property>
+    <addaction name="actionRefresh"/>
+    <addaction name="separator"/>
+    <addaction name="actionCommit"/>
+    <addaction name="actionUpdate"/>
+    <addaction name="separator"/>
+    <addaction name="actionPush"/>
+    <addaction name="actionPull"/>
+    <addaction name="separator"/>
+    <addaction name="actionUndo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCreateBranch"/>
+    <addaction name="actionCreateTag"/>
+    <addaction name="actionCreateStash"/>
+    <addaction name="separator"/>
+    <addaction name="actionFossilSettings"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
+   <addaction name="menuWorkspace"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -343,8 +323,6 @@
    <addaction name="actionRevert"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
-   <addaction name="actionNewStash"/>
-   <addaction name="separator"/>
    <addaction name="actionDiff"/>
    <addaction name="actionHistory"/>
    <addaction name="separator"/>
@@ -357,10 +335,10 @@
   <action name="actionRefresh">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Button Refresh-01.png</normaloff>:/icons/icons/Button Refresh-01.png</iconset>
+     <normaloff>:/icons/icon-action-refresh</normaloff>:/icons/icon-action-refresh</iconset>
    </property>
    <property name="text">
-    <string>Refresh</string>
+    <string>&amp;Refresh</string>
    </property>
    <property name="toolTip">
     <string>Refresh the views</string>
@@ -375,10 +353,10 @@
   <action name="actionCommit">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Save-01.png</normaloff>:/icons/icons/Save-01.png</iconset>
+     <normaloff>:/icons/icon-action-commit</normaloff>:/icons/icon-action-commit</iconset>
    </property>
    <property name="text">
-    <string>Commit</string>
+    <string>&amp;Commit</string>
    </property>
    <property name="toolTip">
     <string>Commit modifications</string>
@@ -393,7 +371,7 @@
   <action name="actionDiff">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Document Copy-01.png</normaloff>:/icons/icons/Document Copy-01.png</iconset>
+     <normaloff>:/icons/icon-item-diff</normaloff>:/icons/icon-item-diff</iconset>
    </property>
    <property name="text">
     <string>Diff</string>
@@ -411,7 +389,7 @@
   <action name="actionAdd">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/File New-01.png</normaloff>:/icons/icons/File New-01.png</iconset>
+     <normaloff>:/icons/icon-item-add</normaloff>:/icons/icon-item-add</iconset>
    </property>
    <property name="text">
     <string>Add</string>
@@ -429,7 +407,7 @@
   <action name="actionDelete">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/File Delete-01.png</normaloff>:/icons/icons/File Delete-01.png</iconset>
+     <normaloff>:/icons/icon-item-delete</normaloff>:/icons/icon-item-delete</iconset>
    </property>
    <property name="text">
     <string>Delete</string>
@@ -447,7 +425,7 @@
   <action name="actionNewRepository">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Document Blank-01.png</normaloff>:/icons/icons/Document Blank-01.png</iconset>
+     <normaloff>:/icons/icon-action-repo-new</normaloff>:/icons/icon-action-repo-new</iconset>
    </property>
    <property name="text">
     <string>&amp;New...</string>
@@ -465,7 +443,7 @@
   <action name="actionOpenRepository">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/My Documents-01.png</normaloff>:/icons/icons/My Documents-01.png</iconset>
+     <normaloff>:/icons/icon-action-repo-open</normaloff>:/icons/icon-action-repo-open</iconset>
    </property>
    <property name="text">
     <string>&amp;Open...</string>
@@ -497,10 +475,10 @@
   <action name="actionCloneRepository">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/My Websites-01.png</normaloff>:/icons/icons/My Websites-01.png</iconset>
+     <normaloff>:/icons/icon-action-repo-clone</normaloff>:/icons/icon-action-repo-clone</iconset>
    </property>
    <property name="text">
-    <string>Clone...</string>
+    <string>C&amp;lone...</string>
    </property>
    <property name="statusTip">
     <string>Clone a remote repository</string>
@@ -509,10 +487,10 @@
   <action name="actionPush">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Button Upload-01.png</normaloff>:/icons/icons/Button Upload-01.png</iconset>
+     <normaloff>:/icons/icon-action-push</normaloff>:/icons/icon-action-push</iconset>
    </property>
    <property name="text">
-    <string>Push</string>
+    <string>&amp;Push</string>
    </property>
    <property name="toolTip">
     <string>Push changes to the remote repository</string>
@@ -527,10 +505,10 @@
   <action name="actionPull">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Button Download-01.png</normaloff>:/icons/icons/Button Download-01.png</iconset>
+     <normaloff>:/icons/icon-action-pull</normaloff>:/icons/icon-action-pull</iconset>
    </property>
    <property name="text">
-    <string>Pull</string>
+    <string>Pu&amp;ll</string>
    </property>
    <property name="toolTip">
     <string>Pull changes from the remote repository</string>
@@ -545,7 +523,7 @@
   <action name="actionRename">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/File Open-01.png</normaloff>:/icons/icons/File Open-01.png</iconset>
+     <normaloff>:/icons/icon-item-rename</normaloff>:/icons/icon-item-rename</iconset>
    </property>
    <property name="text">
     <string>Rename</string>
@@ -563,7 +541,7 @@
   <action name="actionQuit">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Button Turn Off-01.png</normaloff>:/icons/icons/Button Turn Off-01.png</iconset>
+     <normaloff>:/icons/icon-action-quit</normaloff>:/icons/icon-action-quit</iconset>
    </property>
    <property name="text">
     <string>&amp;Quit</string>
@@ -584,7 +562,7 @@
   <action name="actionHistory">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/File History-01.png</normaloff>:/icons/icons/File History-01.png</iconset>
+     <normaloff>:/icons/icon-item-history</normaloff>:/icons/icon-item-history</iconset>
    </property>
    <property name="text">
     <string>History</string>
@@ -605,7 +583,7 @@
    </property>
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Network MAC-01.png</normaloff>:/icons/icons/Network MAC-01.png</iconset>
+     <normaloff>:/icons/icon-webview</normaloff>:/icons/icon-webview</iconset>
    </property>
    <property name="text">
     <string>Fossil UI</string>
@@ -620,7 +598,7 @@
   <action name="actionRevert">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Document-Revert-icon.png</normaloff>:/icons/icons/Document-Revert-icon.png</iconset>
+     <normaloff>:/icons/icon-item-revert</normaloff>:/icons/icon-item-revert</iconset>
    </property>
    <property name="text">
     <string>Revert</string>
@@ -635,7 +613,7 @@
   <action name="actionClearLog">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Text Edit.png</normaloff>:/icons/icons/Text Edit.png</iconset>
+     <normaloff>:/icons/icon-clear-log</normaloff>:/icons/icon-clear-log</iconset>
    </property>
    <property name="text">
     <string>Clear Log</string>
@@ -650,7 +628,7 @@
   <action name="actionTimeline">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Clock-01.png</normaloff>:/icons/icons/Clock-01.png</iconset>
+     <normaloff>:/icons/icon-action-timeline</normaloff>:/icons/icon-action-timeline</iconset>
    </property>
    <property name="text">
     <string>Timeline</string>
@@ -665,7 +643,7 @@
   <action name="actionOpenFile">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Document-01.png</normaloff>:/icons/icons/Document-01.png</iconset>
+     <normaloff>:/icons/icon-item-file</normaloff>:/icons/icon-item-file</iconset>
    </property>
    <property name="text">
     <string>Open File</string>
@@ -683,7 +661,7 @@
   <action name="actionOpenContaining">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Folder-01.png</normaloff>:/icons/icons/Folder-01.png</iconset>
+     <normaloff>:/icons/icon-action-folder-explore</normaloff>:/icons/icon-action-folder-explore</iconset>
    </property>
    <property name="text">
     <string>Open Containing</string>
@@ -701,10 +679,10 @@
   <action name="actionUndo">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Button Reload-01.png</normaloff>:/icons/icons/Button Reload-01.png</iconset>
+     <normaloff>:/icons/icon-action-undo</normaloff>:/icons/icon-action-undo</iconset>
    </property>
    <property name="text">
-    <string>Undo</string>
+    <string>U&amp;ndo</string>
    </property>
    <property name="toolTip">
     <string>Undo the last Fossil action</string>
@@ -719,7 +697,7 @@
   <action name="actionAbout">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Battery-01.png</normaloff>:/icons/icons/Battery-01.png</iconset>
+     <normaloff>:/icons/icon-application</normaloff>:/icons/icon-application</iconset>
    </property>
    <property name="text">
     <string>&amp;About...</string>
@@ -734,13 +712,13 @@
   <action name="actionUpdate">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Button Play-01.png</normaloff>:/icons/icons/Button Play-01.png</iconset>
+     <normaloff>:/icons/icon-action-update</normaloff>:/icons/icon-action-update</iconset>
    </property>
    <property name="text">
-    <string>Update</string>
+    <string>&amp;Update</string>
    </property>
    <property name="toolTip">
-    <string>Update the workspace to the latest version</string>
+    <string>Update the workspace to a revision</string>
    </property>
    <property name="statusTip">
     <string>Update the workspace to the latest version</string>
@@ -752,7 +730,7 @@
   <action name="actionSettings">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Gear-01.png</normaloff>:/icons/icons/Gear-01.png</iconset>
+     <normaloff>:/icons/icon-action-settings</normaloff>:/icons/icon-action-settings</iconset>
    </property>
    <property name="text">
     <string>&amp;Preferences...</string>
@@ -840,7 +818,7 @@
   <action name="actionOpenFolder">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Folder-01.png</normaloff>:/icons/icons/Folder-01.png</iconset>
+     <normaloff>:/icons/icon-item-folder</normaloff>:/icons/icon-item-folder</iconset>
    </property>
    <property name="text">
     <string>Open Folder</string>
@@ -855,7 +833,7 @@
   <action name="actionRenameFolder">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Folder Open-01.png</normaloff>:/icons/icons/Folder Open-01.png</iconset>
+     <normaloff>:/icons/icon-action-folder-rename</normaloff>:/icons/icon-action-folder-rename</iconset>
    </property>
    <property name="text">
     <string>Rename Folder</string>
@@ -867,13 +845,13 @@
     <string>Rename the selected folder</string>
    </property>
   </action>
-  <action name="actionNewStash">
+  <action name="actionCreateStash">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Folder Add-01.png</normaloff>:/icons/icons/Folder Add-01.png</iconset>
+     <normaloff>:/icons/icon-action-stash-new</normaloff>:/icons/icon-action-stash-new</iconset>
    </property>
    <property name="text">
-    <string>Stash changes</string>
+    <string>&amp;Stash Changes</string>
    </property>
    <property name="statusTip">
     <string>Stash changes</string>
@@ -882,7 +860,7 @@
   <action name="actionApplyStash">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Folder Open-01.png</normaloff>:/icons/icons/Folder Open-01.png</iconset>
+     <normaloff>:/icons/icon-action-stash-apply</normaloff>:/icons/icon-action-stash-apply</iconset>
    </property>
    <property name="text">
     <string>Apply Stash</string>
@@ -894,27 +872,10 @@
     <string>Apply stashed changes</string>
    </property>
   </action>
-  <action name="actionViewStash">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Stashed Changes</string>
-   </property>
-   <property name="iconText">
-    <string>View Stashed Changes</string>
-   </property>
-   <property name="toolTip">
-    <string>View Stashed Changes</string>
-   </property>
-   <property name="statusTip">
-    <string>Show the list of stashed changes</string>
-   </property>
-  </action>
   <action name="actionDeleteStash">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Folder Delete-01.png</normaloff>:/icons/icons/Folder Delete-01.png</iconset>
+     <normaloff>:/icons/icon-action-stash-delete</normaloff>:/icons/icon-action-stash-delete</iconset>
    </property>
    <property name="text">
     <string>Delete Stash</string>
@@ -923,10 +884,98 @@
   <action name="actionDiffStash">
    <property name="icon">
     <iconset resource="../rsrc/resources.qrc">
-     <normaloff>:/icons/icons/Folder Explorer-01.png</normaloff>:/icons/icons/Folder Explorer-01.png</iconset>
+     <normaloff>:/icons/icon-action-stash-diff</normaloff>:/icons/icon-action-stash-diff</iconset>
    </property>
    <property name="text">
     <string>Diff Stash</string>
+   </property>
+  </action>
+  <action name="actionCreateTag">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icon-action-tag-new</normaloff>:/icons/icon-action-tag-new</iconset>
+   </property>
+   <property name="text">
+    <string>Create &amp;Tag</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a tag for a revision</string>
+   </property>
+   <property name="statusTip">
+    <string>Create a tag for a revision</string>
+   </property>
+  </action>
+  <action name="actionDeleteTag">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icon-action-tag-delete</normaloff>:/icons/icon-action-tag-delete</iconset>
+   </property>
+   <property name="text">
+    <string>Delete Tag</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete Tag</string>
+   </property>
+  </action>
+  <action name="actionCreateBranch">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icon-item-branch</normaloff>:/icons/icon-item-branch</iconset>
+   </property>
+   <property name="text">
+    <string>Create &amp;Branch</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a branch from a revision</string>
+   </property>
+   <property name="statusTip">
+    <string>Create a branch from a revision</string>
+   </property>
+  </action>
+  <action name="actionMergeBranch">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icon-action-merge</normaloff>:/icons/icon-action-merge</iconset>
+   </property>
+   <property name="text">
+    <string>Merge Branch</string>
+   </property>
+   <property name="toolTip">
+    <string>Merge with a branch</string>
+   </property>
+   <property name="statusTip">
+    <string>Merge with a branch</string>
+   </property>
+  </action>
+  <action name="actionViewAsFolders">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Files and F&amp;olders</string>
+   </property>
+   <property name="toolTip">
+    <string>View files and folders</string>
+   </property>
+   <property name="statusTip">
+    <string>View the workspace as files and folders</string>
+   </property>
+  </action>
+  <action name="actionViewAll">
+   <property name="text">
+    <string>&amp;All</string>
+   </property>
+   <property name="statusTip">
+    <string>Show all files</string>
+   </property>
+  </action>
+  <action name="actionFossilSettings">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icon-action-settings</normaloff>:/icons/icon-action-settings</iconset>
+   </property>
+   <property name="text">
+    <string>F&amp;ossil Settings</string>
    </property>
   </action>
  </widget>

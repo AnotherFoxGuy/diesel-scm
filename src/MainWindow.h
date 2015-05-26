@@ -2,113 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QStandardItemModel>
 #include <QStringList>
-#include <QMap>
-#include <QFileInfo>
-#include <QDir>
-#include <QProcess>
 #include <QFileIconProvider>
-#include <QSet>
-#include "SettingsDialog.h"
+#include "Settings.h"
+#include "Workspace.h"
 
 namespace Ui {
 	class MainWindow;
 }
-
-
-class QStringList;
-
-//////////////////////////////////////////////////////////////////////////
-// RepoFile
-//////////////////////////////////////////////////////////////////////////
-struct RepoFile
-{
-	enum EntryType
-	{
-		TYPE_UNKNOWN		= 1<<0,
-		TYPE_UNCHANGED		= 1<<1,
-		TYPE_EDITTED		= 1<<2,
-		TYPE_ADDED			= 1<<3,
-		TYPE_DELETED		= 1<<4,
-		TYPE_MISSING		= 1<<5,
-		TYPE_RENAMED		= 1<<6,
-		TYPE_CONFLICTED		= 1<<7,
-		TYPE_MODIFIED		= TYPE_EDITTED|TYPE_ADDED|TYPE_DELETED|TYPE_MISSING|TYPE_RENAMED|TYPE_CONFLICTED,
-		TYPE_REPO			= TYPE_UNCHANGED|TYPE_MODIFIED,
-		TYPE_ALL			= TYPE_UNKNOWN|TYPE_REPO
-	};
-
-	RepoFile(QFileInfo &info, EntryType type, const QString &repoPath)
-	{
-		FileInfo = info;
-		Type = type;
-		FilePath = getRelativeFilename(repoPath);
-		Path = FileInfo.absolutePath();
-
-		// Strip the workspace path from the path
-		Q_ASSERT(Path.indexOf(repoPath)==0);
-		Path = Path.mid(repoPath.length()+1);
-	}
-
-	bool isType(EntryType t) const
-	{
-		return Type == t;
-	}
-
-	void setType(EntryType t)
-	{
-		Type = t;
-	}
-
-	EntryType getType() const
-	{
-		return Type;
-	}
-
-	QFileInfo getFileInfo() const
-	{
-		return FileInfo;
-	}
-
-	bool isRepo() const
-	{
-		return Type == TYPE_UNCHANGED || Type == TYPE_EDITTED;
-	}
-
-	const QString &getFilePath() const
-	{
-		return FilePath;
-	}
-
-	QString getFilename() const
-	{
-		return FileInfo.fileName();
-	}
-
-	const QString &getPath() const
-	{
-		return Path;
-	}
-
-	QString getRelativeFilename(const QString &path)
-	{
-		QString abs_base_dir = QDir(path).absolutePath();
-
-		QString relative = FileInfo.absoluteFilePath();
-		int index = relative.indexOf(abs_base_dir);
-		if(index<0)
-			return QString("");
-
-		return relative.right(relative.length() - abs_base_dir.length()-1);
-	}
-
-private:
-	QFileInfo	FileInfo;
-	EntryType	Type;
-	QString		FilePath;
-	QString		Path;
-};
 
 //////////////////////////////////////////////////////////////////////////
 // MainWindow
@@ -120,38 +21,26 @@ class MainWindow : public QMainWindow
 public:
 	explicit MainWindow(Settings &_settings, QWidget *parent = 0, QString *workspacePath = 0);
 	~MainWindow();
-	bool diffFile(QString repoFile);
+	bool diffFile(const QString& repoFile);
 	void fullRefresh();
-
-private:
-	typedef QSet<QString> stringset_t;
-	enum RunFlags
-	{
-		RUNFLAGS_NONE			= 0<<0,
-		RUNFLAGS_SILENT_INPUT	= 1<<0,
-		RUNFLAGS_SILENT_OUTPUT	= 1<<1,
-		RUNFLAGS_SILENT_ALL		= RUNFLAGS_SILENT_INPUT | RUNFLAGS_SILENT_OUTPUT,
-		RUNFLAGS_DETACHED		= 1<<2
-	};
 
 private:
 	bool refresh();
 	void scanWorkspace();
-	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
-	bool runFossilRaw(const QStringList &args, QStringList *output=0, int *exitCode=0, int runFlags=RUNFLAGS_NONE);
 	void applySettings();
 	void updateSettings();
+	void updateRevision(const QString& revision);
 	const QString &getCurrentWorkspace();
 	void setCurrentWorkspace(const QString &workspace);
 	void log(const QString &text, bool isHTML=false);
 	void setStatus(const QString &text);
-	bool uiRunning() const { return fossilUI.state() == QProcess::Running; }
-	void getSelectionFilenames(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
-	void getFileViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
-	void getDirViewSelection(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL, bool allIfEmpty=false);
-	void getStashViewSelection(QStringList &stashNames, bool allIfEmpty=false);
+	bool uiRunning() const;
+	void getSelectionFilenames(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
+	void getFileViewSelection(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
+	void getDirViewSelection(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
+	void getSelectionStashes(QStringList &stashNames);
 	void getSelectionPaths(stringset_t &paths);
-	void getAllFilenames(QStringList &filenames, int includeMask=RepoFile::TYPE_ALL);
+	void getAllFilenames(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL);
 	bool startUI();
 	void stopUI();
 	void enableActions(bool on);
@@ -159,28 +48,17 @@ private:
 	void rebuildRecent();
 	bool openWorkspace(const QString &path);
 	void loadFossilSettings();
-	QString getFossilPath();
-	QString getFossilHttpAddress();
-	bool scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort);
-	void updateDirView();
+	void updateWorkspaceView();
 	void updateFileView();
-	void updateStashView();
 	void selectRootDir();
+	void MergeRevision(const QString& defaultRevision);
+
 	void fossilBrowse(const QString &fossilUrl);
 	void dragEnterEvent(class QDragEnterEvent *event);
 	void dropEvent(class QDropEvent *event);
 	void setBusy(bool busy);
 	virtual QMenu *createPopupMenu();
 	const QIcon& getInternalIcon(const char *name);
-
-	enum RepoStatus
-	{
-		REPO_OK,
-		REPO_NOT_FOUND,
-		REPO_OLD_SCHEMA
-	};
-
-	RepoStatus getRepoStatus();
 
 	enum ViewMode
 	{
@@ -192,9 +70,11 @@ private slots:
 	// Manual slots.
 	// Use a different naming scheme to prevent warnings from Qt's automatic signaling
 	void onOpenRecent();
-	void onTreeViewSelectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
+	void onWorkspaceTreeViewSelectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
 	void onFileViewDragOut();
 	void onAbort();
+	void onSearchBoxTextChanged(const QString &text);
+	void onSearch();
 
 	// Designer slots
 	void on_actionRefresh_triggered();
@@ -204,8 +84,8 @@ private slots:
 	void on_actionTimeline_triggered();
 	void on_actionHistory_triggered();
 	void on_actionClearLog_triggered();
-	void on_tableView_doubleClicked(const QModelIndex &index);
-	void on_treeView_doubleClicked(const QModelIndex &index);
+	void on_fileTableView_doubleClicked(const QModelIndex &index);
+	void on_workspaceTreeView_doubleClicked(const QModelIndex &index);
 	void on_actionOpenFile_triggered();
 	void on_actionPush_triggered();
 	void on_actionPull_triggered();
@@ -219,26 +99,57 @@ private slots:
 	void on_actionAbout_triggered();
 	void on_actionUpdate_triggered();
 	void on_actionSettings_triggered();
+	void on_actionFossilSettings_triggered();
 	void on_actionViewUnchanged_triggered();
 	void on_actionViewModified_triggered();
 	void on_actionViewUnknown_triggered();
 	void on_actionViewIgnored_triggered();
+	void on_actionViewAll_triggered();
 	void on_actionViewAsList_triggered();
+	void on_actionViewAsFolders_triggered();
 	void on_actionOpenFolder_triggered();
 	void on_actionRenameFolder_triggered();
 	void on_actionNewRepository_triggered();
 	void on_actionOpenRepository_triggered();
 	void on_actionCloseRepository_triggered();
 	void on_actionCloneRepository_triggered();
-	void on_actionViewStash_triggered();
-	void on_actionNewStash_triggered();
+	void on_actionCreateStash_triggered();
 	void on_actionApplyStash_triggered();
 	void on_actionDeleteStash_triggered();
 	void on_actionDiffStash_triggered();
 	void on_textBrowser_customContextMenuRequested(const QPoint &pos);
-	void on_tableView_customContextMenuRequested(const QPoint &pos);
+	void on_fileTableView_customContextMenuRequested(const QPoint &pos);
+	void on_workspaceTreeView_customContextMenuRequested(const QPoint &pos);
+	void on_actionCreateTag_triggered();
+	void on_actionDeleteTag_triggered();
+	void on_actionCreateBranch_triggered();
+	void on_actionMergeBranch_triggered();
 
 private:
+	class MainWinUICallback : public UICallback
+	{
+	public:
+		MainWinUICallback() : mainWindow(0)
+		{}
+
+		void init(class MainWindow *mainWindow)
+		{
+			this->mainWindow = mainWindow;
+		}
+
+		virtual void logText(const QString& text, bool isHTML);
+		virtual void beginProcess(const QString& text);
+		virtual void updateProcess(const QString& text);
+		virtual void endProcess();
+		virtual QMessageBox::StandardButton Query(const QString &title, const QString &query, QMessageBox::StandardButtons buttons);
+
+
+	private:
+		class MainWindow *mainWindow;
+	};
+
+	friend class MainWinUICallback;
+
 	enum
 	{
 		MAX_RECENT=5
@@ -249,30 +160,36 @@ private:
 	Ui::MainWindow		*ui;
 	QFileIconProvider	iconProvider;
 	icon_map_t			iconCache;
-	QStandardItemModel	repoFileModel;
-	QStandardItemModel	repoDirModel;
-	QStandardItemModel	repoStashModel;
-	QProcess			fossilUI;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
 	class QProgressBar	*progressBar;
+	class QLabel		*lblRevision;
+	class QLabel		*lblTags;
 	class QShortcut		*abortShortcut;
-	bool				abortOperation;
+	class SearchBox		*searchBox;
+	class QShortcut		*searchShortcut;
+	QMenu				*menuWorkspace;
+	QMenu				*menuStashes;
+	QMenu				*menuTags;
+	QMenu				*menuBranches;
+
+	bool				operationAborted;
+	stringset_t			selectedDirs;	// The directory selected in the tree
+	QStringList			selectedTags;
+	QStringList			selectedBranches;
+	QStringList			versionList;
+
+	Workspace			workspace;
+	Workspace &			getWorkspace() { return workspace; }
+
+	Fossil &			fossil() { return workspace.fossil(); }
+	const Fossil &		fossil() const { return workspace.fossil(); }
 
 	Settings			&settings;
-	QString				projectName;
-	QString				repositoryFile;
 	QStringList			workspaceHistory;
-	QString				currentWorkspace;
-	ViewMode			viewMode;
-	stringset_t			selectedDirs;	// The directory selected in the tree
 
-	// Repository State
-	typedef QList<RepoFile*> filelist_t;
-	typedef QMap<QString, RepoFile*> filemap_t;
-	typedef QMap<QString, QString> stashmap_t;
-	filemap_t			workspaceFiles;
-	stringset_t			pathSet;
-	stashmap_t			stashMap;
+	MainWinUICallback	uiCallback;
+
+	ViewMode			viewMode;
 };
 
 #endif // MAINWINDOW_H

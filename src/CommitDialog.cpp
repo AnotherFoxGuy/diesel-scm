@@ -4,7 +4,7 @@
 #include "ui_CommitDialog.h"
 #include "MainWindow.h" // Ugly. I know.
 
-CommitDialog::CommitDialog(QWidget *parent, QString title, QStringList &files, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue) :
+CommitDialog::CommitDialog(QWidget *parent, const QString &title, QStringList &files, const QStringList *history, bool stashMode) :
 	QDialog(parent, Qt::Sheet),
 	ui(new Ui::CommitDialog)
 {
@@ -15,16 +15,13 @@ CommitDialog::CommitDialog(QWidget *parent, QString title, QStringList &files, c
 	setWindowTitle(title);
 
 	// Activate the appropriate control based on mode
-	ui->plainTextEdit->setVisible(!singleLineEntry);
-	ui->lineEdit->setVisible(singleLineEntry);
+	ui->plainTextEdit->setVisible(!stashMode);
+	ui->lineEdit->setVisible(stashMode);
 
 	// Activate the checkbox if we have some text
-	ui->checkBox->setVisible(checkBoxText!=0);
-	if(checkBoxText && checkBoxValue)
-	{
-		ui->checkBox->setText(*checkBoxText);
-		ui->checkBox->setCheckState(*checkBoxValue ? Qt::Checked : Qt::Unchecked);
-	}
+	ui->chkRevertFiles->setVisible(stashMode);
+
+	ui->widgetBranchOptions->setVisible(!stashMode);
 
 	// Activate the combo if we have history
 	ui->comboBox->setVisible(history!=0);
@@ -77,16 +74,12 @@ CommitDialog::~CommitDialog()
 }
 
 //------------------------------------------------------------------------------
-bool CommitDialog::run(QWidget *parent, QString title, QStringList &files, QString &commitMsg, const QStringList *history, bool singleLineEntry, const QString *checkBoxText, bool *checkBoxValue)
+bool CommitDialog::runCommit(QWidget* parent, QStringList& files, QString& commitMsg, const QStringList& commitMsgHistory, QString &branchName, bool &privateBranch)
 {
-	CommitDialog dlg(parent, title, files, history, singleLineEntry, checkBoxText, checkBoxValue);
+	CommitDialog dlg(parent, tr("Commit Changes"), files, &commitMsgHistory, false);
 	int res = dlg.exec();
 
-	if(singleLineEntry)
-		commitMsg = dlg.ui->lineEdit->text();
-	else
-		commitMsg = dlg.ui->plainTextEdit->toPlainText();
-
+	commitMsg = dlg.ui->plainTextEdit->toPlainText();
 
 	if(res!=QDialog::Accepted)
 		return false;
@@ -100,12 +93,37 @@ bool CommitDialog::run(QWidget *parent, QString title, QStringList &files, QStri
 		files.append(si->text());
 	}
 
-	if(checkBoxText)
+	branchName.clear();
+	if(dlg.ui->chkNewBranch->isChecked())
 	{
-		Q_ASSERT(checkBoxValue);
-		*checkBoxValue = dlg.ui->checkBox->checkState() == Qt::Checked;
+		branchName = dlg.ui->lineBranchName->text().trimmed();
+		privateBranch = dlg.ui->chkPrivateBranch->isChecked();
 	}
 
+	return true;
+}
+
+//------------------------------------------------------------------------------
+bool CommitDialog::runStashNew(QWidget* parent, QStringList& stashedFiles, QString& stashName, bool& revertFiles)
+{
+	CommitDialog dlg(parent, tr("Stash Changes"), stashedFiles, NULL, true);
+	int res = dlg.exec();
+
+	stashName = dlg.ui->lineEdit->text();
+
+	if(res!=QDialog::Accepted)
+		return false;
+
+	stashedFiles.clear();
+	for(int i=0; i<dlg.itemModel.rowCount(); ++i)
+	{
+		QStandardItem *si = dlg.itemModel.item(i);
+		if(si->checkState()!=Qt::Checked)
+			continue;
+		stashedFiles.append(si->text());
+	}
+
+	revertFiles = dlg.ui->chkRevertFiles->checkState() == Qt::Checked;
 	return true;
 }
 
@@ -141,4 +159,11 @@ void CommitDialog::on_listView_clicked(const QModelIndex &)
 	}
 
 	ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(num_selected>0);
+}
+
+//------------------------------------------------------------------------------
+void CommitDialog::on_chkNewBranch_toggled(bool checked)
+{
+	ui->chkPrivateBranch->setEnabled(checked);
+	ui->lineBranchName->setEnabled(checked);
 }

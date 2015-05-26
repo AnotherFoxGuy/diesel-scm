@@ -2,10 +2,11 @@
 # Fuel
 #-------------------------------------------------
 
-QT    += core gui webkit
+QT    = core gui webkit
 
 contains(QT_VERSION, ^5\\..*) {
 	QT += widgets webkitwidgets
+	QT -= quick multimediawidgets opengl printsupport qml multimedia positioning sensors
 }
 
 TARGET = Fuel
@@ -46,30 +47,44 @@ SOURCES += src/main.cpp\
 	src/CommitDialog.cpp \
 	src/FileActionDialog.cpp \
 	src/SettingsDialog.cpp \
+	src/FslSettingsDialog.cpp \
+	src/CloneDialog.cpp \
+	src/RevisionDialog.cpp \
 	src/Utils.cpp \
 	src/FileTableView.cpp \
-	src/CloneDialog.cpp \
 	src/LoggedProcess.cpp \
 	src/BrowserWidget.cpp \
-	src/CustomWebView.cpp
+	src/CustomWebView.cpp \
+	src/Fossil.cpp \
+	src/Workspace.cpp \
+	src/SearchBox.cpp \
+	src/Settings.cpp
 
 HEADERS  += src/MainWindow.h \
 	src/CommitDialog.h \
 	src/FileActionDialog.h \
 	src/SettingsDialog.h \
+	src/FslSettingsDialog.h \
+	src/CloneDialog.h \
+	src/RevisionDialog.h \
 	src/Utils.h \
 	src/FileTableView.h \
-	src/CloneDialog.h \
 	src/LoggedProcess.h \
 	src/BrowserWidget.h \
-	src/CustomWebView.h
+	src/CustomWebView.h \
+	src/Fossil.h \
+	src/Workspace.h \
+	src/SearchBox.h \
+	src/Settings.h
 
 FORMS    += ui/MainWindow.ui \
 	ui/CommitDialog.ui \
 	ui/FileActionDialog.ui \
 	ui/SettingsDialog.ui \
+	ui/FslSettingsDialog.ui \
 	ui/CloneDialog.ui \
-	ui/BrowserWidget.ui
+	ui/BrowserWidget.ui \
+	ui/RevisionDialog.ui
 
 RESOURCES += \
 	rsrc/resources.qrc
