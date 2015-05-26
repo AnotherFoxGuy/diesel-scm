@@ -1,5 +1,5 @@
-C Set\sversion\sto\s1.0.1
-D 2015-05-12T18:18:33.512
+C Create\snew\sbranch\snamed\s"fuel-v1"
+D 2015-05-26T17:51:42.070
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -213,7 +213,10 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 964b28f34fae482959ce8a96cbc6106f8702fb33
+P e2ba8f0aba679a1c52d36daf3041cd139bd49579
 R 52b73271a5ba6efcdf8cd8ac7e8910df
+T *branch * fuel-v1
+T *sym-fuel-v1 *
+T -sym-trunk *
 U kostas
-Z e4adddbe2917b1cd621d67e57ca27d42
+Z bc237ba7575db7bc67701ca3b5327358
