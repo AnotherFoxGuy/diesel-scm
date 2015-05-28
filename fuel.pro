@@ -7,10 +7,6 @@ QT    = core gui webkit
 contains(QT_VERSION, ^5\\..*) {
 	QT += widgets webkitwidgets
 	QT -= quick multimediawidgets opengl printsupport qml multimedia positioning sensors
-
-	unix:!macx {
-		QT += dbus
-	}
 }
 
 TARGET = Fuel
@@ -104,11 +100,12 @@ HEADERS += ext/qtkeychain/keychain.h \
 		ext/qtkeychain/qkeychain_export.h
 
 unix:!macx {
+	QT += dbus
+
 	SOURCES += ext/qtkeychain/keychain_unix.cpp \
 		ext/qtkeychain/gnomekeyring.cpp
 
 	HEADERS += ext/qtkeychain/gnomekeyring_p.h
-
 	DBUS_INTERFACES += ext/qtkeychain/org.kde.KWallet.xml
 }
 

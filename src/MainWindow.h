@@ -45,7 +45,7 @@ private:
 	bool startUI();
 	void stopUI();
 	void enableActions(bool on);
-	void addWorkspace(const QString &dir);
+	void addWorkspaceHistory(const QString &dir);
 	void rebuildRecent();
 	bool openWorkspace(const QString &path);
 	void loadFossilSettings();

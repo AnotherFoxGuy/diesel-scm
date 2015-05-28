@@ -22,7 +22,7 @@ RemoteDialog::~RemoteDialog()
 }
 
 //-----------------------------------------------------------------------------
-bool RemoteDialog::run(QWidget *parent, QUrl &url)
+bool RemoteDialog::run(QWidget *parent, QUrl &url, QString &name)
 {
 	RemoteDialog dlg(parent);
 
@@ -33,6 +33,7 @@ bool RemoteDialog::run(QWidget *parent, QUrl &url)
 		dlg.ui->lineURL->setText(url_no_credentials);
 		dlg.ui->lineUserName->setText(url.userName());
 		dlg.ui->linePassword->setText(url.password());
+		dlg.ui->lineName->setText(name);
 	}
 
 	if(dlg.exec() != QDialog::Accepted)
@@ -52,6 +53,10 @@ bool RemoteDialog::run(QWidget *parent, QUrl &url)
 
 	if(!dlg.ui->linePassword->text().trimmed().isEmpty())
 		url.setPassword(dlg.ui->linePassword->text());
+
+	name =dlg.ui->lineName->text().trimmed();
+	if(name.isEmpty())
+		name = url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo);
 
 	return true;
 }

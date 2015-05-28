@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QSet>
 #include <QMap>
+#include <QSettings>
 #include "Utils.h"
 #include "Fossil.h"
 
@@ -99,13 +100,31 @@ private:
 
 typedef QSet<QString> stringset_t;
 
+class Remote
+{
+public:
+	Remote(const QString &_name, const QUrl &_url, bool _isDefault=false)
+	: name(_name), url(_url), isDefault(_isDefault)
+	{
+	}
+
+	QString name;
+	QUrl url;
+	bool isDefault;
+
+};
+
+typedef QMap<QUrl, Remote> remote_map_t;
+
+
 //////////////////////////////////////////////////////////////////////////
 // Workspace
 //////////////////////////////////////////////////////////////////////////
-
 class Workspace
 {
 public:
+	Workspace();
+
 	~Workspace();
 
 	typedef QList<WorkspaceFile*> filelist_t;
@@ -116,7 +135,7 @@ public:
 	Fossil &			fossil() { return bridge; }
 	const Fossil &		fossil() const { return bridge; }
 
-	static bool			scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, UICallback &uiCallback);
+	bool				switchWorkspace(const QString &workspace, QSettings &store);
 	void				scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, UICallback &uiCallback, bool &operationAborted);
 
 	QStandardItemModel	&getFileModel() { return repoFileModel; }
@@ -129,6 +148,19 @@ public:
 	QStringList			&getBranches() { return branchList; }
 	bool				otherChanges() const { return isIntegrated; }
 
+	// Remotes
+	const remote_map_t	&getRemotes() const { return remotes; }
+	bool				addRemote(const QUrl &url, const QString &name);
+	bool				removeRemote(const QUrl &url);
+	bool				setRemoteDefault(const QUrl& url);
+	const QUrl			&getRemoteDefault() const;
+	Remote *			findRemote(const QUrl& url);
+
+
+	void storeWorkspace(QSettings &store);
+private:
+	static bool			scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, UICallback &uiCallback);
+
 private:
 	Fossil				bridge;
 	filemap_t			workspaceFiles;
@@ -136,6 +168,7 @@ private:
 	stashmap_t			stashMap;
 	QStringList			branchList;
 	QStringMap			tags;
+	remote_map_t		remotes;
 	bool				isIntegrated;
 
 	QStandardItemModel	repoFileModel;

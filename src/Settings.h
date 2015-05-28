@@ -34,8 +34,7 @@ struct Settings
 		enum SettingType
 		{
 			TYPE_FOSSIL_GLOBAL,
-			TYPE_FOSSIL_LOCAL,
-			TYPE_FOSSIL_COMMAND
+			TYPE_FOSSIL_LOCAL
 		};
 
 		Setting(QVariant value, SettingType type) : Value(value), Type(type)

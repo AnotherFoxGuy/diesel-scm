@@ -15,7 +15,7 @@ public:
 	explicit RemoteDialog(QWidget *parent = 0);
 	~RemoteDialog();
 
-	static bool run(QWidget *parent, class QUrl &url);
+	static bool run(QWidget *parent, class QUrl &url, QString &name);
 
 private slots:
 	void on_btnSelectSourceRepo_clicked();

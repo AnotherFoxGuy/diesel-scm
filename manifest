@@ -1,5 +1,5 @@
-C Working\sFuel-managed\sremote-url\nNo\smore\sFOSSIL_SETTING_REMOTE_URL\suglyness\n
-D 2015-05-25T19:59:37.320
+C Initial\swork\son\smultiple\sremotes\n
+D 2015-05-28T19:29:09.765
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -37,7 +37,7 @@ F ext/qtkeychain/qkeychain_export.h d756528188ef9bf3c4461ecc80048f06c362b54b
 F ext/qtkeychain/testclient.cpp cb1290a9584b627306a7bfdf1c02a8bbae503f5f
 F ext/qtkeychain/translations/qtkeychain_de.ts 0a70c8205c066c30ed8172f0670942de1fc5eede
 F ext/qtkeychain/translations/qtkeychain_ro.ts f16939382fd1a047b0692426bc82847347f14b32
-F fuel.pro 0522a3f57fa34122d47ccd0a62bf14aeb1caeb03
+F fuel.pro d67b78b5257d5d39bf4d0c2a4b9fbba1dbdd7005
 F intl/convert.bat 4222ae403418381452b843929d15259ea9850ab1 x
 F intl/convert.sh 2ca2179ff53e727f241925b75e19182607883c45 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
@@ -224,22 +224,22 @@ F src/FslSettingsDialog.cpp 2531d3709f0eab66651671e3edead2ca720d07d5
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 08e207cc8ef8d59ab1ce92157d8a243bd932ae06
-F src/MainWindow.h f5981b4144debe4b624afd52223f24fb7b7f2324
-F src/RemoteDialog.cpp 03a6cf213d6dde68ee0ceb8d122e05da2d491724
-F src/RemoteDialog.h 364e867210ec55d8d6d23d0c8078f2517b2389ec
+F src/MainWindow.cpp 351608ee4b8c21add1bdac28cf939e9cd6624924
+F src/MainWindow.h 7695cd800ee82df10dd7c17016152aff92572d39
+F src/RemoteDialog.cpp 7f4272117080260c31c748e2ada3e33adc024826
+F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
 F src/RevisionDialog.cpp 51065c65a07c118dd1a7363da4a55a135d1c6c9c
 F src/RevisionDialog.h b718c3009342eaabad39c8a11a253a4e4fef7a73
 F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
 F src/SearchBox.h 0c78d3a68136dab3e0e71b83ae36f22bd2688ab2
 F src/Settings.cpp 7a674604caa9d9f5ffb6b73d95745bde09525389
-F src/Settings.h 376d0a115237edfb91dee774b10996d35ed197ec
+F src/Settings.h 883ac5c0f38a6ac93b400b7b96447b017ee50c06
 F src/SettingsDialog.cpp 25be4c351dd21ea9132321944f42dc0bc22fb128
 F src/SettingsDialog.h b324dfd77ca3ad24fd83588aaf79a7e4c291e716
 F src/Utils.cpp abfd679b8a4a320207abe385b8f3a4af8f646a55
 F src/Utils.h c293175ea08801aa4f0513bf2820213f8958f704
-F src/Workspace.cpp f68a4ca05d1b7c5c345fbd89527691813593c663
-F src/Workspace.h d6649a3ae1cd0fbad55237030313e85530417271
+F src/Workspace.cpp 3722904319b7ad7c172cfe6fa56712308e5d2fd6
+F src/Workspace.h 7ae2e63196433ae34864d182e49e3a2f0726fb78
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -249,10 +249,10 @@ F ui/CommitDialog.ui aea77347eef82b6b591f31fb058a1bb96193c728
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/FslSettingsDialog.ui eb3d4cb764cab90b01e82922237d8c42d6ce1749
 F ui/MainWindow.ui d51fe6d742278eafffedfd13dd543a3daf30c4a8
-F ui/RemoteDialog.ui aa738503e4f6625ed8d7cc46169a319a39b0e575
+F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 4c480cd595a32664d01c85bf74845c4282fc0068
-P 7c068aa8acdae1b86dee004d2d4cd7fb42904186
-R 0b17bbb41582e9b9eaa8683364460607
+P 54518e5519ad4d5d478c815cc78859c9120997fe
+R 10cdbc5cfc32fc545a4e7e4dafc82685
 U kostas
-Z 108dbf16cab161c35c5ff6a9ffa4b8af
+Z 3161499b5cec5757d1886c4cd078bc1c

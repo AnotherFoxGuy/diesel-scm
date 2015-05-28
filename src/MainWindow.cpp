@@ -285,6 +285,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 MainWindow::~MainWindow()
 {
 	stopUI();
+	getWorkspace().storeWorkspace(*settings.GetStore());
 	updateSettings();
 
 	delete ui;
@@ -299,24 +300,14 @@ const QString &MainWindow::getCurrentWorkspace()
 //-----------------------------------------------------------------------------
 void MainWindow::setCurrentWorkspace(const QString &workspace)
 {
-	if(workspace.isEmpty())
-	{
-		fossil().setCurrentWorkspace("");
-		return;
-	}
-
-	QString new_workspace = QFileInfo(workspace).absoluteFilePath();
-
-	fossil().setCurrentWorkspace(new_workspace);
-
-	addWorkspace(new_workspace);
-
-	if(!QDir::setCurrent(new_workspace))
-		QMessageBox::critical(this, tr("Error"), tr("Could not change current directory to '%0'").arg(new_workspace), QMessageBox::Ok );
+	if(!getWorkspace().switchWorkspace(workspace, *settings.GetStore()))
+		QMessageBox::critical(this, tr("Error"), tr("Could not change current directory to '%0'").arg(workspace), QMessageBox::Ok );
+	else
+		addWorkspaceHistory(fossil().getCurrentWorkspace());
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::addWorkspace(const QString &dir)
+void MainWindow::addWorkspaceHistory(const QString &dir)
 {
 	if(dir.isEmpty())
 		return;
@@ -794,7 +785,6 @@ void MainWindow::updateWorkspaceView()
 		tags->appendRow(tag);
 	}
 
-	// FIXME: Unique Icon name
 	// Stashes
 	QStandardItem *stashes = new QStandardItem(getInternalIcon(":icons/icon-action-repo-open"), tr("Stashes"));
 	stashes->setData(WorkspaceItem(WorkspaceItem::TYPE_STASHES, ""), ROLE_WORKSPACE_ITEM);
@@ -812,15 +802,20 @@ void MainWindow::updateWorkspaceView()
 	remotes->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTES, ""), ROLE_WORKSPACE_ITEM);
 	remotes->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(remotes);
+	for(remote_map_t::const_iterator it=getWorkspace().getRemotes().begin(); it!=getWorkspace().getRemotes().end(); ++it)
 	{
-		QUrl default_url = fossil().getDefaultRemoteUrl();
-		if(!default_url.isEmpty())
+		QStandardItem *remote_item = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), it->name);
+		remote_item->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTE, it->url.toString()), ROLE_WORKSPACE_ITEM);
+		remote_item->setToolTip(it->url.toDisplayString());
+
+		// Mark the default url as bold
+		if(it->isDefault)
 		{
-			QUrl url = default_url;
-			QStandardItem *remote_item = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), url.toDisplayString());
-			remote_item->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTE, default_url.toString()), ROLE_WORKSPACE_ITEM);
-			remotes->appendRow(remote_item);
+			QFont font = remote_item->font();
+			font.setBold(true);
+			remote_item->setFont(font);
 		}
+		remotes->appendRow(remote_item);
 	}
 
 	// Expand previously selected nodes
@@ -974,7 +969,7 @@ void MainWindow::applySettings()
 		if(wk.isEmpty() || !QDir(wk).exists())
 			continue;
 
-		addWorkspace(wk);
+		addWorkspaceHistory(wk);
 
 		if(store->contains("Active") && store->value("Active").toBool())
 			setCurrentWorkspace(wk);
@@ -2463,20 +2458,41 @@ void MainWindow::on_actionEditRemote_triggered()
 	if(remotes.empty())
 		return;
 
-	QUrl url(remotes.first());
-	bool exists = KeychainGet(this, url);
+	QUrl old_url(remotes.first());
 
-	if(!RemoteDialog::run(this, url))
+	QString name;
+	Remote *remote = getWorkspace().findRemote(old_url);
+	if(remote)
+		name = remote->name;
+
+	bool exists = KeychainGet(this, old_url);
+
+	QUrl new_url = old_url;
+	if(!RemoteDialog::run(this, new_url, name))
 		return;
 
-	if(!url.isLocalFile())
+	if(!new_url.isLocalFile())
 	{
 		if(exists)
-			KeychainDelete(this, url);
+			KeychainDelete(this, new_url);
 
-		if(!KeychainSet(this, url))
+		if(!KeychainSet(this, new_url))
 			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
 	}
+
+	// Remove password
+	new_url.setPassword("");
+	old_url.setPassword("");
+	// Url changed?
+	if(new_url != old_url)
+	{
+		getWorkspace().removeRemote(old_url);
+		getWorkspace().addRemote(new_url, name);
+	}
+	else // Just data changed
+		remote->name = name;
+
+	updateWorkspaceView();
 }
 
 //------------------------------------------------------------------------------
@@ -2516,7 +2532,7 @@ void MainWindow::on_actionPullRemote_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionPush_triggered()
 {
-	QUrl url = fossil().getDefaultRemoteUrl();
+	QUrl url = getWorkspace().getRemoteDefault();
 
 	if(url.isEmpty())
 	{
@@ -2528,14 +2544,13 @@ void MainWindow::on_actionPush_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url);
 
-
 	fossil().pushRepository(url);
 }
 
 //------------------------------------------------------------------------------
 void MainWindow::on_actionPull_triggered()
 {
-	QUrl url = fossil().getDefaultRemoteUrl();
+	QUrl url = getWorkspace().getRemoteDefault();
 
 	if(url.isEmpty())
 	{
@@ -2560,11 +2575,7 @@ void MainWindow::on_actionSetDefaultRemote_triggered()
 
 	QUrl url(remotes.first());
 
-	// Retrieve password from keychain
-	if(!url.isLocalFile())
-		KeychainGet(this, url);
-
-	fossil().setRemoteUrl(url);
+	getWorkspace().setRemoteDefault(url);
 	updateWorkspaceView();
 }
 
@@ -2572,7 +2583,8 @@ void MainWindow::on_actionSetDefaultRemote_triggered()
 void MainWindow::on_actionAddRemote_triggered()
 {
 	QUrl url;
-	if(!RemoteDialog::run(this, url))
+	QString name;
+	if(!RemoteDialog::run(this, url, name))
 		return;
 
 	if(!url.isLocalFile())
@@ -2583,6 +2595,7 @@ void MainWindow::on_actionAddRemote_triggered()
 			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
 	}
 
-	fossil().setRemoteUrl(url);
+	getWorkspace().addRemote(url, name);
 	updateWorkspaceView();
 }
+
