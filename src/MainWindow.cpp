@@ -181,6 +181,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	menuRemotes->addAction(ui->actionPullRemote);
 	menuRemotes->addAction(separator);
 	menuRemotes->addAction(ui->actionAddRemote);
+	menuRemotes->addAction(ui->actionDeleteRemote);
 	menuRemotes->addAction(ui->actionEditRemote);
 	menuRemotes->addAction(ui->actionSetDefaultRemote);
 
@@ -958,6 +959,7 @@ void MainWindow::on_actionClearLog_triggered()
 void MainWindow::applySettings()
 {
 	QSettings *store = settings.GetStore();
+	QString active_workspace;
 
 	int num_wks = store->beginReadArray("Workspaces");
 	for(int i=0; i<num_wks; ++i)
@@ -972,7 +974,7 @@ void MainWindow::applySettings()
 		addWorkspaceHistory(wk);
 
 		if(store->contains("Active") && store->value("Active").toBool())
-			setCurrentWorkspace(wk);
+			active_workspace = wk;
 	}
 	store->endArray();
 
@@ -1027,7 +1029,10 @@ void MainWindow::applySettings()
 		ui->actionViewAsFolders->setChecked(!store->value("ViewAsList").toBool());
 		viewMode = store->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
-	//ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
+
+	// Set the workspace after loading the settings, since it may trigger a remote info storage
+	if(!active_workspace.isEmpty())
+		setCurrentWorkspace(active_workspace);
 }
 
 //------------------------------------------------------------------------------
@@ -1759,13 +1764,16 @@ void MainWindow::on_workspaceTreeView_doubleClicked(const QModelIndex &index)
 	Q_ASSERT(data.isValid());
 	WorkspaceItem tv = data.value<WorkspaceItem>();
 
-	if(tv.Type!=WorkspaceItem::TYPE_FOLDER && tv.Type!=WorkspaceItem::TYPE_WORKSPACE)
-		return;
-
-	QString target = getCurrentWorkspace() + PATH_SEPARATOR + tv.Value;
-
-	QUrl url = QUrl::fromLocalFile(target);
-	QDesktopServices::openUrl(url);
+	if(tv.Type==WorkspaceItem::TYPE_FOLDER || tv.Type==WorkspaceItem::TYPE_WORKSPACE)
+	{
+		QString target = getCurrentWorkspace() + PATH_SEPARATOR + tv.Value;
+		QUrl url = QUrl::fromLocalFile(target);
+		QDesktopServices::openUrl(url);
+	}
+	else if(tv.Type==WorkspaceItem::TYPE_REMOTE)
+	{
+		on_actionEditRemote_triggered();
+	}
 }
 
 //------------------------------------------------------------------------------
@@ -2595,7 +2603,29 @@ void MainWindow::on_actionAddRemote_triggered()
 			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
 	}
 
+	url.setPassword("");
+	url.setUserName("");
+
 	getWorkspace().addRemote(url, name);
 	updateWorkspaceView();
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::on_actionDeleteRemote_triggered()
+{
+	QStringList remotes;
+	getSelectionRemotes(remotes);
+	if(remotes.empty())
+		return;
+
+	QUrl url(remotes.first());
+
+	Remote *remote = getWorkspace().findRemote(url);
+	Q_ASSERT(remote);
+
+	if(QMessageBox::Yes != DialogQuery(this, tr("Delete Remote"), tr("Are you sure want to delete the remote '%0' ?").arg(remote->name)))
+		return;
+
+	getWorkspace().removeRemote(url);
+	updateWorkspaceView();
+}

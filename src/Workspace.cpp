@@ -36,7 +36,9 @@ void Workspace::storeWorkspace(QSettings &store)
 		return;
 
 	store.beginGroup("Remotes");
-	store.beginWriteArray(QDir::toNativeSeparators(workspace));
+	QString workspace_hash = HashString(QDir::toNativeSeparators(workspace));
+
+	store.beginWriteArray(workspace_hash);
 	int index = 0;
 	for(remote_map_t::iterator it=remotes.begin(); it!=remotes.end(); ++it, ++index)
 	{
@@ -75,13 +77,18 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 	fossil().setCurrentWorkspace(new_workspace);
 
 	// Load Remotes
+	QString workspace_hash = HashString(QDir::toNativeSeparators(new_workspace));
+
+	QString gr = store.group();
+
 	store.beginGroup("Remotes");
-	int num_remotes = store.beginReadArray(QDir::toNativeSeparators(new_workspace));
+	gr = store.group();
+	int num_remotes = store.beginReadArray(workspace_hash);
 	for(int i=0; i<num_remotes; ++i)
 	{
 		store.setArrayIndex(i);
 
-		QString name = store.value("name").toString();
+		QString name = store.value("Name").toString();
 		QUrl url = store.value("Url").toUrl();
 		bool def = store.value("Default", false).toBool();
 		addRemote(url, name);

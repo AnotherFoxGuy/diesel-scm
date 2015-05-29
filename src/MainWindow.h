@@ -130,6 +130,7 @@ private slots:
 	void on_actionEditRemote_triggered();
 	void on_actionSetDefaultRemote_triggered();
 	void on_actionAddRemote_triggered();
+	void on_actionDeleteRemote_triggered();
 
 private:
 	class MainWinUICallback : public UICallback

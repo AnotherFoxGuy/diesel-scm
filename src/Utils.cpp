@@ -4,7 +4,7 @@
 #include <QFileDialog>
 #include <QEventLoop>
 #include "ext/qtkeychain/keychain.h"
-#define KEYCHAIN_ROOT "Fuel-SCM"
+#include <QCryptographicHash>
 
 ///////////////////////////////////////////////////////////////////////////////
 QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons)
@@ -443,4 +443,14 @@ bool KeychainDelete(QObject* parent, const QUrl& url)
 	loop.exec();
 
 	return job.error() == QKeychain::NoError;
+}
+
+//------------------------------------------------------------------------------
+QString HashString(const QString& str)
+{
+	QCryptographicHash hash(QCryptographicHash::Sha1);
+	const QByteArray ba(str.toUtf8());
+	hash.addData(ba.data(), ba.size());
+	QString str_out(hash.result().toHex());
+	return str_out;
 }
