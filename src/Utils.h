@@ -22,6 +22,10 @@ typedef QMap<QString, QModelIndex> name_modelindex_map_t;
 void						GetStandardItemTextRecursive(QString &name, const QStandardItem &item, const QChar &separator='/');
 void						BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItem &item);
 void						BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItemModel &model);
+bool						KeychainSet(QObject* parent, const QUrl& url);
+bool						KeychainGet(QObject* parent, QUrl& url);
+bool						KeychainDelete(QObject* parent, const QUrl& url);
+QString						HashString(const QString &str);
 
 
 typedef QMap<QString, QString> QStringMap;

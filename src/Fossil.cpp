@@ -70,6 +70,10 @@ RepoStatus Fossil::getRepoStatus()
 		}
 	}
 
+	defaultRemoteUrl.clear();
+	if(run_ok)
+		getRemoteUrl(defaultRemoteUrl);
+
 	return run_ok ? REPO_OK : REPO_NOT_FOUND;
 }
 
@@ -128,15 +132,51 @@ bool Fossil::status(QStringList &result)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::pushRepository()
+bool Fossil::pushRepository(const QUrl &url)
 {
-	return runFossil(QStringList() << "push");
+	QStringList params;
+	params << "push";
+
+	int runFlags=RUNFLAGS_NONE;
+
+	if(!url.isEmpty())
+	{
+		params << url.toString();
+		params << "--once";
+
+		QStringList log_params = params;
+		log_params[1] = url.toDisplayString();
+		log_params.push_front("fossil");
+
+		runFlags = RUNFLAGS_SILENT_INPUT;
+		log("<b>&gt;"+log_params.join(" ")+"</b><br>", true);
+	}
+
+	return runFossil(params, 0, runFlags);
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::pullRepository()
+bool Fossil::pullRepository(const QUrl &url)
 {
-	return runFossil(QStringList() << "pull");
+	QStringList params;
+	params << "pull";
+
+	int runFlags=RUNFLAGS_NONE;
+
+	if(!url.isEmpty())
+	{
+		params << url.toString();
+		params << "--once";
+
+		QStringList log_params = params;
+		log_params[1] = url.toDisplayString();
+		log_params.push_front("fossil");
+
+		runFlags = RUNFLAGS_SILENT_INPUT;
+		log("<b>&gt;"+log_params.join(" ")+"</b><br>", true);
+	}
+
+	return runFossil(params, 0, runFlags);
 }
 
 //------------------------------------------------------------------------------
@@ -361,20 +401,25 @@ bool Fossil::setFossilSetting(const QString& name, const QString& value, bool gl
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::setRemoteUrl(const QString& url)
+bool Fossil::setRemoteUrl(const QUrl& url)
 {
-	QString u = url;
+	QString u = url.toString(QUrl::FullyEncoded);
 
 	if(url.isEmpty())
 		u = "off";
 
 	// Run as silent to avoid displaying credentials in the log
-	// FIXME: maybe use a QUrl instead
-	return runFossil(QStringList() << "remote-url" << u, 0, RUNFLAGS_SILENT_INPUT);
+	bool ok = runFossil(QStringList() << "remote-url" << u, 0, RUNFLAGS_SILENT_INPUT);
+
+	// Retrieve default url
+	if(ok)
+		getRemoteUrl(defaultRemoteUrl);
+
+	return ok;
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::getRemoteUrl(QString& url)
+bool Fossil::getRemoteUrl(QUrl& url)
 {
 	url.clear();
 
@@ -382,8 +427,15 @@ bool Fossil::getRemoteUrl(QString& url)
 	if(!runFossil(QStringList() << "remote-url", &out, RUNFLAGS_SILENT_ALL))
 		return false;
 
+	QString url_str;
 	if(out.length()>0)
-		url = out[0].trimmed();
+		url_str = out[0].trimmed();
+
+	if(url_str == "off")
+		url.clear();
+	else
+		url.setUrl(url_str);
+
 	return true;
 }
 

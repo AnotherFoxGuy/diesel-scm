@@ -40,11 +40,12 @@ private:
 	void getDirViewSelection(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL, bool allIfEmpty=false);
 	void getSelectionStashes(QStringList &stashNames);
 	void getSelectionPaths(stringset_t &paths);
+	void getSelectionRemotes(QStringList& remoteUrls);
 	void getAllFilenames(QStringList &filenames, int includeMask=WorkspaceFile::TYPE_ALL);
 	bool startUI();
 	void stopUI();
 	void enableActions(bool on);
-	void addWorkspace(const QString &dir);
+	void addWorkspaceHistory(const QString &dir);
 	void rebuildRecent();
 	bool openWorkspace(const QString &path);
 	void loadFossilSettings();
@@ -89,6 +90,8 @@ private slots:
 	void on_actionOpenFile_triggered();
 	void on_actionPush_triggered();
 	void on_actionPull_triggered();
+	void on_actionPushRemote_triggered();
+	void on_actionPullRemote_triggered();
 	void on_actionCommit_triggered();
 	void on_actionAdd_triggered();
 	void on_actionDelete_triggered();
@@ -124,6 +127,10 @@ private slots:
 	void on_actionDeleteTag_triggered();
 	void on_actionCreateBranch_triggered();
 	void on_actionMergeBranch_triggered();
+	void on_actionEditRemote_triggered();
+	void on_actionSetDefaultRemote_triggered();
+	void on_actionAddRemote_triggered();
+	void on_actionDeleteRemote_triggered();
 
 private:
 	class MainWinUICallback : public UICallback
@@ -171,6 +178,7 @@ private:
 	QMenu				*menuStashes;
 	QMenu				*menuTags;
 	QMenu				*menuBranches;
+	QMenu				*menuRemotes;
 
 	bool				operationAborted;
 	stringset_t			selectedDirs;	// The directory selected in the tree

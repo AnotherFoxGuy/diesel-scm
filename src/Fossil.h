@@ -4,7 +4,7 @@
 class QStringList;
 #include <QString>
 #include <QStringList>
-#include <QObject>
+#include <QUrl>
 #include "LoggedProcess.h"
 #include "Utils.h"
 
@@ -81,8 +81,8 @@ public:
 	bool openRepository(const QString &repositoryPath, const QString& workspacePath);
 	bool newRepository(const QString &repositoryPath);
 	bool closeRepository();
-	bool pushRepository();
-	bool pullRepository();
+	bool pushRepository(const QUrl& url);
+	bool pullRepository(const QUrl& url);
 	bool cloneRepository(const QString &repository, const QUrl &url, const QUrl &proxyUrl);
 	bool undoRepository(QStringList& result, bool explainOnly);
 	bool updateRepository(QStringList& result, const QString& revision, bool explainOnly);
@@ -103,8 +103,8 @@ public:
 	bool renameFile(const QString& beforePath, const QString& afterPath, bool renameLocal);
 	bool getFossilSettings(QStringList& result);
 	bool setFossilSetting(const QString &name, const QString &value, bool global);
-	bool setRemoteUrl(const QString &url);
-	bool getRemoteUrl(QString &url);
+	bool setRemoteUrl(const QUrl& url);
+	bool getRemoteUrl(QUrl &url);
 
 	bool stashNew(const QStringList& fileList, const QString& name, bool revert);
 	bool stashList(stashmap_t &stashes);
@@ -128,6 +128,8 @@ public:
 	const QString &getUIHttpPort() const { return fossilUIPort; }
 	QString getUIHttpAddress() const;
 
+	const QUrl &getDefaultRemoteUrl() const { return defaultRemoteUrl; }
+
 private:
 	void log(const QString &text, bool isHTML=false)
 	{
@@ -144,6 +146,7 @@ private:
 	QString				repositoryFile;
 	QString				projectName;
 	QString				currentRevision;
+	QUrl				defaultRemoteUrl;
 	QStringList			currentTags;
 	LoggedProcess		fossilUI;
 	QString				fossilUIPort;

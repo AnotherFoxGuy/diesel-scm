@@ -493,7 +493,7 @@
     <string>&amp;Push</string>
    </property>
    <property name="toolTip">
-    <string>Push changes to the remote repository</string>
+    <string>Push changes to the default remote repository</string>
    </property>
    <property name="statusTip">
     <string>Push changes to the remote repository</string>
@@ -511,13 +511,43 @@
     <string>Pu&amp;ll</string>
    </property>
    <property name="toolTip">
-    <string>Pull changes from the remote repository</string>
+    <string>Pull changes from the default remote repository</string>
    </property>
    <property name="statusTip">
     <string>Pull changes from the remote repository</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionPushRemote">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icon-action-push</normaloff>:/icons/icon-action-push</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Push to Remote</string>
+   </property>
+   <property name="toolTip">
+    <string>Push changes to a remote repository</string>
+   </property>
+   <property name="statusTip">
+    <string>Push changes to a remote repository</string>
+   </property>
+  </action>
+  <action name="actionPullRemote">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icon-action-pull</normaloff>:/icons/icon-action-pull</iconset>
+   </property>
+   <property name="text">
+    <string>Pu&amp;ll from Remote</string>
+   </property>
+   <property name="toolTip">
+    <string>Pull changes from a remote repository</string>
+   </property>
+   <property name="statusTip">
+    <string>Pull changes from a remote repository</string>
    </property>
   </action>
   <action name="actionRename">
@@ -976,6 +1006,35 @@
    </property>
    <property name="text">
     <string>F&amp;ossil Settings</string>
+   </property>
+  </action>
+  <action name="actionEditRemote">
+   <property name="text">
+    <string>Edit Remote</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit Remote URL</string>
+   </property>
+  </action>
+  <action name="actionSetDefaultRemote">
+   <property name="text">
+    <string>Set Remote as Default</string>
+   </property>
+   <property name="statusTip">
+    <string>Makes the selected remote </string>
+   </property>
+  </action>
+  <action name="actionAddRemote">
+   <property name="text">
+    <string>Add Remote</string>
+   </property>
+   <property name="statusTip">
+    <string>Adds a Remote Url</string>
+   </property>
+  </action>
+  <action name="actionDeleteRemote">
+   <property name="text">
+    <string>Delete Remote</string>
    </property>
   </action>
  </widget>

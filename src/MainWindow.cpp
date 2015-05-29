@@ -19,6 +19,7 @@
 #include "FileActionDialog.h"
 #include "CloneDialog.h"
 #include "RevisionDialog.h"
+#include "RemoteDialog.h"
 #include "Utils.h"
 
 #define REVISION_LATEST "Latest revision"
@@ -58,7 +59,7 @@ struct WorkspaceItem
 		TYPE_TAGS,
 		TYPE_TAG,
 		TYPE_REMOTES,
-		TYPE_SETTINGS
+		TYPE_REMOTE,
 	};
 
 	WorkspaceItem()
@@ -174,6 +175,16 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	menuBranches->addAction(ui->actionMergeBranch);
 	menuBranches->addAction(ui->actionUpdate);
 
+	// RemotesMenu
+	menuRemotes = new QMenu(this);
+	menuRemotes->addAction(ui->actionPushRemote);
+	menuRemotes->addAction(ui->actionPullRemote);
+	menuRemotes->addAction(separator);
+	menuRemotes->addAction(ui->actionAddRemote);
+	menuRemotes->addAction(ui->actionDeleteRemote);
+	menuRemotes->addAction(ui->actionEditRemote);
+	menuRemotes->addAction(ui->actionSetDefaultRemote);
+
 	// Recent Workspaces
 	// Locate a sequence of two separator actions in file menu
 	QList<QAction*> file_actions = ui->menuFile->actions();
@@ -206,7 +217,6 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	lblTags = new QLabel();
 	ui->statusBar->insertPermanentWidget(1, lblTags);
 	lblTags->setVisible(true);
-
 
 	// Construct ProgressBar
 	progressBar = new QProgressBar();
@@ -244,7 +254,6 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	searchShortcut->setEnabled(true);
 	connect(searchShortcut, SIGNAL(activated()), this, SLOT(onSearch()));
 
-
 	// Create SearchBox
 	searchBox = new SearchBox(this);
 	searchBox->setPlaceholderText(tr("Find (%0)").arg(searchShortcut->key().toString()));
@@ -277,6 +286,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 MainWindow::~MainWindow()
 {
 	stopUI();
+	getWorkspace().storeWorkspace(*settings.GetStore());
 	updateSettings();
 
 	delete ui;
@@ -291,24 +301,14 @@ const QString &MainWindow::getCurrentWorkspace()
 //-----------------------------------------------------------------------------
 void MainWindow::setCurrentWorkspace(const QString &workspace)
 {
-	if(workspace.isEmpty())
-	{
-		fossil().setCurrentWorkspace("");
-		return;
-	}
-
-	QString new_workspace = QFileInfo(workspace).absoluteFilePath();
-
-	fossil().setCurrentWorkspace(new_workspace);
-
-	addWorkspace(new_workspace);
-
-	if(!QDir::setCurrent(new_workspace))
-		QMessageBox::critical(this, tr("Error"), tr("Could not change current directory to '%0'").arg(new_workspace), QMessageBox::Ok );
+	if(!getWorkspace().switchWorkspace(workspace, *settings.GetStore()))
+		QMessageBox::critical(this, tr("Error"), tr("Could not change current directory to '%0'").arg(workspace), QMessageBox::Ok );
+	else
+		addWorkspaceHistory(fossil().getCurrentWorkspace());
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::addWorkspace(const QString &dir)
+void MainWindow::addWorkspaceHistory(const QString &dir)
 {
 	if(dir.isEmpty())
 		return;
@@ -773,7 +773,6 @@ void MainWindow::updateWorkspaceView()
 	{
 		const QString &tag_name = it.key();
 
-
 		QStandardItem *tag = new QStandardItem(getInternalIcon(":icons/icon-item-tag"), tag_name);
 		tag->setData(WorkspaceItem(WorkspaceItem::TYPE_TAG, tag_name), ROLE_WORKSPACE_ITEM);
 
@@ -787,7 +786,6 @@ void MainWindow::updateWorkspaceView()
 		tags->appendRow(tag);
 	}
 
-	// FIXME: Unique Icon name
 	// Stashes
 	QStandardItem *stashes = new QStandardItem(getInternalIcon(":icons/icon-action-repo-open"), tr("Stashes"));
 	stashes->setData(WorkspaceItem(WorkspaceItem::TYPE_STASHES, ""), ROLE_WORKSPACE_ITEM);
@@ -800,21 +798,26 @@ void MainWindow::updateWorkspaceView()
 		stashes->appendRow(stash);
 	}
 
-#if 0
 	// Remotes
 	QStandardItem *remotes = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), tr("Remotes"));
 	remotes->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTES, ""), ROLE_WORKSPACE_ITEM);
 	remotes->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(remotes);
-#endif
+	for(remote_map_t::const_iterator it=getWorkspace().getRemotes().begin(); it!=getWorkspace().getRemotes().end(); ++it)
+	{
+		QStandardItem *remote_item = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), it->name);
+		remote_item->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTE, it->url.toString()), ROLE_WORKSPACE_ITEM);
+		remote_item->setToolTip(it->url.toDisplayString());
 
-#if 0 // Unimplemented for now
-	// Settings
-	QStandardItem *settings = new QStandardItem(getInternalIcon(":icons/icon-action-settings"), tr("Settings"));
-	settings->setData(WorkspaceItem(WorkspaceItem::TYPE_SETTINGS, ""), ROLE_WORKSPACE_ITEM);
-	settings->setEditable(false);
-	getWorkspace().getTreeModel().appendRow(settings);
-#endif
+		// Mark the default url as bold
+		if(it->isDefault)
+		{
+			QFont font = remote_item->font();
+			font.setBold(true);
+			remote_item->setFont(font);
+		}
+		remotes->appendRow(remote_item);
+	}
 
 	// Expand previously selected nodes
 	name_map.clear();
@@ -956,6 +959,7 @@ void MainWindow::on_actionClearLog_triggered()
 void MainWindow::applySettings()
 {
 	QSettings *store = settings.GetStore();
+	QString active_workspace;
 
 	int num_wks = store->beginReadArray("Workspaces");
 	for(int i=0; i<num_wks; ++i)
@@ -967,10 +971,10 @@ void MainWindow::applySettings()
 		if(wk.isEmpty() || !QDir(wk).exists())
 			continue;
 
-		addWorkspace(wk);
+		addWorkspaceHistory(wk);
 
 		if(store->contains("Active") && store->value("Active").toBool())
-			setCurrentWorkspace(wk);
+			active_workspace = wk;
 	}
 	store->endArray();
 
@@ -1025,7 +1029,10 @@ void MainWindow::applySettings()
 		ui->actionViewAsFolders->setChecked(!store->value("ViewAsList").toBool());
 		viewMode = store->value("ViewAsList").toBool()? VIEWMODE_LIST : VIEWMODE_TREE;
 	}
-	//ui->workspaceTreeView->setVisible(viewMode == VIEWMODE_TREE);
+
+	// Set the workspace after loading the settings, since it may trigger a remote info storage
+	if(!active_workspace.isEmpty())
+		setCurrentWorkspace(active_workspace);
 }
 
 //------------------------------------------------------------------------------
@@ -1233,9 +1240,26 @@ void MainWindow::getSelectionStashes(QStringList &stashNames)
 		QString name = mi.model()->data(mi, Qt::DisplayRole).toString();
 		stashNames.append(name);
 	}
-
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::getSelectionRemotes(QStringList &remoteUrls)
+{
+	QModelIndexList selection = ui->workspaceTreeView->selectionModel()->selectedIndexes();
+
+	foreach(const QModelIndex &mi, selection)
+	{
+		QVariant data = mi.model()->data(mi, ROLE_WORKSPACE_ITEM);
+		Q_ASSERT(data.isValid());
+		WorkspaceItem tv = data.value<WorkspaceItem>();
+
+		if(tv.Type != WorkspaceItem::TYPE_REMOTE)
+			continue;
+
+		QString url = tv.Value;
+		remoteUrls.append(url);
+	}
+}
 //------------------------------------------------------------------------------
 bool MainWindow::diffFile(const QString &repoFile)
 {
@@ -1330,34 +1354,6 @@ void MainWindow::on_actionOpenFile_triggered()
 	{
 		QDesktopServices::openUrl(QUrl::fromLocalFile(getCurrentWorkspace()+QDir::separator()+*it));
 	}
-}
-
-//------------------------------------------------------------------------------
-void MainWindow::on_actionPush_triggered()
-{
-	QString remote_url = settings.GetFossilValue(FOSSIL_SETTING_REMOTE_URL).toString();
-
-	if(remote_url.isEmpty() || remote_url == "off")
-	{
-		QMessageBox::critical(this, tr("Error"), tr("A remote repository has not been specified.\nUse the preferences window to set the remote repostory location"), QMessageBox::Ok );
-		return;
-	}
-
-	fossil().pushRepository();
-}
-
-//------------------------------------------------------------------------------
-void MainWindow::on_actionPull_triggered()
-{
-	QString remote_url = settings.GetFossilValue(FOSSIL_SETTING_REMOTE_URL).toString();
-
-	if(remote_url.isEmpty() || remote_url == "off")
-	{
-		QMessageBox::critical(this, tr("Error"), tr("A remote repository has not been specified.\nUse the preferences window to set the remote repostory location"), QMessageBox::Ok );
-		return;
-	}
-
-	fossil().pullRepository();
 }
 
 //------------------------------------------------------------------------------
@@ -1608,17 +1604,6 @@ void MainWindow::loadFossilSettings()
 		const QString &name = it.key();
 		Settings::Setting::SettingType type = it->Type;
 
-		// Command types we issue directly on fossil
-
-		if(name == FOSSIL_SETTING_REMOTE_URL)
-		{
-			// Retrieve existing url
-			QString url;
-			if(fossil().getRemoteUrl(url))
-				it.value().Value = url;
-			continue;
-		}
-
 		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
 
 		// Otherwise it must be a fossil setting
@@ -1663,15 +1648,6 @@ void MainWindow::on_actionFossilSettings_triggered()
 	{
 		const QString &name = it.key();
 		Settings::Setting::SettingType type = it.value().Type;
-
-		// Command types we issue directly on fossil
-		// FIXME: major uglyness with settings management
-		if(name == FOSSIL_SETTING_REMOTE_URL)
-		{
-			// Run as silent to avoid displaying credentials in the log
-			fossil().setRemoteUrl(it.value().Value.toString());
-			continue;
-		}
 
 		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
 
@@ -1788,13 +1764,16 @@ void MainWindow::on_workspaceTreeView_doubleClicked(const QModelIndex &index)
 	Q_ASSERT(data.isValid());
 	WorkspaceItem tv = data.value<WorkspaceItem>();
 
-	if(tv.Type!=WorkspaceItem::TYPE_FOLDER && tv.Type!=WorkspaceItem::TYPE_WORKSPACE)
-		return;
-
-	QString target = getCurrentWorkspace() + PATH_SEPARATOR + tv.Value;
-
-	QUrl url = QUrl::fromLocalFile(target);
-	QDesktopServices::openUrl(url);
+	if(tv.Type==WorkspaceItem::TYPE_FOLDER || tv.Type==WorkspaceItem::TYPE_WORKSPACE)
+	{
+		QString target = getCurrentWorkspace() + PATH_SEPARATOR + tv.Value;
+		QUrl url = QUrl::fromLocalFile(target);
+		QDesktopServices::openUrl(url);
+	}
+	else if(tv.Type==WorkspaceItem::TYPE_REMOTE)
+	{
+		on_actionEditRemote_triggered();
+	}
 }
 
 //------------------------------------------------------------------------------
@@ -2187,6 +2166,8 @@ void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
 		menu = menuTags;
 	else if (tv.Type == WorkspaceItem::TYPE_BRANCH || tv.Type == WorkspaceItem::TYPE_BRANCHES)
 		menu = menuBranches;
+	else if (tv.Type == WorkspaceItem::TYPE_REMOTE || tv.Type == WorkspaceItem::TYPE_REMOTES)
+		menu = menuRemotes;
 
 	if(menu)
 	{
@@ -2477,3 +2458,173 @@ void MainWindow::onSearch()
 	searchBox->setFocus();
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::on_actionEditRemote_triggered()
+{
+	QStringList remotes;
+	getSelectionRemotes(remotes);
+	if(remotes.empty())
+		return;
+
+	QUrl old_url(remotes.first());
+
+	QString name;
+	Remote *remote = getWorkspace().findRemote(old_url);
+	if(remote)
+		name = remote->name;
+
+	bool exists = KeychainGet(this, old_url);
+
+	QUrl new_url = old_url;
+	if(!RemoteDialog::run(this, new_url, name))
+		return;
+
+	if(!new_url.isLocalFile())
+	{
+		if(exists)
+			KeychainDelete(this, new_url);
+
+		if(!KeychainSet(this, new_url))
+			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
+	}
+
+	// Remove password
+	new_url.setPassword("");
+	old_url.setPassword("");
+	// Url changed?
+	if(new_url != old_url)
+	{
+		getWorkspace().removeRemote(old_url);
+		getWorkspace().addRemote(new_url, name);
+	}
+	else // Just data changed
+		remote->name = name;
+
+	updateWorkspaceView();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionPushRemote_triggered()
+{
+	QStringList remotes;
+	getSelectionRemotes(remotes);
+	if(remotes.empty())
+		return;
+
+	QUrl url(remotes.first());
+
+	// Retrieve password from keychain
+	if(!url.isLocalFile())
+		KeychainGet(this, url);
+
+	fossil().pushRepository(url);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionPullRemote_triggered()
+{
+	QStringList remotes;
+	getSelectionRemotes(remotes);
+	if(remotes.empty())
+		return;
+
+	QUrl url(remotes.first());
+
+	// Retrieve password from keychain
+	if(!url.isLocalFile())
+		KeychainGet(this, url);
+
+	fossil().pullRepository(url);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionPush_triggered()
+{
+	QUrl url = getWorkspace().getRemoteDefault();
+
+	if(url.isEmpty())
+	{
+		QMessageBox::critical(this, tr("Error"), tr("A default remote repository has not been specified."), QMessageBox::Ok );
+		return;
+	}
+
+	// Retrieve password from keychain
+	if(!url.isLocalFile())
+		KeychainGet(this, url);
+
+	fossil().pushRepository(url);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionPull_triggered()
+{
+	QUrl url = getWorkspace().getRemoteDefault();
+
+	if(url.isEmpty())
+	{
+		QMessageBox::critical(this, tr("Error"), tr("A default remote repository has not been specified."), QMessageBox::Ok );
+		return;
+	}
+
+	// Retrieve password from keychain
+	if(!url.isLocalFile())
+		KeychainGet(this, url);
+
+	fossil().pullRepository(url);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionSetDefaultRemote_triggered()
+{
+	QStringList remotes;
+	getSelectionRemotes(remotes);
+	if(remotes.empty())
+		return;
+
+	QUrl url(remotes.first());
+
+	getWorkspace().setRemoteDefault(url);
+	updateWorkspaceView();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionAddRemote_triggered()
+{
+	QUrl url;
+	QString name;
+	if(!RemoteDialog::run(this, url, name))
+		return;
+
+	if(!url.isLocalFile())
+	{
+		KeychainDelete(this, url);
+
+		if(!KeychainSet(this, url))
+			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
+	}
+
+	url.setPassword("");
+
+	getWorkspace().addRemote(url, name);
+	updateWorkspaceView();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionDeleteRemote_triggered()
+{
+	QStringList remotes;
+	getSelectionRemotes(remotes);
+	if(remotes.empty())
+		return;
+
+	QUrl url(remotes.first());
+
+	Remote *remote = getWorkspace().findRemote(url);
+	Q_ASSERT(remote);
+
+	if(QMessageBox::Yes != DialogQuery(this, tr("Delete Remote"), tr("Are you sure want to delete the remote '%0' ?").arg(remote->name)))
+		return;
+
+	getWorkspace().removeRemote(url);
+	updateWorkspaceView();
+}

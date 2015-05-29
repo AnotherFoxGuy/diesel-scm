@@ -2,6 +2,9 @@
 #include <QMessageBox>
 #include <QDialogButtonBox>
 #include <QFileDialog>
+#include <QEventLoop>
+#include "ext/qtkeychain/keychain.h"
+#include <QCryptographicHash>
 
 ///////////////////////////////////////////////////////////////////////////////
 QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons)
@@ -388,4 +391,66 @@ void BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItemModel 
 		Q_ASSERT(item);
 		BuildNameToModelIndex(map, *item);
 	}
+}
+
+//------------------------------------------------------------------------------
+bool KeychainSet(QObject *parent, const QUrl &url)
+{
+	QEventLoop loop(parent);
+	QKeychain::WritePasswordJob job(url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo));
+	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()) );
+	job.setAutoDelete( false );
+	job.setInsecureFallback(false);
+	job.setKey(url.userName());
+	job.setTextData(url.password());
+	job.start();
+	loop.exec();
+	return job.error() == QKeychain::NoError;
+}
+
+//------------------------------------------------------------------------------
+bool KeychainGet(QObject *parent, QUrl &url)
+{
+	QEventLoop loop(parent);
+	QKeychain::ReadPasswordJob job(url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo));
+	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()));
+	job.setAutoDelete( false );
+	job.setInsecureFallback(false);
+	job.setAutoDelete( false );
+	job.setKey(url.userName());
+	job.start();
+	loop.exec();
+
+	if(job.error() != QKeychain::NoError)
+		return false;
+
+	url.setUserName(job.key());
+	url.setPassword(job.textData());
+	return true;
+}
+
+//------------------------------------------------------------------------------
+bool KeychainDelete(QObject* parent, const QUrl& url)
+{
+	QEventLoop loop(parent);
+	QKeychain::DeletePasswordJob job(url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo));
+	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()));
+	job.setAutoDelete( false );
+	job.setInsecureFallback(false);
+	job.setAutoDelete( false );
+	job.setKey(url.userName());
+	job.start();
+	loop.exec();
+
+	return job.error() == QKeychain::NoError;
+}
+
+//------------------------------------------------------------------------------
+QString HashString(const QString& str)
+{
+	QCryptographicHash hash(QCryptographicHash::Sha1);
+	const QByteArray ba(str.toUtf8());
+	hash.addData(ba.data(), ba.size());
+	QString str_out(hash.result().toHex());
+	return str_out;
 }

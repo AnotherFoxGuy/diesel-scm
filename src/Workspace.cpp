@@ -3,9 +3,14 @@
 #include "Utils.h"
 
 //-----------------------------------------------------------------------------
+Workspace::Workspace()
+{
+}
+//-----------------------------------------------------------------------------
 Workspace::~Workspace()
 {
 	clearState();
+	remotes.clear();
 }
 
 //------------------------------------------------------------------------------
@@ -21,6 +26,93 @@ void Workspace::clearState()
 	branchList.clear();
 	tags.clear();
 	isIntegrated = false;
+}
+
+//------------------------------------------------------------------------------
+void Workspace::storeWorkspace(QSettings &store)
+{
+	QString workspace = fossil().getCurrentWorkspace();
+	if(workspace.isEmpty())
+		return;
+
+	store.beginGroup("Remotes");
+	QString workspace_hash = HashString(QDir::toNativeSeparators(workspace));
+
+	store.beginWriteArray(workspace_hash);
+	int index = 0;
+	for(remote_map_t::iterator it=remotes.begin(); it!=remotes.end(); ++it, ++index)
+	{
+		store.setArrayIndex(index);
+		store.setValue("Name", it->name);
+		QUrl url = it->url;
+		url.setPassword("");
+		store.setValue("Url", url);
+		if(it->isDefault)
+			store.setValue("Default", it->isDefault);
+		else
+			store.remove("Default");
+	}
+	store.endArray();
+	store.endGroup();
+
+}
+
+//------------------------------------------------------------------------------
+bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
+{
+	// Save Remotes
+	storeWorkspace(store);
+	clearState();
+	remotes.clear();
+
+	fossil().setCurrentWorkspace("");
+	if(workspace.isEmpty())
+		return true;
+
+	QString new_workspace = QFileInfo(workspace).absoluteFilePath();
+
+	if(!QDir::setCurrent(new_workspace))
+		return false;
+
+	fossil().setCurrentWorkspace(new_workspace);
+
+	// Load Remotes
+	QString workspace_hash = HashString(QDir::toNativeSeparators(new_workspace));
+
+	QString gr = store.group();
+
+	store.beginGroup("Remotes");
+	gr = store.group();
+	int num_remotes = store.beginReadArray(workspace_hash);
+	for(int i=0; i<num_remotes; ++i)
+	{
+		store.setArrayIndex(i);
+
+		QString name = store.value("Name").toString();
+		QUrl url = store.value("Url").toUrl();
+		bool def = store.value("Default", false).toBool();
+		addRemote(url, name);
+		if(def)
+			setRemoteDefault(url);
+	}
+	store.endArray();
+	store.endGroup();
+
+	// Add the default url from fossil
+	QUrl default_remote;
+	if(fossil().getRemoteUrl(default_remote) && default_remote.isValid() && !default_remote.isEmpty())
+	{
+		default_remote.setPassword("");
+
+		// Add Default remote if not available already
+		if(findRemote(default_remote)==NULL)
+		{
+			addRemote(default_remote, default_remote.toDisplayString());
+			setRemoteDefault(default_remote);
+		}
+	}
+
+	return true;
 }
 
 //------------------------------------------------------------------------------
@@ -214,5 +306,58 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 
 _done:
 	uiCallback.endProcess();
+}
+
+//------------------------------------------------------------------------------
+bool Workspace::addRemote(const QUrl& url, const QString& name)
+{
+	if(remotes.contains(url))
+		return false;
+
+	Q_ASSERT(url.password().isEmpty());
+
+	Remote r(name, url);
+	remotes.insert(url, r);
+	return true;
+}
+
+//------------------------------------------------------------------------------
+bool Workspace::removeRemote(const QUrl& url)
+{
+	return remotes.remove(url) > 0;
+}
+
+//------------------------------------------------------------------------------
+bool Workspace::setRemoteDefault(const QUrl& url)
+{
+	Q_ASSERT(url.password().isEmpty());
+
+	bool found = false;
+	for(remote_map_t::iterator it=remotes.begin(); it!=remotes.end(); ++it)
+	{
+		if(it->url == url)
+		{
+			it->isDefault = true;
+			found = true;
+		}
+		else
+			it->isDefault = false;
+	}
+	return found;
+}
+
+//------------------------------------------------------------------------------
+const QUrl & Workspace::getRemoteDefault() const
+{
+	return fossil().getDefaultRemoteUrl();
+}
+
+//------------------------------------------------------------------------------
+Remote * Workspace::findRemote(const QUrl& url)
+{
+	remote_map_t::iterator it = remotes.find(url);
+	if(it!=remotes.end())
+		return &(*it);
+	return NULL;
 }
 

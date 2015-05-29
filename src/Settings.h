@@ -16,7 +16,6 @@
 #define FOSSIL_SETTING_PROXY_URL			"proxy"
 #define FOSSIL_SETTING_IGNORE_GLOB			"ignore-glob"
 #define FOSSIL_SETTING_CRNL_GLOB			"crnl-glob"
-#define FOSSIL_SETTING_REMOTE_URL			"remote-url"
 #define FOSSIL_SETTING_HTTP_PORT			"http-port"
 
 
@@ -35,8 +34,7 @@ struct Settings
 		enum SettingType
 		{
 			TYPE_FOSSIL_GLOBAL,
-			TYPE_FOSSIL_LOCAL,
-			TYPE_FOSSIL_COMMAND
+			TYPE_FOSSIL_LOCAL
 		};
 
 		Setting(QVariant value, SettingType type) : Value(value), Type(type)
