@@ -1,12 +1,14 @@
-#!/bin/bash
-SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#!/bin/sh
+SCRIPTDIR="$( cd "$( dirname "$0" )" && pwd )"
 PRJDIR=$SCRIPTDIR/..
 INTLDIR=$SCRIPTDIR
 
 # Detect lrelease tool
-if hash lrelease-qt5 2>/dev/null; then
+if which lrelease-qt5 2>/dev/null; then
 	LRELEASE="lrelease-qt5"
-elif hash lrelease 2>/dev/null; then
+elif which lrelease4 2>/dev/null; then
+	LRELEASE="lrelease4"
+elif which lrelease 2>/dev/null; then
 	LRELEASE="lrelease"
 else
 	echo "lrelease not found"
