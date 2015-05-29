@@ -660,7 +660,7 @@ void MainWindow::scanWorkspace()
 	lblRevision->setText(tr("Revision: %0").arg(fossil().getCurrentRevision()));
 	lblRevision->setVisible(true);
 
-	lblTags->setText(tr("Tags: %0").arg(fossil().getCurrentTags().join(' ')));
+	lblTags->setText(tr("Tags: %0").arg(fossil().getCurrentTags().join(" ")));
 	lblTags->setVisible(true);
 }
 
@@ -807,7 +807,8 @@ void MainWindow::updateWorkspaceView()
 	{
 		QStandardItem *remote_item = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), it->name);
 		remote_item->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTE, it->url.toString()), ROLE_WORKSPACE_ITEM);
-		remote_item->setToolTip(it->url.toDisplayString());
+
+		remote_item->setToolTip(UrlToStringDisplay(it->url));
 
 		// Mark the default url as bold
 		if(it->isDefault)

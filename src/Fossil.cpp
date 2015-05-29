@@ -141,11 +141,11 @@ bool Fossil::pushRepository(const QUrl &url)
 
 	if(!url.isEmpty())
 	{
-		params << url.toString();
+		params << url.toEncoded();
 		params << "--once";
 
 		QStringList log_params = params;
-		log_params[1] = url.toDisplayString();
+		log_params[1] = UrlToStringDisplay(url);
 		log_params.push_front("fossil");
 
 		runFlags = RUNFLAGS_SILENT_INPUT;
@@ -165,11 +165,12 @@ bool Fossil::pullRepository(const QUrl &url)
 
 	if(!url.isEmpty())
 	{
-		params << url.toString();
+		params << url.toEncoded();
 		params << "--once";
 
 		QStringList log_params = params;
-		log_params[1] = url.toDisplayString();
+		log_params[1] = UrlToStringDisplay(url);
+
 		log_params.push_front("fossil");
 
 		runFlags = RUNFLAGS_SILENT_INPUT;
@@ -403,7 +404,7 @@ bool Fossil::setFossilSetting(const QString& name, const QString& value, bool gl
 //------------------------------------------------------------------------------
 bool Fossil::setRemoteUrl(const QUrl& url)
 {
-	QString u = url.toString(QUrl::FullyEncoded);
+	QString u = url.toEncoded();
 
 	if(url.isEmpty())
 		u = "off";

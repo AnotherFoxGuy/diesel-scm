@@ -29,7 +29,7 @@ bool RemoteDialog::run(QWidget *parent, QUrl &url, QString &name)
 	// Set URL components
 	if(!url.isEmpty())
 	{
-		QString url_no_credentials = url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo);
+		QString url_no_credentials = UrlToStringNoCredentials(url);
 		dlg.ui->lineURL->setText(url_no_credentials);
 		dlg.ui->lineUserName->setText(url.userName());
 		dlg.ui->linePassword->setText(url.password());
@@ -56,7 +56,7 @@ bool RemoteDialog::run(QWidget *parent, QUrl &url, QString &name)
 
 	name =dlg.ui->lineName->text().trimmed();
 	if(name.isEmpty())
-		name = url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo);
+		name = UrlToStringNoCredentials(url);
 
 	return true;
 }

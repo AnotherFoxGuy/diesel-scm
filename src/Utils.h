@@ -26,6 +26,8 @@ bool						KeychainSet(QObject* parent, const QUrl& url);
 bool						KeychainGet(QObject* parent, QUrl& url);
 bool						KeychainDelete(QObject* parent, const QUrl& url);
 QString						HashString(const QString &str);
+QString						UrlToStringDisplay(const QUrl &url);
+QString						UrlToStringNoCredentials(const QUrl& url);
 
 
 typedef QMap<QString, QString> QStringMap;

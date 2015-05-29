@@ -14,7 +14,15 @@ RevisionDialog::RevisionDialog(QWidget *parent, const QStringList &completions, 
 	ui->cmbRevision->addItems(completions);
 
 	if(!defaultValue.isEmpty())
+	{
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+		int index = ui->cmbRevision->findText(defaultValue);
+		if(index>=0)
+			ui->cmbRevision->setCurrentIndex(index);
+#else
 		ui->cmbRevision->setCurrentText(defaultValue);
+#endif
+	}
 }
 
 //-----------------------------------------------------------------------------

@@ -3,6 +3,7 @@
 #include <QDialogButtonBox>
 #include <QFileDialog>
 #include <QEventLoop>
+#include <QUrl>
 #include "ext/qtkeychain/keychain.h"
 #include <QCryptographicHash>
 
@@ -397,7 +398,7 @@ void BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItemModel 
 bool KeychainSet(QObject *parent, const QUrl &url)
 {
 	QEventLoop loop(parent);
-	QKeychain::WritePasswordJob job(url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo));
+	QKeychain::WritePasswordJob job(UrlToStringNoCredentials(url));
 	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()) );
 	job.setAutoDelete( false );
 	job.setInsecureFallback(false);
@@ -412,7 +413,7 @@ bool KeychainSet(QObject *parent, const QUrl &url)
 bool KeychainGet(QObject *parent, QUrl &url)
 {
 	QEventLoop loop(parent);
-	QKeychain::ReadPasswordJob job(url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo));
+	QKeychain::ReadPasswordJob job(UrlToStringNoCredentials(url));
 	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()));
 	job.setAutoDelete( false );
 	job.setInsecureFallback(false);
@@ -433,7 +434,7 @@ bool KeychainGet(QObject *parent, QUrl &url)
 bool KeychainDelete(QObject* parent, const QUrl& url)
 {
 	QEventLoop loop(parent);
-	QKeychain::DeletePasswordJob job(url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo));
+	QKeychain::DeletePasswordJob job(UrlToStringNoCredentials(url));
 	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()));
 	job.setAutoDelete( false );
 	job.setInsecureFallback(false);
@@ -453,4 +454,24 @@ QString HashString(const QString& str)
 	hash.addData(ba.data(), ba.size());
 	QString str_out(hash.result().toHex());
 	return str_out;
+}
+
+//------------------------------------------------------------------------------
+QString UrlToStringDisplay(const QUrl& url)
+{
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+		return url.toString(QUrl::RemovePassword);
+#else
+		return url.toDisplayString();
+#endif
+}
+
+//------------------------------------------------------------------------------
+QString UrlToStringNoCredentials(const QUrl& url)
+{
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+	return url.toString(QUrl::RemoveUserInfo);
+#else
+	return url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo);
+#endif
 }

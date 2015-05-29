@@ -107,7 +107,7 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 		// Add Default remote if not available already
 		if(findRemote(default_remote)==NULL)
 		{
-			addRemote(default_remote, default_remote.toDisplayString());
+			addRemote(default_remote, UrlToStringDisplay(default_remote));
 			setRemoteDefault(default_remote);
 		}
 	}
