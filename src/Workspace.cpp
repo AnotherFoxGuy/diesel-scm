@@ -102,8 +102,14 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 	QUrl default_remote;
 	if(fossil().getRemoteUrl(default_remote) && default_remote.isValid() && !default_remote.isEmpty())
 	{
-		addRemote(default_remote, default_remote.toDisplayString());
-		setRemoteDefault(default_remote);
+		default_remote.setPassword("");
+
+		// Add Default remote if not available already
+		if(findRemote(default_remote)==NULL)
+		{
+			addRemote(default_remote, default_remote.toDisplayString());
+			setRemoteDefault(default_remote);
+		}
 	}
 
 	return true;
@@ -311,7 +317,7 @@ bool Workspace::addRemote(const QUrl& url, const QString& name)
 	Q_ASSERT(url.password().isEmpty());
 
 	Remote r(name, url);
-	remotes.insert(r.name, r);
+	remotes.insert(url, r);
 	return true;
 }
 

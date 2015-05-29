@@ -2604,7 +2604,6 @@ void MainWindow::on_actionAddRemote_triggered()
 	}
 
 	url.setPassword("");
-	url.setUserName("");
 
 	getWorkspace().addRemote(url, name);
 	updateWorkspaceView();
