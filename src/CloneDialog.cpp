@@ -40,7 +40,7 @@ bool CloneDialog::run(QWidget *parent, QUrl &url, QString &repository, QUrl &url
 			dlg.ui->linePassword->setText(nurl.password());
 			nurl.setUserName("");
 			nurl.setPassword("");
-			dlg.ui->lineURL->setText(nurl.toString());
+			dlg.ui->lineURL->setText(UrlToStringNoCredentials(nurl));
 		}
 	}
 
@@ -91,6 +91,11 @@ void CloneDialog::GetRepositoryPath(QString &pathResult)
 				filter,
 				&filter,
 				QFileDialog::DontConfirmOverwrite);
+
+	// Ensure that it ends in the required extension (On GTK, Qt doesn't seem to add it automatically)
+	QFileInfo fi(pathResult);
+	if(fi.suffix().toLower() != ("." FOSSIL_EXT))
+		pathResult += "." FOSSIL_EXT;
 }
 
 //-----------------------------------------------------------------------------

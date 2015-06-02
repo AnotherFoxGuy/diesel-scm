@@ -521,7 +521,25 @@ void MainWindow::on_actionCloneRepository_triggered()
 		return;
 	}
 
-	openWorkspace(repository);
+	if(!openWorkspace(repository))
+		return;
+
+	// Store credentials
+	if(!url.isLocalFile())
+	{
+		KeychainDelete(this, url);
+
+		if(!KeychainSet(this, url))
+			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
+	}
+
+	// Create Remote
+	url.setPassword("");
+
+	QString name = UrlToStringNoCredentials(url);
+	getWorkspace().addRemote(url, name);
+	getWorkspace().setRemoteDefault(url);
+	updateWorkspaceView();
 }
 
 //------------------------------------------------------------------------------
@@ -559,6 +577,7 @@ void MainWindow::onOpenRecent()
 void MainWindow::enableActions(bool on)
 {
 	QAction *actions[] = {
+		ui->actionCloseRepository,
 		ui->actionCommit,
 		ui->actionDiff,
 		ui->actionAdd,
@@ -585,6 +604,7 @@ void MainWindow::enableActions(bool on)
 		ui->actionDeleteTag,
 		ui->actionCreateBranch,
 		ui->actionMergeBranch,
+		ui->actionFossilSettings
 	};
 
 	for(size_t i=0; i<COUNTOF(actions); ++i)
@@ -623,8 +643,9 @@ bool MainWindow::refresh()
 	setStatus("");
 	enableActions(true);
 
-	if(!fossil().getProjectName().isEmpty())
-		title += " - " + fossil().getProjectName();
+	const QString &project_name = fossil().getProjectName();
+	if(!project_name.isEmpty())
+		title += " - " + project_name;
 
 	setWindowTitle(title);
 	return true;
