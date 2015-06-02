@@ -1,5 +1,5 @@
-C -\sAdded\sView\sModified\sFiles\sonly\sview\soption\n-\sReorganized\sthe\sView\smenu.
-D 2015-06-02T15:36:00.596
+C Fixed\sexcessive\sminimum\ssize\sfor\scommit\smessage\shistory\scombo\sbox.\sAddresses\sticket\s[f48f1b9f7d]
+D 2015-06-02T16:07:01.615
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -245,14 +245,14 @@ F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
 F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
-F ui/CommitDialog.ui aea77347eef82b6b591f31fb058a1bb96193c728
+F ui/CommitDialog.ui f496499f0948c885ef365d3827e8cc3c30e4d618
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/FslSettingsDialog.ui eb3d4cb764cab90b01e82922237d8c42d6ce1749
 F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 4c480cd595a32664d01c85bf74845c4282fc0068
-P e7d9b59c32aa0d0ad5c97b24d7562e448dad16f3
-R 32d61169430606870e48bc157bdd9e16
+P 34f0879b8cf7507c43d0d36de0aae704151aa4f4
+R 487edb7b391ec536bb5b940027796b82
 U kostas
-Z 9cd34eac85945c051003901d18aa0af0
+Z 3c716124b97484a56510d667a38d86e1
