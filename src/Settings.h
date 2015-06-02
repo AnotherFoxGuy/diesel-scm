@@ -10,6 +10,8 @@
 #define FUEL_SETTING_FILE_DBLCLICK			"FileDblClickAction"
 #define FUEL_SETTING_LANGUAGE				"Language"
 #define FUEL_SETTING_WEB_BROWSER			"WebBrowser"
+#define FUEL_SETTING_FILEACTION_NAME		"FileActionName"
+#define FUEL_SETTING_FILEACTION_COMMAND		"FileActionCommand"
 
 #define FOSSIL_SETTING_GDIFF_CMD			"gdiff-command"
 #define FOSSIL_SETTING_GMERGE_CMD			"gmerge-command"

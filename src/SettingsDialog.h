@@ -23,6 +23,7 @@ private slots:
 	void on_btnSelectFossil_clicked();
 	void on_buttonBox_accepted();
 	void on_btnClearMessageHistory_clicked();
+	void on_btnSelectCustomFileActionCommand_clicked();
 
 private:
 	QString LangIdToName(const QString &id);

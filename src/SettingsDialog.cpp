@@ -26,6 +26,9 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 	ui->cmbDoubleClickAction->setCurrentIndex(settings->GetValue(FUEL_SETTING_FILE_DBLCLICK).toInt());
 	ui->cmbFossilBrowser->setCurrentIndex(settings->GetValue(FUEL_SETTING_WEB_BROWSER).toInt());
 
+	ui->lineCustomFileActionName->setText(settings->GetValue(FUEL_SETTING_FILEACTION_NAME).toString());
+	ui->lineCustomFileActionCommand->setText(settings->GetValue(FUEL_SETTING_FILEACTION_COMMAND).toString());
+
 	// Initialize language combo
 	foreach(const LangMap &m, langMap)
 		ui->cmbActiveLanguage->addItem(m.name);
@@ -67,6 +70,12 @@ void SettingsDialog::on_buttonBox_accepted()
 
 	if(curr_langid != new_langid)
 		QMessageBox::information(this, tr("Restart required"), tr("The language change will take effect after restarting the application"), QMessageBox::Ok);
+
+
+	Q_ASSERT(settings->HasValue(FUEL_SETTING_FILEACTION_NAME));
+	settings->SetValue(FUEL_SETTING_FILEACTION_NAME, ui->lineCustomFileActionName->text().trimmed());
+	Q_ASSERT(settings->HasValue(FUEL_SETTING_FILEACTION_COMMAND));
+	settings->SetValue(FUEL_SETTING_FILEACTION_COMMAND, QDir::fromNativeSeparators(ui->lineCustomFileActionCommand->text().trimmed()));
 
 	settings->ApplyEnvironment();
 }
@@ -120,4 +129,12 @@ QString SettingsDialog::LangNameToId(const QString &name)
 	}
 
 	return "";
+}
+
+//-----------------------------------------------------------------------------
+void SettingsDialog::on_btnSelectCustomFileActionCommand_clicked()
+{
+	QString path = SelectExe(this, tr("Select executable"));
+	if(!path.isEmpty())
+		ui->lineCustomFileActionCommand->setText(QDir::toNativeSeparators(path));
 }

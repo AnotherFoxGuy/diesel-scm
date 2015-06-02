@@ -1047,6 +1047,14 @@
     <string>Delete Remote</string>
    </property>
   </action>
+  <action name="actionCustomFileAction">
+   <property name="text">
+    <string>Custom File Action</string>
+   </property>
+   <property name="iconText">
+    <string>Custom File Action</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

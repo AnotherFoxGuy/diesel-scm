@@ -106,11 +106,14 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->fileTableView->addAction(ui->actionHistory);
 	ui->fileTableView->addAction(ui->actionOpenFile);
 	ui->fileTableView->addAction(ui->actionOpenContaining);
+	ui->actionCustomFileAction->setVisible(false);
+	ui->fileTableView->addAction(ui->actionCustomFileAction);
 	ui->fileTableView->addAction(separator);
 	ui->fileTableView->addAction(ui->actionAdd);
 	ui->fileTableView->addAction(ui->actionRevert);
 	ui->fileTableView->addAction(ui->actionRename);
 	ui->fileTableView->addAction(ui->actionDelete);
+
 	connect( ui->fileTableView,
 		SIGNAL( dragOutEvent() ),
 		SLOT( onFileViewDragOut() ),
@@ -604,7 +607,8 @@ void MainWindow::enableActions(bool on)
 		ui->actionDeleteTag,
 		ui->actionCreateBranch,
 		ui->actionMergeBranch,
-		ui->actionFossilSettings
+		ui->actionFossilSettings,
+		ui->actionCustomFileAction
 	};
 
 	for(size_t i=0; i<COUNTOF(actions); ++i)
@@ -1055,6 +1059,8 @@ void MainWindow::applySettings()
 	// Set the workspace after loading the settings, since it may trigger a remote info storage
 	if(!active_workspace.isEmpty())
 		setCurrentWorkspace(active_workspace);
+
+	applyUserActions();
 }
 
 //------------------------------------------------------------------------------
@@ -1654,6 +1660,8 @@ void MainWindow::on_actionSettings_triggered()
 	// Run the dialog
 	if(!SettingsDialog::run(this, settings))
 		return;
+
+	applyUserActions();
 }
 
 //------------------------------------------------------------------------------
@@ -2440,7 +2448,7 @@ void MainWindow::on_actionCreateBranch_triggered()
 	updateRevision(branch_name);
 }
 //------------------------------------------------------------------------------
-void MainWindow::MergeRevision(const QString &defaultRevision)
+void MainWindow::mergeRevision(const QString &defaultRevision)
 {
 	QStringList res;
 	QString revision = defaultRevision;
@@ -2474,7 +2482,7 @@ void MainWindow::on_actionMergeBranch_triggered()
 
 	if(!selectedBranches.isEmpty())
 		revision = selectedBranches.first();
-	MergeRevision(revision);
+	mergeRevision(revision);
 }
 
 //------------------------------------------------------------------------------
@@ -2661,3 +2669,45 @@ void MainWindow::on_actionDeleteRemote_triggered()
 	updateWorkspaceView();
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::applyUserActions()
+{
+	QString fileaction_name;
+	QString fileaction_cmd;
+
+	if(settings.HasValue(FUEL_SETTING_FILEACTION_NAME) && settings.HasValue(FUEL_SETTING_FILEACTION_COMMAND))
+	{
+		fileaction_name = settings.GetValue(FUEL_SETTING_FILEACTION_NAME).toString();
+		fileaction_cmd = settings.GetValue(FUEL_SETTING_FILEACTION_COMMAND).toString();
+	}
+
+	if(!fileaction_name.isEmpty() && !fileaction_cmd.isEmpty())
+	{
+		ui->actionCustomFileAction->setVisible(true);
+		ui->actionCustomFileAction->setText(fileaction_name);
+	}
+	else
+		ui->actionCustomFileAction->setVisible(false);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionCustomFileAction_triggered()
+{
+	if(!settings.HasValue(FUEL_SETTING_FILEACTION_NAME) || !settings.HasValue(FUEL_SETTING_FILEACTION_COMMAND))
+		return;
+
+	QStringList selection;
+	getSelectionFilenames(selection, WorkspaceFile::TYPE_ALL);
+
+	QProcess proc(this);
+
+	QStringList params;
+	foreach(const QString &f, selection)
+	{
+		QString path = QFileInfo(fossil().getCurrentWorkspace() + "/" + f).absoluteFilePath();
+		params.append(path);
+	}
+
+	const QString &cmd = settings.GetValue(FUEL_SETTING_FILEACTION_COMMAND).toString();
+	proc.startDetached(cmd, params);
+}
