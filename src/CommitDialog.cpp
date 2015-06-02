@@ -164,6 +164,7 @@ void CommitDialog::on_listView_clicked(const QModelIndex &)
 //------------------------------------------------------------------------------
 void CommitDialog::on_chkNewBranch_toggled(bool checked)
 {
+	ui->lblPrivateBranch->setEnabled(checked);
 	ui->chkPrivateBranch->setEnabled(checked);
 	ui->lineBranchName->setEnabled(checked);
 }
