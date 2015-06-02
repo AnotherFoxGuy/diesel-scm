@@ -250,11 +250,13 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <addaction name="actionViewAll"/>
+    <addaction name="actionViewModifedOnly"/>
+    <addaction name="separator"/>
     <addaction name="actionViewModified"/>
     <addaction name="actionViewUnchanged"/>
     <addaction name="actionViewUnknown"/>
     <addaction name="actionViewIgnored"/>
-    <addaction name="actionViewAll"/>
     <addaction name="separator"/>
     <addaction name="actionViewAsList"/>
     <addaction name="actionViewAsFolders"/>
@@ -783,7 +785,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Modified</string>
+    <string>&amp;Modified Files</string>
    </property>
    <property name="statusTip">
     <string>Show modifed files</string>
@@ -797,7 +799,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Unchanged</string>
+    <string>&amp;Unchanged Files</string>
    </property>
    <property name="statusTip">
     <string>Show unchanged files</string>
@@ -811,7 +813,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Un&amp;known</string>
+    <string>Un&amp;known Files</string>
    </property>
    <property name="statusTip">
     <string>Show unknown files</string>
@@ -822,7 +824,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Ignored</string>
+    <string>&amp;Ignored Files</string>
    </property>
    <property name="statusTip">
     <string>Show ignored files</string>
@@ -993,10 +995,18 @@
   </action>
   <action name="actionViewAll">
    <property name="text">
-    <string>&amp;All</string>
+    <string>&amp;All Files</string>
    </property>
    <property name="statusTip">
     <string>Show all files</string>
+   </property>
+  </action>
+  <action name="actionViewModifedOnly">
+   <property name="text">
+    <string>Mo&amp;dified Files Only</string>
+   </property>
+   <property name="statusTip">
+    <string>Show modified files only</string>
    </property>
   </action>
   <action name="actionFossilSettings">

@@ -108,6 +108,7 @@ private slots:
 	void on_actionViewUnknown_triggered();
 	void on_actionViewIgnored_triggered();
 	void on_actionViewAll_triggered();
+	void on_actionViewModifedOnly_triggered();
 	void on_actionViewAsList_triggered();
 	void on_actionViewAsFolders_triggered();
 	void on_actionOpenFolder_triggered();

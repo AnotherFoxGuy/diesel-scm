@@ -1714,6 +1714,16 @@ void MainWindow::on_actionViewAll_triggered()
 }
 
 //------------------------------------------------------------------------------
+void MainWindow::on_actionViewModifedOnly_triggered()
+{
+	ui->actionViewModified->setChecked(true);
+	ui->actionViewUnchanged->setChecked(false);
+	ui->actionViewUnknown->setChecked(false);
+	ui->actionViewIgnored->setChecked(false);
+	refresh();
+}
+
+//------------------------------------------------------------------------------
 void MainWindow::on_actionViewAsList_triggered()
 {
 	ui->actionViewAsFolders->setChecked(!ui->actionViewAsList->isChecked());
@@ -2650,3 +2660,4 @@ void MainWindow::on_actionDeleteRemote_triggered()
 	getWorkspace().removeRemote(url);
 	updateWorkspaceView();
 }
+
