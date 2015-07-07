@@ -1,5 +1,5 @@
-C Create\snew\sbranch\snamed\s"fuel-v1"
-D 2015-05-26T17:51:42.070
+C Updated\sArch\sPKGBUILD
+D 2015-07-07T18:27:35.405
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -10,7 +10,7 @@ F debian/menu aa1321fe6597a631df5cc978a3cf7b21ac1a3657
 F debian/rules 468914cbcf1bcc252ab3f616e1fdc2b37bc10b5d x
 F debian/source/format 1064dc0ce263680c076a1005f35ec906a5cf5a32
 F debian/watch 34f0921ff100a3e16a7ad84dcc303731de830a60
-F dist/arch/PKGBUILD 80dfadf4e2602f390e8b1119d0fc958e3c6f2b41
+F dist/arch/PKGBUILD 26623327e467028a883cd13963daa36baf10dfa3
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.txt 17b43fa23da764b5d1b828cc48c5a95e612bbd8f
 F doc/Changes.txt b03302545e4a6c0b16a30d623a7627f8aef65ef6
@@ -213,10 +213,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P e2ba8f0aba679a1c52d36daf3041cd139bd49579
-R 52b73271a5ba6efcdf8cd8ac7e8910df
-T *branch * fuel-v1
-T *sym-fuel-v1 *
-T -sym-trunk *
+P d27709554e4b5e0bdec5d67061b83cda7e45c997
+R f7b7b19b0a6ba4200e09ab00d18a9e82
 U kostas
-Z bc237ba7575db7bc67701ca3b5327358
+Z 61fe5d3da5beba1fa1d2a526371b1d77
