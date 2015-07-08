@@ -21,6 +21,12 @@ macx {
 	ICON = rsrc/icons/fuel.icns
 }
 
+# FreeBSD needs explicit paths to Qt install
+unix:freebsd {
+	INCLUDEPATH += /usr/local/include
+	LIBS += -L/usr/local/lib
+}
+
 unix:!macx {
 	TARGET = fuel
 	ICON = rsrc/icons/fuel.png

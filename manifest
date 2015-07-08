@@ -1,5 +1,5 @@
-C Updated\sArch\sPKGBUILD
-D 2015-07-07T18:30:14.468
+C Add\ssupport\sfor\sFreeBSD
+D 2015-07-08T20:10:53.376
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -37,7 +37,7 @@ F ext/qtkeychain/qkeychain_export.h d756528188ef9bf3c4461ecc80048f06c362b54b
 F ext/qtkeychain/testclient.cpp cb1290a9584b627306a7bfdf1c02a8bbae503f5f
 F ext/qtkeychain/translations/qtkeychain_de.ts 0a70c8205c066c30ed8172f0670942de1fc5eede
 F ext/qtkeychain/translations/qtkeychain_ro.ts f16939382fd1a047b0692426bc82847347f14b32
-F fuel.pro d67b78b5257d5d39bf4d0c2a4b9fbba1dbdd7005
+F fuel.pro 1c65d0854fcf40e8d1ff4512f27f71649e7756a7
 F intl/convert.bat 4222ae403418381452b843929d15259ea9850ab1 x
 F intl/convert.sh ac6edc8d99b575601cf9c6b85b18c9e25875b6e0 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
@@ -252,7 +252,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 4c480cd595a32664d01c85bf74845c4282fc0068
-P 1954aea71218df9a36b6059fac19ab416ef470dc c446f431e8de6fad9d05dbbfe992e58f256560bb
-R 6c6fa594fc1801afc172079ab5589257
+P e7792ddc67a212767eafe7c59f346d58e71c8d51 0987410cc3fd8d64510e762b1845880a416c27b3
+R adcbe091d9c9da5e307a37458d63ec2e
 U kostas
-Z 6ebe2af0a194f9c2756ede0420ef3c93
+Z bf0228f8244ded20fee8d07eb1281cca
