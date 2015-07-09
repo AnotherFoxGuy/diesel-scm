@@ -99,6 +99,12 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	QAction *separator = new QAction(this);
 	separator->setSeparator(true);
 
+	fileActionSeparator = new QAction(this);
+	fileActionSeparator->setSeparator(true);
+
+	workspaceActionSeparator = new QAction(this);
+	workspaceActionSeparator->setSeparator(true);
+
 	// fileTableView
 	ui->fileTableView->setModel(&getWorkspace().getFileModel());
 
@@ -106,8 +112,6 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->fileTableView->addAction(ui->actionHistory);
 	ui->fileTableView->addAction(ui->actionOpenFile);
 	ui->fileTableView->addAction(ui->actionOpenContaining);
-	ui->actionCustomFileAction->setVisible(false);
-	ui->fileTableView->addAction(ui->actionCustomFileAction);
 	ui->fileTableView->addAction(separator);
 	ui->fileTableView->addAction(ui->actionAdd);
 	ui->fileTableView->addAction(ui->actionRevert);
@@ -202,12 +206,23 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 		}
 	}
 	Q_ASSERT(recent_sep);
-	for (int i = 0; i < MAX_RECENT; ++i)
+	for(int i = 0; i < MAX_RECENT; ++i)
 	{
 		recentWorkspaceActs[i] = new QAction(this);
 		recentWorkspaceActs[i]->setVisible(false);
 		connect(recentWorkspaceActs[i], SIGNAL(triggered()), this, SLOT(onOpenRecent()));
 		ui->menuFile->insertAction(recent_sep, recentWorkspaceActs[i]);
+	}
+
+	// Custom Actions
+	//ui->fileTableView->addAction(separator);
+	for(int i = 0; i < settings.GetCustomActions().size(); ++i)
+	{
+		customActions[i] = new QAction(this);
+		customActions[i]->setVisible(false);
+		connect(customActions[i], SIGNAL(triggered()), this, SLOT(on_actionCustomAction_triggered()));
+		customActions[i]->setData(i);
+		customActions[i]->setShortcut(QKeySequence(QString("Ctrl+%0").arg(i+1)));
 	}
 
 	// TabWidget
@@ -608,7 +623,6 @@ void MainWindow::enableActions(bool on)
 		ui->actionCreateBranch,
 		ui->actionMergeBranch,
 		ui->actionFossilSettings,
-		ui->actionCustomFileAction
 	};
 
 	for(size_t i=0; i<COUNTOF(actions); ++i)
@@ -1060,6 +1074,35 @@ void MainWindow::applySettings()
 	if(!active_workspace.isEmpty())
 		setCurrentWorkspace(active_workspace);
 
+
+	// Custom Actions
+	for(int i=0; i<MAX_CUSTOM_ACTIONS; ++i)
+		settings.GetCustomActions()[i].Clear();
+
+	int num_actions = store->beginReadArray("CustomActions");
+	int last_action = 0;
+	for(int i=0; i<num_actions; ++i)
+	{
+		store->setArrayIndex(i);
+		CustomAction &action = settings.GetCustomActions()[last_action];
+
+		QString descr;
+		if(store->contains("Description"))
+			descr = store->value("Description").toString();
+
+		if(descr.isEmpty())
+			continue;
+		action.Description = descr;
+
+		if(store->contains("Command"))
+			action.Command = store->value("Command").toString();
+		if(store->contains("Context"))
+			action.Context = static_cast<CustomActionContext>(store->value("Context").toInt());
+
+		++last_action;
+	}
+	store->endArray();
+
 	applyUserActions();
 }
 
@@ -1099,6 +1142,24 @@ void MainWindow::updateSettings()
 	store->setValue("ViewUnchanged", ui->actionViewUnchanged->isChecked());
 	store->setValue("ViewIgnored", ui->actionViewIgnored->isChecked());
 	store->setValue("ViewAsList", ui->actionViewAsList->isChecked());
+
+	// Custom Actions
+	Settings::custom_actions_t &actions = settings.GetCustomActions();
+	store->beginWriteArray("CustomActions", actions.size());
+	int active_actions = 0;
+	for(int i=0; i<actions.size(); ++i)
+	{
+		CustomAction &action = actions[i];
+		if(!action.IsValid())
+			continue;
+		store->setArrayIndex(active_actions);
+
+		store->setValue("Description", action.Description);
+		store->setValue("Command", action.Command);
+		store->setValue("Context", static_cast<int>(action.Context));
+		++active_actions;
+	}
+	store->endArray();
 }
 
 //------------------------------------------------------------------------------
@@ -2672,42 +2733,128 @@ void MainWindow::on_actionDeleteRemote_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::applyUserActions()
 {
-	QString fileaction_name;
-	QString fileaction_cmd;
+	Settings::custom_actions_t custom_actions = settings.GetCustomActions();
+	Q_ASSERT(MAX_CUSTOM_ACTIONS == custom_actions.size());
 
-	if(settings.HasValue(FUEL_SETTING_FILEACTION_NAME) && settings.HasValue(FUEL_SETTING_FILEACTION_COMMAND))
+	// Remove All Actions
+	for(int i = 0; i < custom_actions.size(); ++i)
 	{
-		fileaction_name = settings.GetValue(FUEL_SETTING_FILEACTION_NAME).toString();
-		fileaction_cmd = settings.GetValue(FUEL_SETTING_FILEACTION_COMMAND).toString();
+		QAction *action = customActions[i];
+		ui->fileTableView->removeAction(action);
+		menuWorkspace->removeAction(action);
+	}
+	ui->fileTableView->removeAction(fileActionSeparator);
+	menuWorkspace->removeAction(workspaceActionSeparator);
+
+	// Add them to the top
+	ui->fileTableView->addAction(fileActionSeparator);
+	menuWorkspace->addAction(workspaceActionSeparator);
+
+	bool has_file_actions = false;
+	bool has_folder_actions = false;
+
+	for(int i = 0; i < custom_actions.size(); ++i)
+	{
+		CustomAction &cust_act = custom_actions[i];
+		QAction *action = customActions[i];
+		action->setVisible(cust_act.IsValid());
+		action->setText(cust_act.Description);
+
+		if(cust_act.IsActive(ACTION_CONTEXT_FILES))
+		{
+			ui->fileTableView->addAction(action);
+			has_file_actions = true;
+		}
+
+		if(cust_act.IsActive(ACTION_CONTEXT_FOLDERS))
+		{
+			menuWorkspace->addAction(action);
+			has_folder_actions = true;
+		}
 	}
 
-	if(!fileaction_name.isEmpty() && !fileaction_cmd.isEmpty())
-	{
-		ui->actionCustomFileAction->setVisible(true);
-		ui->actionCustomFileAction->setText(fileaction_name);
-	}
-	else
-		ui->actionCustomFileAction->setVisible(false);
+	if(!has_file_actions)
+		ui->fileTableView->removeAction(fileActionSeparator);
+
+	if(!has_folder_actions)
+		menuWorkspace->removeAction(workspaceActionSeparator);
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionCustomFileAction_triggered()
+void MainWindow::on_actionCustomAction_triggered()
 {
-	if(!settings.HasValue(FUEL_SETTING_FILEACTION_NAME) || !settings.HasValue(FUEL_SETTING_FILEACTION_COMMAND))
+	QAction *action = qobject_cast<QAction *>(sender());
+	if(!action)
 		return;
 
-	QStringList selection;
-	getSelectionFilenames(selection, WorkspaceFile::TYPE_ALL);
-
-	QProcess proc(this);
+	int action_id = action->data().toInt();
+	Q_ASSERT(action_id < settings.GetCustomActions().size());
+	CustomAction &cust_action = settings.GetCustomActions()[action_id];
+	Q_ASSERT(cust_action.IsValid());
 
 	QStringList params;
-	foreach(const QString &f, selection)
+
+	// Process command string
+	QString cmd = cust_action.Command;
+	Q_ASSERT(!cmd.isEmpty());
+
+	// Split command from embedded params
+	QString extra_params;
+
+	// Command ends after first space
+	QChar cmd_char_end = ' ';
+	int start = 0 ;
+
+	// Unless it is a quoted command
+	if(cmd[0]=='"')
 	{
-		QString path = QFileInfo(fossil().getCurrentWorkspace() + "/" + f).absoluteFilePath();
-		params.append(path);
+		cmd_char_end = '"';
+		start = 1;
 	}
 
-	const QString &cmd = settings.GetValue(FUEL_SETTING_FILEACTION_COMMAND).toString();
+	int cmd_end = cmd.indexOf(cmd_char_end, start);
+	if(cmd_end != -1)
+	{
+		extra_params = cmd.mid(cmd_end+1);
+		cmd = cmd.left(cmd_end);
+	}
+
+	cmd = cmd.trimmed();
+	extra_params = extra_params.trimmed();
+	QStringList extra_param_list = extra_params.split(' ');
+	foreach(const QString &p, extra_param_list)
+		params.push_back(p);
+
+	// Extract selection
+	if(cust_action.IsActive(ACTION_CONTEXT_FILES))
+	{
+		QStringList file_selection;
+		getSelectionFilenames(file_selection, WorkspaceFile::TYPE_ALL);
+		foreach(const QString &f, file_selection)
+		{
+			QString path = QFileInfo(fossil().getCurrentWorkspace() + "/" + f).absoluteFilePath();
+			params.append(path);
+		}
+	}
+
+	if(cust_action.IsActive(ACTION_CONTEXT_FOLDERS))
+	{
+		stringset_t path_selection;
+		getSelectionPaths(path_selection);
+		foreach(const QString &f, path_selection)
+		{
+			QString path = QFileInfo(fossil().getCurrentWorkspace() + "/" + f).absoluteFilePath();
+			params.append(path);
+		}
+	}
+
+	// Skip action if nothing is available
+	if(params.empty())
+		return;
+
+
+	log("<b>"+cmd + " "+params.join(" ")+"</b><br>", true);
+
+	QProcess proc(this);
 	proc.startDetached(cmd, params);
 }

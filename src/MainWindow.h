@@ -134,7 +134,7 @@ private slots:
 	void on_actionSetDefaultRemote_triggered();
 	void on_actionAddRemote_triggered();
 	void on_actionDeleteRemote_triggered();
-	void on_actionCustomFileAction_triggered();
+	void on_actionCustomAction_triggered();
 
 private:
 	class MainWinUICallback : public UICallback
@@ -172,6 +172,9 @@ private:
 	QFileIconProvider	iconProvider;
 	icon_map_t			iconCache;
 	class QAction		*recentWorkspaceActs[MAX_RECENT];
+	class QAction		*customActions[MAX_CUSTOM_ACTIONS];
+	class QAction		*fileActionSeparator;
+	class QAction		*workspaceActionSeparator;
 	class QProgressBar	*progressBar;
 	class QLabel		*lblRevision;
 	class QLabel		*lblTags;
