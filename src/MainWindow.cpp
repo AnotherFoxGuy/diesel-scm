@@ -1433,6 +1433,8 @@ void MainWindow::on_fileTableView_doubleClicked(const QModelIndex &/*index*/)
 		on_actionOpenFile_triggered();
 	else if(action==FILE_DLBCLICK_ACTION_OPENCONTAINING)
 		on_actionOpenContaining_triggered();
+	else if(action==FILE_DLBCLICK_ACTION_CUSTOM)
+		invokeCustomAction(0);
 }
 
 //------------------------------------------------------------------------------
@@ -2783,15 +2785,10 @@ void MainWindow::updateCustomActions()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionCustomAction_triggered()
+void MainWindow::invokeCustomAction(int actionId)
 {
-	QAction *action = qobject_cast<QAction *>(sender());
-	if(!action)
-		return;
-
-	int action_id = action->data().toInt();
-	Q_ASSERT(action_id < settings.GetCustomActions().size());
-	CustomAction &cust_action = settings.GetCustomActions()[action_id];
+	Q_ASSERT(actionId < settings.GetCustomActions().size());
+	CustomAction &cust_action = settings.GetCustomActions()[actionId];
 	Q_ASSERT(cust_action.IsValid());
 
 	Q_ASSERT(!cust_action.Command.isEmpty());
@@ -2825,4 +2822,15 @@ void MainWindow::on_actionCustomAction_triggered()
 	const QString &wkdir = fossil().getCurrentWorkspace();
 
 	SpawnExternalProcess(this, cust_action.Command, file_selection, path_selection, wkdir, uiCallback);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionCustomAction_triggered()
+{
+	QAction *action = qobject_cast<QAction *>(sender());
+	if(!action)
+		return;
+
+	int action_id = action->data().toInt();
+	invokeCustomAction(action_id);
 }

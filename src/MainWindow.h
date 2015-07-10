@@ -54,7 +54,7 @@ private:
 	void selectRootDir();
 	void mergeRevision(const QString& defaultRevision);
 	void updateCustomActions();
-
+	void invokeCustomAction(int actionId);
 
 	void fossilBrowse(const QString &fossilUrl);
 	void dragEnterEvent(class QDragEnterEvent *event);

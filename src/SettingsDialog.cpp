@@ -17,6 +17,7 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 	ui->cmbDoubleClickAction->addItem(tr("Diff File"));
 	ui->cmbDoubleClickAction->addItem(tr("Open File"));
 	ui->cmbDoubleClickAction->addItem(tr("Open Containing Folder"));
+	ui->cmbDoubleClickAction->addItem(tr("Custom Action %0").arg(1));
 
 	ui->cmbFossilBrowser->addItem(tr("System"));
 	ui->cmbFossilBrowser->addItem(tr("Internal"));
