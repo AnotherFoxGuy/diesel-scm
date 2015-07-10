@@ -23,11 +23,16 @@ private slots:
 	void on_btnSelectFossil_clicked();
 	void on_buttonBox_accepted();
 	void on_btnClearMessageHistory_clicked();
+	void on_btnSelectCustomFileActionCommand_clicked();
+	void on_cmbCustomAction_currentIndexChanged(int index);
+	void on_cmbCustomActionContext_currentIndexChanged(int index);
 
 private:
 	QString LangIdToName(const QString &id);
 	QString LangNameToId(const QString &name);
 	void CreateLangMap();
+	void GetCustomAction(int index);
+	void PutCustomAction(int index);
 
 	struct LangMap
 	{
@@ -43,6 +48,8 @@ private:
 	QList<LangMap>	langMap;
 	Ui::SettingsDialog *ui;
 	Settings *settings;
+	Settings::custom_actions_t currentCustomActions;
+	int lastActionIndex;
 };
 
 #endif // SETTINGSDIALOG_H

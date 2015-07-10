@@ -37,6 +37,14 @@ Settings::Settings(bool portableMode) : store(0)
 	if(!HasValue(FUEL_SETTING_WEB_BROWSER))
 		SetValue(FUEL_SETTING_WEB_BROWSER, 0);
 
+
+	for(int i=0; i<MAX_CUSTOM_ACTIONS; ++i)
+	{
+		CustomAction action;
+		action.Id = QObject::tr("Custom Action %0").arg(i+1);
+		customActions.append(action);
+	}
+
 	ApplyEnvironment();
 }
 

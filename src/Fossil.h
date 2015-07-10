@@ -10,8 +10,6 @@ class QStringList;
 
 typedef QMap<QString, QString> stashmap_t;
 
-#define PATH_SEPARATOR		"/"
-
 enum RunFlags
 {
 	RUNFLAGS_NONE			= 0<<0,

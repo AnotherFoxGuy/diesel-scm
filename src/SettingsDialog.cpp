@@ -17,6 +17,7 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 	ui->cmbDoubleClickAction->addItem(tr("Diff File"));
 	ui->cmbDoubleClickAction->addItem(tr("Open File"));
 	ui->cmbDoubleClickAction->addItem(tr("Open Containing Folder"));
+	ui->cmbDoubleClickAction->addItem(tr("Custom Action %0").arg(1));
 
 	ui->cmbFossilBrowser->addItem(tr("System"));
 	ui->cmbFossilBrowser->addItem(tr("Internal"));
@@ -36,6 +37,22 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) :
 				ui->cmbActiveLanguage->findText(
 					LangIdToName(lang)));
 
+
+	lastActionIndex = 0;
+	currentCustomActions = settings->GetCustomActions();
+
+	ui->cmbCustomActionContext->addItem(tr("Files"));
+	ui->cmbCustomActionContext->addItem(tr("Folders"));
+	ui->cmbCustomActionContext->setCurrentIndex(0);
+
+	GetCustomAction(0);
+
+	for(int i=0; i<currentCustomActions.size(); ++i)
+	{
+		CustomAction &a = currentCustomActions[i];
+		ui->cmbCustomAction->addItem(a.Id);
+	}
+	ui->cmbCustomAction->setCurrentIndex(0);
 }
 
 //-----------------------------------------------------------------------------
@@ -67,6 +84,17 @@ void SettingsDialog::on_buttonBox_accepted()
 
 	if(curr_langid != new_langid)
 		QMessageBox::information(this, tr("Restart required"), tr("The language change will take effect after restarting the application"), QMessageBox::Ok);
+
+	for(int i=0; i<currentCustomActions.size(); ++i)
+	{
+		CustomAction &a = currentCustomActions[i];
+		a.Description = a.Description.trimmed();
+		a.Command = QDir::fromNativeSeparators(a.Command.trimmed());
+	}
+
+	PutCustomAction(ui->cmbCustomAction->currentIndex());
+
+	settings->GetCustomActions() = currentCustomActions;
 
 	settings->ApplyEnvironment();
 }
@@ -120,4 +148,54 @@ QString SettingsDialog::LangNameToId(const QString &name)
 	}
 
 	return "";
+}
+
+//-----------------------------------------------------------------------------
+void SettingsDialog::on_btnSelectCustomFileActionCommand_clicked()
+{
+	QString path = SelectExe(this, tr("Select command"));
+	if(!path.isEmpty())
+		ui->lineCustomActionCommand->setText(QDir::toNativeSeparators(path));
+}
+
+//-----------------------------------------------------------------------------
+void SettingsDialog::GetCustomAction(int index)
+{
+	Q_ASSERT(index>=0 && index < currentCustomActions.size());
+	CustomAction &action = currentCustomActions[index];
+	ui->lineCustomActionDescription->setText(action.Description);
+	ui->lineCustomActionCommand->setText(action.Command);
+	ui->cmbCustomActionContext->setCurrentIndex(action.Context-1);
+	ui->chkCustomActionMultipleSelection->setChecked(action.MultipleSelection);
+}
+
+//-----------------------------------------------------------------------------
+void SettingsDialog::PutCustomAction(int index)
+{
+	Q_ASSERT(index>=0 && index < currentCustomActions.size());
+	CustomAction &action = currentCustomActions[index];
+	action.Description = ui->lineCustomActionDescription->text().trimmed();
+	action.Command = QDir::fromNativeSeparators(ui->lineCustomActionCommand->text().trimmed());
+	action.Context = static_cast<CustomActionContext>(ui->cmbCustomActionContext->currentIndex()+1);
+	action.MultipleSelection = ui->chkCustomActionMultipleSelection->isChecked();
+}
+
+//-----------------------------------------------------------------------------
+void SettingsDialog::on_cmbCustomAction_currentIndexChanged(int index)
+{
+	if(index != lastActionIndex)
+		PutCustomAction(lastActionIndex);
+
+	GetCustomAction(index);
+	lastActionIndex = index;
+}
+
+//-----------------------------------------------------------------------------
+void SettingsDialog::on_cmbCustomActionContext_currentIndexChanged(int index)
+{
+	int action_index = ui->cmbCustomAction->currentIndex();
+	if(action_index<0)
+		return;
+	Q_ASSERT(action_index>=0 && action_index < currentCustomActions.size());
+	currentCustomActions[action_index].Context = static_cast<CustomActionContext>(index+1);
 }

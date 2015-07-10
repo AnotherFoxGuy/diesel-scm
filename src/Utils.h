@@ -5,37 +5,16 @@
 #include <QMessageBox>
 #include <QMap>
 #include <QStandardItem>
+#include <QSet>
 
 #define COUNTOF(array)			(sizeof(array)/sizeof(array[0]))
 #define FOSSIL_CHECKOUT1	"_FOSSIL_"
 #define FOSSIL_CHECKOUT2	".fslckout"
 #define FOSSIL_EXT			"fossil"
+#define PATH_SEPARATOR		"/"
 
+typedef QSet<QString> stringset_t;
 
-QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons = QMessageBox::Yes|QMessageBox::No);
-QString						QuotePath(const QString &path);
-QStringList					QuotePaths(const QStringList &paths);
-QString						SelectExe(QWidget *parent, const QString &description);
-
-
-typedef QMap<QString, QModelIndex> name_modelindex_map_t;
-void						GetStandardItemTextRecursive(QString &name, const QStandardItem &item, const QChar &separator='/');
-void						BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItem &item);
-void						BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItemModel &model);
-bool						KeychainSet(QObject* parent, const QUrl& url);
-bool						KeychainGet(QObject* parent, QUrl& url);
-bool						KeychainDelete(QObject* parent, const QUrl& url);
-QString						HashString(const QString &str);
-QString						UrlToStringDisplay(const QUrl &url);
-QString						UrlToStringNoCredentials(const QUrl& url);
-
-
-typedef QMap<QString, QString> QStringMap;
-void						ParseProperties(QStringMap &properties, const QStringList &lines, QChar separator=' ');
-
-#ifdef Q_OS_WIN
-	bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint);
-#endif
 
 class UICallback
 {
@@ -64,5 +43,31 @@ public:
 private:
 	UICallback *uiCallback;
 };
+
+
+QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons = QMessageBox::Yes|QMessageBox::No);
+QString						QuotePath(const QString &path);
+QStringList					QuotePaths(const QStringList &paths);
+QString						SelectExe(QWidget *parent, const QString &description);
+
+
+typedef QMap<QString, QModelIndex> name_modelindex_map_t;
+void						GetStandardItemTextRecursive(QString &name, const QStandardItem &item, const QChar &separator='/');
+void						BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItem &item);
+void						BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItemModel &model);
+bool						KeychainSet(QObject* parent, const QUrl& url);
+bool						KeychainGet(QObject* parent, QUrl& url);
+bool						KeychainDelete(QObject* parent, const QUrl& url);
+QString						HashString(const QString &str);
+QString						UrlToStringDisplay(const QUrl &url);
+QString						UrlToStringNoCredentials(const QUrl& url);
+bool						SpawnExternalProcess(QObject *procesParent, const QString &command, const QStringList &file_selection, const stringset_t &path_selection, const QString& wkdir, UICallback& ui);
+
+typedef QMap<QString, QString> QStringMap;
+void						ParseProperties(QStringMap &properties, const QStringList &lines, QChar separator=' ');
+
+#ifdef Q_OS_WIN
+	bool ShowExplorerMenu(HWND hwnd, const QString &path, const QPoint &qpoint);
+#endif
 
 #endif // UTILS_H
