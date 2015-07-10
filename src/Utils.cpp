@@ -478,7 +478,7 @@ QString UrlToStringNoCredentials(const QUrl& url)
 }
 
 //------------------------------------------------------------------------------
-bool SpawnExternalProcess(QObject *procesParent, const QString& command, const QStringList& file_selection, const stringset_t& path_selection, const QString &wkdir, UICallback &ui)
+bool SpawnExternalProcess(QObject *processParent, const QString& command, const QStringList& fileList, const stringset_t& pathSet, const QString &workspaceDir, UICallback &uiCallback)
 {
 	QStringList params;
 
@@ -534,7 +534,7 @@ bool SpawnExternalProcess(QObject *procesParent, const QString& command, const Q
 			{
 				// Add in-place
 				QString n = p;
-				n.replace("$WORKSPACE", wkdir, Qt::CaseInsensitive);
+				n.replace("$WORKSPACE", workspaceDir, Qt::CaseInsensitive);
 				params.push_back(n);
 				continue;
 			}
@@ -544,9 +544,9 @@ bool SpawnExternalProcess(QObject *procesParent, const QString& command, const Q
 	}
 
 	// Build file params
-	foreach(const QString &f, file_selection)
+	foreach(const QString &f, fileList)
 	{
-		QString path = QFileInfo(wkdir + PATH_SEPARATOR + f).absoluteFilePath();
+		QString path = QFileInfo(workspaceDir + PATH_SEPARATOR + f).absoluteFilePath();
 
 		// Apply macro
 		if(!macro_file.isEmpty())
@@ -560,9 +560,9 @@ bool SpawnExternalProcess(QObject *procesParent, const QString& command, const Q
 
 
 	// Build folder params
-	foreach(const QString &f, path_selection)
+	foreach(const QString &f, pathSet)
 	{
-		QString path = QFileInfo(wkdir + PATH_SEPARATOR + f).absoluteFilePath();
+		QString path = QFileInfo(workspaceDir + PATH_SEPARATOR + f).absoluteFilePath();
 
 		// Apply macro
 		if(!macro_folder.isEmpty())
@@ -577,8 +577,8 @@ bool SpawnExternalProcess(QObject *procesParent, const QString& command, const Q
 	if(params.empty())
 		return false;
 
-	ui.logText("<b>"+cmd + " "+params.join(" ")+"</b><br>", true);
+	uiCallback.logText("<b>"+cmd + " "+params.join(" ")+"</b><br>", true);
 
-	QProcess proc(procesParent);
+	QProcess proc(processParent);
 	return proc.startDetached(cmd, params);
 }
