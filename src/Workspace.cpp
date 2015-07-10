@@ -22,6 +22,7 @@ void Workspace::clearState()
 
 	getFiles().clear();
 	getPaths().clear();
+	getPathState().clear();
 	stashMap.clear();
 	branchList.clear();
 	tags.clear();
@@ -278,6 +279,14 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 
 		QString path = rf->getPath();
 		getPaths().insert(path);
+
+		// Add or merge file state into directory state
+		pathstate_map_t::iterator state_it = getPathState().find(path);
+		if(state_it != getPathState().end())
+			state_it.value() = static_cast<WorkspaceFile::Type>(state_it.value() | type);
+		else
+			getPathState().insert(path, type);
+
 	}
 
 	// Check if the repository needs integration

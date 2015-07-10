@@ -703,7 +703,7 @@ void MainWindow::scanWorkspace()
 }
 
 //------------------------------------------------------------------------------
-static void addPathToTree(QStandardItem &root, const QString &path, const QIcon &folderIcon)
+static void addPathToTree(QStandardItem &root, const QString &path, const QIcon &folderDefaultIcon, const QIcon &folderIconClean, const QIcon &folderIconDirty, const pathstate_map_t &pathState)
 {
 	QStringList dirs = path.split('/');
 	QStandardItem *parent = &root;
@@ -729,11 +729,44 @@ static void addPathToTree(QStandardItem &root, const QString &path, const QIcon 
 
 		if(!found) // Generate it
 		{
-			QStandardItem *child = new QStandardItem(folderIcon, dir);
+			const QIcon *icon = &folderDefaultIcon;
+
+			pathstate_map_t::const_iterator state_it = pathState.find(fullpath);
+			if(state_it != pathState.end())
+			{
+				WorkspaceFile::Type type = state_it.value();
+
+				if(type & (WorkspaceFile::TYPE_MODIFIED))
+					icon = &folderIconDirty;
+				else
+					icon = &folderIconClean;
+			}
+
+			QStandardItem *child = new QStandardItem(*icon, dir);
 			child->setData(WorkspaceItem(WorkspaceItem::TYPE_FOLDER, fullpath), ROLE_WORKSPACE_ITEM);
 			parent->appendRow(child);
 			parent = child;
+
+			// Update icons of parents
+			if(icon != &folderDefaultIcon) // Default Icon is not inherited by parent
+			{
+				QStandardItem *p = parent;
+				while(p && p != &root) // Ascend parents except the root node
+				{
+					const QIcon &parent_icon = p->icon();
+
+					// Dirty is inherited
+					if(icon == &folderIconDirty)
+						p->setIcon(*icon);
+					// Clean is inherited if not dirty
+					else if(icon == &folderIconClean && (&parent_icon != &folderIconDirty))
+						p->setIcon(*icon);
+
+					p = p->parent();
+				}
+			}
 		}
+
 		fullpath += '/';
 	}
 }
@@ -769,13 +802,16 @@ void MainWindow::updateWorkspaceView()
 	getWorkspace().getTreeModel().appendRow(workspace);
 	if(viewMode == VIEWMODE_TREE)
 	{
-		for(stringset_t::iterator it = getWorkspace().getPaths().begin(); it!=getWorkspace().getPaths().end(); ++it)
+		// FIXME: Change paths to map to allow for automatic sorting
+		QStringList paths = getWorkspace().getPaths().toList();
+		paths.sort();
+
+		foreach(const QString &dir, paths)
 		{
-			const QString &dir = *it;
 			if(dir.isEmpty())
 				continue;
 
-			addPathToTree(*workspace, dir, getInternalIcon(":icons/icon-item-folder"));
+			addPathToTree(*workspace, dir, getInternalIcon(":icons/icon-item-folder"), getInternalIcon(":icons/icons/Folder Generic Green-01.png"), getInternalIcon(":icons/icons/Folder Generic Red-01.png"), getWorkspace().getPathState());
 		}
 
 		// Expand root folder

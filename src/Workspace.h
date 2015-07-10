@@ -112,6 +112,7 @@ public:
 };
 
 typedef QMap<QUrl, Remote> remote_map_t;
+typedef QMap<QString, WorkspaceFile::Type> pathstate_map_t;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -140,6 +141,7 @@ public:
 
 	filemap_t			&getFiles() { return workspaceFiles; }
 	stringset_t			&getPaths() { return pathSet; }
+	pathstate_map_t		&getPathState() { return pathState; }
 	stashmap_t			&getStashes() { return stashMap; }
 	QStringMap			&getTags() { return tags; }
 	QStringList			&getBranches() { return branchList; }
@@ -162,6 +164,7 @@ private:
 	Fossil				bridge;
 	filemap_t			workspaceFiles;
 	stringset_t			pathSet;
+	pathstate_map_t		pathState;
 	stashmap_t			stashMap;
 	QStringList			branchList;
 	QStringMap			tags;
