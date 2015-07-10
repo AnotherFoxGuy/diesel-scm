@@ -39,7 +39,7 @@ enum CustomActionContext
 
 enum
 {
-	MAX_CUSTOM_ACTIONS = 5
+	MAX_CUSTOM_ACTIONS = 9
 };
 
 struct CustomAction
@@ -48,6 +48,7 @@ struct CustomAction
 	QString				Description;
 	QString				Command;
 	CustomActionContext	Context;
+	bool				MultipleSelection;
 
 	CustomAction()
 	{
@@ -69,6 +70,7 @@ struct CustomAction
 		Description.clear();
 		Command.clear();
 		Context = ACTION_CONTEXT_FILES;
+		MultipleSelection = true;
 	}
 };
 

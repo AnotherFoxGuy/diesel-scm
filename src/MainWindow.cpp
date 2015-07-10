@@ -1097,6 +1097,8 @@ void MainWindow::applySettings()
 			action.Command = store->value("Command").toString();
 		if(store->contains("Context"))
 			action.Context = static_cast<CustomActionContext>(store->value("Context").toInt());
+		if(store->contains("MultipleSelection"))
+			action.MultipleSelection = store->value("MultipleSelection").toBool();
 
 		++last_action;
 	}
@@ -1156,6 +1158,7 @@ void MainWindow::updateSettings()
 		store->setValue("Description", action.Description);
 		store->setValue("Command", action.Command);
 		store->setValue("Context", static_cast<int>(action.Context));
+		store->setValue("MultipleSelection", action.MultipleSelection);
 		++active_actions;
 	}
 	store->endArray();
@@ -2800,6 +2803,24 @@ void MainWindow::on_actionCustomAction_triggered()
 	stringset_t path_selection;
 	if(cust_action.IsActive(ACTION_CONTEXT_FOLDERS))
 		getSelectionPaths(path_selection);
+
+	// Trim excess items for single selection
+	if(!cust_action.MultipleSelection)
+	{
+		if(!file_selection.empty())
+		{
+			QString item = *file_selection.begin();
+			file_selection.clear();
+			file_selection.push_back(item);
+			path_selection.clear();
+		}
+		else if(!path_selection.empty())
+		{
+			QString item = *path_selection.begin();
+			path_selection.clear();
+			path_selection.insert(item);
+		}
+	}
 
 	const QString &wkdir = fossil().getCurrentWorkspace();
 

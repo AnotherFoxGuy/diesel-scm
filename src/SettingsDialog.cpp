@@ -165,6 +165,7 @@ void SettingsDialog::GetCustomAction(int index)
 	ui->lineCustomActionDescription->setText(action.Description);
 	ui->lineCustomActionCommand->setText(action.Command);
 	ui->cmbCustomActionContext->setCurrentIndex(action.Context-1);
+	ui->chkCustomActionMultipleSelection->setChecked(action.MultipleSelection);
 }
 
 //-----------------------------------------------------------------------------
@@ -175,6 +176,7 @@ void SettingsDialog::PutCustomAction(int index)
 	action.Description = ui->lineCustomActionDescription->text().trimmed();
 	action.Command = QDir::fromNativeSeparators(ui->lineCustomActionCommand->text().trimmed());
 	action.Context = static_cast<CustomActionContext>(ui->cmbCustomActionContext->currentIndex()+1);
+	action.MultipleSelection = ui->chkCustomActionMultipleSelection->isChecked();
 }
 
 //-----------------------------------------------------------------------------
