@@ -53,7 +53,7 @@ private:
 	void updateFileView();
 	void selectRootDir();
 	void mergeRevision(const QString& defaultRevision);
-	void applyUserActions();
+	void updateCustomActions();
 
 
 	void fossilBrowse(const QString &fossilUrl);

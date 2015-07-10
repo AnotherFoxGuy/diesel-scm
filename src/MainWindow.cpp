@@ -215,7 +215,6 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	}
 
 	// Custom Actions
-	//ui->fileTableView->addAction(separator);
 	for(int i = 0; i < settings.GetCustomActions().size(); ++i)
 	{
 		customActions[i] = new QAction(this);
@@ -1103,7 +1102,7 @@ void MainWindow::applySettings()
 	}
 	store->endArray();
 
-	applyUserActions();
+	updateCustomActions();
 }
 
 //------------------------------------------------------------------------------
@@ -1211,7 +1210,7 @@ void MainWindow::getSelectionPaths(stringset_t &paths)
 		Q_ASSERT(data.isValid());
 
 		WorkspaceItem tv = data.value<WorkspaceItem>();
-		if(tv.Type != WorkspaceItem::TYPE_FOLDER)
+		if(tv.Type != WorkspaceItem::TYPE_FOLDER && tv.Type != WorkspaceItem::TYPE_WORKSPACE)
 			continue;
 
 		paths.insert(tv.Value);
@@ -1722,7 +1721,7 @@ void MainWindow::on_actionSettings_triggered()
 	if(!SettingsDialog::run(this, settings))
 		return;
 
-	applyUserActions();
+	updateCustomActions();
 }
 
 //------------------------------------------------------------------------------
@@ -2731,7 +2730,7 @@ void MainWindow::on_actionDeleteRemote_triggered()
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::applyUserActions()
+void MainWindow::updateCustomActions()
 {
 	Settings::custom_actions_t custom_actions = settings.GetCustomActions();
 	Q_ASSERT(MAX_CUSTOM_ACTIONS == custom_actions.size());
@@ -2803,9 +2802,9 @@ void MainWindow::on_actionCustomAction_triggered()
 
 	// Command ends after first space
 	QChar cmd_char_end = ' ';
-	int start = 0 ;
+	int start = 0;
 
-	// Unless it is a quoted command
+	// ...unless it is a quoted command
 	if(cmd[0]=='"')
 	{
 		cmd_char_end = '"';
@@ -2821,29 +2820,73 @@ void MainWindow::on_actionCustomAction_triggered()
 
 	cmd = cmd.trimmed();
 	extra_params = extra_params.trimmed();
-	QStringList extra_param_list = extra_params.split(' ');
-	foreach(const QString &p, extra_param_list)
-		params.push_back(p);
 
-	// Extract selection
+	// Push all additional params, except those containing macros
+	QStringList extra_param_list = extra_params.split(' ');
+	QString macro_file;
+	QString macro_folder;
+
+	const QString &wkdir = fossil().getCurrentWorkspace();
+
+	foreach(const QString &p, extra_param_list)
+	{
+		if(p.indexOf("$FILE")!=-1)
+		{
+			macro_file = p;
+			continue;
+		}
+		else if(p.indexOf("$FOLDER")!=-1)
+		{
+			macro_folder = p;
+			continue;
+		}
+		else if(p.indexOf("$WORKSPACE")!=-1)
+		{
+			// Add in-place
+			QString n = p;
+			n.replace("$WORKSPACE", wkdir, Qt::CaseInsensitive);
+			params.push_back(n);
+			continue;
+		}
+
+		params.push_back(p);
+	}
+
+	// Build file params
 	if(cust_action.IsActive(ACTION_CONTEXT_FILES))
 	{
 		QStringList file_selection;
 		getSelectionFilenames(file_selection, WorkspaceFile::TYPE_ALL);
 		foreach(const QString &f, file_selection)
 		{
-			QString path = QFileInfo(fossil().getCurrentWorkspace() + "/" + f).absoluteFilePath();
+			QString path = QFileInfo(wkdir + PATH_SEPARATOR + f).absoluteFilePath();
+
+			// Apply macro
+			if(!macro_file.isEmpty())
+			{
+				QString macro = macro_file;
+				path = macro.replace("$FILE", path, Qt::CaseInsensitive);
+			}
+
 			params.append(path);
 		}
 	}
 
+	// Build folder params
 	if(cust_action.IsActive(ACTION_CONTEXT_FOLDERS))
 	{
 		stringset_t path_selection;
 		getSelectionPaths(path_selection);
 		foreach(const QString &f, path_selection)
 		{
-			QString path = QFileInfo(fossil().getCurrentWorkspace() + "/" + f).absoluteFilePath();
+			QString path = QFileInfo(wkdir + PATH_SEPARATOR + f).absoluteFilePath();
+
+			// Apply macro
+			if(!macro_folder.isEmpty())
+			{
+				QString macro = macro_folder;
+				path = macro.replace("$FOLDER", path, Qt::CaseInsensitive);
+			}
 			params.append(path);
 		}
 	}
@@ -2851,7 +2894,6 @@ void MainWindow::on_actionCustomAction_triggered()
 	// Skip action if nothing is available
 	if(params.empty())
 		return;
-
 
 	log("<b>"+cmd + " "+params.join(" ")+"</b><br>", true);
 
