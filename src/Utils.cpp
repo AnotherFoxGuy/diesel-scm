@@ -4,8 +4,9 @@
 #include <QFileDialog>
 #include <QEventLoop>
 #include <QUrl>
-#include "ext/qtkeychain/keychain.h"
+#include <QProcess>
 #include <QCryptographicHash>
+#include "ext/qtkeychain/keychain.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons)
@@ -474,4 +475,110 @@ QString UrlToStringNoCredentials(const QUrl& url)
 #else
 	return url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo);
 #endif
+}
+
+//------------------------------------------------------------------------------
+bool SpawnExternalProcess(QObject *procesParent, const QString& command, const QStringList& file_selection, const stringset_t& path_selection, const QString &wkdir, UICallback &ui)
+{
+	QStringList params;
+
+	// Process command string
+	QString cmd = command;
+	Q_ASSERT(!cmd.isEmpty());
+
+	// Split command from embedded params
+	QString extra_params;
+
+	// Command ends after first space
+	QChar cmd_char_end = ' ';
+	int start = 0;
+
+	// ...unless it is a quoted command
+	if(cmd[0]=='"')
+	{
+		cmd_char_end = '"';
+		start = 1;
+	}
+
+	int cmd_end = cmd.indexOf(cmd_char_end, start);
+	if(cmd_end != -1)
+	{
+		extra_params = cmd.mid(cmd_end+1);
+		cmd = cmd.left(cmd_end);
+	}
+
+	cmd = cmd.trimmed();
+	extra_params = extra_params.trimmed();
+
+	// Push all additional params, except those containing macros
+	QString macro_file;
+	QString macro_folder;
+
+	if(!extra_params.isEmpty())
+	{
+		QStringList extra_param_list = extra_params.split(' ');
+
+		foreach(const QString &p, extra_param_list)
+		{
+			if(p.indexOf("$FILE")!=-1)
+			{
+				macro_file = p;
+				continue;
+			}
+			else if(p.indexOf("$FOLDER")!=-1)
+			{
+				macro_folder = p;
+				continue;
+			}
+			else if(p.indexOf("$WORKSPACE")!=-1)
+			{
+				// Add in-place
+				QString n = p;
+				n.replace("$WORKSPACE", wkdir, Qt::CaseInsensitive);
+				params.push_back(n);
+				continue;
+			}
+
+			params.push_back(p);
+		}
+	}
+
+	// Build file params
+	foreach(const QString &f, file_selection)
+	{
+		QString path = QFileInfo(wkdir + PATH_SEPARATOR + f).absoluteFilePath();
+
+		// Apply macro
+		if(!macro_file.isEmpty())
+		{
+			QString macro = macro_file;
+			path = macro.replace("$FILE", path, Qt::CaseInsensitive);
+		}
+
+		params.append(path);
+	}
+
+
+	// Build folder params
+	foreach(const QString &f, path_selection)
+	{
+		QString path = QFileInfo(wkdir + PATH_SEPARATOR + f).absoluteFilePath();
+
+		// Apply macro
+		if(!macro_folder.isEmpty())
+		{
+			QString macro = macro_folder;
+			path = macro.replace("$FOLDER", path, Qt::CaseInsensitive);
+		}
+		params.append(path);
+	}
+
+	// Skip action if nothing is available
+	if(params.empty())
+		return false;
+
+	ui.logText("<b>"+cmd + " "+params.join(" ")+"</b><br>", true);
+
+	QProcess proc(procesParent);
+	return proc.startDetached(cmd, params);
 }

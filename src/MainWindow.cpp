@@ -2791,112 +2791,17 @@ void MainWindow::on_actionCustomAction_triggered()
 	CustomAction &cust_action = settings.GetCustomActions()[action_id];
 	Q_ASSERT(cust_action.IsValid());
 
-	QStringList params;
+	Q_ASSERT(!cust_action.Command.isEmpty());
 
-	// Process command string
-	QString cmd = cust_action.Command;
-	Q_ASSERT(!cmd.isEmpty());
+	QStringList file_selection;
+	if(cust_action.IsActive(ACTION_CONTEXT_FILES))
+		getSelectionFilenames(file_selection, WorkspaceFile::TYPE_ALL);
 
-	// Split command from embedded params
-	QString extra_params;
-
-	// Command ends after first space
-	QChar cmd_char_end = ' ';
-	int start = 0;
-
-	// ...unless it is a quoted command
-	if(cmd[0]=='"')
-	{
-		cmd_char_end = '"';
-		start = 1;
-	}
-
-	int cmd_end = cmd.indexOf(cmd_char_end, start);
-	if(cmd_end != -1)
-	{
-		extra_params = cmd.mid(cmd_end+1);
-		cmd = cmd.left(cmd_end);
-	}
-
-	cmd = cmd.trimmed();
-	extra_params = extra_params.trimmed();
-
-	// Push all additional params, except those containing macros
-	QStringList extra_param_list = extra_params.split(' ');
-	QString macro_file;
-	QString macro_folder;
+	stringset_t path_selection;
+	if(cust_action.IsActive(ACTION_CONTEXT_FOLDERS))
+		getSelectionPaths(path_selection);
 
 	const QString &wkdir = fossil().getCurrentWorkspace();
 
-	foreach(const QString &p, extra_param_list)
-	{
-		if(p.indexOf("$FILE")!=-1)
-		{
-			macro_file = p;
-			continue;
-		}
-		else if(p.indexOf("$FOLDER")!=-1)
-		{
-			macro_folder = p;
-			continue;
-		}
-		else if(p.indexOf("$WORKSPACE")!=-1)
-		{
-			// Add in-place
-			QString n = p;
-			n.replace("$WORKSPACE", wkdir, Qt::CaseInsensitive);
-			params.push_back(n);
-			continue;
-		}
-
-		params.push_back(p);
-	}
-
-	// Build file params
-	if(cust_action.IsActive(ACTION_CONTEXT_FILES))
-	{
-		QStringList file_selection;
-		getSelectionFilenames(file_selection, WorkspaceFile::TYPE_ALL);
-		foreach(const QString &f, file_selection)
-		{
-			QString path = QFileInfo(wkdir + PATH_SEPARATOR + f).absoluteFilePath();
-
-			// Apply macro
-			if(!macro_file.isEmpty())
-			{
-				QString macro = macro_file;
-				path = macro.replace("$FILE", path, Qt::CaseInsensitive);
-			}
-
-			params.append(path);
-		}
-	}
-
-	// Build folder params
-	if(cust_action.IsActive(ACTION_CONTEXT_FOLDERS))
-	{
-		stringset_t path_selection;
-		getSelectionPaths(path_selection);
-		foreach(const QString &f, path_selection)
-		{
-			QString path = QFileInfo(wkdir + PATH_SEPARATOR + f).absoluteFilePath();
-
-			// Apply macro
-			if(!macro_folder.isEmpty())
-			{
-				QString macro = macro_folder;
-				path = macro.replace("$FOLDER", path, Qt::CaseInsensitive);
-			}
-			params.append(path);
-		}
-	}
-
-	// Skip action if nothing is available
-	if(params.empty())
-		return;
-
-	log("<b>"+cmd + " "+params.join(" ")+"</b><br>", true);
-
-	QProcess proc(this);
-	proc.startDetached(cmd, params);
+	SpawnExternalProcess(this, cust_action.Command, file_selection, path_selection, wkdir, uiCallback);
 }

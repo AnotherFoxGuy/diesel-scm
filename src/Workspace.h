@@ -97,9 +97,6 @@ private:
 	QString		Path;
 };
 
-
-typedef QSet<QString> stringset_t;
-
 class Remote
 {
 public:
