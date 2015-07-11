@@ -22,8 +22,8 @@ macx {
 
 # FreeBSD needs explicit paths to Qt install
 unix:freebsd {
-        INCLUDEPATH += /usr/local/include
-        LIBS += -L/usr/local/lib
+		INCLUDEPATH += /usr/local/include
+		LIBS += -L/usr/local/lib
 }
 
 unix:!macx {
@@ -89,5 +89,6 @@ TRANSLATIONS += \
 	intl/es_ES.ts \
 	intl/fr_FR.ts \
 	intl/ru_RU.ts \
-	intl/pt_PT.ts
+	intl/pt_PT.ts \
+	intl/it_IT.ts
 

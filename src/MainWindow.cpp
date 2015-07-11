@@ -2088,6 +2088,8 @@ void MainWindow::on_actionAbout_triggered()
 							"Fringale: fr_FR\n"
 							"mouse166: ru_RU\n"
 							"emansije: pt_PT\n"
+							"maxxlupi: it_IT\n"
+							"Zangune: it_IT\n"
 					   );
 }
 
