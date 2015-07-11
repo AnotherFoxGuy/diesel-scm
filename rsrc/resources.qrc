@@ -98,9 +98,9 @@
 	<file alias="icon-action-stash-diff">icons/Folder Explorer-01.png</file>
 	<file alias="icon-action-folder-explore">icons/Folder Explorer-01.png</file>
 	<file>icons/Folder Generic Blue-01.png</file>
-	<file>icons/Folder Generic Green-01.png</file>
-	<file>icons/Folder Generic Red-01.png</file>
-	<file>icons/Folder Generic Silver-01.png</file>
+	<file alias="icon-item-folder-unchanged">icons/Folder Generic Green-01.png</file>
+	<file alias="icon-item-folder-modified">icons/Folder Generic Red-01.png</file>
+	<file alias="icon-item-folder-unknown">icons/Folder Generic Silver-01.png</file>
 	<file alias="icon-action-folder-rename">icons/Folder Open-01.png</file>
 	<file>icons/Folder RAR-01.png</file>
 	<file>icons/Games-01.png</file>

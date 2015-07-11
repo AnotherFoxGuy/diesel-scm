@@ -830,7 +830,12 @@ void MainWindow::updateWorkspaceView()
 			if(dir.isEmpty())
 				continue;
 
-			addPathToTree(*workspace, dir, getInternalIcon(":icons/icon-item-folder"), getInternalIcon(":icons/icons/Folder Generic Green-01.png"), getInternalIcon(":icons/icons/Folder Generic Red-01.png"), getInternalIcon(":icons/icons/Folder Generic Silver-01.png"), getWorkspace().getPathState());
+			addPathToTree(*workspace, dir,
+						  getInternalIcon(":icons/icon-item-folder"),
+						  getInternalIcon(":icons/icon-item-folder-unchanged"),
+						  getInternalIcon(":icons/icon-item-folder-modified"),
+						  getInternalIcon(":icons/icon-item-folder-unknown"),
+						  getWorkspace().getPathState());
 		}
 
 		// Expand root folder
