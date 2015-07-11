@@ -1,5 +1,5 @@
-C Renamed\sgetInternal*Icon\sto\sgetCached*Icon\n
-D 2015-07-11T12:17:46.873
+C Merged\sItalian\stranslation
+D 2015-07-11T13:49:34.224
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -37,7 +37,7 @@ F ext/qtkeychain/qkeychain_export.h d756528188ef9bf3c4461ecc80048f06c362b54b
 F ext/qtkeychain/testclient.cpp cb1290a9584b627306a7bfdf1c02a8bbae503f5f
 F ext/qtkeychain/translations/qtkeychain_de.ts 0a70c8205c066c30ed8172f0670942de1fc5eede
 F ext/qtkeychain/translations/qtkeychain_ro.ts f16939382fd1a047b0692426bc82847347f14b32
-F fuel.pro 1c65d0854fcf40e8d1ff4512f27f71649e7756a7
+F fuel.pro a073dccc62907196355eb2eea4eb4ca07328bda5
 F intl/convert.bat 4222ae403418381452b843929d15259ea9850ab1 x
 F intl/convert.sh ac6edc8d99b575601cf9c6b85b18c9e25875b6e0 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
@@ -45,6 +45,7 @@ F intl/el_GR.ts 1b805ee57309d02059d9e3e4cb49d945f9d9ac82
 F intl/en_US.ts 7917816efedf35d5f4f798d18896d7aa0cb3c71b
 F intl/es_ES.ts fbddd3374f7999e602536de9870ae1fef0c28ea8
 F intl/fr_FR.ts 8d2c00ab00927ee5239c1d273f380bbe4cfb2464
+F intl/it_IT.ts 54b962cc19ce2e86268da67cea63db53beb751af
 F intl/pt_PT.ts f93bcc3df5447ab1d85407e1dec4cd68c03d2245
 F intl/ru_RU.ts 74189b3ee2b30b0b47b2db5bd7c9935db84947fc
 F intl/update.sh 39d4561630ba6681bb27e7beadc225a31469728f x
@@ -205,7 +206,7 @@ F rsrc/icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
-F rsrc/resources.qrc eee283057169f9a5b32095c0d5cbc99cbc31ad1a
+F rsrc/resources.qrc 02eb8d6d563b940167824abc136dc0516aa0e9c0
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
 F src/CloneDialog.cpp c341622b01d493387d6e4928018b3392d92471e8
@@ -224,7 +225,7 @@ F src/FslSettingsDialog.cpp 2531d3709f0eab66651671e3edead2ca720d07d5
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 5b9aaf13c863814de6bfd76200808d2a9be0cae7
+F src/MainWindow.cpp 37e53b84cd69b69200f9362b023ec7fbd7ea511b
 F src/MainWindow.h 7bbf19b176b9b17d9e9502eb23027a78b3e3580f
 F src/RemoteDialog.cpp 8540cc5e2e41c4127ed8a028d84691604fa6ecac
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
@@ -234,7 +235,7 @@ F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
 F src/SearchBox.h 0c78d3a68136dab3e0e71b83ae36f22bd2688ab2
 F src/Settings.cpp 258d3f466f6a125ce2b8519d6d57a312cbc44a3f
 F src/Settings.h 0a10b0b83fe804bdc7dac58eed06b5b6ee422055
-F src/SettingsDialog.cpp cab739fb0569bd26550e57f97136c7515fe757fe
+F src/SettingsDialog.cpp e7ac5f38b057bb545179a579e982f890d5260048
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
 F src/Utils.cpp 6d9a08603f40fff3cb237259ecc6b1e534472d8f
 F src/Utils.h aa7a91ef3b4b9b0d873b2c9675403bbe928892bc
@@ -252,7 +253,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 2dabf7d89cfa79d1ce278c7b083761be5f54a691
-R 1d29730ba350aed8b0bb0e7477d90a0d
+P 874b5aa93906b7576998002fce08046d12b65d22 badb3aa4b79f08bf8768219099b8e2928072f047
+R 93fd664395f7dff3ecaeb2e586f78642
 U kostas
-Z b1b509e0940c157cd4bc7cc1c1ac2ae6
+Z ecc629a7bab2312d4a33fda4b6bc05d1

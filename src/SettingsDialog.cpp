@@ -117,13 +117,14 @@ void SettingsDialog::on_btnClearMessageHistory_clicked()
 //-----------------------------------------------------------------------------
 void SettingsDialog::CreateLangMap()
 {
-	langMap.append(LangMap("de_DE", "German (DE)"));
-	langMap.append(LangMap("el_GR", "Greek"));
 	langMap.append(LangMap("en_US", "English (US)"));
-	langMap.append(LangMap("es_ES", "Spanish (ES)"));
 	langMap.append(LangMap("fr_FR", "French (FR)"));
-	langMap.append(LangMap("ru_RU", "Russian (RU)"));
+	langMap.append(LangMap("de_DE", "German (DE)"));
+	langMap.append(LangMap("el_GR", "Greek (GR)"));
+	langMap.append(LangMap("it_IT", "Italian (IT)"));
 	langMap.append(LangMap("pt_PT", "Portuguese (PT)"));
+	langMap.append(LangMap("ru_RU", "Russian (RU)"));
+	langMap.append(LangMap("es_ES", "Spanish (ES)"));
 }
 
 //-----------------------------------------------------------------------------
