@@ -1,5 +1,5 @@
-C Added\sItalian\stranslation.\sThanks\smaxxlupi\sand\sZangune\nSorted\sthe\slanguage\sselection\scombo-box\n
-D 2015-07-11T13:38:13.325
+C Added\smissing\stranslation\sfile.\n
+D 2015-07-11T13:39:24.789
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -23,6 +23,7 @@ F intl/el_GR.ts 1b805ee57309d02059d9e3e4cb49d945f9d9ac82
 F intl/en_US.ts 7917816efedf35d5f4f798d18896d7aa0cb3c71b
 F intl/es_ES.ts fbddd3374f7999e602536de9870ae1fef0c28ea8
 F intl/fr_FR.ts 8d2c00ab00927ee5239c1d273f380bbe4cfb2464
+F intl/it_IT.ts 54b962cc19ce2e86268da67cea63db53beb751af
 F intl/pt_PT.ts f93bcc3df5447ab1d85407e1dec4cd68c03d2245
 F intl/ru_RU.ts 74189b3ee2b30b0b47b2db5bd7c9935db84947fc
 F intl/update.sh 39d4561630ba6681bb27e7beadc225a31469728f x
@@ -213,7 +214,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 0987410cc3fd8d64510e762b1845880a416c27b3
-R 1572f41ad884057cb81876717888fb58
+P ddb8c7f5e5fd5b341b90ddafef349af789147d88
+R 49cea2efbf00ef13de55faeaf20c9c6e
 U kostas
-Z cf1052ed1fb7b288d0bd173470fe737e
+Z d3c782d58d3ec91833a18dce56353083
