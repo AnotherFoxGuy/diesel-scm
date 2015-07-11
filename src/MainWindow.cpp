@@ -814,7 +814,7 @@ void MainWindow::updateWorkspaceView()
 	// Clear content except headers
 	getWorkspace().getTreeModel().removeRows(0, getWorkspace().getTreeModel().rowCount());
 
-	QStandardItem *workspace = new QStandardItem(getInternalIcon(":icons/icon-item-folder"), tr("Files") );
+	QStandardItem *workspace = new QStandardItem(getCachedIcon(":icons/icon-item-folder"), tr("Files") );
 	workspace->setData(WorkspaceItem(WorkspaceItem::TYPE_WORKSPACE, ""), ROLE_WORKSPACE_ITEM);
 	workspace->setEditable(false);
 
@@ -831,10 +831,10 @@ void MainWindow::updateWorkspaceView()
 				continue;
 
 			addPathToTree(*workspace, dir,
-						  getInternalIcon(":icons/icon-item-folder"),
-						  getInternalIcon(":icons/icon-item-folder-unchanged"),
-						  getInternalIcon(":icons/icon-item-folder-modified"),
-						  getInternalIcon(":icons/icon-item-folder-unknown"),
+						  getCachedIcon(":icons/icon-item-folder"),
+						  getCachedIcon(":icons/icon-item-folder-unchanged"),
+						  getCachedIcon(":icons/icon-item-folder-modified"),
+						  getCachedIcon(":icons/icon-item-folder-unknown"),
 						  getWorkspace().getPathState());
 		}
 
@@ -843,13 +843,13 @@ void MainWindow::updateWorkspaceView()
 	}
 
 	// Branches
-	QStandardItem *branches = new QStandardItem(getInternalIcon(":icons/icon-item-branch"), tr("Branches"));
+	QStandardItem *branches = new QStandardItem(getCachedIcon(":icons/icon-item-branch"), tr("Branches"));
 	branches->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCHES, ""), ROLE_WORKSPACE_ITEM);
 	branches->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(branches);
 	foreach(const QString &branch_name, getWorkspace().getBranches())
 	{
-		QStandardItem *branch = new QStandardItem(getInternalIcon(":icons/icon-item-branch"), branch_name);
+		QStandardItem *branch = new QStandardItem(getCachedIcon(":icons/icon-item-branch"), branch_name);
 		branch->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCH, branch_name), ROLE_WORKSPACE_ITEM);
 
 		bool active = fossil().getCurrentTags().contains(branch_name);
@@ -863,7 +863,7 @@ void MainWindow::updateWorkspaceView()
 	}
 
 	// Tags
-	QStandardItem *tags = new QStandardItem(getInternalIcon(":icons/icon-item-tag"), tr("Tags"));
+	QStandardItem *tags = new QStandardItem(getCachedIcon(":icons/icon-item-tag"), tr("Tags"));
 	tags->setData(WorkspaceItem(WorkspaceItem::TYPE_TAGS, ""), ROLE_WORKSPACE_ITEM);
 	tags->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(tags);
@@ -871,7 +871,7 @@ void MainWindow::updateWorkspaceView()
 	{
 		const QString &tag_name = it.key();
 
-		QStandardItem *tag = new QStandardItem(getInternalIcon(":icons/icon-item-tag"), tag_name);
+		QStandardItem *tag = new QStandardItem(getCachedIcon(":icons/icon-item-tag"), tag_name);
 		tag->setData(WorkspaceItem(WorkspaceItem::TYPE_TAG, tag_name), ROLE_WORKSPACE_ITEM);
 
 		bool active = fossil().getCurrentTags().contains(tag_name);
@@ -885,25 +885,25 @@ void MainWindow::updateWorkspaceView()
 	}
 
 	// Stashes
-	QStandardItem *stashes = new QStandardItem(getInternalIcon(":icons/icon-action-repo-open"), tr("Stashes"));
+	QStandardItem *stashes = new QStandardItem(getCachedIcon(":icons/icon-action-repo-open"), tr("Stashes"));
 	stashes->setData(WorkspaceItem(WorkspaceItem::TYPE_STASHES, ""), ROLE_WORKSPACE_ITEM);
 	stashes->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(stashes);
 	for(stashmap_t::const_iterator it= getWorkspace().getStashes().begin(); it!=getWorkspace().getStashes().end(); ++it)
 	{
-		QStandardItem *stash = new QStandardItem(getInternalIcon(":icons/icon-action-repo-open"), it.key());
+		QStandardItem *stash = new QStandardItem(getCachedIcon(":icons/icon-action-repo-open"), it.key());
 		stash->setData(WorkspaceItem(WorkspaceItem::TYPE_STASH, it.value()), ROLE_WORKSPACE_ITEM);
 		stashes->appendRow(stash);
 	}
 
 	// Remotes
-	QStandardItem *remotes = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), tr("Remotes"));
+	QStandardItem *remotes = new QStandardItem(getCachedIcon(":icons/icon-item-remote"), tr("Remotes"));
 	remotes->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTES, ""), ROLE_WORKSPACE_ITEM);
 	remotes->setEditable(false);
 	getWorkspace().getTreeModel().appendRow(remotes);
 	for(remote_map_t::const_iterator it=getWorkspace().getRemotes().begin(); it!=getWorkspace().getRemotes().end(); ++it)
 	{
-		QStandardItem *remote_item = new QStandardItem(getInternalIcon(":icons/icon-item-remote"), it->name);
+		QStandardItem *remote_item = new QStandardItem(getCachedIcon(":icons/icon-item-remote"), it->name);
 		remote_item->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTE, it->url.toString()), ROLE_WORKSPACE_ITEM);
 
 		remote_item->setToolTip(UrlToStringDisplay(it->url));
@@ -995,13 +995,13 @@ void MainWindow::updateFileView()
 			}
 		}
 
-		QStandardItem *status = new QStandardItem(getInternalIcon(status_icon_path), *status_text);
+		QStandardItem *status = new QStandardItem(getCachedIcon(status_icon_path), *status_text);
 		status->setToolTip(*status_text);
 		getWorkspace().getFileModel().setItem(item_id, COLUMN_STATUS, status);
 
 		QFileInfo finfo = e.getFileInfo();
 
-		const QIcon *icon = &getInternalFileIcon(finfo);
+		const QIcon *icon = &getCachedFileIcon(finfo);
 
 		QStandardItem *filename_item = 0;
 		getWorkspace().getFileModel().setItem(item_id, COLUMN_PATH, new QStandardItem(path));
@@ -2108,7 +2108,7 @@ QMenu * MainWindow::createPopupMenu()
 }
 
 //------------------------------------------------------------------------------
-const QIcon &MainWindow::getInternalIcon(const char* name)
+const QIcon &MainWindow::getCachedIcon(const char* name)
 {
 	if(!iconCache.contains(name))
 		iconCache.insert(name, QIcon(name));
@@ -2117,7 +2117,7 @@ const QIcon &MainWindow::getInternalIcon(const char* name)
 }
 
 //------------------------------------------------------------------------------
-const QIcon &MainWindow::getInternalFileIcon(const QFileInfo &finfo)
+const QIcon &MainWindow::getCachedFileIcon(const QFileInfo &finfo)
 {
 	QString icon_type = iconProvider.type(finfo);
 
@@ -2837,7 +2837,7 @@ void MainWindow::updateCustomActions()
 		SplitCommandLine(cust_act.Command, cmd, extra_params);
 		QFileInfo fi(cmd);
 		if(fi.isFile())
-			action->setIcon(getInternalFileIcon(fi));
+			action->setIcon(getCachedFileIcon(fi));
 
 		if(cust_act.IsActive(ACTION_CONTEXT_FILES))
 		{

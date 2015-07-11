@@ -61,8 +61,8 @@ private:
 	void dropEvent(class QDropEvent *event);
 	void setBusy(bool busy);
 	virtual QMenu *createPopupMenu();
-	const QIcon& getInternalIcon(const char *name);
-	const QIcon& getInternalFileIcon(const QFileInfo &finfo);
+	const QIcon& getCachedIcon(const char *name);
+	const QIcon& getCachedFileIcon(const QFileInfo &finfo);
 
 	enum ViewMode
 	{
