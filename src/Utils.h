@@ -61,6 +61,7 @@ bool						KeychainDelete(QObject* parent, const QUrl& url);
 QString						HashString(const QString &str);
 QString						UrlToStringDisplay(const QUrl &url);
 QString						UrlToStringNoCredentials(const QUrl& url);
+void						SplitCommandLine(const QString &commandLine, QString &command, QString &extraParams);
 bool						SpawnExternalProcess(QObject *processParent, const QString& command, const QStringList& fileList, const stringset_t& pathSet, const QString &workspaceDir, UICallback &uiCallback);
 
 typedef QMap<QString, QString> QStringMap;

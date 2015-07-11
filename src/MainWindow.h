@@ -62,6 +62,7 @@ private:
 	void setBusy(bool busy);
 	virtual QMenu *createPopupMenu();
 	const QIcon& getInternalIcon(const char *name);
+	const QIcon& getInternalFileIcon(const QFileInfo &finfo);
 
 	enum ViewMode
 	{

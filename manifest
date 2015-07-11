@@ -1,5 +1,5 @@
-C Merged\sfolder-state\sbranch
-D 2015-07-11T11:50:18.204
+C Display\sa\ssystem\sicon\sfor\sa\scustom\sactions\nRefactored\sIcon\scache\nRefactored\scustom\scommand\sspawning\n
+D 2015-07-11T12:12:17.094
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -224,8 +224,8 @@ F src/FslSettingsDialog.cpp 2531d3709f0eab66651671e3edead2ca720d07d5
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp b9920340aaa14152287c482b524b12499067dc33
-F src/MainWindow.h 765c362ad4937da808276ec321adf4a351ab5b28
+F src/MainWindow.cpp 6261d26a6220f04bff642d1a0f522d2dd29c4baf
+F src/MainWindow.h 87dbc88db94f1cd8914641527fa09bee76e865b5
 F src/RemoteDialog.cpp 8540cc5e2e41c4127ed8a028d84691604fa6ecac
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
 F src/RevisionDialog.cpp e58c4f8a704f00addebb15d521b76620fdafda79
@@ -236,8 +236,8 @@ F src/Settings.cpp 258d3f466f6a125ce2b8519d6d57a312cbc44a3f
 F src/Settings.h 0a10b0b83fe804bdc7dac58eed06b5b6ee422055
 F src/SettingsDialog.cpp cab739fb0569bd26550e57f97136c7515fe757fe
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
-F src/Utils.cpp e047c7aaeb4fb4b64c1383df5cb35d269abb87ed
-F src/Utils.h cb0499ead8dd5662b184dbeabb6e66c3ae65eebc
+F src/Utils.cpp 6d9a08603f40fff3cb237259ecc6b1e534472d8f
+F src/Utils.h aa7a91ef3b4b9b0d873b2c9675403bbe928892bc
 F src/Workspace.cpp b4f0bb95dfc49c1e906f8a163d518050c3f945db
 F src/Workspace.h 731ec8ae7e97d500f85ee13b18024efbd3d55516
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
@@ -252,8 +252,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P ccbdbff89e2354c6d8f38d994587328a04112eaa 0f8cf57fa2a7b38a7d2a8ca22d7e0fa09b1cd24d
-R d10a7a3bf72e8afb9416f20dd6e5fec3
-T +closed 0f8cf57fa2a7b38a7d2a8ca22d7e0fa09b1cd24d
+P cca2042b901945b1079faedaa7339578f6192a3f
+R f3b000d69b50c8a107ec105ff2cabbca
 U kostas
-Z 24f7a95608407ce6b9d41dea21fc53e5
+Z c422a488a81d98221d9e129ef1baf4fc

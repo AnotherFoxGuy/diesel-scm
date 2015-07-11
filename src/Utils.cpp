@@ -476,39 +476,45 @@ QString UrlToStringNoCredentials(const QUrl& url)
 	return url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo);
 #endif
 }
-
 //------------------------------------------------------------------------------
-bool SpawnExternalProcess(QObject *processParent, const QString& command, const QStringList& fileList, const stringset_t& pathSet, const QString &workspaceDir, UICallback &uiCallback)
+void SplitCommandLine(const QString &commandLine, QString &command, QString &extraParams)
 {
-	QStringList params;
-
 	// Process command string
-	QString cmd = command;
-	Q_ASSERT(!cmd.isEmpty());
+	command = commandLine;
+	Q_ASSERT(!command.isEmpty());
 
 	// Split command from embedded params
-	QString extra_params;
+	extraParams.clear();
 
 	// Command ends after first space
 	QChar cmd_char_end = ' ';
 	int start = 0;
 
 	// ...unless it is a quoted command
-	if(cmd[0]=='"')
+	if(command[0]=='"')
 	{
 		cmd_char_end = '"';
 		start = 1;
 	}
 
-	int cmd_end = cmd.indexOf(cmd_char_end, start);
+	int cmd_end = command.indexOf(cmd_char_end, start);
 	if(cmd_end != -1)
 	{
-		extra_params = cmd.mid(cmd_end+1);
-		cmd = cmd.left(cmd_end);
+		extraParams = command.mid(cmd_end+1);
+		command = command.left(cmd_end);
 	}
 
-	cmd = cmd.trimmed();
-	extra_params = extra_params.trimmed();
+	command = command.trimmed();
+	extraParams = extraParams.trimmed();
+}
+
+//------------------------------------------------------------------------------
+bool SpawnExternalProcess(QObject *processParent, const QString& command, const QStringList& fileList, const stringset_t& pathSet, const QString &workspaceDir, UICallback &uiCallback)
+{
+	QStringList params;
+
+	QString cmd, extra_params;
+	SplitCommandLine(command, cmd, extra_params);
 
 	// Push all additional params, except those containing macros
 	QString macro_file;

@@ -1000,12 +1000,8 @@ void MainWindow::updateFileView()
 		getWorkspace().getFileModel().setItem(item_id, COLUMN_STATUS, status);
 
 		QFileInfo finfo = e.getFileInfo();
-		QString icon_type = iconProvider.type(finfo);
 
-		if(!iconCache.contains(icon_type))
-			iconCache.insert(icon_type, iconProvider.icon(finfo));
-
-		const QIcon *icon = &iconCache[icon_type];
+		const QIcon *icon = &getInternalFileIcon(finfo);
 
 		QStandardItem *filename_item = 0;
 		getWorkspace().getFileModel().setItem(item_id, COLUMN_PATH, new QStandardItem(path));
@@ -2114,13 +2110,22 @@ QMenu * MainWindow::createPopupMenu()
 //------------------------------------------------------------------------------
 const QIcon &MainWindow::getInternalIcon(const char* name)
 {
-	if(iconCache.contains(name))
-		return iconCache[name];
+	if(!iconCache.contains(name))
+		iconCache.insert(name, QIcon(name));
 
-	iconCache.insert(name, QIcon(name));
 	return iconCache[name];
 }
 
+//------------------------------------------------------------------------------
+const QIcon &MainWindow::getInternalFileIcon(const QFileInfo &finfo)
+{
+	QString icon_type = iconProvider.type(finfo);
+
+	if(!iconCache.contains(icon_type))
+		iconCache.insert(icon_type, iconProvider.icon(finfo));
+
+	return iconCache[icon_type];
+}
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCreateStash_triggered()
 {
@@ -2823,6 +2828,16 @@ void MainWindow::updateCustomActions()
 		QAction *action = customActions[i];
 		action->setVisible(cust_act.IsValid());
 		action->setText(cust_act.Description);
+
+		if(!cust_act.IsValid())
+			continue;
+
+		// Attempt to extract an icon
+		QString cmd, extra_params;
+		SplitCommandLine(cust_act.Command, cmd, extra_params);
+		QFileInfo fi(cmd);
+		if(fi.isFile())
+			action->setIcon(getInternalFileIcon(fi));
 
 		if(cust_act.IsActive(ACTION_CONTEXT_FILES))
 		{
