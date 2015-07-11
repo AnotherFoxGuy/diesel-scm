@@ -22,7 +22,7 @@ void Workspace::clearState()
 
 	getFiles().clear();
 	getPaths().clear();
-	getPathState().clear();
+	pathState.clear();
 	stashMap.clear();
 	branchList.clear();
 	tags.clear();
@@ -150,6 +150,12 @@ bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, co
 }
 
 //------------------------------------------------------------------------------
+static bool StringLengthDescending(const QString &l, const QString &r)
+{
+	return l.length() > r.length();
+}
+
+//------------------------------------------------------------------------------
 void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, UICallback &uiCallback, bool &operationAborted)
 {
 	// Scan all workspace files
@@ -167,6 +173,8 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 	bool scan_files = scanLocal;
 
 	clearState();
+
+	QStringList paths;
 
 	operationAborted = false;
 
@@ -196,9 +204,22 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 			if(filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!fossil().getRepositoryFile().isEmpty() && QFileInfo(fullpath) == QFileInfo(fossil().getRepositoryFile())))
 				continue;
 
-			WorkspaceFile *rf = new WorkspaceFile(*it, WorkspaceFile::TYPE_UNKNOWN, wkdir);
+			WorkspaceFile::Type type = WorkspaceFile::TYPE_UNKNOWN;
+
+			WorkspaceFile *rf = new WorkspaceFile(*it, type, wkdir);
+			const QString &path = rf->getPath();
 			getFiles().insert(rf->getFilePath(), rf);
-			getPaths().insert(rf->getPath());
+			getPaths().insert(path);
+
+			// Add or merge file state into directory state
+			pathstate_map_t::iterator state_it = pathState.find(path);
+			if(state_it != pathState.end())
+				state_it.value() = static_cast<WorkspaceFile::Type>(state_it.value() | type);
+			else
+			{
+				pathState.insert(path, type);
+				paths.append(path); // keep path in list for depth sort
+			}
 		}
 	}
 	uiCallback.endProcess();
@@ -206,7 +227,6 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 	uiCallback.beginProcess(QObject::tr("Updating..."));
 
 	// Update Files and Directories
-
 	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); ++line_it)
 	{
 		QString line = (*line_it).trimmed();
@@ -281,12 +301,42 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 		getPaths().insert(path);
 
 		// Add or merge file state into directory state
-		pathstate_map_t::iterator state_it = getPathState().find(path);
-		if(state_it != getPathState().end())
+		pathstate_map_t::iterator state_it = pathState.find(path);
+		if(state_it != pathState.end())
 			state_it.value() = static_cast<WorkspaceFile::Type>(state_it.value() | type);
 		else
-			getPathState().insert(path, type);
+		{
+			pathState.insert(path, type);
+			paths.append(path); // keep path in list for depth sort
+		}
+	}
 
+	// Sort paths, so that children (longer path) are before parents (shorter path)
+	std::sort(paths.begin(), paths.end(), StringLengthDescending);
+	foreach(const QString &p, paths)
+	{
+		pathstate_map_t::iterator state_it = pathState.find(p);
+		Q_ASSERT(state_it != pathState.end());
+		WorkspaceFile::Type state = state_it.value();
+
+		// Propagate child dir state to parents
+		QString parent_path = p;
+		while(!parent_path.isEmpty())
+		{
+			// Extract parent path
+			int sep_index = parent_path.lastIndexOf(PATH_SEPARATOR);
+			if(sep_index>=0)
+				parent_path = parent_path.left(sep_index);
+			else
+				parent_path = "";
+
+			// Merge path of child to parent
+			pathstate_map_t::iterator state_it = pathState.find(parent_path);
+			if(state_it != pathState.end())
+				state_it.value() = static_cast<WorkspaceFile::Type>(state_it.value() | state);
+			else
+				pathState.insert(parent_path, state);
+		}
 	}
 
 	// Check if the repository needs integration

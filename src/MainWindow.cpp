@@ -62,24 +62,37 @@ struct WorkspaceItem
 		TYPE_REMOTE,
 	};
 
+	enum
+	{
+		STATE_DEFAULT,
+		STATE_CLEAN,
+		STATE_MODIFIED,
+		STATE_UNKNOWN
+	};
+
+
 	WorkspaceItem()
 	: Type(TYPE_UNKNOWN)
+	, State(STATE_DEFAULT)
 	{
 	}
 
-	WorkspaceItem(int type, const QString &value)
-	: Type(type), Value(value)
+	WorkspaceItem(int type, const QString &value, int state=STATE_DEFAULT)
+	: Type(type), State(state), Value(value)
 	{
 	}
 
 	WorkspaceItem(const WorkspaceItem &other)
 	{
 		Type = other.Type;
+		State = other.State;
 		Value = other.Value;
 	}
 
 	int Type;
+	int State;
 	QString Value;
+
 
 	operator QVariant() const
 	{
@@ -703,7 +716,7 @@ void MainWindow::scanWorkspace()
 }
 
 //------------------------------------------------------------------------------
-static void addPathToTree(QStandardItem &root, const QString &path, const QIcon &folderDefaultIcon, const QIcon &folderIconClean, const QIcon &folderIconDirty, const pathstate_map_t &pathState)
+static void addPathToTree(QStandardItem &root, const QString &path, const QIcon &iconDefault, const QIcon &iconClean, const QIcon &iconDirty, const QIcon &iconUnknown, const pathstate_map_t &pathState)
 {
 	QStringList dirs = path.split('/');
 	QStandardItem *parent = &root;
@@ -729,7 +742,7 @@ static void addPathToTree(QStandardItem &root, const QString &path, const QIcon 
 
 		if(!found) // Generate it
 		{
-			const QIcon *icon = &folderDefaultIcon;
+			int state = WorkspaceItem::STATE_DEFAULT;
 
 			pathstate_map_t::const_iterator state_it = pathState.find(fullpath);
 			if(state_it != pathState.end())
@@ -737,34 +750,27 @@ static void addPathToTree(QStandardItem &root, const QString &path, const QIcon 
 				WorkspaceFile::Type type = state_it.value();
 
 				if(type & (WorkspaceFile::TYPE_MODIFIED))
-					icon = &folderIconDirty;
+					state = WorkspaceItem::STATE_MODIFIED;
+				else if(type == WorkspaceFile::TYPE_UNKNOWN)
+					state = WorkspaceItem::STATE_UNKNOWN;
 				else
-					icon = &folderIconClean;
+					state = WorkspaceItem::STATE_CLEAN;
 			}
 
-			QStandardItem *child = new QStandardItem(*icon, dir);
-			child->setData(WorkspaceItem(WorkspaceItem::TYPE_FOLDER, fullpath), ROLE_WORKSPACE_ITEM);
+			QStandardItem *child = new QStandardItem(dir);
+			child->setData(WorkspaceItem(WorkspaceItem::TYPE_FOLDER, fullpath, state), ROLE_WORKSPACE_ITEM);
+
+			if(state == WorkspaceItem::STATE_CLEAN)
+				child->setIcon(iconClean);
+			else if(state == WorkspaceItem::STATE_MODIFIED)
+				child->setIcon(iconDirty);
+			else if(state == WorkspaceItem::STATE_UNKNOWN)
+				child->setIcon(iconUnknown);
+			else
+				child->setIcon(iconDefault);
+
 			parent->appendRow(child);
 			parent = child;
-
-			// Update icons of parents
-			if(icon != &folderDefaultIcon) // Default Icon is not inherited by parent
-			{
-				QStandardItem *p = parent;
-				while(p && p != &root) // Ascend parents except the root node
-				{
-					const QIcon &parent_icon = p->icon();
-
-					// Dirty is inherited
-					if(icon == &folderIconDirty)
-						p->setIcon(*icon);
-					// Clean is inherited if not dirty
-					else if(icon == &folderIconClean && (&parent_icon != &folderIconDirty))
-						p->setIcon(*icon);
-
-					p = p->parent();
-				}
-			}
 		}
 
 		fullpath += '/';
@@ -811,7 +817,7 @@ void MainWindow::updateWorkspaceView()
 			if(dir.isEmpty())
 				continue;
 
-			addPathToTree(*workspace, dir, getInternalIcon(":icons/icon-item-folder"), getInternalIcon(":icons/icons/Folder Generic Green-01.png"), getInternalIcon(":icons/icons/Folder Generic Red-01.png"), getWorkspace().getPathState());
+			addPathToTree(*workspace, dir, getInternalIcon(":icons/icon-item-folder"), getInternalIcon(":icons/icons/Folder Generic Green-01.png"), getInternalIcon(":icons/icons/Folder Generic Red-01.png"), getInternalIcon(":icons/icons/Folder Generic Silver-01.png"), getWorkspace().getPathState());
 		}
 
 		// Expand root folder
