@@ -62,24 +62,37 @@ struct WorkspaceItem
 		TYPE_REMOTE,
 	};
 
+	enum
+	{
+		STATE_DEFAULT,
+		STATE_UNCHANGED,
+		STATE_MODIFIED,
+		STATE_UNKNOWN
+	};
+
+
 	WorkspaceItem()
 	: Type(TYPE_UNKNOWN)
+	, State(STATE_DEFAULT)
 	{
 	}
 
-	WorkspaceItem(int type, const QString &value)
-	: Type(type), Value(value)
+	WorkspaceItem(int type, const QString &value, int state=STATE_DEFAULT)
+	: Type(type), State(state), Value(value)
 	{
 	}
 
 	WorkspaceItem(const WorkspaceItem &other)
 	{
 		Type = other.Type;
+		State = other.State;
 		Value = other.Value;
 	}
 
 	int Type;
+	int State;
 	QString Value;
+
 
 	operator QVariant() const
 	{
@@ -703,9 +716,9 @@ void MainWindow::scanWorkspace()
 }
 
 //------------------------------------------------------------------------------
-static void addPathToTree(QStandardItem &root, const QString &path, const QIcon &folderIcon)
+static void addPathToTree(QStandardItem &root, const QString &path, const QIcon &iconDefault, const QIcon &iconUnchanged, const QIcon &iconModified, const QIcon &iconUnknown, const pathstate_map_t &pathState)
 {
-	QStringList dirs = path.split('/');
+	QStringList dirs = path.split(PATH_SEPARATOR);
 	QStandardItem *parent = &root;
 
 	QString fullpath;
@@ -729,12 +742,51 @@ static void addPathToTree(QStandardItem &root, const QString &path, const QIcon 
 
 		if(!found) // Generate it
 		{
-			QStandardItem *child = new QStandardItem(folderIcon, dir);
-			child->setData(WorkspaceItem(WorkspaceItem::TYPE_FOLDER, fullpath), ROLE_WORKSPACE_ITEM);
+			int state = WorkspaceItem::STATE_DEFAULT;
+
+			pathstate_map_t::const_iterator state_it = pathState.find(fullpath);
+			if(state_it != pathState.end())
+			{
+				WorkspaceFile::Type type = state_it.value();
+
+				if(type & (WorkspaceFile::TYPE_MODIFIED))
+					state = WorkspaceItem::STATE_MODIFIED;
+				else if(type == WorkspaceFile::TYPE_UNKNOWN)
+					state = WorkspaceItem::STATE_UNKNOWN;
+				else
+					state = WorkspaceItem::STATE_UNCHANGED;
+			}
+
+			QStandardItem *child = new QStandardItem(dir);
+			child->setData(WorkspaceItem(WorkspaceItem::TYPE_FOLDER, fullpath, state), ROLE_WORKSPACE_ITEM);
+
+			QString tooltip = fullpath;
+
+			if(state == WorkspaceItem::STATE_UNCHANGED)
+			{
+				child->setIcon(iconUnchanged);
+				tooltip += " " + QObject::tr("Unchanged");
+			}
+			else if(state == WorkspaceItem::STATE_MODIFIED)
+			{
+				child->setIcon(iconModified);
+				tooltip += " " + QObject::tr("Modified");
+			}
+			else if(state == WorkspaceItem::STATE_UNKNOWN)
+			{
+				child->setIcon(iconUnknown);
+				tooltip += " " + QObject::tr("Unknown");
+			}
+			else
+				child->setIcon(iconDefault);
+
+			child->setToolTip(tooltip);
+
 			parent->appendRow(child);
 			parent = child;
 		}
-		fullpath += '/';
+
+		fullpath += PATH_SEPARATOR;
 	}
 }
 
@@ -769,13 +821,21 @@ void MainWindow::updateWorkspaceView()
 	getWorkspace().getTreeModel().appendRow(workspace);
 	if(viewMode == VIEWMODE_TREE)
 	{
-		for(stringset_t::iterator it = getWorkspace().getPaths().begin(); it!=getWorkspace().getPaths().end(); ++it)
+		// FIXME: Change paths to map to allow for automatic sorting
+		QStringList paths = getWorkspace().getPaths().toList();
+		paths.sort();
+
+		foreach(const QString &dir, paths)
 		{
-			const QString &dir = *it;
 			if(dir.isEmpty())
 				continue;
 
-			addPathToTree(*workspace, dir, getInternalIcon(":icons/icon-item-folder"));
+			addPathToTree(*workspace, dir,
+						  getInternalIcon(":icons/icon-item-folder"),
+						  getInternalIcon(":icons/icon-item-folder-unchanged"),
+						  getInternalIcon(":icons/icon-item-folder-modified"),
+						  getInternalIcon(":icons/icon-item-folder-unknown"),
+						  getWorkspace().getPathState());
 		}
 
 		// Expand root folder

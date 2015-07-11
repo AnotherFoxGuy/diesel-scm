@@ -1,5 +1,5 @@
-C Minor\srefactoring
-D 2015-07-10T18:43:33.614
+C Merged\sfolder-state\sbranch
+D 2015-07-11T11:50:18.204
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -205,7 +205,7 @@ F rsrc/icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
-F rsrc/resources.qrc 388225a5b09c56c12d4cbde8b4d0b4466740fc97
+F rsrc/resources.qrc eee283057169f9a5b32095c0d5cbc99cbc31ad1a
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
 F src/CloneDialog.cpp c341622b01d493387d6e4928018b3392d92471e8
@@ -224,7 +224,7 @@ F src/FslSettingsDialog.cpp 2531d3709f0eab66651671e3edead2ca720d07d5
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 764eb76c1c420ea4677639baae925e5e8fc203d6
+F src/MainWindow.cpp b9920340aaa14152287c482b524b12499067dc33
 F src/MainWindow.h 765c362ad4937da808276ec321adf4a351ab5b28
 F src/RemoteDialog.cpp 8540cc5e2e41c4127ed8a028d84691604fa6ecac
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
@@ -238,8 +238,8 @@ F src/SettingsDialog.cpp cab739fb0569bd26550e57f97136c7515fe757fe
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
 F src/Utils.cpp e047c7aaeb4fb4b64c1383df5cb35d269abb87ed
 F src/Utils.h cb0499ead8dd5662b184dbeabb6e66c3ae65eebc
-F src/Workspace.cpp 7004c2c30f79d2e64691aa9b2c55ee72a84d978b
-F src/Workspace.h 0ab9b941a537134a7c43cfccee5299b8ccda143a
+F src/Workspace.cpp b4f0bb95dfc49c1e906f8a163d518050c3f945db
+F src/Workspace.h 731ec8ae7e97d500f85ee13b18024efbd3d55516
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -252,7 +252,8 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 7cd82ba8f02f659d13a370043f256212f55669db
-R b1470ef543fad9773da5e4edf313b8fb
+P ccbdbff89e2354c6d8f38d994587328a04112eaa 0f8cf57fa2a7b38a7d2a8ca22d7e0fa09b1cd24d
+R d10a7a3bf72e8afb9416f20dd6e5fec3
+T +closed 0f8cf57fa2a7b38a7d2a8ca22d7e0fa09b1cd24d
 U kostas
-Z 032611050518136012ef63aed85ba8cb
+Z 24f7a95608407ce6b9d41dea21fc53e5
