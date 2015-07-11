@@ -240,12 +240,9 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	// TabWidget
 	ui->tabWidget->setCurrentIndex(TAB_LOG);
 
-	lblRevision = new QLabel();
-	ui->statusBar->insertPermanentWidget(0, lblRevision);
-	lblRevision->setVisible(true);
-
+	// Tags Label
 	lblTags = new QLabel();
-	ui->statusBar->insertPermanentWidget(1, lblTags);
+	ui->statusBar->insertPermanentWidget(0, lblTags);
 	lblTags->setVisible(true);
 
 	// Construct ProgressBar
@@ -255,7 +252,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	progressBar->setMaximumSize(170, 16);
 	progressBar->setAlignment(Qt::AlignCenter);
 	progressBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
-	ui->statusBar->insertPermanentWidget(2, progressBar);
+	ui->statusBar->insertPermanentWidget(1, progressBar);
 	progressBar->setVisible(false);
 
 
@@ -708,10 +705,7 @@ void MainWindow::scanWorkspace()
 
 	setBusy(false);
 	setStatus("");
-	lblRevision->setText(tr("Revision: %0").arg(fossil().getCurrentRevision()));
-	lblRevision->setVisible(true);
-
-	lblTags->setText(tr("Tags: %0").arg(fossil().getCurrentTags().join(" ")));
+	lblTags->setText(" " + fossil().getCurrentTags().join(" ") + " ");
 	lblTags->setVisible(true);
 }
 
@@ -2449,7 +2443,6 @@ void MainWindow::MainWinUICallback::beginProcess(const QString& text)
 	Q_ASSERT(mainWindow);
 	mainWindow->ui->statusBar->showMessage(text);
 	mainWindow->lblTags->setHidden(true);
-	mainWindow->lblRevision->setHidden(true);
 	mainWindow->progressBar->setHidden(false);
 	QCoreApplication::processEvents();
 }
@@ -2468,7 +2461,6 @@ void MainWindow::MainWinUICallback::endProcess()
 	Q_ASSERT(mainWindow);
 	mainWindow->ui->statusBar->clearMessage();
 	mainWindow->lblTags->setHidden(false);
-	mainWindow->lblRevision->setHidden(false);
 	mainWindow->progressBar->setHidden(true);
 	QCoreApplication::processEvents();
 }

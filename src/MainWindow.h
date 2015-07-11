@@ -177,7 +177,6 @@ private:
 	class QAction		*fileActionSeparator;
 	class QAction		*workspaceActionSeparator;
 	class QProgressBar	*progressBar;
-	class QLabel		*lblRevision;
 	class QLabel		*lblTags;
 	class QShortcut		*abortShortcut;
 	class SearchBox		*searchBox;
