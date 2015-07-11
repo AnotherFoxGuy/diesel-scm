@@ -406,9 +406,15 @@ bool Workspace::setRemoteDefault(const QUrl& url)
 }
 
 //------------------------------------------------------------------------------
-const QUrl & Workspace::getRemoteDefault() const
+QUrl Workspace::getRemoteDefault() const
 {
-	return fossil().getDefaultRemoteUrl();
+	for(remote_map_t::const_iterator it=remotes.begin(); it!=remotes.end(); ++it)
+	{
+		if(it->isDefault)
+			return it->url;
+	}
+
+	return QUrl();
 }
 
 //------------------------------------------------------------------------------

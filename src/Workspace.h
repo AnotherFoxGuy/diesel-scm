@@ -152,7 +152,7 @@ public:
 	bool				addRemote(const QUrl &url, const QString &name);
 	bool				removeRemote(const QUrl &url);
 	bool				setRemoteDefault(const QUrl& url);
-	const QUrl			&getRemoteDefault() const;
+	QUrl				getRemoteDefault() const;
 	Remote *			findRemote(const QUrl& url);
 
 

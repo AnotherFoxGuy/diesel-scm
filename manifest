@@ -1,5 +1,5 @@
-C Merged\sItalian\stranslation
-D 2015-07-11T13:49:34.224
+C Fuel\sno\slonger\srelies\son\sfossil\sfor\sthe\sdefault\sremote.
+D 2015-07-11T14:44:13.188
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -219,8 +219,8 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp 0149ce9af91392bb51b87c700e7edd4f8a4aefe7
-F src/Fossil.h 02599a958e6c27ac5f15d52a813abd40b8f5b2f4
+F src/Fossil.cpp 42c24d1b29794063175d9cd8b07a9e0bb03500f4
+F src/Fossil.h b2e34e4a4ffde603699193bb20ce7c9c6a7fd3b6
 F src/FslSettingsDialog.cpp 2531d3709f0eab66651671e3edead2ca720d07d5
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
@@ -239,8 +239,8 @@ F src/SettingsDialog.cpp e7ac5f38b057bb545179a579e982f890d5260048
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
 F src/Utils.cpp 6d9a08603f40fff3cb237259ecc6b1e534472d8f
 F src/Utils.h aa7a91ef3b4b9b0d873b2c9675403bbe928892bc
-F src/Workspace.cpp b4f0bb95dfc49c1e906f8a163d518050c3f945db
-F src/Workspace.h 731ec8ae7e97d500f85ee13b18024efbd3d55516
+F src/Workspace.cpp ae92217f5f7625375440151a804748547ddc8de4
+F src/Workspace.h 842c195cf830422f2066c7190156e7c8b82a93a1
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -253,7 +253,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 874b5aa93906b7576998002fce08046d12b65d22 badb3aa4b79f08bf8768219099b8e2928072f047
-R 93fd664395f7dff3ecaeb2e586f78642
+P bf0f238d67482239b37e46f4eab20782d1275207
+R 5c75478e3bf7d7c5f9ef932a568d537e
 U kostas
-Z ecc629a7bab2312d4a33fda4b6bc05d1
+Z c286da8089f4147df5f69a97f564e3f4

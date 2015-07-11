@@ -70,10 +70,6 @@ RepoStatus Fossil::getRepoStatus()
 		}
 	}
 
-	defaultRemoteUrl.clear();
-	if(run_ok)
-		getRemoteUrl(defaultRemoteUrl);
-
 	return run_ok ? REPO_OK : REPO_NOT_FOUND;
 }
 
@@ -411,10 +407,6 @@ bool Fossil::setRemoteUrl(const QUrl& url)
 
 	// Run as silent to avoid displaying credentials in the log
 	bool ok = runFossil(QStringList() << "remote-url" << u, 0, RUNFLAGS_SILENT_INPUT);
-
-	// Retrieve default url
-	if(ok)
-		getRemoteUrl(defaultRemoteUrl);
 
 	return ok;
 }
