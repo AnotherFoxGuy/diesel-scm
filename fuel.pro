@@ -105,6 +105,8 @@ HEADERS += ext/qtkeychain/keychain.h \
 		ext/qtkeychain/keychain_p.h \
 		ext/qtkeychain/qkeychain_export.h
 
+DEFINES += QKEYCHAIN_STATICLIB
+
 unix:!macx {
 	QT += dbus
 
@@ -121,6 +123,7 @@ macx {
 
 win32 {
 	SOURCES += ext/qtkeychain/keychain_win.cpp
+	LIBS += -lCrypt32
 }
 
 
