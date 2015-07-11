@@ -65,7 +65,7 @@ struct WorkspaceItem
 	enum
 	{
 		STATE_DEFAULT,
-		STATE_CLEAN,
+		STATE_UNCHANGED,
 		STATE_MODIFIED,
 		STATE_UNKNOWN
 	};
@@ -716,9 +716,9 @@ void MainWindow::scanWorkspace()
 }
 
 //------------------------------------------------------------------------------
-static void addPathToTree(QStandardItem &root, const QString &path, const QIcon &iconDefault, const QIcon &iconClean, const QIcon &iconDirty, const QIcon &iconUnknown, const pathstate_map_t &pathState)
+static void addPathToTree(QStandardItem &root, const QString &path, const QIcon &iconDefault, const QIcon &iconUnchanged, const QIcon &iconModified, const QIcon &iconUnknown, const pathstate_map_t &pathState)
 {
-	QStringList dirs = path.split('/');
+	QStringList dirs = path.split(PATH_SEPARATOR);
 	QStandardItem *parent = &root;
 
 	QString fullpath;
@@ -754,26 +754,39 @@ static void addPathToTree(QStandardItem &root, const QString &path, const QIcon 
 				else if(type == WorkspaceFile::TYPE_UNKNOWN)
 					state = WorkspaceItem::STATE_UNKNOWN;
 				else
-					state = WorkspaceItem::STATE_CLEAN;
+					state = WorkspaceItem::STATE_UNCHANGED;
 			}
 
 			QStandardItem *child = new QStandardItem(dir);
 			child->setData(WorkspaceItem(WorkspaceItem::TYPE_FOLDER, fullpath, state), ROLE_WORKSPACE_ITEM);
 
-			if(state == WorkspaceItem::STATE_CLEAN)
-				child->setIcon(iconClean);
+			QString tooltip = fullpath;
+
+			if(state == WorkspaceItem::STATE_UNCHANGED)
+			{
+				child->setIcon(iconUnchanged);
+				tooltip += " " + QObject::tr("Unchanged");
+			}
 			else if(state == WorkspaceItem::STATE_MODIFIED)
-				child->setIcon(iconDirty);
+			{
+				child->setIcon(iconModified);
+				tooltip += " " + QObject::tr("Modified");
+			}
 			else if(state == WorkspaceItem::STATE_UNKNOWN)
+			{
 				child->setIcon(iconUnknown);
+				tooltip += " " + QObject::tr("Unknown");
+			}
 			else
 				child->setIcon(iconDefault);
+
+			child->setToolTip(tooltip);
 
 			parent->appendRow(child);
 			parent = child;
 		}
 
-		fullpath += '/';
+		fullpath += PATH_SEPARATOR;
 	}
 }
 
