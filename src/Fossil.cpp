@@ -521,18 +521,42 @@ bool Fossil::tagList(QStringMap& tags)
 
 		info.clear();
 
-		if(!runFossil(QStringList() << "info" << "tag:"+tag, &info, RUNFLAGS_SILENT_ALL))
+		// Use "whatis" instead of "info" to get extra information like the closed raw-tag
+		if(!runFossil(QStringList() << "whatis" << "tag:"+tag, &info, RUNFLAGS_SILENT_ALL))
 			return false;
+
+		/*
+		name:       tag:refactor
+		artifact:   54059126aee6bb232373c1f134cc07ea0a6f4cca
+		size:       15831 bytes
+		tags:       refactor
+		raw-tags:   closed
+		type:       Check-in by kostas on 2015-04-30 19:23:15
+		comment:    Renamed tableView to fileTableView Renamed treeView to workspaceTreeView Renamed
+					tableViewStash to stashTableView
+		*/
 
 		QStringMap props;
 		ParseProperties(props, info, ':');
-		Q_ASSERT(props.contains("uuid"));
 
-		// uuid:         0e29a46f036d2e0cc89727190ad34c2dfdc5737c 2015-04-27 15:41:45 UTC
-		QStringList uuid = props["uuid"].trimmed().split(' ');
-		Q_ASSERT(uuid.length()>0);
+		bool closed = false;
+		if(props.contains("raw-tags"))
+		{
+			QString raw_tags = props["raw-tags"];
+			closed = raw_tags.indexOf("closed") != -1;
+		}
 
-		QString revision = uuid[0].trimmed();
+		// Skip closed tags, which are essentially closed branches.
+		// FIXME: Fossil treating listing all closed branches as active tags with a "closed"
+		// "raw-tag" seems weird. Maybe this will change at some point. Re-evaluate this
+		// behaviour in the future.
+		if(closed)
+			continue;
+
+		Q_ASSERT(props.contains("artifact"));
+		QString revision = props["artifact"];
+		Q_ASSERT(!revision.isEmpty());
+
 		tags.insert(tag, revision);
 	}
 	return true;

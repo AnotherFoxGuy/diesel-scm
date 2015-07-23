@@ -1,5 +1,5 @@
-C Beautified\sChanges.md
-D 2015-07-23T13:59:15.878
+C Address\sFossil\sweirdness\swhich\streats\sall\sclosed\sbranches\sas\sactive\stags\swith\sa\sspecial\s"closed"\sattribute
+D 2015-07-23T17:22:30.253
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -220,7 +220,7 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp 42c24d1b29794063175d9cd8b07a9e0bb03500f4
+F src/Fossil.cpp cbbf9a539f3ffaa822fd94b618ab715db8e65086
 F src/Fossil.h b2e34e4a4ffde603699193bb20ce7c9c6a7fd3b6
 F src/FslSettingsDialog.cpp 2531d3709f0eab66651671e3edead2ca720d07d5
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
@@ -254,7 +254,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 708acbaf0b2451802830cfeb4f3a127d991c89e7
-R 2fd69014da4948ec6ad1ec6a018a91dd
+P c3d03e6a79a457f42479b2338a5a6dd23b5e2a06
+R 35a54710df4f70f990b3f3b9578e5dcc
 U kostas
-Z 5d8740f1cd0c5e1b2f7a2b3d7a44b8f2
+Z 7261d48d5b22b979158fe8f8dff2b73e
