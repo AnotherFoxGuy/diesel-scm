@@ -554,9 +554,9 @@ void MainWindow::on_actionCloneRepository_triggered()
 	// Store credentials
 	if(!url.isLocalFile())
 	{
-		KeychainDelete(this, url);
+		KeychainDelete(this, url, *settings.GetStore());
 
-		if(!KeychainSet(this, url))
+		if(!KeychainSet(this, url, *settings.GetStore()))
 			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
 	}
 
@@ -2639,7 +2639,7 @@ void MainWindow::on_actionEditRemote_triggered()
 	if(remote)
 		name = remote->name;
 
-	bool exists = KeychainGet(this, old_url);
+	bool exists = KeychainGet(this, old_url, *settings.GetStore());
 
 	QUrl new_url = old_url;
 	if(!RemoteDialog::run(this, new_url, name))
@@ -2648,9 +2648,9 @@ void MainWindow::on_actionEditRemote_triggered()
 	if(!new_url.isLocalFile())
 	{
 		if(exists)
-			KeychainDelete(this, new_url);
+			KeychainDelete(this, new_url, *settings.GetStore());
 
-		if(!KeychainSet(this, new_url))
+		if(!KeychainSet(this, new_url, *settings.GetStore()))
 			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
 	}
 
@@ -2681,7 +2681,7 @@ void MainWindow::on_actionPushRemote_triggered()
 
 	// Retrieve password from keychain
 	if(!url.isLocalFile())
-		KeychainGet(this, url);
+		KeychainGet(this, url, *settings.GetStore());
 
 	fossil().pushRepository(url);
 }
@@ -2698,7 +2698,7 @@ void MainWindow::on_actionPullRemote_triggered()
 
 	// Retrieve password from keychain
 	if(!url.isLocalFile())
-		KeychainGet(this, url);
+		KeychainGet(this, url, *settings.GetStore());
 
 	fossil().pullRepository(url);
 }
@@ -2716,7 +2716,7 @@ void MainWindow::on_actionPush_triggered()
 
 	// Retrieve password from keychain
 	if(!url.isLocalFile())
-		KeychainGet(this, url);
+		KeychainGet(this, url, *settings.GetStore());
 
 	fossil().pushRepository(url);
 }
@@ -2734,7 +2734,7 @@ void MainWindow::on_actionPull_triggered()
 
 	// Retrieve password from keychain
 	if(!url.isLocalFile())
-		KeychainGet(this, url);
+		KeychainGet(this, url, *settings.GetStore());
 
 	fossil().pullRepository(url);
 }
@@ -2763,9 +2763,9 @@ void MainWindow::on_actionAddRemote_triggered()
 
 	if(!url.isLocalFile())
 	{
-		KeychainDelete(this, url);
+		KeychainDelete(this, url, *settings.GetStore());
 
-		if(!KeychainSet(this, url))
+		if(!KeychainSet(this, url, *settings.GetStore()))
 			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
 	}
 

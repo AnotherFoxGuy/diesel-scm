@@ -396,10 +396,16 @@ void BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItemModel 
 }
 
 //------------------------------------------------------------------------------
-bool KeychainSet(QObject *parent, const QUrl &url)
+bool KeychainSet(QObject *parent, const QUrl &url, QSettings &settings)
 {
 	QEventLoop loop(parent);
 	QKeychain::WritePasswordJob job(UrlToStringNoCredentials(url));
+
+#ifdef Q_OS_WIN
+	settings.beginGroup("Keychain");
+	job.setSettings(&settings);
+#endif
+
 	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()) );
 	job.setAutoDelete( false );
 	job.setInsecureFallback(false);
@@ -407,14 +413,25 @@ bool KeychainSet(QObject *parent, const QUrl &url)
 	job.setTextData(url.password());
 	job.start();
 	loop.exec();
+
+#ifdef Q_OS_WIN
+	settings.endGroup();
+#endif
+
 	return job.error() == QKeychain::NoError;
 }
 
 //------------------------------------------------------------------------------
-bool KeychainGet(QObject *parent, QUrl &url)
+bool KeychainGet(QObject *parent, QUrl &url, QSettings &settings)
 {
 	QEventLoop loop(parent);
 	QKeychain::ReadPasswordJob job(UrlToStringNoCredentials(url));
+
+#ifdef Q_OS_WIN
+	settings.beginGroup("Keychain");
+	job.setSettings(&settings);
+#endif
+
 	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()));
 	job.setAutoDelete( false );
 	job.setInsecureFallback(false);
@@ -422,6 +439,10 @@ bool KeychainGet(QObject *parent, QUrl &url)
 	job.setKey(url.userName());
 	job.start();
 	loop.exec();
+
+#ifdef Q_OS_WIN
+	settings.endGroup();
+#endif
 
 	if(job.error() != QKeychain::NoError)
 		return false;
@@ -432,10 +453,16 @@ bool KeychainGet(QObject *parent, QUrl &url)
 }
 
 //------------------------------------------------------------------------------
-bool KeychainDelete(QObject* parent, const QUrl& url)
+bool KeychainDelete(QObject* parent, const QUrl& url, QSettings &settings)
 {
 	QEventLoop loop(parent);
 	QKeychain::DeletePasswordJob job(UrlToStringNoCredentials(url));
+
+#ifdef Q_OS_WIN
+	settings.beginGroup("Keychain");
+	job.setSettings(&settings);
+#endif
+
 	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()));
 	job.setAutoDelete( false );
 	job.setInsecureFallback(false);
@@ -443,6 +470,10 @@ bool KeychainDelete(QObject* parent, const QUrl& url)
 	job.setKey(url.userName());
 	job.start();
 	loop.exec();
+
+#ifdef Q_OS_WIN
+	settings.endGroup();
+#endif
 
 	return job.error() == QKeychain::NoError;
 }

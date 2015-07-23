@@ -6,6 +6,7 @@
 #include <QMap>
 #include <QStandardItem>
 #include <QSet>
+#include <QSettings>
 
 #define COUNTOF(array)			(sizeof(array)/sizeof(array[0]))
 #define FOSSIL_CHECKOUT1	"_FOSSIL_"
@@ -55,9 +56,9 @@ typedef QMap<QString, QModelIndex> name_modelindex_map_t;
 void						GetStandardItemTextRecursive(QString &name, const QStandardItem &item, const QChar &separator='/');
 void						BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItem &item);
 void						BuildNameToModelIndex(name_modelindex_map_t &map, const QStandardItemModel &model);
-bool						KeychainSet(QObject* parent, const QUrl& url);
-bool						KeychainGet(QObject* parent, QUrl& url);
-bool						KeychainDelete(QObject* parent, const QUrl& url);
+bool						KeychainSet(QObject* parent, const QUrl& url, QSettings &settings);
+bool						KeychainGet(QObject* parent, QUrl& url, QSettings &settings);
+bool						KeychainDelete(QObject* parent, const QUrl& url, QSettings &settings);
 QString						HashString(const QString &str);
 QString						UrlToStringDisplay(const QUrl &url);
 QString						UrlToStringNoCredentials(const QUrl& url);
