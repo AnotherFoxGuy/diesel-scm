@@ -79,6 +79,7 @@ private slots:
 	void onAbort();
 	void onSearchBoxTextChanged(const QString &text);
 	void onSearch();
+	void onCustomActionTriggered();
 
 	// Designer slots
 	void on_actionRefresh_triggered();
@@ -135,7 +136,6 @@ private slots:
 	void on_actionSetDefaultRemote_triggered();
 	void on_actionAddRemote_triggered();
 	void on_actionDeleteRemote_triggered();
-	void on_actionCustomAction_triggered();
 
 private:
 	class MainWinUICallback : public UICallback

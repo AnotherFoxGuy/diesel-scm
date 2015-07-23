@@ -232,7 +232,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	{
 		customActions[i] = new QAction(this);
 		customActions[i]->setVisible(false);
-		connect(customActions[i], SIGNAL(triggered()), this, SLOT(on_actionCustomAction_triggered()));
+		connect(customActions[i], SIGNAL(triggered()), this, SLOT(onCustomActionTriggered()));
 		customActions[i]->setData(i);
 		customActions[i]->setShortcut(QKeySequence(QString("Ctrl+%0").arg(i+1)));
 	}
@@ -2896,7 +2896,7 @@ void MainWindow::invokeCustomAction(int actionId)
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_actionCustomAction_triggered()
+void MainWindow::onCustomActionTriggered()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if(!action)
