@@ -1,5 +1,8 @@
-Fuel V2.0.0 (2015-XX-XX)
+Changes
 ================================================================================
+
+Fuel V2.0.0 (2015-XX-XX)
+--------------------------------------------------------------------------------
 - Feature: New workspace view to visualise branches, tags, stashes and remotes
 - Feature: Support for creating, merging and integrating branches
 - Feature: Support for creating and deleting tags
@@ -25,14 +28,14 @@ Fuel V2.0.0 (2015-XX-XX)
 - Major internal refactoring
 
 Fuel V1.0.1 (2015-07-XX)
-================================================================================
+--------------------------------------------------------------------------------
 - Reformated Docs into Markdown
 - Added Localisations:
 	- Italian (Thanks maxxlupi and Zangune)
 	- Dutch (Thanks Rick Van Lieshout and Fly Man)
 
 Fuel V1.0.0 (2015-03-28)
-================================================================================
+--------------------------------------------------------------------------------
 - Feature: Long Operations can now be aborted by pressing the Escape key
 - Improvement: Better support for commit messages with international characters
 - Improvement: Fossil queries about CR/NL inconsistencies are now handled better
@@ -42,7 +45,7 @@ Fuel V1.0.0 (2015-03-28)
 	- Portuguese (Thanks emansije)
 
 Fuel V0.9.7 (Unreleased)
-================================================================================
+--------------------------------------------------------------------------------
 - Feature: Optionally use the internal browser for the Fossil UI
 - Feature: Support for persisting the state (Column order and sizes) of the File View
 - Feature: Dropping a Fossil checkout file or workspace folder on Fuel now opens that workspace
@@ -59,7 +62,7 @@ Fuel V0.9.7 (Unreleased)
 - Distribution: Fuel is now available in the Arch User Repository
 
 Fuel V0.9.6 (2012-05-13)
-================================================================================
+--------------------------------------------------------------------------------
 - Feature: Support for fossil stashes
 - Feature: Support for dragging and dropping files out of Fuel
 - Feature: Allow for opening workspaces via the checkout file or a workspace folder

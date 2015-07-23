@@ -1,5 +1,5 @@
-C Updated\sChanges.md
-D 2015-07-23T13:52:12.249
+C Beautified\sChanges.md
+D 2015-07-23T13:59:15.878
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -13,7 +13,7 @@ F debian/watch 34f0921ff100a3e16a7ad84dcc303731de830a60
 F dist/arch/PKGBUILD 26623327e467028a883cd13963daa36baf10dfa3
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.md 149d959751ae488829e084a9f88449a08220c1d1
-F doc/Changes.md c7c64b7e794ece5763c6a3e0450e3a6b5f324b96
+F doc/Changes.md c224095e64bd42159a63c74b642487d8f5176f54
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F ext/qtkeychain/CMakeLists.txt fc1afa05034f2765ba243ce758a7e9d6b6efe2d6
 F ext/qtkeychain/COPYING d0f83c8198fdd5464d2373015b7b64ce7cae607e
@@ -254,7 +254,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 1e30709d8ed7635a10080655c65e51ac9cde2706
-R 8b75cf0e89dda15a6579c274d061d64c
+P 708acbaf0b2451802830cfeb4f3a127d991c89e7
+R 2fd69014da4948ec6ad1ec6a018a91dd
 U kostas
-Z 9d1eff3aa1830a57dd457346e4948463
+Z 5d8740f1cd0c5e1b2f7a2b3d7a44b8f2
