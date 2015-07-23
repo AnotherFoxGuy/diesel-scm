@@ -16,5 +16,7 @@ REM Convert all except the en_US which is the original text in the code
 %QTPATH%\bin\lrelease fr_FR.ts -qm ..\rsrc\intl\fr_FR.qm
 %QTPATH%\bin\lrelease ru_RU.ts -qm ..\rsrc\intl\ru_RU.qm
 %QTPATH%\bin\lrelease pt_PT.ts -qm ..\rsrc\intl\pt_PT.qm
+%QTPATH%\bin\lrelease it_IT.ts -qm ..\rsrc\intl\it_IT.qm
+%QTPATH%\bin\lrelease nl_NL.ts -qm ..\rsrc\intl\nl_NL.qm
 
 endlocal

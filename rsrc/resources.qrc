@@ -160,5 +160,6 @@
 		<file>intl/ru_RU.qm</file>
 		<file>intl/pt_PT.qm</file>
 		<file>intl/it_IT.qm</file>
+		<file>intl/nl_NL.qm</file>
 	</qresource>
 </RCC>
