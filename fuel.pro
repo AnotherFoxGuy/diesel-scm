@@ -139,5 +139,5 @@ TRANSLATIONS += \
 	intl/fr_FR.ts \
 	intl/ru_RU.ts \
 	intl/pt_PT.ts \
-	intl/it_IT.ts
-
+	intl/it_IT.ts \
+	intl/nl_NL.ts \

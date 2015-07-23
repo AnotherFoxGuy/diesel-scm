@@ -1717,6 +1717,8 @@ void MainWindow::on_actionAbout_triggered()
 							"emansije: pt_PT\n"
 							"maxxlupi: it_IT\n"
 							"Zangune: it_IT\n"
+							"Fly Man: nl_NL\n"
+							"Rick Van Lieshout: nl_NL\n"
 					   );
 }
 
