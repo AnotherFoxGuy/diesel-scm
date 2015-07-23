@@ -1,3 +1,29 @@
+Fuel V2.0.0 (2015-XX-XX)
+================================================================================
+- Feature: New workspace view to visualise branches, tags, stashes and remotes
+- Feature: Support for creating, merging and integrating branches
+- Feature: Support for creating and deleting tags
+- Feature: Support for updating the workspace to a particular revisions including
+  specific branches or tags
+- Feature: Support for creating a branch during commit, including private branches
+- Feature: Added Search Box for filtering and searching within the list of files
+- Feature: Display the active tags and branches in the status bar
+- Feature: Fuel now automatically detects the http port of "fossil ui"
+- Feature: Added menu shortcut to display only the modified files of the workspace
+- Feature: Support for arbitrary number of remote urls, including pushing and
+  pulling to specific remotes.
+- Feature: Remote URL credentials are stored in the user keychain for systems that
+  support one. Thanks to the QtKeychain project (https://github.com/frankosterfeld/qtkeychain)
+- Feature: Folders now have different appereance depending on the modification
+  status of their contents, including missing folders
+- Feature: Support for multiple file user-actions
+- Feature: Double-Click action also allows user actions
+- Misc: Reorganised menu structure.
+- Misc: Separated Fuel and Fossil settings
+- Bug Fix: Retain the folder tree state when refreshing the workspace
+- Bug Fix: Fixed issue with the expanding width of the commit dialog
+- Major internal refactoring
+
 Fuel V1.0.1 (2015-07-XX)
 ================================================================================
 - Reformated Docs into Markdown
