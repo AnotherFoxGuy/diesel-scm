@@ -405,6 +405,7 @@ bool Fossil::setRemoteUrl(const QUrl& url)
 	if(url.isEmpty())
 		u = "off";
 
+	// FIXME: Fossil ignores any password passed via the URL
 	// Run as silent to avoid displaying credentials in the log
 	bool ok = runFossil(QStringList() << "remote-url" << u, 0, RUNFLAGS_SILENT_INPUT);
 

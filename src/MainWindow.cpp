@@ -2749,7 +2749,14 @@ void MainWindow::on_actionSetDefaultRemote_triggered()
 
 	QUrl url(remotes.first());
 
-	getWorkspace().setRemoteDefault(url);
+	if(getWorkspace().setRemoteDefault(url))
+	{
+		// FIXME: Fossil currently ignores the password
+		if(!url.isLocalFile())
+			KeychainGet(this, url, *settings.GetStore());
+		fossil().setRemoteUrl(url);
+	}
+
 	updateWorkspaceView();
 }
 
