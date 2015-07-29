@@ -297,10 +297,9 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	uiCallback.init(this);
 	// Need to be before applySettings which sets the last workspace
 	fossil().Init(&uiCallback);
+	fossil().setExecutablePath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
 
 	applySettings();
-
-    fossil().setFossilPath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
 
 	// Apply any explicit workspace path if available
 	if(workspacePath && !workspacePath->isEmpty())
@@ -1406,7 +1405,10 @@ void MainWindow::getSelectionRemotes(QStringList &remoteUrls)
 //------------------------------------------------------------------------------
 bool MainWindow::diffFile(const QString &repoFile)
 {
-	return fossil().diffFile(repoFile);
+	if(fossil().diffFile(repoFile, true))
+		return true;
+	else
+		return fossil().diffFile(repoFile, false);
 }
 
 //------------------------------------------------------------------------------
@@ -1782,7 +1784,7 @@ void MainWindow::on_actionSettings_triggered()
 	if(!SettingsDialog::run(this, settings))
 		return;
 
-    fossil().setFossilPath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
+	fossil().setExecutablePath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
 	updateCustomActions();
 }
 

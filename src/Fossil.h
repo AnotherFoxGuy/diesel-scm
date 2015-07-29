@@ -93,7 +93,7 @@ public:
 	bool listFiles(QStringList &files);
 	bool status(QStringList& result);
 
-	bool diffFile(const QString &repoFile);
+	bool diffFile(const QString &repoFile, bool graphical);
 	bool commitFiles(const QStringList &fileList, const QString &comment, const QString& newBranchName, bool isPrivateBranch);
 	bool addFiles(const QStringList& fileList);
 	bool removeFiles(const QStringList& fileList, bool deleteLocal);
@@ -126,7 +126,7 @@ public:
 	const QString &getUIHttpPort() const { return fossilUIPort; }
 	QString getUIHttpAddress() const;
 
-    void setFossilPath(const QString &path) { fossilPath = path; }
+	void setExecutablePath(const QString &path) { fossilPath = path; }
 
 private:
 	void log(const QString &text, bool isHTML=false)

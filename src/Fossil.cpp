@@ -229,10 +229,15 @@ bool Fossil::getFossilVersion(QString& version)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::diffFile(const QString &repoFile)
+bool Fossil::diffFile(const QString &repoFile, bool graphical)
 {
-	// Run the diff detached
-	return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, RUNFLAGS_DETACHED);
+	if(graphical)
+	{
+		// Run the diff detached
+		return runFossil(QStringList() << "gdiff" << QuotePath(repoFile), 0, RUNFLAGS_DETACHED);
+	}
+	else
+		return runFossil(QStringList() << "diff" << QuotePath(repoFile));
 }
 
 //------------------------------------------------------------------------------
