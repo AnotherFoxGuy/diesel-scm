@@ -1,5 +1,5 @@
-C Apply\sthe\sdefault\sremote\surl\sto\sFossil\sas\swell.
-D 2015-07-23T19:01:06.374
+C Fixed\sissue\swhere\sthe\sexplicit\sfossil\spath\ssetting\swas\snot\sbeing\sapplied
+D 2015-07-29T07:34:18.970
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -221,12 +221,12 @@ F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/Fossil.cpp f3b3803ccd5022ae8176229ddff62644b2f11156
-F src/Fossil.h b2e34e4a4ffde603699193bb20ce7c9c6a7fd3b6
+F src/Fossil.h 29423d27f723a1b66959e3f47a7d6802cba33032
 F src/FslSettingsDialog.cpp 2531d3709f0eab66651671e3edead2ca720d07d5
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 987aed22423833de8354baa11dddcfbc7146cc97
+F src/MainWindow.cpp c78a18f4f4ba8827e11a594352a521fbcc111d90
 F src/MainWindow.h c4518a0ba8d5ba2a128449bd8a50adff8402049d
 F src/RemoteDialog.cpp 8540cc5e2e41c4127ed8a028d84691604fa6ecac
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
@@ -254,7 +254,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 15f5fde7bf2f69a76b9f8b1e1a7a0530856210bc
-R e1b8ab06c17e62c59ba1d77e58ead7e7
-U kostas
-Z 5962c19fa1e8953829761bfb38c9c395
+P faaed64ae5cace45eb2ce7fff9f4c179bfbc5a80
+R 5ecb9ed6a157328d9c370ea31eb573a7
+U Kostas
+Z 136628cb17e9bfad5bc1498b99c6b399

@@ -300,6 +300,8 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	applySettings();
 
+    fossil().setFossilPath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
+
 	// Apply any explicit workspace path if available
 	if(workspacePath && !workspacePath->isEmpty())
 		openWorkspace(*workspacePath);
@@ -1780,6 +1782,7 @@ void MainWindow::on_actionSettings_triggered()
 	if(!SettingsDialog::run(this, settings))
 		return;
 
+    fossil().setFossilPath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
 	updateCustomActions();
 }
 

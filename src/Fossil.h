@@ -126,6 +126,8 @@ public:
 	const QString &getUIHttpPort() const { return fossilUIPort; }
 	QString getUIHttpAddress() const;
 
+    void setFossilPath(const QString &path) { fossilPath = path; }
+
 private:
 	void log(const QString &text, bool isHTML=false)
 	{
