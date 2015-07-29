@@ -404,6 +404,8 @@ bool KeychainSet(QObject *parent, const QUrl &url, QSettings &settings)
 #ifdef Q_OS_WIN
 	settings.beginGroup("Keychain");
 	job.setSettings(&settings);
+#else
+	Q_UNUSED(settings)
 #endif
 
 	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()) );
@@ -430,6 +432,8 @@ bool KeychainGet(QObject *parent, QUrl &url, QSettings &settings)
 #ifdef Q_OS_WIN
 	settings.beginGroup("Keychain");
 	job.setSettings(&settings);
+#else
+	Q_UNUSED(settings)
 #endif
 
 	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()));
@@ -461,6 +465,8 @@ bool KeychainDelete(QObject* parent, const QUrl& url, QSettings &settings)
 #ifdef Q_OS_WIN
 	settings.beginGroup("Keychain");
 	job.setSettings(&settings);
+#else
+	Q_UNUSED(settings)
 #endif
 
 	job.connect( &job, SIGNAL(finished(QKeychain::Job*)), &loop, SLOT(quit()));
