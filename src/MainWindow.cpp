@@ -2756,10 +2756,14 @@ void MainWindow::on_actionSetDefaultRemote_triggered()
 
 	if(getWorkspace().setRemoteDefault(url))
 	{
-		// FIXME: Fossil currently ignores the password
 		if(!url.isLocalFile())
 			KeychainGet(this, url, *settings.GetStore());
-		fossil().setRemoteUrl(url);
+
+		// FIXME: Fossil currently ignores the password in "remote-url"
+		// which breaks commits due to a missing password when autosync is enabled
+		// so only set the remote url when there is no password set
+		if(url.password().isEmpty())
+			fossil().setRemoteUrl(url);
 	}
 
 	updateWorkspaceView();
