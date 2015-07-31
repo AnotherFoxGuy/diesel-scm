@@ -12,7 +12,7 @@ FslSettingsDialog::FslSettingsDialog(QWidget *parent, Settings &_settings) :
 {
 	ui->setupUi(this);
 
-	ui->lineUIPort->setText(settings->GetValue(FOSSIL_SETTING_HTTP_PORT).toString());
+	ui->lineUIPort->setText(settings->GetFossilValue(FOSSIL_SETTING_HTTP_PORT).toString());
 
 	// Global Settings
 	ui->lineGDiffCommand->setText(settings->GetFossilValue(FOSSIL_SETTING_GDIFF_CMD).toString());
@@ -40,7 +40,7 @@ bool FslSettingsDialog::run(QWidget *parent, Settings &settings)
 //-----------------------------------------------------------------------------
 void FslSettingsDialog::on_buttonBox_accepted()
 {
-	settings->SetValue(FOSSIL_SETTING_HTTP_PORT, ui->lineUIPort->text());
+	settings->SetFossilValue(FOSSIL_SETTING_HTTP_PORT, ui->lineUIPort->text());
 
 	settings->SetFossilValue(FOSSIL_SETTING_GDIFF_CMD, ui->lineGDiffCommand->text());
 	settings->SetFossilValue(FOSSIL_SETTING_GMERGE_CMD, ui->lineGMergeCommand->text());

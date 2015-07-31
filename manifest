@@ -1,5 +1,5 @@
-C Fixed\swarnings\son\sUnix\sbuild\n
-D 2015-07-29T18:31:39.376
+C Fixed\sFossil\sUI\shttp-port\ssetting\smanagement
+D 2015-07-31T19:34:48.310
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -222,7 +222,7 @@ F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
 F src/Fossil.cpp 1227d77675e0120ea9a00861bc11319f6d983cab
 F src/Fossil.h 7190531104fdcaaacfc9bef8b285eed0b92487a3
-F src/FslSettingsDialog.cpp 2531d3709f0eab66651671e3edead2ca720d07d5
+F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
@@ -254,7 +254,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P c16b5a89043d313fdee1e645edf9d2d3f1600d0f
-R 04fb563dae3462d2e92eff6fa7e596bd
+P abdefeaa2bae5e084735797b7f18aa4d738a8b56
+R de5a622217502202761945c8e897f1ae
 U kostas
-Z 1034f996a15f28a044a6917038a8e7f3
+Z 83ee024d608a0c65d0abcc0ddd24f704
