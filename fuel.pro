@@ -92,3 +92,4 @@ TRANSLATIONS += \
 	intl/pt_PT.ts \
 	intl/it_IT.ts \
 	intl/nl_NL.ts \
+	intl/ko_KO.ts \

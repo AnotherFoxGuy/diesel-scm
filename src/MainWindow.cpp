@@ -2092,6 +2092,7 @@ void MainWindow::on_actionAbout_triggered()
 							"Zangune: it_IT\n"
 							"Fly Man: nl_NL\n"
 							"Rick Van Lieshout: nl_NL\n"
+							"ardiefox: ko_KR\n"
 					   );
 }
 
