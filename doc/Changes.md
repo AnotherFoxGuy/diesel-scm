@@ -27,12 +27,13 @@ Fuel V2.0.0 (2015-XX-XX)
 - Bug Fix: Fixed issue with the expanding width of the commit dialog
 - Major internal refactoring
 
-Fuel V1.0.1 (2015-07-XX)
+Fuel V1.0.1 (2015-08-XX)
 --------------------------------------------------------------------------------
 - Reformated Docs into Markdown
 - Added Localisations:
 	- Italian (Thanks maxxlupi and Zangune)
 	- Dutch (Thanks Rick Van Lieshout and Fly Man)
+	- Korean (Thanks ardiefox)
 
 Fuel V1.0.0 (2015-03-28)
 --------------------------------------------------------------------------------
