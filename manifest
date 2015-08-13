@@ -1,5 +1,5 @@
-C Simplified\sAbout\sdialog
-D 2015-08-13T11:39:09.217
+C Better\slayout\sfor\sthe\sAbout\sdialog
+D 2015-08-13T11:41:05.555
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -250,7 +250,7 @@ F src/Workspace.h 842c195cf830422f2066c7190156e7c8b82a93a1
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
-F ui/AboutDialog.ui 26109b7e85445d164089e5958e4901cc50c06ed0
+F ui/AboutDialog.ui bb380ea90c541acefb4c340aa2ff694e100e0a03
 F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 1e5dafa742e9ae07ec937bcda8cda3297ddc6199
@@ -260,7 +260,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 8b95a9008769c1082936f3083d65428c262385db
-R 91454ed4fd7301cbdca79e4edbeb9e55
+P e5adb715a5bbbce1fc488d7802c2367120c3007f
+R 60a1f32d9ed6c1c2b28ad25a195f641d
 U Kostas
-Z 415a4eb7f15fa7d4eb2ceaa4883ed4f9
+Z 4942adbeac5176823bf57b9161cdc59b
