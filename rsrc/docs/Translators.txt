@@ -1,0 +1,10 @@
+stayawake: de_DE
+djnavas: es_ES
+Fringale: fr_FR
+mouse166: ru_RU
+emansije: pt_PT
+maxxlupi: it_IT
+Zangune: it_IT
+Fly Man: nl_NL
+Rick Van Lieshout: nl_NL
+ardiefox: ko_KR

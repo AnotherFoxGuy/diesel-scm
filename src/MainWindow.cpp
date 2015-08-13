@@ -20,6 +20,7 @@
 #include "CloneDialog.h"
 #include "RevisionDialog.h"
 #include "RemoteDialog.h"
+#include "AboutDialog.h"
 #include "Utils.h"
 
 #define REVISION_LATEST "Latest revision"
@@ -1698,33 +1699,10 @@ void MainWindow::on_actionUndo_triggered()
 void MainWindow::on_actionAbout_triggered()
 {
 	QString fossil_ver;
+	fossil().getFossilVersion(fossil_ver);
 
-	if(fossil().getFossilVersion(fossil_ver))
-		fossil_ver = tr("Fossil version %0").arg(fossil_ver) + "\n";
-
-	QString qt_ver = tr("QT version %0").arg(QT_VERSION_STR) + "\n\n";
-
-	QMessageBox::about(this, tr("About Fuel..."),
-					   QCoreApplication::applicationName() + " "+ QCoreApplication::applicationVersion() + " " +
-						tr("a GUI frontend to the Fossil SCM\n"
-							"by Kostas Karanikolas\n"
-							"Released under the GNU GPL")+"\n\n" +
-					   fossil_ver +
-					   qt_ver +
-						tr("Icons by Deleket - Jojo Mendoza\n"
-							"Available under the CC Attribution Noncommercial No Derivative 3.0 License") + "\n\n" +
-						tr("Translations with the help of:") + "\n"
-							"stayawake: de_DE\n"
-							"djnavas: es_ES\n"
-							"Fringale: fr_FR\n"
-							"mouse166: ru_RU\n"
-							"emansije: pt_PT\n"
-							"maxxlupi: it_IT\n"
-							"Zangune: it_IT\n"
-							"Fly Man: nl_NL\n"
-							"Rick Van Lieshout: nl_NL\n"
-							"ardiefox: ko_KR\n"
-					   );
+	AboutDialog dlg(this, fossil_ver);
+	dlg.exec();
 }
 
 //------------------------------------------------------------------------------

@@ -65,7 +65,8 @@ SOURCES += src/main.cpp\
 	src/Workspace.cpp \
 	src/SearchBox.cpp \
 	src/Settings.cpp \
-	src/RemoteDialog.cpp
+	src/RemoteDialog.cpp \
+    src/AboutDialog.cpp
 
 HEADERS  += src/MainWindow.h \
 	src/CommitDialog.h \
@@ -83,7 +84,8 @@ HEADERS  += src/MainWindow.h \
 	src/Workspace.h \
 	src/SearchBox.h \
 	src/Settings.h \
-	src/RemoteDialog.h
+	src/RemoteDialog.h \
+    src/AboutDialog.h
 
 FORMS    += ui/MainWindow.ui \
 	ui/CommitDialog.ui \
@@ -93,7 +95,8 @@ FORMS    += ui/MainWindow.ui \
 	ui/CloneDialog.ui \
 	ui/BrowserWidget.ui \
 	ui/RevisionDialog.ui \
-	ui/RemoteDialog.ui
+	ui/RemoteDialog.ui \
+	ui/AboutDialog.ui
 
 RESOURCES += \
 	rsrc/resources.qrc

@@ -167,4 +167,8 @@
 	<file>intl/nl_NL.qm</file>
 	<file>intl/ko_KR.qm</file>
   </qresource>
+  <qresource prefix="/docs">
+	  <file>docs/Translators.txt</file>
+	  <file>docs/Licenses.txt</file>
+  </qresource>
 </RCC>
