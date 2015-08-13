@@ -7,25 +7,32 @@ AboutDialog::AboutDialog(QWidget *parent, const QString &fossilVersion) :
 	ui(new Ui::AboutDialog)
 {
 	ui->setupUi(this);
-	ui->lblApp->setText(QCoreApplication::applicationName() + " "+ QCoreApplication::applicationVersion());
+	QString banner(QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion());
+	ui->lblBanner->setText(banner + "\n" + ui->lblBanner->text());
+
 	ui->lblQtVersion->setText(tr("QT version %0").arg(QT_VERSION_STR));
 
 	if(!fossilVersion.isEmpty())
 		ui->lblFossilVersion->setText(tr("Fossil version %0").arg(fossilVersion));
 
+	QString additional;
 	QFile ftrans(":/docs/docs/Translators.txt");
 	if(ftrans.open(QFile::ReadOnly))
 	{
-		ui->txtTranslators->setText(ftrans.readAll());
+		additional.append(tr("Translations with the help of:")+"\n");
+		additional.append(ftrans.readAll());
+		additional.append("\n\n");
 		ftrans.close();
 	}
 
 	QFile flicenses(":/docs/docs/Licenses.txt");
 	if(flicenses.open(QFile::ReadOnly))
 	{
-		ui->txtLicenses->setText(flicenses.readAll());
+		additional.append(tr("This sofware uses the following open-source libraries and assets:")+"\n");
+		additional.append(flicenses.readAll());
 		flicenses.close();
 	}
+	ui->txtAdditional->setText(additional);
 }
 
 AboutDialog::~AboutDialog()

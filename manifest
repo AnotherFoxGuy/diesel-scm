@@ -1,5 +1,5 @@
-C -\sReimplemented\sthe\sabout\sdialog\n-\sAdded\slicenses\sfor\sexternal\slibraries\n-\sTranslators\sand\slicense\stext\snow\slive\sin\sseparate\sresource\sfiles\n
-D 2015-08-13T11:16:53.424
+C Simplified\sAbout\sdialog
+D 2015-08-13T11:39:09.217
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -211,7 +211,7 @@ F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
 F rsrc/resources.qrc 21ae6205e27ac989001eb0edc075d7e405b992c8
-F src/AboutDialog.cpp b5ba08d7707552356c287f7274f55f89cf32557e
+F src/AboutDialog.cpp fc9e3ba03aa6cb145ace610d9b38a2de157551ba
 F src/AboutDialog.h 269f3a0589067c08f19b542e4576b0ef58bc6ec5
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
@@ -250,7 +250,7 @@ F src/Workspace.h 842c195cf830422f2066c7190156e7c8b82a93a1
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
-F ui/AboutDialog.ui 96b9105409325ab977d4c6754fb05aef06a5050b
+F ui/AboutDialog.ui 26109b7e85445d164089e5958e4901cc50c06ed0
 F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 1e5dafa742e9ae07ec937bcda8cda3297ddc6199
@@ -260,7 +260,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 2c93f1713207d90729d6d1f105560bc0a24e365b
-R 0665a31eba11e051d35b7b46216dd3d2
+P 8b95a9008769c1082936f3083d65428c262385db
+R 91454ed4fd7301cbdca79e4edbeb9e55
 U Kostas
-Z 88f3e4c9ada968acf4416e29621a6af2
+Z 415a4eb7f15fa7d4eb2ceaa4883ed4f9
