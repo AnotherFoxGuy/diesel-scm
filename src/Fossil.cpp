@@ -727,7 +727,12 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	// Detached processes use the command-line only, to avoid having to wait
 	// for the temporary args file to be released before returing
 	if(detached)
-		return QProcess::startDetached(fossil, args, wkdir);
+	{
+		bool started = QProcess::startDetached(fossil, args, wkdir);
+		if(exitCode)
+			*exitCode = started ? EXIT_SUCCESS : EXIT_FAILURE;
+		return started;
+	}
 
 	// Make status message
 	QString status_msg = QObject::tr("Running Fossil");
