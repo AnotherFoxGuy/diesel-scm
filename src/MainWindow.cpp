@@ -284,7 +284,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	// Create SearchBox
 	searchBox = new SearchBox(this);
-	searchBox->setPlaceholderText(tr("Find (%0)").arg(searchShortcut->key().toString()));
+	searchBox->setPlaceholderText(tr("Filter (%0)").arg(searchShortcut->key().toString()));
 	searchBox->setMaximumWidth(450);
 	ui->mainToolBar->addWidget(searchBox);
 
