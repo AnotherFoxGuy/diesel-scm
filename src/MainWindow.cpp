@@ -322,18 +322,12 @@ MainWindow::~MainWindow()
 }
 
 //-----------------------------------------------------------------------------
-const QString &MainWindow::getCurrentWorkspace()
-{
-	return fossil().getCurrentWorkspace();
-}
-
-//-----------------------------------------------------------------------------
 void MainWindow::setCurrentWorkspace(const QString &workspace)
 {
 	if(!getWorkspace().switchWorkspace(workspace, *settings.GetStore()))
 		QMessageBox::critical(this, tr("Error"), tr("Could not change current directory to '%0'").arg(workspace), QMessageBox::Ok );
 	else
-		addWorkspaceHistory(fossil().getCurrentWorkspace());
+		addWorkspaceHistory(getWorkspace().getPath());
 }
 
 //------------------------------------------------------------------------------
@@ -1169,7 +1163,7 @@ void MainWindow::updateSettings()
 	{
 		store->setArrayIndex(i);
 		store->setValue("Path", workspaceHistory[i]);
-		if(getCurrentWorkspace() == workspaceHistory[i])
+		if(getWorkspace().getPath() == workspaceHistory[i])
 			store->setValue("Active", true);
 		else
 			store->remove("Active");
@@ -1500,7 +1494,7 @@ void MainWindow::on_actionOpenFile_triggered()
 
 	for(QStringList::iterator it = selection.begin(); it!=selection.end(); ++it)
 	{
-		QDesktopServices::openUrl(QUrl::fromLocalFile(getCurrentWorkspace()+QDir::separator()+*it));
+		QDesktopServices::openUrl(QUrl::fromLocalFile(getWorkspace().getPath()+QDir::separator()+*it));
 	}
 }
 
@@ -1598,7 +1592,7 @@ void MainWindow::on_actionDelete_triggered()
 	{
 		for(int i=0; i<unknown_files.size(); ++i)
 		{
-			QFileInfo fi(getCurrentWorkspace() + QDir::separator() + unknown_files[i]);
+			QFileInfo fi(getWorkspace().getPath() + QDir::separator() + unknown_files[i]);
 			if(fi.exists())
 				QFile::remove(fi.filePath());
 		}
@@ -1663,7 +1657,7 @@ void MainWindow::on_actionOpenContaining_triggered()
 	QString target;
 
 	if(selection.empty())
-		target = QDir::toNativeSeparators(getCurrentWorkspace());
+		target = QDir::toNativeSeparators(getWorkspace().getPath());
 	else
 	{
 		QFileInfo file_info(selection[0]);
@@ -1909,7 +1903,7 @@ void MainWindow::on_workspaceTreeView_doubleClicked(const QModelIndex &index)
 
 	if(tv.Type==WorkspaceItem::TYPE_FOLDER || tv.Type==WorkspaceItem::TYPE_WORKSPACE)
 	{
-		QString target = getCurrentWorkspace() + PATH_SEPARATOR + tv.Value;
+		QString target = getWorkspace().getPath() + PATH_SEPARATOR + tv.Value;
 		QUrl url = QUrl::fromLocalFile(target);
 		QDesktopServices::openUrl(url);
 	}
@@ -2019,13 +2013,13 @@ void MainWindow::on_actionRenameFolder_triggered()
 	// First ensure that the target directories exist, and if not make them
 	for(int i=0; i<files_to_move.length(); ++i)
 	{
-		QString target_path = QDir::cleanPath(getCurrentWorkspace() + PATH_SEPARATOR + new_paths[i] + PATH_SEPARATOR);
+		QString target_path = QDir::cleanPath(getWorkspace().getPath() + PATH_SEPARATOR + new_paths[i] + PATH_SEPARATOR);
 		QDir target(target_path);
 
 		if(target.exists())
 			continue;
 
-		QDir wkdir(getCurrentWorkspace());
+		QDir wkdir(getWorkspace().getPath());
 		Q_ASSERT(wkdir.exists());
 
 		log(tr("Creating folder '%0'").arg(target_path)+"\n");
@@ -2244,7 +2238,7 @@ void MainWindow::onFileViewDragOut()
 
 	QList<QUrl> urls;
 	foreach(QString f, filenames)
-		urls.append(QUrl::fromLocalFile(getCurrentWorkspace()+QDir::separator()+f));
+		urls.append(QUrl::fromLocalFile(getWorkspace().getPath()+QDir::separator()+f));
 
 	QMimeData *mime_data = new QMimeData;
 	mime_data->setUrls(urls);
@@ -2276,7 +2270,7 @@ void MainWindow::on_fileTableView_customContextMenuRequested(const QPoint &pos)
 
 		if(fnames.size()==1)
 		{
-			QString fname = getCurrentWorkspace() + PATH_SEPARATOR + fnames[0];
+			QString fname = getWorkspace().getPath() + PATH_SEPARATOR + fnames[0];
 			fname = QDir::toNativeSeparators(fname);
 			if(ShowExplorerMenu((HWND)winId(), fname, gpos))
 				refresh();
@@ -2361,11 +2355,11 @@ void MainWindow::dropEvent(QDropEvent *event)
 			QString abspath = finfo.absoluteFilePath();
 
 			// Within the current workspace ?
-			if(abspath.indexOf(getCurrentWorkspace())!=0)
+			if(abspath.indexOf(getWorkspace().getPath())!=0)
 				continue; // skip
 
 			// Remove workspace from full path
-			QString wkpath = abspath.right(abspath.length()-getCurrentWorkspace().length()-1);
+			QString wkpath = abspath.right(abspath.length()-getWorkspace().getPath().length()-1);
 
 			newfiles.append(wkpath);
 		}
@@ -2885,7 +2879,7 @@ void MainWindow::invokeCustomAction(int actionId)
 		}
 	}
 
-	const QString &wkdir = fossil().getCurrentWorkspace();
+	const QString &wkdir = getWorkspace().getPath();
 
 	SpawnExternalProcess(this, cust_action.Command, file_selection, path_selection, wkdir, uiCallback);
 }

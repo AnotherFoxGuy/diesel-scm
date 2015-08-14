@@ -30,7 +30,6 @@ private:
 	void applySettings();
 	void updateSettings();
 	void updateRevision(const QString& revision);
-	const QString &getCurrentWorkspace();
 	void setCurrentWorkspace(const QString &workspace);
 	void log(const QString &text, bool isHTML=false);
 	void setStatus(const QString &text);

@@ -32,7 +32,7 @@ void Workspace::clearState()
 //------------------------------------------------------------------------------
 void Workspace::storeWorkspace(QSettings &store)
 {
-	QString workspace = fossil().getCurrentWorkspace();
+	QString workspace = fossil().getWorkspacePath();
 	if(workspace.isEmpty())
 		return;
 
@@ -66,7 +66,7 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 	clearState();
 	remotes.clear();
 
-	fossil().setCurrentWorkspace("");
+	fossil().setWorkspacePath("");
 	if(workspace.isEmpty())
 		return true;
 
@@ -75,7 +75,7 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 	if(!QDir::setCurrent(new_workspace))
 		return false;
 
-	fossil().setCurrentWorkspace(new_workspace);
+	fossil().setWorkspacePath(new_workspace);
 
 	// Load Remotes
 	QString workspace_hash = HashString(QDir::toNativeSeparators(new_workspace));
@@ -161,7 +161,7 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 {
 	// Scan all workspace files
 	QFileInfoList all_files;
-	QString wkdir = fossil().getCurrentWorkspace();
+	QString wkdir = fossil().getWorkspacePath();
 
 	if(wkdir.isEmpty())
 		return;

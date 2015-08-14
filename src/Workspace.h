@@ -122,7 +122,6 @@ class Workspace
 {
 public:
 	Workspace();
-
 	~Workspace();
 
 	typedef QList<WorkspaceFile*> filelist_t;
@@ -133,6 +132,7 @@ public:
 	Fossil &			fossil() { return bridge; }
 	const Fossil &		fossil() const { return bridge; }
 
+	const QString &		getPath() const { return fossil().getWorkspacePath(); }
 	bool				switchWorkspace(const QString &workspace, QSettings &store);
 	void				scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, UICallback &uiCallback, bool &operationAborted);
 
@@ -155,8 +155,7 @@ public:
 	QUrl				getRemoteDefault() const;
 	Remote *			findRemote(const QUrl& url);
 
-
-	void storeWorkspace(QSettings &store);
+	void				storeWorkspace(QSettings &store);
 private:
 	static bool			scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, UICallback &uiCallback);
 

@@ -40,7 +40,7 @@ public:
 	{
 		uiCallback = callback;
 		fossilPath.clear();
-		currentWorkspace.clear();
+		workspacePath.clear();
 	}
 
 	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
@@ -50,14 +50,14 @@ public:
 
 	RepoStatus getRepoStatus();
 
-	void setCurrentWorkspace(const QString &workspace)
+	void setWorkspacePath(const QString &workspace)
 	{
-		currentWorkspace = workspace;
+		workspacePath = workspace;
 	}
 
-	const QString &getCurrentWorkspace() const
+	const QString &getWorkspacePath() const
 	{
-		return currentWorkspace;
+		return workspacePath;
 	}
 
 	const QString &getProjectName() const
@@ -138,7 +138,7 @@ private:
 
 	bool				operationAborted;
 	UICallback			*uiCallback;
-	QString				currentWorkspace;
+	QString				workspacePath;
 	QString				fossilPath;		// The value from the settings
 	QString				repositoryFile;
 	QString				projectName;

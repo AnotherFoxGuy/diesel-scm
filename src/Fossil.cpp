@@ -82,7 +82,7 @@ bool Fossil::openRepository(const QString& repositoryPath, const QString& worksp
 		return false;
 
 	QString abspath = fi.absoluteFilePath();
-	setCurrentWorkspace(workspacePath);
+	setWorkspacePath(workspacePath);
 	setRepositoryFile(abspath);
 
 	if(!runFossil(QStringList() << "open" << QuotePath(abspath)))
@@ -111,7 +111,7 @@ bool Fossil::closeRepository()
 		return false;
 
 	stopUI();
-	setCurrentWorkspace("");
+	setWorkspacePath("");
 	return true;
 }
 
@@ -309,7 +309,7 @@ bool Fossil::removeFiles(const QStringList& fileList, bool deleteLocal)
 	{
 		for(int i=0; i<fileList.size(); ++i)
 		{
-			QFileInfo fi(getCurrentWorkspace() + QDir::separator() + fileList[i]);
+			QFileInfo fi(getWorkspacePath() + QDir::separator() + fileList[i]);
 			if(fi.exists())
 				QFile::remove(fi.filePath());
 		}
@@ -339,7 +339,7 @@ bool Fossil::renameFile(const QString &beforePath, const QString &afterPath, boo
 	if(!runFossil(QStringList() << "mv" << QuotePath(beforePath) << QuotePath(afterPath)))
 		return false;
 
-	QString wkdir = getCurrentWorkspace() + QDir::separator();
+	QString wkdir = getWorkspacePath() + QDir::separator();
 
 	// Also rename the file
 	if(renameLocal && !QFile::rename(wkdir+beforePath, wkdir+afterPath))
@@ -720,7 +720,7 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		log("<b>&gt; fossil "+params+"</b><br>", true);
 	}
 
-	QString wkdir = getCurrentWorkspace();
+	QString wkdir = getWorkspacePath();
 
 	QString fossil = getFossilPath();
 
@@ -1079,7 +1079,7 @@ bool Fossil::startUI(const QString &httpPort)
 	//fossilUI.setParent(parentWidget);
 
 	fossilUI.setProcessChannelMode(QProcess::MergedChannels);
-	fossilUI.setWorkingDirectory(getCurrentWorkspace());
+	fossilUI.setWorkingDirectory(getWorkspacePath());
 
 	log("<b>&gt; fossil ui</b><br>", true);
 	log(QObject::tr("Starting Fossil browser UI. Please wait.")+"\n");
