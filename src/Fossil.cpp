@@ -394,7 +394,15 @@ bool Fossil::setFossilSetting(const QString& name, const QString& value, bool gl
 	if(value.isEmpty())
 		params << "unset" << name;
 	else
-		params << "settings" << name << value;
+	{
+		params << "settings" << name;
+
+		// Quote when the value contains spaces
+		if(value.indexOf(' ')!=-1)
+			params << "\"" + value + "\"";
+		else
+			params << value;
+	}
 
 	if(global)
 		params << "-global";

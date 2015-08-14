@@ -60,7 +60,6 @@ public:
 		return currentWorkspace;
 	}
 
-
 	const QString &getProjectName() const
 	{
 		return projectName;

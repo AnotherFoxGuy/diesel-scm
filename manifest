@@ -1,5 +1,5 @@
-C Made\sAbout\sdialog\smodal\n
-D 2015-08-14T08:59:09.850
+C Fixed\sissue\swith\sFossil\ssettings\scontaining\sspaces\n
+D 2015-08-14T09:53:59.650
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -225,8 +225,8 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp 1227d77675e0120ea9a00861bc11319f6d983cab
-F src/Fossil.h 7190531104fdcaaacfc9bef8b285eed0b92487a3
+F src/Fossil.cpp 7127fcab4764d21dbc997630134f324e9ff76f9d
+F src/Fossil.h 40a44d2cdc7fcc39c09f8017d175cc71eac2aa96
 F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
@@ -260,7 +260,7 @@ F ui/MainWindow.ui 10181826a25056ed5aba2b23a7d110159be7c043
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 196bdb56e3c2d617f1a1410dc61bc22eb6feb242
-R d90b7e6d3e740d1099fa4aadd251dabb
+P 79337d9af5942ca7ace8ec49610e524a4561d3a0
+R 67d38cf40c7ebdb86a0dbe76249d8d44
 U Kostas
-Z 498df783acb365aefa521994366cff1e
+Z bfa56307a7ad95d9ee48555c26181faf
