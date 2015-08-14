@@ -1400,8 +1400,9 @@ void MainWindow::getSelectionRemotes(QStringList &remoteUrls)
 //------------------------------------------------------------------------------
 bool MainWindow::diffFile(const QString &repoFile)
 {
-	if(fossil().diffFile(repoFile, true))
-		return true;
+	const QString &gdiff = settings.GetFossilValue(FOSSIL_SETTING_GDIFF_CMD).toString();
+	if(!gdiff.isEmpty())
+		return fossil().diffFile(repoFile, true);
 	else
 		return fossil().diffFile(repoFile, false);
 }
