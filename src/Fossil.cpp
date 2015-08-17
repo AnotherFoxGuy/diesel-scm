@@ -29,6 +29,7 @@ RepoStatus Fossil::getRepoStatus()
 
 	bool run_ok = exit_code == EXIT_SUCCESS;
 
+	activeTags.clear();
 	for(QStringList::iterator it=res.begin(); it!=res.end(); ++it)
 	{
 		int col_index = it->indexOf(':');
@@ -48,7 +49,6 @@ RepoStatus Fossil::getRepoStatus()
 
 		if(run_ok)
 		{
-			activeTags.clear();
 			if(key=="project-name")
 				projectName = value;
 			else if(key=="repository")
