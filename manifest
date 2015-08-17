@@ -1,5 +1,5 @@
-C More\srefactoring\nAdded\smessageboxes\sfor\sfailed\sfossil\soperations
-D 2015-08-17T07:59:11.634
+C Added\smore\smessageboxes\sfor\sfailed\sfossil\soperations
+D 2015-08-17T08:29:14.007
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -231,7 +231,7 @@ F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp cf6fbd8899450eb0e2b36cc7164f9bbed158d4a3
+F src/MainWindow.cpp fd738336d66824cda5e9a466c40e4ac14a773d02
 F src/MainWindow.h f4cffbe4d360d30aa2eeaa25fc6d50d0a39c617f
 F src/RemoteDialog.cpp 8540cc5e2e41c4127ed8a028d84691604fa6ecac
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
@@ -260,7 +260,7 @@ F ui/MainWindow.ui f9774e6dddb9462d8072bffd6c511bee7f470b9d
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P b3dc68271fb2d6fbbe80060d3ec3d206f5f0097f
-R 00cfe48a55ac81ffde7b0af6cc9b02a2
+P 4a23244f2aa93ec132a74c5b3a7c04d467596963
+R 22051361a24d2af1d4bfda8b2c0ad21b
 U Kostas
-Z 6a4f874191db12554ccdfebdf92dbb55
+Z 3381705577434562ff9ce5a56a9f21b3

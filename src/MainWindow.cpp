@@ -1543,7 +1543,9 @@ void MainWindow::on_actionCommit_triggered()
 	if(commit_files.size() != all_modified_files.size())
 		files = commit_files;
 
-	fossil().commitFiles(files, msg, branch_name, private_branch);
+	if(!fossil().commitFiles(files, msg, branch_name, private_branch))
+		QMessageBox::critical(this, tr("Error"), tr("Could not commit changes."), QMessageBox::Ok);
+
 	refresh();
 }
 
@@ -1561,7 +1563,9 @@ void MainWindow::on_actionAdd_triggered()
 		return;
 
 	// Do Add
-	fossil().addFiles(selection);
+	if(!fossil().addFiles(selection))
+		QMessageBox::critical(this, tr("Error"), tr("Could not add files."), QMessageBox::Ok);
+
 	refresh();
 }
 
@@ -1586,7 +1590,10 @@ void MainWindow::on_actionDelete_triggered()
 
 	// Remove repository files
 	if(!repo_files.empty())
-		fossil().removeFiles(repo_files, remove_local);
+	{
+		if(!fossil().removeFiles(repo_files, remove_local))
+			QMessageBox::critical(this, tr("Error"), tr("Could not remove files."), QMessageBox::Ok);
+	}
 
 	// Remove unknown local files if selected
 	if(remove_local)
@@ -1615,7 +1622,9 @@ void MainWindow::on_actionRevert_triggered()
 		return;
 
 	// Do Revert
-	fossil().revertFiles(modified_files);
+	if(!fossil().revertFiles(modified_files))
+		QMessageBox::critical(this, tr("Error"), tr("Could not revert files."), QMessageBox::Ok);
+
 	refresh();
 }
 
@@ -1644,7 +1653,8 @@ void MainWindow::on_actionRename_triggered()
 	}
 
 	// Do Rename
-	fossil().renameFile(fi_before.filePath(), fi_after.filePath(), true);
+	if(!fossil().renameFile(fi_before.filePath(), fi_after.filePath(), true))
+		QMessageBox::critical(this, tr("Error"), tr("Could not rename file '%0' to '%1'").arg(fi_before.filePath(), fi_after.filePath()), QMessageBox::Ok);
 
 	refresh();
 }
@@ -1676,7 +1686,8 @@ void MainWindow::on_actionUndo_triggered()
 	QStringList res;
 
 	// Do test Undo
-	fossil().undoRepository(res, true);
+	if(!fossil().undoRepository(res, true))
+		QMessageBox::critical(this, tr("Error"), tr("Could not undo changes."), QMessageBox::Ok);
 
 	if(res.length()>0 && res[0]=="No undo or redo is available")
 		return;
@@ -1685,7 +1696,8 @@ void MainWindow::on_actionUndo_triggered()
 		return;
 
 	// Do Undo
-	fossil().undoRepository(res, false);
+	if(!fossil().undoRepository(res, false))
+		QMessageBox::critical(this, tr("Error"), tr("Could not undo changes."), QMessageBox::Ok);
 
 	refresh();
 }
@@ -1782,7 +1794,6 @@ void MainWindow::on_actionFossilSettings_triggered()
 		QString value = it.value().Value.toString();
 		fossil().setFossilSetting(name, value, type == Settings::Setting::TYPE_FOSSIL_GLOBAL);
 	}
-
 }
 
 //------------------------------------------------------------------------------
@@ -2137,7 +2148,8 @@ void MainWindow::on_actionCreateStash_triggered()
 	}
 
 	// Do Stash
-	fossil().stashNew(stashed_files, stash_name, revert);
+	if(!fossil().stashNew(stashed_files, stash_name, revert))
+		QMessageBox::critical(this, tr("Error"), tr("Could not create stash."), QMessageBox::Ok);
 
 	refresh();
 }
@@ -2164,6 +2176,7 @@ void MainWindow::on_actionApplyStash_triggered()
 		if(!fossil().stashApply(*id_it))
 		{
 			log(tr("Stash application aborted due to errors")+"\n");
+			QMessageBox::critical(this, tr("Error"), tr("Could not apply stash."), QMessageBox::Ok);
 			return;
 		}
 	}
@@ -2177,6 +2190,7 @@ void MainWindow::on_actionApplyStash_triggered()
 		if(!fossil().stashDrop(*id_it))
 		{
 			log(tr("Stash deletion aborted due to errors")+"\n");
+			QMessageBox::critical(this, tr("Error"), tr("Could not delete stash."), QMessageBox::Ok);
 			return;
 		}
 	}
@@ -2205,6 +2219,7 @@ void MainWindow::on_actionDeleteStash_triggered()
 		if(!fossil().stashDrop(*id_it))
 		{
 			log(tr("Stash deletion aborted due to errors")+"\n");
+			QMessageBox::critical(this, tr("Error"), tr("Could not delete stash."), QMessageBox::Ok);
 			return;
 		}
 	}
@@ -2225,7 +2240,8 @@ void MainWindow::on_actionDiffStash_triggered()
 	Q_ASSERT(id_it!=getWorkspace().getStashes().end());
 
 	// Run diff
-	fossil().stashDiff(*id_it);
+	if(!fossil().stashDiff(*id_it))
+		QMessageBox::critical(this, tr("Error"), tr("Could not diff stash."), QMessageBox::Ok);
 }
 
 //------------------------------------------------------------------------------
@@ -2372,7 +2388,8 @@ void MainWindow::dropEvent(QDropEvent *event)
 				return;
 
 			// Do Add
-			fossil().addFiles(newfiles);
+			if(!fossil().addFiles(newfiles))
+				QMessageBox::critical(this, tr("Error"), tr("Could not add files."), QMessageBox::Ok);
 
 			refresh();
 		}
@@ -2580,7 +2597,7 @@ void MainWindow::mergeRevision(const QString &defaultRevision)
 	// Do test merge
 	if(!fossil().branchMerge(res, revision, integrate, force, true))
 	{
-		QMessageBox::critical(this, tr("Error"), tr("Merge Failed."), QMessageBox::Ok);
+		QMessageBox::critical(this, tr("Error"), tr("Merge failed."), QMessageBox::Ok);
 		return;
 	}
 
@@ -2588,10 +2605,10 @@ void MainWindow::mergeRevision(const QString &defaultRevision)
 		return;
 
 	// Do update
-	if(fossil().branchMerge(res, revision, integrate, force, false))
-		log(tr("Merge completed. Don't forget to commit!")+"\n");
+	if(!fossil().branchMerge(res, revision, integrate, force, false))
+		QMessageBox::critical(this, tr("Error"), tr("Merge failed."), QMessageBox::Ok);
 	else
-		QMessageBox::critical(this, tr("Error"), tr("Merge Failed."), QMessageBox::Ok);
+		log(tr("Merge completed. Don't forget to commit!")+"\n");
 
 	refresh();
 }
@@ -2678,7 +2695,8 @@ void MainWindow::on_actionPushRemote_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	fossil().pushRepository(url);
+	if(!fossil().pushRepository(url))
+		QMessageBox::critical(this, tr("Error"), tr("Could not push to the remote repository."), QMessageBox::Ok);
 }
 
 //------------------------------------------------------------------------------
@@ -2695,7 +2713,8 @@ void MainWindow::on_actionPullRemote_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	fossil().pullRepository(url);
+	if(!fossil().pullRepository(url))
+		QMessageBox::critical(this, tr("Error"), tr("Could not pull from the remote repository."), QMessageBox::Ok);
 }
 
 //------------------------------------------------------------------------------
@@ -2705,7 +2724,7 @@ void MainWindow::on_actionPush_triggered()
 
 	if(url.isEmpty())
 	{
-		QMessageBox::critical(this, tr("Error"), tr("A default remote repository has not been specified."), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("A default remote repository has not been specified."), QMessageBox::Ok);
 		return;
 	}
 
@@ -2713,7 +2732,8 @@ void MainWindow::on_actionPush_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	fossil().pushRepository(url);
+	if(!fossil().pushRepository(url))
+		QMessageBox::critical(this, tr("Error"), tr("Could not push to the remote repository."), QMessageBox::Ok);
 }
 
 //------------------------------------------------------------------------------
@@ -2723,7 +2743,7 @@ void MainWindow::on_actionPull_triggered()
 
 	if(url.isEmpty())
 	{
-		QMessageBox::critical(this, tr("Error"), tr("A default remote repository has not been specified."), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("A default remote repository has not been specified."), QMessageBox::Ok);
 		return;
 	}
 
@@ -2731,7 +2751,8 @@ void MainWindow::on_actionPull_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	fossil().pullRepository(url);
+	if(!fossil().pullRepository(url))
+		QMessageBox::critical(this, tr("Error"), tr("Could not pull from the remote repository."), QMessageBox::Ok);
 }
 
 //------------------------------------------------------------------------------
@@ -2753,7 +2774,10 @@ void MainWindow::on_actionSetDefaultRemote_triggered()
 		// which breaks commits due to a missing password when autosync is enabled
 		// so only set the remote url when there is no password set
 		if(url.password().isEmpty())
-			fossil().setRemoteUrl(url);
+		{
+			if(!fossil().setRemoteUrl(url))
+				QMessageBox::critical(this, tr("Error"), tr("Could not set the remote repository."), QMessageBox::Ok);
+		}
 	}
 
 	updateWorkspaceView();
@@ -2772,7 +2796,7 @@ void MainWindow::on_actionAddRemote_triggered()
 		KeychainDelete(this, url, *settings.GetStore());
 
 		if(!KeychainSet(this, url, *settings.GetStore()))
-			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok );
+			QMessageBox::critical(this, tr("Error"), tr("Could not store information to keychain."), QMessageBox::Ok);
 	}
 
 	url.setPassword("");
