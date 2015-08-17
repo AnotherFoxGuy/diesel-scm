@@ -120,7 +120,7 @@ public:
 	bool branchMerge(QStringList& res, const QString& revision, bool integrate, bool force, bool testOnly);
 
 	const QString &getCurrentRevision() const { return currentRevision; }
-	const QStringList &getCurrentTags() const { return currentTags; }
+	const QStringList &getActiveTags() const { return activeTags; }
 
 	const QString &getUIHttpPort() const { return fossilUIPort; }
 	QString getUIHttpAddress() const;
@@ -143,7 +143,7 @@ private:
 	QString				repositoryFile;
 	QString				projectName;
 	QString				currentRevision;
-	QStringList			currentTags;
+	QStringList			activeTags;
 	LoggedProcess		fossilUI;
 	QString				fossilUIPort;
 };

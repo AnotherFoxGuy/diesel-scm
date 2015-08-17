@@ -1,5 +1,5 @@
-C Use\sthe\sfossil\ssettings\sto\sdetermine\swhether\sgdiff\sor\sdiff\sshould\sbe\sused\sfor\sdiffing\sfiles\n
-D 2015-08-14T11:09:22.661
+C More\srefactoring\nAdded\smessageboxes\sfor\sfailed\sfossil\soperations
+D 2015-08-17T07:59:11.634
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -225,13 +225,13 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp 65fec7298d8535ad170e74af14f86e1889dd4084
-F src/Fossil.h 85fdba2fafe735f22ef9dee20f4fbb3f3c31e47a
+F src/Fossil.cpp 7a4f57b2ca9112010406e52cdd18de613c673679
+F src/Fossil.h 7acbd4a9d43f6a11c183dbffd73b71d54a4c5108
 F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 95c233940710e89493c65d262b85fc7744345b1f
+F src/MainWindow.cpp cf6fbd8899450eb0e2b36cc7164f9bbed158d4a3
 F src/MainWindow.h f4cffbe4d360d30aa2eeaa25fc6d50d0a39c617f
 F src/RemoteDialog.cpp 8540cc5e2e41c4127ed8a028d84691604fa6ecac
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
@@ -246,7 +246,7 @@ F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
 F src/Utils.cpp 84dab142439845a15dc6a6e8586dc5470ebdd59b
 F src/Utils.h c6341ee49a8fc35f215facb196d70bf9b1f2fc0f
 F src/Workspace.cpp feab8b238a99cf1a60731aedf07af96010d9795d
-F src/Workspace.h 5eccaec693bdad0e85f7f05eab4d4ba1fb70f3f2
+F src/Workspace.h 54eef32658b13a34fe78ae26887420e8ff358eaa
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -260,7 +260,7 @@ F ui/MainWindow.ui f9774e6dddb9462d8072bffd6c511bee7f470b9d
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 49797e154e77b27ff722edee9654e1b7d42a04cd
-R 7d1ddd48e769171ede9b51bd2a7d4862
+P b3dc68271fb2d6fbbe80060d3ec3d206f5f0097f
+R 00cfe48a55ac81ffde7b0af6cc9b02a2
 U Kostas
-Z 76681fb1fe711f091cba0083d28b4fe5
+Z 6a4f874191db12554ccdfebdf92dbb55

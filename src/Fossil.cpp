@@ -48,6 +48,7 @@ RepoStatus Fossil::getRepoStatus()
 
 		if(run_ok)
 		{
+			activeTags.clear();
 			if(key=="project-name")
 				projectName = value;
 			else if(key=="repository")
@@ -61,11 +62,10 @@ RepoStatus Fossil::getRepoStatus()
 			}
 			else if(key=="tags")
 			{
-				currentTags.clear();
 				QStringList tokens = value.split(',', QString::SkipEmptyParts);
 				foreach(const QString &tag, tokens)
-					currentTags.append(tag);
-				currentTags.sort();
+					activeTags.append(tag);
+				activeTags.sort();
 			}
 		}
 	}

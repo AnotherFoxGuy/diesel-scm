@@ -146,6 +146,9 @@ public:
 	QStringMap			&getTags() { return tags; }
 	QStringList			&getBranches() { return branchList; }
 	bool				otherChanges() const { return isIntegrated; }
+	const QString		&getCurrentRevision() const { return fossil().getCurrentRevision(); }
+	const QStringList	&getActiveTags() const { return fossil().getActiveTags(); }
+	const QString		&getProjectName() const { return fossil().getProjectName(); }
 
 	// Remotes
 	const remote_map_t	&getRemotes() const { return remotes; }

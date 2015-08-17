@@ -666,7 +666,7 @@ bool MainWindow::refresh()
 	setStatus("");
 	enableActions(true);
 
-	const QString &project_name = fossil().getProjectName();
+	const QString &project_name = getWorkspace().getProjectName();
 	if(!project_name.isEmpty())
 		title += " - " + project_name;
 
@@ -701,7 +701,7 @@ void MainWindow::scanWorkspace()
 
 	setBusy(false);
 	setStatus("");
-	lblTags->setText(" " + fossil().getCurrentTags().join(" ") + " ");
+	lblTags->setText(" " + getWorkspace().getActiveTags().join(" ") + " ");
 	lblTags->setVisible(true);
 }
 
@@ -842,7 +842,7 @@ void MainWindow::updateWorkspaceView()
 		QStandardItem *branch = new QStandardItem(getCachedIcon(":icons/icon-item-branch"), branch_name);
 		branch->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCH, branch_name), ROLE_WORKSPACE_ITEM);
 
-		bool active = fossil().getCurrentTags().contains(branch_name);
+		bool active = getWorkspace().getActiveTags().contains(branch_name);
 		if(active)
 		{
 			QFont font = branch->font();
@@ -864,7 +864,7 @@ void MainWindow::updateWorkspaceView()
 		QStandardItem *tag = new QStandardItem(getCachedIcon(":icons/icon-item-tag"), tag_name);
 		tag->setData(WorkspaceItem(WorkspaceItem::TYPE_TAG, tag_name), ROLE_WORKSPACE_ITEM);
 
-		bool active = fossil().getCurrentTags().contains(tag_name);
+		bool active = getWorkspace().getActiveTags().contains(tag_name);
 		if(active)
 		{
 			QFont font = tag->font();
@@ -2472,7 +2472,10 @@ void MainWindow::updateRevision(const QString &revision)
 
 	// Do test update
 	if(!fossil().updateRepository(res, selected_revision, true))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not update the repository."), QMessageBox::Ok);
 		return;
+	}
 
 	if(res.length()==0)
 		return;
@@ -2487,7 +2490,9 @@ void MainWindow::updateRevision(const QString &revision)
 		return;
 
 	// Do update
-	fossil().updateRepository(res, selected_revision, false);
+	if(!fossil().updateRepository(res, selected_revision, false))
+		QMessageBox::critical(this, tr("Error"), tr("Could not update the repository."), QMessageBox::Ok);
+
 	refresh();
 }
 
@@ -2495,7 +2500,7 @@ void MainWindow::updateRevision(const QString &revision)
 void MainWindow::on_actionCreateTag_triggered()
 {
 	// Default to current revision
-	QString revision = fossil().getCurrentRevision();
+	QString revision = getWorkspace().getCurrentRevision();
 
 	QString name;
 	if(!RevisionDialog::runNewTag(this, tr("Create Tag"), versionList, revision, revision, name))
@@ -2503,11 +2508,13 @@ void MainWindow::on_actionCreateTag_triggered()
 
 	if(name.isEmpty() || getWorkspace().getTags().contains(name) || getWorkspace().getBranches().contains(name))
 	{
-		QMessageBox::critical(this, tr("Error"), tr("Invalid name."), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("Invalid name."), QMessageBox::Ok);
 		return;
 	}
 
-	fossil().tagNew(name, revision);
+	if(!fossil().tagNew(name, revision))
+		QMessageBox::critical(this, tr("Error"), tr("Could not create tag."), QMessageBox::Ok);
+
 	refresh();
 }
 
@@ -2526,7 +2533,9 @@ void MainWindow::on_actionDeleteTag_triggered()
 
 	const QString &revision = getWorkspace().getTags()[tagname];
 
-	fossil().tagDelete(tagname, revision);
+	if(!fossil().tagDelete(tagname, revision))
+		QMessageBox::critical(this, tr("Error"), tr("Could not delete tag."), QMessageBox::Ok);
+
 	refresh();
 }
 
@@ -2534,7 +2543,7 @@ void MainWindow::on_actionDeleteTag_triggered()
 void MainWindow::on_actionCreateBranch_triggered()
 {
 	// Default to current revision
-	QString revision = fossil().getCurrentRevision();
+	QString revision = getWorkspace().getCurrentRevision();
 
 	QString branch_name;
 	if(!RevisionDialog::runNewTag(this, tr("Create Branch"), versionList, revision, revision, branch_name))
@@ -2542,12 +2551,15 @@ void MainWindow::on_actionCreateBranch_triggered()
 
 	if(branch_name.isEmpty() || getWorkspace().getTags().contains(branch_name) || getWorkspace().getBranches().contains(branch_name))
 	{
-		QMessageBox::critical(this, tr("Error"), tr("Invalid name."), QMessageBox::Ok );
+		QMessageBox::critical(this, tr("Error"), tr("Invalid name."), QMessageBox::Ok);
 		return;
 	}
 
 	if(!fossil().branchNew(branch_name, revision, false))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not create branch."), QMessageBox::Ok);
 		return;
+	}
 
 	// Update to this branch.
 	updateRevision(branch_name);
@@ -2567,15 +2579,19 @@ void MainWindow::mergeRevision(const QString &defaultRevision)
 
 	// Do test merge
 	if(!fossil().branchMerge(res, revision, integrate, force, true))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Merge Failed."), QMessageBox::Ok);
 		return;
+	}
 
 	if(!FileActionDialog::run(this, tr("Merge"), tr("The following changes will be applied.")+"\n"+tr("Are you sure?"), res))
 		return;
 
 	// Do update
-	fossil().branchMerge(res, revision, integrate, force, false);
-
-	log(tr("Merge completed. Don't forget to commit!")+"\n");
+	if(fossil().branchMerge(res, revision, integrate, force, false))
+		log(tr("Merge completed. Don't forget to commit!")+"\n");
+	else
+		QMessageBox::critical(this, tr("Error"), tr("Merge Failed."), QMessageBox::Ok);
 
 	refresh();
 }
