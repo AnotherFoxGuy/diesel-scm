@@ -581,7 +581,7 @@ bool SpawnExternalProcess(QObject *processParent, const QString& command, const 
 			{
 				// Add in-place
 				QString n = p;
-				n.replace(MACRO_WORKSPACE, workspaceDir, Qt::CaseInsensitive);
+				n.replace(MACRO_WORKSPACE, QDir::toNativeSeparators(workspaceDir), Qt::CaseInsensitive);
 				params.push_back(n);
 				continue;
 			}
@@ -591,38 +591,30 @@ bool SpawnExternalProcess(QObject *processParent, const QString& command, const 
 	}
 
 	// Build file params
-	foreach(const QString &f, fileList)
+	if(!macro_file.isEmpty())
 	{
-		QString path = QFileInfo(workspaceDir + PATH_SEPARATOR + f).absoluteFilePath();
-
-		// Apply macro
-		if(!macro_file.isEmpty())
+		foreach(const QString &f, fileList)
 		{
+			QString path = QDir::toNativeSeparators(QFileInfo(workspaceDir + PATH_SEPARATOR + f).absoluteFilePath());
+
 			QString macro = macro_file;
 			path = macro.replace(MACRO_FILE, path, Qt::CaseInsensitive);
+			params.append(path);
 		}
-
-		params.append(path);
 	}
-
 
 	// Build folder params
-	foreach(const QString &f, pathSet)
+	if(!macro_folder.isEmpty())
 	{
-		QString path = QFileInfo(workspaceDir + PATH_SEPARATOR + f).absoluteFilePath();
-
-		// Apply macro
-		if(!macro_folder.isEmpty())
+		foreach(const QString &f, pathSet)
 		{
+			QString path = QDir::toNativeSeparators(QFileInfo(workspaceDir + PATH_SEPARATOR + f).absoluteFilePath());
+
 			QString macro = macro_folder;
 			path = macro.replace(MACRO_FOLDER, path, Qt::CaseInsensitive);
+			params.append(path);
 		}
-		params.append(path);
 	}
-
-	// Skip action if nothing is available
-	if(params.empty())
-		return false;
 
 	uiCallback.logText("<b>"+cmd + " "+params.join(" ")+"</b><br>", true);
 

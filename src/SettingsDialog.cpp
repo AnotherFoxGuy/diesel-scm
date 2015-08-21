@@ -89,7 +89,7 @@ void SettingsDialog::on_buttonBox_accepted()
 	{
 		CustomAction &a = currentCustomActions[i];
 		a.Description = a.Description.trimmed();
-		a.Command = QDir::fromNativeSeparators(a.Command.trimmed());
+		a.Command = a.Command.trimmed();
 	}
 
 	PutCustomAction(ui->cmbCustomAction->currentIndex());
@@ -157,8 +157,14 @@ QString SettingsDialog::LangNameToId(const QString &name)
 void SettingsDialog::on_btnSelectCustomFileActionCommand_clicked()
 {
 	QString path = SelectExe(this, tr("Select command"));
-	if(!path.isEmpty())
-		ui->lineCustomActionCommand->setText(QDir::toNativeSeparators(path));
+	if(path.isEmpty())
+		return;
+
+	// Quote path if it contains spaces
+	if(path.indexOf(' ')!=-1)
+		path = '"' + path + '"';
+
+	ui->lineCustomActionCommand->setText(QDir::toNativeSeparators(path));
 }
 
 //-----------------------------------------------------------------------------
@@ -178,7 +184,7 @@ void SettingsDialog::PutCustomAction(int index)
 	Q_ASSERT(index>=0 && index < currentCustomActions.size());
 	CustomAction &action = currentCustomActions[index];
 	action.Description = ui->lineCustomActionDescription->text().trimmed();
-	action.Command = QDir::fromNativeSeparators(ui->lineCustomActionCommand->text().trimmed());
+	action.Command = ui->lineCustomActionCommand->text().trimmed();
 	action.Context = static_cast<CustomActionContext>(ui->cmbCustomActionContext->currentIndex()+1);
 	action.MultipleSelection = ui->chkCustomActionMultipleSelection->isChecked();
 }
