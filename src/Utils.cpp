@@ -535,10 +535,10 @@ void SplitCommandLine(const QString &commandLine, QString &command, QString &ext
 	}
 
 	int cmd_end = command.indexOf(cmd_char_end, start);
-	if(cmd_end != -1)
+	if(cmd_end > 0)
 	{
 		extraParams = command.mid(cmd_end+1);
-		command = command.left(cmd_end);
+		command = command.mid(start, cmd_end-1);
 	}
 
 	command = command.trimmed();
@@ -548,6 +548,10 @@ void SplitCommandLine(const QString &commandLine, QString &command, QString &ext
 //------------------------------------------------------------------------------
 bool SpawnExternalProcess(QObject *processParent, const QString& command, const QStringList& fileList, const stringset_t& pathSet, const QString &workspaceDir, UICallback &uiCallback)
 {
+	static const char* MACRO_FILE = "%FILE";
+	static const char* MACRO_FOLDER = "%FOLDER";
+	static const char* MACRO_WORKSPACE = "%WORKSPACE";
+
 	QStringList params;
 
 	QString cmd, extra_params;
@@ -563,21 +567,21 @@ bool SpawnExternalProcess(QObject *processParent, const QString& command, const 
 
 		foreach(const QString &p, extra_param_list)
 		{
-			if(p.indexOf("$FILE")!=-1)
+			if(p.indexOf(MACRO_FILE)!=-1)
 			{
 				macro_file = p;
 				continue;
 			}
-			else if(p.indexOf("$FOLDER")!=-1)
+			else if(p.indexOf(MACRO_FOLDER)!=-1)
 			{
 				macro_folder = p;
 				continue;
 			}
-			else if(p.indexOf("$WORKSPACE")!=-1)
+			else if(p.indexOf(MACRO_WORKSPACE)!=-1)
 			{
 				// Add in-place
 				QString n = p;
-				n.replace("$WORKSPACE", workspaceDir, Qt::CaseInsensitive);
+				n.replace(MACRO_WORKSPACE, workspaceDir, Qt::CaseInsensitive);
 				params.push_back(n);
 				continue;
 			}
@@ -595,7 +599,7 @@ bool SpawnExternalProcess(QObject *processParent, const QString& command, const 
 		if(!macro_file.isEmpty())
 		{
 			QString macro = macro_file;
-			path = macro.replace("$FILE", path, Qt::CaseInsensitive);
+			path = macro.replace(MACRO_FILE, path, Qt::CaseInsensitive);
 		}
 
 		params.append(path);
@@ -611,7 +615,7 @@ bool SpawnExternalProcess(QObject *processParent, const QString& command, const 
 		if(!macro_folder.isEmpty())
 		{
 			QString macro = macro_folder;
-			path = macro.replace("$FOLDER", path, Qt::CaseInsensitive);
+			path = macro.replace(MACRO_FOLDER, path, Qt::CaseInsensitive);
 		}
 		params.append(path);
 	}

@@ -1742,6 +1742,7 @@ void MainWindow::loadFossilSettings()
 		Settings::Setting::SettingType type = it->Type;
 
 		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
+		Q_UNUSED(type);
 
 		// Otherwise it must be a fossil setting
 		if(!kv.contains(name))
