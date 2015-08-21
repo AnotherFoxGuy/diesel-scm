@@ -2110,6 +2110,10 @@ const QIcon &MainWindow::getCachedFileIcon(const QFileInfo &finfo)
 {
 	QString icon_type = iconProvider.type(finfo);
 
+	// Exe files have varying icons, so key on path
+	if(icon_type == "exe File")
+		icon_type = finfo.absoluteFilePath();
+
 	if(!iconCache.contains(icon_type))
 		iconCache.insert(icon_type, iconProvider.icon(finfo));
 

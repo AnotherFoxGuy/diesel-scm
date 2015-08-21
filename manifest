@@ -1,5 +1,5 @@
-C Fixed\scustom\saction\sexe\spath\sparsing\nRenamed\scustom\saction\smacros\sfrom\s'$'\sto\s'%'\sso\sthat\sthey\smatch\sfossil's\nFixed\sRelease\sbuild\swarnings
-D 2015-08-21T09:42:44.850
+C Fixed\sissue\swhere\sall\sexe\sfiles\shad\sthe\ssame\sicon\n
+D 2015-08-21T09:53:34.464
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -231,7 +231,7 @@ F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 47ca7c79bfed2715b8b56caa44785520983630cf
+F src/MainWindow.cpp dfa81f94f04e418bdd22985b898855733842d496
 F src/MainWindow.h f4cffbe4d360d30aa2eeaa25fc6d50d0a39c617f
 F src/RemoteDialog.cpp 8540cc5e2e41c4127ed8a028d84691604fa6ecac
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
@@ -260,7 +260,7 @@ F ui/MainWindow.ui f9774e6dddb9462d8072bffd6c511bee7f470b9d
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P 581579c7dac57d016b878c707814491bb0cbe4f6
-R 89593f070d606ddbee38135aa3e67fb4
+P b9521f3974653bd28a4f422c2f48755a949b9823
+R 3c598911b07d6e2ce79f5a38ecb9106b
 U Kostas
-Z f315639935201c2888db477bce7423cd
+Z 3cba39ae8cba79c2fb7dea1bce0c1fd5
