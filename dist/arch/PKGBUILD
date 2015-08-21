@@ -1,7 +1,7 @@
 # Maintainer: Kostas Karanikolas <lastname[at]gmail[dot]com>
 pkgname=fuel
-pkgver=1.0.0
-pkgrel=3
+pkgver=1.0.1
+pkgrel=1
 pkgdesc="A GUI front-end to Fossil SCM"
 arch=(i686 x86_64)
 url="https://fuel-scm.org/"
