@@ -1,5 +1,5 @@
-C Fixed\sissue\swhere\sall\sexe\sfiles\shad\sthe\ssame\sicon\n
-D 2015-08-21T09:53:34.464
+C Updated\stool-tips\sfor\scustom\sactions\n
+D 2015-08-21T10:05:45.185
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -259,8 +259,8 @@ F ui/FslSettingsDialog.ui eb3d4cb764cab90b01e82922237d8c42d6ce1749
 F ui/MainWindow.ui f9774e6dddb9462d8072bffd6c511bee7f470b9d
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
-F ui/SettingsDialog.ui 47b9a31e28ad523f14a1c4cd361270b6babbdf7d
-P b9521f3974653bd28a4f422c2f48755a949b9823
-R 3c598911b07d6e2ce79f5a38ecb9106b
+F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
+P 14ddcd158900cd672a4c3d88e8465f7ff88f14d2
+R 13c0a9d34022fcab44e2092809405ed0
 U Kostas
-Z 3cba39ae8cba79c2fb7dea1bce0c1fd5
+Z c23b2b3c597255a7e49b40764d226f17

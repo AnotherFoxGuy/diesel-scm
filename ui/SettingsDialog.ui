@@ -188,7 +188,11 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QComboBox" name="cmbCustomAction"/>
+          <widget class="QComboBox" name="cmbCustomAction">
+           <property name="toolTip">
+            <string>Custom action</string>
+           </property>
+          </widget>
          </item>
          <item row="2" column="1">
           <widget class="QLineEdit" name="lineCustomActionDescription">
@@ -228,7 +232,7 @@
            <item>
             <widget class="QLineEdit" name="lineCustomActionCommand">
              <property name="toolTip">
-              <string>Custom action command line</string>
+              <string>Custom action command-line. Information about the selected items is available via the macros %FILE %FOLDER %WORKSPACE</string>
              </property>
             </widget>
            </item>
@@ -261,10 +265,17 @@
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QComboBox" name="cmbCustomActionContext"/>
+          <widget class="QComboBox" name="cmbCustomActionContext">
+           <property name="toolTip">
+            <string>The context where this action will be available</string>
+           </property>
+          </widget>
          </item>
          <item row="5" column="1">
           <widget class="QCheckBox" name="chkCustomActionMultipleSelection">
+           <property name="toolTip">
+            <string>When checked this action supports multiple selected items</string>
+           </property>
            <property name="text">
             <string/>
            </property>
