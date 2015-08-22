@@ -54,6 +54,18 @@ QString SelectExe(QWidget *parent, const QString &description)
 	if(!QFile::exists(path))
 		return QString();
 
+#ifdef Q_OS_MACX
+	// Guess actual executable from bundle dir
+	QFileInfo fi(path);
+	if(fi.isDir() && path.indexOf(".app")!=-1)
+	{
+		path += "/Contents/MacOS/" + fi.baseName();
+
+		if(!QFile::exists(path))
+			return QString();
+	}
+#endif
+
 	return path;
 }
 //-----------------------------------------------------------------------------
