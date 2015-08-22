@@ -1,5 +1,5 @@
-C Improved\sthe\slook\sof\sthe\sUI\son\sOSX
-D 2015-08-22T14:13:47.025
+C Added\sspace\sto\sthe\sright\sside\sof\sthe\ssearchbox
+D 2015-08-22T14:52:43.213
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -231,7 +231,7 @@ F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 3f9e9e43f4cb45a4f55e719b1b282fbba1a79dff
+F src/MainWindow.cpp d97473f89c40978885ef9e14fdaae3debc3045aa
 F src/MainWindow.h f4cffbe4d360d30aa2eeaa25fc6d50d0a39c617f
 F src/RemoteDialog.cpp 8540cc5e2e41c4127ed8a028d84691604fa6ecac
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
@@ -260,7 +260,7 @@ F ui/MainWindow.ui e2a18caa7482b3ee0dff477592cdc9574b35fe4f
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P d9a15280f162ca92b6d65c41033d43890d306779
-R 96b148030fa554a93fc5ee03b6e5779e
+P 08496c56dbe49392c45a50d4bac5621d61b96e84
+R e5ef085df90657456bc815c967fa124c
 U kostas
-Z 0c04b2ca46fc335ab2b71b43a22070ef
+Z 5914b0600048d2b075c4fe8bcdf72147

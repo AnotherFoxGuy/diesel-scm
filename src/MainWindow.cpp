@@ -295,13 +295,20 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	// Create SearchBox
 	searchBox = new SearchBox(this);
 	searchBox->setPlaceholderText(tr("Filter (%0)").arg(searchShortcut->key().toString(QKeySequence::NativeText)));
-	searchBox->setMaximumWidth(450);
+	searchBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+	searchBox->setMinimumWidth(230);
 	ui->mainToolBar->addWidget(searchBox);
 
 	connect( searchBox,
 		SIGNAL( textChanged(const QString&)),
 		SLOT( onSearchBoxTextChanged(const QString&)),
 		Qt::DirectConnection );
+
+	// Add another spacer to the right
+	spacer = new QWidget();
+	spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+	spacer->setMinimumWidth(3);
+	ui->mainToolBar->addWidget(spacer);
 
 	viewMode = VIEWMODE_TREE;
 
