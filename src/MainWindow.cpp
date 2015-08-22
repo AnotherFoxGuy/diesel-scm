@@ -268,11 +268,14 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->workspaceTreeView->setAttribute(Qt::WA_MacShowFocusRect, false);
 
 	// Tighen-up the sizing of the main widgets to look slightly more consistent with the OSX style
-	ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 3);
+	ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 	ui->workspaceTreeView->setFrameShape(QFrame::NoFrame);
 	ui->fileTableView->setFrameShape(QFrame::NoFrame);
 	ui->splitterVertical->setHandleWidth(1);
 	ui->splitterHorizontal->setHandleWidth(1);
+
+	// Wrong color scheme on Yosemite but better than the standard TabWidget
+	ui->tabWidget->setDocumentMode(true);
 #endif
 
 	abortShortcut = new QShortcut(QKeySequence("Escape"), this);
