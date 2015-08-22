@@ -263,6 +263,16 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 		a->setIconVisibleInMenu(false);
 	foreach(QAction *a, ui->menuFile->actions())
 		a->setIconVisibleInMenu(false);
+
+	// For some unknown reason on OSX the treeview gets a focus rect. So disable it
+	ui->workspaceTreeView->setAttribute(Qt::WA_MacShowFocusRect, false);
+
+	// Tighen-up the sizing of the main widgets to look slightly more consistent with the OSX style
+	ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 3);
+	ui->workspaceTreeView->setFrameShape(QFrame::NoFrame);
+	ui->fileTableView->setFrameShape(QFrame::NoFrame);
+	ui->splitterVertical->setHandleWidth(1);
+	ui->splitterHorizontal->setHandleWidth(1);
 #endif
 
 	abortShortcut = new QShortcut(QKeySequence("Escape"), this);
@@ -284,7 +294,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	// Create SearchBox
 	searchBox = new SearchBox(this);
-	searchBox->setPlaceholderText(tr("Filter (%0)").arg(searchShortcut->key().toString()));
+	searchBox->setPlaceholderText(tr("Filter (%0)").arg(searchShortcut->key().toString(QKeySequence::NativeText)));
 	searchBox->setMaximumWidth(450);
 	ui->mainToolBar->addWidget(searchBox);
 
