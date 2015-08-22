@@ -1,5 +1,5 @@
-C Fixed\sincorrect\scommand\ssplitting\sfor\scustom\sactions\n
-D 2015-08-22T11:04:16.881
+C Fixed\sOSX\slinker\serrors
+D 2015-08-22T11:40:53.954
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -37,7 +37,7 @@ F ext/qtkeychain/qkeychain_export.h d756528188ef9bf3c4461ecc80048f06c362b54b
 F ext/qtkeychain/testclient.cpp cb1290a9584b627306a7bfdf1c02a8bbae503f5f
 F ext/qtkeychain/translations/qtkeychain_de.ts 0a70c8205c066c30ed8172f0670942de1fc5eede
 F ext/qtkeychain/translations/qtkeychain_ro.ts f16939382fd1a047b0692426bc82847347f14b32
-F fuel.pro 7802dc9513da36539818ee1e927ec1e3494ecb54
+F fuel.pro 2de14a4a6bd3e5af9d9e7c78f870453fedb38577
 F intl/convert.bat 357d461ee8c6a7be6d2f60ac77c3232678ffb513 x
 F intl/convert.sh ac6edc8d99b575601cf9c6b85b18c9e25875b6e0 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
@@ -260,7 +260,7 @@ F ui/MainWindow.ui f9774e6dddb9462d8072bffd6c511bee7f470b9d
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P e017a9126cf63ed060dd88accfcabbd9726e9aa7
-R 5df4818427c980b0f16a39fddf08115a
+P 29c6a41585bad0bf9f506ea3ba148bb3ad3a2dca
+R f065b80b55df778018b7b500e5349819
 U kostas
-Z a0cca9760c20080ffa38fd07cb77468f
+Z a3febc8e619dfe3ca27ff0716f9eb2d6

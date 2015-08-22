@@ -122,6 +122,7 @@ unix:!macx {
 
 macx {
 	SOURCES += ext/qtkeychain/keychain_mac.cpp
+	LIBS += -framework CoreFoundation -framework Security
 }
 
 win32 {
