@@ -99,6 +99,7 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 	store.endArray();
 	store.endGroup();
 
+#if 0 // FIXME: Disabled this because if fossil's remote does not match exactly what we have stored (url and username), it will be automatically added every-time
 	// Add the default url from fossil
 	QUrl default_remote;
 	if(fossil().getRemoteUrl(default_remote) && default_remote.isValid() && !default_remote.isEmpty())
@@ -113,6 +114,7 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 				setRemoteDefault(default_remote);
 		}
 	}
+#endif
 
 	return true;
 }
