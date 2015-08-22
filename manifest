@@ -1,5 +1,5 @@
-C Custom\sactions\snow\sexpect\smacros\sfor\sfile\sand\sfolder\sexpansion\nCustom\sactions\snow\strigger\seven\swithout\sa\sselection\nUse\snative\spath\sseparators\sin\scustom\sactions\n
-D 2015-08-21T10:54:20.418
+C Fixed\sincorrect\scommand\ssplitting\sfor\scustom\sactions\n
+D 2015-08-22T11:04:16.881
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -243,7 +243,7 @@ F src/Settings.cpp 258d3f466f6a125ce2b8519d6d57a312cbc44a3f
 F src/Settings.h 0a10b0b83fe804bdc7dac58eed06b5b6ee422055
 F src/SettingsDialog.cpp fa0c70eaf0fa7edb15de302d041cdb552fe523d5
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
-F src/Utils.cpp a375d6b641658b49d84462773d1e052de0c716dd
+F src/Utils.cpp 8c810dbd77274e791b2e9a642da9f160346d1559
 F src/Utils.h c6341ee49a8fc35f215facb196d70bf9b1f2fc0f
 F src/Workspace.cpp feab8b238a99cf1a60731aedf07af96010d9795d
 F src/Workspace.h 54eef32658b13a34fe78ae26887420e8ff358eaa
@@ -260,7 +260,7 @@ F ui/MainWindow.ui f9774e6dddb9462d8072bffd6c511bee7f470b9d
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P 9b67709b92eae80e70f8ae2b775014092f820fdf
-R 53802be5132d1fc255734da4b05ec8a0
-U Kostas
-Z 11e2710ccd6ed208d70aec7542a52542
+P e017a9126cf63ed060dd88accfcabbd9726e9aa7
+R 5df4818427c980b0f16a39fddf08115a
+U kostas
+Z a0cca9760c20080ffa38fd07cb77468f

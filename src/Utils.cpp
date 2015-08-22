@@ -517,7 +517,8 @@ QString UrlToStringNoCredentials(const QUrl& url)
 void SplitCommandLine(const QString &commandLine, QString &command, QString &extraParams)
 {
 	// Process command string
-	command = commandLine;
+	command = commandLine.trimmed();
+
 	Q_ASSERT(!command.isEmpty());
 
 	// Split command from embedded params
@@ -525,20 +526,22 @@ void SplitCommandLine(const QString &commandLine, QString &command, QString &ext
 
 	// Command ends after first space
 	QChar cmd_char_end = ' ';
-	int start = 0;
+	int cmd_start = 0;
+	int backtrack = 0;
 
 	// ...unless it is a quoted command
 	if(command[0]=='"')
 	{
 		cmd_char_end = '"';
-		start = 1;
+		cmd_start = 1;
+		backtrack = 1;
 	}
 
-	int cmd_end = command.indexOf(cmd_char_end, start);
+	int cmd_end = command.indexOf(cmd_char_end, cmd_start);
 	if(cmd_end > 0)
 	{
 		extraParams = command.mid(cmd_end+1);
-		command = command.mid(start, cmd_end-1);
+		command = command.mid(cmd_start, cmd_end-backtrack);
 	}
 
 	command = command.trimmed();
