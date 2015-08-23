@@ -21,6 +21,9 @@ Fuel V2.0.0 (2015-XX-XX)
   status of their contents, including missing folders
 - Feature: Support for multiple file user-actions
 - Feature: Double-Click action also allows user actions
+- Feature: Support for the versionable .fossil-settings/ignore-glob
+- Feature: OSX: UI improvements
+- Feature: OSX: Improved external application selection for application bundles
 - Misc: Reorganised menu structure.
 - Misc: Separated Fuel and Fossil settings
 - Bug Fix: Retain the folder tree state when refreshing the workspace
