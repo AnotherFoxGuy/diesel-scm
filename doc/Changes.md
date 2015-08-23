@@ -1,4 +1,4 @@
-Fuel V1.0.1 (2015-08-21)
+Fuel V1.0.1 (2015-08-23)
 ================================================================================
 - Added Localisations:
 	- Italian (Thanks maxxlupi and Zangune)

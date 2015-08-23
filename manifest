@@ -1,5 +1,5 @@
-C Preparation\sfor\sV1.0.1
-D 2015-08-21T08:58:22.024
+C Updated\sthe\sChanges.md
+D 2015-08-23T14:11:16.693
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -13,7 +13,7 @@ F debian/watch 34f0921ff100a3e16a7ad84dcc303731de830a60
 F dist/arch/PKGBUILD c9d706805891dadfab933c703e19dc86f084d328
 F dist/win/fuel.iss ef3558dbba409eb194938b930377fc9ee27d319e
 F doc/Building.md 149d959751ae488829e084a9f88449a08220c1d1
-F doc/Changes.md b606abe07e73fdb789b648eb10770863dcf87c15
+F doc/Changes.md 9546f046a1c37ea6011cdae77da24df883a8e0ee
 F doc/License.txt 4cc77b90af91e615a64ae04893fdffa7939db84c
 F fuel.pro d2d1fd2b3a9169a95e25235e07c7fa8f098a8c40
 F intl/convert.bat 357d461ee8c6a7be6d2f60ac77c3232678ffb513 x
@@ -216,7 +216,7 @@ F ui/CommitDialog.ui 6200f6cabdcf40a20812e811be28e0793f82516f
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/MainWindow.ui 8677f5c8bca5bf7561d5f64bfdd0cef5157c6ac7
 F ui/SettingsDialog.ui 2b7c2870e0054b0f4106f495d85d02c0b814df8b
-P 7fa0e987609c9ccb3d1518f21230e26f8a122d5c
-R 639dade17f337ad0df32f613ab12ea02
+P f3d5c35a93cf7285b489307240a6b75fbc8cb3b8
+R d1cdbc42fc1a9f327c9de335a7e9bf81
 U kostas
-Z 335380a45d7f2d9d650a1a3900152973
+Z 7390102f93cb735aad85da46b9b95e70
