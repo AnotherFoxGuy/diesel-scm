@@ -64,6 +64,7 @@ QString						UrlToStringDisplay(const QUrl &url);
 QString						UrlToStringNoCredentials(const QUrl& url);
 void						SplitCommandLine(const QString &commandLine, QString &command, QString &extraParams);
 bool						SpawnExternalProcess(QObject *processParent, const QString& command, const QStringList& fileList, const stringset_t& pathSet, const QString &workspaceDir, UICallback &uiCallback);
+void						TrimStringList(QStringList &list);
 
 typedef QMap<QString, QString> QStringMap;
 void						ParseProperties(QStringMap &properties, const QStringList &lines, QChar separator=' ');

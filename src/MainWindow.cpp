@@ -700,11 +700,35 @@ bool MainWindow::refresh()
 void MainWindow::scanWorkspace()
 {
 	setBusy(true);
+
+	static const QRegExp REGEX_GLOB_LIST(",|\\n", Qt::CaseSensitive);
+
+	QStringList ignore_patterns;
+
+	// Determine ignored file patterns
+	{
+		QString ignore_list = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().trimmed();
+
+		// Read patterns from versionable file if it exists
+		QFile ignored_file(getWorkspace().getPath() + PATH_SEPARATOR ".fossil-settings" PATH_SEPARATOR "ignore-glob");
+
+		if(ignored_file.open(QFile::ReadOnly))
+		{
+			ignore_list = ignored_file.readAll();
+			ignored_file.close();
+		}
+
+		if(!ignore_list.isEmpty())
+			ignore_patterns = ignore_list.split(REGEX_GLOB_LIST, QString::SkipEmptyParts);
+
+		TrimStringList(ignore_patterns);
+	}
+
 	getWorkspace().scanWorkspace(ui->actionViewUnknown->isChecked(),
 							ui->actionViewIgnored->isChecked(),
 							ui->actionViewModified->isChecked(),
 							ui->actionViewUnchanged->isChecked(),
-							settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString(),
+							ignore_patterns,
 							uiCallback,
 							operationAborted
 							);

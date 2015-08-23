@@ -120,7 +120,7 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 }
 
 //------------------------------------------------------------------------------
-bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool &abort, UICallback &uiCallback)
+bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QStringList &ignorePatterns, const bool &abort, UICallback &uiCallback)
 {
 	QDir dir(dirPath);
 
@@ -138,12 +138,12 @@ bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, co
 		rel_path.remove(baseDir+PATH_SEPARATOR);
 
 		// Skip ignored files
-		if(!ignoreSpec.isEmpty() && QDir::match(ignoreSpec, rel_path))
+		if(!ignorePatterns.isEmpty() && QDir::match(ignorePatterns, rel_path))
 			continue;
 
 		if (info.isDir())
 		{
-			if(!scanDirectory(entries, filepath, baseDir, ignoreSpec, abort, uiCallback))
+			if(!scanDirectory(entries, filepath, baseDir, ignorePatterns, abort, uiCallback))
 				return false;
 		}
 		else
@@ -159,7 +159,7 @@ static bool StringLengthDescending(const QString &l, const QString &r)
 }
 
 //------------------------------------------------------------------------------
-void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, UICallback &uiCallback, bool &operationAborted)
+void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QStringList &ignorePatterns, UICallback &uiCallback, bool &operationAborted)
 {
 	// Scan all workspace files
 	QFileInfoList all_files;
@@ -186,14 +186,9 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 	{
 		QCoreApplication::processEvents();
 
-		QString ignore;
-		// If we should not be showing ignored files, fill in the ignored spec
+		QStringList ignore;
 		if(!scanIgnored)
-		{
-			// QDir expects multiple specs being separated by a semicolon
-			ignore = ignoreGlob;
-			ignore.replace(',',';');
-		}
+			ignore = ignorePatterns;
 
 		if(!scanDirectory(all_files, wkdir, wkdir, ignore, operationAborted, uiCallback))
 			goto _done;

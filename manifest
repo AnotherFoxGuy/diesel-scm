@@ -1,5 +1,5 @@
-C OSX:\sGuess\sactual\sexecutable\sfrom\sthe\sapp\sbundle\sdirectory
-D 2015-08-22T17:32:24.250
+C Support\sfor\sthe\sversionable\s.fossil-settings/ignore-glob\sfile
+D 2015-08-23T13:59:07.629
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -231,7 +231,7 @@ F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 48ed62679d02f918479cd1610309443cd15d57ae
+F src/MainWindow.cpp 47aa96182c3a005d27295ef52e351f57a79721da
 F src/MainWindow.h f4cffbe4d360d30aa2eeaa25fc6d50d0a39c617f
 F src/RemoteDialog.cpp 8540cc5e2e41c4127ed8a028d84691604fa6ecac
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
@@ -243,10 +243,10 @@ F src/Settings.cpp 258d3f466f6a125ce2b8519d6d57a312cbc44a3f
 F src/Settings.h 0a10b0b83fe804bdc7dac58eed06b5b6ee422055
 F src/SettingsDialog.cpp fa0c70eaf0fa7edb15de302d041cdb552fe523d5
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
-F src/Utils.cpp cfadf3ee981f5ead8635c395610421f8e04a9a42
-F src/Utils.h c6341ee49a8fc35f215facb196d70bf9b1f2fc0f
-F src/Workspace.cpp c46aeb616712e42dcee72774a572af3a9803dbf1
-F src/Workspace.h 54eef32658b13a34fe78ae26887420e8ff358eaa
+F src/Utils.cpp fb9fe1caeef47dca310079f8f10b41c838defaa5
+F src/Utils.h 4563194b65d0a903ba71b3fec8fc870a8a610f76
+F src/Workspace.cpp 6f15ea480579f357a3e01dacd1d62c2621961478
+F src/Workspace.h 50970993b6f49c0f4dc55ba5954e7e4c2a723539
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -260,7 +260,7 @@ F ui/MainWindow.ui e2a18caa7482b3ee0dff477592cdc9574b35fe4f
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P cb27c4e2a0777b5c3fa64a07d19cd6b89e05c76f
-R 19ead9c938bef0606914a30fe37378b3
+P 7988e53166771ea71d916a1ab714eb671d07dea8
+R 8c08f1cc6885bc243db72fa93b4349f7
 U kostas
-Z 6b9bc678ab29fb68e3f8be6bb65cb34f
+Z c7a68d892fd8dccc93bcc03a0473e2ac

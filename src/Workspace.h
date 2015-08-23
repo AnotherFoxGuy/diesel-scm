@@ -134,7 +134,7 @@ public:
 
 	const QString &		getPath() const { return fossil().getWorkspacePath(); }
 	bool				switchWorkspace(const QString &workspace, QSettings &store);
-	void				scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QString &ignoreGlob, UICallback &uiCallback, bool &operationAborted);
+	void				scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QStringList& ignorePatterns, UICallback &uiCallback, bool &operationAborted);
 
 	QStandardItemModel	&getFileModel() { return repoFileModel; }
 	QStandardItemModel	&getTreeModel() { return repoTreeModel; }
@@ -160,7 +160,7 @@ public:
 
 	void				storeWorkspace(QSettings &store);
 private:
-	static bool			scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QString ignoreSpec, const bool& abort, UICallback &uiCallback);
+	static bool			scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QStringList& ignorePatterns, const bool& abort, UICallback &uiCallback);
 
 private:
 	Fossil				bridge;

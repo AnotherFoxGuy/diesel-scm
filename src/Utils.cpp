@@ -636,3 +636,10 @@ bool SpawnExternalProcess(QObject *processParent, const QString& command, const 
 	QProcess proc(processParent);
 	return proc.startDetached(cmd, params);
 }
+
+//------------------------------------------------------------------------------
+void TrimStringList(QStringList& list)
+{
+	for(int i=0; i<list.length(); ++i)
+		list[i] = list[i].trimmed();
+}
