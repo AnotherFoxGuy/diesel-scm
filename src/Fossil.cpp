@@ -137,11 +137,17 @@ bool Fossil::pushRepository(const QUrl &url)
 
 	if(!url.isEmpty())
 	{
-		params << url.toEncoded();
+		// QUrl generates bad local file url for Windows local paths with drive letters
+		if(url.isLocalFile())
+			params << url.toLocalFile();
+		else
+			params << url.toEncoded();
 		params << "--once";
 
 		QStringList log_params = params;
-		log_params[1] = UrlToStringDisplay(url);
+		if(!url.isLocalFile())
+			log_params[1] = UrlToStringDisplay(url);
+
 		log_params.push_front("fossil");
 
 		runFlags = RUNFLAGS_SILENT_INPUT;
@@ -161,11 +167,17 @@ bool Fossil::pullRepository(const QUrl &url)
 
 	if(!url.isEmpty())
 	{
-		params << url.toEncoded();
+		// QUrl generates bad local file url for Windows local paths with drive letters
+		if(url.isLocalFile())
+			params << url.toLocalFile();
+		else
+			params << url.toEncoded();
+
 		params << "--once";
 
 		QStringList log_params = params;
-		log_params[1] = UrlToStringDisplay(url);
+		if(!url.isLocalFile())
+			log_params[1] = UrlToStringDisplay(url);
 
 		log_params.push_front("fossil");
 

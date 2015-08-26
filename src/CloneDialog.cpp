@@ -49,11 +49,17 @@ bool CloneDialog::run(QWidget *parent, QUrl &url, QString &repository, QUrl &url
 
 	QString urltext = dlg.ui->lineURL->text();
 
-	url = QUrl::fromUserInput(urltext);
-	if(url.isEmpty() || !url.isValid())
+	// Check if the url is a local file
+	if(QFileInfo(urltext).exists())
+		url = QUrl::fromLocalFile(urltext);
+	else
 	{
-		QMessageBox::critical(parent, tr("Error"), tr("Invalid URL."), QMessageBox::Ok );
-		return false;
+		url = QUrl::fromUserInput(urltext);
+		if(url.isEmpty() || !url.isValid())
+		{
+			QMessageBox::critical(parent, tr("Error"), tr("Invalid URL."), QMessageBox::Ok );
+			return false;
+		}
 	}
 
 	if(!dlg.ui->lineUserName->text().trimmed().isEmpty())
@@ -94,7 +100,8 @@ void CloneDialog::GetRepositoryPath(QString &pathResult)
 
 	// Ensure that it ends in the required extension (On GTK, Qt doesn't seem to add it automatically)
 	QFileInfo fi(pathResult);
-	if(fi.suffix().toLower() != ("." FOSSIL_EXT))
+	QString ext = fi.suffix().toLower();
+	if(ext != FOSSIL_EXT)
 		pathResult += "." FOSSIL_EXT;
 }
 
