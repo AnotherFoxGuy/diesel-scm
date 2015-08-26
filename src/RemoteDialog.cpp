@@ -41,11 +41,17 @@ bool RemoteDialog::run(QWidget *parent, QUrl &url, QString &name)
 
 	QString urltext = dlg.ui->lineURL->text();
 
-	url = QUrl::fromUserInput(urltext);
-	if(url.isEmpty() || !url.isValid())
+	// Check if the url is a local file
+	if(QFileInfo(urltext).exists())
+		url = QUrl::fromLocalFile(urltext);
+	else
 	{
-		QMessageBox::critical(parent, tr("Error"), tr("Invalid URL."), QMessageBox::Ok );
-		return false;
+		url = QUrl::fromUserInput(urltext);
+		if(url.isEmpty() || !url.isValid())
+		{
+			QMessageBox::critical(parent, tr("Error"), tr("Invalid URL."), QMessageBox::Ok );
+			return false;
+		}
 	}
 
 	if(!dlg.ui->lineUserName->text().trimmed().isEmpty())
