@@ -26,7 +26,7 @@ public:
 
 private:
 	bool refresh();
-	void scanWorkspace();
+	bool scanWorkspace();
 	void applySettings();
 	void updateSettings();
 	void updateRevision(const QString& revision);

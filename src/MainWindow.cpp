@@ -648,105 +648,112 @@ void MainWindow::enableActions(bool on)
 		ui->actionCreateBranch,
 		ui->actionMergeBranch,
 		ui->actionFossilSettings,
+		ui->actionViewAll,
+		ui->actionViewAsFolders,
+		ui->actionViewAsList,
+		ui->actionViewIgnored,
+		ui->actionViewModifedOnly,
+		ui->actionViewModified,
+		ui->actionViewUnchanged,
+		ui->actionViewUnknown
 	};
 
 	for(size_t i=0; i<COUNTOF(actions); ++i)
 		actions[i]->setEnabled(on);
-
 }
+
 //------------------------------------------------------------------------------
 bool MainWindow::refresh()
 {
 	QString title = "Fuel";
 
+	loadFossilSettings();
+
+	bool valid = scanWorkspace();
+	if(valid)
+	{
+		const QString &project_name = getWorkspace().getProjectName();
+		if(!project_name.isEmpty())
+			title += " - " + project_name;
+	}
+
+	enableActions(valid);
+	setWindowTitle(title);
+	return valid;
+}
+
+//------------------------------------------------------------------------------
+bool MainWindow::scanWorkspace()
+{
+	setBusy(true);
+	bool valid = true;
+
 	// Load repository info
 	RepoStatus st = fossil().getRepoStatus();
+	QString status;
 
 	if(st==REPO_NOT_FOUND)
 	{
-		setStatus(tr("No workspace detected."));
-		enableActions(false);
-		getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
-		getWorkspace().getTreeModel().removeRows(0, getWorkspace().getFileModel().rowCount());
-		setWindowTitle(title);
-		return false;
+		status = tr("No workspace detected.");
+		valid = false;
 	}
 	else if(st==REPO_OLD_SCHEMA)
 	{
-		setStatus(tr("Old repository schema detected. Consider running 'fossil rebuild'"));
-		enableActions(false);
-		getWorkspace().getFileModel().removeRows(0, getWorkspace().getFileModel().rowCount());
-		getWorkspace().getTreeModel().removeRows(0, getWorkspace().getFileModel().rowCount());
-		setWindowTitle(title);
-		return true;
+		status = tr("Old repository schema detected. Consider running 'fossil rebuild'");
+		valid = false;
 	}
 
-	loadFossilSettings();
-	scanWorkspace();
-	setStatus("");
-	enableActions(true);
-
-	const QString &project_name = getWorkspace().getProjectName();
-	if(!project_name.isEmpty())
-		title += " - " + project_name;
-
-	setWindowTitle(title);
-	return true;
-}
-
-
-
-//------------------------------------------------------------------------------
-void MainWindow::scanWorkspace()
-{
-	setBusy(true);
-
-	static const QRegExp REGEX_GLOB_LIST(",|\\n", Qt::CaseSensitive);
-
-	QStringList ignore_patterns;
-
-	// Determine ignored file patterns
-	{
-		QString ignore_list = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().trimmed();
-
-		// Read patterns from versionable file if it exists
-		QFile ignored_file(getWorkspace().getPath() + PATH_SEPARATOR ".fossil-settings" PATH_SEPARATOR "ignore-glob");
-
-		if(ignored_file.open(QFile::ReadOnly))
-		{
-			ignore_list = ignored_file.readAll();
-			ignored_file.close();
-		}
-
-		if(!ignore_list.isEmpty())
-			ignore_patterns = ignore_list.split(REGEX_GLOB_LIST, QString::SkipEmptyParts);
-
-		TrimStringList(ignore_patterns);
-	}
-
-	getWorkspace().scanWorkspace(ui->actionViewUnknown->isChecked(),
-							ui->actionViewIgnored->isChecked(),
-							ui->actionViewModified->isChecked(),
-							ui->actionViewUnchanged->isChecked(),
-							ignore_patterns,
-							uiCallback,
-							operationAborted
-							);
-	updateWorkspaceView();
-	updateFileView();
-
-	// Build default versions list
 	versionList.clear();
-	versionList += getWorkspace().getBranches();
-	versionList += getWorkspace().getTags().keys();
-
 	selectedTags.clear();
 	selectedBranches.clear();
 
+	if(valid)
+	{
+		// Determine ignored file patterns
+		QStringList ignore_patterns;
+		{
+			static const QRegExp REGEX_GLOB_LIST(",|\\n", Qt::CaseSensitive);
+
+			QString ignore_list = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().trimmed();
+
+			// Read patterns from versionable file if it exists
+			QFile ignored_file(getWorkspace().getPath() + PATH_SEPARATOR ".fossil-settings" PATH_SEPARATOR "ignore-glob");
+
+			if(ignored_file.open(QFile::ReadOnly))
+			{
+				ignore_list = ignored_file.readAll();
+				ignored_file.close();
+			}
+
+			if(!ignore_list.isEmpty())
+				ignore_patterns = ignore_list.split(REGEX_GLOB_LIST, QString::SkipEmptyParts);
+
+			TrimStringList(ignore_patterns);
+		}
+
+		getWorkspace().scanWorkspace(ui->actionViewUnknown->isChecked(),
+								ui->actionViewIgnored->isChecked(),
+								ui->actionViewModified->isChecked(),
+								ui->actionViewUnchanged->isChecked(),
+								ignore_patterns,
+								uiCallback,
+								operationAborted
+								);
+
+		// Build default versions list
+		versionList += getWorkspace().getBranches();
+		versionList += getWorkspace().getTags().keys();
+		lblTags->setText(" " + getWorkspace().getActiveTags().join(" ") + " ");
+	}
+
+	updateWorkspaceView();
+	updateFileView();
+
+	setStatus(status);
+	lblTags->setVisible(valid);
+
 	setBusy(false);
-	setStatus("");
-	lblTags->setText(" " + getWorkspace().getActiveTags().join(" ") + " ");
-	lblTags->setVisible(true);
+	return valid;
 }
 
 //------------------------------------------------------------------------------
