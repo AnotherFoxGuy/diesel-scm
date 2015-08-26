@@ -171,4 +171,7 @@
 	  <file>docs/Translators.txt</file>
 	  <file>docs/Licenses.txt</file>
   </qresource>
+  <qresource prefix="/version">
+	  <file alias="manifest">../manifest.uuid</file>
+  </qresource>
 </RCC>

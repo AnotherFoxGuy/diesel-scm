@@ -1,5 +1,6 @@
-C Updated\sChanges.md
-D 2015-08-25T13:07:48.374
+C Added\sbuild\srevision\sinformation\sand\sclickable\slinks\sto\sabout\sbox
+D 2015-08-26T09:58:28.636
+F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
@@ -210,8 +211,8 @@ F rsrc/icons/Zoom-01.png 67ca532922e9166325c5c75fce1ca3fbb0d2b6a6
 F rsrc/icons/fuel.icns 81e535004b62db801a02f3e15d0a33afc9d4070b
 F rsrc/icons/fuel.ico eb529ab3332a17b9302ef3e851db5b9ebce2a038
 F rsrc/icons/fuel.png 40daf53b7f6bdcdd0d6aa5ef433d078ec5ea4342
-F rsrc/resources.qrc 21ae6205e27ac989001eb0edc075d7e405b992c8
-F src/AboutDialog.cpp fc9e3ba03aa6cb145ace610d9b38a2de157551ba
+F rsrc/resources.qrc a69b05ceb3d614f9aaae3adc2734af8ce3013fa2
+F src/AboutDialog.cpp aaa3e614c9aace66531bccc35a3dbf398cb79b7b
 F src/AboutDialog.h 269f3a0589067c08f19b542e4576b0ef58bc6ec5
 F src/BrowserWidget.cpp 8b8f545cdff4a4188edc698a1b4777f5df46f056
 F src/BrowserWidget.h 764d66aa9a93b890298bd0301097739cb4e16597
@@ -250,7 +251,7 @@ F src/Workspace.h 50970993b6f49c0f4dc55ba5954e7e4c2a723539
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
-F ui/AboutDialog.ui 77704a7422a59ccdddbdf00979bd20a861d9ee5a
+F ui/AboutDialog.ui 6c96b147f0e8c5cf8190ce0e3c471e38e934d5c1
 F ui/BrowserWidget.ui 994ad9ea0e9f5815d6b1a27acc2f6f39164c507f
 F ui/CloneDialog.ui 4886e7d4f258ea8b852b5eefc860396e35145712
 F ui/CommitDialog.ui 1e5dafa742e9ae07ec937bcda8cda3297ddc6199
@@ -260,7 +261,7 @@ F ui/MainWindow.ui e2a18caa7482b3ee0dff477592cdc9574b35fe4f
 F ui/RemoteDialog.ui 95a4750d972ed8c49bb10b95db91ff16cfe2dd0b
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P 8a83bfb691fc72a4208c24b547c9c38fc668ec97
-R 53814be492792eadbc8740da254dc306
-U kostas
-Z 50d6c6e9520bb3b791eaf9b75e5e6c9e
+P 3490f7140197453a7a45fea01b93281cf0c8ca3d
+R 8a6e79d50e33c1e363a9a88f9991f593
+U Kostas
+Z c023957da1ec26362f32c34c0fd943d2
