@@ -24,8 +24,6 @@
 #include "AboutDialog.h"
 #include "Utils.h"
 
-#define REVISION_LATEST "Latest revision"
-
 //-----------------------------------------------------------------------------
 enum
 {
@@ -2537,14 +2535,19 @@ QMessageBox::StandardButton MainWindow::MainWinUICallback::Query(const QString &
 //------------------------------------------------------------------------------
 void MainWindow::updateRevision(const QString &revision)
 {
-	const QString latest = tr(REVISION_LATEST);
+	const QString latest = tr("<Latest Revision>");
 	QString defaultval = latest;
 
 	if(!revision.isEmpty())
 		defaultval = revision;
 
-	QString selected_revision = RevisionDialog::runUpdate(this, tr("Update workspace"), versionList, defaultval).trimmed();
+	// Also include our "Latest Revision" to the version list
+	QStringList versions = versionList;
+	versions.push_front(latest);
 
+	QString selected_revision = RevisionDialog::runUpdate(this, tr("Update workspace"), versions, defaultval).trimmed();
+
+	// Nothing selected ?
 	if(selected_revision.isEmpty())
 		return;
 	else if(selected_revision == latest)
@@ -2564,6 +2567,7 @@ void MainWindow::updateRevision(const QString &revision)
 
 	QStringMap kv;
 	ParseProperties(kv, res, ':');
+
 	// If no changes exit
 	if(kv.contains("changes") && kv["changes"].indexOf("None.")!=-1)
 		return;
