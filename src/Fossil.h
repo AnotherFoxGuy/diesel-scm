@@ -21,7 +21,7 @@ public:
 	};
 
 	Fossil();
-	void Init(UICallback *callback);
+	void Init(UICallback *callback, const QString &exePath);
 
 	// Repositories
 	bool createRepository(const QString &repositoryPath);

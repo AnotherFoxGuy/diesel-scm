@@ -316,9 +316,9 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	viewMode = VIEWMODE_TREE;
 
 	uiCallback.init(this);
+
 	// Need to be before applySettings which sets the last workspace
-	getWorkspace().fossil().Init(&uiCallback);
-	getWorkspace().fossil().setExePath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
+	getWorkspace().fossil().Init(&uiCallback, settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
 
 	applySettings();
 

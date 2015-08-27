@@ -17,11 +17,12 @@ Fossil::Fossil()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void Fossil::Init(UICallback *callback)
+void Fossil::Init(UICallback *callback, const QString &exePath)
 {
 	uiCallback = callback;
 	fossilPath.clear();
 	workspacePath.clear();
+	setExePath(exePath);
 }
 
 //------------------------------------------------------------------------------
