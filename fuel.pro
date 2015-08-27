@@ -15,7 +15,9 @@ TEMPLATE = app
 win32 {
 	RC_FILE = rsrc/fuel.rc
 	LIBS += -luser32 -lshell32 -luuid
-	system(intl\convert.bat)
+
+	# Prevent batch file being called multiple times
+	!build_pass:system(intl\convert.bat)
 }
 
 macx {
