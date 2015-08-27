@@ -10,14 +10,23 @@
 
 static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 
-// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
-static const QRegExp			REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
-
-// Listening for HTTP requests on TCP port 8081
-static const QRegExp			REGEX_PORT(".*TCP port ([0-9]+)\\n", Qt::CaseSensitive);
+///////////////////////////////////////////////////////////////////////////////
+Fossil::Fossil()
+	: operationAborted(false)
+	, uiCallback(0)
+{
+}
 
 ///////////////////////////////////////////////////////////////////////////////
-RepoStatus Fossil::getRepoStatus()
+void Fossil::Init(UICallback *callback)
+{
+	uiCallback = callback;
+	fossilPath.clear();
+	workspacePath.clear();
+}
+
+//------------------------------------------------------------------------------
+Fossil::WorkspaceState Fossil::getWorkspaceState()
 {
 	QStringList res;
 	int exit_code = EXIT_FAILURE;
@@ -25,7 +34,7 @@ RepoStatus Fossil::getRepoStatus()
 	// We need to determine the reason why fossil has failed
 	// so we delay processing of the exit_code
 	if(!runFossilRaw(QStringList() << "info", &res, &exit_code, RUNFLAGS_SILENT_ALL))
-		return REPO_NOT_FOUND;
+		return WORKSPACE_STATE_NOTFOUND;
 
 	bool run_ok = exit_code == EXIT_SUCCESS;
 
@@ -42,9 +51,9 @@ RepoStatus Fossil::getRepoStatus()
 		if(key=="fossil")
 		{
 			if(value=="incorrect repository schema version")
-				return REPO_OLD_SCHEMA;
+				return WORKSPACE_STATE_OLDSCHEMA;
 			else if(value=="not within an open checkout")
-				return REPO_NOT_FOUND;
+				return WORKSPACE_STATE_NOTFOUND;
 		}
 
 		if(run_ok)
@@ -70,11 +79,11 @@ RepoStatus Fossil::getRepoStatus()
 		}
 	}
 
-	return run_ok ? REPO_OK : REPO_NOT_FOUND;
+	return run_ok ? WORKSPACE_STATE_OK : WORKSPACE_STATE_NOTFOUND;
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::openRepository(const QString& repositoryPath, const QString& workspacePath)
+bool Fossil::createWorkspace(const QString& repositoryPath, const QString& workspacePath)
 {
 	QFileInfo fi(repositoryPath);
 
@@ -82,7 +91,7 @@ bool Fossil::openRepository(const QString& repositoryPath, const QString& worksp
 		return false;
 
 	QString abspath = fi.absoluteFilePath();
-	setWorkspacePath(workspacePath);
+	setWorkspace(workspacePath);
 	setRepositoryFile(abspath);
 
 	if(!runFossil(QStringList() << "open" << QuotePath(abspath)))
@@ -92,7 +101,7 @@ bool Fossil::openRepository(const QString& repositoryPath, const QString& worksp
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::newRepository(const QString& repositoryPath)
+bool Fossil::createRepository(const QString& repositoryPath)
 {
 	QFileInfo fi(repositoryPath);
 
@@ -105,14 +114,20 @@ bool Fossil::newRepository(const QString& repositoryPath)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::closeRepository()
+bool Fossil::closeWorkspace()
 {
 	if(!runFossil(QStringList() << "close"))
 		return false;
 
 	stopUI();
-	setWorkspacePath("");
+	setWorkspace("");
 	return true;
+}
+
+//------------------------------------------------------------------------------
+void Fossil::setWorkspace(const QString &_workspacePath)
+{
+	workspacePath = _workspacePath;
 }
 
 //------------------------------------------------------------------------------
@@ -122,13 +137,13 @@ bool Fossil::listFiles(QStringList &files)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::status(QStringList &result)
+bool Fossil::statusWorkspace(QStringList &result)
 {
 	return runFossil(QStringList() << "status", &result, RUNFLAGS_SILENT_ALL);
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::pushRepository(const QUrl &url)
+bool Fossil::pushWorkspace(const QUrl &url)
 {
 	QStringList params;
 	params << "push";
@@ -158,7 +173,7 @@ bool Fossil::pushRepository(const QUrl &url)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::pullRepository(const QUrl &url)
+bool Fossil::pullWorkspace(const QUrl &url)
 {
 	QStringList params;
 	params << "pull";
@@ -223,7 +238,7 @@ bool Fossil::cloneRepository(const QString& repository, const QUrl& url, const Q
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::getFossilVersion(QString& version)
+bool Fossil::getExeVersion(QString& version)
 {
 	QStringList res;
 	if(!runFossil(QStringList() << "version", &res, RUNFLAGS_SILENT_ALL) && res.length()==1)
@@ -361,7 +376,7 @@ bool Fossil::renameFile(const QString &beforePath, const QString &afterPath, boo
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::undoRepository(QStringList &result, bool explainOnly)
+bool Fossil::undoWorkspace(QStringList &result, bool explainOnly)
 {
 	QStringList params;
 	params << "undo";
@@ -374,7 +389,7 @@ bool Fossil::undoRepository(QStringList &result, bool explainOnly)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::updateRepository(QStringList &result, const QString &revision, bool explainOnly)
+bool Fossil::updateWorkspace(QStringList &result, const QString &revision, bool explainOnly)
 {
 	QStringList params;
 	params << "update";
@@ -393,13 +408,13 @@ bool Fossil::updateRepository(QStringList &result, const QString &revision, bool
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::getFossilSettings(QStringList &result)
+bool Fossil::getSettings(QStringList &result)
 {
 	return runFossil(QStringList() << "settings", &result, RUNFLAGS_SILENT_ALL);
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::setFossilSetting(const QString& name, const QString& value, bool global)
+bool Fossil::setSetting(const QString& name, const QString& value, bool global)
 {
 	QStringList params;
 
@@ -484,6 +499,9 @@ bool Fossil::stashList(stashmap_t& stashes)
 
 	if(!runFossil(QStringList() << "stash" << "ls", &res, RUNFLAGS_SILENT_ALL))
 		return false;
+
+	// 19: [5c46757d4b9765] on 2012-04-22 04:41:15
+	static const QRegExp REGEX_STASH("\\s*(\\d+):\\s+\\[(.*)\\] on (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)", Qt::CaseInsensitive);
 
 	for(QStringList::iterator line_it=res.begin(); line_it!=res.end(); )
 	{
@@ -712,6 +730,12 @@ bool Fossil::runFossil(const QStringList &args, QStringList *output, int runFlag
 		return false;
 
 	return exit_code == EXIT_SUCCESS;
+}
+
+//------------------------------------------------------------------------------
+void Fossil::abortOperation()
+{
+	operationAborted = true;
 }
 
 //------------------------------------------------------------------------------
@@ -1096,9 +1120,6 @@ bool Fossil::startUI(const QString &httpPort)
 		return true;
 	}
 
-	// FIXME: when we are sure this works delete this
-	//fossilUI.setParent(parentWidget);
-
 	fossilUI.setProcessChannelMode(QProcess::MergedChannels);
 	fossilUI.setWorkingDirectory(getWorkspacePath());
 
@@ -1131,6 +1152,9 @@ bool Fossil::startUI(const QString &httpPort)
 	Q_ASSERT(decoder);
 
 	fossilUIPort.clear();
+
+	// Listening for HTTP requests on TCP port 8081
+	static const QRegExp REGEX_PORT(".*TCP port ([0-9]+)\\n", Qt::CaseSensitive);
 
 	// Wait for fossil to report the http port
 	QString buffer;

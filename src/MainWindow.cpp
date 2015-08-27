@@ -318,7 +318,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	uiCallback.init(this);
 	// Need to be before applySettings which sets the last workspace
 	getWorkspace().fossil().Init(&uiCallback);
-	getWorkspace().fossil().setExecutablePath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
+	getWorkspace().fossil().setExePath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
 
 	applySettings();
 
@@ -401,7 +401,7 @@ bool MainWindow::openWorkspace(const QString &path)
 			}
 
 			// Ok open the repository file
-			if(!getWorkspace().fossil().openRepository(fi.absoluteFilePath(), wkspace))
+			if(!getWorkspace().fossil().createWorkspace(fi.absoluteFilePath(), wkspace))
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 				return false;
@@ -507,13 +507,13 @@ void MainWindow::on_actionNewRepository_triggered()
 	// Create repository
 	QString repo_abs_path = repo_path_info.absoluteFilePath();
 
-	if(!getWorkspace().fossil().newRepository(repo_abs_path))
+	if(!getWorkspace().fossil().createRepository(repo_abs_path))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not create repository."), QMessageBox::Ok );
 		return;
 	}
 
-	if(!getWorkspace().fossil().openRepository(repo_abs_path, wkdir))
+	if(!getWorkspace().fossil().createWorkspace(repo_abs_path, wkdir))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 		return;
@@ -529,14 +529,14 @@ void MainWindow::on_actionNewRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCloseRepository_triggered()
 {
-	if(getWorkspace().fossil().getRepoStatus()!=REPO_OK)
+	if(getWorkspace().fossil().getWorkspaceState()!=Fossil::WORKSPACE_STATE_OK)
 		return;
 
 	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), tr("Are you sure you want to close this workspace?")))
 		return;
 
 	// Close Repo
-	if(!getWorkspace().fossil().closeRepository())
+	if(!getWorkspace().fossil().closeWorkspace())
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes available?"), QMessageBox::Ok );
 		return;
@@ -689,15 +689,15 @@ bool MainWindow::scanWorkspace()
 	bool valid = true;
 
 	// Load repository info
-	RepoStatus st = getWorkspace().fossil().getRepoStatus();
+	Fossil::WorkspaceState st = getWorkspace().fossil().getWorkspaceState();
 	QString status;
 
-	if(st==REPO_NOT_FOUND)
+	if(st==Fossil::WORKSPACE_STATE_NOTFOUND)
 	{
 		status = tr("No workspace detected.");
 		valid = false;
 	}
-	else if(st==REPO_OLD_SCHEMA)
+	else if(st==Fossil::WORKSPACE_STATE_OLDSCHEMA)
 	{
 		status = tr("Old repository schema detected. Consider running 'fossil rebuild'");
 		valid = false;
@@ -1737,7 +1737,7 @@ void MainWindow::on_actionUndo_triggered()
 	QStringList res;
 
 	// Do test Undo
-	if(!getWorkspace().fossil().undoRepository(res, true))
+	if(!getWorkspace().fossil().undoWorkspace(res, true))
 		QMessageBox::critical(this, tr("Error"), tr("Could not undo changes."), QMessageBox::Ok);
 
 	if(res.length()>0 && res[0]=="No undo or redo is available")
@@ -1747,7 +1747,7 @@ void MainWindow::on_actionUndo_triggered()
 		return;
 
 	// Do Undo
-	if(!getWorkspace().fossil().undoRepository(res, false))
+	if(!getWorkspace().fossil().undoWorkspace(res, false))
 		QMessageBox::critical(this, tr("Error"), tr("Could not undo changes."), QMessageBox::Ok);
 
 	refresh();
@@ -1757,7 +1757,7 @@ void MainWindow::on_actionUndo_triggered()
 void MainWindow::on_actionAbout_triggered()
 {
 	QString fossil_ver;
-	getWorkspace().fossil().getFossilVersion(fossil_ver);
+	getWorkspace().fossil().getExeVersion(fossil_ver);
 
 	AboutDialog dlg(this, fossil_ver);
 	dlg.exec();
@@ -1781,7 +1781,7 @@ void MainWindow::loadFossilSettings()
 	// Also retrieve the fossil global settings
 	QStringList out;
 
-	if(!getWorkspace().fossil().getFossilSettings(out))
+	if(!getWorkspace().fossil().getSettings(out))
 		return;
 
 	QStringMap kv;
@@ -1822,7 +1822,7 @@ void MainWindow::on_actionSettings_triggered()
 	if(!SettingsDialog::run(this, settings))
 		return;
 
-	getWorkspace().fossil().setExecutablePath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
+	getWorkspace().fossil().setExePath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
 	updateCustomActions();
 }
 
@@ -1844,7 +1844,7 @@ void MainWindow::on_actionFossilSettings_triggered()
 		Q_ASSERT(type == Settings::Setting::TYPE_FOSSIL_GLOBAL || type == Settings::Setting::TYPE_FOSSIL_LOCAL);
 
 		QString value = it.value().Value.toString();
-		getWorkspace().fossil().setFossilSetting(name, value, type == Settings::Setting::TYPE_FOSSIL_GLOBAL);
+		getWorkspace().fossil().setSetting(name, value, type == Settings::Setting::TYPE_FOSSIL_GLOBAL);
 	}
 }
 
@@ -2544,7 +2544,7 @@ void MainWindow::updateRevision(const QString &revision)
 	QStringList res;
 
 	// Do test update
-	if(!getWorkspace().fossil().updateRepository(res, selected_revision, true))
+	if(!getWorkspace().fossil().updateWorkspace(res, selected_revision, true))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not update the repository."), QMessageBox::Ok);
 		return;
@@ -2563,7 +2563,7 @@ void MainWindow::updateRevision(const QString &revision)
 		return;
 
 	// Do update
-	if(!getWorkspace().fossil().updateRepository(res, selected_revision, false))
+	if(!getWorkspace().fossil().updateWorkspace(res, selected_revision, false))
 		QMessageBox::critical(this, tr("Error"), tr("Could not update the repository."), QMessageBox::Ok);
 
 	refresh();
@@ -2751,7 +2751,7 @@ void MainWindow::on_actionPushRemote_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	if(!getWorkspace().fossil().pushRepository(url))
+	if(!getWorkspace().fossil().pushWorkspace(url))
 		QMessageBox::critical(this, tr("Error"), tr("Could not push to the remote repository."), QMessageBox::Ok);
 }
 
@@ -2769,7 +2769,7 @@ void MainWindow::on_actionPullRemote_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	if(!getWorkspace().fossil().pullRepository(url))
+	if(!getWorkspace().fossil().pullWorkspace(url))
 		QMessageBox::critical(this, tr("Error"), tr("Could not pull from the remote repository."), QMessageBox::Ok);
 }
 
@@ -2788,7 +2788,7 @@ void MainWindow::on_actionPush_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	if(!getWorkspace().fossil().pushRepository(url))
+	if(!getWorkspace().fossil().pushWorkspace(url))
 		QMessageBox::critical(this, tr("Error"), tr("Could not push to the remote repository."), QMessageBox::Ok);
 }
 
@@ -2807,7 +2807,7 @@ void MainWindow::on_actionPull_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	if(!getWorkspace().fossil().pullRepository(url))
+	if(!getWorkspace().fossil().pullWorkspace(url))
 		QMessageBox::critical(this, tr("Error"), tr("Could not pull from the remote repository."), QMessageBox::Ok);
 }
 

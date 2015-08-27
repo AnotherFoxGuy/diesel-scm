@@ -66,7 +66,7 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 	clearState();
 	remotes.clear();
 
-	fossil().setWorkspacePath("");
+	fossil().setWorkspace("");
 	if(workspace.isEmpty())
 		return true;
 
@@ -75,7 +75,7 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 	if(!QDir::setCurrent(new_workspace))
 		return false;
 
-	fossil().setWorkspacePath(new_workspace);
+	fossil().setWorkspace(new_workspace);
 
 	// Load Remotes
 	QString workspace_hash = HashString(QDir::toNativeSeparators(new_workspace));
@@ -339,7 +339,7 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 
 	// Check if the repository needs integration
 	res.clear();
-	fossil().status(res);
+	fossil().statusWorkspace(res);
 	isIntegrated = false;
 	foreach(const QString &l, res)
 	{

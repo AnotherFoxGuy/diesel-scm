@@ -10,111 +10,72 @@ class QStringList;
 
 typedef QMap<QString, QString> stashmap_t;
 
-enum RunFlags
-{
-	RUNFLAGS_NONE			= 0<<0,
-	RUNFLAGS_SILENT_INPUT	= 1<<0,
-	RUNFLAGS_SILENT_OUTPUT	= 1<<1,
-	RUNFLAGS_SILENT_ALL		= RUNFLAGS_SILENT_INPUT | RUNFLAGS_SILENT_OUTPUT,
-	RUNFLAGS_DETACHED		= 1<<2,
-	RUNFLAGS_DEBUG			= 1<<3,
-};
-
-enum RepoStatus
-{
-	REPO_OK,
-	REPO_NOT_FOUND,
-	REPO_OLD_SCHEMA
-};
-
 class Fossil
 {
 public:
-	Fossil()
-	: operationAborted(false)
-	, uiCallback(0)
+	enum WorkspaceState
 	{
-	}
+		WORKSPACE_STATE_OK,
+		WORKSPACE_STATE_NOTFOUND,
+		WORKSPACE_STATE_OLDSCHEMA
+	};
 
-	void Init(UICallback *callback)
-	{
-		uiCallback = callback;
-		fossilPath.clear();
-		workspacePath.clear();
-	}
+	Fossil();
+	void Init(UICallback *callback);
 
-	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
-	bool runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags);
+	// Repositories
+	bool createRepository(const QString &repositoryPath);
+	bool cloneRepository(const QString &repository, const QUrl &url, const QUrl &proxyUrl);
 
+	// Workspace
+	bool createWorkspace(const QString &repositoryPath, const QString& workspacePath);
+	bool closeWorkspace();
+	void setWorkspace(const QString &_workspacePath);
+	bool pushWorkspace(const QUrl& url);
+	bool pullWorkspace(const QUrl& url);
+	bool undoWorkspace(QStringList& result, bool explainOnly);
+	bool updateWorkspace(QStringList& result, const QString& revision, bool explainOnly);
+	bool statusWorkspace(QStringList& result);
+	WorkspaceState getWorkspaceState();
 	static bool isWorkspace(const QString &path);
 
-	RepoStatus getRepoStatus();
+	// Workspace Information
+	const QString &getProjectName() const {	return projectName;	}
+	const QString &getRepositoryFile() const {	return repositoryFile; }
+	const QString &getWorkspacePath() const { return workspacePath;	}
 
-	void setWorkspacePath(const QString &workspace)
-	{
-		workspacePath = workspace;
-	}
-
-	const QString &getWorkspacePath() const
-	{
-		return workspacePath;
-	}
-
-	const QString &getProjectName() const
-	{
-		return projectName;
-	}
-
-	const QString &getRepositoryFile() const
-	{
-		return repositoryFile;
-	}
-
-	void setRepositoryFile(const QString &filename)
-	{
-		repositoryFile = filename;
-	}
-
-	bool openRepository(const QString &repositoryPath, const QString& workspacePath);
-	bool newRepository(const QString &repositoryPath);
-	bool closeRepository();
-	bool pushRepository(const QUrl& url);
-	bool pullRepository(const QUrl& url);
-	bool cloneRepository(const QString &repository, const QUrl &url, const QUrl &proxyUrl);
-	bool undoRepository(QStringList& result, bool explainOnly);
-	bool updateRepository(QStringList& result, const QString& revision, bool explainOnly);
-	bool getFossilVersion(QString &version);
-
-	bool uiRunning() const;
-	bool startUI(const QString &httpPort);
-	void stopUI();
-
+	// Files
 	bool listFiles(QStringList &files);
-	bool status(QStringList& result);
-
 	bool diffFile(const QString &repoFile, bool graphical);
 	bool commitFiles(const QStringList &fileList, const QString &comment, const QString& newBranchName, bool isPrivateBranch);
 	bool addFiles(const QStringList& fileList);
 	bool removeFiles(const QStringList& fileList, bool deleteLocal);
 	bool revertFiles(const QStringList& fileList);
 	bool renameFile(const QString& beforePath, const QString& afterPath, bool renameLocal);
-	bool getFossilSettings(QStringList& result);
-	bool setFossilSetting(const QString &name, const QString &value, bool global);
+
+	// Settings
+	bool getSettings(QStringList& result);
+	bool setSetting(const QString &name, const QString &value, bool global);
+
+	// Remotes
 	bool setRemoteUrl(const QUrl& url);
 	bool getRemoteUrl(QUrl &url);
 
+	// Stashes
 	bool stashNew(const QStringList& fileList, const QString& name, bool revert);
 	bool stashList(stashmap_t &stashes);
 	bool stashApply(const QString& name);
 	bool stashDrop(const QString& name);
 	bool stashDiff(const QString& name);
 
-	void abortOperation() { operationAborted = true; }
+	void abortOperation();
 
+	// Tags
 	bool tagList(QStringMap& tags);
 	bool tagNew(const QString& name, const QString& revision);
 	bool tagDelete(const QString& name, const QString& revision);
 
+	// Branches
 	bool branchList(QStringList& branches, QStringList& activeBranches);
 	bool branchNew(const QString& name, const QString& revisionBasis, bool isPrivate=false);
 	bool branchMerge(QStringList& res, const QString& revision, bool integrate, bool force, bool testOnly);
@@ -122,12 +83,32 @@ public:
 	const QString &getCurrentRevision() const { return currentRevision; }
 	const QStringList &getActiveTags() const { return activeTags; }
 
+	// UI
+	bool uiRunning() const;
+	bool startUI(const QString &httpPort);
+	void stopUI();
 	const QString &getUIHttpPort() const { return fossilUIPort; }
 	QString getUIHttpAddress() const;
 
-	void setExecutablePath(const QString &path) { fossilPath = path; }
+	// Fossil executable
+	void setExePath(const QString &path) { fossilPath = path; }
+	bool getExeVersion(QString &version);
 
 private:
+	enum RunFlags
+	{
+		RUNFLAGS_NONE			= 0<<0,
+		RUNFLAGS_SILENT_INPUT	= 1<<0,
+		RUNFLAGS_SILENT_OUTPUT	= 1<<1,
+		RUNFLAGS_SILENT_ALL		= RUNFLAGS_SILENT_INPUT | RUNFLAGS_SILENT_OUTPUT,
+		RUNFLAGS_DETACHED		= 1<<2,
+		RUNFLAGS_DEBUG			= 1<<3,
+	};
+
+	void setRepositoryFile(const QString &filename) { repositoryFile = filename; }
+	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
+	bool runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags);
+
 	void log(const QString &text, bool isHTML=false)
 	{
 		if(uiCallback)
