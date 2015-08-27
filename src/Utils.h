@@ -23,6 +23,7 @@ public:
 	virtual void logText(const QString &text, bool isHTML)=0;
 	virtual void beginProcess(const QString &text)=0;
 	virtual void updateProcess(const QString &text)=0;
+	virtual bool processAborted() const=0;
 	virtual void endProcess()=0;
 	virtual QMessageBox::StandardButton Query(const QString &title, const QString &query, QMessageBox::StandardButtons buttons)=0;
 };

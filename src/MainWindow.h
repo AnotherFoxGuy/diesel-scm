@@ -140,7 +140,7 @@ private:
 	class MainWinUICallback : public UICallback
 	{
 	public:
-		MainWinUICallback() : mainWindow(0)
+		MainWinUICallback() : mainWindow(0), aborted(false)
 		{}
 
 		void init(class MainWindow *mainWindow)
@@ -151,12 +151,14 @@ private:
 		virtual void logText(const QString& text, bool isHTML);
 		virtual void beginProcess(const QString& text);
 		virtual void updateProcess(const QString& text);
+		virtual bool processAborted() const { return aborted; }
 		virtual void endProcess();
 		virtual QMessageBox::StandardButton Query(const QString &title, const QString &query, QMessageBox::StandardButtons buttons);
-
+		void abortProcess() { aborted = true; }
 
 	private:
 		class MainWindow *mainWindow;
+		bool aborted;
 	};
 
 	friend class MainWinUICallback;

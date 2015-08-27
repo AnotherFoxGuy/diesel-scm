@@ -68,8 +68,6 @@ public:
 	bool stashDrop(const QString& name);
 	bool stashDiff(const QString& name);
 
-	void abortOperation();
-
 	// Tags
 	bool tagList(QStringMap& tags);
 	bool tagNew(const QString& name, const QString& revision);
@@ -117,7 +115,6 @@ private:
 
 	QString	getFossilPath();
 
-	bool				operationAborted;
 	UICallback			*uiCallback;
 	QString				workspacePath;
 	QString				fossilPath;		// The value from the settings

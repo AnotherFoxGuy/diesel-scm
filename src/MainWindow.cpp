@@ -2471,9 +2471,8 @@ void MainWindow::setBusy(bool busy)
 void MainWindow::onAbort()
 {
 	operationAborted = true;
-	getWorkspace().fossil().abortOperation();
-	// FIXME: Rename this to something better, Operation Aborted
-	log("<br><b>* "+tr("Terminated")+" *</b><br>", true);
+	uiCallback.abortProcess();
+	log("<br><b>* "+tr("Operation Aborted")+" *</b><br>", true);
 }
 
 //------------------------------------------------------------------------------
@@ -2495,6 +2494,7 @@ void MainWindow::MainWinUICallback::logText(const QString& text, bool isHTML)
 void MainWindow::MainWinUICallback::beginProcess(const QString& text)
 {
 	Q_ASSERT(mainWindow);
+	aborted = false;
 	mainWindow->ui->statusBar->showMessage(text);
 	mainWindow->lblTags->setHidden(true);
 	mainWindow->progressBar->setHidden(false);

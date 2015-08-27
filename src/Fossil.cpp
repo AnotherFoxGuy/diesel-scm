@@ -12,8 +12,7 @@ static const unsigned char		UTF8_BOM[] = { 0xEF, 0xBB, 0xBF };
 
 ///////////////////////////////////////////////////////////////////////////////
 Fossil::Fossil()
-	: operationAborted(false)
-	, uiCallback(0)
+	: uiCallback(0)
 {
 }
 
@@ -733,12 +732,6 @@ bool Fossil::runFossil(const QStringList &args, QStringList *output, int runFlag
 }
 
 //------------------------------------------------------------------------------
-void Fossil::abortOperation()
-{
-	operationAborted = true;
-}
-
-//------------------------------------------------------------------------------
 // Run fossil. Returns true if execution was successful regardless if fossil
 // issued an error
 bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags)
@@ -825,7 +818,6 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	QString ans_always = 'a' + EOL_MARK;
 	QString ans_convert = 'c' + EOL_MARK;
 
-	operationAborted = false;
 	QString buffer;
 
 #ifdef Q_OS_WIN
@@ -851,7 +843,7 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		if(state!=QProcess::Running && bytes_avail<1)
 			break;
 
-		if(operationAborted)
+		if(uiCallback->processAborted())
 		{
 			log("\n* "+QObject::tr("Terminated")+" *\n");
 			#ifdef Q_OS_WIN		// Verify this is still true on Qt5
