@@ -1,5 +1,5 @@
-C Prevent\stranslation\sconversion\sscript\sbeing\scalled\smultiple\stimes\son\sWindows
-D 2015-08-27T09:11:23.023
+C Also\saddress\sQUrl\slocal-file\sweirdness\sin\sFossil::setRemoteUrl
+D 2015-08-27T09:22:36.928
 F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
@@ -226,7 +226,7 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp db2d3643d92888a3ab8c25e76b7dfb4f988b18ff
+F src/Fossil.cpp fa8cdb249fb39b9cb2bc79793ffc6a2be00a0dfc
 F src/Fossil.h 7acbd4a9d43f6a11c183dbffd73b71d54a4c5108
 F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
@@ -261,7 +261,7 @@ F ui/MainWindow.ui e2a18caa7482b3ee0dff477592cdc9574b35fe4f
 F ui/RemoteDialog.ui 424b2d4a3d0162f84fdccf6af02c1cfce07a06f5
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P 9dd99f7de54ad40a15d80f9bf9af82a367c24302
-R 0a6bec5bab899cd94ca1caa001c07656
+P b82bb671d80df48d001b639dcf58f6016cc3ab84
+R 7d139776023b3ef79dcc93ab198fcaa1
 U Kostas
-Z 169730d38bbb5a74dcedcc4ddd79bdfb
+Z 2b40445b3b14975c713dc0a7a4a3fbe2

@@ -427,6 +427,10 @@ bool Fossil::setRemoteUrl(const QUrl& url)
 {
 	QString u = url.toEncoded();
 
+	// QUrl generates bad local file url for Windows local paths with drive letters
+	if(url.isLocalFile())
+		u = url.toLocalFile();
+
 	if(url.isEmpty())
 		u = "off";
 
