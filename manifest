@@ -1,5 +1,5 @@
-C Also\saddress\sQUrl\slocal-file\sweirdness\sin\sFossil::setRemoteUrl
-D 2015-08-27T09:22:36.928
+C Removed\sfossil()\sconvenience\sfunction
+D 2015-08-27T09:33:10.940
 F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
@@ -232,8 +232,8 @@ F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp 28f0155821d42c645c99fdd5214344c177cea3bc
-F src/MainWindow.h 15f703522d1d6cd6239c8c8f037d158870b6b0b9
+F src/MainWindow.cpp b94d6963f9fd00a81821e28d871eb21dc4764bac
+F src/MainWindow.h b01b04325edb926dfb289c2701e6c52e056f9708
 F src/RemoteDialog.cpp d5d39871f319bb760405736ba0caa9e83ec51ea3
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
 F src/RevisionDialog.cpp e58c4f8a704f00addebb15d521b76620fdafda79
@@ -261,7 +261,7 @@ F ui/MainWindow.ui e2a18caa7482b3ee0dff477592cdc9574b35fe4f
 F ui/RemoteDialog.ui 424b2d4a3d0162f84fdccf6af02c1cfce07a06f5
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P b82bb671d80df48d001b639dcf58f6016cc3ab84
-R 7d139776023b3ef79dcc93ab198fcaa1
+P 7f22404a2284727f7d41d9f00eac2992b6d848f0
+R 5caf3fc3d2a436faa8ec84feeb9e7642
 U Kostas
-Z 2b40445b3b14975c713dc0a7a4a3fbe2
+Z 9e495907b04c2ed51de7c9e81eace801

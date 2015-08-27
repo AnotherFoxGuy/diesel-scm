@@ -194,9 +194,7 @@ private:
 
 	Workspace			workspace;
 	Workspace &			getWorkspace() { return workspace; }
-
-	Fossil &			fossil() { return workspace.fossil(); }
-	const Fossil &		fossil() const { return workspace.fossil(); }
+	const Workspace &	getWorkspace() const { return workspace; }
 
 	Settings			&settings;
 	QStringList			workspaceHistory;
