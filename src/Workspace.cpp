@@ -120,7 +120,7 @@ bool Workspace::switchWorkspace(const QString& workspace, QSettings &store)
 }
 
 //------------------------------------------------------------------------------
-bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QStringList &ignorePatterns, const bool &abort, UICallback &uiCallback)
+bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, const QString &baseDir, const QStringList &ignorePatterns, UICallback &uiCallback)
 {
 	QDir dir(dirPath);
 
@@ -129,7 +129,7 @@ bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, co
 	QFileInfoList list = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
 	for (int i=0; i<list.count(); ++i)
 	{
-		if(abort)
+		if(uiCallback.processAborted())
 			return false;
 
 		QFileInfo info = list[i];
@@ -143,7 +143,7 @@ bool Workspace::scanDirectory(QFileInfoList &entries, const QString& dirPath, co
 
 		if (info.isDir())
 		{
-			if(!scanDirectory(entries, filepath, baseDir, ignorePatterns, abort, uiCallback))
+			if(!scanDirectory(entries, filepath, baseDir, ignorePatterns, uiCallback))
 				return false;
 		}
 		else
@@ -159,7 +159,7 @@ static bool StringLengthDescending(const QString &l, const QString &r)
 }
 
 //------------------------------------------------------------------------------
-void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QStringList &ignorePatterns, UICallback &uiCallback, bool &operationAborted)
+void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModified, bool scanUnchanged, const QStringList &ignorePatterns, UICallback &uiCallback)
 {
 	// Scan all workspace files
 	QFileInfoList all_files;
@@ -179,8 +179,6 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 
 	QStringList paths;
 
-	operationAborted = false;
-
 	uiCallback.beginProcess("");
 	if(scan_files)
 	{
@@ -190,7 +188,7 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 		if(!scanIgnored)
 			ignore = ignorePatterns;
 
-		if(!scanDirectory(all_files, wkdir, wkdir, ignore, operationAborted, uiCallback))
+		if(!scanDirectory(all_files, wkdir, wkdir, ignore, uiCallback))
 			goto _done;
 
 		for(QFileInfoList::iterator it=all_files.begin(); it!=all_files.end(); ++it)

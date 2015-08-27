@@ -846,7 +846,6 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 
 		if(uiCallback->processAborted())
 		{
-			log("\n* "+QObject::tr("Terminated")+" *\n");
 			#ifdef Q_OS_WIN		// Verify this is still true on Qt5
 				process.kill(); // QT on windows cannot terminate console processes with QProcess::terminate
 			#else
@@ -891,7 +890,7 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 		//	qDebug() << "Breakpoint\n";
 		#endif
 
-		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+		QCoreApplication::processEvents(QEventLoop::AllEvents, 500); // 500 ms
 
 		if(buffer.isEmpty())
 			continue;
@@ -1048,11 +1047,12 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 	delete decoder;
 
 	// Must be finished by now
+	process.waitForFinished(5000); // Wait for termination 5 secs maximum
 	Q_ASSERT(process.state()==QProcess::NotRunning);
 
 	QProcess::ExitStatus es = process.exitStatus();
 
-	if(es!=QProcess::NormalExit)
+	if(es!=QProcess::NormalExit || uiCallback->processAborted())
 		return false;
 
 	if(exitCode)

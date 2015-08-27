@@ -75,7 +75,6 @@ private slots:
 	void onOpenRecent();
 	void onWorkspaceTreeViewSelectionChanged(const class QItemSelection &selected, const class QItemSelection &deselected);
 	void onFileViewDragOut();
-	void onAbort();
 	void onSearchBoxTextChanged(const QString &text);
 	void onSearch();
 	void onCustomActionTriggered();
@@ -135,6 +134,7 @@ private slots:
 	void on_actionSetDefaultRemote_triggered();
 	void on_actionAddRemote_triggered();
 	void on_actionDeleteRemote_triggered();
+	void on_actionAbortOperation_triggered();
 
 private:
 	class MainWinUICallback : public UICallback
@@ -178,8 +178,8 @@ private:
 	class QAction		*fileActionSeparator;
 	class QAction		*workspaceActionSeparator;
 	class QProgressBar	*progressBar;
+	class QToolButton	*abortButton;
 	class QLabel		*lblTags;
-	class QShortcut		*abortShortcut;
 	class SearchBox		*searchBox;
 	class QShortcut		*searchShortcut;
 	QMenu				*menuWorkspace;

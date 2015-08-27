@@ -9,6 +9,7 @@
 #include <QInputDialog>
 #include <QMimeData>
 #include <QProgressBar>
+#include <QToolButton>
 #include <QLabel>
 #include <QSettings>
 #include <QShortcut>
@@ -246,7 +247,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->statusBar->insertPermanentWidget(0, lblTags);
 	lblTags->setVisible(true);
 
-	// Construct ProgressBar
+	// Create Progress Bar
 	progressBar = new QProgressBar();
 	progressBar->setMinimum(0);
 	progressBar->setMaximum(0);
@@ -256,6 +257,16 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	ui->statusBar->insertPermanentWidget(1, progressBar);
 	progressBar->setVisible(false);
 
+	// Create Abort Button
+	abortButton = new QToolButton(ui->statusBar);
+	abortButton->setAutoRaise(true);
+	abortButton->setIcon(getCachedIcon(":/icons/icon-action-stop"));
+	abortButton->setVisible(false);
+	abortButton->setArrowType(Qt::NoArrow);
+	abortButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+	abortButton->setDefaultAction(ui->actionAbortOperation);
+	ui->statusBar->insertPermanentWidget(2, abortButton);
+	ui->actionAbortOperation->setEnabled(false);
 
 #ifdef Q_OS_MACX
 	// Native applications on OSX don't have menu icons
@@ -277,11 +288,6 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 	// Wrong color scheme on Yosemite but better than the standard TabWidget
 	ui->tabWidget->setDocumentMode(true);
 #endif
-
-	abortShortcut = new QShortcut(QKeySequence("Escape"), this);
-	abortShortcut->setContext(Qt::ApplicationShortcut);
-	abortShortcut->setEnabled(false);
-	connect(abortShortcut, SIGNAL(activated()), this, SLOT(onAbort()));
 
 	// Searchbox
 	// Add spacer to pad to right
@@ -736,8 +742,7 @@ bool MainWindow::scanWorkspace()
 								ui->actionViewModified->isChecked(),
 								ui->actionViewUnchanged->isChecked(),
 								ignore_patterns,
-								uiCallback,
-								operationAborted
+								uiCallback
 								);
 
 		// Build default versions list
@@ -2460,7 +2465,7 @@ void MainWindow::setBusy(bool busy)
 	else
 		QApplication::restoreOverrideCursor();
 
-	abortShortcut->setEnabled(busy);
+	ui->actionAbortOperation->setEnabled(busy);
 	bool enabled = !busy;
 	ui->menuBar->setEnabled(enabled);
 	ui->mainToolBar->setEnabled(enabled);
@@ -2468,7 +2473,7 @@ void MainWindow::setBusy(bool busy)
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::onAbort()
+void MainWindow::on_actionAbortOperation_triggered()
 {
 	operationAborted = true;
 	uiCallback.abortProcess();
@@ -2498,6 +2503,8 @@ void MainWindow::MainWinUICallback::beginProcess(const QString& text)
 	mainWindow->ui->statusBar->showMessage(text);
 	mainWindow->lblTags->setHidden(true);
 	mainWindow->progressBar->setHidden(false);
+	mainWindow->abortButton->setHidden(false);
+	mainWindow->ui->actionAbortOperation->setEnabled(true);
 	QCoreApplication::processEvents();
 }
 
@@ -2516,6 +2523,8 @@ void MainWindow::MainWinUICallback::endProcess()
 	mainWindow->ui->statusBar->clearMessage();
 	mainWindow->lblTags->setHidden(false);
 	mainWindow->progressBar->setHidden(true);
+	mainWindow->abortButton->setHidden(true);
+	mainWindow->ui->actionAbortOperation->setEnabled(false);
 	QCoreApplication::processEvents();
 }
 

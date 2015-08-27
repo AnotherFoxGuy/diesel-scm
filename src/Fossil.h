@@ -106,14 +106,13 @@ private:
 	void setRepositoryFile(const QString &filename) { repositoryFile = filename; }
 	bool runFossil(const QStringList &args, QStringList *output=0, int runFlags=RUNFLAGS_NONE);
 	bool runFossilRaw(const QStringList &args, QStringList *output, int *exitCode, int runFlags);
+	QString	getFossilPath();
 
 	void log(const QString &text, bool isHTML=false)
 	{
 		if(uiCallback)
 			uiCallback->logText(text, isHTML);
 	}
-
-	QString	getFossilPath();
 
 	UICallback			*uiCallback;
 	QString				workspacePath;

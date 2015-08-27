@@ -24,6 +24,7 @@ Fuel V2.0.0 (2015-XX-XX)
 - Feature: Support for the versionable .fossil-settings/ignore-glob
 - Feature: OSX: UI improvements
 - Feature: OSX: Improved external application selection for application bundles
+- Feature: Long operations can now be aborted via a button on the status bar
 - Misc: Reorganised menu structure.
 - Misc: Separated Fuel and Fossil settings
 - Bug Fix: Retain the folder tree state when refreshing the workspace
