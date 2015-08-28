@@ -2365,13 +2365,15 @@ void MainWindow::on_fileTableView_customContextMenuRequested(const QPoint &pos)
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
+void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &pos)
 {
+	ui->workspaceTreeView->selectionModel()->select(ui->workspaceTreeView->indexAt(pos), QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
 	QModelIndexList indices = ui->workspaceTreeView->selectionModel()->selectedIndexes();
 
 	if(indices.empty())
 		return;
 
+	QPoint gpos = QCursor::pos() + QPoint(1, 1);
 	QMenu *menu = 0;
 
 	// Get first selected item
@@ -2381,7 +2383,20 @@ void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
 	WorkspaceItem tv = data.value<WorkspaceItem>();
 
 	if(tv.Type == WorkspaceItem::TYPE_FOLDER ||  tv.Type == WorkspaceItem::TYPE_WORKSPACE)
-		menu = menuWorkspace;
+	{
+	#ifdef Q_OS_WIN
+		if(qApp->keyboardModifiers() & Qt::SHIFT)
+		{
+			QString fname = getWorkspace().getPath() + PATH_SEPARATOR + tv.Value;
+			fname = QDir::toNativeSeparators(fname);
+			ShowExplorerMenu((HWND)winId(), fname, gpos);
+		}
+		else
+	#endif
+		{
+			menu = menuWorkspace;
+		}
+	}
 	else if (tv.Type == WorkspaceItem::TYPE_STASH || tv.Type == WorkspaceItem::TYPE_STASHES)
 		menu = menuStashes;
 	else if (tv.Type == WorkspaceItem::TYPE_TAG || tv.Type == WorkspaceItem::TYPE_TAGS)
@@ -2392,10 +2407,7 @@ void MainWindow::on_workspaceTreeView_customContextMenuRequested(const QPoint &)
 		menu = menuRemotes;
 
 	if(menu)
-	{
-		QPoint pos = QCursor::pos() + QPoint(1, 1);
-		menu->popup(pos);
-	}
+		menu->popup(gpos);
 }
 
 //------------------------------------------------------------------------------

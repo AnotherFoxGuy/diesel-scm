@@ -25,6 +25,8 @@ Fuel V2.0.0 (2015-XX-XX)
 - Feature: OSX: UI improvements
 - Feature: OSX: Improved external application selection for application bundles
 - Feature: Long operations can now be aborted via a button on the status bar
+- Feature: Windows: Shift-Right-Click invokes the Explorer folder context menu on
+  Workspace folders
 - Misc: Reorganised menu structure.
 - Misc: Separated Fuel and Fossil settings
 - Bug Fix: Retain the folder tree state when refreshing the workspace
