@@ -2,9 +2,6 @@
 <ui version="4.0">
  <class>UpdateCheckDialog</class>
  <widget class="QDialog" name="UpdateCheckDialog">
-  <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
-  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -20,23 +17,6 @@
    <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="1">
-    <widget class="QLabel" name="lblLatestVersion">
-     <property name="text">
-      <string notr="true">LATESST_VERSION</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="lblCurrentVersion">
-     <property name="text">
-      <string notr="true">CURRENT_VERSION</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="lblIcon">
      <property name="maximumSize">
@@ -59,7 +39,7 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2">
+   <item row="4" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -69,10 +49,34 @@
      </property>
     </widget>
    </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="lblCurrentVersion">
+     <property name="text">
+      <string notr="true">CURRENT_VERSION</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="lblLatestVersion">
+     <property name="text">
+      <string notr="true">LATESST_VERSION</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources>
   <include location="../rsrc/resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>UpdateCheckDialog</receiver>
+   <slot>accept()</slot>
+  </connection>
+ </connections>
 </ui>

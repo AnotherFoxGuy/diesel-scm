@@ -1,5 +1,5 @@
-C Switched\sto\ssite\surl\sfor\sversion\scheck
-D 2015-08-28T11:30:53.291
+C Fixed\sUpdateCheck\sdialog\snot\sclosing\swhen\sOk\sis\spressed
+D 2015-08-28T11:41:56.913
 F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
@@ -263,8 +263,8 @@ F ui/MainWindow.ui d21e8ee7108a372abb0d11fde011e2a5f8a6822c
 F ui/RemoteDialog.ui 424b2d4a3d0162f84fdccf6af02c1cfce07a06f5
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-F ui/UpdateCheckDialog.ui dfd3d430546f45b56a2b2d5d598ed352b8cb5177
-P 66af69e97a189e7aa4bf61a9684846b0e6917913
-R 9aa25036699e4f21274ef593ae2b9088
+F ui/UpdateCheckDialog.ui 771a323899065970c49fe5dfc141d3537ca8b327
+P 105a7c76cea37c499db64694a425dbdec7a555a4
+R cd832136705c743eb47b574329357efb
 U Kostas
-Z 973c2d14cfb342a04219b2d277d67660
+Z 8ba5899d4433dc368d4607ea36ac4b58
