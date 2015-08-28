@@ -1,5 +1,5 @@
-C Initial\swork\son\sapplication\sversion\scheck
-D 2015-08-28T11:11:40.400
+C Switched\sto\ssite\surl\sfor\sversion\scheck
+D 2015-08-28T11:30:53.291
 F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
@@ -244,7 +244,7 @@ F src/Settings.cpp 258d3f466f6a125ce2b8519d6d57a312cbc44a3f
 F src/Settings.h 0a10b0b83fe804bdc7dac58eed06b5b6ee422055
 F src/SettingsDialog.cpp fa0c70eaf0fa7edb15de302d041cdb552fe523d5
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
-F src/UpdateCheckDialog.cpp 9bf8256b6d018fe71221989abdca7e75e9e03ec2
+F src/UpdateCheckDialog.cpp ce191a20645d295fd149261c00c84e81d7cacaef
 F src/UpdateCheckDialog.h 614539ee52833f425d2aca985b39d284d8c60870
 F src/Utils.cpp fb9fe1caeef47dca310079f8f10b41c838defaa5
 F src/Utils.h c52be757cd0045e34ab14c51f35a61af8f8870a4
@@ -264,10 +264,7 @@ F ui/RemoteDialog.ui 424b2d4a3d0162f84fdccf6af02c1cfce07a06f5
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
 F ui/UpdateCheckDialog.ui dfd3d430546f45b56a2b2d5d598ed352b8cb5177
-P ca5602f8b3e7a0eba8e0a8afc1e60f3b4e2d8646
-R 5acab294c82df25974dd98236a9196ac
-T *branch * update-check
-T *sym-update-check *
-T -sym-trunk *
+P 66af69e97a189e7aa4bf61a9684846b0e6917913
+R 9aa25036699e4f21274ef593ae2b9088
 U Kostas
-Z a8c10ce2e93ac4eec088c3c1d61186c2
+Z 973c2d14cfb342a04219b2d277d67660

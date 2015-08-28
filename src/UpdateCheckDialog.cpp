@@ -5,31 +5,6 @@
 #include <QFile>
 #include "Utils.h"
 
-UpdateCheckDialog::UpdateCheckDialog(QWidget *parent) :
-	QDialog(parent),
-	ui(new Ui::UpdateCheckDialog)
-{
-	ui->setupUi(this);
-
-	ui->lblCurrentVersion->setText(tr("Current Version: %0").arg(QCoreApplication::applicationVersion()));
-	ui->lblLatestVersion->setText(tr("Latest Version: %0").arg(tr("Checking...")));
-
-	connect(
-	 &networkAccess, SIGNAL (finished(QNetworkReply*)),
-	 this, SLOT (fileDownloaded(QNetworkReply*))
-	 );
-
-	QNetworkRequest request(QUrl("https://fuel-scm.org/fossil/timeline.rss"));
-	networkAccess.get(request);
-
-	//QString banner(QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion());
-}
-
-UpdateCheckDialog::~UpdateCheckDialog()
-{
-	delete ui;
-}
-
 struct Version
 {
 	uint Major;
@@ -74,6 +49,30 @@ struct Version
 };
 
 
+UpdateCheckDialog::UpdateCheckDialog(QWidget *parent) :
+	QDialog(parent),
+	ui(new Ui::UpdateCheckDialog)
+{
+	ui->setupUi(this);
+
+	ui->lblCurrentVersion->setText(tr("Current Version: %0").arg(QCoreApplication::applicationVersion()));
+	ui->lblLatestVersion->setText(tr("Latest Version: %0").arg(tr("Checking...")));
+
+	connect(
+	 &networkAccess, SIGNAL (finished(QNetworkReply*)),
+	 this, SLOT (fileDownloaded(QNetworkReply*))
+	 );
+
+	QNetworkRequest request(QUrl("https://fuel-scm.org/files/releases/VersionCheck"));
+	networkAccess.get(request);
+
+}
+
+UpdateCheckDialog::~UpdateCheckDialog()
+{
+	delete ui;
+}
+
 //-----------------------------------------------------------------------------
 void UpdateCheckDialog::fileDownloaded(QNetworkReply *reply)
 {
@@ -91,12 +90,14 @@ void UpdateCheckDialog::fileDownloaded(QNetworkReply *reply)
 		return;
 	}
 
-	//QByteArray data = reply->readAll();
+#if 1
+	QByteArray data = reply->readAll();
+#else
 	QFile f("c:\\temp\\versions.txt");
 	Q_ASSERT(f.open(QFile::ReadOnly));
 	QByteArray data = f.readAll();
 	f.close();
-
+#endif
 	QStringMap props;
 	ParseProperties(props, QString(data).split('\n'), '=');
 	const QString lastest_key = QCoreApplication::applicationName() + ".Latest";
@@ -112,4 +113,12 @@ void UpdateCheckDialog::fileDownloaded(QNetworkReply *reply)
 
 	ui->lblLatestVersion->setText(QString(data));
 	ui->lblLatestVersion->setText(tr("Latest Version: %0").arg(props[lastest_key]));
+
+	if(vcurr<vlatest)
+		ui->lblLatestVersion->setText(ui->lblLatestVersion->text()+ "\nNew version available");
+	else if(vcurr==vlatest)
+		ui->lblLatestVersion->setText(ui->lblLatestVersion->text()+ "\nThis is the latest version");
+	else
+		ui->lblLatestVersion->setText(ui->lblLatestVersion->text()+ "\nYou are running an unreleased version");
+
 }
