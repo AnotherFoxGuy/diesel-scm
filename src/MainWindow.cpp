@@ -22,6 +22,7 @@
 #include "RevisionDialog.h"
 #include "RemoteDialog.h"
 #include "AboutDialog.h"
+#include "UpdateCheckDialog.h"
 #include "Utils.h"
 
 //-----------------------------------------------------------------------------
@@ -3015,4 +3016,11 @@ void MainWindow::onCustomActionTriggered()
 
 	int action_id = action->data().toInt();
 	invokeCustomAction(action_id);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionUpdateCheck_triggered()
+{
+	UpdateCheckDialog dlg(this);
+	dlg.exec();
 }

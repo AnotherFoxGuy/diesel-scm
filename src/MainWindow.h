@@ -135,6 +135,7 @@ private slots:
 	void on_actionAddRemote_triggered();
 	void on_actionDeleteRemote_triggered();
 	void on_actionAbortOperation_triggered();
+	void on_actionUpdateCheck_triggered();
 
 private:
 	class MainWinUICallback : public UICallback

@@ -1,5 +1,5 @@
-C Windows:\sShift-Right-Click\sinvokes\sthe\sExplorer\sfolder\scontext\smenu\son\sWorkspace\sfolders
-D 2015-08-28T09:28:04.945
+C Initial\swork\son\sapplication\sversion\scheck
+D 2015-08-28T11:11:40.400
 F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
@@ -38,7 +38,7 @@ F ext/qtkeychain/qkeychain_export.h d756528188ef9bf3c4461ecc80048f06c362b54b
 F ext/qtkeychain/testclient.cpp cb1290a9584b627306a7bfdf1c02a8bbae503f5f
 F ext/qtkeychain/translations/qtkeychain_de.ts 0a70c8205c066c30ed8172f0670942de1fc5eede
 F ext/qtkeychain/translations/qtkeychain_ro.ts f16939382fd1a047b0692426bc82847347f14b32
-F fuel.pro 13e5a8ca66923cb7b9583296b1427ccb2f75782a
+F fuel.pro 164e001365c1eb2fe9e34cf20f0e1ec94de1ed00
 F intl/convert.bat ce14bb3b45b162186a73d1cfa6f2a8e832cdeddc x
 F intl/convert.sh ac6edc8d99b575601cf9c6b85b18c9e25875b6e0 x
 F intl/de_DE.ts e2faceab920ac60c97bbc6fba038e261d51fc741
@@ -232,8 +232,8 @@ F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp d5adcea39c5cdad6acbf9557a6f6ef7e6bf19901
-F src/MainWindow.h fd8bb12f0bf49a6cb5ce9b875ad5277426380e3f
+F src/MainWindow.cpp 66f8bef7518f02f2811f64d61b9f0d6f79163348
+F src/MainWindow.h ccfaae11fb1a21184b1515060984800ea10377f2
 F src/RemoteDialog.cpp d5d39871f319bb760405736ba0caa9e83ec51ea3
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
 F src/RevisionDialog.cpp e58c4f8a704f00addebb15d521b76620fdafda79
@@ -244,6 +244,8 @@ F src/Settings.cpp 258d3f466f6a125ce2b8519d6d57a312cbc44a3f
 F src/Settings.h 0a10b0b83fe804bdc7dac58eed06b5b6ee422055
 F src/SettingsDialog.cpp fa0c70eaf0fa7edb15de302d041cdb552fe523d5
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
+F src/UpdateCheckDialog.cpp 9bf8256b6d018fe71221989abdca7e75e9e03ec2
+F src/UpdateCheckDialog.h 614539ee52833f425d2aca985b39d284d8c60870
 F src/Utils.cpp fb9fe1caeef47dca310079f8f10b41c838defaa5
 F src/Utils.h c52be757cd0045e34ab14c51f35a61af8f8870a4
 F src/Workspace.cpp aff5e81b1cf355b81a17a5e97a4b32a0f0bf9439
@@ -257,11 +259,15 @@ F ui/CloneDialog.ui d02d2fc6356cb7ff88860c1a6963d882c444b030
 F ui/CommitDialog.ui 1e5dafa742e9ae07ec937bcda8cda3297ddc6199
 F ui/FileActionDialog.ui 89bb4dc2d0b8adcd41adcb11ec65f2028a09a12d
 F ui/FslSettingsDialog.ui eb3d4cb764cab90b01e82922237d8c42d6ce1749
-F ui/MainWindow.ui ad04643d071fe513b46ef413749a493909a90ad1
+F ui/MainWindow.ui d21e8ee7108a372abb0d11fde011e2a5f8a6822c
 F ui/RemoteDialog.ui 424b2d4a3d0162f84fdccf6af02c1cfce07a06f5
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P e4ee91a2c5ca3e29c020cc31e2e018e69ff76b16
-R 7c567f82d6542c04f20db79a62467088
+F ui/UpdateCheckDialog.ui dfd3d430546f45b56a2b2d5d598ed352b8cb5177
+P ca5602f8b3e7a0eba8e0a8afc1e60f3b4e2d8646
+R 5acab294c82df25974dd98236a9196ac
+T *branch * update-check
+T *sym-update-check *
+T -sym-trunk *
 U Kostas
-Z 67b0068a13b61bb84a597c24af896151
+Z a8c10ce2e93ac4eec088c3c1d61186c2

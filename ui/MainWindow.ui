@@ -222,7 +222,7 @@
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -245,6 +245,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionUpdateCheck"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -1060,6 +1061,11 @@
    </property>
    <property name="shortcut">
     <string notr="true">Esc</string>
+   </property>
+  </action>
+  <action name="actionUpdateCheck">
+   <property name="text">
+    <string>Check for updates</string>
    </property>
   </action>
  </widget>
