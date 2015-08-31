@@ -352,6 +352,9 @@ void ParseProperties(QStringMap &properties, const QStringList &lines, QChar sep
 	foreach(QString l, lines)
 	{
 		l = l.trimmed();
+		if(l.isEmpty())
+			continue;
+
 		int index = l.indexOf(separator);
 
 		QString key;
@@ -642,4 +645,37 @@ void TrimStringList(QStringList& list)
 {
 	for(int i=0; i<list.length(); ++i)
 		list[i] = list[i].trimmed();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Version::set(const QString &version)
+{
+	QStringList sections = version.split(".");
+	TrimStringList(sections);
+	Q_ASSERT(sections.size()==3);
+	bool ok = false;
+	Major = sections[0].toUInt(&ok);
+	Q_ASSERT(ok);
+	Minor = sections[1].toUInt(&ok);
+	Q_ASSERT(ok);
+	Build = sections[2].toUInt(&ok);
+	Q_ASSERT(ok);
+}
+
+//------------------------------------------------------------------------------
+bool Version::operator <(const Version &other) const
+{
+	if(Major < other.Major)
+		return true;
+	else if (Major > other.Major)
+		return false;
+
+	if(Minor < other.Minor)
+		return true;
+	else if (Minor > other.Minor)
+		return false;
+
+	if(Build < other.Build)
+		return true;
+	return false;
 }

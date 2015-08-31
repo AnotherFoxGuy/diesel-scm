@@ -286,6 +286,9 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
 
 	// Wrong color scheme on Yosemite but better than the standard TabWidget
 	ui->tabWidget->setDocumentMode(true);
+
+	// Hide the header since the height is different form the FileView and looks ugly
+	//ui->workspaceTreeView->setHeaderHidden(true);
 #endif
 
 	// Searchbox

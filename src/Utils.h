@@ -16,7 +16,7 @@
 
 typedef QSet<QString> stringset_t;
 
-
+////////////////////////////////////////////////////////////////////////////////
 class UICallback
 {
 public:
@@ -28,7 +28,7 @@ public:
 	virtual QMessageBox::StandardButton Query(const QString &title, const QString &query, QMessageBox::StandardButtons buttons)=0;
 };
 
-
+////////////////////////////////////////////////////////////////////////////////
 class ScopedStatus
 {
 public:
@@ -46,7 +46,23 @@ private:
 	UICallback *uiCallback;
 };
 
+////////////////////////////////////////////////////////////////////////////////
+struct Version
+{
+	uint Major;
+	uint Minor;
+	uint Build;
 
+	Version(const QString &version) { set(version); }
+	void set(const QString &version);
+	bool operator < (const Version &other) const;
+	bool operator == (const Version &other) const
+	{
+		return Major == other.Major && Minor == other.Minor && Build == other.Build;
+	}
+};
+
+////////////////////////////////////////////////////////////////////////////////
 QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons = QMessageBox::Yes|QMessageBox::No);
 QString						QuotePath(const QString &path);
 QStringList					QuotePaths(const QStringList &paths);

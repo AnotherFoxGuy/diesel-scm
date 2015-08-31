@@ -17,7 +17,8 @@ public:
 	~UpdateCheckDialog();
 
 private slots:
-  void fileDownloaded(QNetworkReply* reply);
+  void versionInfoDownloaded(QNetworkReply* reply);
+  void changelogDownloaded(QNetworkReply* reply);
 
 private:
 	Ui::UpdateCheckDialog *ui;
