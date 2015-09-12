@@ -387,10 +387,12 @@ bool Workspace::setRemoteDefault(const QUrl& url)
 {
 	Q_ASSERT(url.password().isEmpty());
 
+	const QString &url_str = url.toString();
+
 	bool found = false;
 	for(remote_map_t::iterator it=remotes.begin(); it!=remotes.end(); ++it)
 	{
-		if(it->url == url)
+		if(it->url.toString() == url_str) // FIXME: Use strings as QUrl to QUrl comparisons sometime fail!?
 		{
 			it->isDefault = true;
 			found = true;

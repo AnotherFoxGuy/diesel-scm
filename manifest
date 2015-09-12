@@ -1,5 +1,5 @@
-C Windows:\sShift-Right-Click\sinvokes\sthe\sExplorer\sfolder\scontext\smenu\son\sWorkspace\sfolders
-D 2015-08-28T09:28:04.945
+C Fixed\sissue\swhere\ssetting\sa\sdefault\sremote\soccasionally\sfails
+D 2015-09-12T18:13:03.779
 F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
@@ -246,7 +246,7 @@ F src/SettingsDialog.cpp fa0c70eaf0fa7edb15de302d041cdb552fe523d5
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
 F src/Utils.cpp fb9fe1caeef47dca310079f8f10b41c838defaa5
 F src/Utils.h c52be757cd0045e34ab14c51f35a61af8f8870a4
-F src/Workspace.cpp aff5e81b1cf355b81a17a5e97a4b32a0f0bf9439
+F src/Workspace.cpp 16684d586ee64ac6176debc06ee01012cd7ac5df
 F src/Workspace.h 408ae0d52d5c17420a0add9b6fd5e0a7db3dc948
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
@@ -261,7 +261,7 @@ F ui/MainWindow.ui ad04643d071fe513b46ef413749a493909a90ad1
 F ui/RemoteDialog.ui 424b2d4a3d0162f84fdccf6af02c1cfce07a06f5
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P e4ee91a2c5ca3e29c020cc31e2e018e69ff76b16
-R 7c567f82d6542c04f20db79a62467088
+P ca5602f8b3e7a0eba8e0a8afc1e60f3b4e2d8646
+R 8a09e505d515925772d771ed4d746d16
 U Kostas
-Z 67b0068a13b61bb84a597c24af896151
+Z 202ea39a6d74dc4b2a228c395fd2332d
