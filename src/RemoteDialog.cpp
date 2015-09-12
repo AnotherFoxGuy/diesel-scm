@@ -29,11 +29,17 @@ bool RemoteDialog::run(QWidget *parent, QUrl &url, QString &name)
 	// Set URL components
 	if(!url.isEmpty())
 	{
-		QString url_no_credentials = UrlToStringNoCredentials(url);
-		dlg.ui->lineURL->setText(url_no_credentials);
-		dlg.ui->lineUserName->setText(url.userName());
-		dlg.ui->linePassword->setText(url.password());
 		dlg.ui->lineName->setText(name);
+
+		if(url.isLocalFile())
+			dlg.ui->lineURL->setText(QDir::toNativeSeparators(url.toLocalFile()));
+		else
+		{
+			QString url_no_credentials = UrlToStringNoCredentials(url);
+			dlg.ui->lineURL->setText(url_no_credentials);
+			dlg.ui->lineUserName->setText(url.userName());
+			dlg.ui->linePassword->setText(url.password());
+		}
 	}
 
 	if(dlg.exec() != QDialog::Accepted)
@@ -60,7 +66,7 @@ bool RemoteDialog::run(QWidget *parent, QUrl &url, QString &name)
 	if(!dlg.ui->linePassword->text().trimmed().isEmpty())
 		url.setPassword(dlg.ui->linePassword->text());
 
-	name =dlg.ui->lineName->text().trimmed();
+	name = dlg.ui->lineName->text().trimmed();
 	if(name.isEmpty())
 		name = UrlToStringNoCredentials(url);
 
