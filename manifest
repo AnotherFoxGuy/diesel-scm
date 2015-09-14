@@ -1,5 +1,5 @@
-C Fixed\sissue\swhere\sthe\sRemoteDialog\swas\sdisplaying\slocal\spaths\sas\sUrls\swhen\sediting\sexisting\sremotes\n
-D 2015-09-12T18:34:26.565
+C All\sgeneric\sFossil\soperations\sare\snow\sencapsulated\sin\sWorkspace\n
+D 2015-09-14T15:46:16.231
 F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
@@ -232,7 +232,7 @@ F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h dfe2a61884a55a74cbb9206b6f6b482b979725e7
 F src/LoggedProcess.cpp 2a1e5c94bc1e57c8984563e66c210e43a14dc60c
 F src/LoggedProcess.h 85df7c635c807a5a0e8c4763f17a0752aaff7261
-F src/MainWindow.cpp d5adcea39c5cdad6acbf9557a6f6ef7e6bf19901
+F src/MainWindow.cpp 4268a41085afaa2bc0bb08b580e99e201b00234f
 F src/MainWindow.h fd8bb12f0bf49a6cb5ce9b875ad5277426380e3f
 F src/RemoteDialog.cpp 1a57a15465f689057d5354a29ad3015e54582343
 F src/RemoteDialog.h 5e0438c2bd7c79b1bb44bfbd58c2181b544a9e5d
@@ -246,8 +246,8 @@ F src/SettingsDialog.cpp fa0c70eaf0fa7edb15de302d041cdb552fe523d5
 F src/SettingsDialog.h 5eb3ae2cbb00ab5544e1889860f5376f69fe47cd
 F src/Utils.cpp fb9fe1caeef47dca310079f8f10b41c838defaa5
 F src/Utils.h c52be757cd0045e34ab14c51f35a61af8f8870a4
-F src/Workspace.cpp 16684d586ee64ac6176debc06ee01012cd7ac5df
-F src/Workspace.h 408ae0d52d5c17420a0add9b6fd5e0a7db3dc948
+F src/Workspace.cpp 88ec8258920d7d450c3bb6110085fb07b30ee01a
+F src/Workspace.h 12646718c49441e7160e231d0e8681d51a601d4e
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
 F tools/git-push.sh 62cc58434cae5b7bcd6bd9d4cce8b08739f31cd7 x
 F tools/pack.sh d7f38a498c4e9327fecd6a6e5ac27be270d43008 x
@@ -261,7 +261,7 @@ F ui/MainWindow.ui ad04643d071fe513b46ef413749a493909a90ad1
 F ui/RemoteDialog.ui 424b2d4a3d0162f84fdccf6af02c1cfce07a06f5
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P 6850f2915d4dfb3760de45d7bdb3f8d1c5658dc6
-R d7fa0057ae23e4534aea0daf38489c8a
+P 96e4a4d8642ec96578155bb8762a1772b9351e3c
+R 784c02219b7ef58afdd4d5fd40274aec
 U Kostas
-Z 622c72220b0e85085ac47a3fed4228ae
+Z 80978a3c0bcc7673709be80a4e657974

@@ -24,7 +24,7 @@ void Workspace::clearState()
 	getPaths().clear();
 	pathState.clear();
 	stashMap.clear();
-	branchList.clear();
+	branchNames.clear();
 	tags.clear();
 	isIntegrated = false;
 }
@@ -351,12 +351,12 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 	// Load the stashes, branches and tags
 	fossil().stashList(getStashes());
 
-	fossil().branchList(branchList, branchList);
+	fossil().branchList(branchNames, branchNames);
 
 	fossil().tagList(tags);
 	// Fossil includes the branches in the tag list
 	// So remove them
-	foreach(const QString &name, branchList)
+	foreach(const QString &name, branchNames)
 		tags.remove(name);
 
 _done:
