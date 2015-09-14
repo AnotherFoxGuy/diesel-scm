@@ -405,7 +405,7 @@ bool MainWindow::openWorkspace(const QString &path)
 			}
 
 			// Ok open the repository file
-			if(!getWorkspace().createWorkspace(fi.absoluteFilePath(), wkspace))
+			if(!getWorkspace().create(fi.absoluteFilePath(), wkspace))
 			{
 				QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 				return false;
@@ -517,7 +517,7 @@ void MainWindow::on_actionNewRepository_triggered()
 		return;
 	}
 
-	if(!getWorkspace().createWorkspace(repo_abs_path, wkdir))
+	if(!getWorkspace().create(repo_abs_path, wkdir))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not open repository."), QMessageBox::Ok );
 		return;
@@ -533,14 +533,14 @@ void MainWindow::on_actionNewRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCloseRepository_triggered()
 {
-	if(getWorkspace().getWorkspaceState()!=Fossil::WORKSPACE_STATE_OK)
+	if(getWorkspace().getState()!=Fossil::WORKSPACE_STATE_OK)
 		return;
 
 	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), tr("Are you sure you want to close this workspace?")))
 		return;
 
 	// Close Repo
-	if(!getWorkspace().closeWorkspace())
+	if(!getWorkspace().close())
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes available?"), QMessageBox::Ok );
 		return;
@@ -693,7 +693,7 @@ bool MainWindow::scanWorkspace()
 	bool valid = true;
 
 	// Load repository info
-	Fossil::WorkspaceState st = getWorkspace().getWorkspaceState();
+	Fossil::WorkspaceState st = getWorkspace().getState();
 	QString status;
 
 	if(st==Fossil::WORKSPACE_STATE_NOTFOUND)
@@ -1740,7 +1740,7 @@ void MainWindow::on_actionUndo_triggered()
 	QStringList res;
 
 	// Do test Undo
-	if(!getWorkspace().undoWorkspace(res, true))
+	if(!getWorkspace().undo(res, true))
 		QMessageBox::critical(this, tr("Error"), tr("Could not undo changes."), QMessageBox::Ok);
 
 	if(res.length()>0 && res[0]=="No undo or redo is available")
@@ -1750,7 +1750,7 @@ void MainWindow::on_actionUndo_triggered()
 		return;
 
 	// Do Undo
-	if(!getWorkspace().undoWorkspace(res, false))
+	if(!getWorkspace().undo(res, false))
 		QMessageBox::critical(this, tr("Error"), tr("Could not undo changes."), QMessageBox::Ok);
 
 	refresh();
@@ -2568,7 +2568,7 @@ void MainWindow::updateRevision(const QString &revision)
 	QStringList res;
 
 	// Do test update
-	if(!getWorkspace().updateWorkspace(res, selected_revision, true))
+	if(!getWorkspace().update(res, selected_revision, true))
 	{
 		QMessageBox::critical(this, tr("Error"), tr("Could not update the repository."), QMessageBox::Ok);
 		return;
@@ -2588,7 +2588,7 @@ void MainWindow::updateRevision(const QString &revision)
 		return;
 
 	// Do update
-	if(!getWorkspace().updateWorkspace(res, selected_revision, false))
+	if(!getWorkspace().update(res, selected_revision, false))
 		QMessageBox::critical(this, tr("Error"), tr("Could not update the repository."), QMessageBox::Ok);
 
 	refresh();
@@ -2776,7 +2776,7 @@ void MainWindow::on_actionPushRemote_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	if(!getWorkspace().pushWorkspace(url))
+	if(!getWorkspace().push(url))
 		QMessageBox::critical(this, tr("Error"), tr("Could not push to the remote repository."), QMessageBox::Ok);
 }
 
@@ -2794,7 +2794,7 @@ void MainWindow::on_actionPullRemote_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	if(!getWorkspace().pullWorkspace(url))
+	if(!getWorkspace().pull(url))
 		QMessageBox::critical(this, tr("Error"), tr("Could not pull from the remote repository."), QMessageBox::Ok);
 }
 
@@ -2813,7 +2813,7 @@ void MainWindow::on_actionPush_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	if(!getWorkspace().pushWorkspace(url))
+	if(!getWorkspace().push(url))
 		QMessageBox::critical(this, tr("Error"), tr("Could not push to the remote repository."), QMessageBox::Ok);
 }
 
@@ -2832,7 +2832,7 @@ void MainWindow::on_actionPull_triggered()
 	if(!url.isLocalFile())
 		KeychainGet(this, url, *settings.GetStore());
 
-	if(!getWorkspace().pullWorkspace(url))
+	if(!getWorkspace().pull(url))
 		QMessageBox::critical(this, tr("Error"), tr("Could not pull from the remote repository."), QMessageBox::Ok);
 }
 
@@ -2856,7 +2856,7 @@ void MainWindow::on_actionSetDefaultRemote_triggered()
 		// so only set the remote url when there is no password set
 		if(url.password().isEmpty())
 		{
-			if(!getWorkspace().setDefaultRemoteUrl(url))
+			if(!getWorkspace().fossil().setRemoteUrl(url))
 				QMessageBox::critical(this, tr("Error"), tr("Could not set the remote repository."), QMessageBox::Ok);
 		}
 	}

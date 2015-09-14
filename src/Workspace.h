@@ -166,7 +166,7 @@ public:
 		fossil().Init(callback, exePath);
 	}
 
-	bool createWorkspace(const QString &repositoryPath, const QString& workspacePath)
+	bool create(const QString &repositoryPath, const QString& workspacePath)
 	{
 		return fossil().createWorkspace(repositoryPath, workspacePath);
 	}
@@ -176,12 +176,12 @@ public:
 		return fossil().createRepository(repositoryPath);
 	}
 
-	Fossil::WorkspaceState getWorkspaceState()
+	Fossil::WorkspaceState getState()
 	{
 		return fossil().getWorkspaceState();
 	}
 
-	bool closeWorkspace()
+	bool close()
 	{
 		return fossil().closeWorkspace();
 	}
@@ -191,22 +191,22 @@ public:
 		return fossil().cloneRepository(repository, url, proxyUrl);
 	}
 
-	bool pushWorkspace(const QUrl& url)
+	bool push(const QUrl& url)
 	{
 		return fossil().pushWorkspace(url);
 	}
 
-	bool pullWorkspace(const QUrl& url)
+	bool pull(const QUrl& url)
 	{
 		return fossil().pullWorkspace(url);
 	}
 
-	bool updateWorkspace(QStringList& result, const QString& revision, bool explainOnly)
+	bool update(QStringList& result, const QString& revision, bool explainOnly)
 	{
 		return fossil().updateWorkspace(result, revision, explainOnly);
 	}
 
-	bool undoWorkspace(QStringList& result, bool explainOnly)
+	bool undo(QStringList& result, bool explainOnly)
 	{
 		return fossil().undoWorkspace(result, explainOnly);
 	}
@@ -297,12 +297,6 @@ public:
 	bool branchMerge(QStringList& res, const QString& revision, bool integrate, bool force, bool testOnly)
 	{
 		return fossil().branchMerge(res, revision, integrate, force, testOnly);
-	}
-
-	// Remotes
-	bool setDefaultRemoteUrl(const QUrl& url)
-	{
-		return fossil().setRemoteUrl(url);
 	}
 
 	bool getInterfaceVersion(QString &version)
