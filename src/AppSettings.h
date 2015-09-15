@@ -1,5 +1,5 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef APPSETTINGS_H
+#define APPSETTINGS_H
 
 #include <QMap>
 #include <QVariant>
@@ -123,4 +123,4 @@ private:
 };
 
 
-#endif // SETTINGS_H
+#endif // APPSETTINGS_H

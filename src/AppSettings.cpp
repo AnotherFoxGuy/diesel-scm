@@ -1,4 +1,4 @@
-#include "Settings.h"
+#include "AppSettings.h"
 
 #include <QSettings>
 #include <QCoreApplication>

@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QStringList>
 #include <QFileIconProvider>
-#include "Settings.h"
+#include "AppSettings.h"
 #include "Workspace.h"
 
 namespace Ui {

@@ -67,7 +67,7 @@ SOURCES += src/main.cpp\
 	src/Fossil.cpp \
 	src/Workspace.cpp \
 	src/SearchBox.cpp \
-	src/Settings.cpp \
+	src/AppSettings.cpp \
 	src/RemoteDialog.cpp \
     src/AboutDialog.cpp
 
@@ -86,7 +86,7 @@ HEADERS  += src/MainWindow.h \
 	src/Fossil.h \
 	src/Workspace.h \
 	src/SearchBox.h \
-	src/Settings.h \
+	src/AppSettings.h \
 	src/RemoteDialog.h \
     src/AboutDialog.h
 

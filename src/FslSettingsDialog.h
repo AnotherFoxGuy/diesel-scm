@@ -2,7 +2,7 @@
 #define FSLSETTINGSDIALOG_H
 
 #include <QDialog>
-#include "Settings.h"
+#include "AppSettings.h"
 
 namespace Ui {
 	class FslSettingsDialog;
