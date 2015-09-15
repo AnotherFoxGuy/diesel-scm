@@ -525,6 +525,21 @@ QString UrlToStringNoCredentials(const QUrl& url)
 	return url.toString(QUrl::PrettyDecoded|QUrl::RemoveUserInfo);
 #endif
 }
+
+//------------------------------------------------------------------------------
+// Attempt to address weird behaviour of QUrl to string conversions
+QString UrlToString(const QUrl &url)
+{
+	QString username = url.userName();
+	// QUrl generates bad local file url for Windows local paths with drive letters
+	if(url.isLocalFile())
+		return url.toLocalFile();
+	else if(username.isEmpty()) // QUrl generates an invalid url like http://@host.domain/path
+		return UrlToStringNoCredentials(url);
+	else
+		return url.toEncoded();
+}
+
 //------------------------------------------------------------------------------
 void SplitCommandLine(const QString &commandLine, QString &command, QString &extraParams)
 {

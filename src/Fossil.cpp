@@ -152,11 +152,7 @@ bool Fossil::pushWorkspace(const QUrl &url)
 
 	if(!url.isEmpty())
 	{
-		// QUrl generates bad local file url for Windows local paths with drive letters
-		if(url.isLocalFile())
-			params << url.toLocalFile();
-		else
-			params << url.toEncoded();
+		params << UrlToString(url);
 		params << "--once";
 
 		QStringList log_params = params;
@@ -182,12 +178,7 @@ bool Fossil::pullWorkspace(const QUrl &url)
 
 	if(!url.isEmpty())
 	{
-		// QUrl generates bad local file url for Windows local paths with drive letters
-		if(url.isLocalFile())
-			params << url.toLocalFile();
-		else
-			params << url.toEncoded();
-
+		params << UrlToString(url);
 		params << "--once";
 
 		QStringList log_params = params;
@@ -440,12 +431,7 @@ bool Fossil::setSetting(const QString& name, const QString& value, bool global)
 //------------------------------------------------------------------------------
 bool Fossil::setRemoteUrl(const QUrl& url)
 {
-	QString u = url.toEncoded();
-
-	// QUrl generates bad local file url for Windows local paths with drive letters
-	if(url.isLocalFile())
-		u = url.toLocalFile();
-
+	QString u = UrlToString(url);
 	if(url.isEmpty())
 		u = "off";
 
