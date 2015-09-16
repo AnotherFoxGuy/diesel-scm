@@ -533,7 +533,7 @@ void MainWindow::on_actionNewRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_actionCloseRepository_triggered()
 {
-	if(getWorkspace().getState()!=Fossil::WORKSPACE_STATE_OK)
+	if(getWorkspace().getState()!=WORKSPACE_STATE_OK)
 		return;
 
 	if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"), tr("Are you sure you want to close this workspace?")))
@@ -693,15 +693,15 @@ bool MainWindow::scanWorkspace()
 	bool valid = true;
 
 	// Load repository info
-	Fossil::WorkspaceState st = getWorkspace().getState();
+	WorkspaceState st = getWorkspace().getState();
 	QString status;
 
-	if(st==Fossil::WORKSPACE_STATE_NOTFOUND)
+	if(st==WORKSPACE_STATE_NOTFOUND)
 	{
 		status = tr("No workspace detected.");
 		valid = false;
 	}
-	else if(st==Fossil::WORKSPACE_STATE_OLDSCHEMA)
+	else if(st==WORKSPACE_STATE_OLDSCHEMA)
 	{
 		status = tr("Old repository schema detected. Consider running 'fossil rebuild'");
 		valid = false;
@@ -1010,7 +1010,7 @@ void MainWindow::updateFileView()
 	const QString &search_text = searchBox->text();
 
 	size_t item_id=0;
-	for(Workspace::filemap_t::iterator it = getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
+	for(filemap_t::iterator it = getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
 		const WorkspaceFile &e = *it.value();
 		const QString &path = e.getPath();
@@ -1323,7 +1323,7 @@ void MainWindow::getSelectionPaths(stringset_t &paths)
 // Select all workspace files that match the includeMask
 void MainWindow::getAllFilenames(QStringList &filenames, int includeMask)
 {
-	for(Workspace::filemap_t::iterator it=getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
+	for(filemap_t::iterator it=getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
 		const WorkspaceFile &e = *(*it);
 
@@ -1347,7 +1347,7 @@ void MainWindow::getDirViewSelection(QStringList &filenames, int includeMask, bo
 	}
 
 	// Select the actual files form the selected directories
-	for(Workspace::filemap_t::iterator it=getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
+	for(filemap_t::iterator it=getWorkspace().getFiles().begin(); it!=getWorkspace().getFiles().end(); ++it)
 	{
 		const WorkspaceFile &e = *(*it);
 
@@ -1403,7 +1403,7 @@ void MainWindow::getFileViewSelection(QStringList &filenames, int includeMask, b
 
 		QVariant data = getWorkspace().getFileModel().data(mi, Qt::UserRole+1);
 		QString filename = data.toString();
-		Workspace::filemap_t::iterator e_it = getWorkspace().getFiles().find(filename);
+		filemap_t::iterator e_it = getWorkspace().getFiles().find(filename);
 		Q_ASSERT(e_it!=getWorkspace().getFiles().end());
 		const WorkspaceFile &e = *e_it.value();
 
@@ -2034,7 +2034,7 @@ void MainWindow::on_actionRenameFolder_triggered()
 	}
 
 	// Collect the files to be moved
-	Workspace::filelist_t files_to_move;
+	filelist_t files_to_move;
 	QStringList new_paths;
 	QStringList operations;
 	foreach(WorkspaceFile *r, getWorkspace().getFiles())

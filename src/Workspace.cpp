@@ -274,7 +274,7 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 		else
 			add_missing = true;
 
-		Workspace::filemap_t::iterator it = getFiles().find(fname);
+		filemap_t::iterator it = getFiles().find(fname);
 
 		WorkspaceFile *rf = 0;
 		if(add_missing && it==getFiles().end())

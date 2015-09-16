@@ -7,18 +7,11 @@ class QStringList;
 #include <QUrl>
 #include "LoggedProcess.h"
 #include "Utils.h"
-
-typedef QMap<QString, QString> stashmap_t;
+#include "WorkspaceCommon.h"
 
 class Fossil
 {
 public:
-	enum WorkspaceState
-	{
-		WORKSPACE_STATE_OK,
-		WORKSPACE_STATE_NOTFOUND,
-		WORKSPACE_STATE_OLDSCHEMA
-	};
 
 	Fossil();
 	void Init(UICallback *callback, const QString &exePath);

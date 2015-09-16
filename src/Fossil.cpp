@@ -26,7 +26,7 @@ void Fossil::Init(UICallback *callback, const QString &exePath)
 }
 
 //------------------------------------------------------------------------------
-Fossil::WorkspaceState Fossil::getWorkspaceState()
+WorkspaceState Fossil::getWorkspaceState()
 {
 	QStringList res;
 	int exit_code = EXIT_FAILURE;

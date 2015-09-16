@@ -88,7 +88,8 @@ HEADERS  += src/MainWindow.h \
 	src/SearchBox.h \
 	src/AppSettings.h \
 	src/RemoteDialog.h \
-    src/AboutDialog.h
+	src/AboutDialog.h \
+	src/WorkspaceCommon.h
 
 FORMS    += ui/MainWindow.ui \
 	ui/CommitDialog.ui \
