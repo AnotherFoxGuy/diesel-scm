@@ -1,5 +1,5 @@
-C Minor\slocalization\sbuild\sfixes\n
-D 2015-09-16T07:59:23.466
+C Merged\sinto\strunk
+D 2015-09-16T12:11:53.084
 F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
 F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
@@ -228,7 +228,7 @@ F src/FileActionDialog.cpp fcaebf9986f789b3440d5390b3458ad5f86fe0c8
 F src/FileActionDialog.h 15db1650b3a13d70bc338371e4c033c66e3b79ce
 F src/FileTableView.cpp 5ddf8c391c9a3ac449ec61fb1db837b577afeec2
 F src/FileTableView.h 03e56d87c2d46411b9762b87f4d301619aaf18df
-F src/Fossil.cpp a33ea0f0c6ac9af9a50bbb8eb0f00d014d742ae7
+F src/Fossil.cpp a4e59b0f1af20f96d037f78bb66931be783298dc
 F src/Fossil.h 7695ace9412a26c5498a4ebe69ab261f6d598d81
 F src/FslSettingsDialog.cpp e00907d493fba469e48a008aecda88426350b5ac
 F src/FslSettingsDialog.h 92a292d43022289f9f626050cd07392dd72f1676
@@ -244,8 +244,8 @@ F src/SearchBox.cpp d4209c575baa9933e1ce5ed376e785b289a145ba
 F src/SearchBox.h 0c78d3a68136dab3e0e71b83ae36f22bd2688ab2
 F src/SettingsDialog.cpp fa0c70eaf0fa7edb15de302d041cdb552fe523d5
 F src/SettingsDialog.h 81158a26ce9ea9fd95c6c5cdd3c24a9b87b00e8d
-F src/Utils.cpp fb9fe1caeef47dca310079f8f10b41c838defaa5
-F src/Utils.h c52be757cd0045e34ab14c51f35a61af8f8870a4
+F src/Utils.cpp abdc1525d08448f09833a310c26491351256d5a5
+F src/Utils.h d8cda8bc809f75895bd340109dd8086f43ed83b0
 F src/Workspace.cpp 88ec8258920d7d450c3bb6110085fb07b30ee01a
 F src/Workspace.h a0ae8f0a2c32da3a8b51a74fa68b0b09167d79c5
 F src/main.cpp d8c65ea5e54102e4989fef9fd8cfd4f13ef8a8f0
@@ -261,7 +261,7 @@ F ui/MainWindow.ui ad04643d071fe513b46ef413749a493909a90ad1
 F ui/RemoteDialog.ui 424b2d4a3d0162f84fdccf6af02c1cfce07a06f5
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P 96924d1d0700cae5f848c9acf40d2775e2f48db1
-R 26939459adea34852154b50a2987b401
+P 2bf7ce4ecb34c22232c7e7db37bb82372093e8b1 9f7b11b9ab0c210395f8aade55e8de0a3d212ae6
+R df9c2a0c645caa667bac12461134ac87
 U Kostas
-Z ed230f7b263cd564b0a00acba8d82df1
+Z 14e70702d6214e727095dd6f79a6b751
