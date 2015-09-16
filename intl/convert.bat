@@ -6,7 +6,7 @@ set QTPATH=C:\Qt\5.5\mingw492_32
 
 if NOT "%QTDIR%"=="" set QTPATH=%QTDIR%
 
-echo Using QT at %QTDIR%
+echo Using QT at %QTPATH%
 echo Converting localizations
 del /q %PRJDIR%\rsrc\intl\*
 if not exist %PRJDIR%\rsrc\intl\ mkdir %PRJDIR%\rsrc\intl\
