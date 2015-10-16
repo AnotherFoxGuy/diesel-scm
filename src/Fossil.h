@@ -22,7 +22,7 @@ public:
 
 	// Workspace
 	bool createWorkspace(const QString &repositoryPath, const QString& workspacePath);
-	bool closeWorkspace();
+	bool closeWorkspace(bool force=false);
 	void setWorkspace(const QString &_workspacePath);
 	bool pushWorkspace(const QUrl& url);
 	bool pullWorkspace(const QUrl& url);

@@ -114,9 +114,15 @@ bool Fossil::createRepository(const QString& repositoryPath)
 }
 
 //------------------------------------------------------------------------------
-bool Fossil::closeWorkspace()
+bool Fossil::closeWorkspace(bool force)
 {
-	if(!runFossil(QStringList() << "close"))
+	QStringList params;
+	params << "close";
+
+	if(force)
+		params << "--force";
+
+	if(!runFossil(params))
 		return false;
 
 	stopUI();

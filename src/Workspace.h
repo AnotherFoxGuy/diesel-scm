@@ -74,9 +74,9 @@ public:
 		return fossil().getWorkspaceState();
 	}
 
-	bool close()
+	bool close(bool force=false)
 	{
-		return fossil().closeWorkspace();
+		return fossil().closeWorkspace(force);
 	}
 
 	bool cloneRepository(const QString &repository, const QUrl &url, const QUrl &proxyUrl)

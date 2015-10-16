@@ -540,9 +540,26 @@ void MainWindow::on_actionCloseRepository_triggered()
 		return;
 
 	// Close Repo
-	if(!getWorkspace().close())
+	bool success = getWorkspace().close();
+
+	if(!success)
 	{
-		QMessageBox::critical(this, tr("Error"), tr("Cannot close the workspace.\nAre there still uncommitted changes available?"), QMessageBox::Ok );
+		if(QMessageBox::Yes !=DialogQuery(this, tr("Close Workspace"),
+										  tr("Could not close the workspace.\n"
+											"Perhaps there are uncommitted changes available\n"
+											"Would you like to force closing this workspace?")))
+		{
+			refresh();
+			return;
+		}
+
+		success = getWorkspace().close(true);
+	}
+
+	if(!success)
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not close the workspace."), QMessageBox::Ok);
+		refresh();
 		return;
 	}
 
