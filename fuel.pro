@@ -2,12 +2,20 @@
 # Fuel
 #-------------------------------------------------
 
-QT    = core gui webkit
-
-contains(QT_VERSION, ^5\\..*) {
-	QT += widgets webkitwidgets
-	QT -= quick multimediawidgets opengl printsupport qml multimedia positioning sensors
+lessThan(QT_MAJOR_VERSION, 5) {
+	message("Unsupported Qt version $${QT_VERSION}.")
+	error("Fuel requires Qt 5.4.0 or greater")
 }
+
+# Fuel requires at least Qt 5.4 due to QtWebEngine
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 4) {
+	message("Unsupported Qt version $${QT_VERSION}.")
+	error("Fuel requires Qt 5.4.0 or greater")
+}
+
+QT = core gui widgets webengine webenginewidgets
+QT-= quick multimediawidgets opengl printsupport qml multimedia positioning sensors
+
 
 TARGET = Fuel
 TEMPLATE = app

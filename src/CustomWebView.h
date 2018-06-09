@@ -1,9 +1,9 @@
 #ifndef CUSTOMWEBVIEW_H
 #define CUSTOMWEBVIEW_H
 
-#include <QWebView>
+#include <QWebEngineView>
 
-class CustomWebView : public QWebView
+class CustomWebView : public QWebEngineView
 {
 	Q_OBJECT
 public:

@@ -2,7 +2,7 @@
 #include <QMouseEvent>
 
 CustomWebView::CustomWebView(QWidget *parent) :
-	QWebView(parent)
+	QWebEngineView(parent)
 {
 	setUrl(QUrl("about:blank"));
 }
@@ -15,5 +15,5 @@ void CustomWebView::mousePressEvent(QMouseEvent *event)
 	else if(but == Qt::XButton2)
 		forward();
 	else
-		QWebView::mousePressEvent(event);
+		QWebEngineView::mousePressEvent(event);
 }
