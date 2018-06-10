@@ -1,9 +1,14 @@
+os:
+- linux
+
 before_install:
- - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
- - sudo apt-get update -qq
- - sudo apt-get install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev qt5-default qttools5-dev-tools
+ - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository --yes ppa:beineri/opt-qt58-trusty; fi
+ - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -qq; fi
+ - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install qt58-meta-minimal qt58webengine; fi
 
 script:
+ - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then source /opt/qt58/bin/qt58-env.sh; fi
+ - git log -n 1 --pretty=format:"%h %cD" >manifest.uuid
  - intl/convert.sh
  - qmake -project
  - qmake fuel.pro

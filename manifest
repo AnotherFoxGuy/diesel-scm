@@ -1,7 +1,7 @@
-C Switched\sto\sQWebEngineView,\sso\sFuel\snow\srequires\sat\sleast\sQt\s5.4\n\n\n
-D 2018-06-09T17:18:50.060
+C Updated\stravis.yml
+D 2018-06-10T03:53:32.078
 F .fossil-settings/manifest a09a968bf05a50058f3ad50132730b719bc39e76
-F .travis.yml 77966888a81c4ceee1fcc79bce842c9667ad8a35
+F .travis.yml 955734d8ddbebdf3acb1a996f3874da4c4b2d058
 F debian/changelog eb4304dfcb6bb66850ec740838090eb50ce1249b
 F debian/compat b6abd567fa79cbe0196d093a067271361dc6ca8b
 F debian/control f4f9bbf38a523520eadbb6f66325d2784297e2a0
@@ -262,7 +262,7 @@ F ui/MainWindow.ui ad04643d071fe513b46ef413749a493909a90ad1
 F ui/RemoteDialog.ui 424b2d4a3d0162f84fdccf6af02c1cfce07a06f5
 F ui/RevisionDialog.ui 27c3b98c665fec014a50cbf3352c0627f75e68cd
 F ui/SettingsDialog.ui 2e1b6ce7a49100088c5649292c1319e62e0302e1
-P b8a962d79a02e8488e38f9d1109356f3e67f3440
-R 2a1fffd5776f58e09d166cd4cf7f2aff
+P a4e2ab66866278039d31a13f7ef0ca774bea9cfb
+R 04ac1e5c3e137f0ca7680b1ac2d4c2c6
 U Kostas
-Z 03232dfd0b9a222b202384c3fac562c4
+Z f9721d37d737c79ed6759ef828372615
