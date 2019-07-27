@@ -1,6 +1,7 @@
 #include "CommitDialog.h"
 #include <QPushButton>
 #include <QShortcut>
+#include <QAction>
 #include "ui_CommitDialog.h"
 #include "MainWindow.h" // Ugly. I know.
 
