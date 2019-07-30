@@ -25,9 +25,10 @@ build_script:
 
     nmake /S /NOLOGO
 
-    windeployqt release/fuel.exe --release --no-compiler-runtime --no-translations --no-opengl-sw --dir fuel-scm/
+    windeployqt release/fuel.exe --release --no-compiler-runtime --no-opengl-sw --dir fuel-scm/
 
     cp release/fuel.exe fuel-scm/
+
 
 artifacts:
 - path: build/fuel-scm
