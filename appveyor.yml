@@ -6,7 +6,7 @@ shallow_clone: true
 
 install:
 - cmd: >-
-    set QTDIR=C:\Qt\5.12\msvc2017_64
+    set QTDIR=C:\Qt\5.13\msvc2017_64
 
     set PATH=%PATH%;%QTDIR%\bin
 
