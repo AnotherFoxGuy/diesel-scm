@@ -24,7 +24,7 @@ jobs:
           execute_process(COMMAND ${CMAKE_COMMAND} -E tar xzf "$ENV{TMP}/build-tools.zip" WORKING_DIRECTORY "$ENV{BUILD_TOOLS_PATH}")
 
       - name: Enable Developer Command Prompt
-        uses: ilammy/msvc-dev-cmd@v1.8.0
+        uses: ilammy/msvc-dev-cmd@v1.9.0
 
       - name: Cache Qt
         id: cache-qt
