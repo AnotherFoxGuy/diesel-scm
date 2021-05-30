@@ -7,8 +7,7 @@
  * details, check the accompanying file 'COPYING'.                            *
  *****************************************************************************/
 #include "keychain_p.h"
-
-#include <QSettings>
+#include "plaintextstore_p.h"
 
 #include <windows.h>
 #include <wincrypt.h>
@@ -17,14 +16,110 @@
 
 using namespace QKeychain;
 
-void ReadPasswordJobPrivate::scheduledStart() {
-    //Use settings member if there, create local settings object if not
-    std::auto_ptr<QSettings> local( !q->settings() ? new QSettings( q->service() ) : 0 );
-    QSettings* actual = q->settings() ? q->settings() : local.get();
+#if defined(USE_CREDENTIAL_STORE)
+#include <wincred.h>
 
-    QByteArray encrypted = actual->value( key ).toByteArray();
-    if ( encrypted.isNull() ) {
-        q->emitFinishedWithError( EntryNotFound, tr("Entry not found") );
+void ReadPasswordJobPrivate::scheduledStart() {
+    LPCWSTR name = (LPCWSTR)key.utf16();
+    PCREDENTIALW cred;
+
+    if (!CredReadW(name, CRED_TYPE_GENERIC, 0, &cred)) {
+        Error err;
+        QString msg;
+        switch(GetLastError()) {
+        case ERROR_NOT_FOUND:
+            err = EntryNotFound;
+            msg = tr("Password entry not found");
+            break;
+        default:
+            err = OtherError;
+            msg = tr("Could not decrypt data");
+            break;
+        }
+
+        q->emitFinishedWithError( err, msg );
+        return;
+    }
+
+    data = QByteArray((char*)cred->CredentialBlob, cred->CredentialBlobSize);
+    CredFree(cred);
+
+    q->emitFinished();
+}
+
+void WritePasswordJobPrivate::scheduledStart() {
+    CREDENTIALW cred;
+    char *pwd = data.data();
+    LPWSTR name = (LPWSTR)key.utf16();
+
+    memset(&cred, 0, sizeof(cred));
+    cred.Comment = const_cast<wchar_t*>(L"QtKeychain");
+    cred.Type = CRED_TYPE_GENERIC;
+    cred.TargetName = name;
+    cred.CredentialBlobSize = data.size();
+    cred.CredentialBlob = (LPBYTE)pwd;
+    cred.Persist = CRED_PERSIST_ENTERPRISE;
+
+    if (CredWriteW(&cred, 0)) {
+        q->emitFinished();
+        return;
+    }
+
+    DWORD err = GetLastError();
+
+    // Detect size-exceeded errors and provide nicer messages.
+    // Unfortunately these error codes aren't documented.
+    // Found empirically on Win10 1803 build 17134.523.
+    if (err == RPC_X_BAD_STUB_DATA) {
+        const size_t maxBlob = CRED_MAX_CREDENTIAL_BLOB_SIZE;
+        if (cred.CredentialBlobSize > maxBlob) {
+            q->emitFinishedWithError(
+                OtherError,
+                tr("Credential size exceeds maximum size of %1").arg(maxBlob));
+            return;
+        }
+    }
+    if (err == RPC_S_INVALID_BOUND) {
+        const size_t maxTargetName = CRED_MAX_GENERIC_TARGET_NAME_LENGTH;
+        if (key.size() > maxTargetName) {
+            q->emitFinishedWithError(
+                OtherError,
+                tr("Credential key exceeds maximum size of %1").arg(maxTargetName));
+            return;
+        }
+    }
+
+    q->emitFinishedWithError( OtherError, tr("Writing credentials failed: Win32 error code %1").arg(err) );
+}
+
+void DeletePasswordJobPrivate::scheduledStart() {
+    LPCWSTR name = (LPCWSTR)key.utf16();
+
+    if (!CredDeleteW(name, CRED_TYPE_GENERIC, 0)) {
+        Error err;
+        QString msg;
+        switch(GetLastError()) {
+        case ERROR_NOT_FOUND:
+            err = EntryNotFound;
+            msg = tr("Password entry not found");
+            break;
+        default:
+            err = OtherError;
+            msg = tr("Could not decrypt data");
+            break;
+        }
+
+        q->emitFinishedWithError( err, msg );
+    } else {
+        q->emitFinished();
+    }
+}
+#else
+void ReadPasswordJobPrivate::scheduledStart() {
+    PlainTextStore plainTextStore( q->service(), q->settings() );
+    QByteArray encrypted = plainTextStore.readData( key );
+    if ( plainTextStore.error() != NoError ) {
+        q->emitFinishedWithError( plainTextStore.error(), plainTextStore.errorString() );
         return;
     }
 
@@ -53,24 +148,6 @@ void ReadPasswordJobPrivate::scheduledStart() {
 }
 
 void WritePasswordJobPrivate::scheduledStart() {
-    if ( mode == Delete ) {
-        //Use settings member if there, create local settings object if not
-        std::auto_ptr<QSettings> local( !q->settings() ? new QSettings( q->service() ) : 0 );
-        QSettings* actual = q->settings() ? q->settings() : local.get();
-        actual->remove( key );
-        actual->sync();
-        if ( actual->status() != QSettings::NoError ) {
-            const QString err = actual->status() == QSettings::AccessError
-                    ? tr("Could not delete encrypted data from settings: access error")
-                    : tr("Could not delete encrypted data from settings: format error");
-            q->emitFinishedWithError( OtherError, err );
-        } else {
-            q->emitFinished();
-        }
-        return;
-    }
-
-    QByteArray data = mode == Binary ? binaryData : textData.toUtf8();
     DATA_BLOB blob_in, blob_out;
     blob_in.pbData = reinterpret_cast<BYTE*>( data.data() );
     blob_in.cbData = data.size();
@@ -89,19 +166,23 @@ void WritePasswordJobPrivate::scheduledStart() {
     const QByteArray encrypted( reinterpret_cast<char*>( blob_out.pbData ), blob_out.cbData );
     LocalFree( blob_out.pbData );
 
-    //Use settings member if there, create local settings object if not
-    std::auto_ptr<QSettings> local( !q->settings() ? new QSettings( q->service() ) : 0 );
-    QSettings* actual = q->settings() ? q->settings() : local.get();
-    actual->setValue( key, encrypted );
-    actual->sync();
-    if ( actual->status() != QSettings::NoError ) {
-
-        const QString errorString = actual->status() == QSettings::AccessError
-                ? tr("Could not store encrypted data in settings: access error")
-                : tr("Could not store encrypted data in settings: format error");
-        q->emitFinishedWithError( OtherError, errorString );
+    PlainTextStore plainTextStore( q->service(), q->settings() );
+    plainTextStore.write( key, encrypted, Binary );
+    if ( plainTextStore.error() != NoError ) {
+        q->emitFinishedWithError( plainTextStore.error(), plainTextStore.errorString() );
         return;
     }
 
     q->emitFinished();
 }
+
+void DeletePasswordJobPrivate::scheduledStart() {
+    PlainTextStore plainTextStore( q->service(), q->settings() );
+    plainTextStore.remove( key );
+    if ( plainTextStore.error() != NoError ) {
+        q->emitFinishedWithError( plainTextStore.error(), plainTextStore.errorString() );
+    } else {
+        q->emitFinished();
+    }
+}
+#endif

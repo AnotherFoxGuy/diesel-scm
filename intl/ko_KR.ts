@@ -109,6 +109,11 @@ Released under the GNU GPL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/CloneDialog.ui" line="108"/>
+        <source>Path to the local repository file</source>
+        <translation>복제해온 저장소 파일을 보관할 위치입니다.</translation>
+    </message>
+    <message>
         <location filename="../ui/CloneDialog.ui" line="136"/>
         <source>The URL of the HTTP proxy. Leave blank if not required</source>
         <translation type="unfinished"></translation>
@@ -117,11 +122,6 @@ Released under the GNU GPL</source>
         <location filename="../ui/CloneDialog.ui" line="143"/>
         <source>HTTP Proxy</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/CloneDialog.ui" line="108"/>
-        <source>Path to the local repository file</source>
-        <translation>복제해온 저장소 파일을 보관할 위치입니다.</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="59"/>
@@ -343,6 +343,11 @@ Released under the GNU GPL</source>
         <translation>주 메뉴</translation>
     </message>
     <message>
+        <location filename="../ui/MainWindow.ui" line="343"/>
+        <source>&amp;Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/MainWindow.ui" line="346"/>
         <location filename="../ui/MainWindow.ui" line="349"/>
         <source>Refresh the views</source>
@@ -352,11 +357,6 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="352"/>
         <source>F5</source>
         <translation>F5</translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="343"/>
-        <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="361"/>
@@ -488,6 +488,68 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="516"/>
         <source>Pull changes from the default remote repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="531"/>
+        <source>&amp;Push to Remote</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="534"/>
+        <location filename="../ui/MainWindow.ui" line="537"/>
+        <source>Push changes to a remote repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="546"/>
+        <source>Pu&amp;ll from Remote</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="549"/>
+        <location filename="../ui/MainWindow.ui" line="552"/>
+        <source>Pull changes from a remote repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="717"/>
+        <source>U&amp;ndo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="750"/>
+        <source>&amp;Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="753"/>
+        <source>Update the workspace to a revision</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="788"/>
+        <source>&amp;Modified Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="802"/>
+        <source>&amp;Unchanged Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="816"/>
+        <source>Un&amp;known Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="827"/>
+        <source>&amp;Ignored Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="886"/>
+        <source>&amp;Stash Changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -643,28 +705,6 @@ Released under the GNU GPL</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="531"/>
-        <source>&amp;Push to Remote</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="534"/>
-        <location filename="../ui/MainWindow.ui" line="537"/>
-        <source>Push changes to a remote repository</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="546"/>
-        <source>Pu&amp;ll from Remote</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="549"/>
-        <location filename="../ui/MainWindow.ui" line="552"/>
-        <source>Pull changes from a remote repository</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/MainWindow.ui" line="561"/>
         <location filename="../src/MainWindow.cpp" line="1714"/>
         <source>Rename</source>
@@ -727,41 +767,6 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="681"/>
         <source>Open File</source>
         <translation>파일 열기</translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="717"/>
-        <source>U&amp;ndo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="750"/>
-        <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="753"/>
-        <source>Update the workspace to a revision</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="788"/>
-        <source>&amp;Modified Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="802"/>
-        <source>&amp;Unchanged Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="816"/>
-        <source>Un&amp;known Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="827"/>
-        <source>&amp;Ignored Files</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="841"/>
@@ -938,11 +943,6 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="877"/>
         <source>Rename the selected folder</source>
         <translation>폴더의 이름을 바꿉니다.</translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="886"/>
-        <source>&amp;Stash Changes</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="889"/>
@@ -1603,177 +1603,7 @@ The following files will be moved in the repository.</source>
     </message>
 </context>
 <context>
-    <name>QKeychain::ReadPasswordJobPrivate</name>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_mac.cpp" line="76"/>
-        <source>Password not found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="129"/>
-        <source>D-Bus is not running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="140"/>
-        <source>Unknown error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="222"/>
-        <source>No keychain service available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="224"/>
-        <source>Could not open wallet: %1; %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="270"/>
-        <source>Access to keychain denied</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="291"/>
-        <source>Could not determine data type: %1; %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="300"/>
-        <location filename="../ext/qtkeychain/keychain_win.cpp" line="27"/>
-        <source>Entry not found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="309"/>
-        <source>Unsupported entry type &apos;Map&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="312"/>
-        <source>Unknown kwallet entry type &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="327"/>
-        <source>Could not read password: %1; %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_win.cpp" line="44"/>
-        <source>Could not decrypt data</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QKeychain::WritePasswordJobPrivate</name>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="352"/>
-        <source>D-Bus is not running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="364"/>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="372"/>
-        <source>Unknown error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="420"/>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="505"/>
-        <source>Could not open wallet: %1; %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="483"/>
-        <source>Access to keychain denied</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_win.cpp" line="64"/>
-        <source>Could not delete encrypted data from settings: access error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_win.cpp" line="65"/>
-        <source>Could not delete encrypted data from settings: format error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_win.cpp" line="85"/>
-        <source>Encryption failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_win.cpp" line="100"/>
-        <source>Could not store encrypted data in settings: access error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_win.cpp" line="101"/>
-        <source>Could not store encrypted data in settings: format error</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_mac.cpp" line="31"/>
-        <location filename="../ext/qtkeychain/keychain_mac.cpp" line="33"/>
-        <source>%1 (OSStatus %2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="167"/>
-        <source>Access to keychain denied</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="169"/>
-        <source>No keyring daemon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="171"/>
-        <source>Already unlocked</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="173"/>
-        <source>No such keyring</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="175"/>
-        <source>Bad arguments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="177"/>
-        <source>I/O error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="179"/>
-        <source>Cancelled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="181"/>
-        <source>Keyring already exists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="183"/>
-        <source>No match</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ext/qtkeychain/keychain_unix.cpp" line="188"/>
-        <source>Unknown error</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../src/AppSettings.cpp" line="44"/>
         <source>Custom Action %0</source>

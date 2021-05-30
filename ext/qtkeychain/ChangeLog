@@ -1,6 +1,65 @@
 ChangeLog
 =========
 
+version 0.12.0 (release 2020-12-16)
+
+  * Add Qt 6 support, drop Qt 4 support
+  * Require C++11
+  * Add Android support (Mathias Hasselmann)
+
+version 0.11.1 (release 2020-09-08)
+
+  * Build system fixes
+
+version 0.11.0 (release 2020-09-08)
+
+  * Important: Debug builds on Windows now get the "d" suffix
+  * Various build system fixes
+  * Add Haiku support (François Revol <revol@free.fr>)
+  * Translation: Russian (Alexander Gorishnyak <kefir500@gmail.com>)
+  * Translation: Update French (David Geiger <david.david@mageialinux-online.org>)
+
+version 0.10.0 (release 2019-12-17)
+
+  * Detect XFCE desktop correctly. (Sandro Knauß <hefee@debian.org>)
+  * Windows Use CRED_PERSIST_ENTERPRISE (Olivier Goffart <ogoffart@woboq.com>)
+  * Windows: Improve CredWrite() error handling (Christian Kamm <mail@ckamm.de>)
+  * Fix build with Qt 5.12.x (Sergey Ilinykh <rion4ik@gmail.com>)
+  * Fix Qt 4 build (Robert-André Mauchin <zebob.m@gmail.com>)
+  * Translation: Mandarin (Taiwan) (Poren Chiang <ren.chiang@gmail.com>)
+  * Translation: French (François Revol <revol@free.fr>)
+
+version 0.9.1 (release 2018-08-20)
+  * Windows Credential Store: Use CRED_PERSIST_ENTERPRISE (Olivier Goffart <ogoffart@woboq.com>)
+  * Secret: Don't match the schema name #114 (Christian Kamm <mail@ckamm.de>)
+  * Fix qmake build on Windows (Alexander Gorishnyak <kefir500@gmail.com>)
+
+version 0.9.0 (release 2018-07-13)
+  * Fall back on libsecret if kwallet is not available (Christian Kamm <mail@ckamm.de>)
+  * Only require QtLinguist if building translations (Victor Kropp <victor.kropp@jetbrains.com>)
+  * Fix building on Windows without credential store (Dmitry Ivanov <dm.vl.ivanov@gmail.com>)
+  * Fix Qt 4 build (Sandro Knauß <hefee@debian.org>)
+  * Make build of test application optional (Boris Pek <tehnick-8@yandex.ru>)
+
+version 0.8.0 (release 2017-04-19)
+  * Buildsystem improvements (Kristofer Tingdahl <kristofer.tingdahl@dgbes.com>, Hannah von Reth <hannah.vonreth@kdab.com>, Giuseppe D'Angelo <giuseppe.dangelo@kdab.com>)
+  * Enable C++11 support for Qt >= 5.7 (Dmitry Ivanov <dm.vl.ivanov@gmail.com>)
+  * Doxygen documentation ( Elvis Angelaccio <elvis.angelaccio@kdemail.net>)
+  * Libsecret support (Armin Novak <armin.novak@thincast.com>)
+  * iOS support (Mathias Hasselmann <mathias.hasselmann@kdab.com>)
+
+version 0.7.0 (release 2016-05-23)
+  * Bump SO version due to 0.6 being binary-incompatible to previous releases
+
+version 0.6.2 (release 2016-04-04)
+  * KWallet: Fixes a crash when storing passwords, seen on Debian/KDE4
+
+version 0.6.1 (release 2016-03-31)
+  * Fix KWallet not working (regressions in 0.6.0)
+
+version 0.6.0 (release 2016-03-18)
+  * Added support for the Windows Credential Store
+
 version 0.5.0 (release 2015-05-04)
   * Added support for KWallet5 (KDE5/KF)
  
