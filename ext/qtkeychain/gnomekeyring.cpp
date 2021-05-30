@@ -14,25 +14,39 @@ bool GnomeKeyring::isAvailable()
            keyring.is_available();
 }
 
-GnomeKeyring::gpointer GnomeKeyring::store_network_password( const gchar* keyring, const gchar* display_name,
-                                               const gchar* user, const gchar* server, const gchar* password,
-                                               OperationDoneCallback callback, gpointer data, GDestroyNotify destroy_data )
+GnomeKeyring::gpointer GnomeKeyring::store_network_password(
+        const gchar* keyring,
+        const gchar* display_name,
+        const gchar* user,
+        const gchar* server,
+        const gchar* type,
+        const gchar* password,
+        OperationDoneCallback callback,
+        gpointer data,
+        GDestroyNotify destroy_data )
 {
     if ( !isAvailable() )
         return 0;
     return instance().store_password( instance().NETWORK_PASSWORD,
-                                      keyring, display_name, password, callback, data, destroy_data,
-                                      "user", user, "server", server, static_cast<char*>(0) );
+                                      keyring, display_name, password, callback,
+                                      data, destroy_data,
+                                      "user", user,
+                                      "server", server,
+                                      "type", type,
+                                      static_cast<char*>(0) );
 }
 
-GnomeKeyring::gpointer GnomeKeyring::find_network_password( const gchar* user, const gchar* server,
-                                              OperationGetStringCallback callback, gpointer data, GDestroyNotify destroy_data )
+GnomeKeyring::gpointer GnomeKeyring::find_network_password(
+        const gchar* user, const gchar* server, const gchar* type,
+        OperationGetStringCallback callback, gpointer data, GDestroyNotify destroy_data )
 {
     if ( !isAvailable() )
         return 0;
+
     return instance().find_password( instance().NETWORK_PASSWORD,
                                      callback, data, destroy_data,
-                                     "user", user, "server", server, static_cast<char*>(0) );
+                                     "user", user, "server", server, "type", type,
+                                     static_cast<char*>(0) );
 }
 
 GnomeKeyring::gpointer GnomeKeyring::delete_network_password( const gchar* user,
@@ -49,12 +63,13 @@ GnomeKeyring::gpointer GnomeKeyring::delete_network_password( const gchar* user,
 }
 
 GnomeKeyring::GnomeKeyring()
-    : QLibrary("gnome-keyring", 0)
+    : QLibrary(QLatin1String("gnome-keyring"), 0)
 {
     static const PasswordSchema schema = {
         ITEM_NETWORK_PASSWORD,
         {{ "user",   ATTRIBUTE_TYPE_STRING },
          { "server", ATTRIBUTE_TYPE_STRING },
+         { "type", ATTRIBUTE_TYPE_STRING },
          { 0,     static_cast<AttributeType>( 0 ) }}
     };
 

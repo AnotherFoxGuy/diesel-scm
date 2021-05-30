@@ -23,9 +23,6 @@ TEMPLATE = app
 win32 {
 	RC_FILE = rsrc/fuel.rc
 	LIBS += -luser32 -lshell32 -luuid
-
-	# Prevent batch file being called multiple times
-	!build_pass:system(intl\convert.bat)
 }
 
 macx {
@@ -53,7 +50,6 @@ unix:!macx {
 	icon.files += rsrc/icons/fuel.png
 
 	INSTALLS += target desktop icon
-	system(intl/convert.sh)
 }
 
 
@@ -114,36 +110,7 @@ RESOURCES += \
 	rsrc/resources.qrc
 
 # QtKeychain
-SOURCES += ext/qtkeychain/keychain.cpp
-
-HEADERS += ext/qtkeychain/keychain.h \
-		ext/qtkeychain/keychain_p.h \
-		ext/qtkeychain/qkeychain_export.h
-
-DEFINES += QKEYCHAIN_STATICLIB
-
-unix:!macx {
-	QT += dbus
-
-	SOURCES += ext/qtkeychain/keychain_unix.cpp \
-		ext/qtkeychain/gnomekeyring.cpp
-
-	HEADERS += ext/qtkeychain/gnomekeyring_p.h
-	DBUS_INTERFACES += ext/qtkeychain/org.kde.KWallet.xml
-}
-
-macx {
-	SOURCES += ext/qtkeychain/keychain_mac.cpp
-	LIBS += -framework CoreFoundation -framework Security
-}
-
-win32 {
-	SOURCES += ext/qtkeychain/keychain_win.cpp
-	LIBS += -lCrypt32
-}
-
-
-
+include(ext/qtkeychain.pri)
 
 CODECFORTR = UTF-8
 
