@@ -6,38 +6,39 @@
     <message>
         <location filename="../ui/AboutDialog.ui" line="14"/>
         <source>About Fuel...</source>
-        <translation type="unfinished">Over Fuel...</translation>
+        <translation>Over Fuel...</translation>
     </message>
     <message>
         <location filename="../ui/AboutDialog.ui" line="23"/>
         <source>A GUI front-end for the Fossil SCM by Kostas Karanikolas
 Released under the GNU GPL</source>
-        <translation type="unfinished"></translation>
+        <translation>Een GUI front-end voor de Fossil SCM door Kostas Karanikolas
+Uitgebracht onder de GNU GPL</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="18"/>
         <source>QT version %0</source>
-        <translation type="unfinished">QT versie %0</translation>
+        <translation>QT versie %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="21"/>
         <source>Fossil version %0</source>
-        <translation type="unfinished">Fossil versie %0</translation>
+        <translation>Fossil versie %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="28"/>
         <source>Fuel revision %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuel revisie %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="39"/>
         <source>Translations with the help of:</source>
-        <translation type="unfinished">Vertalingen met de hulp van:</translation>
+        <translation>Vertalingen met de hulp van:</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="48"/>
         <source>This sofware uses the following open-source libraries and assets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Deze software gebruikt de volgende open-source bibliotheken en onderdelen:</translation>
     </message>
 </context>
 <context>
@@ -76,7 +77,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="31"/>
         <source>Remote Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Externe Repository</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="40"/>
@@ -106,7 +107,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="99"/>
         <source>Local Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokale Repository</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="108"/>
@@ -116,12 +117,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="136"/>
         <source>The URL of the HTTP proxy. Leave blank if not required</source>
-        <translation type="unfinished"></translation>
+        <translation>De URL van de HTTP proxy. Leeg laten indien niet vereist</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="143"/>
         <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTTP Proxy</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="59"/>
@@ -152,7 +153,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/CloneDialog.cpp" line="80"/>
         <source>Invalid Proxy URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongeldige Proxy URL.</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="91"/>
@@ -180,32 +181,32 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CommitDialog.ui" line="86"/>
         <source>Commit to new branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Commit naar nieuwe branch</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="120"/>
         <source>Private branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Privé branch</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="141"/>
         <source>Branch name</source>
-        <translation type="unfinished"></translation>
+        <translation>Branch naam</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="158"/>
         <source>Revert stashed files</source>
-        <translation type="unfinished">Terugdraaien verborgen bestanden</translation>
+        <translation>Stashed bestanden terugdraaien</translation>
     </message>
     <message>
         <location filename="../src/CommitDialog.cpp" line="80"/>
         <source>Commit Changes</source>
-        <translation type="unfinished">Veranderingen toevertrouwen</translation>
+        <translation>Commit Wijzigingen</translation>
     </message>
     <message>
         <location filename="../src/CommitDialog.cpp" line="110"/>
         <source>Stash Changes</source>
-        <translation type="unfinished">Verberg veranderingen</translation>
+        <translation>Stash veranderingen</translation>
     </message>
 </context>
 <context>
@@ -221,73 +222,73 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="17"/>
         <source>Fossil Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil Instellingen</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="51"/>
         <source>Graphical Diff </source>
-        <translation type="unfinished">Graphical Diff </translation>
+        <translation>Graphical Diff </translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="60"/>
         <source>Path to graphical diff tool</source>
-        <translation type="unfinished">Pad naar het programma om verschillen (diff) mee te bekijken</translation>
+        <translation>Pad naar grafisch diff-tool</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="79"/>
         <location filename="../ui/FslSettingsDialog.ui" line="122"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="94"/>
         <source>Graphical Merge</source>
-        <translation type="unfinished">Graphical Merge</translation>
+        <translation>Grafisch Merge</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="103"/>
         <source>Path to the graphical merge tool</source>
-        <translation type="unfinished">Pad naar het programma waarmee we grafisch verschillen kunnen samenvoegen</translation>
+        <translation>Pad naar het grafisch samenvoeggereedschap</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="137"/>
         <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP Proxy</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="150"/>
         <source>The URL of the HTTP proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>De URL van de HTTP proxy</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="157"/>
         <source>HTTP Port</source>
-        <translation type="unfinished">HTTP Poort</translation>
+        <translation>HTTP Poort</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="164"/>
         <source>HTTP port to use for the Fossil web interface</source>
-        <translation type="unfinished">HTTP poort dat we gebruiken voor de Fossil web interface</translation>
+        <translation>HTTP poort om te gebruiken voor de Fossil webinterface</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="177"/>
         <source>Ignore CR/NL</source>
-        <translation type="unfinished">Negeer CR/LF</translation>
+        <translation>Negeer CR/LF</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="190"/>
         <source>A comma separated list of glob-style file patterns to exclude from Fossil&apos;s CR/NL consistency checking</source>
-        <translation type="unfinished">Een komma gescheiden lijst van glob-stijl bestand/pad patronen die Fossil negeert bij CR/LF consistentie controle.</translation>
+        <translation>Een door komma&apos;s gescheiden lijst van glob-style bestandspatronen om uit te sluiten van Fossil&apos;s CR/NL consistentie controle</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="203"/>
         <source>Ignore List</source>
-        <translation type="unfinished">Negeerlijst</translation>
+        <translation>Negeerlijst</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="216"/>
         <source>A comma separated list of glob-style file/path patterns ignored in Fossil file operations</source>
-        <translation type="unfinished">Een komma gescheiden lijst van glob-stijl&apos; bestand/pad patronen die Fossil negeert bij bewerkingen</translation>
+        <translation>Een door komma&apos;s gescheiden lijst van glob-style bestand/pad patronen die worden genegeerd in Fossil bestands operaties</translation>
     </message>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="58"/>
@@ -478,7 +479,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="498"/>
         <source>Push changes to the default remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Wijzigingen pushen naar de standaard remote repository</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="513"/>
@@ -488,7 +489,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="516"/>
         <source>Pull changes from the default remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Veranderingen uit de standaard remote repository halen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="531"/>
@@ -499,7 +500,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="534"/>
         <location filename="../ui/MainWindow.ui" line="537"/>
         <source>Push changes to a remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Wijzigingen pushen naar een remote repository</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="546"/>
@@ -510,7 +511,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="549"/>
         <location filename="../ui/MainWindow.ui" line="552"/>
         <source>Pull changes from a remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Wijzigingen uit een remote repository halen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="717"/>
@@ -525,7 +526,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="753"/>
         <source>Update the workspace to a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Update de werkruimte naar een revisie</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="788"/>
@@ -561,14 +562,14 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="934"/>
         <location filename="../ui/MainWindow.ui" line="937"/>
         <source>Create a tag for a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Maak een tag voor een revisie</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="946"/>
         <location filename="../ui/MainWindow.ui" line="949"/>
         <location filename="../src/MainWindow.cpp" line="2644"/>
         <source>Delete Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijder Tag</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="958"/>
@@ -579,7 +580,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="961"/>
         <location filename="../ui/MainWindow.ui" line="964"/>
         <source>Create a branch from a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Creëer een tak van een revisie</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="973"/>
@@ -591,7 +592,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="976"/>
         <location filename="../ui/MainWindow.ui" line="979"/>
         <source>Merge with a branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Samenvoegen met een branch</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="987"/>
@@ -601,12 +602,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="990"/>
         <source>View files and folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestanden en mappen bekijken</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="993"/>
         <source>View the workspace as files and folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekijk de werkruimte als bestanden en mappen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="998"/>
@@ -616,7 +617,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="1001"/>
         <source>Show all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Toon alle bestanden</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1006"/>
@@ -626,7 +627,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="1009"/>
         <source>Show modified files only</source>
-        <translation type="unfinished"></translation>
+        <translation>Toon alleen gewijzigde bestanden</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1018"/>
@@ -636,27 +637,27 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="1023"/>
         <source>Edit Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewerk Remote</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1026"/>
         <source>Edit Remote URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewerk Remote URL</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1031"/>
         <source>Set Remote as Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Stel Remote in als standaard</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1034"/>
         <source>Makes the selected remote </source>
-        <translation type="unfinished"></translation>
+        <translation>Maakt de geselecteerde remote </translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1039"/>
         <source>Add Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Remote toevoegen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1042"/>
