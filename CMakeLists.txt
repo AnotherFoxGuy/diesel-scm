@@ -14,7 +14,7 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${RUNTIME_OUTPUT_DIRECTORY})
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${RUNTIME_OUTPUT_DIRECTORY})
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${RUNTIME_OUTPUT_DIRECTORY})
 
-project(Fuel)
+project(Fuel VERSION "2.0.1")
 
 option(UPDATE_TRANSLATIONS "Update translations" OFF)
 
@@ -120,17 +120,36 @@ endif ()
 
 add_subdirectory("${CMAKE_SOURCE_DIR}/ext/qtkeychain" EXCLUDE_FROM_ALL)
 
-add_executable(${PROJECT_NAME}
+add_executable(
+        ${PROJECT_NAME}
         ${FORMS}
         ${HEADERS}
         ${SOURCES}
         ${QM_FILES}
-        ${RESOURCES})
+        ${RESOURCES}
+)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}
+target_include_directories(
+        ${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}
         ${CMAKE_SOURCE_DIR}/ui/
-        ${CMAKE_SOURCE_DIR}/src/)
+        ${CMAKE_SOURCE_DIR}/src/
+
+)
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::WebEngineCore Qt5::WebEngineWidgets qt5keychain)
+
+# ------------------------------------------------------------------------------------------------#
+# Cpack
+# ------------------------------------------------------------------------------------------------#
+
+set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
+set(CPACK_PACKAGE_VENDOR "${PROJECT_NAME}")
+set(CPACK_PACKAGE_DESCRIPTION "A GUI front-end for the Fossil SCM")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A GUI front-end for the Fossil SCM")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/rsrc/license.rtf")
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_PACKAGE_EXECUTABLES "${PROJECT_NAME}" "${PROJECT_NAME}")
+
+set(CPACK_GENERATOR ZIP)
 
 if (WIN32)
     set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
@@ -138,17 +157,37 @@ if (WIN32)
     get_target_property(Qt5_Core_Location Qt5::Core LOCATION)
     get_filename_component(QT_BIN_DIR ${Qt5_Core_Location} DIRECTORY)
 
-    add_custom_target(copy_dll
+    add_custom_target(
+            copy_dll
             COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --release --no-compiler-runtime --no-translations --no-opengl-sw
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-            )
+    )
 
-    install(TARGETS ${PROJECT_NAME}
+    install(
+            TARGETS ${PROJECT_NAME}
             RUNTIME DESTINATION .
-            )
+    )
 
     install(CODE "execute_process(COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --release --no-compiler-runtime --no-translations --no-opengl-sw --dir \${CMAKE_INSTALL_PREFIX})")
-endif ()
 
+    # For Windows Desktop shortcuts
+    set(CPACK_CREATE_DESKTOP_LINKS "${PROJECT_NAME}" "${PROJECT_NAME}")
+
+    # Windows Add or Remove Program properties
+    set(CPACK_WIX_PROGRAM_MENU_FOLDER "${PROJECT_NAME}")
+    set(CPACK_WIX_PROPERTY_ARPCOMMENTS "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}")
+    set(CPACK_WIX_PROPERTY_ARPURLINFOABOUT "https://fuel-scm.org")
+    set(CPACK_WIX_PROPERTY_URLUPDATEINFO "https://fuel-scm.org")
+
+    set(CPACK_WIX_PRODUCT_ICON "${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.ico")
+
+    set(CPACK_WIX_LICENSE_RTF "${CPACK_RESOURCE_FILE_LICENSE}")
+    set(CPACK_WIX_UPGRADE_GUID "f33967d1-0bdd-4a4b-ba1a-d859bce8927a")
+
+    set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
+    set(CPACK_GENERATOR ${CPACK_GENERATOR};WIX)
+    set(CPACK_MODULE_PATH "")
+endif ()
+include(CPack)
 
 feature_summary(WHAT ALL)
