@@ -1,0 +1,11 @@
+[requires]
+qtkeychain/0.12.0
+
+[generators]
+qmake
+cmake_find_package
+
+[imports]
+bin, *.dll -> ./bin @ keep_path=False
+share, *.qm -> ./bin/translations @ keep_path=False
+lib, *.so* -> ./bin @ keep_path=False

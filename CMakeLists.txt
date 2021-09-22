@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 cmake_policy(SET CMP0087 NEW)
+set(CMAKE_MODULE_PATH "${CMAKE_BINARY_DIR}" ${CMAKE_MODULE_PATH})
 include(FeatureSummary)
 
 # Setup paths
@@ -24,6 +25,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_SOURCE_DIR}/ui")
 
 find_package(Qt5 COMPONENTS Core Gui WebEngineWidgets REQUIRED)
+find_package(Qt5Keychain REQUIRED)
 
 set(FORMS
         ui/MainWindow.ui
@@ -118,8 +120,6 @@ elseif (APPLE)
     list(APPEND SOURCES "${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.icns")
 endif ()
 
-add_subdirectory("${CMAKE_SOURCE_DIR}/ext/qtkeychain" EXCLUDE_FROM_ALL)
-
 add_executable(
         ${PROJECT_NAME}
         ${FORMS}
@@ -135,7 +135,14 @@ target_include_directories(
         ${CMAKE_SOURCE_DIR}/src/
 
 )
-target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::WebEngineCore Qt5::WebEngineWidgets qt5keychain)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets Qt5::WebEngineCore Qt5::WebEngineWidgets)
+if (TARGET Qt5Keychain::Qt5Keychain)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5Keychain::Qt5Keychain)
+else ()
+    target_link_libraries(${PROJECT_NAME} PRIVATE qt5keychain)
+endif ()
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE FUEL_VERSION="${PROJECT_VERSION}")
 
 # ------------------------------------------------------------------------------------------------#
 # Cpack
@@ -157,9 +164,15 @@ if (WIN32)
     get_target_property(Qt5_Core_Location Qt5::Core LOCATION)
     get_filename_component(QT_BIN_DIR ${Qt5_Core_Location} DIRECTORY)
 
+    # Fix for windeployqt not being able to find qt5keychain
+    if (EXISTS ${RUNTIME_OUTPUT_DIRECTORY}/qt5keychain.dll AND NOT EXISTS ${QT_BIN_DIR}/qt5keychain.dll)
+        message("Copying ${RUNTIME_OUTPUT_DIRECTORY}/qt5keychain.dll to ${QT_BIN_DIR}")
+        file(COPY ${RUNTIME_OUTPUT_DIRECTORY}/qt5keychain.dll DESTINATION ${QT_BIN_DIR})
+    endif ()
+
     add_custom_target(
             copy_dll
-            COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --release --no-compiler-runtime --no-translations --no-opengl-sw
+            COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --release --no-compiler-runtime --no-opengl-sw
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
 
@@ -168,7 +181,7 @@ if (WIN32)
             RUNTIME DESTINATION .
     )
 
-    install(CODE "execute_process(COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --release --no-compiler-runtime --no-translations --no-opengl-sw --dir \${CMAKE_INSTALL_PREFIX})")
+    install(CODE "execute_process(COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --release --no-opengl-sw --dir \${CMAKE_INSTALL_PREFIX})")
 
     # For Windows Desktop shortcuts
     set(CPACK_CREATE_DESKTOP_LINKS "${PROJECT_NAME}" "${PROJECT_NAME}")
@@ -182,7 +195,7 @@ if (WIN32)
     set(CPACK_WIX_PRODUCT_ICON "${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.ico")
 
     set(CPACK_WIX_LICENSE_RTF "${CPACK_RESOURCE_FILE_LICENSE}")
-    set(CPACK_WIX_UPGRADE_GUID "f33967d1-0bdd-4a4b-ba1a-d859bce8927a")
+    set(CPACK_WIX_UPGRADE_GUID "462522bf-36e4-4ce9-93e1-a4200f23096e")
 
     set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
     set(CPACK_GENERATOR ${CPACK_GENERATOR};WIX)
