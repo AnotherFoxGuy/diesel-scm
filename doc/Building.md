@@ -3,7 +3,7 @@ Building from Source
 
 Prerequisites
 -------------------------------------------------------------------------------
-Building Fuel from source requires Qt version 4 or 5. Qt is available at:
+Building Fuel from source requires Qt version 5. Qt is available at:
 	http://www.qt.io/download-open-source/
 
 To run Fuel a compiled binary of Fossil must be available either in the system
@@ -25,7 +25,7 @@ Additionally you can clone the source code directly from our site using fossil
 	fossil open fuel.fossil
 
 
-Windows (Qt4 / MinGW)
+Windows (Qt5 / MinGW)
 -------------------------------------------------------------------------------
 1. Open a Command Prompt and cd into the folder containing the Fuel source code
 
@@ -36,26 +36,20 @@ Windows (Qt4 / MinGW)
 		md build
 		cd build
 
-3. Generate the makefile with qmake
+3. Generate the makefile with cmake
 
-		C:\QtSDK\Desktop\Qt\4.8.1\mingw\bin\qmake ..\fuel.pro -r -spec win32-g++ CONFIG+=release
+		cmake -DCMAKE_BUILD_TYPE=Release ..
 
 4. Build the project
 
-		c:\QtSDK\mingw\bin\mingw32-make
+		make -j6
 
 5. Copy the Qt DLLs
 
-		copy C:\QtSDK\Desktop\Qt\4.8.1\mingw\bin\QtCore4.dll release
-		copy C:\QtSDK\Desktop\Qt\4.8.1\mingw\bin\QtGui4.dll release
-
-6. Copy the MinGW DLLs
-
-		copy C:\QtSDK\mingw\bin\libgcc_s_dw2-1.dll release
-		copy C:\QtSDK\mingw\bin\mingwm10.dll release
+		make copy_dll
 
 
-Windows (Qt4 / MSVC)
+Windows (Qt5 / MSVC)
 -------------------------------------------------------------------------------
 1. Open a Command Prompt and cd into the folder containing the Fuel source code
 
@@ -66,9 +60,9 @@ Windows (Qt4 / MSVC)
 		md build
 		cd build
 
-3. Generate the Visual Studio project makefile with qmake
+3. Generate the Visual Studio project makefile with cmake
 
-		C:\QtSDK\Desktop\Qt\4.8.1\msvc2010\bin\qmake ..\fuel.pro -tp vc -spec win32-msvc2010
+		cmake ..
 
 4. Open the generated project
 
@@ -77,16 +71,16 @@ Windows (Qt4 / MSVC)
 5. Build the project
 	Use the IDE to build the project or alternatively you can use via MSBuild
 
-		c:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild Fuel.vcxproj /t:build /p:Configuration=Release
+		call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+		msbuild /p:Configuration=Release /m Fuel.vcxproj
 
 6. Copy the Qt DLLs
 
-		copy C:\QtSDK\Desktop\Qt\4.8.1\msvc2010\bin\QtCore4.dll release
-		copy C:\QtSDK\Desktop\Qt\4.8.1\msvc2010\bin\QtGui4.dll release
+		msbuild /p:Configuration=Release copy_dll.vcxproj
 
 4. Enjoy
 
-		release\Fuel.exe
+		bin\Fuel.exe
 
 
 Mac OS X
@@ -101,17 +95,13 @@ Build Steps:
 
 		cd fuel
 
-3. Generate localization files
+3. Generate the makefile with cmake
 
-		intl/convert.sh
-
-4. Generate the makefile with qmake
-
-		qmake fuel.pro -spec macx-clang CONFIG+=release
+		cmake -DCMAKE_BUILD_TYPE=Release ..
 
 5. Build the project
 
-		make
+		make -j6
 
 6. (Optional) Include the Fossil executable within the Fuel application bundle
 
@@ -134,19 +124,20 @@ Build Steps:
 
 		cd fuel
 
-2. Generate localization files
+2. Make a build folder and cd into it
 
-		intl/convert.sh
+		md build
+		cd build
 
-3. Generate the makefile with qmake
+3. Generate the makefile with cmake
 
-		qmake fuel.pro
+		cmake -DCMAKE_BUILD_TYPE=Release ..
 
 4. Build the project
 
-		make
+		make -j6
 
 5. Enjoy
 
-		./Fuel
+		bin/Fuel
 
