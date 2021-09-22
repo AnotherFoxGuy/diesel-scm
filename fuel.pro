@@ -19,6 +19,7 @@ QT-= quick multimediawidgets opengl printsupport qml multimedia positioning sens
 
 TARGET = Fuel
 TEMPLATE = app
+DEFINES += FUEL_VERSION=\\\"2.0.1\\\"
 
 win32 {
 	RC_FILE = rsrc/fuel.rc
@@ -52,6 +53,11 @@ unix:!macx {
 	INSTALLS += target desktop icon
 }
 
+exists( $$OUT_PWD/conanbuildinfo.pri ) {
+    message("Using conan packages")
+    CONFIG += conan_basic_setup
+    include($$OUT_PWD/conanbuildinfo.pri)
+}
 
 INCLUDEPATH += src
 
@@ -108,9 +114,6 @@ FORMS    += ui/MainWindow.ui \
 
 RESOURCES += \
 	rsrc/resources.qrc
-
-# QtKeychain
-include(ext/qtkeychain.pri)
 
 CODECFORTR = UTF-8
 
