@@ -1672,7 +1672,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
         <location filename="../ui/RemoteDialog.ui" line="17"/>
         <location filename="../ui/RemoteDialog.ui" line="31"/>
         <source>Remote Repository</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Externe Repository</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="40"/>

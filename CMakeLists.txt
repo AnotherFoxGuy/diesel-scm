@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
-if(${CMAKE_VERSION} VERSION_GREATER "3.14")
+if (${CMAKE_VERSION} VERSION_GREATER "3.14")
     cmake_policy(SET CMP0087 NEW)
-endif()
+endif ()
 set(CMAKE_MODULE_PATH "${CMAKE_BINARY_DIR}" ${CMAKE_MODULE_PATH})
 include(FeatureSummary)
 
@@ -18,8 +18,6 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${RUNTIME_OUTPUT_DIRECTORY})
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${RUNTIME_OUTPUT_DIRECTORY})
 
 project(Fuel VERSION "2.0.0")
-
-option(UPDATE_TRANSLATIONS "Update translations" OFF)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -83,12 +81,8 @@ set(HEADERS
         src/AboutDialog.h
         src/WorkspaceCommon.h)
 
-
-file(COPY rsrc/languages.qrc DESTINATION ${CMAKE_BINARY_DIR}/intl)
-
 set(RESOURCES
-        rsrc/resources.qrc
-        ${CMAKE_BINARY_DIR}/intl/languages.qrc)
+        rsrc/resources.qrc)
 
 set(TRANSLATIONS
         intl/en_US.ts
@@ -102,15 +96,18 @@ set(TRANSLATIONS
         intl/nl_NL.ts
         intl/ko_KR.ts)
 
-set_source_files_properties(${TRANSLATIONS} PROPERTIES OUTPUT_LOCATION "intl")
 
 find_package(Qt5LinguistTools)
 if (Qt5LinguistTools_FOUND)
-    if (UPDATE_TRANSLATIONS)
-        qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/ui ${CMAKE_SOURCE_DIR}/src ${TRANSLATIONS})
-    else ()
-        qt5_add_translation(QM_FILES ${TRANSLATIONS})
-    endif ()
+    set_source_files_properties(${TRANSLATIONS} PROPERTIES OUTPUT_LOCATION "intl")
+
+    qt5_create_translation(QM_MESSAGES ${CMAKE_SOURCE_DIR}/ui ${CMAKE_SOURCE_DIR}/src ${TRANSLATIONS})
+    qt5_add_translation(QM_FILES ${TRANSLATIONS})
+    add_custom_target(messages DEPENDS ${QM_MESSAGES})
+    add_custom_target(translations DEPENDS ${QM_FILES} messages)
+
+    file(COPY rsrc/languages.qrc DESTINATION ${CMAKE_BINARY_DIR}/intl)
+    list(APPEND RESOURCES "${CMAKE_BINARY_DIR}/intl/languages.qrc")
 else ()
     message("Qt5LinguistTools not found")
 endif ()
@@ -147,6 +144,10 @@ else ()
 endif ()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE FUEL_VERSION="${PROJECT_VERSION}")
+
+if (Qt5LinguistTools_FOUND)
+    add_dependencies(${PROJECT_NAME} translations)
+endif ()
 
 
 # ------------------------------------------------------------------------------------------------#
@@ -209,20 +210,20 @@ if (WIN32)
     set(CPACK_MODULE_PATH "")
 endif ()
 
-if(UNIX)
+if (UNIX)
     install(
-        TARGETS ${PROJECT_NAME}
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+            TARGETS ${PROJECT_NAME}
+            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     )
     install(
-        FILES ${CMAKE_SOURCE_DIR}/rsrc/fuel.desktop
-        DESTINATION ${CMAKE_INSTALL_DATADIR}/applications/
+            FILES ${CMAKE_SOURCE_DIR}/rsrc/fuel.desktop
+            DESTINATION ${CMAKE_INSTALL_DATADIR}/applications/
     )
     install(
-        FILES ${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.png
-        DESTINATION ${CMAKE_INSTALL_DATADIR}/pixmaps/
+            FILES ${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.png
+            DESTINATION ${CMAKE_INSTALL_DATADIR}/pixmaps/
     )
-endif()
+endif ()
 
 include(CPack)
 
