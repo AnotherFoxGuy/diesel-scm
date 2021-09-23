@@ -82,8 +82,11 @@ set(HEADERS
         src/WorkspaceCommon.h)
 
 
+file(COPY rsrc/languages.qrc DESTINATION ${CMAKE_BINARY_DIR}/intl)
+
 set(RESOURCES
-        rsrc/resources.qrc)
+        rsrc/resources.qrc
+        ${CMAKE_BINARY_DIR}/intl/languages.qrc)
 
 set(TRANSLATIONS
         intl/en_US.ts
@@ -97,7 +100,7 @@ set(TRANSLATIONS
         intl/nl_NL.ts
         intl/ko_KR.ts)
 
-set_source_files_properties(${TRANSLATIONS} PROPERTIES OUTPUT_LOCATION "${RUNTIME_OUTPUT_DIRECTORY}translations")
+set_source_files_properties(${TRANSLATIONS} PROPERTIES OUTPUT_LOCATION "intl")
 
 find_package(Qt5LinguistTools)
 if (Qt5LinguistTools_FOUND)
@@ -106,7 +109,6 @@ if (Qt5LinguistTools_FOUND)
     else ()
         qt5_add_translation(QM_FILES ${TRANSLATIONS})
     endif ()
-    install(FILES ${QM_FILES} DESTINATION ./translations)
 else ()
     message("Qt5LinguistTools not found")
 endif ()
@@ -144,9 +146,12 @@ endif ()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE FUEL_VERSION="${PROJECT_VERSION}")
 
+
 # ------------------------------------------------------------------------------------------------#
 # Cpack
 # ------------------------------------------------------------------------------------------------#
+
+include(GNUInstallDirs)
 
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
 set(CPACK_PACKAGE_VENDOR "${PROJECT_NAME}")
@@ -201,6 +206,22 @@ if (WIN32)
     set(CPACK_GENERATOR ${CPACK_GENERATOR};WIX)
     set(CPACK_MODULE_PATH "")
 endif ()
+
+if(UNIX)
+    install(
+        TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+    install(
+        FILES ${CMAKE_SOURCE_DIR}/rsrc/fuel.desktop
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/applications/
+    )
+    install(
+        FILES ${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.png
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/256x256/apps
+    )
+endif()
+
 include(CPack)
 
 feature_summary(WHAT ALL)

@@ -25,13 +25,13 @@ jobs:
         uses: actions/cache@v2.1.6
         with:
           key: win-conan-${{ hashFiles('**/conanfile.txt') }}
-          path:  ~/.conan/
+          path: ~/.conan/
 
       - name: Cache Qt
         id: cache-qt
         uses: actions/cache@v2.1.6
         with:
-          path: '${{ github.workspace }}/qt/'
+          path: "${{ github.workspace }}/qt/"
           key: ${{ runner.os }}-QtCache
 
       - name: Install Qt
@@ -39,19 +39,19 @@ jobs:
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           modules: qtwebengine
-          dir: '${{ github.workspace }}/qt/'
+          dir: "${{ github.workspace }}/qt/"
 
       - name: Export qtkeychain
         run: |
-            conan export recipes/qtkeychain
+          conan export recipes/qtkeychain
 
       - name: Build
         run: |
-            mkdir build
-            cd build
-            conan install .. --build=missing
-            cmake -G"NMake Makefiles JOM" -DCMAKE_INSTALL_PREFIX=redist ..
-            jom
+          mkdir build
+          cd build
+          conan install .. --build=missing
+          cmake -G"NMake Makefiles JOM" -DCMAKE_INSTALL_PREFIX=redist ..
+          jom
         shell: cmd
 
       - name: Install
@@ -77,12 +77,12 @@ jobs:
       - name: Install qt
         run: |
           sudo apt-get update
-          sudo apt-get install qt5keychain-dev qtwebengine5-dev -y
+          sudo apt-get install qt5keychain-dev qtwebengine5-dev qttools5-dev -y
 
       - name: Build
         run: |
-            mkdir build
-            cd build
-            cmake -DCMAKE_BUILD_TYPE=Release ..
-            make -j4
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          make -j4
         shell: bash

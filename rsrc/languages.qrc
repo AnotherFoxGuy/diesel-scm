@@ -1,0 +1,13 @@
+<RCC>
+ <qresource prefix="/intl">
+   <file>el_GR.qm</file>
+   <file>de_DE.qm</file>
+   <file>es_ES.qm</file>
+   <file>fr_FR.qm</file>
+   <file>ru_RU.qm</file>
+   <file>pt_PT.qm</file>
+   <file>it_IT.qm</file>
+   <file>nl_NL.qm</file>
+   <file>ko_KR.qm</file>
+ </qresource>
+</RCC>
