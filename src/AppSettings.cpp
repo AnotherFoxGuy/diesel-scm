@@ -75,7 +75,7 @@ bool Settings::InstallLang(const QString &langId)
 		return true;
 	}
 
-	QString locale_path = QString(":intl/intl/%0.qm").arg(langId);
+	QString locale_path = QString(":intl/%0.qm").arg(langId);
 	if(!translator.load(locale_path))
 		return false;
 

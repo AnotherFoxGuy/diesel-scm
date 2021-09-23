@@ -57,6 +57,8 @@ exists( $$OUT_PWD/conanbuildinfo.pri ) {
     message("Using conan packages")
     CONFIG += conan_basic_setup
     include($$OUT_PWD/conanbuildinfo.pri)
+} else {
+	QT += Qt5Keychain
 }
 
 INCLUDEPATH += src

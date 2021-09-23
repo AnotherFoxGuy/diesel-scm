@@ -156,19 +156,6 @@
 	<file>icons/Zoom In-01.png</file>
 	<file>icons/Zoom Out-01.png</file>
   </qresource>
-	<!-->
- <qresource prefix="/intl">
-   <file>intl/el_GR.qm</file>
-   <file>intl/de_DE.qm</file>
-   <file>intl/es_ES.qm</file>
-   <file>intl/fr_FR.qm</file>
-   <file>intl/ru_RU.qm</file>
-   <file>intl/pt_PT.qm</file>
-   <file>intl/it_IT.qm</file>
-   <file>intl/nl_NL.qm</file>
-   <file>intl/ko_KR.qm</file>
- </qresource>
- <-->
  <qresource prefix="/docs">
      <file>docs/Translators.txt</file>
      <file>docs/Licenses.txt</file>
