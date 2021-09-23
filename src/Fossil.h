@@ -42,6 +42,7 @@ public:
     bool commitFiles(const QStringList &fileList, const QString &comment, const QString &newBranchName, bool isPrivateBranch);
     bool addFiles(const QStringList &fileList);
     bool removeFiles(const QStringList &fileList, bool deleteLocal);
+    bool addRemoveFiles();
     bool revertFiles(const QStringList &fileList);
     bool renameFile(const QString &beforePath, const QString &afterPath, bool renameLocal);
 

@@ -118,11 +118,11 @@
         <property name="wordWrap">
          <bool>false</bool>
         </property>
-        <attribute name="horizontalHeaderHighlightSections">
-         <bool>false</bool>
-        </attribute>
         <attribute name="horizontalHeaderMinimumSectionSize">
          <number>20</number>
+        </attribute>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
         </attribute>
         <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
          <bool>true</bool>
@@ -222,7 +222,7 @@
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -324,6 +324,7 @@
    <addaction name="actionAdd"/>
    <addaction name="actionRevert"/>
    <addaction name="actionDelete"/>
+   <addaction name="actionAddRemove"/>
    <addaction name="separator"/>
    <addaction name="actionDiff"/>
    <addaction name="actionHistory"/>
@@ -1060,6 +1061,18 @@
    </property>
    <property name="shortcut">
     <string notr="true">Esc</string>
+   </property>
+  </action>
+  <action name="actionAddRemove">
+   <property name="icon">
+    <iconset resource="../rsrc/resources.qrc">
+     <normaloff>:/icons/icon-item-addremove</normaloff>:/icons/icon-item-addremove</iconset>
+   </property>
+   <property name="text">
+    <string>Add &amp; Remove</string>
+   </property>
+   <property name="toolTip">
+    <string>Add &amp; Remove files</string>
    </property>
   </action>
  </widget>

@@ -97,6 +97,7 @@ private slots:
     void on_actionPullRemote_triggered();
     void on_actionCommit_triggered();
     void on_actionAdd_triggered();
+    void on_actionAddRemove_triggered();
     void on_actionDelete_triggered();
     void on_actionRevert_triggered();
     void on_actionOpenContaining_triggered();
