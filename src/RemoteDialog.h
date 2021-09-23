@@ -3,27 +3,28 @@
 
 #include <QDialog>
 
-namespace Ui {
+namespace Ui
+{
 class RemoteDialog;
 }
 
 class RemoteDialog : public QDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit RemoteDialog(QWidget *parent = 0);
-	~RemoteDialog();
+    explicit RemoteDialog(QWidget *parent = 0);
+    ~RemoteDialog();
 
-	static bool run(QWidget *parent, class QUrl &url, QString &name);
+    static bool run(QWidget *parent, class QUrl &url, QString &name);
 
 private slots:
-	void on_btnSelectSourceRepo_clicked();
+    void on_btnSelectSourceRepo_clicked();
 
 private:
-	void GetRepositoryPath(QString &pathResult);
+    void GetRepositoryPath(QString &pathResult);
 
-	Ui::RemoteDialog *ui;
+    Ui::RemoteDialog *ui;
 };
 
-#endif // REMOTEDIALOG_H
+#endif  // REMOTEDIALOG_H

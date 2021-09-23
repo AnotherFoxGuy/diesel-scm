@@ -5,17 +5,16 @@
 
 class CustomWebView : public QWebEngineView
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	explicit CustomWebView(QWidget *parent = 0);
+    explicit CustomWebView(QWidget *parent = 0);
 
 signals:
 
 public slots:
 
 protected:
-	virtual void mousePressEvent(QMouseEvent *event);
-
+    virtual void mousePressEvent(QMouseEvent *event);
 };
 
-#endif // CUSTOMWEBVIEW_H
+#endif  // CUSTOMWEBVIEW_H

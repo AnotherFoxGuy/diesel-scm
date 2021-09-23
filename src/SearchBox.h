@@ -5,19 +5,17 @@
 
 class SearchBox : public QLineEdit
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	explicit SearchBox(QWidget* parent=0);
-	~SearchBox();
+    explicit SearchBox(QWidget *parent = 0);
+    ~SearchBox();
 
 signals:
 
 public slots:
 
 protected:
-	void keyPressEvent(QKeyEvent *event);
-
+    void keyPressEvent(QKeyEvent *event);
 };
 
-
-#endif // SEARCHBOX_H
+#endif  // SEARCHBOX_H

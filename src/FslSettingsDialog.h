@@ -1,33 +1,32 @@
 #ifndef FSLSETTINGSDIALOG_H
 #define FSLSETTINGSDIALOG_H
 
-#include <QDialog>
 #include "AppSettings.h"
+#include <QDialog>
 
-namespace Ui {
-	class FslSettingsDialog;
+namespace Ui
+{
+class FslSettingsDialog;
 }
 
 class FslSettingsDialog : public QDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit FslSettingsDialog(QWidget *parent, Settings &_settings);
-	~FslSettingsDialog();
+    explicit FslSettingsDialog(QWidget *parent, Settings &_settings);
+    ~FslSettingsDialog();
 
-	static bool run(QWidget *parent, Settings &_settings);
-
+    static bool run(QWidget *parent, Settings &_settings);
 
 private slots:
-	void on_buttonBox_accepted();
-	void on_btnSelectFossilGDiff_clicked();
-	void on_btnSelectGMerge_clicked();
+    void on_buttonBox_accepted();
+    void on_btnSelectFossilGDiff_clicked();
+    void on_btnSelectGMerge_clicked();
 
 private:
-
-	Ui::FslSettingsDialog *ui;
-	Settings *settings;
+    Ui::FslSettingsDialog *ui;
+    Settings *settings;
 };
 
-#endif // FSLSETTINGSDIALOG_H
+#endif  // FSLSETTINGSDIALOG_H

@@ -3,28 +3,29 @@
 
 #include <QDialog>
 
-namespace Ui {
+namespace Ui
+{
 class CloneDialog;
 }
 
 class CloneDialog : public QDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit CloneDialog(QWidget *parent = 0);
-	~CloneDialog();
+    explicit CloneDialog(QWidget *parent = 0);
+    ~CloneDialog();
 
-	static bool run(QWidget *parent, class QUrl &url, QString &repository, QUrl& urlProxy);
+    static bool run(QWidget *parent, class QUrl &url, QString &repository, QUrl &urlProxy);
 
 private slots:
-	void on_btnSelectSourceRepo_clicked();
-	void on_btnSelectTargetRepo_clicked();
+    void on_btnSelectSourceRepo_clicked();
+    void on_btnSelectTargetRepo_clicked();
 
 private:
-	void GetRepositoryPath(QString &pathResult);
+    void GetRepositoryPath(QString &pathResult);
 
-	Ui::CloneDialog *ui;
+    Ui::CloneDialog *ui;
 };
 
-#endif // CLONEDIALOG_H
+#endif  // CLONEDIALOG_H
