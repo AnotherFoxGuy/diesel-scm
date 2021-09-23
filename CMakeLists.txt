@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
-cmake_policy(SET CMP0087 NEW)
+if(${CMAKE_VERSION} VERSION_GREATER "3.14")
+    cmake_policy(SET CMP0087 NEW)
+endif()
 set(CMAKE_MODULE_PATH "${CMAKE_BINARY_DIR}" ${CMAKE_MODULE_PATH})
 include(FeatureSummary)
 
@@ -218,7 +220,7 @@ if(UNIX)
     )
     install(
         FILES ${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.png
-        DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/256x256/apps
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/pixmaps/
     )
 endif()
 
