@@ -1,18 +1,18 @@
 # Maintainer: Edgar <Edgar{at}AnotherFoxGuy.com>
-pkgname=fuel
+pkgname=fuel-git
 pkgver=2.0.1
 pkgrel=3
 pkgdesc="A GUI front-end to Fossil SCM"
 arch=(i686 x86_64)
 url="https://fuel-scm.org/"
 license=('GPL2')
-depends=('qt5-base>=5.4.0', 'qt5-webkit>=5.4.0', 'fossil', 'qtkeychain-qt5')
-source=("https://fuel-scm.org/files/releases/${pkgname}-${pkgver}.tar.gz")
-
-sha256sums=('034593d16eba9e30a73d1b40bfd4f1a7f9ba438a04dc07cc7bb2cd2202da40fc') # Generate with 'makepkg -g'
+depends=('qt5-base>=5.4.0' 'qt5-webengine>=5.4.0' 'fossil' 'qtkeychain-qt5')
+makedepends=('git' 'cmake')
+source=("git://github.com/AnotherFoxGuy/fuel-scm")
+md5sums=('SKIP')
 
 build() {
-  cd "$srcdir"
+  cd "$srcdir/fuel-scm"
   [ -d build ] && rm -r build
   mkdir build
   cd build
@@ -21,6 +21,7 @@ build() {
 }
 
 package() {
-  cd "$srcdir/build"
+  cd "$srcdir/fuel-scm/build"
   make DESTDIR="${pkgdir}" install
 }
+
