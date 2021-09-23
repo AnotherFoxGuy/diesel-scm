@@ -599,15 +599,16 @@ void MainWindow::onOpenRecent()
 //------------------------------------------------------------------------------
 void MainWindow::enableActions(bool on)
 {
-    QAction *actions[] = {ui->actionCloseRepository, ui->actionCommit,         ui->actionDiff,          ui->actionAdd,
-                          ui->actionDelete,          ui->actionPush,           ui->actionPull,          ui->actionRename,
-                          ui->actionHistory,         ui->actionFossilUI,       ui->actionRevert,        ui->actionTimeline,
-                          ui->actionOpenFile,        ui->actionOpenContaining, ui->actionUndo,          ui->actionUpdate,
-                          ui->actionOpenFolder,      ui->actionRenameFolder,   ui->actionCreateStash,   ui->actionDeleteStash,
-                          ui->actionDiffStash,       ui->actionApplyStash,     ui->actionDeleteStash,   ui->actionCreateTag,
-                          ui->actionDeleteTag,       ui->actionCreateBranch,   ui->actionMergeBranch,   ui->actionFossilSettings,
-                          ui->actionViewAll,         ui->actionViewAsFolders,  ui->actionViewAsList,    ui->actionViewIgnored,
-                          ui->actionViewModifedOnly, ui->actionViewModified,   ui->actionViewUnchanged, ui->actionViewUnknown};
+    QAction *actions[] = {ui->actionCloseRepository, ui->actionCommit,          ui->actionDiff,           ui->actionAdd,
+                          ui->actionDelete,          ui->actionAddRemove,       ui->actionPush,           ui->actionPull,
+                          ui->actionRename,          ui->actionHistory,         ui->actionFossilUI,       ui->actionRevert,
+                          ui->actionTimeline,        ui->actionOpenFile,        ui->actionOpenContaining, ui->actionUndo,
+                          ui->actionUpdate,          ui->actionOpenFolder,      ui->actionRenameFolder,   ui->actionCreateStash,
+                          ui->actionDeleteStash,     ui->actionDiffStash,       ui->actionApplyStash,     ui->actionDeleteStash,
+                          ui->actionCreateTag,       ui->actionDeleteTag,       ui->actionCreateBranch,   ui->actionMergeBranch,
+                          ui->actionFossilSettings,  ui->actionViewAll,         ui->actionViewAsFolders,  ui->actionViewAsList,
+                          ui->actionViewIgnored,     ui->actionViewModifedOnly, ui->actionViewModified,   ui->actionViewUnchanged,
+                          ui->actionViewUnknown};
 
     for (size_t i = 0; i < COUNTOF(actions); ++i)
         actions[i]->setEnabled(on);
@@ -1558,6 +1559,14 @@ void MainWindow::on_actionAdd_triggered()
     if (!getWorkspace().addFiles(selection))
         QMessageBox::critical(this, tr("Error"), tr("Could not add files."), QMessageBox::Ok);
 
+    refresh();
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::on_actionAddRemove_triggered()
+{
+    if (!getWorkspace().addRemoveFiles())
+        QMessageBox::critical(this, tr("Error"), tr("Could not add files."), QMessageBox::Ok);
     refresh();
 }
 

@@ -1,166 +1,167 @@
 <RCC>
-  <qresource prefix="/icons">
-	<file>icons/Address Book-01.png</file>
-	<file>icons/Adobe Illustrator CS3 Document-01.png</file>
-	<file>icons/Adobe PDF Document-01.png</file>
-	<file>icons/Adobe Photoshop CS3 Document-01.png</file>
-	<file alias="icon-application">icons/Battery-01.png</file>
-	<file>icons/Binoculars-01.png</file>
-	<file alias="icon-item-tag">icons/Book-01.png</file>
-	<file>icons/Briefcase-01.png</file>
-	<file alias="icon-item-added">icons/Button Add-01.png</file>
-	<file>icons/Button Blank Blue-01.png</file>
-	<file alias="icon-item-unknown">icons/Button Blank Gray-01.png</file>
-	<file alias="icon-item-unchanged">icons/Button Blank Green-01.png</file>
-	<file alias="icon-item-conflicted">icons/Button Blank Red-01.png</file>
-	<file alias="icon-item-edited">icons/Button Blank Yellow-01.png</file>
-	<file>icons/Button Cancel-01.png</file>
-	<file alias="icon-item-deleted">icons/Button Close-01.png</file>
-	<file alias="icon-action-tag-delete">icons/Button Close-01.png</file>
-	<file alias="icon-action-stop">icons/Button Close-01.png</file>
-	<file>icons/Button Delete-01.png</file>
-	<file alias="icon-action-pull">icons/Button Download-01.png</file>
-	<file>icons/Button Favorite-01.png</file>
-	<file>icons/Button Forward-01.png</file>
-	<file alias="icon-item-missing">icons/Button Help-01.png</file>
-	<file>icons/Button Info-01.png</file>
-	<file>icons/Button Log Off-01.png</file>
-	<file alias="icon-action-next">icons/Button Next-01.png</file>
-	<file>icons/Button Pause-01.png</file>
-	<file alias="icon-action-update">icons/Button Play-01.png</file>
-	<file alias="icon-action-previous">icons/Button Previous-01.png</file>
-	<file alias="icon-action-refresh">icons/Button Refresh-01.png</file>
-	<file alias="icon-action-undo">icons/Button Reload-01.png</file>
-	<file alias="icon-item-renamed">icons/Button Reload-01.png</file>
-	<file>icons/Button Reminder-01.png</file>
-	<file alias="icon-action-revert">icons/Button Rewind-01.png</file>
-	<file>icons/Button Talk Balloon-01.png</file>
-	<file alias="icon-action-quit">icons/Button Turn Off-01.png</file>
-	<file>icons/Button Turn On-01.png</file>
-	<file alias="icon-action-push">icons/Button Upload-01.png</file>
-	<file>icons/Button Warning-01.png</file>
-	<file>icons/Calculator-01.png</file>
-	<file>icons/Calendar Blue-01.png</file>
-	<file>icons/Calendar Green-01.png</file>
-	<file>icons/Calendar Red-01.png</file>
-	<file>icons/Clipboard-01.png</file>
-	<file>icons/Clipboard Paste-01.png</file>
-	<file alias="icon-action-timeline">icons/Clock-01.png</file>
-	<file>icons/Coin-01.png</file>
-	<file>icons/Compressed File RAR-01.png</file>
-	<file>icons/Compressed File SIT-01.png</file>
-	<file>icons/Compressed File Zip-01.png</file>
-	<file>icons/Computer Monitor-01.png</file>
-	<file>icons/Computer Network-01.png</file>
-	<file alias="icon-item-file">icons/Document-01.png</file>
-	<file>icons/Document Attach-01.png</file>
-	<file alias="icon-action-repo-new">icons/Document Blank-01.png</file>
-	<file>icons/Document Chart-01.png</file>
-	<file alias="icon-item-diff">icons/Document Copy-01.png</file>
-	<file alias="icon-action-merge">icons/Document Flow Chart-01.png</file>
-	<file>icons/Document Gant Chart-01.png</file>
-	<file>icons/Document Help-01.png</file>
-	<file>icons/Document Line Chart-01.png</file>
-	<file>icons/Document Microsoft Excel-01.png</file>
-	<file>icons/Document Microsoft PowerPoint-01.png</file>
-	<file>icons/Document Microsoft Word-01.png</file>
-	<file alias="icon-item-branch">icons/Document Organization Chart-01.png</file>
-	<file>icons/Document Preview-01.png</file>
-	<file alias="icon-item-revert">icons/Document-Revert-icon.png</file>
-	<file>icons/Document Text-01.png</file>
-	<file>icons/Edit Document-01.png</file>
-	<file>icons/Email-01.png</file>
-	<file>icons/Email Attachment-01.png</file>
-	<file>icons/Email Delete-01.png</file>
-	<file>icons/Email Download-01.png</file>
-	<file>icons/Email Forward-01.png</file>
-	<file>icons/Email Inbox-01.png</file>
-	<file>icons/Email Reply-01.png</file>
-	<file>icons/File Audio-01.png</file>
-	<file>icons/File Audio AIFF-01.png</file>
-	<file>icons/File Audio MP3-01.png</file>
-	<file>icons/File Audio WAV-01.png</file>
-	<file>icons/File Audio WMA-01.png</file>
-	<file alias="icon-item-delete">icons/File Delete-01.png</file>
-	<file alias="icon-item-history">icons/File History-01.png</file>
-	<file alias="icon-item-add">icons/File New-01.png</file>
-	<file alias="icon-item-rename">icons/File Open-01.png</file>
-	<file>icons/File Video 3GP-01.png</file>
-	<file>icons/File Video-01.png</file>
-	<file>icons/File Video AVI-01.png</file>
-	<file>icons/File Video MOV-01.png</file>
-	<file>icons/File Video MPEG-01.png</file>
-	<file>icons/File Video WMV-01.png</file>
-	<file alias="icon-item-folder">icons/Folder-01.png</file>
-	<file alias="icon-action-stash-new">icons/Folder Add-01.png</file>
-	<file alias="icon-action-stash-apply">icons/Folder Compressed-01.png</file>
-	<file alias="icon-action-stash-delete">icons/Folder Delete-01.png</file>
-	<file alias="icon-action-stash-diff">icons/Folder Explorer-01.png</file>
-	<file alias="icon-action-folder-explore">icons/Folder Explorer-01.png</file>
-	<file>icons/Folder Generic Blue-01.png</file>
-	<file alias="icon-item-folder-unchanged">icons/Folder Generic Green-01.png</file>
-	<file alias="icon-item-folder-modified">icons/Folder Generic Red-01.png</file>
-	<file alias="icon-item-folder-unknown">icons/Folder Generic Silver-01.png</file>
-	<file alias="icon-action-folder-rename">icons/Folder Open-01.png</file>
-	<file>icons/Folder RAR-01.png</file>
-	<file>icons/Games-01.png</file>
-	<file alias="icon-action-settings">icons/Gear-01.png</file>
-	<file>icons/Highlighter Blue-01.png</file>
-	<file>icons/Highlighter Green-01.png</file>
-	<file alias="icon-action-tag-new">icons/Highlighter Yellow-01.png</file>
-	<file>icons/Image BMP-01.png</file>
-	<file>icons/Image GIF-01.png</file>
-	<file>icons/Image JPEG-01.png</file>
-	<file>icons/Image PNG-01.png</file>
-	<file>icons/Image TIFF-01.png</file>
-	<file>icons/Lock Lock-01.png</file>
-	<file>icons/Lock Unlock-01.png</file>
-	<file alias="icon-action-repo-open">icons/My Documents-01.png</file>
-	<file>icons/My Ebooks-01.png</file>
-	<file>icons/My Music-01.png</file>
-	<file>icons/My Pictures.png</file>
-	<file>icons/My Videos-01.png</file>
-	<file alias="icon-action-repo-clone">icons/My Websites-01.png</file>
-	<file>icons/Network Firewall-01.png</file>
-	<file alias="icon-webview">icons/Network MAC-01.png</file>
-	<file alias="icon-item-remote" >icons/Network PC-01.png</file>
-	<file>icons/Network Refresh-01.png</file>
-	<file>icons/Pen Blue-01.png</file>
-	<file>icons/Pen Green-01.png</file>
-	<file>icons/Pen Red-01.png</file>
-	<file alias="icon-action-commit">icons/Save-01.png</file>
-	<file alias="icon-clear-log">icons/Text Edit.png</file>
-	<file>icons/USB-01.png</file>
-	<file>icons/User Administrator Blue-01.png</file>
-	<file>icons/User Administrator Green-01.png</file>
-	<file>icons/User Administrator Red-01.png</file>
-	<file>icons/User Chat-01.png</file>
-	<file>icons/User Clients-01.png</file>
-	<file>icons/User Coat Blue-01.png</file>
-	<file>icons/User Coat Green-01.png</file>
-	<file>icons/User Coat Red-01.png</file>
-	<file>icons/User Executive Blue-01.png</file>
-	<file>icons/User Executive Green-01.png</file>
-	<file>icons/User Executive Red-01.png</file>
-	<file>icons/User Group-01.png</file>
-	<file>icons/User Preppy Blue-01.png</file>
-	<file>icons/User Preppy Green-01.png</file>
-	<file>icons/User Preppy Red-01.png</file>
-	<file>icons/Web HTML-01.png</file>
-	<file>icons/Web XML-01.png</file>
-	<file>icons/Window-01.png</file>
-	<file>icons/Window Refresh-01.png</file>
-	<file>icons/Windows-01.png</file>
-	<file>icons/Windows Cascade-01.png</file>
-	<file>icons/Zoom-01.png</file>
-	<file>icons/Zoom In-01.png</file>
-	<file>icons/Zoom Out-01.png</file>
-  </qresource>
- <qresource prefix="/docs">
-     <file>docs/Translators.txt</file>
-     <file>docs/Licenses.txt</file>
- </qresource>
- <qresource prefix="/version">
-     <file alias="manifest">../manifest.uuid</file>
- </qresource>
+    <qresource prefix="/icons">
+        <file>icons/Address Book-01.png</file>
+        <file>icons/Adobe Illustrator CS3 Document-01.png</file>
+        <file>icons/Adobe PDF Document-01.png</file>
+        <file>icons/Adobe Photoshop CS3 Document-01.png</file>
+        <file alias="icon-application">icons/Battery-01.png</file>
+        <file>icons/Binoculars-01.png</file>
+        <file alias="icon-item-tag">icons/Book-01.png</file>
+        <file>icons/Briefcase-01.png</file>
+        <file alias="icon-item-added">icons/Button Add-01.png</file>
+        <file>icons/Button Blank Blue-01.png</file>
+        <file alias="icon-item-unknown">icons/Button Blank Gray-01.png</file>
+        <file alias="icon-item-unchanged">icons/Button Blank Green-01.png</file>
+        <file alias="icon-item-conflicted">icons/Button Blank Red-01.png</file>
+        <file alias="icon-item-edited">icons/Button Blank Yellow-01.png</file>
+        <file>icons/Button Cancel-01.png</file>
+        <file alias="icon-item-deleted">icons/Button Close-01.png</file>
+        <file alias="icon-action-tag-delete">icons/Button Close-01.png</file>
+        <file alias="icon-action-stop">icons/Button Close-01.png</file>
+        <file>icons/Button Delete-01.png</file>
+        <file alias="icon-action-pull">icons/Button Download-01.png</file>
+        <file>icons/Button Favorite-01.png</file>
+        <file>icons/Button Forward-01.png</file>
+        <file alias="icon-item-missing">icons/Button Help-01.png</file>
+        <file>icons/Button Info-01.png</file>
+        <file>icons/Button Log Off-01.png</file>
+        <file alias="icon-action-next">icons/Button Next-01.png</file>
+        <file>icons/Button Pause-01.png</file>
+        <file alias="icon-action-update">icons/Button Play-01.png</file>
+        <file alias="icon-action-previous">icons/Button Previous-01.png</file>
+        <file alias="icon-action-refresh">icons/Button Refresh-01.png</file>
+        <file alias="icon-action-undo">icons/Button Reload-01.png</file>
+        <file alias="icon-item-renamed">icons/Button Reload-01.png</file>
+        <file>icons/Button Reminder-01.png</file>
+        <file alias="icon-action-revert">icons/Button Rewind-01.png</file>
+        <file>icons/Button Talk Balloon-01.png</file>
+        <file alias="icon-action-quit">icons/Button Turn Off-01.png</file>
+        <file>icons/Button Turn On-01.png</file>
+        <file alias="icon-action-push">icons/Button Upload-01.png</file>
+        <file>icons/Button Warning-01.png</file>
+        <file>icons/Calculator-01.png</file>
+        <file>icons/Calendar Blue-01.png</file>
+        <file>icons/Calendar Green-01.png</file>
+        <file>icons/Calendar Red-01.png</file>
+        <file>icons/Clipboard-01.png</file>
+        <file>icons/Clipboard Paste-01.png</file>
+        <file alias="icon-action-timeline">icons/Clock-01.png</file>
+        <file>icons/Coin-01.png</file>
+        <file>icons/Compressed File RAR-01.png</file>
+        <file>icons/Compressed File SIT-01.png</file>
+        <file>icons/Compressed File Zip-01.png</file>
+        <file>icons/Computer Monitor-01.png</file>
+        <file>icons/Computer Network-01.png</file>
+        <file alias="icon-item-file">icons/Document-01.png</file>
+        <file>icons/Document Attach-01.png</file>
+        <file alias="icon-action-repo-new">icons/Document Blank-01.png</file>
+        <file>icons/Document Chart-01.png</file>
+        <file alias="icon-item-diff">icons/Document Copy-01.png</file>
+        <file alias="icon-action-merge">icons/Document Flow Chart-01.png</file>
+        <file>icons/Document Gant Chart-01.png</file>
+        <file>icons/Document Help-01.png</file>
+        <file>icons/Document Line Chart-01.png</file>
+        <file>icons/Document Microsoft Excel-01.png</file>
+        <file>icons/Document Microsoft PowerPoint-01.png</file>
+        <file>icons/Document Microsoft Word-01.png</file>
+        <file alias="icon-item-branch">icons/Document Organization Chart-01.png</file>
+        <file>icons/Document Preview-01.png</file>
+        <file alias="icon-item-revert">icons/Document-Revert-icon.png</file>
+        <file>icons/Document Text-01.png</file>
+        <file>icons/Edit Document-01.png</file>
+        <file>icons/Email-01.png</file>
+        <file>icons/Email Attachment-01.png</file>
+        <file>icons/Email Delete-01.png</file>
+        <file>icons/Email Download-01.png</file>
+        <file>icons/Email Forward-01.png</file>
+        <file>icons/Email Inbox-01.png</file>
+        <file>icons/Email Reply-01.png</file>
+        <file>icons/File Audio-01.png</file>
+        <file>icons/File Audio AIFF-01.png</file>
+        <file>icons/File Audio MP3-01.png</file>
+        <file>icons/File Audio WAV-01.png</file>
+        <file>icons/File Audio WMA-01.png</file>
+        <file alias="icon-item-delete">icons/File Delete-01.png</file>
+        <file alias="icon-item-history">icons/File History-01.png</file>
+        <file alias="icon-item-add">icons/File New-01.png</file>
+        <file alias="icon-item-rename">icons/File Open-01.png</file>
+        <file>icons/File Video 3GP-01.png</file>
+        <file>icons/File Video-01.png</file>
+        <file>icons/File Video AVI-01.png</file>
+        <file>icons/File Video MOV-01.png</file>
+        <file>icons/File Video MPEG-01.png</file>
+        <file>icons/File Video WMV-01.png</file>
+        <file alias="icon-item-folder">icons/Folder-01.png</file>
+        <file alias="icon-action-stash-new">icons/Folder Add-01.png</file>
+        <file alias="icon-action-stash-apply">icons/Folder Compressed-01.png</file>
+        <file alias="icon-action-stash-delete">icons/Folder Delete-01.png</file>
+        <file alias="icon-action-stash-diff">icons/Folder Explorer-01.png</file>
+        <file alias="icon-action-folder-explore">icons/Folder Explorer-01.png</file>
+        <file>icons/Folder Generic Blue-01.png</file>
+        <file alias="icon-item-folder-unchanged">icons/Folder Generic Green-01.png</file>
+        <file alias="icon-item-folder-modified">icons/Folder Generic Red-01.png</file>
+        <file alias="icon-item-folder-unknown">icons/Folder Generic Silver-01.png</file>
+        <file alias="icon-action-folder-rename">icons/Folder Open-01.png</file>
+        <file>icons/Folder RAR-01.png</file>
+        <file>icons/Games-01.png</file>
+        <file alias="icon-action-settings">icons/Gear-01.png</file>
+        <file>icons/Highlighter Blue-01.png</file>
+        <file>icons/Highlighter Green-01.png</file>
+        <file alias="icon-action-tag-new">icons/Highlighter Yellow-01.png</file>
+        <file>icons/Image BMP-01.png</file>
+        <file>icons/Image GIF-01.png</file>
+        <file>icons/Image JPEG-01.png</file>
+        <file>icons/Image PNG-01.png</file>
+        <file>icons/Image TIFF-01.png</file>
+        <file>icons/Lock Lock-01.png</file>
+        <file>icons/Lock Unlock-01.png</file>
+        <file alias="icon-action-repo-open">icons/My Documents-01.png</file>
+        <file>icons/My Ebooks-01.png</file>
+        <file>icons/My Music-01.png</file>
+        <file>icons/My Pictures.png</file>
+        <file>icons/My Videos-01.png</file>
+        <file alias="icon-action-repo-clone">icons/My Websites-01.png</file>
+        <file>icons/Network Firewall-01.png</file>
+        <file alias="icon-webview">icons/Network MAC-01.png</file>
+        <file alias="icon-item-remote">icons/Network PC-01.png</file>
+        <file>icons/Network Refresh-01.png</file>
+        <file>icons/Pen Blue-01.png</file>
+        <file>icons/Pen Green-01.png</file>
+        <file>icons/Pen Red-01.png</file>
+        <file alias="icon-action-commit">icons/Save-01.png</file>
+        <file alias="icon-clear-log">icons/Text Edit.png</file>
+        <file>icons/USB-01.png</file>
+        <file>icons/User Administrator Blue-01.png</file>
+        <file>icons/User Administrator Green-01.png</file>
+        <file>icons/User Administrator Red-01.png</file>
+        <file>icons/User Chat-01.png</file>
+        <file>icons/User Clients-01.png</file>
+        <file>icons/User Coat Blue-01.png</file>
+        <file>icons/User Coat Green-01.png</file>
+        <file>icons/User Coat Red-01.png</file>
+        <file>icons/User Executive Blue-01.png</file>
+        <file>icons/User Executive Green-01.png</file>
+        <file>icons/User Executive Red-01.png</file>
+        <file>icons/User Group-01.png</file>
+        <file>icons/User Preppy Blue-01.png</file>
+        <file>icons/User Preppy Green-01.png</file>
+        <file>icons/User Preppy Red-01.png</file>
+        <file>icons/Web HTML-01.png</file>
+        <file>icons/Web XML-01.png</file>
+        <file>icons/Window-01.png</file>
+        <file>icons/Window Refresh-01.png</file>
+        <file>icons/Windows-01.png</file>
+        <file>icons/Windows Cascade-01.png</file>
+        <file>icons/Zoom-01.png</file>
+        <file>icons/Zoom In-01.png</file>
+        <file>icons/Zoom Out-01.png</file>
+        <file alias="icon-item-addremove">icons/File Refresh-01.png</file>
+    </qresource>
+    <qresource prefix="/docs">
+        <file>docs/Translators.txt</file>
+        <file>docs/Licenses.txt</file>
+    </qresource>
+    <qresource prefix="/version">
+        <file alias="manifest">../manifest.uuid</file>
+    </qresource>
 </RCC>

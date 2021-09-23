@@ -344,6 +344,12 @@ bool Fossil::removeFiles(const QStringList &fileList, bool deleteLocal)
 }
 
 //------------------------------------------------------------------------------
+bool Fossil::addRemoveFiles()
+{
+    return runFossil(QStringList() << "addremove");
+}
+
+//------------------------------------------------------------------------------
 bool Fossil::revertFiles(const QStringList &fileList)
 {
     if (fileList.empty())

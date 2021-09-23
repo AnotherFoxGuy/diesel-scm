@@ -85,6 +85,8 @@ public:
 
     bool removeFiles(const QStringList &fileList, bool deleteLocal) { return fossil().removeFiles(fileList, deleteLocal); }
 
+    bool addRemoveFiles() { return fossil().addRemoveFiles(); }
+
     bool revertFiles(const QStringList &fileList) { return fossil().revertFiles(fileList); }
 
     bool renameFile(const QString &beforePath, const QString &afterPath, bool renameLocal) { return fossil().renameFile(beforePath, afterPath, renameLocal); }
