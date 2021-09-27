@@ -48,7 +48,7 @@ bool CloneDialog::run(QWidget *parent, QUrl &url, QString &repository, QUrl &url
     QString urltext = dlg.ui->lineURL->text();
 
     // Check if the url is a local file
-    if (QFileInfo(urltext).exists())
+    if (QFileInfo::exists(urltext))
         url = QUrl::fromLocalFile(urltext);
     else
     {

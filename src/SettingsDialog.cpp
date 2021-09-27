@@ -41,9 +41,8 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) : QDialog(p
 
     GetCustomAction(0);
 
-    for (int i = 0; i < currentCustomActions.size(); ++i)
+    for (auto &a : currentCustomActions)
     {
-        CustomAction &a = currentCustomActions[i];
         ui->cmbCustomAction->addItem(a.Id);
     }
     ui->cmbCustomAction->setCurrentIndex(0);
@@ -79,9 +78,8 @@ void SettingsDialog::on_buttonBox_accepted()
     if (curr_langid != new_langid)
         QMessageBox::information(this, tr("Restart required"), tr("The language change will take effect after restarting the application"), QMessageBox::Ok);
 
-    for (int i = 0; i < currentCustomActions.size(); ++i)
+    for (auto &a : currentCustomActions)
     {
-        CustomAction &a = currentCustomActions[i];
         a.Description = a.Description.trimmed();
         a.Command = a.Command.trimmed();
     }

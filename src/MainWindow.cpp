@@ -199,12 +199,12 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
         }
     }
     Q_ASSERT(recent_sep);
-    for (int i = 0; i < MAX_RECENT; ++i)
+    for (auto &recentWorkspaceAct : recentWorkspaceActs)
     {
-        recentWorkspaceActs[i] = new QAction(this);
-        recentWorkspaceActs[i]->setVisible(false);
-        connect(recentWorkspaceActs[i], SIGNAL(triggered()), this, SLOT(onOpenRecent()));
-        ui->menuFile->insertAction(recent_sep, recentWorkspaceActs[i]);
+        recentWorkspaceAct = new QAction(this);
+        recentWorkspaceAct->setVisible(false);
+        connect(recentWorkspaceAct, SIGNAL(triggered()), this, SLOT(onOpenRecent()));
+        ui->menuFile->insertAction(recent_sep, recentWorkspaceAct);
     }
 
     // Custom Actions
@@ -368,7 +368,7 @@ bool MainWindow::openWorkspace(const QString &path)
         QString checkout_file1 = wkspace + PATH_SEPARATOR + FOSSIL_CHECKOUT1;
         QString checkout_file2 = wkspace + PATH_SEPARATOR + FOSSIL_CHECKOUT2;
 
-        if (!(QFileInfo(checkout_file1).exists() || QFileInfo(checkout_file2).exists()))
+        if (!(QFileInfo::exists(checkout_file1) || QFileInfo::exists(checkout_file2)))
         {
             if (QMessageBox::Yes != DialogQuery(this, tr("Open Workspace"), tr("A workspace does not exist in this folder.\nWould you like to create one here?")))
             {
@@ -569,8 +569,8 @@ void MainWindow::on_actionCloneRepository_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::rebuildRecent()
 {
-    for (int i = 0; i < MAX_RECENT; ++i)
-        recentWorkspaceActs[i]->setVisible(false);
+    for (auto &recentWorkspaceAct : recentWorkspaceActs)
+        recentWorkspaceAct->setVisible(false);
 
     int enabled_acts = qMin<int>(MAX_RECENT, workspaceHistory.size());
 
@@ -610,8 +610,8 @@ void MainWindow::enableActions(bool on)
                           ui->actionViewIgnored,     ui->actionViewModifedOnly, ui->actionViewModified,   ui->actionViewUnchanged,
                           ui->actionViewUnknown};
 
-    for (size_t i = 0; i < COUNTOF(actions); ++i)
-        actions[i]->setEnabled(on);
+    for (auto &action : actions)
+        action->setEnabled(on);
 }
 
 //------------------------------------------------------------------------------
@@ -710,9 +710,8 @@ static void addPathToTree(QStandardItem &root, const QString &path, const QIcon 
     QStandardItem *parent = &root;
 
     QString fullpath;
-    for (QStringList::iterator it = dirs.begin(); it != dirs.end(); ++it)
+    for (auto &dir : dirs)
     {
-        const QString &dir = *it;
         fullpath += dir;
 
         // Find the child that matches this subdirectory
@@ -810,7 +809,7 @@ void MainWindow::updateWorkspaceView()
     if (viewMode == VIEWMODE_TREE)
     {
         // FIXME: Change paths to map to allow for automatic sorting
-        QStringList paths = getWorkspace().getPaths().toList();
+        QStringList paths = getWorkspace().getPaths().values();
         paths.sort();
 
         foreach (const QString &dir, paths)
@@ -885,15 +884,15 @@ void MainWindow::updateWorkspaceView()
     remotes->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTES, ""), ROLE_WORKSPACE_ITEM);
     remotes->setEditable(false);
     getWorkspace().getTreeModel().appendRow(remotes);
-    for (remote_map_t::const_iterator it = getWorkspace().getRemotes().begin(); it != getWorkspace().getRemotes().end(); ++it)
+    for (const auto &it : getWorkspace().getRemotes())
     {
-        QStandardItem *remote_item = new QStandardItem(getCachedIcon(":icons/icon-item-remote"), it->name);
-        remote_item->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTE, it->url.toString()), ROLE_WORKSPACE_ITEM);
+        QStandardItem *remote_item = new QStandardItem(getCachedIcon(":icons/icon-item-remote"), it.name);
+        remote_item->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTE, it.url.toString()), ROLE_WORKSPACE_ITEM);
 
-        remote_item->setToolTip(UrlToStringDisplay(it->url));
+        remote_item->setToolTip(UrlToStringDisplay(it.url));
 
         // Mark the default url as bold
-        if (it->isDefault)
+        if (it.isDefault)
         {
             QFont font = remote_item->font();
             font.setBold(true);
@@ -972,12 +971,12 @@ void MainWindow::updateFileView()
         const QString *status_text = &status_unknown;
         const char *status_icon_path = ":icons/icon-item-unknown";  // Default icon
 
-        for (size_t t = 0; t < COUNTOF(stats); ++t)
+        for (auto &stat : stats)
         {
-            if (e.getType() == stats[t].type)
+            if (e.getType() == stat.type)
             {
-                status_text = &stats[t].text;
-                status_icon_path = stats[t].icon;
+                status_text = &stat.text;
+                status_icon_path = stat.icon;
                 break;
             }
         }
@@ -1188,9 +1187,8 @@ void MainWindow::updateSettings()
     Settings::custom_actions_t &actions = settings.GetCustomActions();
     store->beginWriteArray("CustomActions", actions.size());
     int active_actions = 0;
-    for (int i = 0; i < actions.size(); ++i)
+    for (auto &action : actions)
     {
-        CustomAction &action = actions[i];
         if (!action.IsValid())
             continue;
         store->setArrayIndex(active_actions);

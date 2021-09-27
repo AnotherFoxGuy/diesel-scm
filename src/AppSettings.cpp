@@ -123,7 +123,7 @@ void Settings::SetFossilValue(const QString &name, const QVariant &value)
 //-----------------------------------------------------------------------------
 bool Settings::SupportsLang(const QString &langId) const
 {
-    QString locale_path = QString(":intl/intl/%0.qm").arg(langId);
+    QString locale_path = QString(":intl/%0.qm").arg(langId);
     QResource res(locale_path);
     return res.isValid();
 }

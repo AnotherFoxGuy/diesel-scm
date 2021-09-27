@@ -36,14 +36,14 @@ WorkspaceState Fossil::getWorkspaceState()
     bool run_ok = exit_code == EXIT_SUCCESS;
 
     activeTags.clear();
-    for (QStringList::iterator it = res.begin(); it != res.end(); ++it)
+    for (auto &re : res)
     {
-        int col_index = it->indexOf(':');
+        int col_index = re.indexOf(':');
         if (col_index == -1)
             continue;
 
-        QString key = it->left(col_index).trimmed();
-        QString value = it->mid(col_index + 1).trimmed();
+        QString key = re.left(col_index).trimmed();
+        QString value = re.mid(col_index + 1).trimmed();
 
         if (key == "fossil")
         {
@@ -363,7 +363,7 @@ bool Fossil::revertFiles(const QStringList &fileList)
 bool Fossil::renameFile(const QString &beforePath, const QString &afterPath, bool renameLocal)
 {
     // Ensure we can rename the file
-    if (!QFileInfo(beforePath).exists() || QFileInfo(afterPath).exists())
+    if (!QFileInfo::exists(beforePath) || QFileInfo::exists(afterPath))
         return false;
 
     // Do Rename
@@ -449,7 +449,7 @@ bool Fossil::setRemoteUrl(const QUrl &url)
 
     // FIXME: Fossil ignores any password passed via the URL
     // Run as silent to avoid displaying credentials in the log
-    bool ok = runFossil(QStringList() << "remote-url" << u, 0, RUNFLAGS_SILENT_INPUT);
+    bool ok = runFossil(QStringList() << "remote-url" << u, nullptr, RUNFLAGS_SILENT_INPUT);
 
     return ok;
 }
@@ -817,7 +817,7 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
     // Create fossil process
     // FIXME: when we are sure this works delete this
     // LoggedProcess process(parentWidget*/);
-    LoggedProcess process(0);
+    LoggedProcess process(nullptr);
 
     process.setWorkingDirectory(wkdir);
 
@@ -860,11 +860,7 @@ bool Fossil::runFossilRaw(const QStringList &args, QStringList *output, int *exi
 
         if (uiCallback->processAborted())
         {
-#ifdef Q_OS_WIN              // Verify this is still true on Qt5
-            process.kill();  // QT on windows cannot terminate console processes with QProcess::terminate
-#else
             process.terminate();
-#endif
             break;
         }
 
@@ -1109,7 +1105,7 @@ bool Fossil::isWorkspace(const QString &path)
     QString checkout_file1 = wkspace + PATH_SEPARATOR + FOSSIL_CHECKOUT1;
     QString checkout_file2 = wkspace + PATH_SEPARATOR + FOSSIL_CHECKOUT2;
 
-    return (QFileInfo(checkout_file1).exists() || QFileInfo(checkout_file2).exists());
+    return (QFileInfo::exists(checkout_file1) || QFileInfo::exists(checkout_file2));
 }
 
 //------------------------------------------------------------------------------
@@ -1204,11 +1200,7 @@ void Fossil::stopUI()
 {
     if (uiRunning())
     {
-#ifdef Q_WS_WIN
-        fossilUI.kill();  // QT on windows cannot terminate console processes with QProcess::terminate
-#else
         fossilUI.terminate();
-#endif
     }
     fossilUI.close();
     fossilUIPort.clear();
