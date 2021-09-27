@@ -39,15 +39,15 @@ void Workspace::storeWorkspace(QSettings &store)
 
     store.beginWriteArray(workspace_hash);
     int index = 0;
-    for (remote_map_t::iterator it = remotes.begin(); it != remotes.end(); ++it, ++index)
+    for (auto &re : remotes)
     {
         store.setArrayIndex(index);
-        store.setValue("Name", it->name);
-        QUrl url = it->url;
+        store.setValue("Name", re.name);
+        QUrl url = re.url;
         url.setPassword("");
         store.setValue("Url", url);
-        if (it->isDefault)
-            store.setValue("Default", it->isDefault);
+        if (re.isDefault)
+            store.setValue("Default", re.isDefault);
         else
             store.remove("Default");
     }
@@ -77,10 +77,7 @@ bool Workspace::switchWorkspace(const QString &workspace, QSettings &store)
     // Load Remotes
     QString workspace_hash = HashString(QDir::toNativeSeparators(new_workspace));
 
-    QString gr = store.group();
-
     store.beginGroup("Remotes");
-    gr = store.group();
     int num_remotes = store.beginReadArray(workspace_hash);
     for (int i = 0; i < num_remotes; ++i)
     {
@@ -124,12 +121,11 @@ bool Workspace::scanDirectory(QFileInfoList &entries, const QString &dirPath, co
     uiCallback.updateProcess(dirPath);
 
     QFileInfoList list = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
-    for (int i = 0; i < list.count(); ++i)
+    for (auto &info : list)
     {
         if (uiCallback.processAborted())
             return false;
 
-        QFileInfo info = list[i];
         QString filepath = info.filePath();
         QString rel_path = filepath;
         rel_path.remove(baseDir + PATH_SEPARATOR);
@@ -188,10 +184,10 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
         if (!scanDirectory(all_files, wkdir, wkdir, ignore, uiCallback))
             goto _done;
 
-        for (QFileInfoList::iterator it = all_files.begin(); it != all_files.end(); ++it)
+        for (auto &all_file : all_files)
         {
-            QString filename = it->fileName();
-            QString fullpath = it->absoluteFilePath();
+            QString filename = all_file.fileName();
+            QString fullpath = all_file.absoluteFilePath();
 
             // Skip fossil files
             if (filename == FOSSIL_CHECKOUT1 || filename == FOSSIL_CHECKOUT2 || (!fossil().getRepositoryFile().isEmpty() && QFileInfo(fullpath) == QFileInfo(fossil().getRepositoryFile())))
@@ -199,7 +195,7 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
 
             WorkspaceFile::Type type = WorkspaceFile::TYPE_UNKNOWN;
 
-            WorkspaceFile *rf = new WorkspaceFile(*it, type, wkdir);
+            WorkspaceFile *rf = new WorkspaceFile(all_file, type, wkdir);
             const QString &path = rf->getPath();
             getFiles().insert(rf->getFilePath(), rf);
             getPaths().insert(path);
@@ -220,9 +216,9 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
     uiCallback.beginProcess(QObject::tr("Updating..."));
 
     // Update Files and Directories
-    for (QStringList::iterator line_it = res.begin(); line_it != res.end(); ++line_it)
+    for (auto &re : res)
     {
-        QString line = (*line_it).trimmed();
+        QString line = re.trimmed();
         if (line.length() == 0)
             continue;
 
@@ -323,9 +319,9 @@ void Workspace::scanWorkspace(bool scanLocal, bool scanIgnored, bool scanModifie
                 parent_path = "";
 
             // Merge path of child to parent
-            pathstate_map_t::iterator state_it = pathState.find(parent_path);
-            if (state_it != pathState.end())
-                state_it.value() = static_cast<WorkspaceFile::Type>(state_it.value() | state);
+            pathstate_map_t::iterator state_it2 = pathState.find(parent_path);
+            if (state_it2 != pathState.end())
+                state_it2.value() = static_cast<WorkspaceFile::Type>(state_it2.value() | state);
             else
                 pathState.insert(parent_path, state);
         }
@@ -386,15 +382,15 @@ bool Workspace::setRemoteDefault(const QUrl &url)
     const QString &url_str = url.toString();
 
     bool found = false;
-    for (remote_map_t::iterator it = remotes.begin(); it != remotes.end(); ++it)
+    for (auto &remote : remotes)
     {
-        if (it->url.toString() == url_str)  // FIXME: Use strings as QUrl to QUrl comparisons sometime fail!?
+        if (remote.url.toString() == url_str)  // FIXME: Use strings as QUrl to QUrl comparisons sometime fail!?
         {
-            it->isDefault = true;
+            remote.isDefault = true;
             found = true;
         }
         else
-            it->isDefault = false;
+            remote.isDefault = false;
     }
     return found;
 }
@@ -402,10 +398,10 @@ bool Workspace::setRemoteDefault(const QUrl &url)
 //------------------------------------------------------------------------------
 QUrl Workspace::getRemoteDefault() const
 {
-    for (remote_map_t::const_iterator it = remotes.begin(); it != remotes.end(); ++it)
+    for (const auto &remote : remotes)
     {
-        if (it->isDefault)
-            return it->url;
+        if (remote.isDefault)
+            return remote.url;
     }
 
     return QUrl();
