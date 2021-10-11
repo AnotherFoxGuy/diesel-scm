@@ -19,7 +19,7 @@ jobs:
         run: choco install jom conan -y
 
       - name: Enable Developer Command Prompt
-        uses: ilammy/msvc-dev-cmd@v1.9.0
+        uses: ilammy/msvc-dev-cmd@v1.10.0
 
       - name: Cache conan packages
         uses: actions/cache@v2.1.6
