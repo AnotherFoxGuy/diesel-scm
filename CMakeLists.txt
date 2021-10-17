@@ -155,7 +155,9 @@ endif ()
 # ------------------------------------------------------------------------------------------------#
 
 include(GNUInstallDirs)
+include(FetchContent)
 
+set(CMAKE_INSTALL_DEFAULT_COMPONENT_NAME "${PROJECT_NAME}")
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
 set(CPACK_PACKAGE_VENDOR "${PROJECT_NAME}")
 set(CPACK_PACKAGE_DESCRIPTION "A GUI front-end for the Fossil SCM")
@@ -191,22 +193,34 @@ if (WIN32)
 
     install(CODE "execute_process(COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --release --no-opengl-sw --dir \${CMAKE_INSTALL_PREFIX})")
 
+
+    FetchContent_Declare(
+            fossil
+            URL https://fossil-scm.org/home/uv/fossil-w64-2.17.zip
+            URL_MD5 f62b6e28846871741e057cfd09acdfc8
+    )
+    FetchContent_MakeAvailable(fossil)
+
+    install(
+            PROGRAMS ${fossil_SOURCE_DIR}/fossil.exe
+            DESTINATION .
+            COMPONENT Fossil
+            EXCLUDE_FROM_ALL
+    )
+
     # For Windows Desktop shortcuts
     set(CPACK_CREATE_DESKTOP_LINKS "${PROJECT_NAME}" "${PROJECT_NAME}")
 
-    # Windows Add or Remove Program properties
-    set(CPACK_WIX_PROGRAM_MENU_FOLDER "${PROJECT_NAME}")
-    set(CPACK_WIX_PROPERTY_ARPCOMMENTS "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}")
-    set(CPACK_WIX_PROPERTY_ARPURLINFOABOUT "https://fuel-scm.org")
-    set(CPACK_WIX_PROPERTY_URLUPDATEINFO "https://fuel-scm.org")
-
-    set(CPACK_WIX_PRODUCT_ICON "${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.ico")
-
-    set(CPACK_WIX_LICENSE_RTF "${CPACK_RESOURCE_FILE_LICENSE}")
-    set(CPACK_WIX_UPGRADE_GUID "462522bf-36e4-4ce9-93e1-a4200f23096e")
+    set(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
+    set(CPACK_NSIS_MODIFY_PATH "ON")
+    set(CPACK_NSIS_HELP_LINK "https://fuel-scm.org")
+    set(CPACK_NSIS_URL_INFO_ABOUT "https://fuel-scm.org")
+    SET(CPACK_NSIS_INSTALLED_ICON_NAME "Fuel.exe")
+    SET(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.ico")
+    SET(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.ico")
 
     set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
-    set(CPACK_GENERATOR ${CPACK_GENERATOR};WIX)
+    set(CPACK_GENERATOR ${CPACK_GENERATOR} NSIS)
     set(CPACK_MODULE_PATH "")
 endif ()
 
