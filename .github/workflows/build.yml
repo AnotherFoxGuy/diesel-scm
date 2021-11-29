@@ -22,14 +22,14 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1.10.0
 
       - name: Cache conan packages
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           key: win-conan-${{ hashFiles('**/conanfile.txt') }}
           path: ~/.conan/
 
       - name: Cache Qt
         id: cache-qt
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: "${{ github.workspace }}/qt/"
           key: ${{ runner.os }}-QtCache
