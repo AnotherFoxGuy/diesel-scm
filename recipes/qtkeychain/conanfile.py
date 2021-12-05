@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class QtkeychainConan(ConanFile):
     name = "qtkeychain"
-    version = "0.12.0"
+    version = "0.13.2"
     license = "BSD-3"
     author = "Edgar"
     url = "https://github.com/AnotherFoxGuy/fuel-scm"
@@ -14,7 +14,7 @@ class QtkeychainConan(ConanFile):
     scm = {
         "type": "git",
         "url": "https://github.com/frankosterfeld/qtkeychain.git",
-        "revision": "v0.12.0"
+        "revision": "v0.13.2"
     }
 
     def build(self):
