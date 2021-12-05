@@ -16,7 +16,7 @@ jobs:
           submodules: true
 
       - name: Install deps
-        run: choco install jom conan -y
+        run: choco install ninja conan -y
 
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1.10.0
@@ -41,23 +41,22 @@ jobs:
           modules: qtwebengine
           dir: "${{ github.workspace }}/qt/"
 
-      - name: Export qtkeychain
-        run: |
-          conan export recipes/qtkeychain
+      - name: Add conan remote
+        run: conan remote add fuel-scm https://artifactory.anotherfoxguy.com/artifactory/fuel-scm/ -f
 
       - name: Build
         run: |
           mkdir build
           cd build
           conan install .. --build=missing
-          cmake -G"NMake Makefiles JOM" -DCMAKE_INSTALL_PREFIX=redist ..
-          jom
+          cmake -GNinja -DCMAKE_INSTALL_PREFIX=redist ..
+          ninja
         shell: cmd
 
       - name: Install
         run: |
           cd build
-          jom install
+          ninja install
         shell: cmd
 
       - name: Upload redist folder
