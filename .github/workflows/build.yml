@@ -7,16 +7,21 @@ jobs:
   build-msvc:
     name: Build Windows
     runs-on: windows-latest
+    env:
+      BUILD_TOOLS_PATH: C:\apps\build-tools\
     steps:
-      - name: Add Conan to path
-        run: echo "C:\Program Files\Conan\conan\" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - run: echo $env:BUILD_TOOLS_PATH | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - uses: actions/checkout@v2.4.0
         with:
           submodules: true
 
-      - name: Install deps
-        run: choco install ninja conan -y
+      - name: Install Build tools
+        shell: cmake -P {0}
+        run: |
+          file(MAKE_DIRECTORY $ENV{BUILD_TOOLS_PATH})
+          file(DOWNLOAD https://cdn.anotherfoxguy.com/build-tools.zip "$ENV{TMP}/build-tools.zip" SHOW_PROGRESS)
+          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xzf "$ENV{TMP}/build-tools.zip" WORKING_DIRECTORY "$ENV{BUILD_TOOLS_PATH}")
 
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1.10.0
@@ -49,7 +54,7 @@ jobs:
           mkdir build
           cd build
           conan install .. --build=missing
-          cmake -GNinja -DCMAKE_INSTALL_PREFIX=redist ..
+          cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=redist ..
           ninja
         shell: cmd
 

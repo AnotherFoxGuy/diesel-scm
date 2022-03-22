@@ -45,3 +45,4 @@ CMakeLists.txt.user*
 *.qm
 /build*
 .idea/
+test-pr
