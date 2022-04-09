@@ -1,7 +1,6 @@
 #ifndef FOSSIL_H
 #define FOSSIL_H
 
-class QStringList;
 #include "LoggedProcess.h"
 #include "Utils.h"
 #include "WorkspaceCommon.h"

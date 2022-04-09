@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include <QProcess>
 #include <QUrl>
-#include <qt5keychain/keychain.h>
+#include <qt6keychain/keychain.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 QMessageBox::StandardButton DialogQuery(QWidget *parent, const QString &title, const QString &query, QMessageBox::StandardButtons buttons)

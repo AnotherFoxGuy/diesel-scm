@@ -6,6 +6,7 @@
 #include <QStringList>
 #include <QTemporaryFile>
 #include <QTextCodec>
+#include <QRegExp>
 #include <QUrl>
 
 static const unsigned char UTF8_BOM[] = {0xEF, 0xBB, 0xBF};
@@ -62,13 +63,13 @@ WorkspaceState Fossil::getWorkspaceState()
             else if (key == "checkout")
             {
                 // f2121dad5e4565f55ed9ef882484dd5934af565f 2015-04-26 17:27:39 UTC
-                QStringList tokens = value.split(' ', QString::SkipEmptyParts);
+                QStringList tokens = value.split(' ', Qt::SkipEmptyParts);
                 Q_ASSERT(tokens.length() > 0);
                 currentRevision = tokens[0].trimmed();
             }
             else if (key == "tags")
             {
-                QStringList tokens = value.split(',', QString::SkipEmptyParts);
+                QStringList tokens = value.split(',', Qt::SkipEmptyParts);
                 foreach (const QString &tag, tokens)
                     activeTags.append(tag);
                 activeTags.sort();

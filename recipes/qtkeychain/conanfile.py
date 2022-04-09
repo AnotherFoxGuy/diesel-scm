@@ -2,7 +2,7 @@ from conans import ConanFile, CMake, tools
 
 
 class QtkeychainConan(ConanFile):
-    name = "qtkeychain"
+    name = "qt6keychain"
     version = "0.13.2"
     license = "BSD-3"
     author = "Edgar"
@@ -20,6 +20,7 @@ class QtkeychainConan(ConanFile):
     def build(self):
         cmake = CMake(self)
         cmake.definitions["QTKEYCHAIN_STATIC"] = self.options.static
+        cmake.definitions["BUILD_WITH_QT6"] = "ON"
         cmake.definitions["BUILD_TEST_APPLICATION"] = "OFF"
         cmake.configure()
         cmake.build()
@@ -29,6 +30,6 @@ class QtkeychainConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.names["cmake_find_package"] = "Qt5Keychain"
-        self.cpp_info.names["cmake_find_package_multi"] = "Qt5Keychain"
+        self.cpp_info.names["cmake_find_package"] = "Qt6Keychain"
+        self.cpp_info.names["cmake_find_package_multi"] = "Qt6Keychain"
         self.cpp_info.libs = tools.collect_libs(self)
