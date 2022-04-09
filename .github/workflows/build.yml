@@ -43,7 +43,8 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
-          modules: qtwebengine
+          version: 6.2.4
+          modules: qtwebenginewidgets qtcore5compat
           dir: "${{ github.workspace }}/qt/"
 
       - name: Add conan remote
