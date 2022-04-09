@@ -23,6 +23,7 @@
 #include <QSettings>
 #include <QShortcut>
 #include <QToolButton>
+#include <QRegExp>
 
 //-----------------------------------------------------------------------------
 enum
@@ -664,7 +665,7 @@ bool MainWindow::scanWorkspace()
         // Determine ignored file patterns
         QStringList ignore_patterns;
         {
-            static const QRegExp REGEX_GLOB_LIST(",|\\n", Qt::CaseSensitive);
+            static const QRegularExpression REGEX_GLOB_LIST(",|\\n");
 
             QString ignore_list = settings.GetFossilValue(FOSSIL_SETTING_IGNORE_GLOB).toString().trimmed();
 
@@ -678,7 +679,7 @@ bool MainWindow::scanWorkspace()
             }
 
             if (!ignore_list.isEmpty())
-                ignore_patterns = ignore_list.split(REGEX_GLOB_LIST, QString::SkipEmptyParts);
+                ignore_patterns = ignore_list.split(REGEX_GLOB_LIST, Qt::SkipEmptyParts);
 
             TrimStringList(ignore_patterns);
         }
@@ -1003,7 +1004,7 @@ void MainWindow::updateFileView()
         getWorkspace().getFileModel().setItem(item_id, COLUMN_FILENAME, filename_item);
 
         getWorkspace().getFileModel().setItem(item_id, COLUMN_EXTENSION, new QStandardItem(finfo.suffix()));
-        getWorkspace().getFileModel().setItem(item_id, COLUMN_MODIFIED, new QStandardItem(finfo.lastModified().toString(Qt::SystemLocaleShortDate)));
+        getWorkspace().getFileModel().setItem(item_id, COLUMN_MODIFIED, new QStandardItem(finfo.lastModified().toString(Qt::TextDate)));
 
         ++item_id;
     }

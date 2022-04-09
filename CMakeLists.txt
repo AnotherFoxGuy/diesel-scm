@@ -24,8 +24,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_SOURCE_DIR}/ui")
 
-find_package(Qt5 COMPONENTS Core Gui WebEngineWidgets REQUIRED)
-find_package(Qt5Keychain REQUIRED)
+find_package(Qt6 COMPONENTS Core Gui WebEngineWidgets Core5Compat  REQUIRED)
+find_package(Qt6Keychain REQUIRED)
 
 set(FORMS
         ui/MainWindow.ui
@@ -97,19 +97,20 @@ set(TRANSLATIONS
         intl/ko_KR.ts)
 
 
-find_package(Qt5LinguistTools)
-if (Qt5LinguistTools_FOUND)
+find_package(Qt6LinguistTools)
+#if (Qt6LinguistTools_FOUND)
+if (0)
     set_source_files_properties(${TRANSLATIONS} PROPERTIES OUTPUT_LOCATION "intl")
 
-    qt5_create_translation(QM_MESSAGES ${CMAKE_SOURCE_DIR}/ui ${CMAKE_SOURCE_DIR}/src ${TRANSLATIONS})
-    qt5_add_translation(QM_FILES ${TRANSLATIONS})
+    Qt6_create_translation(QM_MESSAGES ${CMAKE_SOURCE_DIR}/ui ${CMAKE_SOURCE_DIR}/src ${TRANSLATIONS})
+    Qt6_add_translation(QM_FILES ${TRANSLATIONS})
     add_custom_target(messages DEPENDS ${QM_MESSAGES})
     add_custom_target(translations DEPENDS ${QM_FILES} messages)
 
     file(COPY rsrc/languages.qrc DESTINATION ${CMAKE_BINARY_DIR}/intl)
     list(APPEND RESOURCES "${CMAKE_BINARY_DIR}/intl/languages.qrc")
 else ()
-    message("Qt5LinguistTools not found")
+    message("Qt6LinguistTools not found")
 endif ()
 
 if (WIN32)
@@ -136,16 +137,16 @@ target_include_directories(
         ${CMAKE_SOURCE_DIR}/src/
 
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets Qt5::WebEngineCore Qt5::WebEngineWidgets)
-if (TARGET Qt5Keychain::Qt5Keychain)
-    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5Keychain::Qt5Keychain)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets Qt6::WebEngineCore Qt6::WebEngineWidgets Qt6::Core5Compat)
+if (TARGET Qt6Keychain::Qt6Keychain)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt6Keychain::Qt6Keychain)
 else ()
-    target_link_libraries(${PROJECT_NAME} PRIVATE qt5keychain)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt6keychain)
 endif ()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE FUEL_VERSION="${PROJECT_VERSION}")
 
-if (Qt5LinguistTools_FOUND)
+if (0)
     add_dependencies(${PROJECT_NAME} translations)
 endif ()
 
@@ -171,13 +172,13 @@ set(CPACK_GENERATOR ZIP)
 if (WIN32)
     set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
 
-    get_target_property(Qt5_Core_Location Qt5::Core LOCATION)
-    get_filename_component(QT_BIN_DIR ${Qt5_Core_Location} DIRECTORY)
+    get_target_property(Qt6_Core_Location Qt6::Core LOCATION)
+    get_filename_component(QT_BIN_DIR ${Qt6_Core_Location} DIRECTORY)
 
-    # Fix for windeployqt not being able to find qt5keychain
-    if (EXISTS ${RUNTIME_OUTPUT_DIRECTORY}/qt5keychain.dll AND NOT EXISTS ${QT_BIN_DIR}/qt5keychain.dll)
-        message("Copying ${RUNTIME_OUTPUT_DIRECTORY}/qt5keychain.dll to ${QT_BIN_DIR}")
-        file(COPY ${RUNTIME_OUTPUT_DIRECTORY}/qt5keychain.dll DESTINATION ${QT_BIN_DIR})
+    # Fix for windeployqt not being able to find Qt6keychain
+    if (EXISTS ${RUNTIME_OUTPUT_DIRECTORY}/Qt6keychain.dll AND NOT EXISTS ${QT_BIN_DIR}/Qt6keychain.dll)
+        message("Copying ${RUNTIME_OUTPUT_DIRECTORY}/Qt6keychain.dll to ${QT_BIN_DIR}")
+        file(COPY ${RUNTIME_OUTPUT_DIRECTORY}/Qt6keychain.dll DESTINATION ${QT_BIN_DIR})
     endif ()
 
     add_custom_target(

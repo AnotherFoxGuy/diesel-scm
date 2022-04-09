@@ -1,5 +1,5 @@
 [requires]
-qtkeychain/0.13.2
+qt6keychain/0.13.2
 
 [generators]
 qmake
