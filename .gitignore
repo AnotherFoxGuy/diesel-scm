@@ -46,3 +46,4 @@ CMakeLists.txt.user*
 /build*
 .idea/
 test-pr
+/.xmake/
