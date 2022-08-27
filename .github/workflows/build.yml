@@ -60,7 +60,7 @@ jobs:
           dir: "${{ github.workspace }}/qt/"
 
       - name: Add conan remote
-        run: conan remote add fuel-scm https://artifactory.anotherfoxguy.com/artifactory/api/conan/fuel-scm -f
+        run: conan remote add AFG https://conan.anotherfoxguy.com -f
 
       - name: Build
         run: |

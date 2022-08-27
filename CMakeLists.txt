@@ -197,8 +197,8 @@ if (WIN32)
 
     FetchContent_Declare(
             fossil
-            URL https://fossil-scm.org/home/uv/fossil-w64-2.17.zip
-            URL_MD5 f62b6e28846871741e057cfd09acdfc8
+            URL https://fossil-scm.org/home/uv/fossil-w64-2.19.zip
+            URL_MD5 0156328fa9165ad1f041cafbf49c7cf7
     )
     FetchContent_MakeAvailable(fossil)
 
