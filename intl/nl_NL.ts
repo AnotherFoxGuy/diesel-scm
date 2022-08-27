@@ -293,12 +293,12 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="55"/>
         <source>Select Graphical Diff application</source>
-        <translation type="unfinished">Selecteer de applicatie om te gebruiken om de verschillen in weer te geven.</translation>
+        <translation>Selecteer de applicatie om te gebruiken om de verschillen in weer te geven</translation>
     </message>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="63"/>
         <source>Select Graphical Merge application</source>
-        <translation type="unfinished">Selecteer de applicatie om te gebruiken om de verschillen mee samen te voegen</translation>
+        <translation>Selecteer Grafische samenvoegtoepassing</translation>
     </message>
 </context>
 <context>
@@ -336,7 +336,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="266"/>
         <source>&amp;Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Werkruimte</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="291"/>
@@ -346,7 +346,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="344"/>
         <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Ve&amp;rnieuwen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="347"/>
@@ -362,7 +362,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="362"/>
         <source>&amp;Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Commit</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="365"/>
@@ -469,12 +469,12 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="484"/>
         <source>C&amp;lone...</source>
-        <translation type="unfinished"></translation>
+        <translation>C&amp;lone...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="496"/>
         <source>&amp;Push</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Push</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="499"/>
@@ -484,7 +484,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="514"/>
         <source>Pu&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>Pu&amp;ll</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="517"/>
@@ -494,7 +494,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="532"/>
         <source>&amp;Push to Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Push naar Remote</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="535"/>
@@ -505,7 +505,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="547"/>
         <source>Pu&amp;ll from Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Pu&amp;ll van Remote</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="550"/>
@@ -516,12 +516,12 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="718"/>
         <source>U&amp;ndo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongedaa&amp;n maken</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="751"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Update</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="754"/>
@@ -531,32 +531,32 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="789"/>
         <source>&amp;Modified Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewijzigde bestanden</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="803"/>
         <source>&amp;Unchanged Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongewijzigde bestanden</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="817"/>
         <source>Un&amp;known Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Onbe&amp;kende bestanden</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="828"/>
         <source>&amp;Ignored Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Genegeerde bestanden</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="887"/>
         <source>&amp;Stash Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Wijzigingen opbergen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="932"/>
         <source>Create &amp;Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tag creëren</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="935"/>
@@ -574,7 +574,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="959"/>
         <source>Create &amp;Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Branch creëren</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="962"/>
@@ -586,7 +586,7 @@ Uitgebracht onder de GNU GPL</translation>
         <location filename="../ui/MainWindow.ui" line="974"/>
         <location filename="../src/MainWindow.cpp" line="2621"/>
         <source>Merge Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Branch samenvoegen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="977"/>
@@ -597,7 +597,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="988"/>
         <source>Files and F&amp;olders</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestanden en mappen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="991"/>
@@ -612,7 +612,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="999"/>
         <source>&amp;All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Alle bestanden</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1002"/>
@@ -622,7 +622,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="1007"/>
         <source>Mo&amp;dified Files Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Alleen gewijzig&amp;de bestanden</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1010"/>
@@ -632,7 +632,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="1019"/>
         <source>F&amp;ossil Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;ossil Instellingen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1024"/>
@@ -662,33 +662,33 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="1043"/>
         <source>Adds a Remote Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Voegt een externe URL toe</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1048"/>
         <location filename="../src/MainWindow.cpp" line="2850"/>
         <source>Delete Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Remote verwijderen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1057"/>
         <source>abortOperation</source>
-        <translation type="unfinished"></translation>
+        <translation>operatie afbreken</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1060"/>
         <source>Abort the current operation</source>
-        <translation type="unfinished"></translation>
+        <translation>De huidige bewerking afbreken</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1072"/>
         <source>Add &amp; Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Toevoegen &amp; verwijderen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1075"/>
         <source>Add &amp; Remove files</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestanden toevoegen en verwijderen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="487"/>
@@ -893,7 +893,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="769"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Instellingen...</translation>
+        <translation>Instellingen...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="772"/>
@@ -1285,94 +1285,96 @@ Hernoemen afgebroken.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="139"/>
         <source>Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkruimte</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="284"/>
         <source>Filter (%0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter (%0)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="508"/>
         <source>Could not close the workspace.
 Perhaps there are uncommitted changes available
 Would you like to force closing this workspace?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan de werkruimte niet sluiten.
+Misschien zijn er niet-vastgelegde wijzigingen in de werkruimte
+Wilt u deze werkruimte geforceerd sluiten?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="521"/>
         <source>Could not close the workspace.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan de werkruimte niet sluiten.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="557"/>
         <location filename="../src/MainWindow.cpp" line="2695"/>
         <location filename="../src/MainWindow.cpp" line="2828"/>
         <source>Could not store information to keychain.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan geen informatie opslaan in de keychain.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="805"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestanden</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="830"/>
         <source>Branches</source>
-        <translation type="unfinished"></translation>
+        <translation>Branches</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="850"/>
         <source>Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Tags</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="884"/>
         <source>Remotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Remotes</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="946"/>
         <source>Conflicted</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflicterend</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="947"/>
         <source>Merged</source>
-        <translation type="unfinished"></translation>
+        <translation>Samengevoegd</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1540"/>
         <source>Could not commit changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan geen wijzigingen doorvoeren.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1560"/>
         <location filename="../src/MainWindow.cpp" line="1569"/>
         <location filename="../src/MainWindow.cpp" line="2411"/>
         <source>Could not add files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan geen bestanden toevoegen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1597"/>
         <source>Could not remove files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan bestanden niet verwijderen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1628"/>
         <source>Could not revert files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan bestanden niet terugzetten.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1659"/>
         <source>Could not rename file &apos;%0&apos; to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kon bestand niet hernoemen van &apos;%0&apos; naar &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1692"/>
         <location filename="../src/MainWindow.cpp" line="1702"/>
         <source>Could not undo changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan wijzigingen niet ongedaan maken.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1969"/>
@@ -1454,108 +1456,108 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2438"/>
         <source>Operation Aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>Operatie afgebroken</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2498"/>
         <source>&lt;Latest Revision&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Laatste revisie&gt;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2508"/>
         <source>Update workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkruimte bijwerken</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2521"/>
         <location filename="../src/MainWindow.cpp" line="2540"/>
         <source>Could not update the repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan de repository niet updaten.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2552"/>
         <source>Create Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Tag creëren</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2557"/>
         <location filename="../src/MainWindow.cpp" line="2600"/>
         <source>Invalid name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongeldige naam.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2562"/>
         <source>Could not create tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan tag niet maken.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2575"/>
         <source>Are you sure want to delete the tag &apos;%0&apos; ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Weet je zeker dat je de tag &apos;%0&apos; wilt verwijderen?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2583"/>
         <source>Could not delete tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan tag niet verwijderen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2595"/>
         <source>Create Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Branch creëren</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2606"/>
         <source>Could not create branch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan de branch niet maken.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2629"/>
         <location filename="../src/MainWindow.cpp" line="2638"/>
         <source>Merge failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Samenvoegen mislukt.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2633"/>
         <source>Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>Samenvoegen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2633"/>
         <source>The following changes will be applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>De volgende wijzigingen worden toegepast.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2640"/>
         <source>Merge completed. Don&apos;t forget to commit!</source>
-        <translation type="unfinished"></translation>
+        <translation>Samenvoegen voltooid. Vergeet je niet om de wijzigingen te commiten!</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2728"/>
         <location filename="../src/MainWindow.cpp" line="2765"/>
         <source>Could not push to the remote repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan niet pushen naar de externe opslagplaats.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2746"/>
         <location filename="../src/MainWindow.cpp" line="2784"/>
         <source>Could not pull from the remote repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan niet ophalen uit de externe opslagplaats.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2756"/>
         <location filename="../src/MainWindow.cpp" line="2775"/>
         <source>A default remote repository has not been specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Er is geen standaard externe repository opgegeven.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2808"/>
         <source>Could not set the remote repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan de externe opslagplaats niet instellen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2850"/>
         <source>Are you sure want to delete the remote &apos;%0&apos; ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Weet je zeker dat je de remote &apos;%0&apos; wilt verwijderen?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2144"/>
@@ -1570,7 +1572,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2160"/>
         <source>Could not create stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan geen stash maken.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2175"/>
@@ -1590,7 +1592,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2187"/>
         <source>Could not apply stash.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kan stash niet toepassen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2200"/>
@@ -1602,7 +1604,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
         <location filename="../src/MainWindow.cpp" line="2201"/>
         <location filename="../src/MainWindow.cpp" line="2230"/>
         <source>Could not delete stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan stash niet verwijderen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2218"/>
@@ -1620,7 +1622,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../src/AppSettings.cpp" line="43"/>
         <source>Custom Action %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Aangepaste actie %0</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="786"/>
@@ -1630,7 +1632,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../src/Fossil.cpp" line="796"/>
         <source>Could not generate command line file</source>
-        <translation type="unfinished"></translation>
+        <translation>Kon opdrachtregelbestand niet genereren</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="827"/>
@@ -1720,13 +1722,13 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="106"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
         <location filename="../src/RemoteDialog.cpp" line="93"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fout</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
@@ -1754,12 +1756,12 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="31"/>
         <source>Revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Herziening</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="45"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="55"/>
@@ -1843,57 +1845,57 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="174"/>
         <source>Custom Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Aangepaste acties</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="186"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Actie</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="193"/>
         <source>Custom action</source>
-        <translation type="unfinished"></translation>
+        <translation>Aangepaste actie</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="200"/>
         <source>Name of custom action</source>
-        <translation type="unfinished"></translation>
+        <translation>Naam van aangepaste actie</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="213"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschrijving</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="226"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Opdracht</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="235"/>
         <source>Custom action command-line. Information about the selected items is available via the macros %FILE %FOLDER %WORKSPACE</source>
-        <translation type="unfinished"></translation>
+        <translation>Aangepaste actie opdrachtregel. Informatie over de geselecteerde items is beschikbaar via de macro&apos;s %FILE %FOLDER %WORKSPACE</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="263"/>
         <source>Context</source>
-        <translation type="unfinished"></translation>
+        <translation>Context</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="270"/>
         <source>The context where this action will be available</source>
-        <translation type="unfinished"></translation>
+        <translation>De context waarin deze actie beschikbaar zal zijn</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="277"/>
         <source>When checked this action supports multiple selected items</source>
-        <translation type="unfinished"></translation>
+        <translation>Indien aangevinkt ondersteunt deze actie meerdere geselecteerde items</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="287"/>
         <source>Multiple Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Meervoudige selectie</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="14"/>
@@ -1913,7 +1915,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="17"/>
         <source>Custom Action %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Aangepaste actie %0</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="19"/>
@@ -1928,7 +1930,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="38"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestanden</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="39"/>
@@ -1953,7 +1955,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="153"/>
         <source>Select command</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecteer command</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="107"/>
