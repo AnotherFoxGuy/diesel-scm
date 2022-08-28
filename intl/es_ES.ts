@@ -6,38 +6,39 @@
     <message>
         <location filename="../ui/AboutDialog.ui" line="14"/>
         <source>About Fuel...</source>
-        <translation type="unfinished">Sobre Fuel...</translation>
+        <translation>Acerca de Fuel…</translation>
     </message>
     <message>
         <location filename="../ui/AboutDialog.ui" line="23"/>
         <source>A GUI front-end for the Fossil SCM by Kostas Karanikolas
 Released under the GNU GPL</source>
-        <translation type="unfinished"></translation>
+        <translation>Una interfaz gráfica de usuario para el SCM Fossil de Kostas Karanikolas
+Disponible en virtud de la licencia GPL de GNU</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="16"/>
         <source>QT version %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt versión %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="19"/>
         <source>Fossil version %0</source>
-        <translation type="unfinished">La versión de Fossil es %0</translation>
+        <translation>Fossil versión %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="26"/>
         <source>Fuel revision %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuel, enmienda %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="37"/>
         <source>Translations with the help of:</source>
-        <translation type="unfinished">Traducciones con la ayuda de: </translation>
+        <translation>Traducciones con la ayuda de:</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="46"/>
         <source>This sofware uses the following open-source libraries and assets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Este programa utiliza las bibliotecas y recursos siguientes:</translation>
     </message>
 </context>
 <context>
@@ -46,24 +47,24 @@ Released under the GNU GPL</source>
         <location filename="../ui/BrowserWidget.ui" line="59"/>
         <location filename="../ui/BrowserWidget.ui" line="62"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Atrás</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="71"/>
         <location filename="../ui/BrowserWidget.ui" line="74"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Adelante</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="83"/>
         <location filename="../ui/BrowserWidget.ui" line="86"/>
         <source>Refresh</source>
-        <translation type="unfinished">Refrescar</translation>
+        <translation>Actualizar</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="95"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Detener</translation>
     </message>
 </context>
 <context>
@@ -76,7 +77,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="31"/>
         <source>Remote Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Depósito remoto</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="40"/>
@@ -86,12 +87,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="68"/>
         <source>User Name</source>
-        <translation>Nombre de Usuario</translation>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="75"/>
         <source>The user name used to access the remote repository. Leave blank if not required</source>
-        <translation>El nombre de usuario utilizado para acceder el depósito remoto. Deje en blanco si no es requerido.</translation>
+        <translation>El nombre de usuario utilizado para acceder al depósito remoto. Deje en blanco si no es requerido.</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="82"/>
@@ -106,7 +107,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="99"/>
         <source>Local Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Depósito local</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="108"/>
@@ -116,12 +117,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="136"/>
         <source>The URL of the HTTP proxy. Leave blank if not required</source>
-        <translation type="unfinished"></translation>
+        <translation>El URL del «proxy» HTTP. Deje en blanco si no es requerido</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="143"/>
         <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>«Proxy» HTTP</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="59"/>
@@ -141,18 +142,18 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/CloneDialog.cpp" line="58"/>
         <source>Invalid URL.</source>
-        <translation>URL inválida</translation>
+        <translation>URL no válido.</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="71"/>
         <location filename="../src/CloneDialog.cpp" line="111"/>
         <source>Invalid Repository File.</source>
-        <translation>Archivo de depósito inválido</translation>
+        <translation>Archivo de depósito no válido.</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="78"/>
         <source>Invalid Proxy URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>URL de «proxy» no válido.</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="89"/>
@@ -167,7 +168,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/CloneDialog.cpp" line="129"/>
         <source>This repository file already exists.</source>
-        <translation>Este archivo de depósito ya existe</translation>
+        <translation>Este archivo de depósito ya existe.</translation>
     </message>
 </context>
 <context>
@@ -185,12 +186,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CommitDialog.ui" line="120"/>
         <source>Private branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Rama privada</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="141"/>
         <source>Branch name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de rama</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="158"/>
@@ -221,7 +222,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="17"/>
         <source>Fossil Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración de Fossil</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="51"/>
@@ -252,22 +253,22 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="137"/>
         <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>«Proxy» HTTP</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="150"/>
         <source>The URL of the HTTP proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>El URL que apunta al «proxy» HTTP</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="157"/>
         <source>HTTP Port</source>
-        <translation type="unfinished">Puerto HTTP</translation>
+        <translation>Puerto HTTP</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="164"/>
         <source>HTTP port to use for the Fossil web interface</source>
-        <translation type="unfinished">Puerto HTTP utilizado para la interface web de Fossil</translation>
+        <translation>Puerto HTTP utilizado para la interfaz web de Fossil</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="177"/>
@@ -325,7 +326,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="245"/>
         <source>&amp;Help</source>
-        <translation>A&amp;yuda</translation>
+        <translation>Ay&amp;uda</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="251"/>
@@ -351,7 +352,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="347"/>
         <location filename="../ui/MainWindow.ui" line="350"/>
         <source>Refresh the views</source>
-        <translation>Refrescar las vistas</translation>
+        <translation>Actualizar las vistas</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="353"/>
@@ -425,7 +426,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="434"/>
         <source>&amp;New...</source>
-        <translation>&amp;Nuevo</translation>
+        <translation>&amp;Nuevo…</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="437"/>
@@ -463,7 +464,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="472"/>
         <location filename="../ui/MainWindow.ui" line="475"/>
         <source>Close the current workspace</source>
-        <translation>Cerrar el área de trabajo acatual</translation>
+        <translation>Cerrar el área de trabajo actual</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="484"/>
@@ -556,7 +557,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="842"/>
         <location filename="../ui/MainWindow.ui" line="845"/>
         <source>View files as a list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver archivos como lista</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="887"/>
@@ -579,7 +580,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="950"/>
         <location filename="../src/MainWindow.cpp" line="2575"/>
         <source>Delete Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar etiqueta</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="959"/>
@@ -627,7 +628,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="1002"/>
         <source>Show all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar todos los archivos</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1007"/>
@@ -688,7 +689,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="1060"/>
         <source>Abort the current operation</source>
-        <translation type="unfinished"></translation>
+        <translation>Interrumpir la operación actual</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1072"/>
@@ -1114,7 +1115,7 @@ Se ha abortado la creación del depósito.</translation>
         <location filename="../src/MainWindow.cpp" line="499"/>
         <location filename="../src/MainWindow.cpp" line="507"/>
         <source>Close Workspace</source>
-        <translation>Cerrar área de trabajo.</translation>
+        <translation>Cerrar área de trabajo</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="544"/>
@@ -1124,7 +1125,7 @@ Se ha abortado la creación del depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="649"/>
         <source>No workspace detected.</source>
-        <translation>No se detectó área de trabajo</translation>
+        <translation>No se detectó ninguna área de trabajo.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="654"/>
@@ -1159,7 +1160,7 @@ Se ha abortado la creación del depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="499"/>
         <source>Are you sure you want to close this workspace?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Confirma que quiere cerrar esta área de trabajo?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="940"/>
@@ -1289,7 +1290,7 @@ Se abortó el renombrado.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="139"/>
         <source>Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Área de trabajo</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="284"/>
@@ -1306,29 +1307,29 @@ Would you like to force closing this workspace?</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="521"/>
         <source>Could not close the workspace.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo cerrar el área de trabajo.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="557"/>
         <location filename="../src/MainWindow.cpp" line="2695"/>
         <location filename="../src/MainWindow.cpp" line="2828"/>
         <source>Could not store information to keychain.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo almacenar la información en el llavero.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="805"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="830"/>
         <source>Branches</source>
-        <translation type="unfinished"></translation>
+        <translation>Ramas</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="850"/>
         <source>Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetas</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="884"/>
@@ -1393,7 +1394,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2007"/>
         <source>Also move the workspace files</source>
-        <translation>También mueva los archivos del área de trabajo</translation>
+        <translation>También mover los archivos del área de trabajo</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2021"/>
@@ -1463,7 +1464,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2508"/>
         <source>Update workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizar área de trabajo</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2521"/>
@@ -1474,54 +1475,54 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2552"/>
         <source>Create Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear etiqueta</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2557"/>
         <location filename="../src/MainWindow.cpp" line="2600"/>
         <source>Invalid name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre no válido.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2562"/>
         <source>Could not create tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo crear la etiqueta.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2575"/>
         <source>Are you sure want to delete the tag &apos;%0&apos; ?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Confirma que quiere eliminar la etiqueta «%0»?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2583"/>
         <source>Could not delete tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo eliminar la etiqueta.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2595"/>
         <source>Create Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear rama</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2606"/>
         <source>Could not create branch.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo eliminar la rama.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2629"/>
         <location filename="../src/MainWindow.cpp" line="2638"/>
         <source>Merge failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falló la fusión.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2633"/>
         <source>Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>Fusionar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2633"/>
         <source>The following changes will be applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se aplicarán los cambios siguientes.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2640"/>
@@ -1549,7 +1550,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2808"/>
         <source>Could not set the remote repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo establecer el depósito remoto.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2850"/>
@@ -1619,7 +1620,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/AppSettings.cpp" line="43"/>
         <source>Custom Action %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Acción personalizada %0</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="786"/>
@@ -1629,12 +1630,12 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/Fossil.cpp" line="796"/>
         <source>Could not generate command line file</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo generar el archivo de línea de órdenes</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="827"/>
         <source>Could not start Fossil executable &apos;%0&apos;</source>
-        <translation type="unfinished">No se pudo iniciar el ejecutable de Fossil %0</translation>
+        <translation>No se pudo iniciar el ejecutable de Fossil «%0»</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1126"/>
@@ -1644,7 +1645,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/Fossil.cpp" line="1134"/>
         <source>Starting Fossil browser UI. Please wait.</source>
-        <translation type="unfinished">Iniciando el explorador de la IU de Fossil.  Espere por favor.</translation>
+        <translation type="unfinished">Iniciando el explorador de la IU de Fossil. Espere un momento.</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1148"/>
@@ -1669,12 +1670,12 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/Utils.cpp" line="41"/>
         <source>Applications</source>
-        <translation type="unfinished">Aplicaciones</translation>
+        <translation>Aplicaciones</translation>
     </message>
     <message>
         <location filename="../src/Workspace.cpp" line="220"/>
         <source>Updating...</source>
-        <translation type="unfinished">Actualizando...</translation>
+        <translation>Actualizando…</translation>
     </message>
 </context>
 <context>
@@ -1683,7 +1684,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
         <location filename="../ui/RemoteDialog.ui" line="17"/>
         <location filename="../ui/RemoteDialog.ui" line="31"/>
         <source>Remote Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Depósito remoto</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="40"/>
@@ -1698,7 +1699,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="68"/>
         <source>User Name</source>
-        <translation type="unfinished">Nombre de Usuario</translation>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="75"/>
@@ -1708,7 +1709,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="82"/>
         <source>Password</source>
-        <translation type="unfinished">Contraseña</translation>
+        <translation>Contraseña</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="89"/>
@@ -1719,33 +1720,33 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="106"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
         <location filename="../src/RemoteDialog.cpp" line="93"/>
         <source>Error</source>
-        <translation type="unfinished">Error</translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
         <source>Invalid URL.</source>
-        <translation type="unfinished">URL inválida</translation>
+        <translation>URL no válido.</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="77"/>
         <source>Fossil Repository</source>
-        <translation type="unfinished">Depósito de Fossil</translation>
+        <translation>Depósito de Fossil</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="79"/>
         <source>Select Fossil Repository</source>
-        <translation type="unfinished">Seleccione el depósito de Fossil</translation>
+        <translation>Seleccione el depósito de Fossil</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="93"/>
         <source>Invalid Repository File.</source>
-        <translation type="unfinished">Archivo de depósito inválido</translation>
+        <translation>Archivo de depósito no válido.</translation>
     </message>
 </context>
 <context>
@@ -1758,17 +1759,17 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="45"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="55"/>
         <source>Integrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Integrar</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="62"/>
         <source>Force</source>
-        <translation type="unfinished"></translation>
+        <translation>Forzar</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1787,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="48"/>
         <source>Path to the Fossil executable. Leave blank to use the default Fossil</source>
-        <translation>Ruta al ejecutable de Fossil.  Deje en blanco para usar el Fossil establecido.</translation>
+        <translation>Ruta al ejecutable de Fossil. Deje en blanco para usar el Fossil predeterminado</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="67"/>
@@ -1842,32 +1843,32 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="174"/>
         <source>Custom Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Acciones personalizadas</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="186"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Acción</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="193"/>
         <source>Custom action</source>
-        <translation type="unfinished"></translation>
+        <translation>Acción personalizada</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="200"/>
         <source>Name of custom action</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de la acción personalizada</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="213"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descripción</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="226"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Orden</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="235"/>
@@ -1877,12 +1878,12 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="263"/>
         <source>Context</source>
-        <translation type="unfinished"></translation>
+        <translation>Contexto</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="270"/>
         <source>The context where this action will be available</source>
-        <translation type="unfinished"></translation>
+        <translation>El contexto en que estará disponible esta acción</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="277"/>
@@ -1892,7 +1893,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="287"/>
         <source>Multiple Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Selección múltiple</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="14"/>
@@ -1912,7 +1913,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="17"/>
         <source>Custom Action %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Acción personalizada %0</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="19"/>
@@ -1927,12 +1928,12 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="38"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="39"/>
         <source>Folders</source>
-        <translation type="unfinished">Carpetas</translation>
+        <translation>Carpetas</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="80"/>
@@ -1952,7 +1953,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="153"/>
         <source>Select command</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccione una orden</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="107"/>
