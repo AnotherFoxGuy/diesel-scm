@@ -35,7 +35,7 @@ jobs:
           curl "https://git.anotherfoxguy.com/AnotherFoxGuy/install-scripts/raw/branch/main/install-conan.sh" | sudo bash
 
       - name: Enable Developer Command Prompt
-        uses: ilammy/msvc-dev-cmd@v1.10.0
+        uses: ilammy/msvc-dev-cmd@v1.11.0
 
       - name: Cache conan packages
         uses: actions/cache@v3
