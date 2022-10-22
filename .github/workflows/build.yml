@@ -55,7 +55,7 @@ jobs:
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           aqtversion: '==2.1.0'
-          version: 6.3.0
+          version: 6.4.0
           modules: qt5compat qtpositioning qtwebchannel qtwebengine qtwebview
           dir: "${{ github.workspace }}/qt/"
 
