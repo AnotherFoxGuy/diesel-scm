@@ -60,14 +60,34 @@ jobs:
           dir: "${{ github.workspace }}/qt/"
 
       - name: Add conan remote
-        run: conan remote add AFG https://conan.anotherfoxguy.com -f
+        run: conan remote add ror-conan https://git.anotherfoxguy.com/api/packages/rorbot/conan -f
 
-      - name: Build
+      - name: Run Conan (Windows)
+        if: startsWith(matrix.os, 'windows')
         run: |
           mkdir build
           cd build
-          conan install .. --build=missing
-          cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=redist ..
+          conan config set general.revisions_enabled=1
+          conan install .. -b missing -pr:b=../tools/conan-profiles/vs-22-release-ninja -pr=../tools/conan-profiles/vs-22-release-ninja
+        shell: cmd
+
+      - name:  Run Conan (Linux)
+        if: startsWith(matrix.os, 'ubuntu')
+        run: |
+          mkdir build
+          cd build
+          conan config set general.revisions_enabled=1
+          echo "tools.system.package_manager:mode = install" > ~/.conan/global.conf
+          echo "tools.system.package_manager:sudo = True" >> ~/.conan/global.conf
+          conan profile new --detect --force default
+          conan profile update conf.tools.cmake.cmaketoolchain:generator="Ninja" default
+          conan profile update settings.compiler.libcxx=libstdc++11 default
+          conan install .. -s build_type=Release -b missing -pr:b=default
+
+      - name: Build
+        run: |
+          cd build
+          cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=redist -DCMAKE_TOOLCHAIN_FILE="conan_toolchain.cmake" -DCMAKE_POLICY_DEFAULT_CMP0091=NEW
           ninja
 
       - name: Install
