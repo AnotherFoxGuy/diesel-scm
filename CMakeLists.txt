@@ -24,7 +24,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_SOURCE_DIR}/ui")
 
-find_package(Qt6 COMPONENTS Core Gui WebEngineWidgets Core5Compat  REQUIRED)
+find_package(Qt6 COMPONENTS Core Gui WebEngineCore WebEngineWidgets Core5Compat  REQUIRED)
 find_package(Qt6Keychain REQUIRED)
 
 set(FORMS

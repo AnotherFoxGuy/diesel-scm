@@ -22,6 +22,7 @@ class QtkeychainConan(ConanFile):
         cmake.definitions["QTKEYCHAIN_STATIC"] = self.options.static
         cmake.definitions["BUILD_WITH_QT6"] = "ON"
         cmake.definitions["BUILD_TEST_APPLICATION"] = "OFF"
+        #cmake.definitions["CMAKE_PREFIX_PATH"] = "E:/Qt/6.4.0/msvc2019_64"
         cmake.configure()
         cmake.build()
 
@@ -30,6 +31,8 @@ class QtkeychainConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.names["cmake_find_package"] = "Qt6Keychain"
-        self.cpp_info.names["cmake_find_package_multi"] = "Qt6Keychain"
+        self.cpp_info.set_property("cmake_module_file_name", "Qt6Keychain")
+        self.cpp_info.set_property("cmake_module_target_name", "Qt6Keychain::Qt6Keychain")
+        self.cpp_info.set_property("cmake_file_name", "Qt6Keychain")
+        self.cpp_info.set_property("cmake_target_name", "Qt6Keychain::Qt6Keychain")
         self.cpp_info.libs = tools.collect_libs(self)

@@ -2,8 +2,8 @@
 qt6keychain/0.13.2
 
 [generators]
-qmake
-cmake_find_package
+CMakeDeps
+CMakeToolchain
 
 [imports]
 bin, *.dll -> ./bin @ keep_path=False
