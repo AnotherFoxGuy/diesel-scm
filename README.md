@@ -27,16 +27,3 @@ Currently the following Fossil operations are supported
   *  Diff
   *  Stash
   *  History (via fossil ui)
-
-
-## Translation Project
-Do you use Fuel a lot but would prefer if it spoke your language? Help by submitting a translation for your language. 
-
-Click <a href="https://weblate.anotherfoxguy.com/engage/fuel-scm/">here</a>
-and help make Fuel better.
-
-### Realtime Translation Stats
-
-<a href="https://weblate.anotherfoxguy.com/engage/fuel-scm/">
-<img src="https://weblate.anotherfoxguy.com/widgets/fuel-scm/-/fuel-scm/multi-auto.svg" alt="Translation status" />
-</a>
