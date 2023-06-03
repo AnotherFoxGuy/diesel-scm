@@ -21,11 +21,8 @@ jobs:
 
       - name: Install Build tools
         if: startsWith(matrix.os, 'windows')
-        shell: cmake -P {0}
-        run: |
-          file(MAKE_DIRECTORY $ENV{BUILD_TOOLS_PATH})
-          file(DOWNLOAD https://cdn.anotherfoxguy.com/build-tools.zip "$ENV{TMP}/build-tools.zip" SHOW_PROGRESS)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xzf "$ENV{TMP}/build-tools.zip" WORKING_DIRECTORY "$ENV{BUILD_TOOLS_PATH}")
+        run: git clone https://git.anotherfoxguy.com/AnotherFoxGuy/build-tools.git %BUILD_TOOLS_PATH%
+        shell: cmd
 
       - name: Install dependencies (Ubuntu)
         if: startsWith(matrix.os, 'ubuntu')
@@ -40,8 +37,8 @@ jobs:
       - name: Cache conan packages
         uses: actions/cache@v3
         with:
-          key: conan-${{ runner.os }}-${{ hashFiles('**/conanfile.txt') }}
-          path: ~/.conan/
+          key: conan-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
+          path: ~/.conan2/
 
       - name: Cache Qt
         id: cache-qt
@@ -65,38 +62,29 @@ jobs:
       - name: Run Conan (Windows)
         if: startsWith(matrix.os, 'windows')
         run: |
-          mkdir build
-          cd build
-          conan config set general.revisions_enabled=1
-          conan install .. -b missing -pr:b=../tools/conan-profiles/vs-22-release-ninja -pr=../tools/conan-profiles/vs-22-release-ninja
+          conan remote add ror-conan https://git.anotherfoxguy.com/api/packages/rorbot/conan -f
+          conan install . -b missing -pr:b=tools/conan-profiles/vs-22-release-ninja -pr=tools/conan-profiles/vs-22-release-ninja
         shell: cmd
 
       - name:  Run Conan (Linux)
         if: startsWith(matrix.os, 'ubuntu')
         run: |
-          mkdir build
-          cd build
-          conan config set general.revisions_enabled=1
-          echo "tools.system.package_manager:mode = install" > ~/.conan/global.conf
-          echo "tools.system.package_manager:sudo = True" >> ~/.conan/global.conf
-          conan profile new --detect --force default
-          conan profile update conf.tools.cmake.cmaketoolchain:generator="Ninja" default
-          conan profile update settings.compiler.libcxx=libstdc++11 default
-          conan install .. -s build_type=Release -b missing -pr:b=default
+          conan profile detect --force
+          echo "tools.system.package_manager:mode = install" > ~/.conan2/global.conf
+          echo "tools.system.package_manager:sudo = True" >> ~/.conan2/global.conf
+          conan remote add ror-conan https://git.anotherfoxguy.com/api/packages/rorbot/conan -f
+          conan install . -s build_type=Release -b missing -pr:b=default -c tools.cmake.cmaketoolchain:generator="Ninja"
 
       - name: Build
         run: |
-          cd build
-          cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=redist -DCMAKE_TOOLCHAIN_FILE="conan_toolchain.cmake" -DCMAKE_POLICY_DEFAULT_CMP0091=NEW
+          cmake --preset conan-release -DCMAKE_INSTALL_PREFIX=redist
           ninja
 
       - name: Install
-        run: |
-          cd build
-          ninja install
+        run: ninja install
 
       - name: Upload redist folder
         uses: actions/upload-artifact@v3
         with:
           name: fuel-${{ runner.os }}
-          path: build/redist
+          path: redist

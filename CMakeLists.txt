@@ -183,7 +183,7 @@ if (WIN32)
 
     add_custom_target(
             copy_dll
-            COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --release --no-compiler-runtime --no-opengl-sw
+            COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --debug --no-compiler-runtime --no-opengl-sw
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
 
@@ -197,8 +197,8 @@ if (WIN32)
 
     FetchContent_Declare(
             fossil
-            URL https://fossil-scm.org/home/uv/fossil-w64-2.19.zip
-            URL_MD5 0156328fa9165ad1f041cafbf49c7cf7
+            URL https://fossil-scm.org/home/uv/fossil-w64-2.22.zip
+            URL_MD5 08795c21fb2afd172ecec7fce6de8f43
     )
     FetchContent_MakeAvailable(fossil)
 

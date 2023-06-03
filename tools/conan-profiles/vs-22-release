@@ -6,5 +6,3 @@ compiler.version=193
 compiler.runtime=dynamic
 compiler.runtime_type=Release
 build_type=Release
-[conf]
-tools.cmake.cmaketoolchain:generator=Ninja

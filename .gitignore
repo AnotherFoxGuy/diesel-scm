@@ -46,3 +46,5 @@ CMakeLists.txt.user*
 /build*
 .idea/
 test-pr
+_build/
+CMakeUserPresets.json
