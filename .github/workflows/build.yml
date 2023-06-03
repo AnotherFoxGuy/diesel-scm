@@ -40,18 +40,10 @@ jobs:
           key: conan-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
           path: ~/.conan2/
 
-      - name: Cache Qt
-        id: cache-qt
-        uses: actions/cache@v3
-        with:
-          path: "${{ github.workspace }}/qt/"
-          key: ${{ runner.os }}-QtCache
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
-          aqtversion: '==2.1.0'
+          cache: 'true'
           version: 6.4.0
           modules: qt5compat qtpositioning qtwebchannel qtwebengine qtwebview
           dir: "${{ github.workspace }}/qt/"

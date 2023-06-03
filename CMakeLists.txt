@@ -183,7 +183,7 @@ if (WIN32)
 
     add_custom_target(
             copy_dll
-            COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --debug --no-compiler-runtime --no-opengl-sw
+            COMMAND ${QT_BIN_DIR}/windeployqt.exe $<TARGET_FILE:${PROJECT_NAME}> --release --no-compiler-runtime --no-opengl-sw
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
 
