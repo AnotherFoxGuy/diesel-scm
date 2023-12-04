@@ -4,7 +4,7 @@ pkgver=2.0.0
 pkgrel=1
 pkgdesc="A GUI front-end to Fossil SCM"
 arch=(i686 x86_64)
-url="https://diesel-scm.org/"
+url="https://diesel.anotherfoxguy.com/"
 license=('GPL2')
 depends=('qt5-base>=5.4.0' 'qt5-webengine>=5.4.0' 'fossil' 'qtkeychain-qt5')
 makedepends=('git' 'cmake')

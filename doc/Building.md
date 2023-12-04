@@ -15,13 +15,13 @@ Retrieving the source
 -------------------------------------------------------------------------------
 The source is available as a tar.gz archive at the following location
 
-	https://diesel-scm.org/fossil/wiki?name=Downloads
+	https://diesel.anotherfoxguy.com/fossil/wiki?name=Downloads
 
 Additionally you can clone the source code directly from our site using fossil
 
 	mkdir diesel
 	cd diesel
-	fossil clone https://diesel-scm.org/fossil diesel.fossil
+	fossil clone https://diesel.anotherfoxguy.com/fossil diesel.fossil
 	fossil open diesel.fossil
 
 

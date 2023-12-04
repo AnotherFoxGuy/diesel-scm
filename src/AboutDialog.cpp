@@ -7,7 +7,7 @@ AboutDialog::AboutDialog(QWidget *parent, const QString &fossilVersion) : QDialo
     ui->setupUi(this);
     QString banner(QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion());
     banner += "\n" + ui->lblBanner->text();
-    banner += "\n<a href=\"https://diesel-scm.org/\">https://diesel-scm.org/</a>";
+    banner += "\n<a href=\"https://diesel.anotherfoxguy.com/\">https://diesel.anotherfoxguy.com/</a>";
     banner = banner.replace("\n", "<br/>");
     ui->lblBanner->setText(banner);
     ui->lblBanner->setOpenExternalLinks(true);
@@ -23,7 +23,7 @@ AboutDialog::AboutDialog(QWidget *parent, const QString &fossilVersion) : QDialo
     if (fmanifest.open(QFile::ReadOnly))
     {
         QString revision = QString(fmanifest.readAll()).trimmed();
-        revisiontxt = QString(tr("Diesel revision %0").arg("<a href=\"https://diesel-scm.org/fossil/timeline?c=%0\">%0</a>").arg(revision));
+        revisiontxt = QString(tr("Diesel revision %0").arg("<a href=\"https://diesel.anotherfoxguy.com/fossil/timeline?c=%0\">%0</a>").arg(revision));
         ui->lblDieselRevision->setOpenExternalLinks(true);
         ui->lblDieselRevision->setTextFormat(Qt::RichText);
         fmanifest.close();
