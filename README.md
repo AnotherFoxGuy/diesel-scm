@@ -1,9 +1,9 @@
-Fuel
+Diesel
 ---------
-Fuel is cross-platform GUI front-end for the excellent <a href="http://fossil-scm.org">Fossil</a> SCM tool written in Qt. Fuel runs on Windows, OSX as well as various flavors of Unix including Linux and FreeBSD.
+Diesel is cross-platform GUI front-end for the excellent <a href="http://fossil-scm.org">Fossil</a> SCM tool written in Qt. Diesel runs on Windows, OSX as well as various flavors of Unix including Linux and FreeBSD.
 
 ### What does it look like? (V2.0.0 Beta)
-![Fuel-2.0.0-Beta-Win](/doc/Fuel-2.0.0-Beta-Win.jpg)
+![Diesel-2.0.0-Beta-Win](/doc/Diesel-2.0.0-Beta-Win.jpg)
 
 ## Status
 Currently the following Fossil operations are supported

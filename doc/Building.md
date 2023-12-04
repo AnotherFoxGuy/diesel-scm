@@ -3,11 +3,11 @@ Building from Source
 
 Prerequisites
 -------------------------------------------------------------------------------
-Building Fuel from source requires Qt version 5. Qt is available at:
+Building Diesel from source requires Qt version 5. Qt is available at:
 	http://www.qt.io/download-open-source/
 
-To run Fuel a compiled binary of Fossil must be available either in the system
-path or in the same folder as the Fuel executable. You can find the latest
+To run Diesel a compiled binary of Fossil must be available either in the system
+path or in the same folder as the Diesel executable. You can find the latest
 Fossil binaries from the Fossil homepage at:
 	https://www.fossil-scm.org/download.html
 
@@ -15,21 +15,21 @@ Retrieving the source
 -------------------------------------------------------------------------------
 The source is available as a tar.gz archive at the following location
 
-	https://fuel-scm.org/fossil/wiki?name=Downloads
+	https://diesel-scm.org/fossil/wiki?name=Downloads
 
 Additionally you can clone the source code directly from our site using fossil
 
-	mkdir fuel
-	cd fuel
-	fossil clone https://fuel-scm.org/fossil fuel.fossil
-	fossil open fuel.fossil
+	mkdir diesel
+	cd diesel
+	fossil clone https://diesel-scm.org/fossil diesel.fossil
+	fossil open diesel.fossil
 
 
 Windows (Qt5 / MinGW)
 -------------------------------------------------------------------------------
-1. Open a Command Prompt and cd into the folder containing the Fuel source code
+1. Open a Command Prompt and cd into the folder containing the Diesel source code
 
-		cd fuel
+		cd diesel
 
 2. Make a build folder and cd into it
 
@@ -51,9 +51,9 @@ Windows (Qt5 / MinGW)
 
 Windows (Qt5 / MSVC)
 -------------------------------------------------------------------------------
-1. Open a Command Prompt and cd into the folder containing the Fuel source code
+1. Open a Command Prompt and cd into the folder containing the Diesel source code
 
-		cd fuel
+		cd diesel
 
 2. Make a build folder and cd into it
 
@@ -66,13 +66,13 @@ Windows (Qt5 / MSVC)
 
 4. Open the generated project
 
-		start fuel.vcxproj
+		start diesel.vcxproj
 
 5. Build the project
 	Use the IDE to build the project or alternatively you can use via MSBuild
 
 		call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
-		msbuild /p:Configuration=Release /m Fuel.vcxproj
+		msbuild /p:Configuration=Release /m Diesel.vcxproj
 
 6. Copy the Qt DLLs
 
@@ -80,7 +80,7 @@ Windows (Qt5 / MSVC)
 
 4. Enjoy
 
-		bin\Fuel.exe
+		bin\Diesel.exe
 
 
 Mac OS X
@@ -91,9 +91,9 @@ Build Steps:
 
 		export PATH=$PATH:/path/to/qt/version/clang_64/bin
 
-2. Go into the folder containing the Fuel source code
+2. Go into the folder containing the Diesel source code
 
-		cd fuel
+		cd diesel
 
 3. Generate the makefile with cmake
 
@@ -103,26 +103,26 @@ Build Steps:
 
 		make -j6
 
-6. (Optional) Include the Fossil executable within the Fuel application bundle
+6. (Optional) Include the Fossil executable within the Diesel application bundle
 
-		cp /location/to/fossil Fuel.app/Contents/MacOS
+		cp /location/to/fossil Diesel.app/Contents/MacOS
 
-7. Package Qt dependencies into Fuel to make a standalone application bundle
+7. Package Qt dependencies into Diesel to make a standalone application bundle
 
-		macdeployqt Fuel.app
+		macdeployqt Diesel.app
 
 8. Enjoy
 
-		open Fuel.app
+		open Diesel.app
 
 
 Unix-based OS
 -------------------------------------------------------------------------------
 Build Steps:
 
-1. cd into the folder containing the Fuel source code
+1. cd into the folder containing the Diesel source code
 
-		cd fuel
+		cd diesel
 
 2. Make a build folder and cd into it
 
@@ -139,5 +139,5 @@ Build Steps:
 
 5. Enjoy
 
-		bin/Fuel
+		bin/Diesel
 

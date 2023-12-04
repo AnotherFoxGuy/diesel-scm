@@ -5,8 +5,8 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../ui/AboutDialog.ui" line="14"/>
-        <source>About Fuel...</source>
-        <translation>Acerca de Fuel…</translation>
+        <source>About Diesel...</source>
+        <translation>Acerca de Diesel…</translation>
     </message>
     <message>
         <location filename="../ui/AboutDialog.ui" line="23"/>
@@ -27,8 +27,8 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="26"/>
-        <source>Fuel revision %0</source>
-        <translation>Fuel, enmienda %0</translation>
+        <source>Diesel revision %0</source>
+        <translation>Diesel, enmienda %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="37"/>
@@ -305,8 +305,8 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <name>MainWindow</name>
     <message>
         <location filename="../ui/MainWindow.ui" line="17"/>
-        <source>Fuel</source>
-        <translation>Fuel</translation>
+        <source>Diesel</source>
+        <translation>Diesel</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="156"/>
@@ -872,8 +872,8 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="739"/>
-        <source>About Fuel</source>
-        <translation>Sobre Fuel</translation>
+        <source>About Diesel</source>
+        <translation>Sobre Diesel</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2535"/>
@@ -898,8 +898,8 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="772"/>
         <location filename="../ui/MainWindow.ui" line="775"/>
-        <source>Fuel Preferences</source>
-        <translation>Preferencias de Fuel</translation>
+        <source>Diesel Preferences</source>
+        <translation>Preferencias de Diesel</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="792"/>

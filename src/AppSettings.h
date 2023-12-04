@@ -6,11 +6,11 @@
 #include <QVariant>
 #include <QVector>
 
-#define FUEL_SETTING_FOSSIL_PATH "FossilPath"
-#define FUEL_SETTING_COMMIT_MSG "CommitMsgHistory"
-#define FUEL_SETTING_FILE_DBLCLICK "FileDblClickAction"
-#define FUEL_SETTING_LANGUAGE "Language"
-#define FUEL_SETTING_WEB_BROWSER "WebBrowser"
+#define DIESEL_SETTING_FOSSIL_PATH "FossilPath"
+#define DIESEL_SETTING_COMMIT_MSG "CommitMsgHistory"
+#define DIESEL_SETTING_FILE_DBLCLICK "FileDblClickAction"
+#define DIESEL_SETTING_LANGUAGE "Language"
+#define DIESEL_SETTING_WEB_BROWSER "WebBrowser"
 
 #define FOSSIL_SETTING_GDIFF_CMD "gdiff-command"
 #define FOSSIL_SETTING_GMERGE_CMD "gmerge-command"
@@ -87,7 +87,7 @@ struct Settings
 
     // App configuration access
     class QSettings *GetStore() { return store; }
-    bool HasValue(const QString &name) const;                   // store->contains(FUEL_SETTING_FOSSIL_PATH)
+    bool HasValue(const QString &name) const;                   // store->contains(DIESEL_SETTING_FOSSIL_PATH)
     const QVariant GetValue(const QString &name);               // settings.store->value
     void SetValue(const QString &name, const QVariant &value);  // settings.store->value
 

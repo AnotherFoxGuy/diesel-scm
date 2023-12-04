@@ -1,7 +1,7 @@
 Changes
 ================================================================================
 
-Fuel V2.0.0 (2015-XX-XX)
+Diesel V2.0.0 (2015-XX-XX)
 --------------------------------------------------------------------------------
 - Feature: New workspace view to visualise branches, tags, stashes and remotes
 - Feature: Support for creating, merging and integrating branches
@@ -11,7 +11,7 @@ Fuel V2.0.0 (2015-XX-XX)
 - Feature: Support for creating a branch during commit, including private branches
 - Feature: Added Search Box for filtering and searching within the list of files
 - Feature: Display the active tags and branches in the status bar
-- Feature: Fuel now automatically detects the http port of "fossil ui"
+- Feature: Diesel now automatically detects the http port of "fossil ui"
 - Feature: Added menu shortcut to display only the modified files of the workspace
 - Feature: Support for arbitrary number of remote urls, including pushing and
   pulling to specific remotes.
@@ -29,12 +29,12 @@ Fuel V2.0.0 (2015-XX-XX)
   Workspace folders
 - Feature: Support for force closing a workspace
 - Misc: Reorganised menu structure.
-- Misc: Separated Fuel and Fossil settings
+- Misc: Separated Diesel and Fossil settings
 - Bug Fix: Retain the folder tree state when refreshing the workspace
 - Bug Fix: Fixed issue with the expanding width of the commit dialog
 - Major internal refactoring
 
-Fuel V1.0.1 (2015-08-23)
+Diesel V1.0.1 (2015-08-23)
 --------------------------------------------------------------------------------
 - Added Localisations:
 	- Italian (Thanks maxxlupi and Zangune)
@@ -42,7 +42,7 @@ Fuel V1.0.1 (2015-08-23)
 	- Korean (Thanks ardiefox)
 - Reformated Docs into Markdown
 
-Fuel V1.0.0 (2015-03-28)
+Diesel V1.0.0 (2015-03-28)
 --------------------------------------------------------------------------------
 - Feature: Long Operations can now be aborted by pressing the Escape key
 - Improvement: Better support for commit messages with international characters
@@ -52,12 +52,12 @@ Fuel V1.0.0 (2015-03-28)
 	- Russian (Thanks Mouse166)
 	- Portuguese (Thanks emansije)
 
-Fuel V0.9.7 (Unreleased)
+Diesel V0.9.7 (Unreleased)
 --------------------------------------------------------------------------------
 - Feature: Optionally use the internal browser for the Fossil UI
 - Feature: Support for persisting the state (Column order and sizes) of the File View
-- Feature: Dropping a Fossil checkout file or workspace folder on Fuel now opens that workspace
-- Feature: Dropping a file on Fuel now adds that file to Fossil
+- Feature: Dropping a Fossil checkout file or workspace folder on Diesel now opens that workspace
+- Feature: Dropping a file on Diesel now adds that file to Fossil
 - Feature: Commit Dialog: Pressing Ctrl-Enter within the comment box commences the commit,
   and Escape aborts it
 - Feature: Support for localization
@@ -67,18 +67,18 @@ Fuel V0.9.7 (Unreleased)
 	- Greek
 	- Spanish (Thanks djnavas)
 - Feature: Support for QT5
-- Distribution: Fuel is now available in the Arch User Repository
+- Distribution: Diesel is now available in the Arch User Repository
 
-Fuel V0.9.6 (2012-05-13)
+Diesel V0.9.6 (2012-05-13)
 --------------------------------------------------------------------------------
 - Feature: Support for fossil stashes
-- Feature: Support for dragging and dropping files out of Fuel
+- Feature: Support for dragging and dropping files out of Diesel
 - Feature: Allow for opening workspaces via the checkout file or a workspace folder
 - Feature: Display the actual file icons
 - Feature: Windows: Shift-Right-Click invokes the Explorer file context menu
-- Feature: Allow starting Fuel into an existing fossil workspace via the command line (Thanks Chris)
-- Feature: Portable mode. When starting Fuel with the "--portable" option all settings
-  will be stored in a Fuel.ini file. If a settings file already exists, Fuel will start
+- Feature: Allow starting Diesel into an existing fossil workspace via the command line (Thanks Chris)
+- Feature: Portable mode. When starting Diesel with the "--portable" option all settings
+  will be stored in a Diesel.ini file. If a settings file already exists, Diesel will start
   into portable mode automatically. (Thanks Chris)
 - Improvement: Always show unknown files when starting a new repository
 - Bug Fix: Avoid specifying filenames explicitly when all modified files are selected.

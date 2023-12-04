@@ -1,7 +1,7 @@
 #!/bin/bash
 export MARKS=marks
 export DUMP=changes.fastexport
-export REPO=fuel.fossil
+export REPO=diesel.fossil
 
 
 if [ ! -f $MARKS-fossil ]; then

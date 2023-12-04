@@ -24,17 +24,17 @@ Settings::Settings(bool portableMode) : store(0)
     else
     {
         // Linux: ~/.config/organizationName/applicationName.conf
-        // Windows: HKEY_CURRENT_USER\Software\organizationName\Fuel
+        // Windows: HKEY_CURRENT_USER\Software\organizationName\Diesel
         store = new QSettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
     }
     Q_ASSERT(store);
 
-    if (!HasValue(FUEL_SETTING_FILE_DBLCLICK))
-        SetValue(FUEL_SETTING_FILE_DBLCLICK, 0);
-    if (!HasValue(FUEL_SETTING_LANGUAGE) && SupportsLang(QLocale::system().name()))
-        SetValue(FUEL_SETTING_LANGUAGE, QLocale::system().name());
-    if (!HasValue(FUEL_SETTING_WEB_BROWSER))
-        SetValue(FUEL_SETTING_WEB_BROWSER, 0);
+    if (!HasValue(DIESEL_SETTING_FILE_DBLCLICK))
+        SetValue(DIESEL_SETTING_FILE_DBLCLICK, 0);
+    if (!HasValue(DIESEL_SETTING_LANGUAGE) && SupportsLang(QLocale::system().name()))
+        SetValue(DIESEL_SETTING_LANGUAGE, QLocale::system().name());
+    if (!HasValue(DIESEL_SETTING_WEB_BROWSER))
+        SetValue(DIESEL_SETTING_WEB_BROWSER, 0);
 
     for (int i = 0; i < MAX_CUSTOM_ACTIONS; ++i)
     {
@@ -56,12 +56,12 @@ Settings::~Settings()
 //-----------------------------------------------------------------------------
 void Settings::ApplyEnvironment()
 {
-    QString lang_id = GetValue(FUEL_SETTING_LANGUAGE).toString();
+    QString lang_id = GetValue(DIESEL_SETTING_LANGUAGE).toString();
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 #endif
     if (!InstallLang(lang_id))
-        SetValue(FUEL_SETTING_LANGUAGE, "en_US");
+        SetValue(DIESEL_SETTING_LANGUAGE, "en_US");
 }
 
 //-----------------------------------------------------------------------------

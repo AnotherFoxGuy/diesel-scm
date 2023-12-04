@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>About Fuel...</string>
+   <string>About Diesel...</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -91,9 +91,9 @@ Released under the GNU GPL</string>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QLabel" name="lblFuelRevision">
+    <widget class="QLabel" name="lblDieselRevision">
      <property name="text">
-      <string notr="true">FUEL REVISION</string>
+      <string notr="true">DIESEL REVISION</string>
      </property>
     </widget>
    </item>

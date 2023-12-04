@@ -300,7 +300,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
     uiCallback.init(this);
 
     // Need to be before applySettings which sets the last workspace
-    getWorkspace().Init(&uiCallback, settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
+    getWorkspace().Init(&uiCallback, settings.GetValue(DIESEL_SETTING_FOSSIL_PATH).toString());
 
     applySettings();
 
@@ -618,7 +618,7 @@ void MainWindow::enableActions(bool on)
 //------------------------------------------------------------------------------
 bool MainWindow::refresh()
 {
-    QString title = "Fuel";
+    QString title = "Diesel";
 
     loadFossilSettings();
 
@@ -1220,7 +1220,7 @@ void MainWindow::fossilBrowse(const QString &fossilUrl)
     if (!uiRunning())
         ui->actionFossilUI->activate(QAction::Trigger);
 
-    bool use_internal = settings.GetValue(FUEL_SETTING_WEB_BROWSER).toInt() == 1;
+    bool use_internal = settings.GetValue(DIESEL_SETTING_WEB_BROWSER).toInt() == 1;
 
     QUrl url = QUrl(getWorkspace().fossil().getUIHttpAddress() + fossilUrl);
 
@@ -1468,7 +1468,7 @@ void MainWindow::on_actionHistory_triggered()
 //------------------------------------------------------------------------------
 void MainWindow::on_fileTableView_doubleClicked(const QModelIndex & /*index*/)
 {
-    int action = settings.GetValue(FUEL_SETTING_FILE_DBLCLICK).toInt();
+    int action = settings.GetValue(DIESEL_SETTING_FILE_DBLCLICK).toInt();
     if (action == FILE_DLBCLICK_ACTION_DIFF)
         on_actionDiff_triggered();
     else if (action == FILE_DLBCLICK_ACTION_OPEN)
@@ -1500,7 +1500,7 @@ void MainWindow::on_actionCommit_triggered()
     if (commit_files.empty() && !getWorkspace().otherChanges())
         return;
 
-    QStringList commit_msgs = settings.GetValue(FUEL_SETTING_COMMIT_MSG).toStringList();
+    QStringList commit_msgs = settings.GetValue(DIESEL_SETTING_COMMIT_MSG).toStringList();
 
     QString msg;
     QString branch_name = "";
@@ -1512,7 +1512,7 @@ void MainWindow::on_actionCommit_triggered()
     if (commit_msgs.indexOf(msg) == -1)
     {
         commit_msgs.push_front(msg);
-        settings.SetValue(FUEL_SETTING_COMMIT_MSG, commit_msgs);
+        settings.SetValue(DIESEL_SETTING_COMMIT_MSG, commit_msgs);
     }
 
     if (aborted)
@@ -1772,7 +1772,7 @@ void MainWindow::on_actionSettings_triggered()
     if (!SettingsDialog::run(this, settings))
         return;
 
-    getWorkspace().fossil().setExePath(settings.GetValue(FUEL_SETTING_FOSSIL_PATH).toString());
+    getWorkspace().fossil().setExePath(settings.GetValue(DIESEL_SETTING_FOSSIL_PATH).toString());
     updateCustomActions();
 }
 

@@ -17,7 +17,7 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${RUNTIME_OUTPUT_DIRECTORY})
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${RUNTIME_OUTPUT_DIRECTORY})
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${RUNTIME_OUTPUT_DIRECTORY})
 
-project(Fuel VERSION "2.0.0")
+project(Diesel VERSION "2.0.0") 
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -116,10 +116,10 @@ endif ()
 if (WIN32)
     # clang-cl doesn't support resource files
     if (NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-        list(APPEND SOURCES "${CMAKE_SOURCE_DIR}/rsrc/fuel.rc")
+        list(APPEND SOURCES "${CMAKE_SOURCE_DIR}/rsrc/diesel.rc")
     endif ()
 elseif (APPLE)
-    list(APPEND SOURCES "${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.icns")
+    list(APPEND SOURCES "${CMAKE_SOURCE_DIR}/rsrc/icons/diesel.icns")
 endif ()
 
 add_executable(
@@ -144,7 +144,7 @@ else ()
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt6keychain)
 endif ()
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE FUEL_VERSION="${PROJECT_VERSION}")
+target_compile_definitions(${PROJECT_NAME} PRIVATE DIESEL_VERSION="${PROJECT_VERSION}")
 
 if (0)
     add_dependencies(${PROJECT_NAME} translations)
@@ -214,7 +214,7 @@ if (WIN32)
 
     set(CPACK_INNOSETUP_ALLOW_CUSTOM_DIRECTORY ON)
     set(CPACK_INNOSETUP_USE_MODERN_WIZARD ON)
-    set(CPACK_INNOSETUP_ICON_FILE "${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.ico")
+    set(CPACK_INNOSETUP_ICON_FILE "${CMAKE_SOURCE_DIR}/rsrc/icons/diesel.ico")
 
     set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
     set(CPACK_GENERATOR ${CPACK_GENERATOR} INNOSETUP)
@@ -226,11 +226,11 @@ if (UNIX)
             RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     )
     install(
-            FILES ${CMAKE_SOURCE_DIR}/rsrc/fuel.desktop
+            FILES ${CMAKE_SOURCE_DIR}/rsrc/diesel.desktop
             DESTINATION ${CMAKE_INSTALL_DATADIR}/applications/
     )
     install(
-            FILES ${CMAKE_SOURCE_DIR}/rsrc/icons/fuel.png
+            FILES ${CMAKE_SOURCE_DIR}/rsrc/icons/diesel.png
             DESTINATION ${CMAKE_INSTALL_DATADIR}/pixmaps/
     )
 endif ()

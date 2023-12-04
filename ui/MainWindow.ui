@@ -14,7 +14,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Fuel</string>
+   <string>Diesel</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rsrc/resources.qrc">
@@ -736,7 +736,7 @@
     <string>&amp;About...</string>
    </property>
    <property name="statusTip">
-    <string>About Fuel</string>
+    <string>About Diesel</string>
    </property>
    <property name="menuRole">
     <enum>QAction::AboutRole</enum>
@@ -769,10 +769,10 @@
     <string>&amp;Preferences...</string>
    </property>
    <property name="toolTip">
-    <string>Fuel Preferences</string>
+    <string>Diesel Preferences</string>
    </property>
    <property name="statusTip">
-    <string>Fuel Preferences</string>
+    <string>Diesel Preferences</string>
    </property>
    <property name="menuRole">
     <enum>QAction::PreferencesRole</enum>

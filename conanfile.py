@@ -3,8 +3,8 @@ from conan import ConanFile
 from conan.tools.files import copy
 
 
-class Fuel(ConanFile):
-    name = "fuel-scm"
+class Diesel(ConanFile):
+    name = "diesel-scm"
     settings = "os", "compiler", "build_type", "arch"
     generators = "CMakeToolchain", "CMakeDeps"
 

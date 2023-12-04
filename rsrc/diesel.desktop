@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=Fuel
-Icon=fuel
+Exec=Diesel
+Icon=diesel
 Terminal=false
-Name=Fuel
+Name=Diesel
 GenericName=Software Configuration Management tool
 Comment=GUI Front-End to the Fossil SCM tool
 Categories=Development;RevisionControl;

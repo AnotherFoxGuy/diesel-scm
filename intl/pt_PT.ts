@@ -5,8 +5,8 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../ui/AboutDialog.ui" line="14"/>
-        <source>About Fuel...</source>
-        <translation type="unfinished">Sobre o Fuel...</translation>
+        <source>About Diesel...</source>
+        <translation type="unfinished">Sobre o Diesel...</translation>
     </message>
     <message>
         <location filename="../ui/AboutDialog.ui" line="23"/>
@@ -26,7 +26,7 @@ Released under the GNU GPL</source>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="26"/>
-        <source>Fuel revision %0</source>
+        <source>Diesel revision %0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -304,8 +304,8 @@ Released under the GNU GPL</source>
     <name>MainWindow</name>
     <message>
         <location filename="../ui/MainWindow.ui" line="17"/>
-        <source>Fuel</source>
-        <translation>Fuel</translation>
+        <source>Diesel</source>
+        <translation>Diesel</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="156"/>
@@ -871,8 +871,8 @@ Released under the GNU GPL</source>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="739"/>
-        <source>About Fuel</source>
-        <translation>Sobre o Fuel</translation>
+        <source>About Diesel</source>
+        <translation>Sobre o Diesel</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2535"/>
@@ -897,8 +897,8 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="772"/>
         <location filename="../ui/MainWindow.ui" line="775"/>
-        <source>Fuel Preferences</source>
-        <translation>Preferências do Fuel</translation>
+        <source>Diesel Preferences</source>
+        <translation>Preferências do Diesel</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="792"/>

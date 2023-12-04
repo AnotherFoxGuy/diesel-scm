@@ -1085,10 +1085,10 @@ QString Fossil::getFossilPath()
     fossil_exe += ".exe";
 #endif
     // Use our fossil if available
-    QString fuel_fossil = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + fossil_exe);
+    QString diesel_fossil = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + fossil_exe);
 
-    if (QFile::exists(fuel_fossil))
-        return fuel_fossil;
+    if (QFile::exists(diesel_fossil))
+        return diesel_fossil;
 
     // Otherwise assume there is a "fossil" executable in the path
     return fossil_exe;

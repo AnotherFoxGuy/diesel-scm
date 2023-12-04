@@ -5,8 +5,8 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../ui/AboutDialog.ui" line="14"/>
-        <source>About Fuel...</source>
-        <translation type="unfinished">Fuel에 대하여…</translation>
+        <source>About Diesel...</source>
+        <translation type="unfinished">Diesel에 대하여…</translation>
     </message>
     <message>
         <location filename="../ui/AboutDialog.ui" line="23"/>
@@ -26,7 +26,7 @@ Released under the GNU GPL</source>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="26"/>
-        <source>Fuel revision %0</source>
+        <source>Diesel revision %0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -304,8 +304,8 @@ Released under the GNU GPL</source>
     <name>MainWindow</name>
     <message>
         <location filename="../ui/MainWindow.ui" line="17"/>
-        <source>Fuel</source>
-        <translation>Fuel</translation>
+        <source>Diesel</source>
+        <translation>Diesel</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="156"/>
@@ -739,7 +739,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="583"/>
         <source>Quit</source>
-        <translation>Fuel을 종료합니다.</translation>
+        <translation>Diesel을 종료합니다.</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="586"/>
@@ -871,8 +871,8 @@ Released under the GNU GPL</source>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="739"/>
-        <source>About Fuel</source>
-        <translation>Fuel에 대하여.</translation>
+        <source>About Diesel</source>
+        <translation>Diesel에 대하여.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2535"/>
@@ -897,8 +897,8 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="772"/>
         <location filename="../ui/MainWindow.ui" line="775"/>
-        <source>Fuel Preferences</source>
-        <translation>Fuel 환경설정</translation>
+        <source>Diesel Preferences</source>
+        <translation>Diesel 환경설정</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="792"/>

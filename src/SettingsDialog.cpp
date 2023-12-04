@@ -20,15 +20,15 @@ SettingsDialog::SettingsDialog(QWidget *parent, Settings &_settings) : QDialog(p
     ui->cmbFossilBrowser->addItem(tr("Internal"));
 
     // App Settings
-    ui->lineFossilPath->setText(QDir::toNativeSeparators(settings->GetValue(FUEL_SETTING_FOSSIL_PATH).toString()));
-    ui->cmbDoubleClickAction->setCurrentIndex(settings->GetValue(FUEL_SETTING_FILE_DBLCLICK).toInt());
-    ui->cmbFossilBrowser->setCurrentIndex(settings->GetValue(FUEL_SETTING_WEB_BROWSER).toInt());
+    ui->lineFossilPath->setText(QDir::toNativeSeparators(settings->GetValue(DIESEL_SETTING_FOSSIL_PATH).toString()));
+    ui->cmbDoubleClickAction->setCurrentIndex(settings->GetValue(DIESEL_SETTING_FILE_DBLCLICK).toInt());
+    ui->cmbFossilBrowser->setCurrentIndex(settings->GetValue(DIESEL_SETTING_WEB_BROWSER).toInt());
 
     // Initialize language combo
     foreach (const LangMap &m, langMap)
         ui->cmbActiveLanguage->addItem(m.name);
 
-    QString lang = settings->GetValue(FUEL_SETTING_LANGUAGE).toString();
+    QString lang = settings->GetValue(DIESEL_SETTING_LANGUAGE).toString();
     // Select current language
     ui->cmbActiveLanguage->setCurrentIndex(ui->cmbActiveLanguage->findText(LangIdToName(lang)));
 
@@ -64,16 +64,16 @@ bool SettingsDialog::run(QWidget *parent, Settings &settings)
 //-----------------------------------------------------------------------------
 void SettingsDialog::on_buttonBox_accepted()
 {
-    settings->SetValue(FUEL_SETTING_FOSSIL_PATH, QDir::fromNativeSeparators(ui->lineFossilPath->text()));
+    settings->SetValue(DIESEL_SETTING_FOSSIL_PATH, QDir::fromNativeSeparators(ui->lineFossilPath->text()));
     Q_ASSERT(ui->cmbDoubleClickAction->currentIndex() >= FILE_DLBCLICK_ACTION_DIFF && ui->cmbDoubleClickAction->currentIndex() < FILE_DLBCLICK_ACTION_MAX);
-    settings->SetValue(FUEL_SETTING_FILE_DBLCLICK, ui->cmbDoubleClickAction->currentIndex());
-    settings->SetValue(FUEL_SETTING_WEB_BROWSER, ui->cmbFossilBrowser->currentIndex());
+    settings->SetValue(DIESEL_SETTING_FILE_DBLCLICK, ui->cmbDoubleClickAction->currentIndex());
+    settings->SetValue(DIESEL_SETTING_WEB_BROWSER, ui->cmbFossilBrowser->currentIndex());
 
-    Q_ASSERT(settings->HasValue(FUEL_SETTING_LANGUAGE));
-    QString curr_langid = settings->GetValue(FUEL_SETTING_LANGUAGE).toString();
+    Q_ASSERT(settings->HasValue(DIESEL_SETTING_LANGUAGE));
+    QString curr_langid = settings->GetValue(DIESEL_SETTING_LANGUAGE).toString();
     QString new_langid = LangNameToId(ui->cmbActiveLanguage->currentText());
     Q_ASSERT(!new_langid.isEmpty());
-    settings->SetValue(FUEL_SETTING_LANGUAGE, new_langid);
+    settings->SetValue(DIESEL_SETTING_LANGUAGE, new_langid);
 
     if (curr_langid != new_langid)
         QMessageBox::information(this, tr("Restart required"), tr("The language change will take effect after restarting the application"), QMessageBox::Ok);
@@ -103,7 +103,7 @@ void SettingsDialog::on_btnSelectFossil_clicked()
 void SettingsDialog::on_btnClearMessageHistory_clicked()
 {
     if (DialogQuery(this, tr("Clear Commit Message History"), tr("Are you sure you want to clear the commit message history?")) == QMessageBox::Yes)
-        settings->SetValue(FUEL_SETTING_COMMIT_MSG, QStringList());
+        settings->SetValue(DIESEL_SETTING_COMMIT_MSG, QStringList());
 }
 
 //-----------------------------------------------------------------------------

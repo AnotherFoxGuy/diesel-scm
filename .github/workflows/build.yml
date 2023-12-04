@@ -78,5 +78,5 @@ jobs:
       - name: Upload redist folder
         uses: actions/upload-artifact@v3
         with:
-          name: fuel-${{ runner.os }}
+          name: diesel-${{ runner.os }}
           path: redist
