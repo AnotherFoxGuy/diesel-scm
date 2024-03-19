@@ -1,0 +1,42 @@
+id: com.anotherfoxguy.diesel
+runtime: org.kde.Platform
+runtime-version: '6.6'
+sdk: org.kde.Sdk
+base: io.qt.qtwebengine.BaseApp
+base-version: '6.6'
+command: Diesel
+build-options:
+  build-args:
+    - --share=network
+finish-args:
+  - --share=network
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --filesystem=host
+modules:
+  - libsecret/libsecret.json
+
+  - name: qt6keychain
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/frankosterfeld/qtkeychain/archive/refs/tags/0.14.1.tar.gz
+        sha256: afb2d120722141aca85f8144c4ef017bd74977ed45b80e5d9e9614015dadd60c
+    config-opts:
+      - -DBUILD_WITH_QT6=ON
+      - -DBUILD_TEST_APPLICATION=OFF
+
+  - name: fossil
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://www.fossil-scm.org/home/tarball/47362306a7dd7c6fc3cab77cebe5d25469b0a9448479d9718eb5c49c8337b29/fossil-src-2.23.tar.gz
+        sha256: a94aec2609331cd6890c6725b55aea43041011863f3d84fdc380415af75233e4
+
+  - name: diesel
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/AnotherFoxGuy/diesel-scm/archive/4075fb37d376ab89a2f2c2b1962b1907be889fa0.tar.gz
+        sha256: a90653294f34170b9fd1118dc3b78cf434c72dc46b8a2f8ef7f72d365f10b227

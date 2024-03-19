@@ -48,3 +48,4 @@ CMakeLists.txt.user*
 test-pr
 _build/
 CMakeUserPresets.json
+.flatpak-builder
