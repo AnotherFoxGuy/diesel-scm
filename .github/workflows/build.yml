@@ -35,7 +35,7 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1.13.0
 
       - name: Cache conan packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: conan-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
           path: ~/.conan2/
