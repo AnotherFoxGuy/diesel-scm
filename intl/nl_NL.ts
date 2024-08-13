@@ -1766,12 +1766,12 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="55"/>
         <source>Integrate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Integreren</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="62"/>
         <source>Force</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forceren</translation>
     </message>
 </context>
 <context>
