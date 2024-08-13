@@ -29,3 +29,15 @@ Currently the following Fossil operations are supported
   *  Diff
   *  Stash
   *  History (via fossil ui)
+
+## Translation Project
+Do you use Diesel a lot but would prefer if it spoke your language? Help by submitting a translation for your language. 
+
+Click <a href="https://hosted.weblate.org/engage/diesel-scm/">here</a>
+and help make Diesel better.
+
+### Realtime Translation Stats
+
+<a href="https://hosted.weblate.org/engage/diesel-scm/">
+<img src="https://hosted.weblate.org/widgets/diesel-scm/-/Diesel-scm/multi-auto.svg" alt="Translation status" />
+</a>
