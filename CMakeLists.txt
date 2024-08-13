@@ -114,8 +114,7 @@ set(TRANSLATIONS
 
 
 find_package(Qt6LinguistTools)
-#if (Qt6LinguistTools_FOUND)
-if (0)
+if (Qt6LinguistTools_FOUND)
     set_source_files_properties(${TRANSLATIONS} PROPERTIES OUTPUT_LOCATION "intl")
 
     Qt6_create_translation(QM_MESSAGES ${CMAKE_SOURCE_DIR}/ui ${CMAKE_SOURCE_DIR}/src ${TRANSLATIONS})
@@ -126,7 +125,7 @@ if (0)
     file(COPY rsrc/languages.qrc DESTINATION ${CMAKE_BINARY_DIR}/intl)
     list(APPEND RESOURCES "${CMAKE_BINARY_DIR}/intl/languages.qrc")
 else ()
-    message("Qt6LinguistTools not found")
+    message(WARNING "Qt6LinguistTools not found")
 endif ()
 
 if (WIN32)

@@ -567,7 +567,7 @@ Uitgebracht onder de GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="947"/>
         <location filename="../ui/MainWindow.ui" line="950"/>
-        <location filename="../src/MainWindow.cpp" line="2575"/>
+        <location filename="../src/MainWindow.cpp" line="2574"/>
         <source>Delete Tag</source>
         <translation>Verwijder Tag</translation>
     </message>
@@ -584,7 +584,7 @@ Uitgebracht onder de GNU GPL</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="974"/>
-        <location filename="../src/MainWindow.cpp" line="2621"/>
+        <location filename="../src/MainWindow.cpp" line="2620"/>
         <source>Merge Branch</source>
         <translation>Branch samenvoegen</translation>
     </message>
@@ -635,58 +635,58 @@ Uitgebracht onder de GNU GPL</translation>
         <translation>F&amp;ossil Instellingen</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1024"/>
+        <location filename="../ui/MainWindow.ui" line="1028"/>
         <source>Edit Remote</source>
         <translation>Bewerk Remote</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1027"/>
+        <location filename="../ui/MainWindow.ui" line="1031"/>
         <source>Edit Remote URL</source>
         <translation>Bewerk Remote URL</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1032"/>
+        <location filename="../ui/MainWindow.ui" line="1040"/>
         <source>Set Remote as Default</source>
         <translation>Stel Remote in als standaard</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1035"/>
+        <location filename="../ui/MainWindow.ui" line="1043"/>
         <source>Makes the selected remote </source>
         <translation>Maakt de geselecteerde remote </translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1040"/>
+        <location filename="../ui/MainWindow.ui" line="1052"/>
         <source>Add Remote</source>
         <translation>Remote toevoegen</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1043"/>
+        <location filename="../ui/MainWindow.ui" line="1055"/>
         <source>Adds a Remote Url</source>
         <translation>Voegt een externe URL toe</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1048"/>
-        <location filename="../src/MainWindow.cpp" line="2850"/>
+        <location filename="../ui/MainWindow.ui" line="1064"/>
+        <location filename="../src/MainWindow.cpp" line="2849"/>
         <source>Delete Remote</source>
         <translation>Remote verwijderen</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1057"/>
+        <location filename="../ui/MainWindow.ui" line="1073"/>
         <source>abortOperation</source>
         <translation>operatie afbreken</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1060"/>
+        <location filename="../ui/MainWindow.ui" line="1076"/>
         <source>Abort the current operation</source>
         <translation>De huidige bewerking afbreken</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1072"/>
+        <location filename="../ui/MainWindow.ui" line="1088"/>
         <source>Add &amp; Remove</source>
         <translation>Toevoegen &amp; verwijderen</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="1075"/>
+        <location filename="../ui/MainWindow.ui" line="1091"/>
         <source>Add &amp; Remove files</source>
         <translation>Bestanden toevoegen en verwijderen</translation>
     </message>
@@ -717,7 +717,7 @@ Uitgebracht onder de GNU GPL</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="562"/>
-        <location filename="../src/MainWindow.cpp" line="1645"/>
+        <location filename="../src/MainWindow.cpp" line="1644"/>
         <source>Rename</source>
         <translation>Hernoemen</translation>
     </message>
@@ -850,7 +850,7 @@ Uitgebracht onder de GNU GPL</translation>
         <translation>Alt+Return</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1697"/>
+        <location filename="../src/MainWindow.cpp" line="1696"/>
         <source>Undo</source>
         <translation>Ongedaan maken</translation>
     </message>
@@ -876,7 +876,7 @@ Uitgebracht onder de GNU GPL</translation>
         <translation>Over Diesel</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2535"/>
+        <location filename="../src/MainWindow.cpp" line="2534"/>
         <source>Update</source>
         <translation>Bijwerken</translation>
     </message>
@@ -944,8 +944,8 @@ Uitgebracht onder de GNU GPL</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="872"/>
-        <location filename="../src/MainWindow.cpp" line="1959"/>
-        <location filename="../src/MainWindow.cpp" line="2002"/>
+        <location filename="../src/MainWindow.cpp" line="1958"/>
+        <location filename="../src/MainWindow.cpp" line="2001"/>
         <source>Rename Folder</source>
         <translation>Map hernoemen</translation>
     </message>
@@ -962,7 +962,7 @@ Uitgebracht onder de GNU GPL</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="899"/>
-        <location filename="../src/MainWindow.cpp" line="2175"/>
+        <location filename="../src/MainWindow.cpp" line="2174"/>
         <source>Apply Stash</source>
         <translation>Verborgen veranderingen toepassen</translation>
     </message>
@@ -983,182 +983,182 @@ Uitgebracht onder de GNU GPL</translation>
         <translation>Verschillen met verborgen veranderingen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="329"/>
-        <location filename="../src/MainWindow.cpp" line="384"/>
-        <location filename="../src/MainWindow.cpp" line="392"/>
-        <location filename="../src/MainWindow.cpp" line="402"/>
-        <location filename="../src/MainWindow.cpp" line="451"/>
-        <location filename="../src/MainWindow.cpp" line="476"/>
-        <location filename="../src/MainWindow.cpp" line="482"/>
-        <location filename="../src/MainWindow.cpp" line="521"/>
-        <location filename="../src/MainWindow.cpp" line="544"/>
-        <location filename="../src/MainWindow.cpp" line="557"/>
-        <location filename="../src/MainWindow.cpp" line="1540"/>
-        <location filename="../src/MainWindow.cpp" line="1560"/>
-        <location filename="../src/MainWindow.cpp" line="1569"/>
-        <location filename="../src/MainWindow.cpp" line="1597"/>
-        <location filename="../src/MainWindow.cpp" line="1628"/>
-        <location filename="../src/MainWindow.cpp" line="1653"/>
-        <location filename="../src/MainWindow.cpp" line="1659"/>
-        <location filename="../src/MainWindow.cpp" line="1692"/>
-        <location filename="../src/MainWindow.cpp" line="1702"/>
-        <location filename="../src/MainWindow.cpp" line="1969"/>
-        <location filename="../src/MainWindow.cpp" line="1978"/>
-        <location filename="../src/MainWindow.cpp" line="2044"/>
-        <location filename="../src/MainWindow.cpp" line="2057"/>
-        <location filename="../src/MainWindow.cpp" line="2065"/>
-        <location filename="../src/MainWindow.cpp" line="2079"/>
-        <location filename="../src/MainWindow.cpp" line="2085"/>
-        <location filename="../src/MainWindow.cpp" line="2144"/>
-        <location filename="../src/MainWindow.cpp" line="2153"/>
-        <location filename="../src/MainWindow.cpp" line="2160"/>
-        <location filename="../src/MainWindow.cpp" line="2187"/>
-        <location filename="../src/MainWindow.cpp" line="2201"/>
-        <location filename="../src/MainWindow.cpp" line="2230"/>
-        <location filename="../src/MainWindow.cpp" line="2252"/>
-        <location filename="../src/MainWindow.cpp" line="2411"/>
-        <location filename="../src/MainWindow.cpp" line="2521"/>
-        <location filename="../src/MainWindow.cpp" line="2540"/>
-        <location filename="../src/MainWindow.cpp" line="2557"/>
-        <location filename="../src/MainWindow.cpp" line="2562"/>
-        <location filename="../src/MainWindow.cpp" line="2583"/>
-        <location filename="../src/MainWindow.cpp" line="2600"/>
-        <location filename="../src/MainWindow.cpp" line="2606"/>
-        <location filename="../src/MainWindow.cpp" line="2629"/>
-        <location filename="../src/MainWindow.cpp" line="2638"/>
-        <location filename="../src/MainWindow.cpp" line="2695"/>
-        <location filename="../src/MainWindow.cpp" line="2728"/>
-        <location filename="../src/MainWindow.cpp" line="2746"/>
-        <location filename="../src/MainWindow.cpp" line="2756"/>
-        <location filename="../src/MainWindow.cpp" line="2765"/>
-        <location filename="../src/MainWindow.cpp" line="2775"/>
-        <location filename="../src/MainWindow.cpp" line="2784"/>
-        <location filename="../src/MainWindow.cpp" line="2808"/>
-        <location filename="../src/MainWindow.cpp" line="2828"/>
+        <location filename="../src/MainWindow.cpp" line="330"/>
+        <location filename="../src/MainWindow.cpp" line="385"/>
+        <location filename="../src/MainWindow.cpp" line="393"/>
+        <location filename="../src/MainWindow.cpp" line="403"/>
+        <location filename="../src/MainWindow.cpp" line="452"/>
+        <location filename="../src/MainWindow.cpp" line="477"/>
+        <location filename="../src/MainWindow.cpp" line="483"/>
+        <location filename="../src/MainWindow.cpp" line="522"/>
+        <location filename="../src/MainWindow.cpp" line="545"/>
+        <location filename="../src/MainWindow.cpp" line="558"/>
+        <location filename="../src/MainWindow.cpp" line="1539"/>
+        <location filename="../src/MainWindow.cpp" line="1559"/>
+        <location filename="../src/MainWindow.cpp" line="1568"/>
+        <location filename="../src/MainWindow.cpp" line="1596"/>
+        <location filename="../src/MainWindow.cpp" line="1627"/>
+        <location filename="../src/MainWindow.cpp" line="1652"/>
+        <location filename="../src/MainWindow.cpp" line="1658"/>
+        <location filename="../src/MainWindow.cpp" line="1691"/>
+        <location filename="../src/MainWindow.cpp" line="1701"/>
+        <location filename="../src/MainWindow.cpp" line="1968"/>
+        <location filename="../src/MainWindow.cpp" line="1977"/>
+        <location filename="../src/MainWindow.cpp" line="2043"/>
+        <location filename="../src/MainWindow.cpp" line="2056"/>
+        <location filename="../src/MainWindow.cpp" line="2064"/>
+        <location filename="../src/MainWindow.cpp" line="2078"/>
+        <location filename="../src/MainWindow.cpp" line="2084"/>
+        <location filename="../src/MainWindow.cpp" line="2143"/>
+        <location filename="../src/MainWindow.cpp" line="2152"/>
+        <location filename="../src/MainWindow.cpp" line="2159"/>
+        <location filename="../src/MainWindow.cpp" line="2186"/>
+        <location filename="../src/MainWindow.cpp" line="2200"/>
+        <location filename="../src/MainWindow.cpp" line="2229"/>
+        <location filename="../src/MainWindow.cpp" line="2251"/>
+        <location filename="../src/MainWindow.cpp" line="2410"/>
+        <location filename="../src/MainWindow.cpp" line="2520"/>
+        <location filename="../src/MainWindow.cpp" line="2539"/>
+        <location filename="../src/MainWindow.cpp" line="2556"/>
+        <location filename="../src/MainWindow.cpp" line="2561"/>
+        <location filename="../src/MainWindow.cpp" line="2582"/>
+        <location filename="../src/MainWindow.cpp" line="2599"/>
+        <location filename="../src/MainWindow.cpp" line="2605"/>
+        <location filename="../src/MainWindow.cpp" line="2628"/>
+        <location filename="../src/MainWindow.cpp" line="2637"/>
+        <location filename="../src/MainWindow.cpp" line="2694"/>
+        <location filename="../src/MainWindow.cpp" line="2727"/>
+        <location filename="../src/MainWindow.cpp" line="2745"/>
+        <location filename="../src/MainWindow.cpp" line="2755"/>
+        <location filename="../src/MainWindow.cpp" line="2764"/>
+        <location filename="../src/MainWindow.cpp" line="2774"/>
+        <location filename="../src/MainWindow.cpp" line="2783"/>
+        <location filename="../src/MainWindow.cpp" line="2807"/>
+        <location filename="../src/MainWindow.cpp" line="2827"/>
         <source>Error</source>
         <translation>Fout</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="329"/>
+        <location filename="../src/MainWindow.cpp" line="330"/>
         <source>Could not change current directory to &apos;%0&apos;</source>
         <translation>Kan de huidige map niet wijzigen in &apos;%0&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="373"/>
+        <location filename="../src/MainWindow.cpp" line="374"/>
         <source>Open Workspace</source>
         <translation>Werkruimte openen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="373"/>
+        <location filename="../src/MainWindow.cpp" line="374"/>
         <source>A workspace does not exist in this folder.
 Would you like to create one here?</source>
         <translation>Er bestaat geen werkruimte in deze map.
 Wilt u hier een nieuwe werkruimte aanmaken?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="375"/>
-        <location filename="../src/MainWindow.cpp" line="462"/>
+        <location filename="../src/MainWindow.cpp" line="376"/>
+        <location filename="../src/MainWindow.cpp" line="463"/>
         <source>Select Workspace Folder</source>
         <translation>Selecteer werkruimtemap</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="384"/>
-        <location filename="../src/MainWindow.cpp" line="392"/>
-        <location filename="../src/MainWindow.cpp" line="402"/>
-        <location filename="../src/MainWindow.cpp" line="482"/>
+        <location filename="../src/MainWindow.cpp" line="385"/>
+        <location filename="../src/MainWindow.cpp" line="393"/>
+        <location filename="../src/MainWindow.cpp" line="403"/>
+        <location filename="../src/MainWindow.cpp" line="483"/>
         <source>Could not open repository.</source>
         <translation>Kon het archief niet openen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="429"/>
+        <location filename="../src/MainWindow.cpp" line="430"/>
         <source>Fossil Files</source>
         <translation>Fossil bestanden</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="431"/>
+        <location filename="../src/MainWindow.cpp" line="432"/>
         <source>Open Fossil Repository</source>
         <translation>Open Fossil archief</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="441"/>
+        <location filename="../src/MainWindow.cpp" line="442"/>
         <source>Fossil Repositories</source>
         <translation>Fossil archieven</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="444"/>
+        <location filename="../src/MainWindow.cpp" line="445"/>
         <source>New Fossil Repository</source>
         <translation>Nieuw Fossil archief</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="451"/>
+        <location filename="../src/MainWindow.cpp" line="452"/>
         <source>A repository file already exists.
 Repository creation aborted.</source>
         <translation>Er bestaat al een archiefbestand.
 Aanmaken van een archief afgebroken.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="460"/>
+        <location filename="../src/MainWindow.cpp" line="461"/>
         <source>Create Workspace</source>
         <translation>Werkruimte maken</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="460"/>
+        <location filename="../src/MainWindow.cpp" line="461"/>
         <source>Would you like to create a workspace in the same folder?</source>
         <translation>Wilt u een werkruimte maken in dezelfde map?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="476"/>
+        <location filename="../src/MainWindow.cpp" line="477"/>
         <source>Could not create repository.</source>
         <translation>Kon geen archief maken.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="499"/>
-        <location filename="../src/MainWindow.cpp" line="507"/>
+        <location filename="../src/MainWindow.cpp" line="500"/>
+        <location filename="../src/MainWindow.cpp" line="508"/>
         <source>Close Workspace</source>
         <translation>Sluit werkruimte</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="544"/>
+        <location filename="../src/MainWindow.cpp" line="545"/>
         <source>Could not clone the repository</source>
         <translation>Kon het archief niet klonen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="649"/>
+        <location filename="../src/MainWindow.cpp" line="650"/>
         <source>No workspace detected.</source>
         <translation>Geen werkruimte gevonden.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="654"/>
+        <location filename="../src/MainWindow.cpp" line="655"/>
         <source>Old repository schema detected. Consider running &apos;fossil rebuild&apos;</source>
         <translation>Oude archiefindeling. Overweeg om &apos;fossil rebuild&apos; uit te voeren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="122"/>
+        <location filename="../src/MainWindow.cpp" line="123"/>
         <source>File</source>
         <translation>Bestand</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="122"/>
+        <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Modified</source>
         <translation>Gewijzigd</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="122"/>
+        <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Path</source>
         <translation>Bestandspad</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="122"/>
+        <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="122"/>
+        <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Extension</source>
         <translation>Extensie</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="499"/>
+        <location filename="../src/MainWindow.cpp" line="500"/>
         <source>Are you sure you want to close this workspace?</source>
         <translation>Deze werkruimte zeker sluiten?</translation>
     </message>
@@ -1203,97 +1203,97 @@ Aanmaken van een archief afgebroken.</translation>
         <translation>Verborgen veranderingen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1555"/>
-        <location filename="../src/MainWindow.cpp" line="2406"/>
+        <location filename="../src/MainWindow.cpp" line="1554"/>
+        <location filename="../src/MainWindow.cpp" line="2405"/>
         <source>Add files</source>
         <translation>Bestanden toevoegen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1555"/>
-        <location filename="../src/MainWindow.cpp" line="2406"/>
+        <location filename="../src/MainWindow.cpp" line="1554"/>
+        <location filename="../src/MainWindow.cpp" line="2405"/>
         <source>The following files will be added.</source>
         <translation>De volgende bestanden zullen worden toegevoegd.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1555"/>
-        <location filename="../src/MainWindow.cpp" line="1589"/>
-        <location filename="../src/MainWindow.cpp" line="1623"/>
-        <location filename="../src/MainWindow.cpp" line="1697"/>
-        <location filename="../src/MainWindow.cpp" line="2006"/>
-        <location filename="../src/MainWindow.cpp" line="2175"/>
-        <location filename="../src/MainWindow.cpp" line="2218"/>
-        <location filename="../src/MainWindow.cpp" line="2406"/>
-        <location filename="../src/MainWindow.cpp" line="2535"/>
-        <location filename="../src/MainWindow.cpp" line="2633"/>
+        <location filename="../src/MainWindow.cpp" line="1554"/>
+        <location filename="../src/MainWindow.cpp" line="1588"/>
+        <location filename="../src/MainWindow.cpp" line="1622"/>
+        <location filename="../src/MainWindow.cpp" line="1696"/>
+        <location filename="../src/MainWindow.cpp" line="2005"/>
+        <location filename="../src/MainWindow.cpp" line="2174"/>
+        <location filename="../src/MainWindow.cpp" line="2217"/>
+        <location filename="../src/MainWindow.cpp" line="2405"/>
+        <location filename="../src/MainWindow.cpp" line="2534"/>
+        <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>Are you sure?</source>
         <translation>Weet u het zeker?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1589"/>
+        <location filename="../src/MainWindow.cpp" line="1588"/>
         <source>Remove files</source>
         <translation>Verwijder bestanden</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1589"/>
+        <location filename="../src/MainWindow.cpp" line="1588"/>
         <source>The following files will be removed from the repository.</source>
         <translation>De volgende bestanden zullen worden verwijderd uit het archief.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1589"/>
+        <location filename="../src/MainWindow.cpp" line="1588"/>
         <source>Also delete the local files</source>
         <translation>Lokale bestanden ook verwijderen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1623"/>
+        <location filename="../src/MainWindow.cpp" line="1622"/>
         <source>Revert files</source>
         <translation>Terugdraaien veranderingen van bestanden</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1623"/>
+        <location filename="../src/MainWindow.cpp" line="1622"/>
         <source>The following files will be reverted.</source>
         <translation>De veranderingen in de volgende bestanden zullen ongedaan worden gemaakt.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1645"/>
-        <location filename="../src/MainWindow.cpp" line="1959"/>
+        <location filename="../src/MainWindow.cpp" line="1644"/>
+        <location filename="../src/MainWindow.cpp" line="1958"/>
         <source>New name</source>
         <translation>Nieuwe naam</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1653"/>
+        <location filename="../src/MainWindow.cpp" line="1652"/>
         <source>File &apos;%0&apos; already exists.
 Rename aborted.</source>
         <translation>Bestand &apos;%0&apos; bestaat al.
 Hernoemen afgebroken.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1697"/>
+        <location filename="../src/MainWindow.cpp" line="1696"/>
         <source>The following actions will be undone.</source>
         <translation>De volgende bewerkingen zullen ongedaan worden gemaakt.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2535"/>
+        <location filename="../src/MainWindow.cpp" line="2534"/>
         <source>The following files will be updated.</source>
         <translation>De volgende bestanden zullen worden bijgewerkt.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1969"/>
-        <location filename="../src/MainWindow.cpp" line="1978"/>
+        <location filename="../src/MainWindow.cpp" line="1968"/>
+        <location filename="../src/MainWindow.cpp" line="1977"/>
         <source>Cannot rename folder.</source>
         <translation>Kan de map niet hernoemen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="139"/>
+        <location filename="../src/MainWindow.cpp" line="140"/>
         <source>Workspace</source>
         <translation>Werkruimte</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="284"/>
+        <location filename="../src/MainWindow.cpp" line="285"/>
         <source>Filter (%0)</source>
         <translation>Filter (%0)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="508"/>
+        <location filename="../src/MainWindow.cpp" line="509"/>
         <source>Could not close the workspace.
 Perhaps there are uncommitted changes available
 Would you like to force closing this workspace?</source>
@@ -1302,14 +1302,14 @@ Misschien zijn er niet-vastgelegde wijzigingen in de werkruimte
 Wilt u deze werkruimte geforceerd sluiten?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="521"/>
+        <location filename="../src/MainWindow.cpp" line="522"/>
         <source>Could not close the workspace.</source>
         <translation>Kan de werkruimte niet sluiten.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="557"/>
-        <location filename="../src/MainWindow.cpp" line="2695"/>
-        <location filename="../src/MainWindow.cpp" line="2828"/>
+        <location filename="../src/MainWindow.cpp" line="558"/>
+        <location filename="../src/MainWindow.cpp" line="2694"/>
+        <location filename="../src/MainWindow.cpp" line="2827"/>
         <source>Could not store information to keychain.</source>
         <translation>Kan geen informatie opslaan in de keychain.</translation>
     </message>
@@ -1344,275 +1344,275 @@ Wilt u deze werkruimte geforceerd sluiten?</translation>
         <translation>Samengevoegd</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1540"/>
+        <location filename="../src/MainWindow.cpp" line="1539"/>
         <source>Could not commit changes.</source>
         <translation>Kan geen wijzigingen doorvoeren.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1560"/>
-        <location filename="../src/MainWindow.cpp" line="1569"/>
-        <location filename="../src/MainWindow.cpp" line="2411"/>
+        <location filename="../src/MainWindow.cpp" line="1559"/>
+        <location filename="../src/MainWindow.cpp" line="1568"/>
+        <location filename="../src/MainWindow.cpp" line="2410"/>
         <source>Could not add files.</source>
         <translation>Kan geen bestanden toevoegen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1597"/>
+        <location filename="../src/MainWindow.cpp" line="1596"/>
         <source>Could not remove files.</source>
         <translation>Kan bestanden niet verwijderen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1628"/>
+        <location filename="../src/MainWindow.cpp" line="1627"/>
         <source>Could not revert files.</source>
         <translation>Kan bestanden niet terugzetten.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1659"/>
+        <location filename="../src/MainWindow.cpp" line="1658"/>
         <source>Could not rename file &apos;%0&apos; to &apos;%1&apos;</source>
         <translation>Kon bestand niet hernoemen van &apos;%0&apos; naar &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1692"/>
-        <location filename="../src/MainWindow.cpp" line="1702"/>
+        <location filename="../src/MainWindow.cpp" line="1691"/>
+        <location filename="../src/MainWindow.cpp" line="1701"/>
         <source>Could not undo changes.</source>
         <translation>Kan wijzigingen niet ongedaan maken.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1969"/>
+        <location filename="../src/MainWindow.cpp" line="1968"/>
         <source>Folder name contains invalid characters.</source>
         <translation>De naam van de map bevat ongeldige tekens.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="1978"/>
+        <location filename="../src/MainWindow.cpp" line="1977"/>
         <source>This folder exists already.</source>
         <translation>Deze map bestaat al.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2003"/>
+        <location filename="../src/MainWindow.cpp" line="2002"/>
         <source>Renaming folder &apos;%0&apos; to &apos;%1&apos;
 The following files will be moved in the repository.</source>
         <translation>Map &apos;%0&apos; hernoemen naar &apos;%1&apos;
 De volgende bestanden worden verplaatst naar het archief.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2007"/>
+        <location filename="../src/MainWindow.cpp" line="2006"/>
         <source>Also move the workspace files</source>
         <translation>Bestanden in de werkruimte ook verplaatsen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2021"/>
+        <location filename="../src/MainWindow.cpp" line="2020"/>
         <source>Move aborted due to errors</source>
         <translation>Verplaatsen afgebroken i.v.m. foutmeldingen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2041"/>
+        <location filename="../src/MainWindow.cpp" line="2040"/>
         <source>Creating folder &apos;%0&apos;</source>
         <translation>Map &apos;%0&apos; aanmaken</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2044"/>
+        <location filename="../src/MainWindow.cpp" line="2043"/>
         <source>Cannot make target folder &apos;%0&apos;</source>
         <translation>Doelmap &apos;%0&apos; aanmaken is mislukt</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2057"/>
+        <location filename="../src/MainWindow.cpp" line="2056"/>
         <source>Target file &apos;%0&apos; exists already</source>
         <translation>Doelbestand &apos;%0&apos; bestaat al</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2061"/>
+        <location filename="../src/MainWindow.cpp" line="2060"/>
         <source>Copying file &apos;%0&apos; to &apos;%1&apos;</source>
         <translation>Bestand kopiëren van &apos;%0&apos; naar &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2065"/>
+        <location filename="../src/MainWindow.cpp" line="2064"/>
         <source>Cannot copy file &apos;%0&apos; to &apos;%1&apos;</source>
         <translation>Kon bestanden niet kopiëren van &apos;%0&apos; naar &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2075"/>
+        <location filename="../src/MainWindow.cpp" line="2074"/>
         <source>Removing old file &apos;%0&apos;</source>
         <translation>Oude bestand &apos;%0&apos; verwijderen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2079"/>
+        <location filename="../src/MainWindow.cpp" line="2078"/>
         <source>Source file &apos;%0&apos; does not exist</source>
         <translation>Bronbestand &apos;%0&apos; bestaat niet</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2085"/>
+        <location filename="../src/MainWindow.cpp" line="2084"/>
         <source>Cannot remove file &apos;%0&apos;</source>
         <translation>Kan bestand &apos;%0&apos; niet verwijderen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2090"/>
+        <location filename="../src/MainWindow.cpp" line="2089"/>
         <source>Folder renamed completed. Don&apos;t forget to commit!</source>
         <translation>Map hernoemd. Vergeet niet om dit te toevertrouwen!</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2252"/>
+        <location filename="../src/MainWindow.cpp" line="2251"/>
         <source>Could not diff stash.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2438"/>
+        <location filename="../src/MainWindow.cpp" line="2437"/>
         <source>Operation Aborted</source>
         <translation>Operatie afgebroken</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2498"/>
+        <location filename="../src/MainWindow.cpp" line="2497"/>
         <source>&lt;Latest Revision&gt;</source>
         <translation>&lt;Laatste revisie&gt;</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2508"/>
+        <location filename="../src/MainWindow.cpp" line="2507"/>
         <source>Update workspace</source>
         <translation>Werkruimte bijwerken</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2521"/>
-        <location filename="../src/MainWindow.cpp" line="2540"/>
+        <location filename="../src/MainWindow.cpp" line="2520"/>
+        <location filename="../src/MainWindow.cpp" line="2539"/>
         <source>Could not update the repository.</source>
         <translation>Kan de repository niet updaten.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2552"/>
+        <location filename="../src/MainWindow.cpp" line="2551"/>
         <source>Create Tag</source>
         <translation>Tag creëren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2557"/>
-        <location filename="../src/MainWindow.cpp" line="2600"/>
+        <location filename="../src/MainWindow.cpp" line="2556"/>
+        <location filename="../src/MainWindow.cpp" line="2599"/>
         <source>Invalid name.</source>
         <translation>Ongeldige naam.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2562"/>
+        <location filename="../src/MainWindow.cpp" line="2561"/>
         <source>Could not create tag.</source>
         <translation>Kan tag niet maken.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2575"/>
+        <location filename="../src/MainWindow.cpp" line="2574"/>
         <source>Are you sure want to delete the tag &apos;%0&apos; ?</source>
         <translation>Weet je zeker dat je de tag &apos;%0&apos; wilt verwijderen?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2583"/>
+        <location filename="../src/MainWindow.cpp" line="2582"/>
         <source>Could not delete tag.</source>
         <translation>Kan tag niet verwijderen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2595"/>
+        <location filename="../src/MainWindow.cpp" line="2594"/>
         <source>Create Branch</source>
         <translation>Branch creëren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2606"/>
+        <location filename="../src/MainWindow.cpp" line="2605"/>
         <source>Could not create branch.</source>
         <translation>Kan de branch niet maken.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2629"/>
-        <location filename="../src/MainWindow.cpp" line="2638"/>
+        <location filename="../src/MainWindow.cpp" line="2628"/>
+        <location filename="../src/MainWindow.cpp" line="2637"/>
         <source>Merge failed.</source>
         <translation>Samenvoegen mislukt.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2633"/>
+        <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>Merge</source>
         <translation>Samenvoegen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2633"/>
+        <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>The following changes will be applied.</source>
         <translation>De volgende wijzigingen worden toegepast.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2640"/>
+        <location filename="../src/MainWindow.cpp" line="2639"/>
         <source>Merge completed. Don&apos;t forget to commit!</source>
         <translation>Samenvoegen voltooid. Vergeet je niet om de wijzigingen te commiten!</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2728"/>
-        <location filename="../src/MainWindow.cpp" line="2765"/>
+        <location filename="../src/MainWindow.cpp" line="2727"/>
+        <location filename="../src/MainWindow.cpp" line="2764"/>
         <source>Could not push to the remote repository.</source>
         <translation>Kan niet pushen naar de externe opslagplaats.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2746"/>
-        <location filename="../src/MainWindow.cpp" line="2784"/>
+        <location filename="../src/MainWindow.cpp" line="2745"/>
+        <location filename="../src/MainWindow.cpp" line="2783"/>
         <source>Could not pull from the remote repository.</source>
         <translation>Kan niet ophalen uit de externe opslagplaats.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2756"/>
-        <location filename="../src/MainWindow.cpp" line="2775"/>
+        <location filename="../src/MainWindow.cpp" line="2755"/>
+        <location filename="../src/MainWindow.cpp" line="2774"/>
         <source>A default remote repository has not been specified.</source>
         <translation>Er is geen standaard externe repository opgegeven.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2808"/>
+        <location filename="../src/MainWindow.cpp" line="2807"/>
         <source>Could not set the remote repository.</source>
         <translation>Kan de externe opslagplaats niet instellen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2850"/>
+        <location filename="../src/MainWindow.cpp" line="2849"/>
         <source>Are you sure want to delete the remote &apos;%0&apos; ?</source>
         <translation>Weet je zeker dat je de remote &apos;%0&apos; wilt verwijderen?</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2144"/>
+        <location filename="../src/MainWindow.cpp" line="2143"/>
         <source>Invalid stash name</source>
         <translation>Ongeldige naam voor verborgen veranderingen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2153"/>
+        <location filename="../src/MainWindow.cpp" line="2152"/>
         <source>This stash already exists</source>
         <translation>Deze naam voor de verborgen veranderingen bestaat al</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2160"/>
+        <location filename="../src/MainWindow.cpp" line="2159"/>
         <source>Could not create stash.</source>
         <translation>Kan geen stash maken.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2175"/>
+        <location filename="../src/MainWindow.cpp" line="2174"/>
         <source>The following stashes will be applied.</source>
         <translation>De volgende verborgen veranderingen zullen worden toegepast.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2175"/>
+        <location filename="../src/MainWindow.cpp" line="2174"/>
         <source>Delete after applying</source>
         <translation>Verwijder na toepassen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2186"/>
+        <location filename="../src/MainWindow.cpp" line="2185"/>
         <source>Stash application aborted due to errors</source>
         <translation>Verborgen veranderingen toepassen afgebroken i.v.m. foutmeldingen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2187"/>
+        <location filename="../src/MainWindow.cpp" line="2186"/>
         <source>Could not apply stash.</source>
         <translation type="unfinished">Kan stash niet toepassen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2200"/>
-        <location filename="../src/MainWindow.cpp" line="2229"/>
+        <location filename="../src/MainWindow.cpp" line="2199"/>
+        <location filename="../src/MainWindow.cpp" line="2228"/>
         <source>Stash deletion aborted due to errors</source>
         <translation>Verborgen veranderingen verwijderen afgebroken i.v.m. foutmeldingen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2201"/>
-        <location filename="../src/MainWindow.cpp" line="2230"/>
+        <location filename="../src/MainWindow.cpp" line="2200"/>
+        <location filename="../src/MainWindow.cpp" line="2229"/>
         <source>Could not delete stash.</source>
         <translation>Kan stash niet verwijderen.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2218"/>
+        <location filename="../src/MainWindow.cpp" line="2217"/>
         <source>Delete Stashes</source>
         <translation>Verborgen veranderingen verwijderen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="2218"/>
+        <location filename="../src/MainWindow.cpp" line="2217"/>
         <source>The following stashes will be deleted.</source>
         <translation>De volgende verborgen veranderingen zullen worden verwijderd.</translation>
     </message>
@@ -1620,37 +1620,37 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/AppSettings.cpp" line="43"/>
+        <location filename="../src/AppSettings.cpp" line="42"/>
         <source>Custom Action %0</source>
         <translation>Aangepaste actie %0</translation>
     </message>
     <message>
-        <location filename="../src/Fossil.cpp" line="786"/>
+        <location filename="../src/Fossil.cpp" line="787"/>
         <source>Running Fossil</source>
         <translation type="unfinished">Fossil uitvoeren</translation>
     </message>
     <message>
-        <location filename="../src/Fossil.cpp" line="796"/>
+        <location filename="../src/Fossil.cpp" line="797"/>
         <source>Could not generate command line file</source>
         <translation>Kon opdrachtregelbestand niet genereren</translation>
     </message>
     <message>
-        <location filename="../src/Fossil.cpp" line="827"/>
+        <location filename="../src/Fossil.cpp" line="828"/>
         <source>Could not start Fossil executable &apos;%0&apos;</source>
         <translation type="unfinished">Kon het Fossil programma &apos;%0&apos; niet starten</translation>
     </message>
     <message>
-        <location filename="../src/Fossil.cpp" line="1126"/>
+        <location filename="../src/Fossil.cpp" line="1123"/>
         <source>Fossil UI is already running</source>
         <translation type="unfinished">De Fossil UI is al gestart</translation>
     </message>
     <message>
-        <location filename="../src/Fossil.cpp" line="1134"/>
+        <location filename="../src/Fossil.cpp" line="1131"/>
         <source>Starting Fossil browser UI. Please wait.</source>
         <translation type="unfinished">Bezig met het starten van de Fossil web interface...</translation>
     </message>
     <message>
-        <location filename="../src/Fossil.cpp" line="1148"/>
+        <location filename="../src/Fossil.cpp" line="1145"/>
         <source>Could not start Fossil executable &apos;%s&apos;</source>
         <translation type="unfinished">Kon Fossil niet starten: &apos;%s&apos;</translation>
     </message>
@@ -1675,7 +1675,7 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
         <translation type="unfinished">Applicaties</translation>
     </message>
     <message>
-        <location filename="../src/Workspace.cpp" line="220"/>
+        <location filename="../src/Workspace.cpp" line="216"/>
         <source>Updating...</source>
         <translation type="unfinished">Bijwerken...</translation>
     </message>
@@ -1938,32 +1938,32 @@ De volgende bestanden worden verplaatst naar het archief.</translation>
         <translation type="unfinished">Mappen</translation>
     </message>
     <message>
-        <location filename="../src/SettingsDialog.cpp" line="80"/>
+        <location filename="../src/SettingsDialog.cpp" line="79"/>
         <source>Restart required</source>
         <translation>Herstart nodig</translation>
     </message>
     <message>
-        <location filename="../src/SettingsDialog.cpp" line="80"/>
+        <location filename="../src/SettingsDialog.cpp" line="79"/>
         <source>The language change will take effect after restarting the application</source>
         <translation>De geselecteerde taal zal worden gebruikt zodra het programma wordt herstart.</translation>
     </message>
     <message>
-        <location filename="../src/SettingsDialog.cpp" line="99"/>
+        <location filename="../src/SettingsDialog.cpp" line="97"/>
         <source>Select Fossil executable</source>
         <translation>Selecteer Fossil programma</translation>
     </message>
     <message>
-        <location filename="../src/SettingsDialog.cpp" line="153"/>
+        <location filename="../src/SettingsDialog.cpp" line="151"/>
         <source>Select command</source>
         <translation>Selecteer command</translation>
     </message>
     <message>
-        <location filename="../src/SettingsDialog.cpp" line="107"/>
+        <location filename="../src/SettingsDialog.cpp" line="105"/>
         <source>Clear Commit Message History</source>
         <translation>Wis toevertrouwingsberichtenhistorie</translation>
     </message>
     <message>
-        <location filename="../src/SettingsDialog.cpp" line="107"/>
+        <location filename="../src/SettingsDialog.cpp" line="105"/>
         <source>Are you sure you want to clear the commit message history?</source>
         <translation>Zeker de historie van toevertrouwingsberichten wissen?</translation>
     </message>
