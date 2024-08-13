@@ -239,7 +239,7 @@ MainWindow::MainWindow(Settings &_settings, QWidget *parent, QString *workspaceP
     // Create Abort Button
     abortButton = new QToolButton(ui->statusBar);
     abortButton->setAutoRaise(true);
-    abortButton->setIcon(getCachedIcon(":/icons/icon-action-stop"));
+    abortButton->setIcon(getCachedIcon(":/icons/square-x"));
     abortButton->setVisible(false);
     abortButton->setArrowType(Qt::NoArrow);
     abortButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
@@ -802,7 +802,7 @@ void MainWindow::updateWorkspaceView()
     // Clear content except headers
     getWorkspace().getTreeModel().removeRows(0, getWorkspace().getTreeModel().rowCount());
 
-    QStandardItem *workspace = new QStandardItem(getCachedIcon(":icons/icon-item-folder"), tr("Files"));
+    QStandardItem *workspace = new QStandardItem(getCachedIcon(":icons/home-f"), tr("Files"));
     workspace->setData(WorkspaceItem(WorkspaceItem::TYPE_WORKSPACE, ""), ROLE_WORKSPACE_ITEM);
     workspace->setEditable(false);
 
@@ -818,8 +818,8 @@ void MainWindow::updateWorkspaceView()
             if (dir.isEmpty())
                 continue;
 
-            addPathToTree(*workspace, dir, getCachedIcon(":icons/icon-item-folder"), getCachedIcon(":icons/icon-item-folder-unchanged"), getCachedIcon(":icons/icon-item-folder-modified"),
-                          getCachedIcon(":icons/icon-item-folder-unknown"), getWorkspace().getPathState());
+            addPathToTree(*workspace, dir, getCachedIcon(":icons/folder"), getCachedIcon(":icons/folder-check"), getCachedIcon(":icons/folder-exclamation"),
+                          getCachedIcon(":icons/folder-question"), getWorkspace().getPathState());
         }
 
         // Expand root folder
@@ -827,13 +827,13 @@ void MainWindow::updateWorkspaceView()
     }
 
     // Branches
-    QStandardItem *branches = new QStandardItem(getCachedIcon(":icons/icon-item-branch"), tr("Branches"));
+    QStandardItem *branches = new QStandardItem(getCachedIcon(":icons/git-branch"), tr("Branches"));
     branches->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCHES, ""), ROLE_WORKSPACE_ITEM);
     branches->setEditable(false);
     getWorkspace().getTreeModel().appendRow(branches);
     foreach (const QString &branch_name, getWorkspace().getBranches())
     {
-        QStandardItem *branch = new QStandardItem(getCachedIcon(":icons/icon-item-branch"), branch_name);
+        QStandardItem *branch = new QStandardItem(getCachedIcon(":icons/git-branch"), branch_name);
         branch->setData(WorkspaceItem(WorkspaceItem::TYPE_BRANCH, branch_name), ROLE_WORKSPACE_ITEM);
 
         bool active = getWorkspace().getActiveTags().contains(branch_name);
@@ -847,7 +847,7 @@ void MainWindow::updateWorkspaceView()
     }
 
     // Tags
-    QStandardItem *tags = new QStandardItem(getCachedIcon(":icons/icon-item-tag"), tr("Tags"));
+    QStandardItem *tags = new QStandardItem(getCachedIcon(":icons/bookmark-f"), tr("Tags"));
     tags->setData(WorkspaceItem(WorkspaceItem::TYPE_TAGS, ""), ROLE_WORKSPACE_ITEM);
     tags->setEditable(false);
     getWorkspace().getTreeModel().appendRow(tags);
@@ -855,7 +855,7 @@ void MainWindow::updateWorkspaceView()
     {
         const QString &tag_name = it.key();
 
-        QStandardItem *tag = new QStandardItem(getCachedIcon(":icons/icon-item-tag"), tag_name);
+        QStandardItem *tag = new QStandardItem(getCachedIcon(":icons/bookmark"), tag_name);
         tag->setData(WorkspaceItem(WorkspaceItem::TYPE_TAG, tag_name), ROLE_WORKSPACE_ITEM);
 
         bool active = getWorkspace().getActiveTags().contains(tag_name);
@@ -869,25 +869,25 @@ void MainWindow::updateWorkspaceView()
     }
 
     // Stashes
-    QStandardItem *stashes = new QStandardItem(getCachedIcon(":icons/icon-action-repo-open"), tr("Stashes"));
+    QStandardItem *stashes = new QStandardItem(getCachedIcon(":icons/stack-f"), tr("Stashes"));
     stashes->setData(WorkspaceItem(WorkspaceItem::TYPE_STASHES, ""), ROLE_WORKSPACE_ITEM);
     stashes->setEditable(false);
     getWorkspace().getTreeModel().appendRow(stashes);
     for (stashmap_t::const_iterator it = getWorkspace().getStashes().begin(); it != getWorkspace().getStashes().end(); ++it)
     {
-        QStandardItem *stash = new QStandardItem(getCachedIcon(":icons/icon-action-repo-open"), it.key());
+        QStandardItem *stash = new QStandardItem(getCachedIcon(":icons/stack"), it.key());
         stash->setData(WorkspaceItem(WorkspaceItem::TYPE_STASH, it.value()), ROLE_WORKSPACE_ITEM);
         stashes->appendRow(stash);
     }
 
     // Remotes
-    QStandardItem *remotes = new QStandardItem(getCachedIcon(":icons/icon-item-remote"), tr("Remotes"));
+    QStandardItem *remotes = new QStandardItem(getCachedIcon(":icons/cloud-f"), tr("Remotes"));
     remotes->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTES, ""), ROLE_WORKSPACE_ITEM);
     remotes->setEditable(false);
     getWorkspace().getTreeModel().appendRow(remotes);
     for (const auto &it : getWorkspace().getRemotes())
     {
-        QStandardItem *remote_item = new QStandardItem(getCachedIcon(":icons/icon-item-remote"), it.name);
+        QStandardItem *remote_item = new QStandardItem(getCachedIcon(":icons/cloud"), it.name);
         remote_item->setData(WorkspaceItem(WorkspaceItem::TYPE_REMOTE, it.url.toString()), ROLE_WORKSPACE_ITEM);
 
         remote_item->setToolTip(UrlToStringDisplay(it.url));
@@ -937,14 +937,14 @@ void MainWindow::updateFileView()
         QString text;
         const char *icon;
     } stats[] = {
-        {WorkspaceFile::TYPE_EDITTED, tr("Edited"), ":icons/icon-item-edited"},
-        {WorkspaceFile::TYPE_UNCHANGED, tr("Unchanged"), ":icons/icon-item-unchanged"},
-        {WorkspaceFile::TYPE_ADDED, tr("Added"), ":icons/icon-item-added"},
-        {WorkspaceFile::TYPE_DELETED, tr("Deleted"), ":icons/icon-item-deleted"},
-        {WorkspaceFile::TYPE_RENAMED, tr("Renamed"), ":icons/icon-item-renamed"},
-        {WorkspaceFile::TYPE_MISSING, tr("Missing"), ":icons/icon-item-missing"},
-        {WorkspaceFile::TYPE_CONFLICTED, tr("Conflicted"), ":icons/icon-item-conflicted"},
-        {WorkspaceFile::TYPE_MERGED, tr("Merged"), ":icons/icon-item-edited"},
+        {WorkspaceFile::TYPE_EDITTED, tr("Edited"), ":icons/file-pencil"},
+        {WorkspaceFile::TYPE_UNCHANGED, tr("Unchanged"), ":icons/file-check"},
+        {WorkspaceFile::TYPE_ADDED, tr("Added"), ":icons/file-plus"},
+        {WorkspaceFile::TYPE_DELETED, tr("Deleted"), ":icons/file-minus"},
+        {WorkspaceFile::TYPE_RENAMED, tr("Renamed"), ":icons/file-symlink"},
+        {WorkspaceFile::TYPE_MISSING, tr("Missing"), ":icons/file-broken"},
+        {WorkspaceFile::TYPE_CONFLICTED, tr("Conflicted"), ":icons/file-alert"},
+        {WorkspaceFile::TYPE_MERGED, tr("Merged"), ":icons/file-diff"},
     };
 
     bool display_path = viewMode == VIEWMODE_LIST || selectedDirs.count() > 1;
@@ -970,7 +970,7 @@ void MainWindow::updateFileView()
 
         // Status Column
         const QString *status_text = &status_unknown;
-        const char *status_icon_path = ":icons/icon-item-unknown";  // Default icon
+        const char *status_icon_path = ":icons/file-unknown";  // Default icon
 
         for (auto &stat : stats)
         {
