@@ -8,8 +8,11 @@ class Diesel(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "CMakeToolchain", "CMakeDeps"
 
+    def layout(self):
+        self.folders.generators = os.path.join(self.folders.build, "generators")
+
     def requirements(self):
-        self.requires("qt6keychain/0.14.1@anotherfoxguy/stable")
+        self.requires("qt6keychain/0.14.3@anotherfoxguy/stable")
 
     def generate(self):
         for dep in self.dependencies.values():

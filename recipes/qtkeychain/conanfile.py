@@ -5,7 +5,6 @@ from conan.tools.cmake import CMakeToolchain, CMake, CMakeDeps, cmake_layout
 
 class QtkeychainConan(ConanFile):
     name = "qt6keychain"
-    version = "0.14.1"
     license = "BSD-3"
     author = "Edgar"
     url = "https://github.com/AnotherFoxGuy/diesel-scm"
@@ -25,7 +24,7 @@ class QtkeychainConan(ConanFile):
         tc.variables["QTKEYCHAIN_STATIC"] = self.options.static
         tc.variables["BUILD_WITH_QT6"] = "ON"
         tc.variables["BUILD_TEST_APPLICATION"] = "OFF"
-        tc.variables["CMAKE_PREFIX_PATH"] = "E:/Qt/6.5.0/msvc2019_64"
+        # tc.variables["CMAKE_PREFIX_PATH"] = "E:/Qt/6.7.2/msvc2019_64"
         tc.generate()
         deps = CMakeDeps(self)
         deps.generate()
