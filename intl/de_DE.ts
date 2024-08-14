@@ -6,7 +6,7 @@
     <message>
         <location filename="../ui/AboutDialog.ui" line="14"/>
         <source>About Diesel...</source>
-        <translation type="unfinished">Über Diesel...</translation>
+        <translation>Über Diesel ...</translation>
     </message>
     <message>
         <location filename="../ui/AboutDialog.ui" line="23"/>
@@ -17,17 +17,17 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/AboutDialog.cpp" line="16"/>
         <source>QT version %0</source>
-        <translation type="unfinished"></translation>
+        <translation>QT-Version %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="19"/>
         <source>Fossil version %0</source>
-        <translation type="unfinished">Fossil version %0</translation>
+        <translation>Fossil-Version %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="26"/>
         <source>Diesel revision %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Diesel-Revision %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="37"/>
@@ -46,7 +46,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/BrowserWidget.ui" line="59"/>
         <location filename="../ui/BrowserWidget.ui" line="62"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="71"/>
@@ -58,12 +58,12 @@ Released under the GNU GPL</source>
         <location filename="../ui/BrowserWidget.ui" line="83"/>
         <location filename="../ui/BrowserWidget.ui" line="86"/>
         <source>Refresh</source>
-        <translation type="unfinished">Aktualisieren</translation>
+        <translation>Auffrischen</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="95"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Stopp</translation>
     </message>
 </context>
 <context>
@@ -121,7 +121,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="143"/>
         <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP-Proxy</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="59"/>
@@ -221,7 +221,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="17"/>
         <source>Fossil Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil-Einstellungen</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="51"/>
@@ -242,7 +242,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="94"/>
         <source>Graphical Merge</source>
-        <translation type="unfinished">Grafischer Merge</translation>
+        <translation>Grafisches Zusammenführen</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="103"/>
@@ -252,17 +252,17 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="137"/>
         <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP-Proxy</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="150"/>
         <source>The URL of the HTTP proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Die URL des HTTP-Proxy</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="157"/>
         <source>HTTP Port</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP-Port</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="164"/>
@@ -272,7 +272,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="177"/>
         <source>Ignore CR/NL</source>
-        <translation type="unfinished">CR/NL ignorieren</translation>
+        <translation>CR/NL ignorieren</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="190"/>
@@ -282,7 +282,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="203"/>
         <source>Ignore List</source>
-        <translation type="unfinished">Liste ignorieren</translation>
+        <translation>Ignorierliste</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="216"/>
@@ -297,7 +297,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="63"/>
         <source>Select Graphical Merge application</source>
-        <translation type="unfinished">Grafische Merge-Anwendung auswählen</translation>
+        <translation type="unfinished">Grafische Zusammenführungs-Anwendung auswählen</translation>
     </message>
 </context>
 <context>
@@ -310,12 +310,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="156"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Protokoll</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="191"/>
         <source>Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Browser</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="230"/>
@@ -335,7 +335,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="266"/>
         <source>&amp;Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Arbeitsfläche</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="291"/>
@@ -345,7 +345,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="344"/>
         <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Auff&amp;rischen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="347"/>
@@ -361,7 +361,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="362"/>
         <source>&amp;Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Commit</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="365"/>
@@ -468,7 +468,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="484"/>
         <source>C&amp;lone...</source>
-        <translation type="unfinished"></translation>
+        <translation>K&amp;lonen ...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="487"/>
@@ -520,12 +520,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="718"/>
         <source>U&amp;ndo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rückgängig</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="751"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Akt&amp;ualisieren</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="754"/>
@@ -535,28 +535,28 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="789"/>
         <source>&amp;Modified Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Geänderte Dateien</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="803"/>
         <source>&amp;Unchanged Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ungeänderte Dateien</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="817"/>
         <source>Un&amp;known Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbe&amp;kannte Dateien</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="828"/>
         <source>&amp;Ignored Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ignorierte Dateien</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="842"/>
         <location filename="../ui/MainWindow.ui" line="845"/>
         <source>View files as a list</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien als eine Liste anzeigen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="887"/>
@@ -566,83 +566,83 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="932"/>
         <source>Create &amp;Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlagwor&amp;t erstellen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="935"/>
         <location filename="../ui/MainWindow.ui" line="938"/>
         <source>Create a tag for a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlagwort für eine Revision erstellen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="947"/>
         <location filename="../ui/MainWindow.ui" line="950"/>
         <location filename="../src/MainWindow.cpp" line="2574"/>
         <source>Delete Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlagwort löschen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="959"/>
         <source>Create &amp;Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zweig erstellen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="962"/>
         <location filename="../ui/MainWindow.ui" line="965"/>
         <source>Create a branch from a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweig aus einer Revision erstellen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="974"/>
         <location filename="../src/MainWindow.cpp" line="2620"/>
         <source>Merge Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweig zusammenführen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="977"/>
         <location filename="../ui/MainWindow.ui" line="980"/>
         <source>Merge with a branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Mit einem Zweig zusammenführen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="988"/>
         <source>Files and F&amp;olders</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien und &amp;Ordner</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="991"/>
         <source>View files and folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien und Ordner anzeigen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="994"/>
         <source>View the workspace as files and folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbeitsfläche als Dateien und Ordner anzeigen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="999"/>
         <source>&amp;All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Alle Dateien</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1002"/>
         <source>Show all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Dateien anzeigen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1007"/>
         <source>Mo&amp;dified Files Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur geän&amp;derte Dateien</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1010"/>
         <source>Show modified files only</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur geänderte Dateien anzeigen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1019"/>
         <source>F&amp;ossil Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;ossil-Einstellungen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1028"/>
@@ -693,12 +693,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="1088"/>
         <source>Add &amp; Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinzufügen &amp; Entfernen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1091"/>
         <source>Add &amp; Remove files</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien hinzufügen &amp; entfernen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="502"/>
@@ -782,7 +782,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="682"/>
         <source>Open File</source>
-        <translation type="unfinished">Öffne Datei</translation>
+        <translation>Datei öffnen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="637"/>
@@ -1071,7 +1071,7 @@ Möchtest du hier eine erstellen?</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="430"/>
         <source>Fossil Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil-Dateien</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="432"/>
@@ -1081,7 +1081,7 @@ Möchtest du hier eine erstellen?</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="442"/>
         <source>Fossil Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil-Repositorien</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="445"/>
@@ -1150,12 +1150,12 @@ Bitte perpektivisch &apos;fossil rebuild&apos; ausführen</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Erweiterung</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="500"/>
@@ -1165,32 +1165,32 @@ Bitte perpektivisch &apos;fossil rebuild&apos; ausführen</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="940"/>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeitet</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="941"/>
         <source>Unchanged</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungeändert</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="942"/>
         <source>Added</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinzugefügt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="943"/>
         <source>Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Gelöscht</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="944"/>
         <source>Renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Umbenannt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="945"/>
         <source>Missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="946"/>
@@ -1200,7 +1200,7 @@ Bitte perpektivisch &apos;fossil rebuild&apos; ausführen</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="952"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="872"/>
@@ -1290,12 +1290,12 @@ Umbenennung abgebrochen</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="140"/>
         <source>Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbeitsfläche</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="285"/>
         <source>Filter (%0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter (%0)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="509"/>
@@ -1319,17 +1319,17 @@ Would you like to force closing this workspace?</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="805"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="830"/>
         <source>Branches</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweige</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="850"/>
         <source>Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlagwörter</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="884"/>
@@ -1339,7 +1339,7 @@ Would you like to force closing this workspace?</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="947"/>
         <source>Merged</source>
-        <translation type="unfinished"></translation>
+        <translation>Zusammengeführt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1539"/>
@@ -1351,12 +1351,12 @@ Would you like to force closing this workspace?</source>
         <location filename="../src/MainWindow.cpp" line="1568"/>
         <location filename="../src/MainWindow.cpp" line="2410"/>
         <source>Could not add files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien konnten nicht hinzugefügt werden.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1596"/>
         <source>Could not remove files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien konnten nicht entfernt werden.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1627"/>
@@ -1372,7 +1372,7 @@ Would you like to force closing this workspace?</source>
         <location filename="../src/MainWindow.cpp" line="1691"/>
         <location filename="../src/MainWindow.cpp" line="1701"/>
         <source>Could not undo changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen konnten nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1968"/>
@@ -1454,17 +1454,17 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2437"/>
         <source>Operation Aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorgang abgebrochen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2497"/>
         <source>&lt;Latest Revision&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Letzte Revision&gt;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2507"/>
         <source>Update workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbeitsfläche aktualisieren</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2520"/>
@@ -1475,18 +1475,18 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2551"/>
         <source>Create Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlagwort erstellen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2556"/>
         <location filename="../src/MainWindow.cpp" line="2599"/>
         <source>Invalid name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiger Name.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2561"/>
         <source>Could not create tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlagwort konnte nicht erstellt werden.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2574"/>
@@ -1496,33 +1496,33 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2582"/>
         <source>Could not delete tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlagwort konnte nicht gelöscht werden.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2594"/>
         <source>Create Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweig erstellen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2605"/>
         <source>Could not create branch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweig konnte nicht erstellt werden.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2628"/>
         <location filename="../src/MainWindow.cpp" line="2637"/>
         <source>Merge failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zusammenführen fehlgeschlagen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>Zusammenführen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>The following changes will be applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die folgenden Änderungen werden übernommen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2639"/>
@@ -1640,7 +1640,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/Fossil.cpp" line="1123"/>
         <source>Fossil UI is already running</source>
-        <translation type="unfinished">Fossil UI läuft bereits</translation>
+        <translation>Fossil UI läuft bereits</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1131"/>
@@ -1655,27 +1655,27 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="756"/>
         <source>Unchanged</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungeändert</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="761"/>
         <source>Modified</source>
-        <translation type="unfinished">Geändert</translation>
+        <translation>Geändert</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="766"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannt</translation>
     </message>
     <message>
         <location filename="../src/Utils.cpp" line="41"/>
         <source>Applications</source>
-        <translation type="unfinished">Anwendungen</translation>
+        <translation>Anwendungen</translation>
     </message>
     <message>
         <location filename="../src/Workspace.cpp" line="216"/>
         <source>Updating...</source>
-        <translation type="unfinished">Aktualisiere...</translation>
+        <translation>Wird aktualisiert ...</translation>
     </message>
 </context>
 <context>
@@ -1694,12 +1694,12 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="59"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="68"/>
         <source>User Name</source>
-        <translation type="unfinished">Nutzername</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="75"/>
@@ -1709,7 +1709,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="82"/>
         <source>Password</source>
-        <translation type="unfinished">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="89"/>
@@ -1720,28 +1720,28 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="106"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
         <location filename="../src/RemoteDialog.cpp" line="93"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
         <source>Invalid URL.</source>
-        <translation type="unfinished">Fehlerhafte URL</translation>
+        <translation>Ungültige URL.</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="77"/>
         <source>Fossil Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil-Repositorium</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="79"/>
         <source>Select Fossil Repository</source>
-        <translation type="unfinished">Fossil Repository auswählen</translation>
+        <translation>Fossil-Repositorium auswählen</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="93"/>
@@ -1754,22 +1754,22 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="31"/>
         <source>Revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Revision</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="45"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="55"/>
         <source>Integrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Integrieren</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="62"/>
         <source>Force</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwingen</translation>
     </message>
 </context>
 <context>
@@ -1813,7 +1813,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="105"/>
         <source>Web Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbrowser</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="118"/>
@@ -1848,7 +1848,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="186"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktion</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="193"/>
@@ -1863,12 +1863,12 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="213"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="226"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Befehl</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="235"/>
@@ -1878,7 +1878,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="263"/>
         <source>Context</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontext</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="270"/>
@@ -1893,7 +1893,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="287"/>
         <source>Multiple Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Mehrfachauswahl</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="14"/>
@@ -1918,22 +1918,22 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="19"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="20"/>
         <source>Internal</source>
-        <translation type="unfinished"></translation>
+        <translation>Intern</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="38"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="39"/>
         <source>Folders</source>
-        <translation type="unfinished">Ordner</translation>
+        <translation>Ordner</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="79"/>
@@ -1953,7 +1953,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="151"/>
         <source>Select command</source>
-        <translation type="unfinished"></translation>
+        <translation>Befehl auswählen</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="105"/>
