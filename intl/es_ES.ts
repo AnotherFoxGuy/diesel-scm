@@ -181,7 +181,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/CommitDialog.ui" line="86"/>
         <source>Commit to new branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprometerse con una nueva rama</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="120"/>
@@ -196,12 +196,12 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/CommitDialog.ui" line="158"/>
         <source>Revert stashed files</source>
-        <translation type="unfinished">Revertir archivos apartados</translation>
+        <translation>Revertir archivos almacenados</translation>
     </message>
     <message>
         <location filename="../src/CommitDialog.cpp" line="77"/>
         <source>Commit Changes</source>
-        <translation type="unfinished">Entregar Cambios</translation>
+        <translation>Confirmar cambios</translation>
     </message>
     <message>
         <location filename="../src/CommitDialog.cpp" line="107"/>
@@ -227,7 +227,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="51"/>
         <source>Graphical Diff </source>
-        <translation type="unfinished">Diferencia gráfica</translation>
+        <translation>Diferencia gráfica </translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="60"/>
