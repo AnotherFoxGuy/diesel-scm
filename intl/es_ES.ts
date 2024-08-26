@@ -232,23 +232,23 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="60"/>
         <source>Path to graphical diff tool</source>
-        <translation type="unfinished">Ruta a la herramienta de diferencias gráficas</translation>
+        <translation>Ruta a la herramienta de comparación gráfica</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="79"/>
         <location filename="../ui/FslSettingsDialog.ui" line="122"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="94"/>
         <source>Graphical Merge</source>
-        <translation type="unfinished">Fusión gráfica</translation>
+        <translation>Fusión gráfica</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="103"/>
         <source>Path to the graphical merge tool</source>
-        <translation type="unfinished">Ruta a la herramienta de fusión gráfica</translation>
+        <translation>Ruta a la herramienta de combinación gráfica</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="137"/>
@@ -273,22 +273,22 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="177"/>
         <source>Ignore CR/NL</source>
-        <translation type="unfinished">Ignore CR/NL</translation>
+        <translation>Ignorar CR/NL</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="190"/>
         <source>A comma separated list of glob-style file patterns to exclude from Fossil&apos;s CR/NL consistency checking</source>
-        <translation type="unfinished">Una lista separada por comas de pegotes de patrones de archivos a ser excluidos de la revisión de consistencia de CR/NL de Fossil</translation>
+        <translation>Una lista separada por comas de patrones de archivos de estilo global para excluir de la verificación de coherencia CR/NL de Fossil</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="203"/>
         <source>Ignore List</source>
-        <translation type="unfinished">Lista de ignorados</translation>
+        <translation>Lista de ignorados</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="216"/>
         <source>A comma separated list of glob-style file/path patterns ignored in Fossil file operations</source>
-        <translation type="unfinished">Una lista separada por comas de pegotes de patrones de archivos/rutas, a ser ignoradas por Fossil en operaciones con archivos</translation>
+        <translation>Una lista separada por comas de patrones de archivos/rutas de estilo global que se ignoran en las operaciones de archivos Fossil</translation>
     </message>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="55"/>
