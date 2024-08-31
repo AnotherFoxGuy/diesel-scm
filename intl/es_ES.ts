@@ -293,12 +293,12 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="55"/>
         <source>Select Graphical Diff application</source>
-        <translation type="unfinished">Seleccione la aplicación de diferencias gráficas</translation>
+        <translation>Selecciona la aplicación a utilizar para mostrar las diferencias</translation>
     </message>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="63"/>
         <source>Select Graphical Merge application</source>
-        <translation type="unfinished">Seleccione la aplicación de fusión gráfica</translation>
+        <translation>Seleccionar combinación de gráficos</translation>
     </message>
 </context>
 <context>
@@ -336,7 +336,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="266"/>
         <source>&amp;Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Espacio de trabajo</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="291"/>
@@ -346,7 +346,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="344"/>
         <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Recargar</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="347"/>
@@ -362,7 +362,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="362"/>
         <source>&amp;Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Compromiso</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="365"/>
@@ -469,32 +469,32 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="484"/>
         <source>C&amp;lone...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Clonar…</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="487"/>
         <source>Clone a remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Clonar un repositorio remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="496"/>
         <source>&amp;Push</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Enviar</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="499"/>
         <source>Push changes to the default remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar cambios al repositorio remoto predeterminado</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="514"/>
         <source>Pu&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Extraer</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="517"/>
         <source>Pull changes from the default remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer cambios del repositorio remoto predeterminado</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="532"/>
