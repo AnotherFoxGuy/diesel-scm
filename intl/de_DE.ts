@@ -32,7 +32,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/AboutDialog.cpp" line="37"/>
         <source>Translations with the help of:</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetzungen mit der Hilfe von:</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="46"/>
@@ -52,7 +52,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/BrowserWidget.ui" line="71"/>
         <location filename="../ui/BrowserWidget.ui" line="74"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Weiter</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="83"/>
@@ -152,7 +152,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/CloneDialog.cpp" line="78"/>
         <source>Invalid Proxy URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Proxy-URL.</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="89"/>
@@ -185,12 +185,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CommitDialog.ui" line="120"/>
         <source>Private branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Privater Zweig</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="141"/>
         <source>Branch name</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweigname</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="158"/>
@@ -226,7 +226,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="51"/>
         <source>Graphical Diff </source>
-        <translation type="unfinished">Grafisches Diff</translation>
+        <translation>Grafisches Diff </translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="60"/>
@@ -237,7 +237,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/FslSettingsDialog.ui" line="79"/>
         <location filename="../ui/FslSettingsDialog.ui" line="122"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="94"/>
