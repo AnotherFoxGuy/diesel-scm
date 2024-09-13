@@ -59,7 +59,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
         <location filename="../ui/BrowserWidget.ui" line="83"/>
         <location filename="../ui/BrowserWidget.ui" line="86"/>
         <source>Refresh</source>
-        <translation>Actualizar</translation>
+        <translation>Recargar</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="95"/>
@@ -92,7 +92,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/CloneDialog.ui" line="75"/>
         <source>The user name used to access the remote repository. Leave blank if not required</source>
-        <translation>El nombre de usuario utilizado para acceder al depósito remoto. Deje en blanco si no es requerido.</translation>
+        <translation>El nombre de usuario utilizado para acceder al depósito remoto. Deje en blanco si no es requerido</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="82"/>
@@ -102,7 +102,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/CloneDialog.ui" line="89"/>
         <source>The password used to access the remote repository. Leave blank if not required</source>
-        <translation>La contraseña usada para acceder al depósito remoto. Deje en blanco si no es requerida.</translation>
+        <translation>La contraseña usada para acceder al depósito remoto. Deje en blanco si no es requerida</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="99"/>
@@ -206,7 +206,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../src/CommitDialog.cpp" line="107"/>
         <source>Stash Changes</source>
-        <translation type="unfinished">Apartar cambios</translation>
+        <translation>Cambios en Stash</translation>
     </message>
 </context>
 <context>
@@ -442,7 +442,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="452"/>
         <source>&amp;Open...</source>
-        <translation>A&amp;brir</translation>
+        <translation>A&amp;brir…</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="455"/>
@@ -499,59 +499,59 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="532"/>
         <source>&amp;Push to Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Impulsar a distancia</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="535"/>
         <location filename="../ui/MainWindow.ui" line="538"/>
         <source>Push changes to a remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar cambios a un repositorio remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="547"/>
         <source>Pu&amp;ll from Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Atraer desde remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="550"/>
         <location filename="../ui/MainWindow.ui" line="553"/>
         <source>Pull changes from a remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer cambios desde un repositorio remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="718"/>
         <source>U&amp;ndo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Deshacer</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="751"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Actualizar</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="754"/>
         <source>Update the workspace to a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizar el área de trabajo a una revisión</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="789"/>
         <source>&amp;Modified Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Archivos modificados</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="803"/>
         <source>&amp;Unchanged Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Archivos sin modificar</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="817"/>
         <source>Un&amp;known Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar&amp;chivos desconocidos</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="828"/>
         <source>&amp;Ignored Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Archivos ignorados</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="842"/>
@@ -562,18 +562,18 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="887"/>
         <source>&amp;Stash Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambios en el &amp;Stash</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="932"/>
         <source>Create &amp;Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear &amp;Etiquetar</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="935"/>
         <location filename="../ui/MainWindow.ui" line="938"/>
         <source>Create a tag for a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear una etiqueta para una revisión</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="947"/>
@@ -585,45 +585,45 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="959"/>
         <source>Create &amp;Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Crear rama</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="962"/>
         <location filename="../ui/MainWindow.ui" line="965"/>
         <source>Create a branch from a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear una rama de una revisión</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="974"/>
         <location filename="../src/MainWindow.cpp" line="2620"/>
         <source>Merge Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Combinar rama</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="977"/>
         <location filename="../ui/MainWindow.ui" line="980"/>
         <source>Merge with a branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Combinar con una rama</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="988"/>
         <source>Files and F&amp;olders</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos y c&amp;arpetas</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="991"/>
         <source>View files and folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver archivos y carpetas</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="994"/>
         <source>View the workspace as files and folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver el espacio de trabajo como archivos y carpetas</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="999"/>
         <source>&amp;All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Todos los archivos</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1002"/>
@@ -633,58 +633,58 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="1007"/>
         <source>Mo&amp;dified Files Only</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;olo archivos modificados</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1010"/>
         <source>Show modified files only</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar solo archivos modificados</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1019"/>
         <source>F&amp;ossil Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes de F&amp;ossil</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1028"/>
         <source>Edit Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar a distancia</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1031"/>
         <source>Edit Remote URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar URL remota</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1040"/>
         <source>Set Remote as Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Establecer el remoto como predeterminado</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1043"/>
         <source>Makes the selected remote </source>
-        <translation type="unfinished"></translation>
+        <translation>Hacer selección remota </translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1052"/>
         <source>Add Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Añadir a distancia</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1055"/>
         <source>Adds a Remote Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Añadir una Url remota</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1064"/>
         <location filename="../src/MainWindow.cpp" line="2849"/>
         <source>Delete Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1073"/>
         <source>abortOperation</source>
-        <translation type="unfinished"></translation>
+        <translation>abortar la operación</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1076"/>
@@ -694,12 +694,12 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="1088"/>
         <source>Add &amp; Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar &amp; quitar</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1091"/>
         <source>Add &amp; Remove files</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar y quitar archivos</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="502"/>
@@ -778,12 +778,12 @@ Disponible en virtud de la licencia GPL de GNU</translation>
         <location filename="../ui/MainWindow.ui" line="625"/>
         <location filename="../ui/MainWindow.ui" line="628"/>
         <source>Starts the Fossil UI in the Web Browser</source>
-        <translation type="unfinished">Iniciar la IU de Fossil en el explorador web</translation>
+        <translation>Inicia Fossil UI en el navegador web</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="682"/>
         <source>Open File</source>
-        <translation type="unfinished">Abrir Archivo</translation>
+        <translation>Abrir archivo</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="637"/>
@@ -868,7 +868,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="736"/>
         <source>&amp;About...</source>
-        <translation>&amp;Sobre</translation>
+        <translation>&amp;A cerca de…</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="739"/>
@@ -893,7 +893,7 @@ Disponible en virtud de la licencia GPL de GNU</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="769"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Preferencias</translation>
+        <translation>&amp;Preferencias…</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="772"/>
@@ -1067,7 +1067,7 @@ Would you like to create one here?</source>
         <location filename="../src/MainWindow.cpp" line="403"/>
         <location filename="../src/MainWindow.cpp" line="483"/>
         <source>Could not open repository.</source>
-        <translation>No puedo abrir el depósito</translation>
+        <translation>No se puedo abrir el repositorio.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="430"/>
@@ -1195,7 +1195,7 @@ Se ha abortado la creación del depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="946"/>
         <source>Conflicted</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflicto</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="952"/>
@@ -1217,7 +1217,7 @@ Se ha abortado la creación del depósito.</translation>
         <location filename="../src/MainWindow.cpp" line="1554"/>
         <location filename="../src/MainWindow.cpp" line="2405"/>
         <source>The following files will be added.</source>
-        <translation>Los siguientes archivos serán añadidos</translation>
+        <translation>Se añadirán los siguientes archivos.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1554"/>
@@ -1241,7 +1241,7 @@ Se ha abortado la creación del depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="1588"/>
         <source>The following files will be removed from the repository.</source>
-        <translation>Se quitarán los siguientes archivos del depósito</translation>
+        <translation>Los siguientes archivos serán eliminados del repositorio.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1588"/>
@@ -1256,7 +1256,7 @@ Se ha abortado la creación del depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="1622"/>
         <source>The following files will be reverted.</source>
-        <translation>Se revertirán los siguientes archivos</translation>
+        <translation>Los siguientes archivos serán revertidos.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1644"/>
@@ -1279,13 +1279,13 @@ Se abortó el renombrado.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2534"/>
         <source>The following files will be updated.</source>
-        <translation>Se actualizarán los siguientes archivos</translation>
+        <translation>Se actualizarán los siguientes archivos.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1968"/>
         <location filename="../src/MainWindow.cpp" line="1977"/>
         <source>Cannot rename folder.</source>
-        <translation>No puedo renombrar la carpeta</translation>
+        <translation>No se pudo renombrar la carpeta.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="140"/>
@@ -1295,14 +1295,16 @@ Se abortó el renombrado.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="285"/>
         <source>Filter (%0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro (%0)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="509"/>
         <source>Could not close the workspace.
 Perhaps there are uncommitted changes available
 Would you like to force closing this workspace?</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede cerrar el espacio de trabajo
+Quizas haya cambios sin guardar disponibles
+¿Desea forzar el cierre de este espacio de trabajo?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="522"/>
@@ -1334,55 +1336,55 @@ Would you like to force closing this workspace?</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="884"/>
         <source>Remotes</source>
-        <translation type="unfinished"></translation>
+        <translation>A distancia</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="947"/>
         <source>Merged</source>
-        <translation type="unfinished"></translation>
+        <translation>Fusionado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1539"/>
         <source>Could not commit changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se han podido confirmar los cambios.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1559"/>
         <location filename="../src/MainWindow.cpp" line="1568"/>
         <location filename="../src/MainWindow.cpp" line="2410"/>
         <source>Could not add files.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pueden añadir los archivos.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1596"/>
         <source>Could not remove files.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se han podido eliminar los archivos.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1627"/>
         <source>Could not revert files.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se han podido revertir los archivos.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1658"/>
         <source>Could not rename file &apos;%0&apos; to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>No se ha podido cambiar el nombre del archivo &apos;%0&apos; a &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1691"/>
         <location filename="../src/MainWindow.cpp" line="1701"/>
         <source>Could not undo changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pueden deshacer los cambios.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1968"/>
         <source>Folder name contains invalid characters.</source>
-        <translation>El nombre de la carpeta contiene caracteres inválidos</translation>
+        <translation>El nombre de la carpeta contiene caracteres no válidos.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1977"/>
         <source>This folder exists already.</source>
-        <translation>Esta carpeta ya existía</translation>
+        <translation>Esta carpeta ya existe.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2002"/>
@@ -1449,17 +1451,17 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2251"/>
         <source>Could not diff stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo diferenciar el stash.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2437"/>
         <source>Operation Aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>Operación abortada</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2497"/>
         <source>&lt;Latest Revision&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Última revisión&gt;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2507"/>
@@ -1470,7 +1472,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
         <location filename="../src/MainWindow.cpp" line="2520"/>
         <location filename="../src/MainWindow.cpp" line="2539"/>
         <source>Could not update the repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se ha podido actualizar el repositorio.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2551"/>
@@ -1527,25 +1529,25 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2639"/>
         <source>Merge completed. Don&apos;t forget to commit!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fusión completada. ¡No olvides confirmar los cambios!</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2727"/>
         <location filename="../src/MainWindow.cpp" line="2764"/>
         <source>Could not push to the remote repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede enviar al repositorio remoto.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2745"/>
         <location filename="../src/MainWindow.cpp" line="2783"/>
         <source>Could not pull from the remote repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede recuperar desde el repositorio remoto.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2755"/>
         <location filename="../src/MainWindow.cpp" line="2774"/>
         <source>A default remote repository has not been specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se ha especificado un repositorio remoto predeterminado.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2807"/>
@@ -1555,7 +1557,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2849"/>
         <source>Are you sure want to delete the remote &apos;%0&apos; ?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿ Está seguro de querer borrar a distancia &apos;%0&apos; ?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2143"/>
@@ -1570,12 +1572,12 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2159"/>
         <source>Could not create stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo crear el stash.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2174"/>
         <source>The following stashes will be applied.</source>
-        <translation>Serán aplicados los siguientes apartados</translation>
+        <translation>Se aplicarán a los siguientes stash.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2174"/>
@@ -1590,7 +1592,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2186"/>
         <source>Could not apply stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo aplicar el stash.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2199"/>
@@ -1602,7 +1604,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
         <location filename="../src/MainWindow.cpp" line="2200"/>
         <location filename="../src/MainWindow.cpp" line="2229"/>
         <source>Could not delete stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo eliminar el stash.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2217"/>
@@ -1612,7 +1614,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2217"/>
         <source>The following stashes will be deleted.</source>
-        <translation>Serán borrados los siguientes cambios apartados</translation>
+        <translation>Se borrarán los siguientes stashs.</translation>
     </message>
 </context>
 <context>
@@ -1625,7 +1627,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/Fossil.cpp" line="787"/>
         <source>Running Fossil</source>
-        <translation type="unfinished">Ejecutando Fossil</translation>
+        <translation>Ejecutando Fossil</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="797"/>
@@ -1640,32 +1642,32 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/Fossil.cpp" line="1123"/>
         <source>Fossil UI is already running</source>
-        <translation type="unfinished">La IU de Fossil ya está funcionando</translation>
+        <translation>Fossil UI ya se está ejecutando</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1131"/>
         <source>Starting Fossil browser UI. Please wait.</source>
-        <translation type="unfinished">Iniciando el explorador de la IU de Fossil. Espere un momento.</translation>
+        <translation>Iniciando Fossil browser UI. Por favor, espere.</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1145"/>
         <source>Could not start Fossil executable &apos;%s&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>No se ha podido iniciar el ejecutable Fossil &apos;%s&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="756"/>
         <source>Unchanged</source>
-        <translation type="unfinished">No modificado</translation>
+        <translation>Sin modificar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="761"/>
         <source>Modified</source>
-        <translation type="unfinished">Modificado</translation>
+        <translation>Modificado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="766"/>
         <source>Unknown</source>
-        <translation type="unfinished">Desconocido</translation>
+        <translation>Desconocido</translation>
     </message>
     <message>
         <location filename="../src/Utils.cpp" line="41"/>
@@ -1689,12 +1691,12 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="40"/>
         <source>The URL of the source repository</source>
-        <translation type="unfinished">La URL del depósito de código</translation>
+        <translation>URL del repositorio de origen</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="59"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="68"/>
@@ -1704,7 +1706,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="75"/>
         <source>The user name used to access the remote repository. Leave blank if not required</source>
-        <translation type="unfinished">El nombre de usuario utilizado para acceder el depósito remoto. Deje en blanco si no es requerido.</translation>
+        <translation>El nombre de usuario utilizado para acceder al repositorio remoto. Dejar en blanco si no es necesario</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="82"/>
@@ -1715,7 +1717,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
         <location filename="../ui/RemoteDialog.ui" line="89"/>
         <location filename="../ui/RemoteDialog.ui" line="99"/>
         <source>The password used to access the remote repository. Leave blank if not required</source>
-        <translation type="unfinished">La contraseña usada para acceder al depósito remoto. Deje en blanco si no es requerida.</translation>
+        <translation>La contraseña utilizada para acceder al repositorio remoto. Dejar en blanco si no es necesaria</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="106"/>
@@ -1754,7 +1756,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="31"/>
         <source>Revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Revisión</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="45"/>
@@ -1873,7 +1875,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="235"/>
         <source>Custom action command-line. Information about the selected items is available via the macros %FILE %FOLDER %WORKSPACE</source>
-        <translation type="unfinished"></translation>
+        <translation>Acción personalizada en la línea de comandos. La información sobre los elementos seleccionados está disponible a través de las macros %FILE %FOLDER %WORKSPACE</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="263"/>
@@ -1888,7 +1890,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="277"/>
         <source>When checked this action supports multiple selected items</source>
-        <translation type="unfinished"></translation>
+        <translation>Si está marcada, esta acción admite varios elementos seleccionados</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="287"/>
@@ -1963,7 +1965,7 @@ Los siguientes archivos serán movidos al depósito.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="105"/>
         <source>Are you sure you want to clear the commit message history?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Estás seguro de que quieres borrar el historial de mensajes de confirmación?</translation>
     </message>
 </context>
 </TS>
