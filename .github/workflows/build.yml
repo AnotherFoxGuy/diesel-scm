@@ -32,7 +32,7 @@ jobs:
           curl "https://git.anotherfoxguy.com/AnotherFoxGuy/install-scripts/raw/branch/main/install-conan.sh" | sudo bash
 
       - name: Enable Developer Command Prompt
-        uses: ilammy/msvc-dev-cmd@v1.13.0
+        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Cache conan packages
         uses: actions/cache@v4
@@ -44,36 +44,20 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           cache: 'true'
-          version: 6.7.2
+          version: 6.8.1
           modules: qt5compat qtpositioning qtwebchannel qtwebengine qtwebview
           dir: "${{ github.workspace }}/qt/"
 
       - name: Add conan remote
         run: conan remote add ror-conan https://git.anotherfoxguy.com/api/packages/rorbot/conan -f
 
-      - name: Run Conan (Windows)
-        if: startsWith(matrix.os, 'windows')
-        run: |
-          conan remote add ror-conan https://git.anotherfoxguy.com/api/packages/rorbot/conan -f
-          conan install . -b missing -pr:b=tools/conan-profiles/vs-22-release-ninja -pr=tools/conan-profiles/vs-22-release-ninja
-        shell: cmd
-
-      - name:  Run Conan (Linux)
-        if: startsWith(matrix.os, 'ubuntu')
-        run: |
-          conan profile detect --force
-          echo "tools.system.package_manager:mode = install" > ~/.conan2/global.conf
-          echo "tools.system.package_manager:sudo = True" >> ~/.conan2/global.conf
-          conan remote add ror-conan https://git.anotherfoxguy.com/api/packages/rorbot/conan -f
-          conan install . -s build_type=Release -b missing -pr:b=default -c tools.cmake.cmaketoolchain:generator="Ninja"
-
-      - name: Build
-        run: |
-          cmake --preset conan-release -DCMAKE_INSTALL_PREFIX=redist
-          ninja
+      - name: Configure
+        run: cmake . -GNinja -DCMAKE_INSTALL_PREFIX=redist -DCMAKE_BUILD_TYPE=Release -Bbuild -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="cmake/conan_provider.cmake"
 
       - name: Install
-        run: ninja install
+        run: |
+          cd build
+          ninja install
 
       - name: Upload redist folder
         uses: actions/upload-artifact@v4
