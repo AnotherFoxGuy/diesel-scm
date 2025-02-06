@@ -24,7 +24,6 @@ class QtkeychainConan(ConanFile):
         tc.variables["QTKEYCHAIN_STATIC"] = self.options.static
         tc.variables["BUILD_WITH_QT6"] = "ON"
         tc.variables["BUILD_TEST_APPLICATION"] = "OFF"
-        # tc.variables["CMAKE_PREFIX_PATH"] = "E:/Qt/6.7.2/msvc2019_64"
         tc.generate()
         deps = CMakeDeps(self)
         deps.generate()

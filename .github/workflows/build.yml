@@ -28,13 +28,20 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu')
         run: |
           sudo apt-get update
-          sudo apt-get -y install ninja-build
-          curl "https://git.anotherfoxguy.com/AnotherFoxGuy/install-scripts/raw/branch/main/install-conan.sh" | sudo bash
+          sudo apt-get -y install ninja-build \
+            libsecret-1-dev \
+            qt6-base-dev \
+            qt6-webengine-dev \
+            qt6-webview-dev \
+            qtkeychain-qt6-dev \
+            qt6-5compat-dev \
+            qt6-l10n-tools
 
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: Cache conan packages
+        if: startsWith(matrix.os, 'windows')
         uses: actions/cache@v4
         with:
           key: conan-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
@@ -42,17 +49,23 @@ jobs:
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
+        if: startsWith(matrix.os, 'windows')
         with:
           cache: 'true'
-          version: 6.8.1
+          version: 6.7.3
           modules: qt5compat qtpositioning qtwebchannel qtwebengine qtwebview
           dir: "${{ github.workspace }}/qt/"
 
-      - name: Add conan remote
-        run: conan remote add ror-conan https://git.anotherfoxguy.com/api/packages/rorbot/conan -f
+      - name: Configure (Windows)
+        if: startsWith(matrix.os, 'windows')
+        run: |
+          conan remote add ror-conan https://git.anotherfoxguy.com/api/packages/rorbot/conan -f
+          cmake . -GNinja -DCMAKE_INSTALL_PREFIX=redist -DCMAKE_BUILD_TYPE=Release -Bbuild -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="cmake/conan_provider.cmake"
 
-      - name: Configure
-        run: cmake . -GNinja -DCMAKE_INSTALL_PREFIX=redist -DCMAKE_BUILD_TYPE=Release -Bbuild -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="cmake/conan_provider.cmake"
+      - name: Configure (Ubuntu)
+        if: startsWith(matrix.os, 'ubuntu')
+        run: |
+          cmake . -GNinja -DCMAKE_INSTALL_PREFIX=redist -DCMAKE_BUILD_TYPE=Release -Bbuild
 
       - name: Install
         run: |
