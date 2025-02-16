@@ -12,7 +12,8 @@
         <location filename="../ui/AboutDialog.ui" line="23"/>
         <source>A GUI front-end for the Fossil SCM by Kostas Karanikolas
 Released under the GNU GPL</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein GUI-Frontend für das Fossil SCM von Kostas Karanikolas
+Veröffentlicht unter der GNU GPL</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="16"/>
@@ -37,7 +38,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/AboutDialog.cpp" line="46"/>
         <source>This sofware uses the following open-source libraries and assets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Software verwendet die folgenden Open-Source-Bibliotheken und -Assets:</translation>
     </message>
 </context>
 <context>
@@ -76,7 +77,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="31"/>
         <source>Remote Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferntes Repository</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="40"/>
@@ -106,7 +107,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="99"/>
         <source>Local Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokales Repositorium</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="108"/>
@@ -116,7 +117,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="136"/>
         <source>The URL of the HTTP proxy. Leave blank if not required</source>
-        <translation type="unfinished"></translation>
+        <translation>Die URL des HTTP-Proxys. Leer lassen, wenn nicht erforderlich</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="143"/>
@@ -267,7 +268,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="164"/>
         <source>HTTP port to use for the Fossil web interface</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP-Port, der für die Fossil-Weboberfläche verwendet werden soll</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="177"/>
@@ -530,7 +531,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="754"/>
         <source>Update the workspace to a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbeitsbereich auf eine Revision aktualisieren</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="789"/>
@@ -688,7 +689,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="1076"/>
         <source>Abort the current operation</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuellen Vorgang abbrechen</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1088"/>
@@ -777,7 +778,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="625"/>
         <location filename="../ui/MainWindow.ui" line="628"/>
         <source>Starts the Fossil UI in the Web Browser</source>
-        <translation type="unfinished">Starte das Fossil UI im Browser</translation>
+        <translation>Startet die Fossil UI im Webbrowser</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="682"/>
@@ -1160,7 +1161,7 @@ Bitte perpektivisch &apos;fossil rebuild&apos; ausführen</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="500"/>
         <source>Are you sure you want to close this workspace?</source>
-        <translation type="unfinished"></translation>
+        <translation>Bist du sicher, dass du diesen Arbeitsbereich schließen möchtest?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="940"/>
@@ -1195,7 +1196,7 @@ Bitte perpektivisch &apos;fossil rebuild&apos; ausführen</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="946"/>
         <source>Conflicted</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfliktbehaftet</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="952"/>
@@ -1307,14 +1308,14 @@ Would you like to force closing this workspace?</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="522"/>
         <source>Could not close the workspace.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte den Arbeitsbereich nicht schließen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="558"/>
         <location filename="../src/MainWindow.cpp" line="2694"/>
         <location filename="../src/MainWindow.cpp" line="2827"/>
         <source>Could not store information to keychain.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte keine Informationen im Schlüsselbund speichern.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="805"/>
@@ -1361,7 +1362,7 @@ Would you like to force closing this workspace?</source>
     <message>
         <location filename="../src/MainWindow.cpp" line="1627"/>
         <source>Could not revert files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte Dateien nicht zurücksetzen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1658"/>
