@@ -1621,7 +1621,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/AppSettings.cpp" line="42"/>
         <source>Custom Action %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Aktion %0</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="787"/>
@@ -1631,7 +1631,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/Fossil.cpp" line="797"/>
         <source>Could not generate command line file</source>
-        <translation type="unfinished"></translation>
+        <translation>Befehlszeilendatei konnte nicht erzeugt werden</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="828"/>
@@ -1646,12 +1646,12 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/Fossil.cpp" line="1131"/>
         <source>Starting Fossil browser UI. Please wait.</source>
-        <translation type="unfinished">Starte Fossil Browser UI. Bitte warten</translation>
+        <translation>Fossil-Browser-Benutzeroberfläche wird gestartet. Bitte warten.</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1145"/>
         <source>Could not start Fossil executable &apos;%s&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausführbare Fossil-Datei ‚%s‘ konnte nicht gestartet werden</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="756"/>
@@ -1819,7 +1819,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="118"/>
         <source>Web browser to use for the Fossil web interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbrowser für die Fossil-Weboberfläche</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="131"/>
@@ -1844,7 +1844,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="174"/>
         <source>Custom Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Aktionen</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="186"/>
@@ -1854,12 +1854,12 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="193"/>
         <source>Custom action</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Aktion</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="200"/>
         <source>Name of custom action</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der benutzerdefinierten Aktion</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="213"/>
@@ -1874,7 +1874,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="235"/>
         <source>Custom action command-line. Information about the selected items is available via the macros %FILE %FOLDER %WORKSPACE</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Aktion Befehlszeile. Informationen über die ausgewählten Elemente sind über die Makros %FILE %FOLDER %WORKSPACE verfügbar</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="263"/>
@@ -1884,12 +1884,12 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="270"/>
         <source>The context where this action will be available</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Kontext, in dem diese Aktion verfügbar sein wird</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="277"/>
         <source>When checked this action supports multiple selected items</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn aktiviert, unterstützt diese Aktion mehrere ausgewählte Elemente</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="287"/>
@@ -1914,7 +1914,7 @@ Die folgenden Dateien werden in das Repository verschoben.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="17"/>
         <source>Custom Action %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Aktion %0</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="19"/>
