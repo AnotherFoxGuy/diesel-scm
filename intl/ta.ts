@@ -201,7 +201,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/CommitDialog.cpp" line="77"/>
         <source>Commit Changes</source>
-        <translation>மாற்றங்களைச் செய்யுங்கள்</translation>
+        <translation>மாற்றங்களை உறுதிமொழி</translation>
     </message>
     <message>
         <location filename="../src/CommitDialog.cpp" line="107"/>
@@ -368,7 +368,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="365"/>
         <location filename="../ui/MainWindow.ui" line="368"/>
         <source>Commit modifications</source>
-        <translation>மாற்றங்களைச் செய்யுங்கள்</translation>
+        <translation>திருத்தங்களைச் உறுதிமொழி</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="371"/>
@@ -511,7 +511,7 @@ Released under the GNU GPL</source>
         <location filename="../ui/MainWindow.ui" line="550"/>
         <location filename="../ui/MainWindow.ui" line="553"/>
         <source>Pull changes from a remote repository</source>
-        <translation>தொலை களஞ்சியத்திலிருந்து மாற்றங்களை இழுக்கவும்</translation>
+        <translation>ஒரு தொலை களஞ்சியத்திலிருந்து மாற்றங்களை இழு</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="718"/>
@@ -703,12 +703,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="505"/>
         <source>Ctrl+P</source>
-        <translation>Ctrl+P.</translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="520"/>
         <source>Pull changes from the remote repository</source>
-        <translation>தொலை களஞ்சியத்திலிருந்து மாற்றங்களை இழுக்கவும்</translation>
+        <translation>தொலை களஞ்சியத்திலிருந்து மாற்றங்களை இழு</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="523"/>
