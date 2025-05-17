@@ -158,7 +158,7 @@ Veröffentlicht unter der GNU GPL</translation>
     <message>
         <location filename="../src/CloneDialog.cpp" line="89"/>
         <source>Fossil Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossil-Repositorium</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="91"/>
