@@ -212,9 +212,9 @@ if (WIN32)
 
     FetchContent_Declare(
             fossil
-            URL https://fossil-scm.org/home/uv/fossil-w64-2.25.zip
+            URL https://fossil-scm.org/home/uv/fossil-w64-2.27.zip
             DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-            URL_MD5 bdf562f5e0754b5e38020a11f0bb4555
+            URL_MD5 a46b91096be9c8608b3e77eac6dd3292
     )
     FetchContent_MakeAvailable(fossil)
 
