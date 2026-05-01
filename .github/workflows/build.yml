@@ -48,7 +48,7 @@ jobs:
           path: ~/.conan2/
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4.3.1
         if: startsWith(matrix.os, 'windows')
         with:
           cache: 'true'
