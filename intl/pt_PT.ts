@@ -6,38 +6,39 @@
     <message>
         <location filename="../ui/AboutDialog.ui" line="14"/>
         <source>About Diesel...</source>
-        <translation type="unfinished">Sobre o Diesel...</translation>
+        <translation>Sobre o Diesel...</translation>
     </message>
     <message>
         <location filename="../ui/AboutDialog.ui" line="23"/>
         <source>A GUI front-end for the Fossil SCM by Kostas Karanikolas
 Released under the GNU GPL</source>
-        <translation type="unfinished"></translation>
+        <translation>Um front-end GUI para o Fossil SCM por Kostas Karanikolas
+Lançado sob a GNU GPL</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="16"/>
         <source>QT version %0</source>
-        <translation type="unfinished">QT versão %0</translation>
+        <translation>QT versão %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="19"/>
         <source>Fossil version %0</source>
-        <translation type="unfinished">Fossil versão %0</translation>
+        <translation>Fossil versão %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="26"/>
         <source>Diesel revision %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Diesel revisão %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="37"/>
         <source>Translations with the help of:</source>
-        <translation type="unfinished">Traduções com a ajuda de:</translation>
+        <translation>Traduções com a ajuda de:</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="46"/>
         <source>This sofware uses the following open-source libraries and assets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Este software usa as seguintes bibliotecas e ativos de fonte aberta:</translation>
     </message>
 </context>
 <context>
@@ -76,7 +77,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="31"/>
         <source>Remote Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Repositório Remoto</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="40"/>
@@ -91,7 +92,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="75"/>
         <source>The user name used to access the remote repository. Leave blank if not required</source>
-        <translation>O nome de utilizador usado para aceder ao repositório remoto. Deixe em branco se não for necessário.</translation>
+        <translation>O nome de utilizador usado para aceder ao repositório remoto. Deixe em branco se não for necessário</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="82"/>
@@ -101,12 +102,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="89"/>
         <source>The password used to access the remote repository. Leave blank if not required</source>
-        <translation>A senha usada para aceder ao repositório remoto. Deixe em branco se não for necessária.</translation>
+        <translation>A senha usada para aceder ao repositório remoto. Deixe em branco se não for necessária</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="99"/>
         <source>Local Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Repositório Local</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="108"/>
@@ -116,12 +117,12 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CloneDialog.ui" line="136"/>
         <source>The URL of the HTTP proxy. Leave blank if not required</source>
-        <translation type="unfinished"></translation>
+        <translation>O URL do proxy HTTP. Deixe em branco se não é necessário</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="143"/>
         <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy HTTP</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="59"/>
@@ -152,7 +153,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../src/CloneDialog.cpp" line="78"/>
         <source>Invalid Proxy URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>URL de Proxy Inválido.</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="89"/>
@@ -180,32 +181,32 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/CommitDialog.ui" line="86"/>
         <source>Commit to new branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Dar commit para um novo ramo</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="120"/>
         <source>Private branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Ramo privado</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="141"/>
         <source>Branch name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do ramo</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="158"/>
         <source>Revert stashed files</source>
-        <translation type="unfinished">Reverter os ficheiros armazenados</translation>
+        <translation>Reverter os ficheiros armazenados</translation>
     </message>
     <message>
         <location filename="../src/CommitDialog.cpp" line="77"/>
         <source>Commit Changes</source>
-        <translation type="unfinished">Cometer modificações</translation>
+        <translation>Dar commit a modificações</translation>
     </message>
     <message>
         <location filename="../src/CommitDialog.cpp" line="107"/>
         <source>Stash Changes</source>
-        <translation type="unfinished">Armazenar modificações</translation>
+        <translation>Armazenar Modificações</translation>
     </message>
 </context>
 <context>
@@ -221,83 +222,83 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="17"/>
         <source>Fossil Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Definições do Fossil</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="51"/>
         <source>Graphical Diff </source>
-        <translation type="unfinished">Diff gráfico</translation>
+        <translation>Diff Gráfico </translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="60"/>
         <source>Path to graphical diff tool</source>
-        <translation type="unfinished">Caminho para ferramenta diff gráfica</translation>
+        <translation>Caminho para ferramenta diff gráfica</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="79"/>
         <location filename="../ui/FslSettingsDialog.ui" line="122"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="94"/>
         <source>Graphical Merge</source>
-        <translation type="unfinished">Mescla gráfica</translation>
+        <translation>Merge gráfico</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="103"/>
         <source>Path to the graphical merge tool</source>
-        <translation type="unfinished">Caminho para a ferramenta de mesclagem gráfica</translation>
+        <translation>Caminho para a ferramenta de merge gráfico</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="137"/>
         <source>HTTP Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy HTTP</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="150"/>
         <source>The URL of the HTTP proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>O URL do proxy HTTP</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="157"/>
         <source>HTTP Port</source>
-        <translation type="unfinished">Porto HTTP</translation>
+        <translation>Porta HTTP</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="164"/>
         <source>HTTP port to use for the Fossil web interface</source>
-        <translation type="unfinished">Porto HTTP a usar pela interface web do Fossil</translation>
+        <translation>A porta HTTP a usar pela interface web do Fossil</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="177"/>
         <source>Ignore CR/NL</source>
-        <translation type="unfinished">Ignorar CR/NL</translation>
+        <translation>Ignorar CR/NL</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="190"/>
         <source>A comma separated list of glob-style file patterns to exclude from Fossil&apos;s CR/NL consistency checking</source>
-        <translation type="unfinished">Lista de padrões de ficheiros do estilo glob separados por vírgulas para excluir da verificação de consistência CR/NL do Fossil</translation>
+        <translation>Lista de padrões de ficheiros do estilo glob separados por vírgulas para excluir da verificação de consistência CR/NL do Fossil</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="203"/>
         <source>Ignore List</source>
-        <translation type="unfinished">Lista dos ignorados</translation>
+        <translation>Lista dos Ignorados</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="216"/>
         <source>A comma separated list of glob-style file/path patterns ignored in Fossil file operations</source>
-        <translation type="unfinished">Lista de padrões de ficheiros/caminhos do estilo glob separados por vírgulas para as operações de ficheiros do Fossil</translation>
+        <translation>Lista de padrões de ficheiros/caminhos do estilo glob separados por vírgulas para as operações de ficheiros do Fossil</translation>
     </message>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="55"/>
         <source>Select Graphical Diff application</source>
-        <translation type="unfinished">Seleccione a aplicação Diff gráfica</translation>
+        <translation>Seleccione a Aplicação Diff gráfica</translation>
     </message>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="63"/>
         <source>Select Graphical Merge application</source>
-        <translation type="unfinished">Seleccione a aplicação de mesclagem gráfica</translation>
+        <translation>Seleccione a aplicação de Merge Gráfico</translation>
     </message>
 </context>
 <context>
@@ -335,7 +336,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="266"/>
         <source>&amp;Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Espaço de Trabalho</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="291"/>
@@ -345,7 +346,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="344"/>
         <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Atualizar</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="347"/>
@@ -361,7 +362,7 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="362"/>
         <source>&amp;Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Commit</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="365"/>
@@ -468,226 +469,226 @@ Released under the GNU GPL</source>
     <message>
         <location filename="../ui/MainWindow.ui" line="484"/>
         <source>C&amp;lone...</source>
-        <translation type="unfinished"></translation>
+        <translation>C&amp;lonar...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="496"/>
         <source>&amp;Push</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Push</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="499"/>
         <source>Push changes to the default remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Dar push de mudanças para o repositório remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="514"/>
         <source>Pu&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>Pu&amp;ll</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="517"/>
         <source>Pull changes from the default remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Fazer pull de mudanças do repositório remoto padrão</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="532"/>
         <source>&amp;Push to Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Dar &amp;Push para Remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="535"/>
         <location filename="../ui/MainWindow.ui" line="538"/>
         <source>Push changes to a remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Dar push de mudanças para um repositório remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="547"/>
         <source>Pu&amp;ll from Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Dar Pu&amp;ll do Remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="550"/>
         <location filename="../ui/MainWindow.ui" line="553"/>
         <source>Pull changes from a remote repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Dar Pull de mudanças de um repositório remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="718"/>
         <source>U&amp;ndo</source>
-        <translation type="unfinished"></translation>
+        <translation>D&amp;esfazer</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="751"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Atualizar</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="754"/>
         <source>Update the workspace to a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar o espaço de trabalho para uma revisão</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="789"/>
         <source>&amp;Modified Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ficheiros Modificados</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="803"/>
         <source>&amp;Unchanged Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ficheiros Inalterados</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="817"/>
         <source>Un&amp;known Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ficheiros Des&amp;conhecidos</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="828"/>
         <source>&amp;Ignored Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ficheiros &amp;Ignorados</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="887"/>
         <source>&amp;Stash Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Mudanças &amp;Guardadas</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="932"/>
         <source>Create &amp;Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar &amp;Etiqueta</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="935"/>
         <location filename="../ui/MainWindow.ui" line="938"/>
         <source>Create a tag for a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Criar a etiqueta para revisão</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="947"/>
         <location filename="../ui/MainWindow.ui" line="950"/>
         <location filename="../src/MainWindow.cpp" line="2574"/>
         <source>Delete Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Eliminar Etiqueta</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="959"/>
         <source>Create &amp;Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar &amp;Ramo</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="962"/>
         <location filename="../ui/MainWindow.ui" line="965"/>
         <source>Create a branch from a revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar o ramo a partir de uma revisão</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="974"/>
         <location filename="../src/MainWindow.cpp" line="2620"/>
         <source>Merge Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Ramo de Merge</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="977"/>
         <location filename="../ui/MainWindow.ui" line="980"/>
         <source>Merge with a branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Merge com um ramo</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="988"/>
         <source>Files and F&amp;olders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ficheiros e P&amp;astas</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="991"/>
         <source>View files and folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver ficheiros e pastas</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="994"/>
         <source>View the workspace as files and folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver o espaço de trabalho na forma de ficheiros e pastas</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="999"/>
         <source>&amp;All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Todos os Ficheiros</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1002"/>
         <source>Show all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar todos os ficheiros</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1007"/>
         <source>Mo&amp;dified Files Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Apenas Ficheiros Mo&amp;dificados</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1010"/>
         <source>Show modified files only</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar apenas ficheiros modificados</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1019"/>
         <source>F&amp;ossil Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Definições de F&amp;ossil</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1028"/>
         <source>Edit Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar Remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1031"/>
         <source>Edit Remote URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar URL do Remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1040"/>
         <source>Set Remote as Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir Remoto como Padrão</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1043"/>
         <source>Makes the selected remote </source>
-        <translation type="unfinished"></translation>
+        <translation>Faz o remoto selecionado </translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1052"/>
         <source>Add Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar Remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1055"/>
         <source>Adds a Remote Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Adiciona um Url Remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1064"/>
         <location filename="../src/MainWindow.cpp" line="2849"/>
         <source>Delete Remote</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar Remoto</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1073"/>
         <source>abortOperation</source>
-        <translation type="unfinished"></translation>
+        <translation>operaçãoDeAbortar</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1076"/>
         <source>Abort the current operation</source>
-        <translation type="unfinished"></translation>
+        <translation>Aborta a operação atual</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1088"/>
         <source>Add &amp; Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar &amp; Remover</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1091"/>
         <source>Add &amp; Remove files</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar &amp; Remover ficheiros</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="487"/>
@@ -1066,7 +1067,7 @@ Quer criar uma aqui?</translation>
         <location filename="../src/MainWindow.cpp" line="403"/>
         <location filename="../src/MainWindow.cpp" line="483"/>
         <source>Could not open repository.</source>
-        <translation>Não foi possível abrir o repositório</translation>
+        <translation>Não foi possível abrir o repositório.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="430"/>
@@ -1284,94 +1285,96 @@ Renomeação abortada.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="140"/>
         <source>Workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Área de Trabalho</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="285"/>
         <source>Filter (%0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro (%0)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="509"/>
         <source>Could not close the workspace.
 Perhaps there are uncommitted changes available
 Would you like to force closing this workspace?</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível fechar o espaço de trabalho.
+Talvez existam mudanças não committed disponíveis
+Quer forçar o fecho deste espaço de trabalho?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="522"/>
         <source>Could not close the workspace.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível fechar o espaço de trabalho.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="558"/>
         <location filename="../src/MainWindow.cpp" line="2694"/>
         <location filename="../src/MainWindow.cpp" line="2827"/>
         <source>Could not store information to keychain.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível armazenar a informação no chaveiro.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="805"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ficheiros</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="830"/>
         <source>Branches</source>
-        <translation type="unfinished"></translation>
+        <translation>Ramos</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="850"/>
         <source>Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetas</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="884"/>
         <source>Remotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Remotos</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="946"/>
         <source>Conflicted</source>
-        <translation type="unfinished"></translation>
+        <translation>Em Conflito</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="947"/>
         <source>Merged</source>
-        <translation type="unfinished"></translation>
+        <translation>Merged</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1539"/>
         <source>Could not commit changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível dar commit às mudanças.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1559"/>
         <location filename="../src/MainWindow.cpp" line="1568"/>
         <location filename="../src/MainWindow.cpp" line="2410"/>
         <source>Could not add files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível adicionar ficheiros.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1596"/>
         <source>Could not remove files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível remover ficheiros.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1627"/>
         <source>Could not revert files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível reverter ficheiros.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1658"/>
         <source>Could not rename file &apos;%0&apos; to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível renomear ficheiro &apos;%0&apos; para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1691"/>
         <location filename="../src/MainWindow.cpp" line="1701"/>
         <source>Could not undo changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível desfazer mudanças.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1968"/>
@@ -1448,113 +1451,113 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2251"/>
         <source>Could not diff stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível dar diff à stash.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2437"/>
         <source>Operation Aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>Operação Abortada</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2497"/>
         <source>&lt;Latest Revision&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Última Revisão&gt;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2507"/>
         <source>Update workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar espaço de trabalho</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2520"/>
         <location filename="../src/MainWindow.cpp" line="2539"/>
         <source>Could not update the repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível atualizar o repositório.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2551"/>
         <source>Create Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar Etiqueta</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2556"/>
         <location filename="../src/MainWindow.cpp" line="2599"/>
         <source>Invalid name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome inválido.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2561"/>
         <source>Could not create tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível criar etiqueta.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2574"/>
         <source>Are you sure want to delete the tag &apos;%0&apos; ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tem a certeza que quer eliminar a etiqueta &apos;%0&apos; ?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2582"/>
         <source>Could not delete tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível eliminar etiqueta.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2594"/>
         <source>Create Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar Ramo</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2605"/>
         <source>Could not create branch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível criar ramo.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2628"/>
         <location filename="../src/MainWindow.cpp" line="2637"/>
         <source>Merge failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Merge falhou.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>Merge</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>The following changes will be applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>As seguinte mudanças serão aplicadas.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2639"/>
         <source>Merge completed. Don&apos;t forget to commit!</source>
-        <translation type="unfinished"></translation>
+        <translation>Merge completo. Não se esqueça de dar commit!</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2727"/>
         <location filename="../src/MainWindow.cpp" line="2764"/>
         <source>Could not push to the remote repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível dar push para o repositório remoto.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2745"/>
         <location filename="../src/MainWindow.cpp" line="2783"/>
         <source>Could not pull from the remote repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível dar pull do repositório remoto.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2755"/>
         <location filename="../src/MainWindow.cpp" line="2774"/>
         <source>A default remote repository has not been specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um repositório remoto padrão não foi especificado.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2807"/>
         <source>Could not set the remote repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível definir o repositório remoto.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2849"/>
         <source>Are you sure want to delete the remote &apos;%0&apos; ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tem a certeza que deseja eliminar o remoto &apos;%0&apos;?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2143"/>
@@ -1569,7 +1572,7 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2159"/>
         <source>Could not create stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível criar stash.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2174"/>
@@ -1589,7 +1592,7 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="2186"/>
         <source>Could not apply stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível aplicar stash.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2199"/>
@@ -1601,7 +1604,7 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
         <location filename="../src/MainWindow.cpp" line="2200"/>
         <location filename="../src/MainWindow.cpp" line="2229"/>
         <source>Could not delete stash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível eliminar stash.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2217"/>
@@ -1619,62 +1622,62 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../src/AppSettings.cpp" line="42"/>
         <source>Custom Action %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Ação Personalizada %0</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="787"/>
         <source>Running Fossil</source>
-        <translation type="unfinished">Fossil em execução</translation>
+        <translation>Fossil em execução</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="797"/>
         <source>Could not generate command line file</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível gerar ficheiro de linha de comandos</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="828"/>
         <source>Could not start Fossil executable &apos;%0&apos;</source>
-        <translation type="unfinished">Não foi possível executar o executável do Fossil %0</translation>
+        <translation>Não foi possível iniciar o executável do Fossil &apos;%0&apos;</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1123"/>
         <source>Fossil UI is already running</source>
-        <translation type="unfinished">A interface do Fossil já está a correr</translation>
+        <translation>A interface do Fossil já está a correr</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1131"/>
         <source>Starting Fossil browser UI. Please wait.</source>
-        <translation type="unfinished">Iniciando o navegador com a interface do Fossil. Aguarde, por favor.</translation>
+        <translation>A iniciar o navegador com a interface do Fossil. Aguarde, por favor.</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1145"/>
         <source>Could not start Fossil executable &apos;%s&apos;</source>
-        <translation type="unfinished">Não foi possível iniciar o executável do Fossil %0</translation>
+        <translation>Não foi possível iniciar o executável do Fossil &apos;%s&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="756"/>
         <source>Unchanged</source>
-        <translation type="unfinished">Não modificados</translation>
+        <translation>Inalterados</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="761"/>
         <source>Modified</source>
-        <translation type="unfinished">Modificados</translation>
+        <translation>Modificados</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="766"/>
         <source>Unknown</source>
-        <translation type="unfinished">Desconhecidos</translation>
+        <translation>Desconhecidos</translation>
     </message>
     <message>
         <location filename="../src/Utils.cpp" line="41"/>
         <source>Applications</source>
-        <translation type="unfinished">Aplicações</translation>
+        <translation>Aplicações</translation>
     </message>
     <message>
         <location filename="../src/Workspace.cpp" line="216"/>
         <source>Updating...</source>
-        <translation type="unfinished">Actualizando...</translation>
+        <translation>Atualizando...</translation>
     </message>
 </context>
 <context>
@@ -1683,69 +1686,69 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
         <location filename="../ui/RemoteDialog.ui" line="17"/>
         <location filename="../ui/RemoteDialog.ui" line="31"/>
         <source>Remote Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Repositório Remoto</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="40"/>
         <source>The URL of the source repository</source>
-        <translation type="unfinished">O URL do repositório original</translation>
+        <translation>O URL do repositório original</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="59"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="68"/>
         <source>User Name</source>
-        <translation type="unfinished">Nome de utilizador</translation>
+        <translation>Nome de Utilizador</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="75"/>
         <source>The user name used to access the remote repository. Leave blank if not required</source>
-        <translation type="unfinished">O nome de utilizador usado para aceder ao repositório remoto. Deixe em branco se não for necessário.</translation>
+        <translation>O nome de utilizador usado para aceder ao repositório remoto. Deixe em branco se não for necessário</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="82"/>
         <source>Password</source>
-        <translation type="unfinished">Senha</translation>
+        <translation>Senha</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="89"/>
         <location filename="../ui/RemoteDialog.ui" line="99"/>
         <source>The password used to access the remote repository. Leave blank if not required</source>
-        <translation type="unfinished">A senha usada para aceder ao repositório remoto. Deixe em branco se não for necessária.</translation>
+        <translation>A senha usada para aceder ao repositório remoto. Deixe em branco se não for necessária</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="106"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
         <location filename="../src/RemoteDialog.cpp" line="93"/>
         <source>Error</source>
-        <translation type="unfinished">Erro</translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
         <source>Invalid URL.</source>
-        <translation type="unfinished">URL inválido.</translation>
+        <translation>URL inválido.</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="77"/>
         <source>Fossil Repository</source>
-        <translation type="unfinished">Repositório Fossil</translation>
+        <translation>Repositório Fossil</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="79"/>
         <source>Select Fossil Repository</source>
-        <translation type="unfinished">Seleccione o repositório Fossil</translation>
+        <translation>Selecionar o Repositório Fossil</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="93"/>
         <source>Invalid Repository File.</source>
-        <translation type="unfinished">Ficheiro de repositório inválido.</translation>
+        <translation>Ficheiro de Repositório Inválido.</translation>
     </message>
 </context>
 <context>
@@ -1753,22 +1756,22 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="31"/>
         <source>Revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Revisão</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="45"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="55"/>
         <source>Integrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Integrar</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="62"/>
         <source>Force</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1789,7 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="48"/>
         <source>Path to the Fossil executable. Leave blank to use the default Fossil</source>
-        <translation>Caminho para o executável do Fossil. Deixe em branco para usar o Fossil predefinido.</translation>
+        <translation>Caminho para o executável do Fossil. Deixe em branco para usar o Fossil predefinido</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="67"/>
@@ -1842,57 +1845,57 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="174"/>
         <source>Custom Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Ações Personalizadas</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="186"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Ação</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="193"/>
         <source>Custom action</source>
-        <translation type="unfinished"></translation>
+        <translation>Ação personalizada</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="200"/>
         <source>Name of custom action</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome da ação personalizada</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="213"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="226"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="235"/>
         <source>Custom action command-line. Information about the selected items is available via the macros %FILE %FOLDER %WORKSPACE</source>
-        <translation type="unfinished"></translation>
+        <translation>Ação de linha de comandos personalizada. Informação sobre os itens selecionados está disponível através das macros %FILE %FOLDER %WORKSPACE</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="263"/>
         <source>Context</source>
-        <translation type="unfinished"></translation>
+        <translation>Contexto</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="270"/>
         <source>The context where this action will be available</source>
-        <translation type="unfinished"></translation>
+        <translation>O contexto onde a ação estará disponível</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="277"/>
         <source>When checked this action supports multiple selected items</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando marcado, esta ação suporta múltiplos itens selecionados</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="287"/>
         <source>Multiple Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleção Múltipla</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="14"/>
@@ -1912,7 +1915,7 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="17"/>
         <source>Custom Action %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Ação Personalizada %0</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="19"/>
@@ -1927,12 +1930,12 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="38"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ficheiros</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="39"/>
         <source>Folders</source>
-        <translation type="unfinished">Pastas</translation>
+        <translation>Pastas</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="79"/>
@@ -1952,7 +1955,7 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="151"/>
         <source>Select command</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar comando</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="105"/>
