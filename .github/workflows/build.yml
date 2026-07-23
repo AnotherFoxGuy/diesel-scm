@@ -48,18 +48,18 @@ jobs:
           path: ~/.conan2/
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         if: startsWith(matrix.os, 'windows')
         with:
           cache: 'true'
-          version: 6.7.3
+          version: 6.10.3
           modules: qt5compat qtpositioning qtwebchannel qtwebengine qtwebview
           dir: "${{ github.workspace }}/qt/"
 
       - name: Configure (Windows)
         if: startsWith(matrix.os, 'windows')
         run: |
-          conan remote add ror-conan https://git.anotherfoxguy.com/api/packages/rorbot/conan -f
+          conan remote add rigs-of-rods https://nexus.anotherfoxguy.com/repository/rigs-of-rods/ -f
           cmake . -GNinja -DCMAKE_INSTALL_PREFIX=redist -DCMAKE_BUILD_TYPE=Release -Bbuild -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="cmake/conan_provider.cmake"
 
       - name: Configure (Ubuntu)
