@@ -7,7 +7,7 @@ class QtkeychainConan(ConanFile):
     name = "qt6keychain"
     license = "BSD-3"
     author = "Edgar"
-    url = "https://github.com/AnotherFoxGuy/diesel-scm"
+    url = "https://github.com/frankosterfeld/qtkeychain/"
     description = "Platform-independent Qt API for storing passwords securely"
     settings = "os", "compiler", "build_type", "arch"
     options = {"static": [True, False]}
