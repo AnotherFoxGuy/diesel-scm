@@ -6,7 +6,7 @@
     <message>
         <location filename="../ui/AboutDialog.ui" line="14"/>
         <source>About Diesel...</source>
-        <translation type="unfinished">About Diesel...</translation>
+        <translation>O Diesel...</translation>
     </message>
     <message>
         <location filename="../ui/AboutDialog.ui" line="23"/>
