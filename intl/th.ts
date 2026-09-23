@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pt" sourcelanguage="en">
+<TS version="2.1" language="th" sourcelanguage="en">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../ui/AboutDialog.ui" line="14"/>
         <source>About Diesel...</source>
-        <translation>Sobre o Diesel...</translation>
+        <translation>เกี่ยวกับดีเซล...</translation>
     </message>
     <message>
         <location filename="../ui/AboutDialog.ui" line="23"/>
         <source>A GUI front-end for the Fossil SCM by Kostas Karanikolas
 Released under the GNU GPL</source>
-        <translation>Um front-end GUI para o Fossil SCM por Kostas Karanikolas
-Lançado sob a GNU GPL</translation>
+        <translation>จียูไอสำหรับระบบจัดการโครงร่างซอฟต์แวร์ฟอสซิลโดย Kostas Karanikolas
+เผยแพร่ภายใต้สัญญาอนุญาต GNU GPL</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="16"/>
         <source>QT version %0</source>
-        <translation>QT versão %0</translation>
+        <translation>เวอร์ชั่นQT %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="19"/>
         <source>Fossil version %0</source>
-        <translation>Fossil versão %0</translation>
+        <translation>เวอร์ชั่นฟอสซิล %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="26"/>
         <source>Diesel revision %0</source>
-        <translation>Diesel revisão %0</translation>
+        <translation>เวอร์ชันปรับปรุงของดีเซล %0</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="37"/>
         <source>Translations with the help of:</source>
-        <translation>Traduções com a ajuda de:</translation>
+        <translation>ได้รับความช่วยเหลือในการแปลจาก:</translation>
     </message>
     <message>
         <location filename="../src/AboutDialog.cpp" line="46"/>
         <source>This sofware uses the following open-source libraries and assets:</source>
-        <translation>Este software usa as seguintes bibliotecas e ativos de fonte aberta:</translation>
+        <translation>ซอฟต์แวร์นี้ใช้ไลบรารีและแอสเซทที่เป็นโอเพนซอร์สดังต่อไปนี้:</translation>
     </message>
 </context>
 <context>
@@ -47,24 +47,24 @@ Lançado sob a GNU GPL</translation>
         <location filename="../ui/BrowserWidget.ui" line="59"/>
         <location filename="../ui/BrowserWidget.ui" line="62"/>
         <source>Back</source>
-        <translation>Retroceder</translation>
+        <translation>กลับ</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="71"/>
         <location filename="../ui/BrowserWidget.ui" line="74"/>
         <source>Forward</source>
-        <translation>Avançar</translation>
+        <translation>ต่อไป</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="83"/>
         <location filename="../ui/BrowserWidget.ui" line="86"/>
         <source>Refresh</source>
-        <translation>Recarregar</translation>
+        <translation>รีเฟรช</translation>
     </message>
     <message>
         <location filename="../ui/BrowserWidget.ui" line="95"/>
         <source>Stop</source>
-        <translation>Parar</translation>
+        <translation>หยุด</translation>
     </message>
 </context>
 <context>
@@ -72,57 +72,57 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/CloneDialog.ui" line="17"/>
         <source>Clone Repository</source>
-        <translation>Clonar repositório</translation>
+        <translation>คัดลอกรีโป</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="31"/>
         <source>Remote Repository</source>
-        <translation>Repositório Remoto</translation>
+        <translation>รีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="40"/>
         <source>The URL of the source repository</source>
-        <translation>O URL do repositório original</translation>
+        <translation>URL ของรีโพสิทอรีต้นทาง</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="68"/>
         <source>User Name</source>
-        <translation>Nome de utilizador</translation>
+        <translation>ชื่อผู้ใช้</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="75"/>
         <source>The user name used to access the remote repository. Leave blank if not required</source>
-        <translation>O nome de utilizador usado para aceder ao repositório remoto. Deixe em branco se não for necessário</translation>
+        <translation>ชื่อผู้ใช้สำหรับเข้าถึง รีโมทรีโพสิทอรี เว้นว่างไว้หากไม่จำเป็น</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="82"/>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation>รหัสผ่าน</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="89"/>
         <source>The password used to access the remote repository. Leave blank if not required</source>
-        <translation>A senha usada para aceder ao repositório remoto. Deixe em branco se não for necessária</translation>
+        <translation>รหัสผ่านสำหรับเข้าถึง รีโมทรีโพสิทอรี เว้นว่างไว้หากไม่จำเป็น</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="99"/>
         <source>Local Repository</source>
-        <translation>Repositório Local</translation>
+        <translation>รีโพสิทอรีในเครื่อง</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="108"/>
         <source>Path to the local repository file</source>
-        <translation>Caminho para o ficheiro do repositório local</translation>
+        <translation>เส้นทางไปรีโพสิทอรีในเครื่อง</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="136"/>
         <source>The URL of the HTTP proxy. Leave blank if not required</source>
-        <translation>O URL do proxy HTTP. Deixe em branco se não é necessário</translation>
+        <translation>URL ของ HTTP พร็อกซี เว้นว่างไว้หากไม่จำเป็นต้องใช้</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="143"/>
         <source>HTTP Proxy</source>
-        <translation>Proxy HTTP</translation>
+        <translation>HTTP พร็อกซี</translation>
     </message>
     <message>
         <location filename="../ui/CloneDialog.ui" line="59"/>
@@ -137,38 +137,38 @@ Lançado sob a GNU GPL</translation>
         <location filename="../src/CloneDialog.cpp" line="111"/>
         <location filename="../src/CloneDialog.cpp" line="129"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation>ผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="58"/>
         <source>Invalid URL.</source>
-        <translation>URL inválido.</translation>
+        <translation>URLไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="71"/>
         <location filename="../src/CloneDialog.cpp" line="111"/>
         <source>Invalid Repository File.</source>
-        <translation>Ficheiro de repositório inválido.</translation>
+        <translation>ไฟล์รีโพสิทอรีไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="78"/>
         <source>Invalid Proxy URL.</source>
-        <translation>URL de Proxy Inválido.</translation>
+        <translation>พร็อกซีURLไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="89"/>
         <source>Fossil Repository</source>
-        <translation>Repositório Fossil</translation>
+        <translation>รีโพสิทอรีฟอสซิล</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="91"/>
         <source>Select Fossil Repository</source>
-        <translation>Seleccione o repositório Fossil</translation>
+        <translation>เลือกฟอสซิลรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/CloneDialog.cpp" line="129"/>
         <source>This repository file already exists.</source>
-        <translation>Este ficheiro de repositório já existe.</translation>
+        <translation>มีไฟล์รีโพสิทอรีแล้ว</translation>
     </message>
 </context>
 <context>
@@ -176,37 +176,37 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/CommitDialog.ui" line="17"/>
         <source>Commit</source>
-        <translation>Cometer</translation>
+        <translation>คอมมิต</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="86"/>
         <source>Commit to new branch</source>
-        <translation>Dar commit para um novo ramo</translation>
+        <translation>คอมมิตไปยังแบรนช์ใหม่</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="120"/>
         <source>Private branch</source>
-        <translation>Ramo privado</translation>
+        <translation>แบรนช์ส่วนตัว</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="141"/>
         <source>Branch name</source>
-        <translation>Nome do ramo</translation>
+        <translation>ชื่อแบรนช์</translation>
     </message>
     <message>
         <location filename="../ui/CommitDialog.ui" line="158"/>
         <source>Revert stashed files</source>
-        <translation>Reverter os ficheiros armazenados</translation>
+        <translation>เอาไฟล์ที่ Stash กลับมา</translation>
     </message>
     <message>
         <location filename="../src/CommitDialog.cpp" line="77"/>
         <source>Commit Changes</source>
-        <translation>Dar commit a modificações</translation>
+        <translation>คอมมิตการเปลี่ยนแปลง</translation>
     </message>
     <message>
         <location filename="../src/CommitDialog.cpp" line="107"/>
         <source>Stash Changes</source>
-        <translation>Armazenar Modificações</translation>
+        <translation>สแตชการเปลี่ยนแปลง</translation>
     </message>
 </context>
 <context>
@@ -214,7 +214,7 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/FileActionDialog.ui" line="17"/>
         <source>File Action</source>
-        <translation>Acção de ficheiros</translation>
+        <translation>คำสั่งไฟล์</translation>
     </message>
 </context>
 <context>
@@ -222,17 +222,17 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="17"/>
         <source>Fossil Settings</source>
-        <translation>Definições do Fossil</translation>
+        <translation>การตั้งค่าฟอสซิล</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="51"/>
         <source>Graphical Diff </source>
-        <translation>Diff Gráfico </translation>
+        <translation>เปรียบเทียบโค้ดแบบกราฟิก </translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="60"/>
         <source>Path to graphical diff tool</source>
-        <translation>Caminho para ferramenta diff gráfica</translation>
+        <translation>เส้นทางไปเครื่องมือเปรียบเทียบโค้ดแบบกราฟิก</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="79"/>
@@ -243,62 +243,62 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="94"/>
         <source>Graphical Merge</source>
-        <translation>Merge gráfico</translation>
+        <translation>จัดการความขัดแย้งแบบกราฟิก</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="103"/>
         <source>Path to the graphical merge tool</source>
-        <translation>Caminho para a ferramenta de merge gráfico</translation>
+        <translation>เส้นทางไปเครื่องมือจัดการความขัดแย้งแบบกราฟิก</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="137"/>
         <source>HTTP Proxy</source>
-        <translation>Proxy HTTP</translation>
+        <translation>HTTP พร็อกซี</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="150"/>
         <source>The URL of the HTTP proxy</source>
-        <translation>O URL do proxy HTTP</translation>
+        <translation>URL ของ HTTP พร็อกซี</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="157"/>
         <source>HTTP Port</source>
-        <translation>Porta HTTP</translation>
+        <translation>พอร์ตHTTP</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="164"/>
         <source>HTTP port to use for the Fossil web interface</source>
-        <translation>A porta HTTP a usar pela interface web do Fossil</translation>
+        <translation>พอร์ต HTTP สำหรับใช้งานเว็บยูไอฟอสซิล</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="177"/>
         <source>Ignore CR/NL</source>
-        <translation>Ignorar CR/NL</translation>
+        <translation>ละเว้น CR/NL</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="190"/>
         <source>A comma separated list of glob-style file patterns to exclude from Fossil&apos;s CR/NL consistency checking</source>
-        <translation>Lista de padrões de ficheiros do estilo glob separados por vírgulas para excluir da verificação de consistência CR/NL do Fossil</translation>
+        <translation>รายชื่อรูปแบบไฟล์แบบ Glob คั่นด้วยจุลภาค (,) ที่ต้องการยกเว้นจากการตรวจสอบการขึ้นบรรทัดใหม่ (CR/NL)</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="203"/>
         <source>Ignore List</source>
-        <translation>Lista dos Ignorados</translation>
+        <translation>รายการละเว้น</translation>
     </message>
     <message>
         <location filename="../ui/FslSettingsDialog.ui" line="216"/>
         <source>A comma separated list of glob-style file/path patterns ignored in Fossil file operations</source>
-        <translation>Lista de padrões de ficheiros/caminhos do estilo glob separados por vírgulas para as operações de ficheiros do Fossil</translation>
+        <translation>รายชื่อรูปแบบไฟล์หรือพาธแบบ Glob คั่นด้วยจุลภาค (,) ที่ต้องการให้ฟอสซิลข้ามการตรวจสอบในการทำงานเกี่ยวกับไฟล์</translation>
     </message>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="55"/>
         <source>Select Graphical Diff application</source>
-        <translation>Seleccione a Aplicação Diff gráfica</translation>
+        <translation>เลือกแอพเปรียบเทียบโค้ดแบบกราฟิก</translation>
     </message>
     <message>
         <location filename="../src/FslSettingsDialog.cpp" line="63"/>
         <source>Select Graphical Merge application</source>
-        <translation>Seleccione a aplicação de Merge Gráfico</translation>
+        <translation>เลือกแอพจัดการความขัดแย้งแบบกราฟิก</translation>
     </message>
 </context>
 <context>
@@ -306,53 +306,53 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="17"/>
         <source>Diesel</source>
-        <translation>Diesel</translation>
+        <translation>ดีเซล</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="156"/>
         <source>Log</source>
-        <translation>Registo</translation>
+        <translation>ล็อก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="191"/>
         <source>Browser</source>
-        <translation>Navegador</translation>
+        <translation>เบราว์เซอร์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="230"/>
         <source>&amp;File</source>
-        <translation>&amp;Ficheiro</translation>
+        <translation>&amp;ไฟล์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="245"/>
         <source>&amp;Help</source>
-        <translation>&amp;Ajuda</translation>
+        <translation>&amp;ช่วยเหลือ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="251"/>
         <source>&amp;View</source>
-        <translation>&amp;Ver</translation>
+        <translation>&amp;แสดง</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="266"/>
         <source>&amp;Workspace</source>
-        <translation>&amp;Espaço de Trabalho</translation>
+        <translation>&amp;พื้นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="291"/>
         <source>Main Toolbar</source>
-        <translation>Barra de ferramentas</translation>
+        <translation>แถบเครื่องมือหลัก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="344"/>
         <source>&amp;Refresh</source>
-        <translation>&amp;Atualizar</translation>
+        <translation>&amp;รีเฟรช</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="347"/>
         <location filename="../ui/MainWindow.ui" line="350"/>
         <source>Refresh the views</source>
-        <translation>Recarregar as vistas</translation>
+        <translation>รีเฟรชการแสดงผล</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="353"/>
@@ -362,13 +362,13 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="362"/>
         <source>&amp;Commit</source>
-        <translation>&amp;Commit</translation>
+        <translation>&amp;คอมมิต</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="365"/>
         <location filename="../ui/MainWindow.ui" line="368"/>
         <source>Commit modifications</source>
-        <translation>Cometer modificações</translation>
+        <translation>คอมมิตรายการแก้ไข</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="371"/>
@@ -378,13 +378,13 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="380"/>
         <source>Diff</source>
-        <translation>Diff</translation>
+        <translation>เปรียบเทียบโค้ด</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="383"/>
         <location filename="../ui/MainWindow.ui" line="386"/>
         <source>Display the differences between the current and last committed version</source>
-        <translation>Apresentar as diferenças entre a versão actual e a última cometida</translation>
+        <translation>แสดงความแตกต่างระหว่างเวอร์ชันปัจจุบันกับที่คอมมิตล่าสุด</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="389"/>
@@ -394,13 +394,13 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="398"/>
         <source>Add</source>
-        <translation>Adicionar</translation>
+        <translation>เพิ่ม</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="401"/>
         <location filename="../ui/MainWindow.ui" line="404"/>
         <source>Add files to the repository</source>
-        <translation>Adicionar ficheiros ao repositório</translation>
+        <translation>เพิ่มไฟล์ไปยังรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="407"/>
@@ -410,13 +410,13 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="416"/>
         <source>Delete</source>
-        <translation>Eliminar</translation>
+        <translation>ลบ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="419"/>
         <location filename="../ui/MainWindow.ui" line="422"/>
         <source>Delete files from the repository</source>
-        <translation>Eliminar os ficheiros do repositório</translation>
+        <translation>ลบไฟล์จากรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="425"/>
@@ -426,13 +426,13 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="434"/>
         <source>&amp;New...</source>
-        <translation>&amp;Novo...</translation>
+        <translation>&amp;ใหม่...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="437"/>
         <location filename="../ui/MainWindow.ui" line="440"/>
         <source>Make a new Fossil repository</source>
-        <translation>Criar um novo repositório Fossil</translation>
+        <translation>สร้างรีโพสิทอรีฟอสซิลใหม่</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="443"/>
@@ -442,13 +442,13 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="452"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Abrir...</translation>
+        <translation>&amp;เปิด...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="455"/>
         <location filename="../ui/MainWindow.ui" line="458"/>
         <source>Open a Fossil repository or workspace folder</source>
-        <translation>Abrir um repositório Fossil ou uma pasta de trabalho</translation>
+        <translation>เปิดรีโพสิทอรีฟอสซิลหรือโฟลเดอร์พื้นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="461"/>
@@ -458,247 +458,247 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="469"/>
         <source>&amp;Close</source>
-        <translation>&amp;Fechar</translation>
+        <translation>&amp;ปิด</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="472"/>
         <location filename="../ui/MainWindow.ui" line="475"/>
         <source>Close the current workspace</source>
-        <translation>Fechar a área de trabalho actual</translation>
+        <translation>ปิดพื้นที่ทำงานปัจจุบัน</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="484"/>
         <source>C&amp;lone...</source>
-        <translation>C&amp;lonar...</translation>
+        <translation>ค&amp;ัดลอก...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="496"/>
         <source>&amp;Push</source>
-        <translation>&amp;Push</translation>
+        <translation>&amp;ดัน</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="499"/>
         <source>Push changes to the default remote repository</source>
-        <translation>Dar push de mudanças para o repositório remoto</translation>
+        <translation>ส่งการเปลี่ยนแปลงไปยังรีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="514"/>
         <source>Pu&amp;ll</source>
-        <translation>Pu&amp;ll</translation>
+        <translation>ดึ&amp;ง</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="517"/>
         <source>Pull changes from the default remote repository</source>
-        <translation>Fazer pull de mudanças do repositório remoto padrão</translation>
+        <translation>ดึงการเปลี่ยนแปลงจากรีโมทรีโพสิทอรีเริ่มต้น</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="532"/>
         <source>&amp;Push to Remote</source>
-        <translation>Dar &amp;Push para Remoto</translation>
+        <translation>&amp;ดันไปยังรีโมท</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="535"/>
         <location filename="../ui/MainWindow.ui" line="538"/>
         <source>Push changes to a remote repository</source>
-        <translation>Dar push de mudanças para um repositório remoto</translation>
+        <translation>ดันการเปลี่ยนแปลงไปยังรีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="547"/>
         <source>Pu&amp;ll from Remote</source>
-        <translation>Dar Pu&amp;ll do Remoto</translation>
+        <translation>ดึ&amp;งจากรีโมท</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="550"/>
         <location filename="../ui/MainWindow.ui" line="553"/>
         <source>Pull changes from a remote repository</source>
-        <translation>Dar Pull de mudanças de um repositório remoto</translation>
+        <translation>ดึงการเปลี่ยนแปลงจากรีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="718"/>
         <source>U&amp;ndo</source>
-        <translation>D&amp;esfazer</translation>
+        <translation>ย้&amp;อนกลับ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="751"/>
         <source>&amp;Update</source>
-        <translation>&amp;Atualizar</translation>
+        <translation>&amp;อัปเดต</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="754"/>
         <source>Update the workspace to a revision</source>
-        <translation>Atualizar o espaço de trabalho para uma revisão</translation>
+        <translation>อัปเดตพื้นที่ทำงานให้เป็นไปตามรุ่นปรับปรุงที่ระบุ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="789"/>
         <source>&amp;Modified Files</source>
-        <translation>&amp;Ficheiros Modificados</translation>
+        <translation>&amp;ไฟล์ที่มีการเปลี่ยนแปลง</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="803"/>
         <source>&amp;Unchanged Files</source>
-        <translation>&amp;Ficheiros Inalterados</translation>
+        <translation>&amp;ไฟล์ที่ไม่เปลี่ยน</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="817"/>
         <source>Un&amp;known Files</source>
-        <translation>Ficheiros Des&amp;conhecidos</translation>
+        <translation>ไฟล์&amp;ที่ไม่รู้จัก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="828"/>
         <source>&amp;Ignored Files</source>
-        <translation>Ficheiros &amp;Ignorados</translation>
+        <translation>&amp;ไฟล์ที่ละเว้น</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="887"/>
         <source>&amp;Stash Changes</source>
-        <translation>Mudanças &amp;Guardadas</translation>
+        <translation>&amp;Stashการเปลี่ยนแปลง</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="932"/>
         <source>Create &amp;Tag</source>
-        <translation>Criar &amp;Etiqueta</translation>
+        <translation>สร้าง&amp;แท็ก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="935"/>
         <location filename="../ui/MainWindow.ui" line="938"/>
         <source>Create a tag for a revision</source>
-        <translation>&amp;Criar a etiqueta para revisão</translation>
+        <translation>สร้างแท็กสำหรับรุ่นปรับปรุงที่กำหนด</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="947"/>
         <location filename="../ui/MainWindow.ui" line="950"/>
         <location filename="../src/MainWindow.cpp" line="2574"/>
         <source>Delete Tag</source>
-        <translation>&amp;Eliminar Etiqueta</translation>
+        <translation>ลบแท็ก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="959"/>
         <source>Create &amp;Branch</source>
-        <translation>Criar &amp;Ramo</translation>
+        <translation>สร้าง&amp;แบรนช์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="962"/>
         <location filename="../ui/MainWindow.ui" line="965"/>
         <source>Create a branch from a revision</source>
-        <translation>Criar o ramo a partir de uma revisão</translation>
+        <translation>สร้างแบรนช์จากรุ่นปรับปรุงที่กำหนด</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="974"/>
         <location filename="../src/MainWindow.cpp" line="2620"/>
         <source>Merge Branch</source>
-        <translation>Ramo de Merge</translation>
+        <translation>ผสานแบรนช์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="977"/>
         <location filename="../ui/MainWindow.ui" line="980"/>
         <source>Merge with a branch</source>
-        <translation>Merge com um ramo</translation>
+        <translation>ผสานกับแบรนช์อื่น</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="988"/>
         <source>Files and F&amp;olders</source>
-        <translation>Ficheiros e P&amp;astas</translation>
+        <translation>ไฟล์กับ&amp;โฟลเดอร์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="991"/>
         <source>View files and folders</source>
-        <translation>Ver ficheiros e pastas</translation>
+        <translation>ดูไฟล์กับโฟลเดอร์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="994"/>
         <source>View the workspace as files and folders</source>
-        <translation>Ver o espaço de trabalho na forma de ficheiros e pastas</translation>
+        <translation>ดูพื้นที่ทำงานแบบไฟล์และโฟลเดอร์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="999"/>
         <source>&amp;All Files</source>
-        <translation>&amp;Todos os Ficheiros</translation>
+        <translation>&amp;ไฟล์ทั้งหมด</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1002"/>
         <source>Show all files</source>
-        <translation>Mostrar todos os ficheiros</translation>
+        <translation>ดูไฟล์ทั้งหมด</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1007"/>
         <source>Mo&amp;dified Files Only</source>
-        <translation>Apenas Ficheiros Mo&amp;dificados</translation>
+        <translation>ดูไฟล์&amp;ที่มีการเปลี่ยนแปลงเท่านั้น</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1010"/>
         <source>Show modified files only</source>
-        <translation>Mostrar apenas ficheiros modificados</translation>
+        <translation>ดูไฟล์ที่มีการเปลี่ยนแปลงเท่านั้น</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1019"/>
         <source>F&amp;ossil Settings</source>
-        <translation>Definições de F&amp;ossil</translation>
+        <translation>ตั้งค่า&amp;ฟอสซิล</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1028"/>
         <source>Edit Remote</source>
-        <translation>Editar Remoto</translation>
+        <translation>แก้ไขรีโมต</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1031"/>
         <source>Edit Remote URL</source>
-        <translation>Editar URL do Remoto</translation>
+        <translation>แก้ไขรีโมทURL</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1040"/>
         <source>Set Remote as Default</source>
-        <translation>Definir Remoto como Padrão</translation>
+        <translation>ตั้งรีโมทเป็นค่าเริ่มต้น</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1043"/>
         <source>Makes the selected remote </source>
-        <translation>Faz o remoto selecionado </translation>
+        <translation>ตั้งค่าให้สิ่งที่เลือกเป็นรีโมท </translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1052"/>
         <source>Add Remote</source>
-        <translation>Adicionar Remoto</translation>
+        <translation>เพิ่มรีโมท</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1055"/>
         <source>Adds a Remote Url</source>
-        <translation>Adiciona um Url Remoto</translation>
+        <translation>เพิ่มรีโมท Url</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1064"/>
         <location filename="../src/MainWindow.cpp" line="2849"/>
         <source>Delete Remote</source>
-        <translation>Eliminar Remoto</translation>
+        <translation>ลบรีโมท</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1073"/>
         <source>abortOperation</source>
-        <translation>operaçãoDeAbortar</translation>
+        <translation>ยกเลิกกระบวนการ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1076"/>
         <source>Abort the current operation</source>
-        <translation>Aborta a operação atual</translation>
+        <translation>ยกเลิกกระบวนการปัจจุบัน</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1088"/>
         <source>Add &amp; Remove</source>
-        <translation>Adicionar &amp; Remover</translation>
+        <translation>เพิ่มและลบ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="1091"/>
         <source>Add &amp; Remove files</source>
-        <translation>Adicionar &amp; Remover ficheiros</translation>
+        <translation>เพิ่มและลบไฟล์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="487"/>
         <source>Clone a remote repository</source>
-        <translation>Clonar um repositório remoto</translation>
+        <translation>คัดลอกรีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="502"/>
         <source>Push changes to the remote repository</source>
-        <translation>Enviar alterações para o repositório remoto</translation>
+        <translation>ดันการเปลี่ยนแปลงไปยังรีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="505"/>
@@ -708,7 +708,7 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="520"/>
         <source>Pull changes from the remote repository</source>
-        <translation>Receber alterações do repositório remoto</translation>
+        <translation>ดึงการเปลี่ยนแปลงมาจากรีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="523"/>
@@ -719,13 +719,13 @@ Lançado sob a GNU GPL</translation>
         <location filename="../ui/MainWindow.ui" line="562"/>
         <location filename="../src/MainWindow.cpp" line="1644"/>
         <source>Rename</source>
-        <translation>Renomear</translation>
+        <translation>เปลี่ยนชื่อ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="565"/>
         <location filename="../ui/MainWindow.ui" line="568"/>
         <source>Rename the selected file</source>
-        <translation>Renomear o ficheiro seleccionado</translation>
+        <translation>เปลี่ยนชื่อไฟล์ที่เลือก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="571"/>
@@ -735,12 +735,12 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="580"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Sair</translation>
+        <translation>&amp;ออก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="583"/>
         <source>Quit</source>
-        <translation>Sair</translation>
+        <translation>ออก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="586"/>
@@ -750,13 +750,13 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="601"/>
         <source>History</source>
-        <translation>Histórico</translation>
+        <translation>ประวัติ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="604"/>
         <location filename="../ui/MainWindow.ui" line="607"/>
         <source>Display the version history of a file via the Fossil UI</source>
-        <translation>Apresentar o histórico de versões de um ficheiro através da interface do Fossil</translation>
+        <translation>แสดงประวัติเวอร์ชันของไฟล์ผ่านยูไปฟอสซิล</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="610"/>
@@ -766,45 +766,45 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="622"/>
         <source>Fossil UI</source>
-        <translation>Interface do Fossil</translation>
+        <translation>ยูไอฟอสซิล</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="625"/>
         <location filename="../ui/MainWindow.ui" line="628"/>
         <source>Starts the Fossil UI in the Web Browser</source>
-        <translation>Inicia a interface do Fossil no navegador</translation>
+        <translation>เปิดยูไอฟอสซิลในเว็บเบราว์เซอร์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="682"/>
         <source>Open File</source>
-        <translation>Abrir ficheiro</translation>
+        <translation>เปิดไฟล์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="842"/>
         <location filename="../ui/MainWindow.ui" line="845"/>
         <source>View files as a list</source>
-        <translation>Ver ficheiros como uma lista</translation>
+        <translation>ดูไฟล์แบบรายการ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="637"/>
         <source>Revert</source>
-        <translation>Reverter</translation>
+        <translation>ย้อนคืน</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="640"/>
         <location filename="../ui/MainWindow.ui" line="643"/>
         <source>Revert files to the last commited version</source>
-        <translation>Reverter ficheiros para a última versão cometida</translation>
+        <translation>ย้อนคืนไฟล์สู่คอมมิตล่าสุด</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="652"/>
         <source>Clear Log</source>
-        <translation>Limpar registo</translation>
+        <translation>ล้างบันทึก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="655"/>
         <source>Clears the log</source>
-        <translation>Limpar o registo</translation>
+        <translation>ล้างบันทึก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="658"/>
@@ -814,19 +814,19 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="667"/>
         <source>Timeline</source>
-        <translation>Linha temporal</translation>
+        <translation>ลำดับเวลา</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="670"/>
         <location filename="../ui/MainWindow.ui" line="673"/>
         <source>Display the change history of the Fossil repository</source>
-        <translation>Apresentar o histórico de alterações do repositório Fossil</translation>
+        <translation>แสดงการเปลี่ยนแปลงของรีโพสิทอรีฟอสซิล</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="685"/>
         <location filename="../ui/MainWindow.ui" line="688"/>
         <source>Open the selected file</source>
-        <translation>Abrir o ficheiro seleccinado</translation>
+        <translation>เปิดไฟล์ที่เลือก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="691"/>
@@ -836,13 +836,13 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="700"/>
         <source>Open Containing</source>
-        <translation>Abrir contendo</translation>
+        <translation>เปิดตำแหน่งที่ตั้งของ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="703"/>
         <location filename="../ui/MainWindow.ui" line="706"/>
         <source>Open the folder containing the selected file</source>
-        <translation>Abrir a pasta que contém o ficheiro seleccionado</translation>
+        <translation>เปิดโฟลเดอร์ที่มีไฟล์ที่เลือก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="709"/>
@@ -852,13 +852,13 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../src/MainWindow.cpp" line="1696"/>
         <source>Undo</source>
-        <translation>Desfazer</translation>
+        <translation>ย้อนกลับ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="721"/>
         <location filename="../ui/MainWindow.ui" line="724"/>
         <source>Undo the last Fossil action</source>
-        <translation>Desfazer a última acção Fossil</translation>
+        <translation>ย้อนกลับไฟยังกระบวนการฟอสซิลที่แล้ว</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="727"/>
@@ -868,22 +868,22 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="736"/>
         <source>&amp;About...</source>
-        <translation>&amp;Sobre...</translation>
+        <translation>&amp;เกี่ยวกับ...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="739"/>
         <source>About Diesel</source>
-        <translation>Sobre o Diesel</translation>
+        <translation>เกียวกับดีเซล</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2534"/>
         <source>Update</source>
-        <translation>Actualizar</translation>
+        <translation>อัพเดท</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="757"/>
         <source>Update the workspace to the latest version</source>
-        <translation>Actualizar a área de trabalho para a última versão</translation>
+        <translation>อัพเดทพื้นที่ทำงานไปยังเวอร์ชั้นล่าสุด</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="760"/>
@@ -893,94 +893,94 @@ Lançado sob a GNU GPL</translation>
     <message>
         <location filename="../ui/MainWindow.ui" line="769"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Preferências...</translation>
+        <translation>&amp;การตั้งค่า...</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="772"/>
         <location filename="../ui/MainWindow.ui" line="775"/>
         <source>Diesel Preferences</source>
-        <translation>Preferências do Diesel</translation>
+        <translation>การตั้งต่าดีเซล</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="792"/>
         <source>Show modifed files</source>
-        <translation>Apresentar ficheiros modificados</translation>
+        <translation>แสดงไฟล์ที่เปลี่ยน</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="806"/>
         <source>Show unchanged files</source>
-        <translation>Apresentar ficheiros que não foram modificados</translation>
+        <translation>แสดงไฟล์ที่ไม่เปลี่ยน</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="820"/>
         <source>Show unknown files</source>
-        <translation>Apresentar ficheiros desconhecidos</translation>
+        <translation>แสดงไฟล์ที่ไม่รู้จัก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="831"/>
         <source>Show ignored files</source>
-        <translation>Apresentar ficheiros ignorados</translation>
+        <translation>แสดงไฟล์ที่ยกเว้น</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="839"/>
         <source>File &amp;List</source>
-        <translation>&amp;Lista de ficheiros</translation>
+        <translation>ไฟล์&amp;รายการ</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="848"/>
         <source>View the workspace as a list of files</source>
-        <translation>Ver a área de trabalho como uma lista de ficheiros</translation>
+        <translation>ดูพื้นที่ทำงานแบบรายการไฟล์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="857"/>
         <source>Open Folder</source>
-        <translation>Abrir pasta</translation>
+        <translation>เปิดโฟลเดอร์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="860"/>
         <location filename="../ui/MainWindow.ui" line="863"/>
         <source>Open the selected folder</source>
-        <translation>Abrir a pasta seleccionada</translation>
+        <translation>เปิดโฟลเดอร์ที่เลือก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="872"/>
         <location filename="../src/MainWindow.cpp" line="1958"/>
         <location filename="../src/MainWindow.cpp" line="2001"/>
         <source>Rename Folder</source>
-        <translation>Renomear pasta</translation>
+        <translation>แก้ไขชื่อโฟลเดอร์</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="875"/>
         <location filename="../ui/MainWindow.ui" line="878"/>
         <source>Rename the selected folder</source>
-        <translation>Renomear a pasta seleccionada</translation>
+        <translation>แก้ไขชื่อโฟลเดอร์ที่เลือก</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="890"/>
         <source>Stash changes</source>
-        <translation>Armazenar modificações</translation>
+        <translation>Stash การเปลี่ยนเแปลง</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="899"/>
         <location filename="../src/MainWindow.cpp" line="2174"/>
         <source>Apply Stash</source>
-        <translation>Aplicar armazenamento</translation>
+        <translation>นำสแตชมาใช้</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="902"/>
         <location filename="../ui/MainWindow.ui" line="905"/>
         <source>Apply stashed changes</source>
-        <translation>Aplicar as modificações armazenadas</translation>
+        <translation>นำการเปลี่ยนแปลงสแตชมาใช้</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="914"/>
         <source>Delete Stash</source>
-        <translation>Eliminar armazém</translation>
+        <translation>ลบสแตช</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="923"/>
         <source>Diff Stash</source>
-        <translation>Diff armazém</translation>
+        <translation>เปรียบเทียบโค้ดของสแตช</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="330"/>
@@ -1036,30 +1036,30 @@ Lançado sob a GNU GPL</translation>
         <location filename="../src/MainWindow.cpp" line="2807"/>
         <location filename="../src/MainWindow.cpp" line="2827"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation>ผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="330"/>
         <source>Could not change current directory to &apos;%0&apos;</source>
-        <translation>Não foi possível alterar a pasta corrente para %0</translation>
+        <translation>ไม่สามารถเปลี่ยนเส้นทางปัจจุบันไป &apos;%0&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="374"/>
         <source>Open Workspace</source>
-        <translation>Abrir área de trabalho</translation>
+        <translation>เปิดพื้นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="374"/>
         <source>A workspace does not exist in this folder.
 Would you like to create one here?</source>
-        <translation>Não existe uma área de trabalho nesta pasta.
-Quer criar uma aqui?</translation>
+        <translation>ไม่พบพื้นที่ทำงานในโฟลเดอร์นี้
+คุณต้องการสร้างขึ้นใหม่ที่นี่หรือไม่?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="376"/>
         <location filename="../src/MainWindow.cpp" line="463"/>
         <source>Select Workspace Folder</source>
-        <translation>Seleccionar pasta de trabalho</translation>
+        <translation>เลือกโฟลเดอร์พื้นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="385"/>
@@ -1067,152 +1067,157 @@ Quer criar uma aqui?</translation>
         <location filename="../src/MainWindow.cpp" line="403"/>
         <location filename="../src/MainWindow.cpp" line="483"/>
         <source>Could not open repository.</source>
-        <translation>Não foi possível abrir o repositório.</translation>
+        <translation>ไม่สามารถเปิดรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="430"/>
         <source>Fossil Files</source>
-        <translation>Ficheiros Fossil</translation>
+        <translation>ไฟล์ฟอสซิล</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="432"/>
         <source>Open Fossil Repository</source>
-        <translation>Abrir repositório Fossil</translation>
+        <translation>เปิดรีโพสิทอรีฟอสซิล</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="442"/>
         <source>Fossil Repositories</source>
-        <translation>Repositórios Fossil</translation>
+        <translation>รีโพสิทอรีฟอสซิล</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="445"/>
         <source>New Fossil Repository</source>
-        <translation>Novo repositório Fossil</translation>
+        <translation>รีโพสิทอรีฟอสซิลใหม่</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="452"/>
         <source>A repository file already exists.
 Repository creation aborted.</source>
-        <translation>Já existe um ficheiro de repositório.
-A criação do repositório foi abortada.</translation>
+        <translation>มีไฟล์รีโพสิทอรีแล้ว
+ระบบได้ยกเลิกการสร้างรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="461"/>
         <source>Create Workspace</source>
-        <translation>Criar área de trabalho</translation>
+        <translation>สร้างพื้นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="461"/>
         <source>Would you like to create a workspace in the same folder?</source>
-        <translation>Quer criar uma área de trabalho na mesma pasta?</translation>
+        <translation>คุณอยากสร้างพื้นที่ทำงานในโฟลเดอร์เดียวกัน?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="477"/>
         <source>Could not create repository.</source>
-        <translation>Não foi possível criar o repositório.</translation>
+        <translation>ไม่สามารถสร้างรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="500"/>
         <location filename="../src/MainWindow.cpp" line="508"/>
         <source>Close Workspace</source>
-        <translation>Fechar área de trabalho</translation>
+        <translation>ปิดพื้นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="545"/>
         <source>Could not clone the repository</source>
-        <translation>Não foi possível clonar o repositório</translation>
+        <translation>ไม่สามารถคัดลอกรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="650"/>
         <source>No workspace detected.</source>
-        <translation>Não foi detectada qualquer área de trabalho.</translation>
+        <translation>ไม่พบพื่นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="655"/>
         <source>Old repository schema detected. Consider running &apos;fossil rebuild&apos;</source>
-        <translation>Foi detectado um esquema de repositório antigo. Considere executar &apos;fossil rebuild&apos;</translation>
+        <translation>ตรวจพบโครงสร้างรีโพสิทอรีเวอร์ชันเก่า แนะนำให้ใช้คำสั่ง &apos;fossil rebuild&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
         <source>File</source>
-        <translation>Ficheiro</translation>
+        <translation>ไฟล์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Modified</source>
-        <translation>Modificados</translation>
+        <translation>ดัดแปลงแล้ว</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Path</source>
-        <translation>Caminho</translation>
+        <translation>เส้นทาง</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Status</source>
-        <translation>Estado</translation>
+        <translation>สถานะ</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Extension</source>
-        <translation>Extensão</translation>
+        <translation>ส่วนขยาย</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="500"/>
         <source>Are you sure you want to close this workspace?</source>
-        <translation>Tem a certeza de que quer fechar esta área de trabalho?</translation>
+        <translation>คุณแน่ใจหรือไม่ว่าต้องการปิดพื้นที่ทำงานนี้?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="940"/>
         <source>Edited</source>
-        <translation>Editado</translation>
+        <translation>แก้ไขแล้ว</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="941"/>
         <source>Unchanged</source>
-        <translation>Não modificados</translation>
+        <translation>ยังไม่แก้ไข</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="942"/>
         <source>Added</source>
-        <translation>Adicionados</translation>
+        <translation>เพิ่มแล้ว</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="943"/>
         <source>Deleted</source>
-        <translation>Eliminados</translation>
+        <translation>ลบแล้ว</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="944"/>
         <source>Renamed</source>
-        <translation>Renomeados</translation>
+        <translation>แก้ไขชื่อแล้ว</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="945"/>
         <source>Missing</source>
-        <translation>Em falta</translation>
+        <translation>ไม่พบ</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="946"/>
+        <source>Conflicted</source>
+        <translation>การขัดเย้ง</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="952"/>
         <source>Unknown</source>
-        <translation>Desconhecidos</translation>
+        <translation>ไม่ทราบ</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="872"/>
         <source>Stashes</source>
-        <translation>Armazéns</translation>
+        <translation>รายการสแตช</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1554"/>
         <location filename="../src/MainWindow.cpp" line="2405"/>
         <source>Add files</source>
-        <translation>Adicionar ficheiros</translation>
+        <translation>เพิ่มไฟล์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1554"/>
         <location filename="../src/MainWindow.cpp" line="2405"/>
         <source>The following files will be added.</source>
-        <translation>Os ficheiros seguintes irão ser adicionados.</translation>
+        <translation>ไฟล์เหล่านี้จะถูกบันทึก</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1554"/>
@@ -1226,395 +1231,390 @@ A criação do repositório foi abortada.</translation>
         <location filename="../src/MainWindow.cpp" line="2534"/>
         <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>Are you sure?</source>
-        <translation>Tem a certeza?</translation>
+        <translation>คุณแน่ใจหรือเปล่า?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1588"/>
         <source>Remove files</source>
-        <translation>Remover ficheiros</translation>
+        <translation>ลบไฟล์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1588"/>
         <source>The following files will be removed from the repository.</source>
-        <translation>Os ficheiros seguintes irão ser removidos do repositório.</translation>
+        <translation>ไฟล์ต่อไปนี้จะถูกลบออกจากรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1588"/>
         <source>Also delete the local files</source>
-        <translation>Eliminar também os ficheiros locais</translation>
+        <translation>ลบไฟล์ในเครื่องด้วย</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1622"/>
         <source>Revert files</source>
-        <translation>Reverter ficheiros</translation>
+        <translation>ย้อนคืนไฟล์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1622"/>
         <source>The following files will be reverted.</source>
-        <translation>Os ficheiros seguintes irão ser revertidos.</translation>
+        <translation>ไฟล์เหล่านี้จะถูกย้อนคืน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1644"/>
         <location filename="../src/MainWindow.cpp" line="1958"/>
         <source>New name</source>
-        <translation>Novo nome</translation>
+        <translation>ชื่อใหม่</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1652"/>
         <source>File &apos;%0&apos; already exists.
 Rename aborted.</source>
-        <translation>O ficheiro &apos;%0&apos; já existe.
-Renomeação abortada.</translation>
+        <translation>ไฟล์ &apos;%0&apos; มีแล้ว
+ยกเลิกการแก้ไขชื่อ</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1696"/>
         <source>The following actions will be undone.</source>
-        <translation>As acções seguintes irão ser desfeitas.</translation>
+        <translation>การดำเนินการต่อไปนี้จะถูกย้อนกลับ</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2534"/>
         <source>The following files will be updated.</source>
-        <translation>Os ficheiros seguintes irão ser actualizados.</translation>
+        <translation>ไฟล์ต่อไปนี้จะถูกอัปเดต</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1968"/>
         <location filename="../src/MainWindow.cpp" line="1977"/>
         <source>Cannot rename folder.</source>
-        <translation>Não foi possível renomear a pasta.</translation>
+        <translation>ไม่สามารถเปลี่ยนชื่อโฟลเดอร์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="140"/>
         <source>Workspace</source>
-        <translation>Área de Trabalho</translation>
+        <translation>พื้นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="285"/>
         <source>Filter (%0)</source>
-        <translation>Filtro (%0)</translation>
+        <translation>ตัวกรอง (%0)</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="509"/>
         <source>Could not close the workspace.
 Perhaps there are uncommitted changes available
 Would you like to force closing this workspace?</source>
-        <translation>Não foi possível fechar o espaço de trabalho.
-Talvez existam mudanças não committed disponíveis
-Quer forçar o fecho deste espaço de trabalho?</translation>
+        <translation>ไม่สามารถปิดพื้นที่ทำงานได้
+เนื่องจากอาจมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก
+คุณต้องการบังคับปิดพื้นที่ทำงานนี้หรือไม่?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="522"/>
         <source>Could not close the workspace.</source>
-        <translation>Não foi possível fechar o espaço de trabalho.</translation>
+        <translation>ไม่สามารถปิดพื้นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="558"/>
         <location filename="../src/MainWindow.cpp" line="2694"/>
         <location filename="../src/MainWindow.cpp" line="2827"/>
         <source>Could not store information to keychain.</source>
-        <translation>Não foi possível armazenar a informação no chaveiro.</translation>
+        <translation>ไม่สามารถจัดเก็บข้อมูลลงในพวงกุญแจรหัสผ่านได้</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="805"/>
         <source>Files</source>
-        <translation>Ficheiros</translation>
+        <translation>ไฟล์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="830"/>
         <source>Branches</source>
-        <translation>Ramos</translation>
+        <translation>แบรนช์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="850"/>
         <source>Tags</source>
-        <translation>Etiquetas</translation>
+        <translation>แท็ก</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="884"/>
         <source>Remotes</source>
-        <translation>Remotos</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="946"/>
-        <source>Conflicted</source>
-        <translation>Em Conflito</translation>
+        <translation>รีโมท</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="947"/>
         <source>Merged</source>
-        <translation>Merged</translation>
+        <translation>ผสานแล้ว</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1539"/>
         <source>Could not commit changes.</source>
-        <translation>Não foi possível dar commit às mudanças.</translation>
+        <translation>ไม่สามารถคอมมิตการเปลี่ยนแปลงได้</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1559"/>
         <location filename="../src/MainWindow.cpp" line="1568"/>
         <location filename="../src/MainWindow.cpp" line="2410"/>
         <source>Could not add files.</source>
-        <translation>Não foi possível adicionar ficheiros.</translation>
+        <translation>ไม่สามารถเพิ่มไฟล์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1596"/>
         <source>Could not remove files.</source>
-        <translation>Não foi possível remover ficheiros.</translation>
+        <translation>ไม่สามารถลบไฟล์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1627"/>
         <source>Could not revert files.</source>
-        <translation>Não foi possível reverter ficheiros.</translation>
+        <translation>ไม่สามารถย้อนคืนไฟล์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1658"/>
         <source>Could not rename file &apos;%0&apos; to &apos;%1&apos;</source>
-        <translation>Não foi possível renomear ficheiro &apos;%0&apos; para &apos;%1&apos;</translation>
+        <translation>ไม่สามารถแก้ไขชื่อจาก &apos;%0&apos; ไป &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1691"/>
         <location filename="../src/MainWindow.cpp" line="1701"/>
         <source>Could not undo changes.</source>
-        <translation>Não foi possível desfazer mudanças.</translation>
+        <translation>ไม่สามารถย้อนคืนการเปลี่ยนแปลง</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1968"/>
         <source>Folder name contains invalid characters.</source>
-        <translation>O nome da pasta contém caracteres inválidos.</translation>
+        <translation>ชื่อโฟลเดอร์มี่อักขระที่ไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="1977"/>
         <source>This folder exists already.</source>
-        <translation>Essa pasta já existe.</translation>
+        <translation>โฟลเดอร์นี้มีแล้ว</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2002"/>
         <source>Renaming folder &apos;%0&apos; to &apos;%1&apos;
 The following files will be moved in the repository.</source>
-        <translation>Renomeado a pasta &apos;%0&apos; para &apos;%1&apos;
-Os ficheiros seguintes irão ser movidos no repositório.</translation>
+        <translation>กำลังเปลี่ยนชื่อโฟลเดอร์จาก &apos;%0&apos; เป็น &apos;%1&apos;
+รายชื่อไฟล์ต่อไปนี้จะถูกย้ายในรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2006"/>
         <source>Also move the workspace files</source>
-        <translation>Mover também os ficheiros da área de trabalho</translation>
+        <translation>ย้ายไฟล์ในเวิร์กสเปซด้วย</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2020"/>
         <source>Move aborted due to errors</source>
-        <translation>A deslocação foi abortada por terem ocorrido erros</translation>
+        <translation>ยกเลิกการเคลื่อนย้ายเพราะข้อผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2040"/>
         <source>Creating folder &apos;%0&apos;</source>
-        <translation>Criando a pasta &apos;%0&apos;</translation>
+        <translation>สร้างโฟลเดอร์ &apos;%0&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2043"/>
         <source>Cannot make target folder &apos;%0&apos;</source>
-        <translation>Não foi possível criar a pasta de destino &apos;%0&apos;</translation>
+        <translation>ไม่สามารถสร้างโฟลเดอร์เป้าหมาย &apos;%0&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2056"/>
         <source>Target file &apos;%0&apos; exists already</source>
-        <translation>O ficheiro de destino &apos;%0&apos; já existe</translation>
+        <translation>มีไฟล์เป้าหมาย &apos;%0&apos; แล้ว</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2060"/>
         <source>Copying file &apos;%0&apos; to &apos;%1&apos;</source>
-        <translation>Copiando o ficheiro &apos;%0&apos; para &apos;%1&apos;</translation>
+        <translation>กำลังคัดลอกไฟล์จาก &apos;%0&apos; ไป &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2064"/>
         <source>Cannot copy file &apos;%0&apos; to &apos;%1&apos;</source>
-        <translation>Não foi possível copiar o ficheiro &apos;%0&apos; para &apos;%1&apos;</translation>
+        <translation>ไม่สามารถคัดลอกไฟล์จาก &apos;%0&apos; ไป &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2074"/>
         <source>Removing old file &apos;%0&apos;</source>
-        <translation>Removendo o ficheiro antigo &apos;%0&apos;</translation>
+        <translation>กำลังลบไฟล์เก่า &apos;%0&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2078"/>
         <source>Source file &apos;%0&apos; does not exist</source>
-        <translation>O ficheiro de origem &apos;%0&apos; não existe</translation>
+        <translation>ไม่มีไฟล์ต้นฉบับ &apos;%0&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2084"/>
         <source>Cannot remove file &apos;%0&apos;</source>
-        <translation>Não foi possível remover o ficheiro &apos;%0&apos;</translation>
+        <translation>ลบไฟล์ &apos;%0&apos; ไม่ได้</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2089"/>
         <source>Folder renamed completed. Don&apos;t forget to commit!</source>
-        <translation>A renomeação de pasta foi completada. Não se esqueça de cometer!</translation>
+        <translation>แก้ไขชื่อโฟลเดอร์สำเร็จ อย่าลืมคอมมิต</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2251"/>
         <source>Could not diff stash.</source>
-        <translation>Não foi possível dar diff à stash.</translation>
+        <translation>ไม่สามารถเปรียบเทียบความแตกต่างของสแตชได้</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2437"/>
         <source>Operation Aborted</source>
-        <translation>Operação Abortada</translation>
+        <translation>การดำเนินการถูกยกเลิก</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2497"/>
         <source>&lt;Latest Revision&gt;</source>
-        <translation>&lt;Última Revisão&gt;</translation>
+        <translation>&lt;ชุดการแก้ไขล่าสุด&gt;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2507"/>
         <source>Update workspace</source>
-        <translation>Atualizar espaço de trabalho</translation>
+        <translation>อัพเดตพื้นที่ทำงาน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2520"/>
         <location filename="../src/MainWindow.cpp" line="2539"/>
         <source>Could not update the repository.</source>
-        <translation>Não foi possível atualizar o repositório.</translation>
+        <translation>ไม่สามารถอัพเดทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2551"/>
         <source>Create Tag</source>
-        <translation>Criar Etiqueta</translation>
+        <translation>สร้างแท็ก</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2556"/>
         <location filename="../src/MainWindow.cpp" line="2599"/>
         <source>Invalid name.</source>
-        <translation>Nome inválido.</translation>
+        <translation>ชื่อไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2561"/>
         <source>Could not create tag.</source>
-        <translation>Não foi possível criar etiqueta.</translation>
+        <translation>ไม่สามารถสร้างแท็ก</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2574"/>
         <source>Are you sure want to delete the tag &apos;%0&apos; ?</source>
-        <translation>Tem a certeza que quer eliminar a etiqueta &apos;%0&apos; ?</translation>
+        <translation>คุณแน่ใจหรือไม่ว่าต้องการลบแท็กนี้ &apos;%0&apos; ?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2582"/>
         <source>Could not delete tag.</source>
-        <translation>Não foi possível eliminar etiqueta.</translation>
+        <translation>ลบแท็กไม่ได้</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2594"/>
         <source>Create Branch</source>
-        <translation>Criar Ramo</translation>
+        <translation>สร้างแบรนช์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2605"/>
         <source>Could not create branch.</source>
-        <translation>Não foi possível criar ramo.</translation>
+        <translation>ไม่สามารสร้างแบรนช์</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2628"/>
         <location filename="../src/MainWindow.cpp" line="2637"/>
         <source>Merge failed.</source>
-        <translation>Merge falhou.</translation>
+        <translation>ผสานไม่สำเร็จ</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>Merge</source>
-        <translation>Merge</translation>
+        <translation>ผสาน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2632"/>
         <source>The following changes will be applied.</source>
-        <translation>As seguinte mudanças serão aplicadas.</translation>
+        <translation>การเปลี่ยนแปลงต่อไปนี้จะถูกนำไปใช้</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2639"/>
         <source>Merge completed. Don&apos;t forget to commit!</source>
-        <translation>Merge completo. Não se esqueça de dar commit!</translation>
+        <translation>ผสานสำเร็จแล้ว อย่าลืมคอมมิตนะ!</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2727"/>
         <location filename="../src/MainWindow.cpp" line="2764"/>
         <source>Could not push to the remote repository.</source>
-        <translation>Não foi possível dar push para o repositório remoto.</translation>
+        <translation>ไม่สามารถดันไปยังรีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2745"/>
         <location filename="../src/MainWindow.cpp" line="2783"/>
         <source>Could not pull from the remote repository.</source>
-        <translation>Não foi possível dar pull do repositório remoto.</translation>
+        <translation>ไม่สามารถดีงจากรีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2755"/>
         <location filename="../src/MainWindow.cpp" line="2774"/>
         <source>A default remote repository has not been specified.</source>
-        <translation>Um repositório remoto padrão não foi especificado.</translation>
+        <translation>ยังไม่ได้ตั้งค่ารีโมทรีโพสิทอรีเริ่มต้น</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2807"/>
         <source>Could not set the remote repository.</source>
-        <translation>Não foi possível definir o repositório remoto.</translation>
+        <translation>ไม่สามารถตั้งรีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2849"/>
         <source>Are you sure want to delete the remote &apos;%0&apos; ?</source>
-        <translation>Tem a certeza que deseja eliminar o remoto &apos;%0&apos;?</translation>
+        <translation>คุณมั่นใจที่จะลบรีโมท &apos;%0&apos; ?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2143"/>
         <source>Invalid stash name</source>
-        <translation>Nome de armazém inválido</translation>
+        <translation>ชื่อสแตชไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2152"/>
         <source>This stash already exists</source>
-        <translation>Este armazém já existe</translation>
+        <translation>มีสแตชนี้แล้ว</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2159"/>
         <source>Could not create stash.</source>
-        <translation>Não foi possível criar stash.</translation>
+        <translation>ไม่สามารถสร้างสแตช</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2174"/>
         <source>The following stashes will be applied.</source>
-        <translation>Os seguintes armazéns vão ser aplicados.</translation>
+        <translation>สแตชต่อไปนี้จะถูกนำไปใช้</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2174"/>
         <source>Delete after applying</source>
-        <translation>Eliminar depois de aplicar</translation>
+        <translation>ลบหลังจากนำไปใช้</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2185"/>
         <source>Stash application aborted due to errors</source>
-        <translation>Armazenamento abortado devido à ocorrência de erros</translation>
+        <translation>การปรับใช้สแตชล้มเหลวเนื่องจากพบข้อผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2186"/>
         <source>Could not apply stash.</source>
-        <translation>Não foi possível aplicar stash.</translation>
+        <translation>ไม่สามารถปรับใช้สแตช</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2199"/>
         <location filename="../src/MainWindow.cpp" line="2228"/>
         <source>Stash deletion aborted due to errors</source>
-        <translation>Eliminação do armazém abortada devido à ocorrência de erros</translation>
+        <translation>การลบสแตชล้มเหลวเนื่องจากข้อผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2200"/>
         <location filename="../src/MainWindow.cpp" line="2229"/>
         <source>Could not delete stash.</source>
-        <translation>Não foi possível eliminar stash.</translation>
+        <translation>ไม่สามารถลบสแตช</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2217"/>
         <source>Delete Stashes</source>
-        <translation>Eliminar armazéns</translation>
+        <translation>ลบสแตช</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="2217"/>
         <source>The following stashes will be deleted.</source>
-        <translation>Os seguintes armazéns irão ser eliminados.</translation>
+        <translation>สแตชเหล่านี้จะถูกลบ</translation>
     </message>
 </context>
 <context>
@@ -1622,62 +1622,62 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../src/AppSettings.cpp" line="42"/>
         <source>Custom Action %0</source>
-        <translation>Ação Personalizada %0</translation>
+        <translation>การดำเนินการแบบกำหนดเอง %0</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="787"/>
         <source>Running Fossil</source>
-        <translation>Fossil em execução</translation>
+        <translation>ดำเนินการฟอสซิล</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="797"/>
         <source>Could not generate command line file</source>
-        <translation>Não foi possível gerar ficheiro de linha de comandos</translation>
+        <translation>ไม่สามารถสร้างไฟล์คอมมานด์ไลน์ได้</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="828"/>
         <source>Could not start Fossil executable &apos;%0&apos;</source>
-        <translation>Não foi possível iniciar o executável do Fossil &apos;%0&apos;</translation>
+        <translation>ไม่สามารถเปิดใช้งานไฟล์โปรแกรมฟอสซิล &apos;%0&apos;</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1123"/>
         <source>Fossil UI is already running</source>
-        <translation>A interface do Fossil já está a correr</translation>
+        <translation>ยูไอฟอสซิลเริ่มไปแล้ว</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1131"/>
         <source>Starting Fossil browser UI. Please wait.</source>
-        <translation>A iniciar o navegador com a interface do Fossil. Aguarde, por favor.</translation>
+        <translation>กำลังเริ่มยูไอฟอสซิล โปรดรอสักครู่</translation>
     </message>
     <message>
         <location filename="../src/Fossil.cpp" line="1145"/>
         <source>Could not start Fossil executable &apos;%s&apos;</source>
-        <translation>Não foi possível iniciar o executável do Fossil &apos;%s&apos;</translation>
+        <translation>ไม่สามารถเปิดโปรแกรมฟอสซิล &apos;%s&apos;</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="756"/>
         <source>Unchanged</source>
-        <translation>Inalterados</translation>
+        <translation>ไม่เปลี่ยน</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="761"/>
         <source>Modified</source>
-        <translation>Modificados</translation>
+        <translation>เปลี่ยนแปลง</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="766"/>
         <source>Unknown</source>
-        <translation>Desconhecidos</translation>
+        <translation>ไม่ทราบ</translation>
     </message>
     <message>
         <location filename="../src/Utils.cpp" line="41"/>
         <source>Applications</source>
-        <translation>Aplicações</translation>
+        <translation>แอปพลิเคชัน</translation>
     </message>
     <message>
         <location filename="../src/Workspace.cpp" line="216"/>
         <source>Updating...</source>
-        <translation>Atualizando...</translation>
+        <translation>กำลังอัพเดต...</translation>
     </message>
 </context>
 <context>
@@ -1686,12 +1686,12 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
         <location filename="../ui/RemoteDialog.ui" line="17"/>
         <location filename="../ui/RemoteDialog.ui" line="31"/>
         <source>Remote Repository</source>
-        <translation>Repositório Remoto</translation>
+        <translation>รีโมทรีโพสิทอรี</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="40"/>
         <source>The URL of the source repository</source>
-        <translation>O URL do repositório original</translation>
+        <translation>URL ของรีโพสิทอรีต้นทาง</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="59"/>
@@ -1701,54 +1701,54 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="68"/>
         <source>User Name</source>
-        <translation>Nome de Utilizador</translation>
+        <translation>ชื่อผู้ใช้</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="75"/>
         <source>The user name used to access the remote repository. Leave blank if not required</source>
-        <translation>O nome de utilizador usado para aceder ao repositório remoto. Deixe em branco se não for necessário</translation>
+        <translation>ชื่อผู้ใช้สำหรับเข้าถึงรีโมทรีโพสิทอรี เว้นว่างไว้หากไม่จำเป็น</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="82"/>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation>รหัสผ่าน</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="89"/>
         <location filename="../ui/RemoteDialog.ui" line="99"/>
         <source>The password used to access the remote repository. Leave blank if not required</source>
-        <translation>A senha usada para aceder ao repositório remoto. Deixe em branco se não for necessária</translation>
+        <translation>รหัสผ่านสำหรับเข้าถึงรีโมทรีโพสิทอรี เว้นว่างไว้หากไม่จำเป็น</translation>
     </message>
     <message>
         <location filename="../ui/RemoteDialog.ui" line="106"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
         <location filename="../src/RemoteDialog.cpp" line="93"/>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation>ผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="56"/>
         <source>Invalid URL.</source>
-        <translation>URL inválido.</translation>
+        <translation>URL ไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="77"/>
         <source>Fossil Repository</source>
-        <translation>Repositório Fossil</translation>
+        <translation>รีโพสิทอรีฟอสซิล</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="79"/>
         <source>Select Fossil Repository</source>
-        <translation>Selecionar o Repositório Fossil</translation>
+        <translation>เลือกรีโพสิทอรีฟอสซิล</translation>
     </message>
     <message>
         <location filename="../src/RemoteDialog.cpp" line="93"/>
         <source>Invalid Repository File.</source>
-        <translation>Ficheiro de Repositório Inválido.</translation>
+        <translation>ไฟล์รีโพสิทอรีไม่ถูกต้อง</translation>
     </message>
 </context>
 <context>
@@ -1756,22 +1756,22 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="31"/>
         <source>Revision</source>
-        <translation>Revisão</translation>
+        <translation>เวอร์ชัน</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="45"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="55"/>
         <source>Integrate</source>
-        <translation>Integrar</translation>
+        <translation>รวบรวม</translation>
     </message>
     <message>
         <location filename="../ui/RevisionDialog.ui" line="62"/>
         <source>Force</source>
-        <translation>Forçar</translation>
+        <translation>บังคับ</translation>
     </message>
 </context>
 <context>
@@ -1779,17 +1779,17 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="17"/>
         <source>Settings</source>
-        <translation>Preferências</translation>
+        <translation>การตั้งค่า</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="39"/>
         <source>Fossil Path</source>
-        <translation>Caminho do Fossil</translation>
+        <translation>เส้นทางฟอสซิล</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="48"/>
         <source>Path to the Fossil executable. Leave blank to use the default Fossil</source>
-        <translation>Caminho para o executável do Fossil. Deixe em branco para usar o Fossil predefinido</translation>
+        <translation>เส้นทางไปยังไฟล์ที่สั่งทำงานได้ของฟอสซิล ปล่อยว่างไว้เพื่อใช้ค่าเริ่มต้น</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="67"/>
@@ -1800,172 +1800,172 @@ Os ficheiros seguintes irão ser movidos no repositório.</translation>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="82"/>
         <source>Commit Messages</source>
-        <translation>Mensagens ao cometer</translation>
+        <translation>ข้อความคอมมิต</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="95"/>
         <source>Clear the commit message history</source>
-        <translation>Eliminar histórico das mensagens ao cometer</translation>
+        <translation>ล้างประวัติข้อความคอมมิต</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="98"/>
         <source>Clear</source>
-        <translation>Limpar</translation>
+        <translation>ล้าง</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="105"/>
         <source>Web Browser</source>
-        <translation>Navegador web</translation>
+        <translation>เว็บเบราว์เซอร์</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="118"/>
         <source>Web browser to use for the Fossil web interface</source>
-        <translation>Navegador web a usar para a interface web do Fossil</translation>
+        <translation>เว็บเบราว์เซอร์สำหรับยูไอฟอสซิล</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="131"/>
         <source>Double-click Action</source>
-        <translation>Acção do duplo-clique</translation>
+        <translation>การทำงานเมื่อดับเบิลคลิก</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="144"/>
         <source>Action to perfom when double-clicking a file</source>
-        <translation>Acção e executar ao fazer um duplo-clique num ficheiro</translation>
+        <translation>การทำงานเมื่อดับเบิลคลิกไฟล์</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="154"/>
         <source>Language</source>
-        <translation>Língua</translation>
+        <translation>ภาษา</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="167"/>
         <source>Language for the user interface</source>
-        <translation>Língua da interface do utilizador</translation>
+        <translation>ภาษาของระบบ</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="174"/>
         <source>Custom Actions</source>
-        <translation>Ações Personalizadas</translation>
+        <translation>กระบวนการที่กำหนดเอง</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="186"/>
         <source>Action</source>
-        <translation>Ação</translation>
+        <translation>กระบวนการ</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="193"/>
         <source>Custom action</source>
-        <translation>Ação personalizada</translation>
+        <translation>กระบวนการที่กำหนดเอง</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="200"/>
         <source>Name of custom action</source>
-        <translation>Nome da ação personalizada</translation>
+        <translation>ชื่อกระบวนการที่กำหนดเอง</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="213"/>
         <source>Description</source>
-        <translation>Descrição</translation>
+        <translation>คำอธิบาย</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="226"/>
         <source>Command</source>
-        <translation>Comando</translation>
+        <translation>คำสั่ง</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="235"/>
         <source>Custom action command-line. Information about the selected items is available via the macros %FILE %FOLDER %WORKSPACE</source>
-        <translation>Ação de linha de comandos personalizada. Informação sobre os itens selecionados está disponível através das macros %FILE %FOLDER %WORKSPACE</translation>
+        <translation>คอมมานด์ไลน์สำหรับกระบวนการที่กำหนดเอง สามารถใช้ข้อมูลของรายการที่เลือกผ่านแมโคร %FILE %FOLDER %WORKSPACE</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="263"/>
         <source>Context</source>
-        <translation>Contexto</translation>
+        <translation>บริบท</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="270"/>
         <source>The context where this action will be available</source>
-        <translation>O contexto onde a ação estará disponível</translation>
+        <translation>บริบทที่มีกระบวนการนี้</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="277"/>
         <source>When checked this action supports multiple selected items</source>
-        <translation>Quando marcado, esta ação suporta múltiplos itens selecionados</translation>
+        <translation>หากเลือก ตัวเลือกนี้จะรองรับการทำงานกับหลายรายการพร้อมกัน</translation>
     </message>
     <message>
         <location filename="../ui/SettingsDialog.ui" line="287"/>
         <source>Multiple Selection</source>
-        <translation>Seleção Múltipla</translation>
+        <translation>การเลือกหลายรายการ</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="14"/>
         <source>Diff File</source>
-        <translation>Ficheiro Diff</translation>
+        <translation>ไฟล์แสดงความแตกต่าง</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="15"/>
         <source>Open File</source>
-        <translation>Abrir ficheiro</translation>
+        <translation>เปิดไฟล์</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="16"/>
         <source>Open Containing Folder</source>
-        <translation>Abrir pasta que contém</translation>
+        <translation>เปิดโฟลเดอร์ที่เก็บ</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="17"/>
         <source>Custom Action %0</source>
-        <translation>Ação Personalizada %0</translation>
+        <translation>กระบวนการที่กำหนดเอง %0</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="19"/>
         <source>System</source>
-        <translation>Sistema</translation>
+        <translation>ระบบ</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="20"/>
         <source>Internal</source>
-        <translation>Interno</translation>
+        <translation>ภายใน</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="38"/>
         <source>Files</source>
-        <translation>Ficheiros</translation>
+        <translation>ไฟล์</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="39"/>
         <source>Folders</source>
-        <translation>Pastas</translation>
+        <translation>โฟลเดอร์</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="79"/>
         <source>Restart required</source>
-        <translation>É necessário reiniciar</translation>
+        <translation>จำเป็นต้องรีสตาร์ท</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="79"/>
         <source>The language change will take effect after restarting the application</source>
-        <translation>A alteração de língua terá efeito depois de reiniciar a aplicação</translation>
+        <translation>การเปลี่ยนแปลงภาษาจะมีผลหลังจากเริ่มการทำงานของแอปพลิเคชันใหม่</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="97"/>
         <source>Select Fossil executable</source>
-        <translation>Seleccione o executável Fossil</translation>
+        <translation>เลือกไฟล์โปรแกรมฟอสซิล</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="151"/>
         <source>Select command</source>
-        <translation>Selecionar comando</translation>
+        <translation>เลือกคำสั่ง</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="105"/>
         <source>Clear Commit Message History</source>
-        <translation>Limpar o histórico de mensagens das operações de cometer</translation>
+        <translation>ล้างประวัติข้อความคอมมิต</translation>
     </message>
     <message>
         <location filename="../src/SettingsDialog.cpp" line="105"/>
         <source>Are you sure you want to clear the commit message history?</source>
-        <translation>Tem a certeza que quer limpar o histórico das mensagens das operações de cometer?</translation>
+        <translation>คุณแน่ใจหรือไม่ว่าต้องการล้างประวัติข้อความคอมมิต?</translation>
     </message>
 </context>
 </TS>
